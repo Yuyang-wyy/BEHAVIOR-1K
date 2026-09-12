@@ -23,6 +23,14 @@ class LocalPolicy:
     def set_action_dim(self, action_dim: int) -> None:
         self.action_dim = action_dim
 
+    @property
+    def needs_fresh_observation(self) -> bool:
+        return True
+
+    @property
+    def rollout_status(self) -> None:
+        return None
+
     def act(self, obs: dict) -> th.Tensor:
         return self.forward(obs)
 
@@ -36,9 +44,14 @@ class LocalPolicy:
             assert self.action_dim is not None
             return th.zeros(self.action_dim, dtype=th.float32)
 
-    def reset(self) -> None:
+    def reset(self, seed: int | None = None) -> None:
         if self.policy is not None:
-            self.policy.reset()
+            self.policy.reset(seed=seed)
+
+    def finish_rollout(self, success: bool, metadata: dict | None = None) -> Optional[str]:
+        if self.policy is not None and hasattr(self.policy, "finish_rollout"):
+            return self.policy.finish_rollout(success=success, metadata=metadata)
+        return None
 
 
 class WebsocketPolicy:
@@ -64,13 +77,26 @@ class WebsocketPolicy:
     def update_host(self, host: str, port: int) -> None:
         self.policy = WebsocketClientPolicy(host=host, port=port, allow_reconnect=self._allow_reconnect)
 
+    @property
+    def needs_fresh_observation(self) -> bool:
+        return self.policy is None or self.policy.needs_fresh_observation
+
+    @property
+    def rollout_status(self) -> dict | None:
+        return None if self.policy is None else self.policy.rollout_status
+
     def forward(self, obs: dict, *args, **kwargs) -> th.Tensor:
         if "need_new_action" in obs and not obs["need_new_action"] and self.last_action is not None:
             return self.last_action
         self.last_action = self.policy.act(obs).detach().cpu()
         return self.last_action
 
-    def reset(self) -> None:
+    def reset(self, seed: int | None = None) -> None:
         if self.policy is not None:
-            self.policy.reset()
+            self.policy.reset(seed=seed)
         self.last_action = None
+
+    def finish_rollout(self, success: bool, metadata: dict | None = None) -> Optional[str]:
+        if self.policy is None:
+            return None
+        return self.policy.finish_rollout(success=success, metadata=metadata)

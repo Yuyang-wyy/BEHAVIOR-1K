@@ -8,6 +8,7 @@ import http
 import logging
 import msgpack
 import numpy as np
+import os
 import requests
 import time
 import torch as th
@@ -58,6 +59,20 @@ class WebsocketClientPolicy:
         self._api_key = api_key
         self._ws, self._server_metadata = None, None
         self._allow_reconnect = allow_reconnect
+        self._request_count = 0
+        self._timing_log_every = int(os.environ.get("B1K_TIMING_LOG_EVERY", "0"))
+        self._action_chunk = None
+        self._action_chunk_index = 0
+        self._rollout_status = None
+
+    @property
+    def needs_fresh_observation(self) -> bool:
+        """Whether the next act() call will send its observation to the server."""
+        return self._action_chunk is None or self._action_chunk_index >= len(self._action_chunk)
+
+    @property
+    def rollout_status(self) -> Dict | None:
+        return deepcopy(self._rollout_status)
 
     def get_server_metadata(self) -> Dict:
         return self._server_metadata
@@ -90,8 +105,12 @@ class WebsocketClientPolicy:
                     compression=None,
                     max_size=None,
                     additional_headers=headers,
-                    ping_interval=60,
-                    ping_timeout=300,
+                    # A task-instance snapshot/reset may legitimately produce
+                    # no websocket traffic for several minutes.  The evaluator
+                    # process supervises requests directly, so don't turn that
+                    # startup silence into a keepalive failure.
+                    ping_interval=None,
+                    ping_timeout=None,
                 )
                 metadata = unpackb(conn.recv())
                 logger.info("Connected to server!")
@@ -104,26 +123,66 @@ class WebsocketClientPolicy:
         if self._ws is None:
             self._ws, self._server_metadata = self._wait_for_server()
 
-        data = self._packer.pack(obs)
+        if self._action_chunk is not None and self._action_chunk_index < len(self._action_chunk):
+            action = self._action_chunk[self._action_chunk_index]
+            self._action_chunk_index += 1
+            return action.clone()
+
+        request_action_chunk = bool(self._server_metadata.get("supports_action_chunks", False))
+        request = {**obs, "_request_action_chunk": True} if request_action_chunk else obs
+        pack_start = time.monotonic()
+        data = self._packer.pack(request)
+        pack_ms = (time.monotonic() - pack_start) * 1000
         max_retries = 2
         response = None
 
         for attempt in range(max_retries + 1):
             try:
+                request_start = time.monotonic()
                 self._ws.send(data)
                 response = self._ws.recv()
+                request_ms = (time.monotonic() - request_start) * 1000
                 if isinstance(response, str):
                     raise RuntimeError(f"Error in inference server:\n{response}")
 
+                unpack_start = time.monotonic()
                 action_dict = unpackb(response)
-                if "action" not in action_dict:
+                self._rollout_status = deepcopy(action_dict.get("rollout_status"))
+                unpack_ms = (time.monotonic() - unpack_start) * 1000
+                response_key = "action_chunk" if request_action_chunk else "action"
+                if response_key not in action_dict:
                     if attempt < max_retries:
                         logger.warning(
-                            f"Server response missing 'action' key, retrying ({attempt + 1}/{max_retries})..."
+                            "Server response missing %r key, retrying (%d/%d)...",
+                            response_key,
+                            attempt + 1,
+                            max_retries,
                         )
                         continue
-                    raise RuntimeError(f"Server response missing 'action' key: {action_dict}")
-                action = th.from_numpy(deepcopy(action_dict["action"])).to(th.float32)
+                    raise RuntimeError(f"Server response missing {response_key!r} key: {action_dict}")
+                self._request_count += 1
+                if self._timing_log_every and self._request_count % self._timing_log_every == 0:
+                    server_timing = action_dict.get("server_timing", {})
+                    server_process_ms = float(server_timing.get("process_ms", 0.0))
+                    logger.info(
+                        "B1K_POLICY_TIMING decision=%d pack_ms=%.1f request_ms=%.1f unpack_ms=%.1f "
+                        "server_unpack_ms=%.1f server_infer_ms=%.1f server_process_ms=%.1f transport_ms=%.1f",
+                        self._request_count,
+                        pack_ms,
+                        request_ms,
+                        unpack_ms,
+                        float(server_timing.get("unpack_ms", 0.0)),
+                        float(server_timing.get("infer_ms", 0.0)),
+                        server_process_ms,
+                        max(0.0, request_ms - server_process_ms),
+                    )
+                action = th.from_numpy(deepcopy(action_dict[response_key])).to(th.float32)
+                if request_action_chunk:
+                    if action.ndim < 2 or len(action) == 0:
+                        raise RuntimeError(f"Server returned invalid action chunk shape {tuple(action.shape)}")
+                    self._action_chunk = action
+                    self._action_chunk_index = 1
+                    return action[0].clone()
                 return action
 
             except websockets.exceptions.ConnectionClosedError as e:
@@ -133,12 +192,50 @@ class WebsocketClientPolicy:
                     continue
                 raise RuntimeError(f"Websocket connection error: {e}")
 
-    def reset(self) -> None:
+    def reset(self, seed: int | None = None) -> None:
         if self._ws is None:
             self._ws, self._server_metadata = self._wait_for_server()
 
-        data = self._packer.pack({"reset": True})
+        data = self._packer.pack({"reset": True, "seed": seed})
         self._ws.send(data)
+        response = self._ws.recv()
+        if isinstance(response, str):
+            raise RuntimeError(f"Error while resetting inference server:\n{response}")
+        acknowledgement = unpackb(response)
+        if not acknowledgement.get("reset_ack"):
+            raise RuntimeError(f"Inference server returned an invalid reset acknowledgement: {acknowledgement}")
+        if acknowledgement.get("seed") != seed:
+            raise RuntimeError(
+                f"Inference server acknowledged seed={acknowledgement.get('seed')}, expected seed={seed}."
+            )
+        self._action_chunk = None
+        self._action_chunk_index = 0
+        self._rollout_status = None
+
+    def finish_rollout(self, success: bool, metadata: Dict | None = None) -> Optional[str]:
+        """Send the terminal rollout label so a recording policy can finalize replay."""
+        if self._ws is None:
+            self._ws, self._server_metadata = self._wait_for_server()
+
+        data = self._packer.pack(
+            {
+                "finish_rollout": True,
+                "success": bool(success),
+                "metadata": metadata or {},
+            }
+        )
+        self._ws.send(data)
+        response = self._ws.recv()
+        if isinstance(response, str):
+            raise RuntimeError(f"Error while finishing rollout in inference server:\n{response}")
+        acknowledgement = unpackb(response)
+        if not acknowledgement.get("finish_rollout_ack"):
+            raise RuntimeError(f"Inference server returned an invalid finish acknowledgement: {acknowledgement}")
+        if bool(acknowledgement.get("success")) != bool(success):
+            raise RuntimeError(
+                f"Inference server acknowledged success={acknowledgement.get('success')}, expected {bool(success)}."
+            )
+        return acknowledgement.get("replay_path")
 
 
 class WebsocketPolicyServer:
@@ -186,7 +283,12 @@ class WebsocketPolicyServer:
                 start_time = time.monotonic()
                 result = unpackb(await websocket.recv(), strict_map_key=False)
                 if "reset" in result:
-                    self._policy.reset()
+                    seed = result.get("seed")
+                    if seed is None:
+                        self._policy.reset()
+                    else:
+                        self._policy.reset(seed=seed)
+                    await websocket.send(packer.pack({"reset_ack": True, "seed": seed}))
                     continue
 
                 obs = deepcopy(result)

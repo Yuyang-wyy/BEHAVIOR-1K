@@ -579,10 +579,15 @@ class Environment(gym.Env, GymObservable, Recreatable):
         for robot in self.robots:
             robot.apply_action(action_dict[robot.name])
 
-    def _post_step(self, action):
-        """Apply the post-sim-step part of an environment step, i.e. grab observations and return the step results."""
-        # Grab observations
-        obs, obs_info = self.get_obs()
+    def _post_step(self, action, skip_obs=False):
+        """Apply post-sim-step bookkeeping and optionally omit expensive sensor observations."""
+        # Collection clients that execute a cached action chunk do not consume an
+        # intermediate camera observation.  They can skip sensor readback while
+        # still evaluating task predicates, rewards, and termination conditions.
+        if skip_obs:
+            obs, obs_info = {}, {}
+        else:
+            obs, obs_info = self.get_obs()
 
         # Step the scene graph builder if necessary
         if self._scene_graph_builder is not None:
@@ -613,7 +618,7 @@ class Environment(gym.Env, GymObservable, Recreatable):
         self._current_step += 1
         return obs, reward, terminated, truncated, info
 
-    def step(self, action, n_render_iterations=1):
+    def step(self, action, n_render_iterations=1, skip_obs=False):
         """
         Apply robot's action and return the next state, reward, done and info,
         following OpenAI Gym's convention
@@ -623,6 +628,8 @@ class Environment(gym.Env, GymObservable, Recreatable):
                 map robot name to corresponding action. If a th.tensor, it should be the flattened, concatenated set
                 of actions
             n_render_iterations (int): Number of rendering iterations to use before returning observations
+            skip_obs (bool): If True, advance physics and task state without reading sensors. The returned
+                observation is empty unless an automatic reset occurs. Intended for cached action-chunk execution.
 
         Returns:
             5-tuple:
@@ -644,7 +651,7 @@ class Environment(gym.Env, GymObservable, Recreatable):
             og.sim.render()
 
         # Run final post-processing
-        return self._post_step(action)
+        return self._post_step(action, skip_obs=skip_obs)
 
     def render(self):
         """Render the environment for debug viewing."""

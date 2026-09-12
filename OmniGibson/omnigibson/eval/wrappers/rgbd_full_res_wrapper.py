@@ -37,6 +37,11 @@ class RGBDFullResWrapper(EnvironmentWrapper):
             else:
                 sensor.image_height = WRIST_RESOLUTION[0]
                 sensor.image_width = WRIST_RESOLUTION[1]
-        # reload observation space
-        env.load_observation_space()
-        logger.info("Reloaded observation space!")
+            # Only the camera shape and modalities changed. Rebuilding the
+            # entire environment observation space here also queries robot
+            # proprioception, but the evaluator has not initialized the
+            # articulation view yet.
+            sensor_space = sensor.load_observation_space()
+            if env.observation_space is not None:
+                env.observation_space.spaces[robot.name].spaces[sensor_name] = sensor_space
+        logger.info("Reloaded camera observation spaces!")

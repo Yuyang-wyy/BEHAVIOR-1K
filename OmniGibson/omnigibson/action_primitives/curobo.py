@@ -78,6 +78,7 @@ class CuRoboMotionGenerator:
         debug=False,
         use_default_embodiment_only=False,
         collision_activation_distance=m.DEFAULT_COLLISION_ACTIVATION_DISTANCE,
+        lock_joint_names=None,
     ):
         """
         Args:
@@ -96,6 +97,8 @@ class CuRoboMotionGenerator:
             collision_activation_distance (float): Distance threshold at which a collision with the world is detected.
                 Increasing this value will make the motion planner more conservative in its planning with respect
                 to the underlying sphere representation of the robot. Note that this does not affect self-collisions detection.
+            lock_joint_names (None or Iterable[str]): Additional joints to hold at their current positions. This is
+                useful for restricted manipulation plans such as moving one arm while keeping a grasping arm fixed.
         """
         # Only support one scene for now -- verify that this is the case
         assert len(og.sim.scenes) == 1
@@ -167,6 +170,10 @@ class CuRoboMotionGenerator:
                 if lock_val is None:
                     joint_idx = joint_idx_mapping[joint_name]
                     robot_cfg_dict["kinematics"]["lock_joints"][joint_name] = reset_qpos[joint_idx]
+            for joint_name in lock_joint_names or ():
+                if joint_name not in joint_idx_mapping:
+                    raise ValueError(f"Cannot lock unknown CuRobo joint {joint_name!r}.")
+                robot_cfg_dict["kinematics"]["lock_joints"][joint_name] = reset_qpos[joint_idx_mapping[joint_name]]
             if robot_cfg_dict["kinematics"]["cspace"]["retract_config"] is None:
                 robot_cfg_dict["kinematics"]["cspace"]["retract_config"] = [
                     reset_qpos[joint_idx_mapping[joint_name]]
@@ -311,7 +318,10 @@ class CuRoboMotionGenerator:
 
         world = lazy.curobo.geom.types.WorldConfig(**obstacles)
         world = world.get_collision_check_world()
-        self.mg[CuRoboEmbodimentSelection.DEFAULT].update_world(world)
+        # Every embodiment has its own collision checker. Updating only DEFAULT
+        # silently left BASE and ARM plans collision-unaware.
+        for motion_generator in self.mg.values():
+            motion_generator.update_world(world)
 
     def check_collisions(
         self,
