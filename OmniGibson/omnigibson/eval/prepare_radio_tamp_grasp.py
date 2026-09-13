@@ -17,6 +17,14 @@ def _args():
     parser.add_argument("--video-path", type=Path)
     parser.add_argument("--side-video-path", type=Path)
     parser.add_argument("--reference-snapshot", type=Path)
+    parser.add_argument("--reference-grasp-pose", type=float, nargs=7)
+    parser.add_argument("--pregrasp-retreat", type=float, default=0.10)
+    parser.add_argument("--contact-overtravel", type=float, default=0.08)
+    parser.add_argument("--contact-step", type=float, default=0.005)
+    parser.add_argument("--contact-position-tolerance", type=float, default=0.005)
+    parser.add_argument("--cartesian-lift-height", type=float, default=0.0)
+    parser.add_argument("--lift-max-joint-step", type=float, default=0.002)
+    parser.add_argument("--hold-steps", type=int, default=0)
     parser.add_argument("--reference-base-pose", type=float, nargs=3)
     parser.add_argument("--start-snapshot", type=Path)
     return parser.parse_args()
@@ -101,21 +109,65 @@ def main():
             orientation = self.robot.eef_links[self.arm].get_position_orientation()[1]
             if self.reference_grasp_in_radio is None:
                 grasp_pose = (center + th.tensor([0.0, 0.0, float(extent[2]) * 0.5 + 0.015]), orientation)
+                pregrasp_pose = self.robot.eef_links[self.arm].get_position_orientation()
             else:
                 from omnigibson.utils import transform_utils
                 radio_pos, radio_quat = obj.get_position_orientation()
                 grasp_pose = transform_utils.pose_transform(
                     radio_pos, radio_quat, *self.reference_grasp_in_radio
                 )
-            # Start from the recorded hand pose; a direct high pregrasp can be
-            # outside the right-arm model's reachable workspace.
-            pregrasp_pose = self.robot.eef_links[self.arm].get_position_orientation()
+                pregrasp_local_pos = self.reference_grasp_in_radio[0].clone()
+                outward = pregrasp_local_pos[:2]
+                outward = outward / th.linalg.vector_norm(outward)
+                pregrasp_local_pos[:2] += outward * self.pregrasp_retreat
+                pregrasp_pose = transform_utils.pose_transform(
+                    radio_pos,
+                    radio_quat,
+                    pregrasp_local_pos,
+                    self.reference_grasp_in_radio[1],
+                )
             yield from self._move_hand(pregrasp_pose)
             yield from self._move_hand(grasp_pose, motion_constraint=[1, 1, 1, 1, 1, 0], stop_on_ag=True)
+            if self.reference_grasp_in_radio is not None:
+                from omnigibson.utils.usd_utils import RigidContactAPI
+
+                radio_links = set(obj.links.values())
+                for distance in th.arange(self.contact_step, self.contact_overtravel + 1e-6, self.contact_step):
+                    contact_local_pos = self.reference_grasp_in_radio[0].clone()
+                    contact_local_pos[:2] -= outward * distance
+                    contact_pose = transform_utils.pose_transform(
+                        radio_pos,
+                        radio_quat,
+                        contact_local_pos,
+                        self.reference_grasp_in_radio[1],
+                    )
+                    yield from self._move_hand(contact_pose, motion_constraint=[1, 1, 1, 1, 1, 0])
+                    actual_grasp_in_radio = transform_utils.relative_pose_transform(
+                        *self.robot.eef_links[self.arm].get_position_orientation(),
+                        *obj.get_position_orientation(),
+                    )
+                    self.approach_distance = float(distance)
+                    self.approach_grasp_in_radio = actual_grasp_in_radio
+                    reached_depth = (
+                        th.dot(actual_grasp_in_radio[0][:2] - self.reference_grasp_in_radio[0][:2], outward)
+                        <= self.contact_position_tolerance
+                    )
+                    finger_contact = any(
+                        RigidContactAPI.is_in_contact(
+                            scene_idx=self.env.scene.idx,
+                            query_set={finger},
+                            with_set=radio_links,
+                            ignore_set=None,
+                            current_only=True,
+                        )
+                        for finger in self.robot.finger_links[self.arm]
+                    )
+                    if reached_depth or finger_contact:
+                        break
             yield from self._execute_grasp()
             yield from self._settle_robot()
 
-        def _move_hand(self, target_pose, **kwargs):
+        def _move_hand(self, target_pose, max_joint_step=0.015, **kwargs):
             from omnigibson.action_primitives.action_primitive_set_base import ActionPrimitiveError
             from omnigibson.eval.collect_radio_recovery_oracle import _contact_ik_targets
             from omnigibson.action_primitives.curobo import CuRoboEmbodimentSelection
@@ -147,7 +199,7 @@ def main():
                     "Radio grasp IK failed",
                 )
             current = self.robot.get_joint_positions()
-            n_steps = max(1, int(th.ceil(th.max(th.abs(target - current)) / 0.015).item()))
+            n_steps = max(1, int(th.ceil(th.max(th.abs(target - current)) / max_joint_step).item()))
             yield from self._execute_motion_plan(
                 th.stack([current + (target - current) * (i / n_steps) for i in range(1, n_steps + 1)])
             )
@@ -155,6 +207,7 @@ def main():
     gm.HEADLESS = True
     seed_everything(args.seed)
     robot_config = OmegaConf.load(str(args.robot_config.resolve()))
+    robot_config.grasping_mode = "physical"
     _require_physical_grasp_config(robot_config)
     if not args.start_snapshot:
         base_controller = robot_config.controller_config.base
@@ -194,6 +247,12 @@ def main():
                 str(args.start_snapshot), expected_metadata=_snapshot_identity(metadata)
             )
         reference_base_pose = th.tensor(args.reference_base_pose) if args.reference_base_pose else None
+        reference_grasp_in_radio = None
+        if args.reference_grasp_pose:
+            reference_grasp_in_radio = (
+                th.tensor(args.reference_grasp_pose[:3]),
+                th.tensor(args.reference_grasp_pose[3:]),
+            )
         if args.reference_snapshot:
             initial_state = og.sim.dump_state(serialized=True)
             with np.load(args.reference_snapshot, allow_pickle=False) as snapshot:
@@ -226,7 +285,11 @@ def main():
             task_relevant_objects_only=True,
             curobo_batch_size=1,
         )
-        primitives.reference_grasp_in_radio = locals().get("reference_grasp_in_radio")
+        primitives.reference_grasp_in_radio = reference_grasp_in_radio
+        primitives.pregrasp_retreat = args.pregrasp_retreat
+        primitives.contact_overtravel = args.contact_overtravel
+        primitives.contact_step = args.contact_step
+        primitives.contact_position_tolerance = args.contact_position_tolerance
         # The stock R1Pro ARM CuRobo model targets only left_eef_link. Generate
         # the symmetric right-arm model once so the privileged grasp is planned
         # for the arm that actually holds the radio.
@@ -264,16 +327,101 @@ def main():
                 _step_target(evaluator, action, capture_observation=False)
                 steps += 1
                 max_height = max(max_height, float(radio.get_position_orientation()[0][2]))
+            from omnigibson.controllers.controller_base import IsGraspingState
+            from omnigibson.utils.usd_utils import RigidContactAPI
+
+            radio_links = set(radio.links.values())
+            finger_contacts = [
+                RigidContactAPI.is_in_contact(
+                    scene_idx=evaluator.env.scene.idx,
+                    query_set={finger},
+                    with_set=radio_links,
+                    ignore_set=None,
+                    current_only=True,
+                )
+                for finger in evaluator.robot.finger_links["right"]
+            ]
+            controller_grasp = (
+                evaluator.robot.is_grasping("right", candidate_obj=radio) == IsGraspingState.TRUE
+            )
+            physical_grasp = all(finger_contacts)
+            acquisition_gripper_qpos = (
+                evaluator.robot.get_joint_positions()[evaluator.robot.gripper_control_idx["right"]]
+                .detach()
+                .cpu()
+                .tolist()
+            )
+            if physical_grasp:
+                if args.cartesian_lift_height:
+                    eef_position, eef_orientation = evaluator.robot.eef_links["right"].get_position_orientation()
+                    for action in primitives._move_hand(
+                        (eef_position + th.tensor([0.0, 0.0, args.cartesian_lift_height]), eef_orientation),
+                        max_joint_step=args.lift_max_joint_step,
+                    ):
+                        _step_target(evaluator, action, capture_observation=False)
+                        steps += 1
+                        max_height = max(max_height, float(radio.get_position_orientation()[0][2]))
+                hold_target = evaluator.robot.get_joint_positions().clone()
+                for _ in range(args.hold_steps):
+                    _step_target(
+                        evaluator,
+                        primitives._action_for_joint_target(hold_target),
+                        capture_observation=False,
+                    )
+                    steps += 1
+                    max_height = max(max_height, float(radio.get_position_orientation()[0][2]))
         except Exception as exc:  # Preserve diagnostics and video for failed TAMP attempts.
             import traceback
             traceback.print_exc()
             error = f"{type(exc).__name__}: {exc}"
 
-        held = evaluator.robot._ag_obj_in_hand["right"] is radio
+        assisted_constraints = {
+            arm: constraint is not None for arm, constraint in evaluator.robot._ag_obj_constraints.items()
+        }
+        if any(assisted_constraints.values()):
+            raise RuntimeError(f"Assisted grasp constraint detected: {assisted_constraints}")
+        final_finger_contacts = [
+            RigidContactAPI.is_in_contact(
+                scene_idx=evaluator.env.scene.idx,
+                query_set={finger},
+                with_set=set(radio.links.values()),
+                ignore_set=None,
+                current_only=True,
+            )
+            for finger in evaluator.robot.finger_links["right"]
+        ]
+        held = all(final_finger_contacts)
         final_height = float(radio.get_position_orientation()[0][2])
+        from omnigibson.utils import transform_utils
+
+        final_eef_pose = evaluator.robot.eef_links["right"].get_position_orientation()
+        final_radio_pose = radio.get_position_orientation()
+        final_grasp_in_radio = transform_utils.relative_pose_transform(
+            *final_eef_pose, *final_radio_pose
+        )
         summary.update(
             executed_steps=steps,
             right_hand_holds_radio=held,
+            acquired_two_finger_contact=bool(locals().get("physical_grasp", False)),
+            controller_grasp=bool(locals().get("controller_grasp", False)),
+            acquisition_gripper_qpos=locals().get("acquisition_gripper_qpos"),
+            approach_distance=getattr(primitives, "approach_distance", None),
+            approach_grasp_in_radio=(
+                [value.tolist() for value in primitives.approach_grasp_in_radio]
+                if hasattr(primitives, "approach_grasp_in_radio")
+                else None
+            ),
+            physical_grasp=held,
+            finger_contacts=final_finger_contacts,
+            assisted_constraints=assisted_constraints,
+            requested_grasp_in_radio=(
+                [value.tolist() for value in reference_grasp_in_radio]
+                if reference_grasp_in_radio is not None
+                else None
+            ),
+            final_grasp_in_radio=[value.tolist() for value in final_grasp_in_radio],
+            final_eef_pose=[value.tolist() for value in final_eef_pose],
+            final_radio_pose=[value.tolist() for value in final_radio_pose],
             initial_radio_height=initial_height,
             final_radio_height=final_height,
             radio_height_delta=final_height - initial_height,
