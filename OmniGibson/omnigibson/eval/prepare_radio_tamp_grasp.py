@@ -19,7 +19,6 @@ def _args():
     parser.add_argument("--reference-snapshot", type=Path)
     parser.add_argument("--reference-base-pose", type=float, nargs=3)
     parser.add_argument("--start-snapshot", type=Path)
-    parser.add_argument("--privileged-assist-fallback", action="store_true")
     return parser.parse_args()
 
 
@@ -41,7 +40,11 @@ def main():
         StarterSemanticActionPrimitiveSet,
         StarterSemanticActionPrimitives,
     )
-    from omnigibson.eval.collect_radio_recovery_oracle import _radio_and_toggle_state, _step_target
+    from omnigibson.eval.collect_radio_recovery_oracle import (
+        _radio_and_toggle_state,
+        _require_physical_grasp_config,
+        _step_target,
+    )
     from omnigibson.eval.evaluator import Evaluator
     from omnigibson.eval.utils.eval_utils import seed_everything
     from omnigibson.macros import gm
@@ -152,6 +155,7 @@ def main():
     gm.HEADLESS = True
     seed_everything(args.seed)
     robot_config = OmegaConf.load(str(args.robot_config.resolve()))
+    _require_physical_grasp_config(robot_config)
     if not args.start_snapshot:
         base_controller = robot_config.controller_config.base
         primitive_config = OmegaConf.load(
@@ -245,7 +249,6 @@ def main():
         print("RIGHT_CUROBO", primitives._motion_generator.ee_link, primitives._motion_generator.additional_links)
         steps = 0
         error = None
-        privileged_assist_used = False
         max_height = initial_height
         try:
             if reference_base_pose is not None:
@@ -261,22 +264,6 @@ def main():
                 _step_target(evaluator, action, capture_observation=False)
                 steps += 1
                 max_height = max(max_height, float(radio.get_position_orientation()[0][2]))
-            if evaluator.robot._ag_obj_in_hand["right"] is not radio and args.privileged_assist_fallback:
-                link_name = next(iter(radio.links))
-                joint_type = evaluator.robot._get_assisted_grasp_joint_type(radio, link_name)
-                if joint_type is None:
-                    raise RuntimeError("Radio is not assisted-graspable")
-                evaluator.robot._establish_grasp(
-                    radio, link_name, "right", radio.aabb_center, joint_type
-                )
-                privileged_assist_used = True
-                lift_target = evaluator.robot.get_joint_positions().clone()
-                lift_target[list(evaluator.robot.joints.keys()).index("right_arm_joint1")] += 0.35
-                for _ in range(120):
-                    action = primitives._action_for_joint_target(lift_target)
-                    _step_target(evaluator, action, capture_observation=False)
-                    steps += 1
-                    max_height = max(max_height, float(radio.get_position_orientation()[0][2]))
         except Exception as exc:  # Preserve diagnostics and video for failed TAMP attempts.
             import traceback
             traceback.print_exc()
@@ -291,7 +278,6 @@ def main():
             final_radio_height=final_height,
             radio_height_delta=final_height - initial_height,
             max_radio_height=max_height,
-            privileged_assist_used=privileged_assist_used,
             error=error,
         )
         if held:

@@ -38,6 +38,7 @@ def main():
     from omnigibson.eval.collect_radio_recovery_oracle import (
         _joint_target_to_action,
         _radio_and_toggle_state,
+        _require_physical_grasp_config,
         load_snapshot_metadata,
         _snapshot_identity,
         _step_target,
@@ -47,6 +48,7 @@ def main():
     gm.HEADLESS = True
     seed_everything(args.seed)
     robot_cfg = OmegaConf.load(str(Path(__file__).with_name("r1pro.yaml")))
+    _require_physical_grasp_config(robot_cfg)
     cfg = OmegaConf.create({
         "env_wrapper": {"_target_": "omnigibson.eval.wrappers.RGBDFullResWrapper"},
         "policy_name": "local", "model": {"_target_": "omnigibson.eval.policies.LocalPolicy", "action_dim": None},

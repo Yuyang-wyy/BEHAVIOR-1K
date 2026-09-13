@@ -23,6 +23,13 @@ RADIO_RGB_KEYS = (
 RADIO_PROPRIO_KEY = "robot_r1::proprio"
 
 
+def _require_physical_grasp_config(robot_config) -> None:
+    if robot_config.grasping_mode != "physical":
+        raise ValueError(
+            "Radio data collection requires grasping_mode='physical'; assisted and sticky grasping are disabled."
+        )
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--snapshot", type=Path, required=True)
@@ -507,6 +514,7 @@ def main() -> None:
     gm.HEADLESS = args.headless
     seed_everything(args.seed)
     robot_config = OmegaConf.load(str(args.robot_config.expanduser().resolve()))
+    _require_physical_grasp_config(robot_config)
     cfg = OmegaConf.create(
         {
             "env_wrapper": {"_target_": "omnigibson.eval.wrappers.RGBDFullResWrapper"},

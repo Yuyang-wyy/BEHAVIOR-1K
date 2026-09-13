@@ -20,10 +20,16 @@ def main():
     import torch as th
     from omegaconf import OmegaConf
     from omnigibson.eval.evaluator import Evaluator
-    from omnigibson.eval.collect_radio_recovery_oracle import _radio_and_toggle_state, _step_target
+    from omnigibson.eval.collect_radio_recovery_oracle import (
+        _radio_and_toggle_state,
+        _require_physical_grasp_config,
+        _step_target,
+    )
     from omnigibson.eval.utils.eval_utils import seed_everything
     from omnigibson.macros import gm
     gm.HEADLESS = True; seed_everything(a.seed)
+    robot_cfg = OmegaConf.load(str(Path(__file__).with_name("r1pro.yaml")))
+    _require_physical_grasp_config(robot_cfg)
     cfg = OmegaConf.create({
         "env_wrapper": {"_target_": "omnigibson.eval.wrappers.RGBDFullResWrapper"},
         "policy_name": "local", "model": {"_target_": "omnigibson.eval.policies.LocalPolicy", "action_dim": None},
@@ -31,7 +37,7 @@ def main():
         "write_video": False, "write_side_video": False, "chunk_boundary_observations": False,
         "training_fail_fast": False, "mode": "train", "seed": a.seed,
         "task": {"name": "turning_on_radio"},
-        "robot": OmegaConf.load(str(Path(__file__).with_name("r1pro.yaml"))),
+        "robot": robot_cfg,
     })
     trace = np.load(a.replay, allow_pickle=False)
     actions = np.asarray(trace["actions"], dtype=np.float32)[..., :23]
