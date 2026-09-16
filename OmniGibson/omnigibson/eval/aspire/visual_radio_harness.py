@@ -142,13 +142,15 @@ class VisualRadioHarness:
             raise ValueError("Rotation must be finite and at most one revolution")
         _, _, yaw = self.get_robot_position()
         target = yaw + radians
-        for _ in range(160):
+        for _ in range(400):
             error = math.atan2(math.sin(target - self.get_robot_position()[2]), math.cos(target - self.get_robot_position()[2]))
             if abs(error) < 0.03:
                 self._step(self._action())
                 return True
             action = self._action()
-            action[self.robot.base_action_idx] = th.tensor([0, 0, np.clip(error * 1.5, -0.5, 0.5)])
+            action[self.robot.base_action_idx] = th.tensor(
+                [0, 0, np.clip(error * 1.5, -0.5, 0.5)], dtype=th.float32
+            )
             self._step(action)
         return False
 
