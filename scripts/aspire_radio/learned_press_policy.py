@@ -8,6 +8,49 @@ roi = np.zeros(obs["depth"].shape, dtype=bool)
 roi[373:432, 603:668] = True
 red = (rgb[..., 0] > 150) & (rgb[..., 0] > 2 * rgb[..., 1]) & (rgb[..., 0] > 2 * rgb[..., 2])
 points = mask_to_world_points(roi & red, obs["depth"], obs["intrinsics"], obs["world_from_camera"])
+if len(points) < 20:
+    for search_step in range(8):
+        assert rotate_base(np.pi / 4)
+        obs = get_observation()
+        rgb = obs["rgb"].astype(float)
+        red = ((rgb[..., 0] > 120) & (rgb[..., 0] > 1.35 * rgb[..., 1])
+               & (rgb[..., 0] > 1.35 * rgb[..., 2]))
+        valid = red & np.isfinite(obs["depth"]) & (obs["depth"] > 0) & (obs["depth"] < 10)
+        visited = np.zeros(valid.shape, dtype=bool)
+        components = []
+        for start_y, start_x in zip(*np.nonzero(valid)):
+            if visited[start_y, start_x]:
+                continue
+            stack = [(int(start_y), int(start_x))]
+            visited[start_y, start_x] = True
+            component = []
+            while stack:
+                y0, x0 = stack.pop()
+                component.append((y0, x0))
+                for dy in (-1, 0, 1):
+                    for dx in (-1, 0, 1):
+                        y1, x1 = y0 + dy, x0 + dx
+                        if (0 <= y1 < valid.shape[0] and 0 <= x1 < valid.shape[1]
+                                and valid[y1, x1] and not visited[y1, x1]):
+                            visited[y1, x1] = True
+                            stack.append((y1, x1))
+            if len(component) >= 20:
+                array = np.asarray(component)
+                height = array[:, 0].max() - array[:, 0].min() + 1
+                width = array[:, 1].max() - array[:, 1].min() + 1
+                aspect = min(height, width) / max(height, width)
+                center_y = array[:, 0].mean() / valid.shape[0]
+                score = (aspect - .20 * abs(np.log(len(component) / 1500.0))
+                         - .50 * abs(center_y - .60))
+                components.append((score, component))
+        if components:
+            component = np.asarray(max(components, key=lambda item: item[0])[1])
+            mask = np.zeros(valid.shape, dtype=bool)
+            mask[component[:, 0], component[:, 1]] = True
+            points = mask_to_world_points(mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"])
+        if len(points) >= 20:
+            save_current_observation("after_search_rotate")
+            break
 assert len(points) >= 20
 radio = np.median(points, axis=0)
 assert lift_arm(arm=0, distance=.2, lock_last_trunk=True)
@@ -143,8 +186,8 @@ save_current_observation("after_grasp")
 save_current_observation("after_grasp_right", camera="right_wrist")
 
 # Code block 3
-def held_radio_pixels():
-    current = get_observation()
+def held_radio_pixels(camera="head"):
+    current = get_observation(camera)
     image = current["rgb"].astype(float)
     depth = current["depth"]
     red_pixels = (image[..., 0] > 145) & (image[..., 0] > 2 * image[..., 1]) & (image[..., 0] > 2 * image[..., 2])
@@ -152,7 +195,7 @@ def held_radio_pixels():
     pixel_y, pixel_x = np.nonzero(valid_pixels)
     world = mask_to_world_points(valid_pixels, depth, current["intrinsics"], current["world_from_camera"])
     hand, _ = get_current_eef_pose(arm=1)
-    held = np.linalg.norm(world - hand, axis=1) < .35
+    held = np.linalg.norm(world - hand, axis=1) < (.75 if camera != "head" else .35)
     return current, image, pixel_x[held], pixel_y[held]
 
 def find_button(rgb, xs, ys, top_only=False):
@@ -254,7 +297,11 @@ def find_button(rgb, xs, ys, top_only=False):
             int(np.median(component[:, 0])) + y0,
             [x0, y0, x1, y1])
 
-obs, rgb, xs, ys = held_radio_pixels()
+view_camera = "head"
+obs, rgb, xs, ys = held_radio_pixels(view_camera)
+if len(xs) < 20:
+    view_camera = "right_wrist"
+    obs, rgb, xs, ys = held_radio_pixels(view_camera)
 assert len(xs) >= 20, "Held radio front is not visible after grasp"
 hand, hand_quat = get_current_eef_pose(arm=1)
 camera = obs["world_from_camera"]
@@ -277,7 +324,7 @@ for presentation_step, (_, presentation_rotation) in enumerate(presentation_pose
     if presentation_step and not move_hand((hand, presentation_quat), arm=1, lock_last_trunk=True):
         continue
     save_current_observation("after_presentation_" + str(presentation_step))
-    obs, rgb, xs, ys = held_radio_pixels()
+    obs, rgb, xs, ys = held_radio_pixels(view_camera)
     if len(xs) < 20:
         continue
     try:
@@ -291,7 +338,7 @@ assert found_button, "Held radio top control is not visible after presentation"
 pressed = False
 button_x = button_y = -1
 for press_attempt in range(3):
-    obs, rgb, xs, ys = held_radio_pixels()
+    obs, rgb, xs, ys = held_radio_pixels(view_camera)
     assert len(xs) >= 20, "Held radio front is not visible after press"
     button_x, button_y, bbox = find_button(rgb, xs, ys, top_only=True)
     print("candidate", candidate, "press_attempt", press_attempt,
@@ -301,7 +348,7 @@ for press_attempt in range(3):
     save_current_observation("after_power_press_" + str(press_attempt))
     if not press_ok:
         continue
-    current, current_rgb, current_xs, current_ys = held_radio_pixels()
+    current, current_rgb, current_xs, current_ys = held_radio_pixels(view_camera)
     green = ((current_rgb[current_ys, current_xs, 1] > 80)
              & (current_rgb[current_ys, current_xs, 1] > 1.25 * current_rgb[current_ys, current_xs, 0])
              & (current_rgb[current_ys, current_xs, 1] > 1.10 * current_rgb[current_ys, current_xs, 2]))
