@@ -27,6 +27,10 @@ def _args():
     parser.add_argument("--hold-steps", type=int, default=0)
     parser.add_argument("--reference-base-pose", type=float, nargs=3)
     parser.add_argument("--start-snapshot", type=Path)
+    parser.add_argument("--lock-default-trunk", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--grasp-arm", choices=("left", "right"), default="left")
+    parser.add_argument("--reference-eef-world", type=float, nargs=7)
+    parser.add_argument("--assisted-after-contact", action="store_true")
     return parser.parse_args()
 
 
@@ -62,15 +66,22 @@ def main():
             super().__init__(*args, **kwargs)
             self.close_right = False
             self.reference_grasp_in_radio = None
+            self.locked_posture = None
 
         @property
         def arm(self):
-            return "right"
+            return args.grasp_arm
 
         def _action_for_joint_target(self, target):
             from omnigibson.eval.collect_radio_recovery_oracle import _joint_target_to_action
+            if self.locked_posture is not None:
+                target = target.clone()
+                posture_idx, posture_q = self.locked_posture
+                target[posture_idx] = posture_q
             return _joint_target_to_action(
-                self.robot, target, close_left=False, close_right=self.close_right
+                self.robot, target,
+                close_left=self.close_right and self.arm == "left",
+                close_right=self.close_right and self.arm == "right",
             )
 
         def _empty_action(self, follow_arm_targets=True):
@@ -107,7 +118,10 @@ def main():
             center = obj.aabb_center
             extent = obj.aabb_extent
             orientation = self.robot.eef_links[self.arm].get_position_orientation()[1]
-            if self.reference_grasp_in_radio is None:
+            if args.reference_eef_world is not None:
+                grasp_pose = (th.tensor(args.reference_eef_world[:3]), th.tensor(args.reference_eef_world[3:]))
+                pregrasp_pose = (grasp_pose[0] + th.tensor([0.0, 0.0, args.pregrasp_retreat]), grasp_pose[1])
+            elif self.reference_grasp_in_radio is None:
                 grasp_pose = (center + th.tensor([0.0, 0.0, float(extent[2]) * 0.5 + 0.015]), orientation)
                 pregrasp_pose = self.robot.eef_links[self.arm].get_position_orientation()
             else:
@@ -166,6 +180,13 @@ def main():
                         break
             yield from self._execute_grasp()
             yield from self._settle_robot()
+            if args.assisted_after_contact:
+                from omnigibson.utils.usd_utils import RigidContactAPI
+                if any(RigidContactAPI.is_in_contact(scene_idx=self.env.scene.idx, query_set={finger}, with_set=set(obj.links.values()), ignore_set=None, current_only=True) for finger in self.robot.finger_links[self.arm]):
+                    contact = self.robot._find_finger_contact_position(self.arm, next(iter(obj.links.values())).prim_path)
+                    joint_type = self.robot._get_assisted_grasp_joint_type(obj, next(iter(obj.links)))
+                    if contact is not None and joint_type is not None:
+                        self.robot._establish_grasp(obj, next(iter(obj.links)), self.arm, contact, joint_type)
 
         def _move_hand(self, target_pose, max_joint_step=0.015, **kwargs):
             from omnigibson.action_primitives.action_primitive_set_base import ActionPrimitiveError
@@ -237,6 +258,13 @@ def main():
     )
     summary = {"instance_id": args.instance, "seed": args.seed, "phase": "grasp_and_present"}
     with Evaluator(cfg) as evaluator:
+        joint_name_to_idx = {name: i for i, name in enumerate(evaluator.robot.joints.keys())}
+        base_posture_names = [
+            name for name in (
+                "base_footprint_z_joint", "base_footprint_rx_joint", "base_footprint_ry_joint"
+            ) if name in joint_name_to_idx
+        ]
+        base_posture_idx = th.tensor([joint_name_to_idx[name] for name in base_posture_names], dtype=th.long)
         evaluator.reset(seed=args.seed)
         evaluator.load_task_instance(args.instance)
         evaluator.reset(seed=args.seed)
@@ -265,13 +293,30 @@ def main():
                 reference_robot_pos[0], reference_robot_pos[1],
                 transform_utils.quat2euler(reference_robot_quat)[2],
             ])
-            reference_grasp_in_radio = transform_utils.relative_pose_transform(
-                *evaluator.robot.eef_links["right"].get_position_orientation(),
-                *reference_radio.get_position_orientation(),
-            )
+            if args.grasp_arm == "left":
+                delta = reference_base_pose[:2] - reference_radio.get_position_orientation()[0][:2]
+                reference_base_pose[:2] = reference_radio.get_position_orientation()[0][:2] + th.stack((delta[1], -delta[0]))
+                reference_base_pose[2] -= th.pi / 2
+            if reference_grasp_in_radio is None:
+                reference_grasp_in_radio = transform_utils.relative_pose_transform(
+                    *evaluator.robot.eef_links[args.grasp_arm].get_position_orientation(),
+                    *reference_radio.get_position_orientation(),
+                )
             og.sim.load_state(initial_state, serialized=True)
             og.sim.step_physics()
             og.sim.render()
+        if args.lock_default_trunk:
+            evaluator.robot.set_joint_positions(
+                evaluator.robot.reset_joint_pos[evaluator.robot.trunk_control_idx],
+                indices=evaluator.robot.trunk_control_idx,
+            )
+            evaluator.robot.set_joint_positions(
+                evaluator.robot.reset_joint_pos[base_posture_idx], indices=base_posture_idx
+            )
+            og.sim.step_physics()
+        default_trunk_q = evaluator.robot.reset_joint_pos[evaluator.robot.trunk_control_idx].clone()
+        initial_trunk_q = evaluator.robot.get_joint_positions()[evaluator.robot.trunk_control_idx].clone()
+        default_base_posture = evaluator.robot.reset_joint_pos[base_posture_idx].clone()
         evaluator.start_recording(
             str(args.video_path.resolve()) if args.video_path else None,
             side_fpath=str(args.side_video_path.resolve()) if args.side_video_path else None,
@@ -286,6 +331,10 @@ def main():
             curobo_batch_size=1,
         )
         primitives.reference_grasp_in_radio = reference_grasp_in_radio
+        if args.lock_default_trunk:
+            posture_idx = th.cat((evaluator.robot.trunk_control_idx, base_posture_idx))
+            posture_q = th.cat((default_trunk_q, default_base_posture))
+            primitives.locked_posture = (posture_idx, posture_q)
         primitives.pregrasp_retreat = args.pregrasp_retreat
         primitives.contact_overtravel = args.contact_overtravel
         primitives.contact_step = args.contact_step
@@ -299,20 +348,25 @@ def main():
         # The stock ARM model already contains both arms; only switch its
         # commanded end-effector. Keep the original cspace and lock the left
         # arm below, rather than duplicating joint names.
-        text_cfg = source_cfg.read_text().replace("ee_link: left_eef_link", "ee_link: right_eef_link")
+        text_cfg = source_cfg.read_text().replace("ee_link: left_eef_link", f"ee_link: {args.grasp_arm}_eef_link")
         # Keep auxiliary links empty: the motion generator appends ee_link and
         # otherwise treats right_eef_link as an unsupported additional-link cost.
         text_cfg = text_cfg.replace("    link_names:\n    - right_eef_link", "    link_names: []")
         right_cfg.write_text(text_cfg)
+        lock_joint_names = list(evaluator.robot.arm_joint_names["right" if args.grasp_arm == "left" else "left"])
+        if args.lock_default_trunk:
+            lock_joint_names.extend(evaluator.robot.trunk_joint_names)
+            lock_joint_names.extend(base_posture_names)
         primitives._motion_generator = CuRoboMotionGenerator(
             evaluator.robot, robot_cfg_path={CuRoboEmbodimentSelection.ARM: str(right_cfg)},
             batch_size=1, use_cuda_graph=False,
-            lock_joint_names=evaluator.robot.arm_joint_names["left"],
+            lock_joint_names=lock_joint_names,
         )
         print("RIGHT_CUROBO", primitives._motion_generator.ee_link, primitives._motion_generator.additional_links)
         steps = 0
         error = None
         max_height = initial_height
+        from omnigibson.utils.usd_utils import RigidContactAPI
         try:
             if reference_base_pose is not None:
                 for action in primitives._navigate_to_pose_direct(reference_base_pose):
@@ -328,7 +382,6 @@ def main():
                 steps += 1
                 max_height = max(max_height, float(radio.get_position_orientation()[0][2]))
             from omnigibson.controllers.controller_base import IsGraspingState
-            from omnigibson.utils.usd_utils import RigidContactAPI
 
             radio_links = set(radio.links.values())
             finger_contacts = [
@@ -339,21 +392,21 @@ def main():
                     ignore_set=None,
                     current_only=True,
                 )
-                for finger in evaluator.robot.finger_links["right"]
+                for finger in evaluator.robot.finger_links[args.grasp_arm]
             ]
             controller_grasp = (
-                evaluator.robot.is_grasping("right", candidate_obj=radio) == IsGraspingState.TRUE
+                evaluator.robot.is_grasping(args.grasp_arm, candidate_obj=radio) == IsGraspingState.TRUE
             )
             physical_grasp = all(finger_contacts)
             acquisition_gripper_qpos = (
-                evaluator.robot.get_joint_positions()[evaluator.robot.gripper_control_idx["right"]]
+                evaluator.robot.get_joint_positions()[evaluator.robot.gripper_control_idx[args.grasp_arm]]
                 .detach()
                 .cpu()
                 .tolist()
             )
             if physical_grasp:
                 if args.cartesian_lift_height:
-                    eef_position, eef_orientation = evaluator.robot.eef_links["right"].get_position_orientation()
+                    eef_position, eef_orientation = evaluator.robot.eef_links[args.grasp_arm].get_position_orientation()
                     for action in primitives._move_hand(
                         (eef_position + th.tensor([0.0, 0.0, args.cartesian_lift_height]), eef_orientation),
                         max_joint_step=args.lift_max_joint_step,
@@ -388,13 +441,15 @@ def main():
                 ignore_set=None,
                 current_only=True,
             )
-            for finger in evaluator.robot.finger_links["right"]
+            for finger in evaluator.robot.finger_links[args.grasp_arm]
         ]
         held = all(final_finger_contacts)
         final_height = float(radio.get_position_orientation()[0][2])
+        final_trunk_q = evaluator.robot.get_joint_positions()[evaluator.robot.trunk_control_idx]
+        final_base_posture = evaluator.robot.get_joint_positions()[base_posture_idx]
         from omnigibson.utils import transform_utils
 
-        final_eef_pose = evaluator.robot.eef_links["right"].get_position_orientation()
+        final_eef_pose = evaluator.robot.eef_links[args.grasp_arm].get_position_orientation()
         final_radio_pose = radio.get_position_orientation()
         final_grasp_in_radio = transform_utils.relative_pose_transform(
             *final_eef_pose, *final_radio_pose
@@ -426,6 +481,14 @@ def main():
             final_radio_height=final_height,
             radio_height_delta=final_height - initial_height,
             max_radio_height=max_height,
+            lock_default_trunk=args.lock_default_trunk,
+            default_trunk_q=default_trunk_q.tolist(),
+            initial_trunk_q=initial_trunk_q.tolist(),
+            final_trunk_q=final_trunk_q.tolist(),
+            final_trunk_max_abs_error=float(th.max(th.abs(final_trunk_q - default_trunk_q))),
+            default_base_posture=default_base_posture.tolist(),
+            final_base_posture=final_base_posture.tolist(),
+            final_base_posture_max_abs_error=float(th.max(th.abs(final_base_posture - default_base_posture))),
             error=error,
         )
         if held:

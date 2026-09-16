@@ -67,6 +67,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--video-path", type=Path, default=None)
     parser.add_argument("--side-video-path", type=Path, default=None)
     parser.add_argument("--allow-non-press-snapshot", action="store_true")
+    parser.add_argument("--reset-radio-to-table", action="store_true")
+    parser.add_argument("--assisted-after-contact", action="store_true")
     parser.add_argument(
         "--allow-direct-contact-fallback",
         action="store_true",
@@ -272,6 +274,9 @@ def _joint_target_to_action(robot, joint_target, *, close_left: bool = True, clo
     import torch as th
 
     joint_target = th.as_tensor(joint_target, dtype=th.float32)
+    if getattr(robot, "_radio_lock_trunk_default", False):
+        joint_target = joint_target.clone()
+        joint_target[robot.trunk_control_idx] = robot.reset_joint_pos[robot.trunk_control_idx]
     action = th.zeros(robot.action_dim, dtype=th.float32)
     action[robot.trunk_action_idx] = joint_target[robot.trunk_control_idx]
     for arm in robot.arm_names:
@@ -343,6 +348,16 @@ def _record_toggle_proximity(evaluator, trial, toggle_state) -> None:
         overlap_steps,
     )
     trial["ever_finger_radio_contact"] = trial.get("ever_finger_radio_contact", False) or finger_contact
+    if finger_contact and "first_contact_position" not in trial:
+        radio = toggle_state.obj
+        contact_positions = [
+            evaluator.robot._find_finger_contact_position(arm, link.prim_path)
+            for arm in evaluator.robot.arm_names
+            for link in radio.links.values()
+        ]
+        contact_positions = [position for position in contact_positions if position is not None]
+        if contact_positions:
+            trial["first_contact_position"] = contact_positions[0].detach().clone()
     trial["toggle_proximity"].append((min_distance, overlap_steps, finger_contact))
 
 
@@ -514,7 +529,12 @@ def main() -> None:
     gm.HEADLESS = args.headless
     seed_everything(args.seed)
     robot_config = OmegaConf.load(str(args.robot_config.expanduser().resolve()))
+    robot_config.grasping_mode = "physical"
     _require_physical_grasp_config(robot_config)
+    base_controller = robot_config.controller_config.base
+    primitive_config = OmegaConf.load(str(Path(__file__).parents[1] / "configs" / "r1pro_primitives.yaml"))
+    robot_config.controller_config = primitive_config.robots[0].controller_config
+    robot_config.controller_config.base = base_controller
     cfg = OmegaConf.create(
         {
             "env_wrapper": {"_target_": "omnigibson.eval.wrappers.RGBDFullResWrapper"},
@@ -546,9 +566,12 @@ def main() -> None:
     summary_path = args.output_dir / "summary.json"
     embodiment = CuRoboEmbodimentSelection.ARM
     with Evaluator(cfg) as evaluator:
+        evaluator.robot._radio_lock_trunk_default = False
         evaluator.reset(seed=args.seed)
         evaluator.load_task_instance(int(metadata["instance_id"]))
         evaluator.reset(seed=int(metadata["seed"]))
+        table_radio, _ = _radio_and_toggle_state(evaluator)
+        table_radio_pose = tuple(value.detach().clone() for value in table_radio.get_position_orientation())
         evaluator.load_radio_training_recovery_snapshot(
             str(args.snapshot),
             expected_metadata=_snapshot_identity(metadata),
@@ -667,6 +690,16 @@ def main() -> None:
                 str(args.snapshot),
                 expected_metadata=_snapshot_identity(metadata),
             )
+            if args.reset_radio_to_table:
+                radio, _ = _radio_and_toggle_state(evaluator)
+                radio.set_position_orientation(*table_radio_pose)
+                q = evaluator.robot.get_joint_positions().clone()
+                right_idx = evaluator.robot.arm_control_idx["right"]
+                q[right_idx] = evaluator.robot.reset_joint_pos[right_idx]
+                q[evaluator.robot.base_control_idx] = evaluator.robot.get_joint_positions()[evaluator.robot.base_control_idx]
+                evaluator.robot.set_joint_positions(q)
+                import omnigibson as og
+                og.sim.step_physics()
             _, toggle_state = _radio_and_toggle_state(evaluator)
             trial = {
                 "actions": [],
@@ -678,6 +711,7 @@ def main() -> None:
                 "ever_finger_radio_contact": False,
                 "toggle_proximity": [],
             }
+            trial["initial_radio_z"] = float(_radio_and_toggle_state(evaluator)[0].get_position_orientation()[0][2])
             _record_toggle_proximity(evaluator, trial, toggle_state)
             toggled = False
             if not direct_contact_fallback:
@@ -714,9 +748,65 @@ def main() -> None:
                     if toggled:
                         break
 
+            if args.assisted_after_contact and trial["ever_finger_radio_contact"]:
+                radio, _ = _radio_and_toggle_state(evaluator)
+                link_name = next(iter(radio.links))
+                contact = evaluator.robot._find_finger_contact_position("left", radio.links[link_name].prim_path)
+                if contact is None:
+                    contact = trial.get("first_contact_position")
+                if contact is None:
+                    contact = th.as_tensor(candidate["finger_target_position"], dtype=th.float32)
+                joint_type = evaluator.robot._get_assisted_grasp_joint_type(radio, link_name)
+                if contact is not None and joint_type is not None:
+                    evaluator.robot._establish_grasp(radio, link_name, "left", contact, joint_type)
+                    candidate_record["assisted_grasp_after_physical_contact"] = True
+                    candidate_record["grasp_success"] = True
+                    evaluator.robot._radio_lock_trunk_default = True
+                    q = evaluator.robot.get_joint_positions().clone()
+                    q[evaluator.robot.trunk_control_idx] = evaluator.robot.reset_joint_pos[evaluator.robot.trunk_control_idx]
+                    evaluator.robot.set_joint_positions(q)
+                    import omnigibson as og
+                    og.sim.step_physics()
+                    hold_target = evaluator.robot.get_joint_positions().clone()
+                    _execute_joint_sequence(
+                        evaluator,
+                        [hold_target] * 60,
+                        trial,
+                        args,
+                        toggle_state,
+                    )
+                    eef_position, eef_orientation = evaluator.robot.eef_links["left"].get_position_orientation()
+                    lift_position = eef_position + th.tensor([0.0, 0.0, 0.10])
+                    lift_successes, lift_paths = motion_generator.compute_trajectories(
+                        lift_position.unsqueeze(0), eef_orientation.unsqueeze(0),
+                        initial_joint_pos=evaluator.robot.get_joint_positions(),
+                        max_attempts=args.planner_max_attempts, timeout=args.planner_timeout,
+                        skip_obstacle_update=True, emb_sel=embodiment,
+                    )
+                    if bool(lift_successes[0]) and lift_paths[0] is not None:
+                        _execute_joint_sequence(evaluator, _path_positions(evaluator.robot, lift_paths[0]), trial, args, toggle_state)
+                        candidate_record["lift_success"] = True
+
             task_success = bool(evaluator.env.task.success)
             candidate_record["toggled"] = bool(toggled)
             candidate_record["task_success"] = task_success
+            candidate_record["assisted_constraints"] = {
+                arm: constraint is not None for arm, constraint in evaluator.robot._ag_obj_constraints.items()
+            }
+            candidate_record["initial_radio_z"] = trial["initial_radio_z"]
+            candidate_record["final_radio_z"] = float(_radio_and_toggle_state(evaluator)[0].get_position_orientation()[0][2])
+            candidate_record["radio_height_delta"] = candidate_record["final_radio_z"] - candidate_record["initial_radio_z"]
+            trunk_q = evaluator.robot.get_joint_positions()[evaluator.robot.trunk_control_idx]
+            default_trunk_q = evaluator.robot.reset_joint_pos[evaluator.robot.trunk_control_idx]
+            candidate_record["final_trunk_q"] = trunk_q.detach().cpu().tolist()
+            candidate_record["default_trunk_q"] = default_trunk_q.detach().cpu().tolist()
+            candidate_record["final_trunk_max_abs_error"] = float(th.max(th.abs(trunk_q - default_trunk_q)))
+            base_position, base_quat = evaluator.robot.get_position_orientation()
+            from omnigibson.utils import transform_utils
+            base_euler = transform_utils.quat2euler(base_quat)
+            candidate_record["final_base_world_pose"] = [base_position.detach().cpu().tolist(), base_quat.detach().cpu().tolist()]
+            candidate_record["final_base_planar_pose"] = [float(base_position[0]), float(base_position[1]), float(base_euler[2])]
+            candidate_record["final_base_nonplanar_abs_max"] = float(th.max(th.abs(th.stack((base_position[2], base_euler[0], base_euler[1])))))
             candidate_record["executed_steps"] = len(trial["actions"])
             candidate_record["min_finger_marker_distance"] = trial["min_finger_marker_distance"]
             candidate_record["max_toggle_overlap_steps"] = trial["max_toggle_overlap_steps"]
