@@ -54,8 +54,13 @@ class VisualRadioHarness:
     def _step(self, action):
         if self.terminated or self.truncated:
             raise EpisodeFinished("Episode already ended")
-        obs, _, self.terminated, self.truncated, _ = self.evaluator.env.step(action, n_render_iterations=1, skip_obs=False)
+        obs, reward, self.terminated, self.truncated, info = self.evaluator.env.step(
+            action, n_render_iterations=1, skip_obs=False
+        )
         self.evaluator.obs = self.evaluator._preprocess_obs(obs)
+        for metric in self.evaluator.metrics:
+            metric.step(self.evaluator.env, action, self.evaluator.obs, reward,
+                        self.terminated, self.truncated, info)
         self.steps += 1
         if self.evaluator._video_path is not None:
             self.evaluator._write_video()
@@ -443,7 +448,8 @@ class VisualRadioHarness:
         self._trace("visual_grasp_check", lifted=lifted, hand_distance=near_hand, held=held)
         return held
 
-    def press_at_pixel(self, x, y, camera="head", travel=0.015, arm=1):
+    def press_at_pixel(self, x, y, camera="head", travel=0.015, arm=1, surface_offset=0.08,
+                       direction_override=None, allow_torso=False):
         if arm not in (0, 1):
             raise ValueError("Arm must be 0 (left) or 1 (right)")
         arm_name = "right" if arm == 1 else "left"
@@ -451,6 +457,10 @@ class VisualRadioHarness:
             raise ValueError("Use the free arm to press while holding the radio")
         if not 0 < travel <= 0.03:
             raise ValueError("Press travel must be in (0, 0.03]")
+        if not 0 <= surface_offset <= 0.12:
+            raise ValueError("Surface offset must be in [0, 0.12]")
+        if not isinstance(allow_torso, bool):
+            raise ValueError("allow_torso must be a boolean")
         observation = self.get_observation(camera)
         height, width = observation["depth"].shape
         x, y = int(x), int(y)
@@ -464,9 +474,14 @@ class VisualRadioHarness:
         point = np.median(points, axis=0)
         direction = point - observation["world_from_camera"][:3, 3]
         direction /= np.linalg.norm(direction)
+        if direction_override is not None:
+            direction = np.asarray(direction_override, dtype=float)
+            if direction.shape != (3,) or not np.isfinite(direction).all() or np.linalg.norm(direction) < 1e-6:
+                raise ValueError("Direction override must be a finite 3-vector")
+            direction /= np.linalg.norm(direction)
         # Depth sees the camera-facing surface of the raised red control; use a
         # small RGB-D surface-to-center offset for the overlap press.
-        point = point + direction * 0.08
+        point = point + direction * surface_offset
         holder_tracking = None
         holder_arm = 1 - arm
         holder_name = "right" if holder_arm == 1 else "left"
@@ -501,8 +516,12 @@ class VisualRadioHarness:
         except (AttributeError, KeyError, TypeError):
             finger_offset_local = None
         candidates = []
-        initial_lock = ({"lock_last_trunk": True}
-                        if holder_tracking is not None else {"lock_trunk": True})
+        if allow_torso:
+            initial_lock = {}
+        elif holder_tracking is not None:
+            initial_lock = {"lock_last_trunk": True}
+        else:
+            initial_lock = {"lock_trunk": True}
         current_joints = self.get_current_joint_positions()
         rotations = [
             (wrist_roll, base_rotation @ Rotation.from_euler("z", wrist_roll).as_matrix())
@@ -557,7 +576,7 @@ class VisualRadioHarness:
                 offset = (press_rotation.apply(finger_offset_local) if finger_offset_local is not None
                           else press_rotation.apply(np.array([0, 0, fingertip_length])))
                 precontact_pose = (point - direction * 0.03 - offset, quat)
-                final_lock = {"lock_trunk": True}
+                final_lock = {} if allow_torso else {"lock_trunk": True}
                 if self.solve_ik(*precontact_pose, arm=arm, **final_lock) is not None:
                     if not self.move_hand(precontact_pose, arm, max_joint_step=0.01, **final_lock):
                         return False

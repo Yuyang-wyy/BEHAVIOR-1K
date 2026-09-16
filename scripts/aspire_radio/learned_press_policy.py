@@ -58,7 +58,7 @@ assert lift_arm(arm=1, distance=.2, lock_last_trunk=True)
 base, _, _ = get_robot_position()
 direction = radio[:2] - base[:2]
 direction /= np.linalg.norm(direction)
-xy = radio[:2] - direction
+xy = radio[:2] - .65 * direction
 assert navigate_to_pose(np.array([xy[0], xy[1], np.arctan2(direction[1], direction[0])]))
 save_current_observation("before_grasp")
 
@@ -297,10 +297,10 @@ def find_button(rgb, xs, ys, top_only=False):
             int(np.median(component[:, 0])) + y0,
             [x0, y0, x1, y1])
 
-view_camera = "head"
+view_camera = "right_wrist"
 obs, rgb, xs, ys = held_radio_pixels(view_camera)
 if len(xs) < 20:
-    view_camera = "right_wrist"
+    view_camera = "head"
     obs, rgb, xs, ys = held_radio_pixels(view_camera)
 assert len(xs) >= 20, "Held radio front is not visible after grasp"
 hand, hand_quat = get_current_eef_pose(arm=1)
@@ -324,15 +324,22 @@ for presentation_step, (_, presentation_rotation) in enumerate(presentation_pose
     if presentation_step and not move_hand((hand, presentation_quat), arm=1, lock_last_trunk=True):
         continue
     save_current_observation("after_presentation_" + str(presentation_step))
-    obs, rgb, xs, ys = held_radio_pixels(view_camera)
-    if len(xs) < 20:
-        continue
-    try:
-        find_button(rgb, xs, ys, top_only=True)
+    for presentation_camera in ("head", "right_wrist", "left_wrist"):
+        save_current_observation("after_presentation_" + str(presentation_step) + "_" + presentation_camera,
+                                 presentation_camera)
+        candidate_obs, candidate_rgb, candidate_xs, candidate_ys = held_radio_pixels(presentation_camera)
+        if len(candidate_xs) < 20:
+            continue
+        try:
+            find_button(candidate_rgb, candidate_xs, candidate_ys, top_only=True)
+        except AssertionError:
+            continue
+        view_camera = presentation_camera
+        obs, rgb, xs, ys = candidate_obs, candidate_rgb, candidate_xs, candidate_ys
         found_button = True
         break
-    except AssertionError:
-        continue
+    if found_button:
+        break
 assert found_button, "Held radio top control is not visible after presentation"
 
 pressed = False
@@ -343,12 +350,15 @@ for press_attempt in range(3):
     button_x, button_y, bbox = find_button(rgb, xs, ys, top_only=True)
     print("candidate", candidate, "press_attempt", press_attempt,
           "held bbox", bbox, "button", [button_x, button_y])
-    press_ok = press_at_pixel(button_x, button_y, camera="head", travel=.025, arm=0)
+    press_ok = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03, arm=0,
+                              surface_offset=.08)
     pressed = bool(pressed or press_ok)
     save_current_observation("after_power_press_" + str(press_attempt))
     if not press_ok:
         continue
     current, current_rgb, current_xs, current_ys = held_radio_pixels(view_camera)
+    if len(current_xs) < 20:
+        break
     green = ((current_rgb[current_ys, current_xs, 1] > 80)
              & (current_rgb[current_ys, current_xs, 1] > 1.25 * current_rgb[current_ys, current_xs, 0])
              & (current_rgb[current_ys, current_xs, 1] > 1.10 * current_rgb[current_ys, current_xs, 2]))

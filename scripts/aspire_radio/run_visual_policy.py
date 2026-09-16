@@ -84,6 +84,10 @@ def main():
                 payload["steps"] = harness.steps
                 payload["terminated"] = bool(harness.terminated)
                 payload["truncated"] = bool(harness.truncated)
+                metrics = {}
+                for metric in evaluator.metrics:
+                    metrics.update(metric.aggregate(evaluator.env))
+                payload.update(metrics)
                 errors = "\n".join(block["stderr"] for block in payload["blocks"])
                 if args.capture_only:
                     payload["status"] = "capture_only"
