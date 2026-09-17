@@ -30,6 +30,7 @@ class VisualRadioHarness:
         self.sam3 = Sam3Client(sam3_url)
         self.graspnet = ContactGraspNetClient()
         self.motion_generators = {}
+        self.motion_generator_locks = {}
         self.steps = 0
         self.terminated = False
         self.truncated = False
@@ -244,8 +245,9 @@ class VisualRadioHarness:
         current = current.detach().cpu().numpy() if hasattr(current, "detach") else np.asarray(current)
         indices = {name: index for index, name in enumerate(self.robot.joints)}
         lock_joints = config["robot_cfg"]["kinematics"].setdefault("lock_joints", {})
+        captured_locks = {}
         for name in locked_names:
-            lock_joints[name] = float(current[indices[name]])
+            captured_locks[name] = lock_joints[name] = float(current[indices[name]])
         path = self.output_dir / f"robot_{key}_ik.yaml"
         path.write_text(yaml.safe_dump(config))
         generator = CuRoboMotionGenerator(
@@ -256,6 +258,9 @@ class VisualRadioHarness:
                                if (lock_trunk or lock_last_trunk) and not self_collision_check else None),
         )
         self.motion_generators[key] = generator
+        if not hasattr(self, "motion_generator_locks"):
+            self.motion_generator_locks = {}
+        self.motion_generator_locks[key] = captured_locks
         return generator
 
     def solve_ik(self, position, quaternion_wxyz, arm=1, lock_trunk=False, lock_last_trunk=False,
@@ -264,6 +269,7 @@ class VisualRadioHarness:
 
         if arm not in (0, 1):
             raise ValueError("Arm must be 0 (left) or 1 (right)")
+        arm_name = "right" if arm == 1 else "left"
         position = np.asarray(position, dtype=float)
         quat = np.asarray(quaternion_wxyz, dtype=float)
         if position.shape != (3,) or quat.shape != (4,) or not np.isfinite(position).all() or not np.isfinite(quat).all() or np.linalg.norm(quat) < 1e-6:
@@ -287,6 +293,10 @@ class VisualRadioHarness:
         target = self.robot.get_joint_positions().detach().cpu().clone()
         indices = {name: index for index, name in enumerate(self.robot.joints)}
         for name, value in zip(path.joint_names, values.detach().cpu()):
+            target[indices[name]] = value
+        key = (arm_name + ("_fixed_trunk" if lock_trunk else "_fixed_distal_trunk" if lock_last_trunk else "")
+               + ("_self_collision" if self_collision_check else ""))
+        for name, value in getattr(self, "motion_generator_locks", {}).get(key, {}).items():
             target[indices[name]] = value
         controlled = th.cat([self.robot.trunk_control_idx,
                              *[self.robot.arm_control_idx[arm_name] for arm_name in self.robot.arm_names]])
@@ -470,7 +480,7 @@ class VisualRadioHarness:
         return held
 
     def press_at_pixel(self, x, y, camera="head", travel=0.015, arm=1, surface_offset=0.08,
-                       direction_override=None, allow_torso=False):
+                       direction_override=None, allow_torso=False, fixed_torso=False):
         if arm not in (0, 1):
             raise ValueError("Arm must be 0 (left) or 1 (right)")
         arm_name = "right" if arm == 1 else "left"
@@ -480,8 +490,10 @@ class VisualRadioHarness:
             raise ValueError("Press travel must be in (0, 0.03]")
         if not 0 <= surface_offset <= 0.12:
             raise ValueError("Surface offset must be in [0, 0.12]")
-        if not isinstance(allow_torso, bool):
-            raise ValueError("allow_torso must be a boolean")
+        if not isinstance(allow_torso, bool) or not isinstance(fixed_torso, bool):
+            raise ValueError("Torso options must be booleans")
+        if allow_torso and fixed_torso:
+            raise ValueError("Choose either free or fixed torso motion")
         observation = self.get_observation(camera)
         height, width = observation["depth"].shape
         x, y = int(x), int(y)
@@ -537,7 +549,12 @@ class VisualRadioHarness:
         except (AttributeError, KeyError, TypeError):
             finger_offset_local = None
         candidates = []
-        initial_lock = {} if allow_torso else {"lock_trunk": True}
+        if allow_torso:
+            initial_lock = {}
+        elif holder_tracking is not None and not fixed_torso:
+            initial_lock = {"lock_last_trunk": True}
+        else:
+            initial_lock = {"lock_trunk": True}
         current_joints = self.get_current_joint_positions()
         rotations = [
             (wrist_roll, base_rotation @ Rotation.from_euler("z", wrist_roll).as_matrix())
@@ -552,7 +569,7 @@ class VisualRadioHarness:
             offset = (Rotation.from_quat(quat[[1, 2, 3, 0]]).apply(finger_offset_local)
                       if finger_offset_local is not None
                       else rotation @ np.array([0, 0, fingertip_length]))
-            approach_distance = 0.14 if holder_tracking is not None else 0.06
+            approach_distance = 0.14 if holder_tracking is not None and not fixed_torso else 0.06
             approach = point - direction * approach_distance - offset
             for _ in range(6):
                 target_joints = self.solve_ik(approach, quat, arm=arm, **initial_lock)
@@ -571,7 +588,7 @@ class VisualRadioHarness:
                     wrist_roll=wrist_roll, holder_tracking=holder_tracking is not None,
                     max_joint_delta=max_joint_delta, joint_delta_norm=joint_delta_norm)
         self.close_gripper(arm)
-        self.move_to_joints(approach_joints, max_joint_step=0.01)
+        self.move_to_joints(approach_joints, max_joint_step=0.02)
         if holder_tracking is not None:
             if not self.move_hand(holder_world_pose, holder_arm, max_joint_step=0.01,
                                   lock_trunk=True):

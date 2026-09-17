@@ -4,40 +4,6 @@ from scipy.spatial.transform import Rotation
 
 obs = get_observation()
 
-def dark_control_in(mask, rgb):
-    ys, xs = np.nonzero(mask)
-    x0, x1, y0, y1 = int(xs.min()), int(xs.max()), int(ys.min()), int(ys.max())
-    dark = rgb[y0:y1 + 1, x0:x1 + 1].max(axis=2) < 100
-    visited = np.zeros(dark.shape, dtype=bool)
-    choices = []
-    for start_y, start_x in zip(*np.nonzero(dark)):
-        if visited[start_y, start_x]:
-            continue
-        stack = [(int(start_y), int(start_x))]
-        visited[start_y, start_x] = True
-        pixels = []
-        while stack:
-            py, px = stack.pop()
-            pixels.append((py, px))
-            for dy in (-1, 0, 1):
-                for dx in (-1, 0, 1):
-                    ny, nx = py + dy, px + dx
-                    if (0 <= ny < dark.shape[0] and 0 <= nx < dark.shape[1]
-                            and dark[ny, nx] and not visited[ny, nx]):
-                        visited[ny, nx] = True
-                        stack.append((ny, nx))
-        cy, cx = np.asarray(pixels).T
-        if not 20 <= len(cx) <= 400:
-            continue
-        height, width = cy.max() - cy.min() + 1, cx.max() - cx.min() + 1
-        aspect = min(height, width) / max(height, width)
-        centered = 1.0 - min(1.0, np.hypot(cx.mean() - (x1 - x0) / 2,
-                                           cy.mean() - (y1 - y0) / 2) /
-                             max(1.0, np.hypot(x1 - x0, y1 - y0) / 2))
-        choices.append((2.0 * aspect + .5 * centered, int(np.median(cx)) + x0,
-                        int(np.median(cy)) + y0))
-    return max(choices, default=None)
-
 def observed_radio(observation, near_position=None):
     image = observation["rgb"].astype(float)
     depth = observation["depth"]
@@ -148,8 +114,8 @@ for search_step in range(8):
     assert rotate_base(np.pi / 4)
 assert best_radio is not None, "No radio-sized red object found in a full visual scan"
 radio = np.median(best_radio, axis=0)
-assert lift_arm(arm=0, distance=.2, lock_last_trunk=True)
-assert lift_arm(arm=1, distance=.2, lock_last_trunk=True)
+assert lift_arm(arm=0, distance=.12, lock_last_trunk=True)
+assert lift_arm(arm=1, distance=.12, lock_last_trunk=True)
 table_points = observed_support_surface(best_observation, best_radio)
 goal = get_navigation_pose(table_points, best_radio)
 base, _, _ = get_robot_position()
@@ -205,6 +171,11 @@ if stage_solutions:
                        np.linalg.norm(joints[6:10] - stage_posture))
     move_to_joints(stage_joints)
     save_current_observation("after_left_stage")
+stage_finger_position = get_current_finger_center(arm=0)
+
+# Capture this staged torso / free-arm posture for post-grasp normalization.
+right_position, right_quat = get_current_eef_pose(arm=1)
+solve_ik(right_position, right_quat, arm=1, lock_trunk=True)
 
 def radio_is_held(before_height):
     hand, _ = get_current_eef_pose(arm=1)
@@ -256,7 +227,7 @@ for reference_round, grasp_height in enumerate((.068, .048, .088)):
     current_joints = get_current_joint_positions()
     pregrasp_solutions = []
     for _ in range(6):
-        joints = solve_ik(pregrasp_position, grasp_quat, arm=1, lock_trunk=True)
+        joints = solve_ik(pregrasp_position, grasp_quat, arm=1, lock_last_trunk=True)
         if joints is not None:
             pregrasp_solutions.append(joints)
     if pregrasp_solutions:
@@ -267,7 +238,7 @@ for reference_round, grasp_height in enumerate((.068, .048, .088)):
         current_joints = get_current_joint_positions()
         grasp_solutions = []
         for _ in range(6):
-            joints = solve_ik(grasp_position, grasp_quat, arm=1, lock_trunk=True)
+            joints = solve_ik(grasp_position, grasp_quat, arm=1, lock_last_trunk=True)
             if joints is not None:
                 grasp_solutions.append(joints)
         if grasp_solutions:
@@ -275,7 +246,7 @@ for reference_round, grasp_height in enumerate((.068, .048, .088)):
                                key=lambda joints: np.linalg.norm(joints - current_joints))
             move_to_joints(grasp_joints, max_joint_step=.005)
             close_gripper(arm=1)
-            motion_ok = lift_arm(arm=1, distance=.12, lock_trunk=True)
+            motion_ok = lift_arm(arm=1, distance=.12, lock_last_trunk=True)
             grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
             grasp_verified = bool(motion_ok and radio_is_held(before_height))
             if grasp_verified:
@@ -284,6 +255,7 @@ for reference_round, grasp_height in enumerate((.068, .048, .088)):
                 break
             save_current_observation("failed_reference_grasp_" + str(reference_round))
             open_gripper(arm=1)
+            move_hand((right_position, right_quat), arm=1, lock_trunk=True)
 
 for grasp_round in range(3):
     if grasp_verified:
@@ -307,19 +279,32 @@ for grasp_round in range(3):
             float(np.linalg.norm(grasps[index][0] - radio_center)),
         ),
     )
+    current_joints = get_current_joint_positions()
+    feasible = []
     for index in order:
         if grasps[index][0][2] <= radio_center[2] - .20:
             continue
-        if solve_ik(*pregrasps[index], arm=1) is not None and solve_ik(*grasps[index], arm=1) is not None:
-            motion_ok = execute_grasp(pregrasps[index], grasps[index], arm=1, lift=.12)
-            grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
-            if motion_ok and radio_is_held(before_height):
-                candidate = index
-                grasp_verified = True
-                break
-            save_current_observation("failed_grasp_" + str(grasp_round))
-            open_gripper(arm=1)
+        pregrasp_joints = solve_ik(*pregrasps[index], arm=1)
+        grasp_joints = solve_ik(*grasps[index], arm=1)
+        if pregrasp_joints is not None and grasp_joints is not None:
+            feasible.append((float(np.max(np.abs(pregrasp_joints - current_joints))), index,
+                             pregrasp_joints, grasp_joints))
+    if feasible:
+        _, index, pregrasp_joints, grasp_joints = min(feasible, key=lambda item: item[0])
+        open_gripper(arm=1)
+        motion_ok = move_to_joints(pregrasp_joints)
+        motion_ok = bool(motion_ok and move_to_joints(grasp_joints, max_joint_step=.005))
+        if motion_ok:
+            close_gripper(arm=1)
+            motion_ok = lift_arm(arm=1, distance=.12)
+        grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
+        if motion_ok and radio_is_held(before_height):
+            candidate = index
+            grasp_verified = True
             break
+        save_current_observation("failed_grasp_" + str(grasp_round))
+        open_gripper(arm=1)
+        move_hand((right_position, right_quat), arm=1, lock_trunk=True)
     if grasp_verified:
         break
 assert candidate >= 0 and grasp_verified, "No visually verified radio grasp"
@@ -333,8 +318,8 @@ inward = base - holder_position
 inward[2] = 0.0
 if np.linalg.norm(inward) > 1e-6:
     inward /= np.linalg.norm(inward)
-    move_hand((holder_position + .16 * inward, holder_quat), arm=1,
-              max_joint_step=.008, lock_trunk=True)
+    target_pose = (holder_position + .16 * inward, holder_quat)
+    move_hand(target_pose, arm=1, max_joint_step=.008, lock_trunk=True)
     save_current_observation("after_grasp_reposition")
 
 # Code block 3
@@ -379,24 +364,38 @@ def find_button(rgb, xs, ys, top_only=False):
         x0, x1 = int(body[:, 1].min()) + x0, int(body[:, 1].max()) + x0
         y0, y1 = int(body[:, 0].min()) + y0, int(body[:, 0].max()) + y0
     if top_only:
-        if x0 < 4 or y0 < 4 or x1 >= rgb.shape[1] - 4 or y1 >= rgb.shape[0] - 4:
-            raise AssertionError("Radio top face is clipped")
-        if (x1 - x0) < .8 * (y1 - y0):
-            raise AssertionError("Radio top face is not visible")
         center = np.array([(x0 + x1) / 2, (y0 + y1) / 2])
         dots = []
         for component in red_components:
-            if not 3 <= len(component) <= 200:
+            if component is body or not 3 <= len(component) <= max(400, len(body) // 4):
                 continue
             component_x = component[:, 1] + int(xs.min())
             component_y = component[:, 0] + int(ys.min())
-            if (component_x.min() >= x0 and component_x.max() <= x1
-                    and component_y.min() >= y0 and component_y.max() <= y1):
-                dots.append((np.linalg.norm(
-                    np.array([component_x.mean(), component_y.mean()]) - center),
-                    component_x, component_y))
+            if (component_x.min() < x0 or component_x.max() > x1
+                    or component_y.min() < y0 or component_y.max() > y1):
+                continue
+            height = component_y.max() - component_y.min() + 1
+            width = component_x.max() - component_x.min() + 1
+            aspect = min(height, width) / max(height, width)
+            if aspect < .45:
+                continue
+            component_center = np.array([component_x.mean(), component_y.mean()])
+            radius = max(5, int(max(height, width) * 1.8))
+            crop_x0 = max(0, int(component_center[0] - radius))
+            crop_x1 = min(rgb.shape[1], int(component_center[0] + radius + 1))
+            crop_y0 = max(0, int(component_center[1] - radius))
+            crop_y1 = min(rgb.shape[0], int(component_center[1] + radius + 1))
+            ring_y, ring_x = np.ogrid[crop_y0:crop_y1, crop_x0:crop_x1]
+            distance = np.hypot(ring_x - component_center[0], ring_y - component_center[1])
+            ring = ((distance >= .7 * max(height, width))
+                    & (distance <= 1.8 * max(height, width)))
+            dark = rgb[crop_y0:crop_y1, crop_x0:crop_x1].max(axis=2) < 100
+            dark_surround = float(dark[ring].mean())
+            if dark_surround >= .55:
+                dots.append((-dark_surround, np.linalg.norm(component_center - center),
+                             component_x, component_y))
         if dots:
-            _, dot_x, dot_y = min(dots, key=lambda item: item[0])
+            _, _, dot_x, dot_y = min(dots, key=lambda item: item[:2])
             return (int(np.median(dot_x)), int(np.median(dot_y)), [x0, y0, x1, y1])
         raise AssertionError("Radio top control is not visible")
     crop = rgb[y0:y1 + 1, x0:x1 + 1]
@@ -458,102 +457,56 @@ for view_camera in ("head", "right_wrist", "left_wrist"):
 _, view_camera, (obs, rgb, xs, ys) = max(held_views, key=lambda item: item[0])
 assert len(xs) >= 20, "Held radio front is not visible after grasp"
 
-# Keep the radio supported by the table and stabilized by the right grasp while
-# the already-staged left fingers press the visible front control.
-table_obs, table_rgb, table_xs, table_ys = held_radio_pixels("head")
-held_mask = np.zeros(table_obs["depth"].shape, dtype=bool)
-held_mask[table_ys, table_xs] = True
-table_control = dark_control_in(held_mask, table_rgb)
-if table_control is not None:
-    _, table_x, table_y = table_control
-    button_mask = np.zeros(table_obs["depth"].shape, dtype=bool)
-    button_mask[max(0, table_y - 1):table_y + 2,
-                max(0, table_x - 1):table_x + 2] = True
-    button_point = np.median(mask_to_world_points(
-        button_mask, table_obs["depth"], table_obs["intrinsics"],
-        table_obs["world_from_camera"]), axis=0)
-    close_gripper(arm=0)
-    holder_position, holder_quat = get_current_eef_pose(arm=1)
-    holder_rotation = Rotation.from_quat(holder_quat[[1, 2, 3, 0]])
-    button_in_holder = holder_rotation.inv().apply(button_point - holder_position)
-    left_position, left_quat = get_current_eef_pose(arm=0)
-    finger_center = get_current_finger_center(arm=0)
-    contact_position = left_position + button_point - finger_center
-    print("table geometry", "button", button_point.tolist(),
-          "left", left_position.tolist(), "right", holder_position.tolist())
-    paired = False
-    for fraction in (.2, .4, .6, .8, 1.0):
-        stage_position = left_position + fraction * (contact_position - left_position)
-        stage_solutions = []
-        for _ in range(3):
-            joints = solve_ik(stage_position, left_quat, arm=0, lock_trunk=True)
-            if joints is not None:
-                stage_solutions.append(joints)
-        if not stage_solutions:
-            continue
-        current_joints = get_current_joint_positions()
-        move_to_joints(min(stage_solutions,
-                           key=lambda joints: np.linalg.norm(joints - current_joints)),
-                       max_joint_step=.008)
-        finger_center = get_current_finger_center(arm=0)
-        holder_target = finger_center - holder_rotation.apply(button_in_holder)
-        holder_solutions = []
-        for _ in range(4):
-            joints = solve_ik(holder_target, holder_quat, arm=1, lock_trunk=True)
-            if joints is not None:
-                holder_solutions.append(joints)
-        if not holder_solutions:
-            continue
-        current_joints = get_current_joint_positions()
-        move_to_joints(min(holder_solutions,
-                           key=lambda joints: np.linalg.norm(joints - current_joints)),
-                       max_joint_step=.005)
-        save_current_observation("after_stationary_table_press")
-        paired = True
+# Recenter the held radio in the head view before rotating it.  Contact-GraspNet
+# grasps can otherwise leave the radio clipped at the image edge.
+for recenter_step in range(3):
+    obs, rgb, xs, ys = held_radio_pixels("head")
+    if len(xs) < 20:
         break
-    if not paired:
-        press_at_pixel(table_x, table_y, camera="head", arm=0, surface_offset=.02)
-    save_current_observation("after_table_press")
+    held_mask = np.zeros(obs["depth"].shape, dtype=bool)
+    held_mask[ys, xs] = True
+    visible_center = np.median(mask_to_world_points(
+        held_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
+    depth = float(np.median(obs["depth"][ys, xs]))
+    height, width = obs["depth"].shape
+    ray = np.linalg.solve(obs["intrinsics"], np.array([.64 * width, .55 * height, 1.0])) * depth
+    desired_center = ((ray * np.array([1.0, -1.0, -1.0]))
+                      @ obs["world_from_camera"][:3, :3].T
+                      + obs["world_from_camera"][:3, 3])
+    correction = desired_center - visible_center
+    correction *= min(1.0, .10 / max(1e-6, np.linalg.norm(correction)))
+    holder_position, holder_quat = get_current_eef_pose(arm=1)
+    if not move_hand((holder_position + correction, holder_quat), arm=1,
+                     max_joint_step=.008, lock_trunk=True):
+        break
+    save_current_observation("after_recenter_" + str(recenter_step))
 
-# Rotate only after lifting clear of the table, then keep the first pose where
-# RGB exposes the round control on the upper face.
-assert lift_arm(arm=1, distance=.18, lock_last_trunk=True), "Could not raise radio for presentation"
-base, _, yaw = get_robot_position()
-base_forward = np.array([np.cos(yaw), np.sin(yaw), 0.0])
-base_left = np.array([-np.sin(yaw), np.cos(yaw), 0.0])
-ready_position = base + 1.05 * base_forward - .12 * base_left
-ready_position[2] = .85
-ready_local_rotation = Rotation.from_quat(np.array([.91720, .14978, .36443, -.05926]))
-ready_rotation = Rotation.from_euler("z", yaw) * ready_local_rotation
-ready_quat = ready_rotation.as_quat()[[3, 0, 1, 2]]
-current_joints = get_current_joint_positions()
-ready_solutions = []
-for _ in range(12):
-    joints = solve_ik(ready_position, ready_quat, arm=0)
-    if joints is not None:
-        ready_solutions.append(joints)
-assert ready_solutions, "Could not solve free-finger staging pose"
-ready_joints = min(ready_solutions, key=lambda joints: np.linalg.norm(joints - current_joints))
-move_to_joints(ready_joints)
-ready_actual, _ = get_current_eef_pose(arm=0)
-assert np.linalg.norm(ready_actual - ready_position) < .03, "Could not stage free fingers"
 safe_position, safe_quat = get_current_eef_pose(arm=1)
 safe_rotation = Rotation.from_quat(safe_quat[[1, 2, 3, 0]])
-presentation_rotations = [safe_rotation]
-for axis in ("x", "y", "z"):
-    for angle in (np.pi / 2, -np.pi / 2):
-        presentation_rotations.append(safe_rotation * Rotation.from_euler(axis, angle))
+presentation_rotations = [
+    safe_rotation,
+    safe_rotation * Rotation.from_euler("x", -np.pi / 2),
+    safe_rotation * Rotation.from_euler("z", np.pi / 2),
+    safe_rotation * Rotation.from_euler("y", -np.pi / 2),
+    safe_rotation * Rotation.from_euler("x", np.pi),
+    safe_rotation * Rotation.from_euler("y", np.pi),
+    safe_rotation * Rotation.from_euler("z", np.pi),
+]
+for axis, angle in (("x", np.pi / 2), ("y", np.pi / 2),
+                    ("z", -np.pi / 2)):
+    presentation_rotations.append(safe_rotation * Rotation.from_euler(axis, angle))
 found_button = False
 for presentation_step, presentation_rotation in enumerate(presentation_rotations):
     presentation_quat = presentation_rotation.as_quat()[[3, 0, 1, 2]]
-    if presentation_step and not move_hand((safe_position, presentation_quat), arm=1,
-                                           lock_last_trunk=True):
-        move_hand((safe_position, safe_quat), arm=1, lock_last_trunk=True)
-        continue
-    for presentation_camera in ("head", "right_wrist", "left_wrist"):
+    if presentation_step:
+        move_hand((safe_position, presentation_quat), arm=1,
+                  max_joint_step=.03, lock_last_trunk=True)
+    for presentation_camera in ("head",):
         candidate_view = held_radio_pixels(presentation_camera)
         if len(candidate_view[2]) < 20:
             continue
+        save_current_observation("presentation_" + str(presentation_step) + "_" + presentation_camera,
+                                 presentation_camera)
         try:
             button_x, button_y, bbox = find_button(candidate_view[1], candidate_view[2],
                                                    candidate_view[3], top_only=True)
@@ -565,38 +518,28 @@ for presentation_step, presentation_rotation in enumerate(presentation_rotations
         break
     if found_button:
         break
-assert found_button, "Held radio top control is not visible after raised presentation"
+assert found_button, "Held radio top control is not visible after presentation"
+print("candidate", candidate, "held bbox", bbox, "button", [button_x, button_y])
 button_mask = np.zeros(obs["depth"].shape, dtype=bool)
 button_mask[max(0, button_y - 1):button_y + 2, max(0, button_x - 1):button_x + 2] = True
-button_points = mask_to_world_points(button_mask, obs["depth"], obs["intrinsics"],
-                                     obs["world_from_camera"])
-button_point = np.median(button_points, axis=0)
-print("candidate", candidate, "raised held bbox", bbox, "button", [button_x, button_y])
-finger_center = get_current_finger_center(arm=0)
-hand, hand_quat = get_current_eef_pose(arm=1)
-holder_rotation = Rotation.from_quat(hand_quat[[1, 2, 3, 0]])
-button_in_holder = holder_rotation.inv().apply(button_point - hand)
-current_joints = get_current_joint_positions()
-holder_solutions = []
-for holder_delta in ([0.0, 0.0, 0.0], [0.0, 0.0, np.pi / 4],
-                     [0.0, 0.0, -np.pi / 4], [np.pi / 4, 0.0, 0.0],
-                     [-np.pi / 4, 0.0, 0.0], [0.0, np.pi / 4, 0.0],
-                     [0.0, -np.pi / 4, 0.0], [0.0, 0.0, np.pi / 2],
-                     [0.0, 0.0, -np.pi / 2], [np.pi / 2, 0.0, 0.0],
-                     [-np.pi / 2, 0.0, 0.0], [0.0, np.pi / 2, 0.0],
-                     [0.0, -np.pi / 2, 0.0]):
-    target_rotation = holder_rotation * Rotation.from_rotvec(holder_delta)
-    target_quat = target_rotation.as_quat()[[3, 0, 1, 2]]
-    holder_target = finger_center - target_rotation.apply(button_in_holder)
-    for _ in range(3):
-        joints = solve_ik(holder_target, target_quat, arm=1, lock_trunk=True)
-        if joints is not None:
-            holder_solutions.append(joints)
-pressed = False
-if holder_solutions:
-    holder_joints = min(holder_solutions,
-                        key=lambda joints: np.linalg.norm(joints - current_joints))
-    pressed = move_to_joints(holder_joints, max_joint_step=.005)
+button_world = np.median(mask_to_world_points(
+    button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
+holder_position, holder_quat = get_current_eef_pose(arm=1)
+button_offset = button_world - holder_position
+contact_direction = stage_finger_position - button_world
+contact_direction /= np.linalg.norm(contact_direction)
+precontact_holder = stage_finger_position - .04 * contact_direction - button_offset
+contact_holder = stage_finger_position + .02 * contact_direction - button_offset
+precontact_joints = solve_ik(precontact_holder, holder_quat, arm=1, lock_trunk=True)
+contact_joints = solve_ik(contact_holder, holder_quat, arm=1, lock_trunk=True)
+if precontact_joints is not None and contact_joints is not None:
+    close_gripper(arm=0)
+    move_to_joints(precontact_joints, max_joint_step=.02)
+    move_to_joints(contact_joints, max_joint_step=.005)
+    pressed = True
+else:
+    pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.025,
+                             arm=0, allow_torso=True)
 save_current_observation("after_power_press")
 RESULT = {"candidate": candidate, "grasp_motor_completed": bool(grasp_motion_completed),
           "grasp_verified": bool(grasp_verified),

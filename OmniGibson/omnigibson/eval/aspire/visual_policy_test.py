@@ -228,7 +228,7 @@ def test_motor_settling_is_bounded_and_reports_obstruction():
         assert trace.call_args.kwargs["settled"] is False
 
 
-def test_free_hand_press_keeps_holding_torso_fixed():
+def test_free_hand_press_uses_mobile_approach_then_fixed_contact():
     harness = object.__new__(VisualRadioHarness)
     harness.last_grasp = ("radio", np.zeros(3))
     harness.grasp_arm = 1
@@ -241,16 +241,42 @@ def test_free_hand_press_keeps_holding_torso_fixed():
          patch.object(harness, "_action", return_value=np.zeros(1)), \
          patch.object(harness, "_step"), \
          patch.object(harness, "get_current_joint_positions", return_value=np.zeros(1)), \
+         patch.object(harness, "get_current_eef_pose",
+                      return_value=(np.zeros(3), np.array([1., 0., 0., 0.]))), \
          patch.object(harness, "solve_ik", side_effect=[None, None, *[np.array([.1 + index / 10]) for index in range(6)]]) as solve, \
          patch.object(harness, "move_to_joints") as move_joints, \
          patch.object(harness, "move_hand", return_value=True) as move:
         assert harness.press_at_pixel(2, 2, arm=0)
-        assert solve.call_count == 6
-        assert all(call.kwargs["lock_trunk"] is True for call in solve.call_args_list)
+        assert solve.call_count == 7
+        assert all(call.kwargs["lock_last_trunk"] is True for call in solve.call_args_list[:6])
+        assert solve.call_args_list[-1].kwargs["lock_trunk"] is True
         move_joints.assert_called_once()
         np.testing.assert_allclose(move_joints.call_args.args[0], [.1])
-        assert move.call_count == 3
+        assert move.call_count == 5
         assert all(call.kwargs["lock_trunk"] is True for call in move.call_args_list)
+
+
+def test_free_hand_press_can_lock_torso_during_approach():
+    harness = object.__new__(VisualRadioHarness)
+    harness.last_grasp = ("radio", np.zeros(3))
+    harness.grasp_arm = 1
+    harness.gripper_closed = {"left": False, "right": True}
+    harness.robot = SimpleNamespace(eef_to_fingertip_lengths={"left": {"finger": .02}})
+    observation = {"depth": np.ones((5, 5)), "intrinsics": np.eye(3),
+                   "world_from_camera": np.eye(4)}
+    with patch.object(harness, "get_observation", return_value=observation), \
+         patch.object(harness, "_trace"), patch.object(harness, "close_gripper"), \
+         patch.object(harness, "save_current_observation"), \
+         patch.object(harness, "_action", return_value=np.zeros(1)), \
+         patch.object(harness, "_step"), \
+         patch.object(harness, "get_current_joint_positions", return_value=np.zeros(1)), \
+         patch.object(harness, "get_current_eef_pose",
+                      return_value=(np.zeros(3), np.array([1., 0., 0., 0.]))), \
+         patch.object(harness, "solve_ik", return_value=np.array([.1])) as solve, \
+         patch.object(harness, "move_to_joints"), \
+         patch.object(harness, "move_hand", return_value=True):
+        assert harness.press_at_pixel(2, 2, arm=0, fixed_torso=True)
+        assert all(call.kwargs["lock_trunk"] is True for call in solve.call_args_list)
 
 
 def test_left_ik_config_targets_left_eef_and_locks_right_arm():
@@ -282,6 +308,25 @@ def test_left_ik_config_targets_left_eef_and_locks_right_arm():
             harness._init_ik(arm=0, lock_last_trunk=True)
             assert constructor.call_args.kwargs["lock_joint_names"] == []
             assert constructor.call_count == 3
+
+
+def test_solve_ik_restores_solver_omitted_locked_joints():
+    path = SimpleNamespace(position=th.tensor([[.5]]), joint_names=["right_arm"])
+    generator = SimpleNamespace(compute_trajectories=lambda *args, **kwargs: (th.tensor([True]), [path]))
+    harness = object.__new__(VisualRadioHarness)
+    harness.motion_generators = {"right_fixed_trunk": generator}
+    harness.motion_generator_locks = {"right_fixed_trunk": {"torso": .25}}
+    harness.robot = SimpleNamespace(
+        get_joint_positions=lambda: th.tensor([.9, .1]),
+        joints={"torso": None, "right_arm": None},
+        trunk_control_idx=th.tensor([0]), arm_names=["right"],
+        arm_control_idx={"right": th.tensor([1])},
+        joint_lower_limits=th.tensor([-2., -2.]), joint_upper_limits=th.tensor([2., 2.]),
+    )
+    np.testing.assert_allclose(
+        harness.solve_ik(np.zeros(3), np.array([1., 0., 0., 0.]), arm=1, lock_trunk=True),
+        [.25, .5],
+    )
 
 
 def test_pixel_mode_captures_before_fresh_policy_construction():
