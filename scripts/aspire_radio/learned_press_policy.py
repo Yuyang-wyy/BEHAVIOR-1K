@@ -171,8 +171,6 @@ if stage_solutions:
                        np.linalg.norm(joints[6:10] - stage_posture))
     move_to_joints(stage_joints)
     save_current_observation("after_left_stage")
-stage_finger_position = get_current_finger_center(arm=0)
-
 # Capture this staged torso / free-arm posture for post-grasp normalization.
 right_position, right_quat = get_current_eef_pose(arm=1)
 solve_ik(right_position, right_quat, arm=1, lock_trunk=True)
@@ -209,6 +207,8 @@ grasp_backend = "contact-graspnet"
 for reference_round, grasp_height in enumerate((.068, .048, .088)):
     obs = get_observation()
     detected = observed_radio(obs, radio_center)
+    if detected is None:
+        detected = observed_radio(obs)
     if detected is None:
         break
     _, points = detected
@@ -262,6 +262,8 @@ for grasp_round in range(3):
         break
     obs = get_observation()
     detected = observed_radio(obs, radio_center)
+    if detected is None:
+        detected = observed_radio(obs)
     if detected is None:
         break
     mask, points = detected
@@ -380,6 +382,10 @@ def find_button(rgb, xs, ys, top_only=False):
             if aspect < .45:
                 continue
             component_center = np.array([component_x.mean(), component_y.mean()])
+            relative_center = ((component_center - np.array([x0, y0]))
+                               / np.array([max(1, x1 - x0), max(1, y1 - y0)]))
+            if np.any(relative_center < .2) or np.any(relative_center > .8):
+                continue
             radius = max(5, int(max(height, width) * 1.8))
             crop_x0 = max(0, int(component_center[0] - radius))
             crop_x1 = min(rgb.shape[1], int(component_center[0] + radius + 1))
@@ -485,23 +491,23 @@ safe_position, safe_quat = get_current_eef_pose(arm=1)
 safe_rotation = Rotation.from_quat(safe_quat[[1, 2, 3, 0]])
 presentation_rotations = [
     safe_rotation,
-    safe_rotation * Rotation.from_euler("x", -np.pi / 2),
     safe_rotation * Rotation.from_euler("z", np.pi / 2),
+    safe_rotation * Rotation.from_euler("z", -np.pi / 2),
+    safe_rotation * Rotation.from_euler("x", -np.pi / 2),
+    safe_rotation * Rotation.from_euler("x", np.pi / 2),
     safe_rotation * Rotation.from_euler("y", -np.pi / 2),
+    safe_rotation * Rotation.from_euler("y", np.pi / 2),
     safe_rotation * Rotation.from_euler("x", np.pi),
     safe_rotation * Rotation.from_euler("y", np.pi),
     safe_rotation * Rotation.from_euler("z", np.pi),
 ]
-for axis, angle in (("x", np.pi / 2), ("y", np.pi / 2),
-                    ("z", -np.pi / 2)):
-    presentation_rotations.append(safe_rotation * Rotation.from_euler(axis, angle))
 found_button = False
 for presentation_step, presentation_rotation in enumerate(presentation_rotations):
     presentation_quat = presentation_rotation.as_quat()[[3, 0, 1, 2]]
     if presentation_step:
         move_hand((safe_position, presentation_quat), arm=1,
                   max_joint_step=.03, lock_last_trunk=True)
-    for presentation_camera in ("head",):
+    for presentation_camera in ("head", "right_wrist", "left_wrist"):
         candidate_view = held_radio_pixels(presentation_camera)
         if len(candidate_view[2]) < 20:
             continue
@@ -524,22 +530,57 @@ button_mask = np.zeros(obs["depth"].shape, dtype=bool)
 button_mask[max(0, button_y - 1):button_y + 2, max(0, button_x - 1):button_x + 2] = True
 button_world = np.median(mask_to_world_points(
     button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
-holder_position, holder_quat = get_current_eef_pose(arm=1)
-button_offset = button_world - holder_position
-contact_direction = stage_finger_position - button_world
-contact_direction /= np.linalg.norm(contact_direction)
-precontact_holder = stage_finger_position - .04 * contact_direction - button_offset
-contact_holder = stage_finger_position + .02 * contact_direction - button_offset
-precontact_joints = solve_ik(precontact_holder, holder_quat, arm=1, lock_trunk=True)
-contact_joints = solve_ik(contact_holder, holder_quat, arm=1, lock_trunk=True)
-if precontact_joints is not None and contact_joints is not None:
+pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.025,
+                         arm=0, fixed_torso=True)
+if not pressed:
+    left_position, left_quat = get_current_eef_pose(arm=0)
+    finger_center = get_current_finger_center(arm=0)
+    contact_position = left_position + button_world - finger_center
+    holder_position, holder_quat = get_current_eef_pose(arm=1)
+    holder_rotation = Rotation.from_quat(holder_quat[[1, 2, 3, 0]])
+    button_in_holder = holder_rotation.inv().apply(button_world - holder_position)
     close_gripper(arm=0)
-    move_to_joints(precontact_joints, max_joint_step=.02)
-    move_to_joints(contact_joints, max_joint_step=.005)
-    pressed = True
-else:
-    pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.025,
-                             arm=0, allow_torso=True)
+    staged_for_press = False
+    for fraction in (.25, .5, .75, 1.0):
+        stage_position = left_position + fraction * (contact_position - left_position)
+        stage_joints = solve_ik(stage_position, left_quat, arm=0, lock_trunk=True)
+        if stage_joints is None:
+            continue
+        move_to_joints(stage_joints, max_joint_step=.008)
+        finger_center = get_current_finger_center(arm=0)
+        current_joints = get_current_joint_positions()
+        holder_solutions = []
+        for delta in ([0.0, 0.0, 0.0], [0.0, 0.0, np.pi / 2],
+                      [0.0, 0.0, -np.pi / 2], [np.pi / 2, 0.0, 0.0],
+                      [-np.pi / 2, 0.0, 0.0], [0.0, np.pi / 2, 0.0],
+                      [0.0, -np.pi / 2, 0.0]):
+            target_rotation = holder_rotation * Rotation.from_rotvec(delta)
+            target_quat = target_rotation.as_quat()[[3, 0, 1, 2]]
+            holder_target = finger_center - target_rotation.apply(button_in_holder)
+            holder_joints = solve_ik(holder_target, target_quat, arm=1, lock_trunk=True)
+            if holder_joints is not None:
+                holder_solutions.append(holder_joints)
+        if not holder_solutions:
+            continue
+        holder_joints = min(holder_solutions,
+                            key=lambda joints: np.linalg.norm(joints - current_joints))
+        staged_for_press = move_to_joints(holder_joints, max_joint_step=.005)
+        break
+    if staged_for_press:
+        save_current_observation("after_bimanual_stage")
+        for contact_camera in ("head", "left_wrist", "right_wrist"):
+            contact_view = held_radio_pixels(contact_camera)
+            if len(contact_view[2]) < 20:
+                continue
+            try:
+                contact_x, contact_y, _ = find_button(
+                    contact_view[1], contact_view[2], contact_view[3], top_only=True)
+            except AssertionError:
+                continue
+            pressed = press_at_pixel(contact_x, contact_y, camera=contact_camera,
+                                     travel=.025, arm=0, fixed_torso=True)
+            if pressed:
+                break
 save_current_observation("after_power_press")
 RESULT = {"candidate": candidate, "grasp_motor_completed": bool(grasp_motion_completed),
           "grasp_verified": bool(grasp_verified),
