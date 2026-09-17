@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import torch as th
 from PIL import Image
+from scipy.spatial import ConvexHull
 from scipy.spatial.transform import Rotation
 
 from omnigibson.eval.aspire.visual_perception import (
@@ -43,7 +44,7 @@ class VisualRadioHarness:
                  "find_object_torso_rotate", "get_navigation_pose", "navigate_to_pose", "rotate_base",
                  "sample_grasp_pose", "sample_grasp_pose_from_points", "sample_contact_grasp_pose", "execute_grasp", "grasp_object",
                  "check_object_in_hand", "open_gripper", "close_gripper",
-                 "get_current_eef_pose", "get_current_joint_positions", "solve_ik", "move_hand",
+                 "get_current_eef_pose", "get_current_finger_center", "get_current_joint_positions", "solve_ik", "move_hand",
                  "move_to_joints", "lift_arm", "press_at_pixel", "mask_to_world_points")
         return {name: getattr(self, name) for name in names}
 
@@ -92,12 +93,8 @@ class VisualRadioHarness:
         rgb, depth = self.get_env_observation(camera)
         name = self.evaluator.robot_camera_names[camera].split("::", 1)[1]
         sensor = self.robot.sensors[name]
-        view = np.asarray(sensor.camera_parameters["cameraViewTransform"]).reshape(4, 4)
-        if np.allclose(view, 0):
-            position, quat = sensor.get_position_orientation()
-            world_from_camera = transform_utils.pose2mat((position, quat)).detach().cpu().numpy()
-        else:
-            world_from_camera = np.linalg.inv(view.T)
+        position, quat = sensor.get_position_orientation()
+        world_from_camera = transform_utils.pose2mat((position, quat)).detach().cpu().numpy()
         return {"rgb": rgb, "depth": depth, "intrinsics": np.asarray(sensor.intrinsic_matrix),
                 "world_from_camera": world_from_camera, "joints": self.get_current_joint_positions()}
 
@@ -172,12 +169,27 @@ class VisualRadioHarness:
         return self.find_object_base_rotate(object_name)
 
     def get_navigation_pose(self, table_points, object_points):
-        obj = np.median(np.asarray(object_points), axis=0)
-        base = self.get_robot_position()[0]
-        direction = obj[:2] - base[:2]
-        direction /= max(np.linalg.norm(direction), 1e-6)
-        xy = obj[:2] - 0.65 * direction
-        return np.array([*xy, math.atan2(direction[1], direction[0])])
+        table_xy = np.asarray(table_points, dtype=float)[:, :2]
+        object_xy = np.median(np.asarray(object_points, dtype=float), axis=0)[:2]
+        if len(table_xy) < 3 or not np.isfinite(table_xy).all() or not np.isfinite(object_xy).all():
+            raise ValueError("Navigation requires finite table and object point clouds")
+        polygon = table_xy[ConvexHull(table_xy).vertices]
+        table_center = polygon.mean(axis=0)
+        base_xy = self.get_robot_position()[0][:2]
+        candidates = []
+        for index, start in enumerate(polygon):
+            end = polygon[(index + 1) % len(polygon)]
+            edge = end - start
+            point = start + np.clip(np.dot(object_xy - start, edge) / (np.dot(edge, edge) + 1e-8), 0, 1) * edge
+            edge /= np.linalg.norm(edge) + 1e-8
+            normal = np.array([-edge[1], edge[0]])
+            outward = normal if np.dot(normal, table_center - point) < 0 else -normal
+            target = point + .40 * outward
+            object_distance = float(np.linalg.norm(point - object_xy))
+            candidates.append((object_distance, float(np.linalg.norm(target - base_xy)), target))
+        reachable = [candidate for candidate in candidates if candidate[0] <= .75]
+        _, _, target = min(reachable or candidates, key=lambda candidate: candidate[1])
+        return np.array([*target, math.atan2(object_xy[1] - target[1], object_xy[0] - target[0])])
 
     def navigate_to_pose(self, pose):
         pose = np.asarray(pose, dtype=float)
@@ -189,7 +201,7 @@ class VisualRadioHarness:
         self._trace("navigation", target=pose)
         # ponytail: short RGB-D-docked approaches only; add obstacle-aware navigation for room-scale motion.
         docked = False
-        for index in range(600):
+        for index in range(800):
             base, _, yaw = self.get_robot_position()
             delta = pose[:2] - base[:2]
             distance = np.linalg.norm(delta)
@@ -204,8 +216,8 @@ class VisualRadioHarness:
                 return True
             action = self._action()
             action[self.robot.base_action_idx] = th.tensor([
-                min(distance * 0.6, 0.15) if abs(error) < 0.25 and not docked else 0.0,
-                0.0, np.clip(error * 1.2, -0.4, 0.4),
+                min(distance * 0.8, 0.25) if abs(error) < 0.25 and not docked else 0.0,
+                0.0, np.clip(error * 1.5, -0.6, 0.6),
             ], dtype=th.float32)
             self._step(action)
         return False
@@ -292,6 +304,15 @@ class VisualRadioHarness:
             raise ValueError("Arm must be 0 (left) or 1 (right)")
         position, quat = self.robot.get_eef_pose(arm="right" if arm == 1 else "left")
         return position.detach().cpu().numpy(), quat.detach().cpu().numpy()[[3, 0, 1, 2]]
+
+    def get_current_finger_center(self, arm=1):
+        if arm not in (0, 1):
+            raise ValueError("Arm must be 0 (left) or 1 (right)")
+        arm_name = "right" if arm == 1 else "left"
+        return np.mean([
+            link.get_position_orientation()[0].detach().cpu().numpy()
+            for link in self.robot.finger_links[arm_name]
+        ], axis=0)
 
     def move_to_joints(self, joints, max_joint_step=0.015):
         target = np.asarray(joints, dtype=float)
@@ -516,12 +537,7 @@ class VisualRadioHarness:
         except (AttributeError, KeyError, TypeError):
             finger_offset_local = None
         candidates = []
-        if allow_torso:
-            initial_lock = {}
-        elif holder_tracking is not None:
-            initial_lock = {"lock_last_trunk": True}
-        else:
-            initial_lock = {"lock_trunk": True}
+        initial_lock = {} if allow_torso else {"lock_trunk": True}
         current_joints = self.get_current_joint_positions()
         rotations = [
             (wrist_roll, base_rotation @ Rotation.from_euler("z", wrist_roll).as_matrix())
@@ -538,24 +554,24 @@ class VisualRadioHarness:
                       else rotation @ np.array([0, 0, fingertip_length]))
             approach_distance = 0.14 if holder_tracking is not None else 0.06
             approach = point - direction * approach_distance - offset
-            target_joints = self.solve_ik(approach, quat, arm=arm, **initial_lock)
-            if target_joints is not None:
-                joint_delta = np.abs(target_joints - current_joints)
-                candidates.append((float(joint_delta.max()), float(np.linalg.norm(joint_delta)),
-                                   quat, offset, wrist_roll))
+            for _ in range(6):
+                target_joints = self.solve_ik(approach, quat, arm=arm, **initial_lock)
+                if target_joints is not None:
+                    joint_delta = np.abs(target_joints - current_joints)
+                    candidates.append((float(joint_delta.max()), float(np.linalg.norm(joint_delta)),
+                                       quat, offset, wrist_roll, target_joints))
+            if candidates:
                 break
-        selected = candidates[0] if candidates else None
+        selected = min(candidates, key=lambda candidate: candidate[:2], default=None)
         if selected is None:
             self._trace("visual_press_ik_failed", pixel=[x, y], point=point, direction=direction)
             return False
-        max_joint_delta, joint_delta_norm, quat, offset, wrist_roll = selected
+        max_joint_delta, joint_delta_norm, quat, offset, wrist_roll, approach_joints = selected
         self._trace("visual_press", pixel=[x, y], point=point, direction=direction,
                     wrist_roll=wrist_roll, holder_tracking=holder_tracking is not None,
                     max_joint_delta=max_joint_delta, joint_delta_norm=joint_delta_norm)
         self.close_gripper(arm)
-        approach_pose = (point - direction * 0.06 - offset, quat)
-        if not self.move_hand(approach_pose, arm, max_joint_step=0.01, **initial_lock):
-            return False
+        self.move_to_joints(approach_joints, max_joint_step=0.01)
         if holder_tracking is not None:
             if not self.move_hand(holder_world_pose, holder_arm, max_joint_step=0.01,
                                   lock_trunk=True):

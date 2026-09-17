@@ -32,6 +32,19 @@ def test_camera_convention_and_invalid_depth():
     np.testing.assert_allclose(points, [[2, 1, 1]])
 
 
+def test_observation_uses_live_sensor_world_pose():
+    harness = object.__new__(VisualRadioHarness)
+    sensor = SimpleNamespace(
+        intrinsic_matrix=np.eye(3),
+        get_position_orientation=lambda: (th.tensor([1., 2., 3.]), th.tensor([0., 0., 0., 1.])),
+    )
+    harness.evaluator = SimpleNamespace(robot_camera_names={"head": "r1pro::head_camera"})
+    harness.robot = SimpleNamespace(sensors={"head_camera": sensor}, get_joint_positions=lambda: th.zeros(2))
+    with patch.object(harness, "get_env_observation", return_value=(np.zeros((2, 2, 3)), np.ones((2, 2)))):
+        observation = harness.get_observation()
+    np.testing.assert_allclose(observation["world_from_camera"][:3, 3], [1, 2, 3])
+
+
 def test_observed_box_is_fitted_to_points():
     random = np.random.default_rng(3)
     cloud = random.uniform([-0.2, -0.05, 0.7], [0.2, 0.05, 0.9], (5000, 3))
@@ -192,6 +205,15 @@ def test_navigation_final_rotation_survives_small_base_drift():
     assert actions[1][2] > 0 and actions[2][2] > 0
 
 
+def test_navigation_pose_approaches_nearest_table_edge():
+    harness = object.__new__(VisualRadioHarness)
+    harness.get_robot_position = lambda: (np.array([3., .5, 0]), None, 0)
+    table = np.array([[0, 0, .4], [2, 0, .4], [2, 1, .4], [0, 1, .4]])
+    goal = harness.get_navigation_pose(table, [[1.8, .5, .6]])
+    np.testing.assert_allclose(goal[:2], [2.4, .5], atol=1e-6)
+    assert abs(abs(goal[2]) - np.pi) < 1e-6
+
+
 def test_motor_settling_is_bounded_and_reports_obstruction():
     harness = object.__new__(VisualRadioHarness)
     harness.robot = SimpleNamespace(trunk_control_idx=th.tensor([0]), arm_names=["right"],
@@ -219,11 +241,15 @@ def test_free_hand_press_keeps_holding_torso_fixed():
          patch.object(harness, "_action", return_value=np.zeros(1)), \
          patch.object(harness, "_step"), \
          patch.object(harness, "get_current_joint_positions", return_value=np.zeros(1)), \
-         patch.object(harness, "solve_ik", side_effect=[None, None, *[np.zeros(1)] * 6]) as solve, \
+         patch.object(harness, "solve_ik", side_effect=[None, None, *[np.array([.1 + index / 10]) for index in range(6)]]) as solve, \
+         patch.object(harness, "move_to_joints") as move_joints, \
          patch.object(harness, "move_hand", return_value=True) as move:
         assert harness.press_at_pixel(2, 2, arm=0)
-        assert solve.call_count == 3
-        assert move.call_count == 4
+        assert solve.call_count == 6
+        assert all(call.kwargs["lock_trunk"] is True for call in solve.call_args_list)
+        move_joints.assert_called_once()
+        np.testing.assert_allclose(move_joints.call_args.args[0], [.1])
+        assert move.call_count == 3
         assert all(call.kwargs["lock_trunk"] is True for call in move.call_args_list)
 
 
