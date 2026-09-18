@@ -292,7 +292,7 @@ for grasp_round in range(3):
             feasible.append((float(np.max(np.abs(pregrasp_joints - current_joints))), index,
                              pregrasp_joints, grasp_joints))
     if feasible:
-        _, index, pregrasp_joints, grasp_joints = min(feasible, key=lambda item: item[0])
+        _, index, pregrasp_joints, grasp_joints = feasible[0]
         open_gripper(arm=1)
         motion_ok = move_to_joints(pregrasp_joints)
         motion_ok = bool(motion_ok and move_to_joints(grasp_joints, max_joint_step=.005))
@@ -340,6 +340,11 @@ def held_radio_pixels(camera="head"):
 def find_button(rgb, xs, ys, top_only=False):
     x0, x1 = int(xs.min()), int(xs.max())
     y0, y1 = int(ys.min()), int(ys.max())
+    if top_only and (x1 - x0) < .8 * (y1 - y0):
+        raise AssertionError("Radio top face is not visible")
+    if top_only and (x0 < 10 or y0 < 10 or x1 >= rgb.shape[1] - 10
+                     or y1 >= rgb.shape[0] - 10):
+        raise AssertionError("Radio top face is clipped")
     red_shape = np.zeros((y1 - y0 + 1, x1 - x0 + 1), dtype=bool)
     red_shape[ys - y0, xs - x0] = True
     visited = np.zeros(red_shape.shape, dtype=bool)
@@ -369,7 +374,7 @@ def find_button(rgb, xs, ys, top_only=False):
         center = np.array([(x0 + x1) / 2, (y0 + y1) / 2])
         dots = []
         for component in red_components:
-            if component is body or not 3 <= len(component) <= max(400, len(body) // 4):
+            if component is body or not 60 <= len(component) <= max(400, len(body) // 4):
                 continue
             component_x = component[:, 1] + int(xs.min())
             component_y = component[:, 0] + int(ys.min())
@@ -384,7 +389,7 @@ def find_button(rgb, xs, ys, top_only=False):
             component_center = np.array([component_x.mean(), component_y.mean()])
             relative_center = ((component_center - np.array([x0, y0]))
                                / np.array([max(1, x1 - x0), max(1, y1 - y0)]))
-            if np.any(relative_center < .2) or np.any(relative_center > .8):
+            if np.any(relative_center < .05) or np.any(relative_center > .95):
                 continue
             radius = max(5, int(max(height, width) * 1.8))
             crop_x0 = max(0, int(component_center[0] - radius))
@@ -397,7 +402,7 @@ def find_button(rgb, xs, ys, top_only=False):
                     & (distance <= 1.8 * max(height, width)))
             dark = rgb[crop_y0:crop_y1, crop_x0:crop_x1].max(axis=2) < 100
             dark_surround = float(dark[ring].mean())
-            if dark_surround >= .55:
+            if dark_surround >= .20:
                 dots.append((-dark_surround, np.linalg.norm(component_center - center),
                              component_x, component_y))
         if dots:
@@ -466,19 +471,34 @@ assert len(xs) >= 20, "Held radio front is not visible after grasp"
 # Recenter the held radio in the head view before rotating it.  Contact-GraspNet
 # grasps can otherwise leave the radio clipped at the image edge.
 for recenter_step in range(3):
+    from_wrist = False
     obs, rgb, xs, ys = held_radio_pixels("head")
     if len(xs) < 20:
-        break
+        wrist_obs, _, wrist_xs, wrist_ys = held_radio_pixels("right_wrist")
+        if len(wrist_xs) < 20:
+            break
+        obs = wrist_obs
+        xs, ys = wrist_xs, wrist_ys
+        from_wrist = True
     held_mask = np.zeros(obs["depth"].shape, dtype=bool)
     held_mask[ys, xs] = True
     visible_center = np.median(mask_to_world_points(
         held_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
-    depth = float(np.median(obs["depth"][ys, xs]))
-    height, width = obs["depth"].shape
-    ray = np.linalg.solve(obs["intrinsics"], np.array([.64 * width, .55 * height, 1.0])) * depth
-    desired_center = ((ray * np.array([1.0, -1.0, -1.0]))
-                      @ obs["world_from_camera"][:3, :3].T
-                      + obs["world_from_camera"][:3, 3])
+    if not from_wrist:
+        depth = float(np.median(obs["depth"][ys, xs]))
+        height, width = obs["depth"].shape
+        ray = np.linalg.solve(obs["intrinsics"], np.array([.64 * width, .55 * height, 1.0])) * depth
+        desired_center = ((ray * np.array([1.0, -1.0, -1.0]))
+                          @ obs["world_from_camera"][:3, :3].T
+                          + obs["world_from_camera"][:3, 3])
+    else:
+        head = get_observation("head")
+        depth = float(np.linalg.norm(visible_center - head["world_from_camera"][:3, 3]))
+        height, width = head["depth"].shape
+        ray = np.linalg.solve(head["intrinsics"], np.array([.5 * width, .55 * height, 1.0])) * depth
+        desired_center = ((ray * np.array([1.0, -1.0, -1.0]))
+                          @ head["world_from_camera"][:3, :3].T
+                          + head["world_from_camera"][:3, 3])
     correction = desired_center - visible_center
     correction *= min(1.0, .10 / max(1e-6, np.linalg.norm(correction)))
     holder_position, holder_quat = get_current_eef_pose(arm=1)
@@ -530,8 +550,10 @@ button_mask = np.zeros(obs["depth"].shape, dtype=bool)
 button_mask[max(0, button_y - 1):button_y + 2, max(0, button_x - 1):button_x + 2] = True
 button_world = np.median(mask_to_world_points(
     button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
-pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.025,
-                         arm=0, fixed_torso=True)
+button_direction = button_world - obs["world_from_camera"][:3, 3]
+button_direction /= np.linalg.norm(button_direction)
+pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
+                         arm=0, surface_offset=0.0, allow_torso=True)
 if not pressed:
     left_position, left_quat = get_current_eef_pose(arm=0)
     finger_center = get_current_finger_center(arm=0)
@@ -550,21 +572,33 @@ if not pressed:
         finger_center = get_current_finger_center(arm=0)
         current_joints = get_current_joint_positions()
         holder_solutions = []
-        for delta in ([0.0, 0.0, 0.0], [0.0, 0.0, np.pi / 2],
+        for delta in ([0.0, 0.0, 0.0], [0.0, 0.0, np.pi / 4],
+                      [0.0, 0.0, -np.pi / 4], [np.pi / 4, 0.0, 0.0],
+                      [-np.pi / 4, 0.0, 0.0], [0.0, np.pi / 4, 0.0],
+                      [0.0, -np.pi / 4, 0.0], [0.0, 0.0, np.pi / 2],
                       [0.0, 0.0, -np.pi / 2], [np.pi / 2, 0.0, 0.0],
                       [-np.pi / 2, 0.0, 0.0], [0.0, np.pi / 2, 0.0],
                       [0.0, -np.pi / 2, 0.0]):
             target_rotation = holder_rotation * Rotation.from_rotvec(delta)
             target_quat = target_rotation.as_quat()[[3, 0, 1, 2]]
-            holder_target = finger_center - target_rotation.apply(button_in_holder)
+            holder_target = (finger_center + .05 * button_direction
+                             - target_rotation.apply(button_in_holder))
             holder_joints = solve_ik(holder_target, target_quat, arm=1, lock_trunk=True)
+            if holder_joints is None:
+                holder_joints = solve_ik(holder_target, target_quat, arm=1,
+                                         lock_last_trunk=True)
             if holder_joints is not None:
-                holder_solutions.append(holder_joints)
+                if np.linalg.norm(holder_joints[:3] - current_joints[:3]) > .8:
+                    continue
+                holder_solutions.append((np.linalg.norm(holder_joints[:3] - current_joints[:3]),
+                                         np.linalg.norm(delta),
+                                         np.linalg.norm(holder_joints - current_joints),
+                                         holder_joints))
         if not holder_solutions:
             continue
-        holder_joints = min(holder_solutions,
-                            key=lambda joints: np.linalg.norm(joints - current_joints))
-        staged_for_press = move_to_joints(holder_joints, max_joint_step=.005)
+        _, _, _, holder_joints = min(holder_solutions, key=lambda solution: solution[:3])
+        move_to_joints(holder_joints, max_joint_step=.02)
+        staged_for_press = True
         break
     if staged_for_press:
         save_current_observation("after_bimanual_stage")

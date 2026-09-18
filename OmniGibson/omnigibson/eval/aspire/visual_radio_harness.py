@@ -629,7 +629,7 @@ class VisualRadioHarness:
                 return False
         # ponytail: three poses preserve the approach/press/retract motion while
         # avoiding nine full IK settle cycles inside the episode budget.
-        for distance in np.linspace(-0.03, min(0.02, travel), 3):
+        for distance in np.linspace(-0.03, travel, 3):
             target_pose = (point + direction * distance - offset, quat)
             reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
             if not reached:
