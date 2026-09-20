@@ -243,10 +243,16 @@ assert lift_arm(arm=1, distance=.12, lock_last_trunk=True)
 table_points = observed_support_surface(best_observation, best_radio)
 goal = get_navigation_pose(table_points, best_radio)
 base, _, _ = get_robot_position()
+skill_radius = .80
+approach = base[:2] - radio[:2]
+if np.linalg.norm(approach) > 1e-6:
+    # Edge selection can choose the far side of a wide table. Approach the
+    # observed radio from the robot's current side at the demonstrated radius.
+    goal[:2] = radio[:2] + approach / np.linalg.norm(approach) * skill_radius
+    goal[2] = np.arctan2(radio[1] - goal[1], radio[0] - goal[0])
 edge = goal[:2] - radio[:2]
 edge_distance = np.linalg.norm(edge)
 # Training demonstrations first grasp at median base-to-radio distance .794 m.
-skill_radius = .80
 if .4 < edge_distance < skill_radius:
     edge_normal = edge / edge_distance
     edge_tangent = np.array([-edge_normal[1], edge_normal[0]])
