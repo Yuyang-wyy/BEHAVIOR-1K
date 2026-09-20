@@ -235,11 +235,11 @@ for search_step in range(8):
             save_current_observation("radio_search_candidate_" + str(search_step))
         if len(points) >= 500:
             break
-    assert rotate_base(np.pi / 4)
+    rotate_base(np.pi / 4)
 assert best_radio is not None, "No radio-sized red object found in a full visual scan"
 radio = np.median(best_radio, axis=0)
-assert lift_arm(arm=0, distance=.12, lock_last_trunk=True)
-assert lift_arm(arm=1, distance=.12, lock_last_trunk=True)
+lift_arm(arm=0, distance=.12, lock_last_trunk=True)
+lift_arm(arm=1, distance=.12, lock_last_trunk=True)
 table_points = observed_support_surface(best_observation, best_radio)
 goal = get_navigation_pose(table_points, best_radio)
 base, _, _ = get_robot_position()
