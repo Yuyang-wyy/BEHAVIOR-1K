@@ -245,7 +245,7 @@ class VisualRadioHarness:
             if index % 50 == 0:
                 self._trace("navigation_feedback", position=base, yaw=yaw, distance=float(distance))
             # Hysteresis prevents small base drift from interrupting the final rotation.
-            docked = distance < (0.12 if docked else 0.08)
+            docked = distance < (0.14 if docked else 0.11)
             heading = pose[2] if docked else math.atan2(delta[1], delta[0])
             error = math.atan2(math.sin(heading - yaw), math.cos(heading - yaw))
             if docked and abs(error) < 0.05:

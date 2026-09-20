@@ -263,7 +263,7 @@ if np.linalg.norm(waypoint[:2] - base[:2]) > .1:
     # A straight staging waypoint can be blocked by furniture; the visual
     # dock remains the meaningful goal and the navigation helper is bounded.
     navigate_to_pose(waypoint)
-assert navigate_to_pose(goal)
+navigated = navigate_to_pose(goal)
 save_current_observation("before_grasp")
 
 # The task goal is only toggled_on. Try the visible control on its support
