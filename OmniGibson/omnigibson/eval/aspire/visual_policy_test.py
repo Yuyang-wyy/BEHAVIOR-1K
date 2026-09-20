@@ -1,6 +1,7 @@
 """CPU checks: geometry, ASPIRE SAM3 protocol, privilege guard and visual grasp evidence."""
 
 import base64
+import ast
 import importlib.util
 import json
 import os
@@ -14,6 +15,7 @@ from unittest.mock import MagicMock, patch
 
 import numpy as np
 import torch as th
+from scipy.spatial.transform import Rotation
 
 from omnigibson.eval.aspire.public_policy import PublicPolicyExecutor, validate_policy
 from omnigibson.eval.aspire.visual_perception import (
@@ -250,10 +252,49 @@ def test_free_hand_press_uses_mobile_approach_then_fixed_contact():
         assert solve.call_count == 7
         assert all(call.kwargs["lock_last_trunk"] is True for call in solve.call_args_list[:6])
         assert solve.call_args_list[-1].kwargs["lock_trunk"] is True
-        move_joints.assert_called_once()
-        np.testing.assert_allclose(move_joints.call_args.args[0], [.1])
-        assert move.call_count == 5
+        assert move_joints.call_count == 2
+        np.testing.assert_allclose(move_joints.call_args_list[0].args[0], [.1])
+        np.testing.assert_allclose(move_joints.call_args_list[1].args[0], [.5])
+        assert move.call_count == 4
         assert all(call.kwargs["lock_trunk"] is True for call in move.call_args_list)
+
+
+def test_holder_contact_orientation_transport_preserves_current_approach_axis():
+    initial_holder = Rotation.from_euler("zyx", [20, -10, 15], degrees=True)
+    current_holder = Rotation.from_euler("zyx", [75, 25, -20], degrees=True)
+    base_rotation = Rotation.from_euler("zyx", [35, 10, 5], degrees=True)
+    holder_delta = current_holder * initial_holder.inv()
+    contact = holder_delta * base_rotation * Rotation.from_euler("z", 0.7)
+    expected_axis = holder_delta.apply(base_rotation.apply(np.array([0., 0., 1.])))
+    np.testing.assert_allclose(contact.apply(np.array([0., 0., 1.])), expected_axis, atol=1e-7)
+
+
+def test_press_terminal_guard_reports_motion_incomplete():
+    harness = object.__new__(VisualRadioHarness)
+    harness.terminated = False
+    harness.truncated = True
+    assert harness.press_at_pixel(0, 0) is False
+
+
+def test_failed_press_fallback_reacquires_button_before_bimanual_geometry():
+    root = Path(__file__).resolve().parents[4]
+    tree = ast.parse((root / "scripts/aspire_radio/learned_press_policy.py").read_text())
+    fallback = next(node for node in ast.walk(tree)
+                    if isinstance(node, ast.If) and isinstance(node.test, ast.UnaryOp)
+                    and isinstance(node.test.op, ast.Not)
+                    and isinstance(node.test.operand, ast.Name)
+                    and node.test.operand.id == "pressed"
+                    and any(isinstance(child, ast.Call) and isinstance(child.func, ast.Name)
+                            and child.func.id == "get_current_eef_pose" for child in ast.walk(node)))
+    reacquire = next(child for child in ast.walk(fallback)
+                     if isinstance(child, ast.For)
+                     and any(isinstance(call, ast.Call) and isinstance(call.func, ast.Name)
+                             and call.func.id == "held_radio_pixels" for call in ast.walk(child)))
+    geometry = next(child for child in ast.walk(fallback)
+                    if isinstance(child, ast.Assign)
+                    and any(isinstance(call, ast.Call) and isinstance(call.func, ast.Name)
+                            and call.func.id == "get_current_eef_pose" for call in ast.walk(child)))
+    assert reacquire.lineno < geometry.lineno
 
 
 def test_free_hand_press_can_lock_torso_during_approach():

@@ -603,6 +603,27 @@ if pressed:
                                  arm=0, surface_offset=.06, fixed_torso=True)
         break
 if not pressed:
+    # The holder may have moved during a failed press attempt. Re-ground the
+    # control before any bimanual fallback uses its world position.
+    for reacquire_camera in (view_camera, "head", "left_wrist", "right_wrist"):
+        reacquire_view = held_radio_pixels(reacquire_camera)
+        if len(reacquire_view[2]) < 20:
+            continue
+        try:
+            reacquire_x, reacquire_y, _ = find_button(
+                reacquire_view[1], reacquire_view[2], reacquire_view[3], top_only=True)
+        except AssertionError:
+            continue
+        button_x, button_y = reacquire_x, reacquire_y
+        obs = reacquire_view[0]
+        button_mask = np.zeros(obs["depth"].shape, dtype=bool)
+        button_mask[max(0, button_y - 1):button_y + 2,
+                    max(0, button_x - 1):button_x + 2] = True
+        button_world = np.median(mask_to_world_points(
+            button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
+        button_direction = button_world - obs["world_from_camera"][:3, 3]
+        button_direction /= np.linalg.norm(button_direction)
+        break
     left_position, left_quat = get_current_eef_pose(arm=0)
     finger_center = get_current_finger_center(arm=0)
     contact_position = left_position + button_world - finger_center
