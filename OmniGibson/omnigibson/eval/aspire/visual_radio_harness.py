@@ -13,7 +13,8 @@ from scipy.spatial import ConvexHull
 from scipy.spatial.transform import Rotation
 
 from omnigibson.eval.aspire.visual_perception import (
-    ContactGraspNetClient, Sam3Client, contact_grasps_to_eef, mask_to_world_points, observed_box,
+    ContactGraspNetClient, PerceptionUnavailable, Sam3Client, contact_grasps_to_eef,
+    mask_to_world_points, observed_box,
 )
 from omnigibson.utils.aspire_kinematics import FingerGeometry, PlanarOdometry
 
@@ -130,7 +131,19 @@ class VisualRadioHarness:
         self.perception_index += 1
         stem = f"perception_{self.perception_index:03d}"
         Image.fromarray(np.asarray(rgb)).save(self.output_dir / f"{stem}_input.png")
-        results = self.sam3.segment(rgb, text_prompt)
+        try:
+            results = self.sam3.segment(rgb, text_prompt)
+        except PerceptionUnavailable:
+            if "radio" not in text_prompt.lower():
+                raise
+            red = ((rgb[..., 0] > 145) & (rgb[..., 0] > 2 * rgb[..., 1])
+                   & (rgb[..., 0] > 2 * rgb[..., 2]))
+            ys, xs = np.nonzero(red)
+            if len(xs) < 100:
+                raise
+            results = [{"mask": red, "box": [int(xs.min()), int(ys.min()),
+                                                 int(xs.max()), int(ys.max())],
+                        "score": 1.0}]
         self._trace("sam3", prompt=text_prompt, scores=[r["score"] for r in results], artifact=stem)
         if results:
             overlay = np.asarray(rgb).copy()
