@@ -580,7 +580,7 @@ pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
 if not pressed:
     pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
                              arm=0, surface_offset=0.0, allow_torso=True)
-if pressed:
+if not pressed:
     for retry_camera in ("head", "left_wrist", "right_wrist"):
         retry_view = held_radio_pixels(retry_camera)
         if len(retry_view[2]) < 20:
@@ -600,11 +600,12 @@ if pressed:
         button_direction = button_world - obs["world_from_camera"][:3, 3]
         button_direction /= np.linalg.norm(button_direction)
         pressed = press_at_pixel(button_x, button_y, camera=retry_camera, travel=.03,
-                                 arm=0, surface_offset=.06, fixed_torso=True)
+                                 arm=0, surface_offset=.06, allow_torso=True)
         break
 if not pressed:
     # The holder may have moved during a failed press attempt. Re-ground the
     # control before any bimanual fallback uses its world position.
+    reacquired = False
     for reacquire_camera in (view_camera, "head", "left_wrist", "right_wrist"):
         reacquire_view = held_radio_pixels(reacquire_camera)
         if len(reacquire_view[2]) < 20:
@@ -623,7 +624,9 @@ if not pressed:
             button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
         button_direction = button_world - obs["world_from_camera"][:3, 3]
         button_direction /= np.linalg.norm(button_direction)
+        reacquired = True
         break
+    assert reacquired, "Cannot safely fallback without a fresh button observation"
     left_position, left_quat = get_current_eef_pose(arm=0)
     finger_center = get_current_finger_center(arm=0)
     contact_position = left_position + button_world - finger_center
@@ -653,13 +656,10 @@ if not pressed:
             holder_target = (finger_center + .05 * button_direction
                              - target_rotation.apply(button_in_holder))
             holder_joints = solve_ik(holder_target, target_quat, arm=1, lock_trunk=True)
-            if holder_joints is None:
-                holder_joints = solve_ik(holder_target, target_quat, arm=1,
-                                         lock_last_trunk=True)
             if holder_joints is not None:
-                if np.linalg.norm(holder_joints[:3] - current_joints[:3]) > .8:
+                if np.linalg.norm(holder_joints[6:10] - current_joints[6:10]) > .8:
                     continue
-                holder_solutions.append((np.linalg.norm(holder_joints[:3] - current_joints[:3]),
+                holder_solutions.append((np.linalg.norm(holder_joints[6:10] - current_joints[6:10]),
                                          np.linalg.norm(delta),
                                          np.linalg.norm(holder_joints - current_joints),
                                          holder_joints))

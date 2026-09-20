@@ -295,6 +295,18 @@ def test_failed_press_fallback_reacquires_button_before_bimanual_geometry():
                     and any(isinstance(call, ast.Call) and isinstance(call.func, ast.Name)
                             and call.func.id == "get_current_eef_pose" for call in ast.walk(child)))
     assert reacquire.lineno < geometry.lineno
+    source = (root / "scripts/aspire_radio/learned_press_policy.py").read_text()
+    assert "assert reacquired, \"Cannot safely fallback without a fresh button observation\"" in source
+    assert "lock_last_trunk=True" not in ast.get_source_segment(source, fallback)
+    assert "holder_joints[6:10]" in ast.get_source_segment(source, fallback)
+
+
+def test_contact_candidates_keep_measured_current_orientation():
+    source = (Path(__file__).resolve().parents[4]
+              / "OmniGibson/omnigibson/eval/aspire/visual_radio_harness.py").read_text()
+    assert "if contact_roll is None and current_rotation is None" in source
+    assert "Rotation.from_matrix(current_rotation)" in source
+    assert "contact_rolls = (wrist_roll, math.pi / 2" in source
 
 
 def test_free_hand_press_can_lock_torso_during_approach():

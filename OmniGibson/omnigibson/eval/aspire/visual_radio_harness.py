@@ -657,14 +657,16 @@ class VisualRadioHarness:
             # Keep the held object fixed after the bounded joint restoration.
             final_lock = {"lock_trunk": True}
             holder_delta = holder_rotation * initial_holder_rotation.inv()
-            contact_rolls = (wrist_roll, 0.0, -math.pi / 2, math.pi / 4,
+            contact_rolls = (wrist_roll, math.pi / 2, 0.0, -math.pi / 2, math.pi / 4,
                              -math.pi / 4, 3 * math.pi / 4, math.pi,
                              -3 * math.pi / 4)
             for contact_roll in contact_rolls:
-                if contact_roll is None:
+                if contact_roll is None and current_rotation is None:
                     continue
-                contact_rotation = (holder_delta * Rotation.from_matrix(base_rotation)
-                                     * Rotation.from_euler("z", contact_roll))
+                contact_rotation = (holder_delta * (Rotation.from_matrix(current_rotation)
+                                                     if contact_roll is None else
+                                                     Rotation.from_matrix(base_rotation)
+                                                     * Rotation.from_euler("z", contact_roll)))
                 contact_quat = contact_rotation.as_quat()[[3, 0, 1, 2]]
                 contact_offset = (contact_rotation.apply(finger_offset_local)
                                   if finger_offset_local is not None
@@ -688,7 +690,7 @@ class VisualRadioHarness:
             try:
                 reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
             except EpisodeFinished:
-                return False
+                raise
             if not reached:
                 actual_position, actual_quat = self.get_current_eef_pose(arm)
                 actual_rotation = Rotation.from_quat(actual_quat[[1, 2, 3, 0]])
@@ -709,6 +711,6 @@ class VisualRadioHarness:
             try:
                 self._step(self._action())
             except EpisodeFinished:
-                return False
+                raise
         self.save_current_observation("after_press", camera)
         return True  # Motion completed; NOT a task-success assertion.
