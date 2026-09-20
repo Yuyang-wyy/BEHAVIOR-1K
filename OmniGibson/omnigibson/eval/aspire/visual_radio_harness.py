@@ -304,7 +304,7 @@ class VisualRadioHarness:
         return generator
 
     def solve_ik(self, position, quaternion_wxyz, arm=1, lock_trunk=False, lock_last_trunk=False,
-                 self_collision_check=False):
+                 self_collision_check=False, trajectory=False):
         from omnigibson.action_primitives.curobo import CuRoboEmbodimentSelection
 
         if arm not in (0, 1):
@@ -326,14 +326,15 @@ class VisualRadioHarness:
             th.tensor(local_pose[None, :3, 3], dtype=th.float32), th.tensor(local_quat[None], dtype=th.float32),
             initial_joint_pos=th.tensor(self.get_current_joint_positions(), dtype=th.float32),
             is_local=True, max_attempts=3, timeout=2.0,
-            skip_obstacle_update=True, ik_only=True, ik_world_collision_check=False,
+            skip_obstacle_update=True, ik_only=not trajectory, ik_world_collision_check=False,
             emb_sel=CuRoboEmbodimentSelection.ARM,
         )
         if not bool(success[0]) or paths[0] is None:
             self._trace("ik_failed", target=position)
             return None
         path = paths[0]
-        values = path.position[-1] if path.position.ndim > 1 else path.position
+        path_values = path.position if path.position.ndim > 1 else path.position[None]
+        values = path_values[-1]
         current = th.tensor(self.get_current_joint_positions(), dtype=th.float32)
         target = current.clone()
         indices = {name: index for index, name in enumerate(self.robot.joints)}
@@ -346,6 +347,16 @@ class VisualRadioHarness:
         # the command instead of replaying those stale cached values.
         for name in getattr(self, "motion_generator_locks", {}).get(key, {}):
             target[indices[name]] = current[indices[name]]
+        if trajectory:
+            planned = []
+            for waypoint in path_values.detach().cpu():
+                full = current.clone()
+                for name, value in zip(path.joint_names, waypoint):
+                    full[indices[name]] = value
+                for name in getattr(self, "motion_generator_locks", {}).get(key, {}):
+                    full[indices[name]] = current[indices[name]]
+                planned.append(full.numpy())
+            self._planned_joint_path = np.asarray(planned)
         controlled = th.cat([self.robot.trunk_control_idx,
                              *[self.robot.arm_control_idx[arm_name] for arm_name in self.robot.arm_names]])
         if bool(th.any(target[controlled] < self.robot.joint_lower_limits[controlled] - 1e-4)) or bool(
@@ -436,12 +447,17 @@ class VisualRadioHarness:
 
     def move_hand(self, target_pose, arm=1, max_joint_step=0.015, lock_trunk=False,
                   lock_last_trunk=False, self_collision_check=False):
+        self._planned_joint_path = None
         joints = self.solve_ik(*target_pose, arm=arm, lock_trunk=lock_trunk,
                                lock_last_trunk=lock_last_trunk,
-                               self_collision_check=self_collision_check)
+                               self_collision_check=self_collision_check,
+                               trajectory=True)
         if joints is None:
             return False
-        self.move_to_joints(joints, max_joint_step=max_joint_step)
+        if self._planned_joint_path is not None and len(self._planned_joint_path) > 1:
+            self.move_to_joint_path(self._planned_joint_path, max_joint_step=max_joint_step)
+        else:
+            self.move_to_joints(joints, max_joint_step=max_joint_step)
         position, quat = self.get_current_eef_pose(arm)
         position_error = float(np.linalg.norm(position - np.asarray(target_pose[0])))
         requested = np.asarray(target_pose[1])[[1, 2, 3, 0]]
@@ -451,6 +467,15 @@ class VisualRadioHarness:
                     orientation_error=orientation_error, reached=reached, arm=arm,
                     actual_position=position, actual_quaternion_wxyz=quat)
         return reached
+
+    def move_to_joint_path(self, path, max_joint_step=0.015):
+        path = np.asarray(path, dtype=float)
+        if path.ndim != 2 or path.shape[1] != len(self.robot.joints) or not np.isfinite(path).all():
+            raise ValueError("Invalid joint trajectory")
+        for waypoint in path:
+            self._step(self._action(waypoint))
+        self.move_to_joints(path[-1], max_joint_step=max_joint_step)
+        return True
 
     def open_gripper(self, arm=1):
         if arm not in (0, 1):
