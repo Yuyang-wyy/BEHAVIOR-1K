@@ -15,7 +15,7 @@ The visual adapter exposes RGB-D, robot geometry, SAM3 segmentation, observed
 geometry, robot-only IK, and motor commands. Historical versions used exact
 simulator camera, base, EEF, and finger world poses; those results used oracle
 localization. The current adapter instead consumes the official observation's
-`cam_rel_poses`, relative EEF proprioception, and physical joint encoders. It
+`cam_rel_poses` (xyzw quaternion order), relative EEF proprioception, and physical joint encoders. It
 integrates body-frame base velocity in an episode-local odometry frame and uses
 the static robot URDF for finger geometry. Virtual base coordinates are zeroed
 before local-frame IK. The legacy key `world_from_camera` now denotes this

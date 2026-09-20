@@ -55,7 +55,7 @@ def _legal_observation_harness():
         obs={
             "r1pro::head_camera::rgb": th.zeros((2, 2, 3), dtype=th.uint8),
             "r1pro::head_camera::depth_linear": th.ones((2, 2)),
-            "r1pro::cam_rel_poses": th.tensor([[.5, -.25, .75, 1., 0., 0., 0.]]),
+            "r1pro::cam_rel_poses": th.tensor([[.5, -.25, .75, 0., 0., 0., 1.]]),
             "r1pro::proprio": th.tensor([0., 0., 0., .2, .3]),
         },
     )
@@ -79,7 +79,7 @@ def test_proprio_joints_keep_virtual_base_zero_and_eef_uses_odom():
     harness = _legal_observation_harness()
     np.testing.assert_allclose(harness.get_current_joint_positions(), [0., 0., 0., .2, .3])
     harness.proprio_slices.update({"eef_left_pos": slice(3, 6), "eef_left_quat": slice(6, 10)})
-    harness.evaluator.obs["r1pro::proprio"] = th.tensor([0., 0., 0., .1, .2, .3, 1., 0., 0., 0.])
+    harness.evaluator.obs["r1pro::proprio"] = th.tensor([0., 0., 0., .1, .2, .3, 0., 0., 0., 1.])
     position, quat = harness.get_current_eef_pose(arm=0)
     np.testing.assert_allclose(position, [2.1, 3.2, .4])
     np.testing.assert_allclose(quat, [1., 0., 0., 0.])
