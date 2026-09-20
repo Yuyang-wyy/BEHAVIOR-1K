@@ -28,6 +28,85 @@ The task evaluator alone reads task success after execution; that value is
 not a policy input. Visual grasp checks are heuristics and can be wrong.
 `press_at_pixel` returning true means motion completed, not that the task passed.
 
+## Current turning-on-radio policy
+
+`learned_press_policy.py` is the current ASPIRE-style visual code policy for
+`turning_on_radio`. Its online sequence is:
+
+1. Navigate from current RGB-D to the table using visual red-radio geometry.
+2. Ground the radio from current RGB-D, sample Contact-GraspNet candidates,
+   execute a right-arm grasp, and verify the lift from fresh camera views.
+3. Preserve the right-arm holder while moving the free left arm to the
+   observed radio control. The press adapter tracks the holder, restores its
+   saved trunk/holder joint posture after torso-enabled approach, and relies on
+   normal physical finger overlap for the task toggle.
+4. Reacquire the visible red control before press attempts. The policy never
+   reads `ToggledOn`, contacts, object registry, simulator markers, or
+   demonstration action arrays.
+
+The policy samples Contact-GraspNet twice from the same current RGB-D frame to
+reduce candidate variance. This is a robustness measure, not a success oracle.
+Success is reported only from the evaluator's final `task_success` and
+`q_score`, not from a motor return value.
+
+### Verified evidence
+
+The first verified public-test success is instance `302`, seed `2026091609`:
+
+```text
+task_success=true
+status=success
+q_score.final=1.0
+policy_inputs=RGB-D, camera calibration, robot proprioception
+demonstration_actions=false
+ground_truth_object_state=false
+```
+
+Evidence is in
+`outputs/behavior/aspire-campaigns/radio/public-test-20260919-final7/`:
+`result.json`, `trace.jsonl`, and `rollout.mp4`. The run contains rendered
+evidence of the right-hand hold and left-hand control approach.
+
+Grasp and presentation remain stochastic across repeated rollouts; failed
+attempts must remain in the report. A single successful rollout is not evidence
+of a stable success rate.
+
+### Reproduction command
+
+```bash
+PYTHONPATH=$PWD/OmniGibson \
+OMNIGIBSON_HEADLESS=1 OMNI_KIT_ACCEPT_EULA=YES OMNIGIBSON_GPU_ID=0 \
+/home/ywang/miniconda3/envs/behavior/bin/python \
+scripts/aspire_radio/run_visual_policy.py \
+  --policy scripts/aspire_radio/learned_press_policy.py \
+  --instance 302 --seed 2026091609 \
+  --output-dir outputs/behavior/aspire-campaigns/radio/public-test-20260919-final7 \
+  --mode public_test --grounding codex-pixels --max-steps 6000 --record-video
+```
+
+### Public-instance results
+
+| Instance | Seed | Task success | Q | Output |
+| --- | ---: | ---: | ---: | --- |
+| 302 | 2026091609 | 1 | 1.0 | `public-test-20260919-final7` |
+| 301 | 2026091608 | 0 | 0.0 | `public-test-20260920-301` |
+| 303 | 2026091610 | 0 | 0.0 | `public-test-20260920-303` |
+| 304 | 2026091611 | 0 | 0.0 | `public-test-20260920-304` |
+| 303 (rerun) | 2026091610 | 0 | 0.0 | `public-test-20260920-303-roll2` |
+
+The first cross-instance batch is therefore `1/4` successful (`25%`), with
+instance `302` as the only success. In the `301`, `303`, and `304` failures,
+the radio grasp was visually verified but the press block ended with
+`press_motor_completed=false`; their traces repeatedly show partial holder
+restoration followed by `fixed_trunk_precontact` IK failure. The `303-roll2`
+rerun failed earlier during grasp verification. These results are retained as
+the current baseline rather than being hidden by retry selection.
+
+The current press harness additionally tries multiple wrist rolls during the
+fixed-torso contact solve. Unit coverage remains `19 passed` in
+`visual_policy_test.py`; this change still needs another successful public
+rollout before it should be described as improving the matrix above.
+
 The AST/import guard prevents common accidental privileged calls. It is NOT
 a hardened Python security sandbox. Workers run without provider credentials
 in their environment; stronger protection requires host/container isolation.

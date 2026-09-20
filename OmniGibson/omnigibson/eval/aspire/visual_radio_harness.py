@@ -647,31 +647,43 @@ class VisualRadioHarness:
                 self._trace("visual_press_holder_restore_partial", pixel=[x, y])
         final_lock = initial_lock
         if holder_tracking is not None:
-            point_in_holder, direction_in_holder, initial_holder_rotation = holder_tracking
-            press_rotation_in_holder = (initial_holder_rotation.inv()
-                                        * Rotation.from_quat(quat[[1, 2, 3, 0]]))
+            point_in_holder, direction_in_holder, _ = holder_tracking
             fixed_trunk_reached = False
             for correction in range(3):
                 holder_position, holder_quat = self.get_current_eef_pose(holder_arm)
                 holder_rotation = Rotation.from_quat(holder_quat[[1, 2, 3, 0]])
                 point = holder_position + holder_rotation.apply(point_in_holder)
                 direction = holder_rotation.apply(direction_in_holder)
-                press_rotation = holder_rotation * press_rotation_in_holder
-                quat = press_rotation.as_quat()[[3, 0, 1, 2]]
-                offset = (press_rotation.apply(finger_offset_local) if finger_offset_local is not None
-                          else press_rotation.apply(np.array([0, 0, fingertip_length])))
-                precontact_pose = (point - direction * 0.03 - offset, quat)
                 # Torso motion is allowed only for the initial approach. Once
                 # the holder is restored, the contact segment must not move
-                # the held radio away from the visually observed button.
+                # the held radio away from the visually observed button. Try
+                # several wrist rolls because the first approach orientation
+                # is selected for reachability, not contact reachability.
                 final_lock = {"lock_trunk": True}
-                if self.solve_ik(*precontact_pose, arm=arm, **final_lock) is not None:
-                    if not self.move_hand(precontact_pose, arm, max_joint_step=0.01, **final_lock):
-                        return False
-                    fixed_trunk_reached = True
+                contact_rolls = (wrist_roll, 0.0, -math.pi / 2, math.pi / 4,
+                                 -math.pi / 4, 3 * math.pi / 4, math.pi,
+                                 -3 * math.pi / 4)
+                for contact_roll in contact_rolls:
+                    if contact_roll is None:
+                        continue
+                    contact_rotation = base_rotation @ Rotation.from_euler(
+                        "z", contact_roll).as_matrix()
+                    contact_quat = Rotation.from_matrix(contact_rotation).as_quat()[[3, 0, 1, 2]]
+                    contact_offset = (Rotation.from_quat(contact_quat[[1, 2, 3, 0]]).apply(finger_offset_local)
+                                      if finger_offset_local is not None
+                                      else contact_rotation @ np.array([0, 0, fingertip_length]))
+                    precontact_pose = (point - direction * 0.03 - contact_offset, contact_quat)
+                    if self.solve_ik(*precontact_pose, arm=arm, **final_lock) is not None:
+                        if not self.move_hand(precontact_pose, arm, max_joint_step=0.01, **final_lock):
+                            return False
+                        quat, offset = contact_quat, contact_offset
+                        fixed_trunk_reached = True
+                        break
+                if fixed_trunk_reached:
                     break
                 self._trace("visual_press_holder_correction", pixel=[x, y], point=point,
                             direction=direction, correction=correction)
+                precontact_pose = (point - direction * 0.03 - offset, quat)
                 if not self.move_hand(precontact_pose, arm, max_joint_step=0.015, **initial_lock):
                     return False
                 if not self.move_hand(holder_world_pose, holder_arm, max_joint_step=0.01,
