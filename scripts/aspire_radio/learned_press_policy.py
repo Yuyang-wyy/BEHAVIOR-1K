@@ -233,7 +233,9 @@ for search_step in range(8):
             best_radio = points
             best_observation = obs
             save_current_observation("radio_search_candidate_" + str(search_step))
-        if len(points) >= 500:
+        # Stop at the first usable view. Continuing the scan after detection
+        # invalidates the saved RGB-D pose through accumulated odometry drift.
+        if len(points) >= 100:
             break
     rotate_base(np.pi / 4)
 assert best_radio is not None, "No radio-sized red object found in a full visual scan"
