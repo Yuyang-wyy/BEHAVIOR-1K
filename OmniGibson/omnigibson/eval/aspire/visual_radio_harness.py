@@ -15,6 +15,7 @@ from scipy.spatial.transform import Rotation
 from omnigibson.eval.aspire.visual_perception import (
     ContactGraspNetClient, Sam3Client, contact_grasps_to_eef, mask_to_world_points, observed_box,
 )
+from omnigibson.utils.aspire_kinematics import FingerGeometry, PlanarOdometry
 
 
 class EpisodeFinished(RuntimeError):
@@ -25,7 +26,23 @@ class VisualRadioHarness:
     def __init__(self, evaluator, output_dir, sam3_url="http://127.0.0.1:8114"):
         self.evaluator = evaluator
         self.robot = evaluator.robot
-        self.joint_targets = self.robot.get_joint_positions().detach().cpu().numpy().copy()
+        sizes = {"base_qvel": 3, "trunk_qpos": len(self.robot.trunk_control_idx),
+                 "trunk_qvel": len(self.robot.trunk_control_idx)}
+        for arm in self.robot.arm_names:
+            sizes.update({f"eef_{arm}_pos": 3, f"eef_{arm}_quat": 4})
+            for suffix in ("qpos", "qvel"):
+                sizes[f"arm_{arm}_{suffix}"] = len(self.robot.arm_control_idx[arm])
+                sizes[f"gripper_{arm}_{suffix}"] = len(self.robot.gripper_control_idx[arm])
+        offset = 0
+        self.proprio_slices = {}
+        for name in evaluator.cfg.robot.proprio_obs:
+            if name not in sizes:
+                raise ValueError(f"Unsupported policy proprioception field: {name}")
+            self.proprio_slices[name] = slice(offset, offset + sizes[name])
+            offset += sizes[name]
+        self.odometry = PlanarOdometry()
+        self.finger_geometry = FingerGeometry(self.robot.urdf_path)
+        self.joint_targets = self.get_current_joint_positions()
         self.output_dir = Path(output_dir)
         self.sam3 = Sam3Client(sam3_url)
         self.graspnet = ContactGraspNetClient()
@@ -56,10 +73,13 @@ class VisualRadioHarness:
     def _step(self, action):
         if self.terminated or self.truncated:
             raise EpisodeFinished("Episode already ended")
+        previous_velocity = self._proprio("base_qvel")
         obs, reward, self.terminated, self.truncated, info = self.evaluator.env.step(
             action, n_render_iterations=1, skip_obs=False
         )
         self.evaluator.obs = self.evaluator._preprocess_obs(obs)
+        self.odometry.update((previous_velocity + self._proprio("base_qvel")) / 2,
+                             1.0 / self.evaluator.env.env_config["action_frequency"])
         for metric in self.evaluator.metrics:
             metric.step(self.evaluator.env, action, self.evaluator.obs, reward,
                         self.terminated, self.truncated, info)
@@ -89,13 +109,13 @@ class VisualRadioHarness:
         return rgb, depth
 
     def get_observation(self, camera="head"):
-        from omnigibson.utils import transform_utils as transform_utils
-
         rgb, depth = self.get_env_observation(camera)
         name = self.evaluator.robot_camera_names[camera].split("::", 1)[1]
         sensor = self.robot.sensors[name]
-        position, quat = sensor.get_position_orientation()
-        world_from_camera = transform_utils.pose2mat((position, quat)).detach().cpu().numpy()
+        camera_index = list(self.evaluator.robot_camera_names).index(camera)
+        relative = self.evaluator.obs[f"{self.robot.name}::cam_rel_poses"].detach().cpu().numpy()
+        relative = relative.reshape(-1, 7)[camera_index]
+        world_from_camera = self.odometry.odom_from_base @ self._pose_matrix(relative[:3], relative[3:])
         return {"rgb": rgb, "depth": depth, "intrinsics": np.asarray(sensor.intrinsic_matrix),
                 "world_from_camera": world_from_camera, "joints": self.get_current_joint_positions()}
 
@@ -136,9 +156,20 @@ class VisualRadioHarness:
         return position, quat, extent if return_bbox_extent else None, points, {"center": position, "rotation": rotation, "extent": extent}
 
     def get_robot_position(self):
-        position, quat = self.robot.get_position_orientation()
-        position, quat = position.detach().cpu().numpy(), quat.detach().cpu().numpy()
-        return position, quat[[3, 0, 1, 2]], float(Rotation.from_quat(quat).as_euler("xyz")[2])
+        pose = self.odometry.odom_from_base
+        quat = Rotation.from_matrix(pose[:3, :3]).as_quat()
+        return pose[:3, 3], quat[[3, 0, 1, 2]], math.atan2(pose[1, 0], pose[0, 0])
+
+    @staticmethod
+    def _pose_matrix(position, quat_xyzw):
+        pose = np.eye(4)
+        pose[:3, :3] = Rotation.from_quat(quat_xyzw).as_matrix()
+        pose[:3, 3] = position
+        return pose
+
+    def _proprio(self, name):
+        values = self.evaluator.obs[f"{self.robot.name}::proprio"].detach().cpu().numpy()
+        return values[self.proprio_slices[name]].copy()
 
     def rotate_base(self, radians):
         if not np.isfinite(radians) or abs(radians) > 2 * math.pi:
@@ -186,10 +217,15 @@ class VisualRadioHarness:
             normal = np.array([-edge[1], edge[0]])
             outward = normal if np.dot(normal, table_center - point) < 0 else -normal
             target = point + .40 * outward
-            object_distance = float(np.linalg.norm(point - object_xy))
+            object_distance = float(np.linalg.norm(target - object_xy))
             candidates.append((object_distance, float(np.linalg.norm(target - base_xy)), target))
-        reachable = [candidate for candidate in candidates if candidate[0] <= .75]
-        _, _, target = min(reachable or candidates, key=lambda candidate: candidate[1])
+        # The 90th percentile training grasp distance is .929 m. Preserve the
+        # table clearance instead of moving an unreachable dock through it.
+        reachable = [candidate for candidate in candidates if candidate[0] <= .93]
+        _, _, target = min(reachable, key=lambda candidate: candidate[1]) if reachable else min(
+            candidates, key=lambda candidate: candidate[:2])
+        self._trace("navigation_geometry", target=target, object_center=object_xy,
+                    object_distance=float(np.linalg.norm(target - object_xy)))
         return np.array([*target, math.atan2(object_xy[1] - target[1], object_xy[0] - target[0])])
 
     def navigate_to_pose(self, pose):
@@ -230,17 +266,9 @@ class VisualRadioHarness:
         key = (arm_name + ("_fixed_trunk" if lock_trunk else "_fixed_distal_trunk" if lock_last_trunk else "")
                + ("_self_collision" if self_collision_check else ""))
         if key in self.motion_generators:
-            locked_trunk = (list(self.robot.trunk_joint_names) if lock_trunk else
-                            [self.robot.trunk_joint_names[-1]] if lock_last_trunk else [])
-            current = self.robot.get_joint_positions()
-            current = current.detach().cpu().numpy() if hasattr(current, "detach") else np.asarray(current)
-            indices = {name: index for index, name in enumerate(self.robot.joints)}
-            captured = self.motion_generator_locks[key]
-            if all(abs(float(current[indices[name]]) - captured[name]) < 1e-4
-                   for name in locked_trunk):
-                return self.motion_generators[key]
-            del self.motion_generators[key]
-            del self.motion_generator_locks[key]
+            # CuRobo refreshes locked-joint transforms from initial_joint_pos
+            # on every solve; encoder drift does not require rebuilding it.
+            return self.motion_generators[key]
         import yaml
         from omnigibson.action_primitives.curobo import CuRoboEmbodimentSelection, CuRoboMotionGenerator
 
@@ -251,10 +279,12 @@ class VisualRadioHarness:
         locked_names = (list(self.robot.arm_joint_names["left" if arm == 1 else "right"])
                         + (list(self.robot.trunk_joint_names) if lock_trunk else
                            [self.robot.trunk_joint_names[-1]] if lock_last_trunk else []))
-        current = self.robot.get_joint_positions()
-        current = current.detach().cpu().numpy() if hasattr(current, "detach") else np.asarray(current)
+        current = self.get_current_joint_positions()
         indices = {name: index for index, name in enumerate(self.robot.joints)}
         lock_joints = config["robot_cfg"]["kinematics"].setdefault("lock_joints", {})
+        for name in lock_joints:
+            if name.startswith("base_footprint_"):
+                lock_joints[name] = 0.0
         captured_locks = {}
         for name in locked_names:
             captured_locks[name] = lock_joints[name] = float(current[indices[name]])
@@ -289,9 +319,13 @@ class VisualRadioHarness:
                 or not isinstance(self_collision_check, bool)):
             raise ValueError("Trunk locks must be booleans")
         generator = self._init_ik(arm, lock_trunk, lock_last_trunk, self_collision_check)
+        local_pose = np.linalg.inv(self.odometry.odom_from_base) @ self._pose_matrix(
+            position, quat[[1, 2, 3, 0]])
+        local_quat = Rotation.from_matrix(local_pose[:3, :3]).as_quat()
         success, paths = generator.compute_trajectories(
-            th.tensor(position[None], dtype=th.float32), th.tensor(quat[[1, 2, 3, 0]][None], dtype=th.float32),
-            initial_joint_pos=self.robot.get_joint_positions(), max_attempts=3, timeout=2.0,
+            th.tensor(local_pose[None, :3, 3], dtype=th.float32), th.tensor(local_quat[None], dtype=th.float32),
+            initial_joint_pos=th.tensor(self.get_current_joint_positions(), dtype=th.float32),
+            is_local=True, max_attempts=3, timeout=2.0,
             skip_obstacle_update=True, ik_only=True, ik_world_collision_check=False,
             emb_sel=CuRoboEmbodimentSelection.ARM,
         )
@@ -300,7 +334,7 @@ class VisualRadioHarness:
             return None
         path = paths[0]
         values = path.position[-1] if path.position.ndim > 1 else path.position
-        current = self.robot.get_joint_positions().detach().cpu().clone()
+        current = th.tensor(self.get_current_joint_positions(), dtype=th.float32)
         target = current.clone()
         indices = {name: index for index, name in enumerate(self.robot.joints)}
         for name, value in zip(path.joint_names, values.detach().cpu()):
@@ -321,22 +355,36 @@ class VisualRadioHarness:
         return target.numpy()
 
     def get_current_joint_positions(self):
-        return self.robot.get_joint_positions().detach().cpu().numpy().copy()
+        # Virtual base coordinates are not encoders and must never enter policy
+        # observations or local-frame IK. Motor commands only use real joints.
+        joints = np.zeros(len(self.robot.joints), dtype=float)
+        joints[self.robot.trunk_control_idx.detach().cpu().numpy()] = self._proprio("trunk_qpos")
+        for arm in self.robot.arm_names:
+            joints[self.robot.arm_control_idx[arm].detach().cpu().numpy()] = self._proprio(f"arm_{arm}_qpos")
+            joints[self.robot.gripper_control_idx[arm].detach().cpu().numpy()] = self._proprio(f"gripper_{arm}_qpos")
+        return joints
 
     def get_current_eef_pose(self, arm=1):
         if arm not in (0, 1):
             raise ValueError("Arm must be 0 (left) or 1 (right)")
-        position, quat = self.robot.get_eef_pose(arm="right" if arm == 1 else "left")
-        return position.detach().cpu().numpy(), quat.detach().cpu().numpy()[[3, 0, 1, 2]]
+        arm_name = "right" if arm == 1 else "left"
+        pose = self.odometry.odom_from_base @ self._pose_matrix(
+            self._proprio(f"eef_{arm_name}_pos"), self._proprio(f"eef_{arm_name}_quat"))
+        return pose[:3, 3], Rotation.from_matrix(pose[:3, :3]).as_quat()[[3, 0, 1, 2]]
+
+    def _finger_positions(self, arm):
+        joints = dict(zip(self.robot.joints, self.get_current_joint_positions()))
+        offsets = self.finger_geometry.update(joints)
+        position, quat = self.get_current_eef_pose(arm)
+        rotation = Rotation.from_quat(quat[[1, 2, 3, 0]])
+        arm_name = "right" if arm == 1 else "left"
+        return np.stack([position + rotation.apply(offsets[link.name][:3, 3])
+                         for link in self.robot.finger_links[arm_name]])
 
     def get_current_finger_center(self, arm=1):
         if arm not in (0, 1):
             raise ValueError("Arm must be 0 (left) or 1 (right)")
-        arm_name = "right" if arm == 1 else "left"
-        return np.mean([
-            link.get_position_orientation()[0].detach().cpu().numpy()
-            for link in self.robot.finger_links[arm_name]
-        ], axis=0)
+        return self._finger_positions(arm).mean(axis=0)
 
     def move_to_joints(self, joints, max_joint_step=0.015):
         target = np.asarray(joints, dtype=float)
@@ -380,7 +428,11 @@ class VisualRadioHarness:
             if trunk_joints.shape != trunk_indices.shape or not np.isfinite(trunk_joints).all():
                 raise ValueError("Trunk posture has the wrong shape or non-finite values")
             target[trunk_indices] = trunk_joints
-        return self.move_to_joints(target, max_joint_step=max_joint_step)
+        self.move_to_joints(target, max_joint_step=max_joint_step)
+        # Contact loads can deflect the holding arm while the requested free
+        # arm/trunk posture has settled. Verify the joints this command changes.
+        changed = np.concatenate([arm_indices, trunk_indices]) if trunk_joints is not None else arm_indices
+        return bool(np.max(np.abs(self.get_current_joint_positions()[changed] - target[changed])) < .02)
 
     def move_hand(self, target_pose, arm=1, max_joint_step=0.015, lock_trunk=False,
                   lock_last_trunk=False, self_collision_check=False):
@@ -464,8 +516,7 @@ class VisualRadioHarness:
             grasps.append((grasp, quat))
         arm_name = "right" if arm == 1 else "left"
         eef_position, eef_quat = self.get_current_eef_pose(arm)
-        finger_origins = np.stack([link.get_position_orientation()[0].detach().cpu().numpy()
-                                   for link in self.robot.finger_links[arm_name]])
+        finger_origins = self._finger_positions(arm)
         finger_local = (finger_origins - eef_position) @ Rotation.from_quat(eef_quat[[1, 2, 3, 0]]).as_matrix()
         self._trace("grasp_candidates", count=len(grasps), position=position, extent=extent, arm=arm,
                     calibrated_tip_offset=fingertip_length, own_finger_origins_in_eef=finger_local)
@@ -580,7 +631,7 @@ class VisualRadioHarness:
         try:
             eef_position, eef_quat = self.get_current_eef_pose(arm)
             finger = self.robot.finger_links[arm_name][0]
-            finger_origin = finger.get_position_orientation()[0].detach().cpu().numpy()
+            finger_origin = self._finger_positions(arm)[0]
             eef_rotation = Rotation.from_quat(eef_quat[[1, 2, 3, 0]])
             current_rotation = eef_rotation.as_matrix()
             finger_offset_local = eef_rotation.inv().apply(finger_origin - eef_position)
@@ -697,10 +748,7 @@ class VisualRadioHarness:
                 if not near:
                     return False
         if hasattr(self.robot, "finger_links"):
-            finger_positions = np.stack([
-                link.get_position_orientation()[0].detach().cpu().numpy()
-                for link in self.robot.finger_links[arm_name]
-            ])
+            finger_positions = self._finger_positions(arm)
             self._trace("visual_press_contact", min_finger_point_distance=float(
                 np.min(np.linalg.norm(finger_positions - point, axis=1))))
         # BEHAVIOR toggles only after several consecutive finger-overlap steps.

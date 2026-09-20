@@ -2,364 +2,6 @@
 import numpy as np
 from scipy.spatial.transform import Rotation
 
-obs = get_observation()
-
-def observed_radio(observation, near_position=None):
-    image = observation["rgb"].astype(float)
-    depth = observation["depth"]
-    valid = ((image[..., 0] > 145) & (image[..., 0] > 2 * image[..., 1])
-             & (image[..., 0] > 2 * image[..., 2])
-             & np.isfinite(depth) & (depth > 0) & (depth < 10))
-    visited = np.zeros(valid.shape, dtype=bool)
-    components = []
-    for start_y, start_x in zip(*np.nonzero(valid)):
-        if visited[start_y, start_x]:
-            continue
-        stack = [(int(start_y), int(start_x))]
-        visited[start_y, start_x] = True
-        pixels = []
-        while stack:
-            y0, x0 = stack.pop()
-            pixels.append((y0, x0))
-            for dy in (-1, 0, 1):
-                for dx in (-1, 0, 1):
-                    y1, x1 = y0 + dy, x0 + dx
-                    if (0 <= y1 < valid.shape[0] and 0 <= x1 < valid.shape[1]
-                            and valid[y1, x1] and not visited[y1, x1]):
-                        visited[y1, x1] = True
-                        stack.append((y1, x1))
-        if len(pixels) < 12:
-            continue
-        pixels = np.asarray(pixels, dtype=int)
-        component_mask = np.zeros(valid.shape, dtype=bool)
-        component_mask[pixels[:, 0], pixels[:, 1]] = True
-        world = mask_to_world_points(component_mask, depth, observation["intrinsics"],
-                                     observation["world_from_camera"])
-        if len(world) < 12:
-            continue
-        extent = np.percentile(world, 95, axis=0) - np.percentile(world, 5, axis=0)
-        center = np.median(world, axis=0)
-        if not .075 <= float(np.max(extent)) <= .45:
-            continue
-        if near_position is not None and np.linalg.norm(center - near_position) > .55:
-            continue
-        components.append((len(world), center, pixels))
-    if not components:
-        return None
-    _, center, _ = max(components, key=lambda item: item[0])
-    all_y, all_x = np.nonzero(valid)
-    all_world = mask_to_world_points(valid, depth, observation["intrinsics"],
-                                     observation["world_from_camera"])
-    nearby = np.linalg.norm(all_world - center, axis=1) < .35
-    mask = np.zeros(valid.shape, dtype=bool)
-    mask[all_y[nearby], all_x[nearby]] = True
-    points = mask_to_world_points(mask, depth, observation["intrinsics"],
-                                  observation["world_from_camera"])
-    return mask, points
-
-def observed_support_surface(observation, object_points):
-    depth = observation["depth"]
-    valid = np.isfinite(depth) & (depth > 0) & (depth < 10)
-    ys, xs = np.nonzero(valid)
-    world = mask_to_world_points(valid, depth, observation["intrinsics"],
-                                 observation["world_from_camera"])
-    object_center = np.median(object_points, axis=0)
-    surface_height = float(np.percentile(object_points[:, 2], 2) - .075)
-    on_surface = ((np.abs(world[:, 2] - surface_height) < .03)
-                  & (np.linalg.norm(world[:, :2] - object_center[:2], axis=1) < 1.5))
-    surface = np.zeros(valid.shape, dtype=bool)
-    surface[ys[on_surface], xs[on_surface]] = True
-    visited = np.zeros(valid.shape, dtype=bool)
-    components = []
-    for start_y, start_x in zip(*np.nonzero(surface)):
-        if visited[start_y, start_x]:
-            continue
-        stack = [(int(start_y), int(start_x))]
-        visited[start_y, start_x] = True
-        pixels = []
-        while stack:
-            y0, x0 = stack.pop()
-            pixels.append((y0, x0))
-            for dy in (-1, 0, 1):
-                for dx in (-1, 0, 1):
-                    y1, x1 = y0 + dy, x0 + dx
-                    if (0 <= y1 < surface.shape[0] and 0 <= x1 < surface.shape[1]
-                            and surface[y1, x1] and not visited[y1, x1]):
-                        visited[y1, x1] = True
-                        stack.append((y1, x1))
-        if len(pixels) >= 500:
-            pixels = np.asarray(pixels, dtype=int)
-            component_mask = np.zeros(valid.shape, dtype=bool)
-            component_mask[pixels[:, 0], pixels[:, 1]] = True
-            points = mask_to_world_points(component_mask, depth, observation["intrinsics"],
-                                          observation["world_from_camera"])
-            distance = np.linalg.norm(np.median(points[:, :2], axis=0) - object_center[:2])
-            components.append((distance, points))
-    assert components, "No visual support surface found under radio"
-    return min(components, key=lambda item: item[0])[1]
-
-best_radio = None
-best_observation = None
-for search_step in range(8):
-    obs = get_observation()
-    detected = observed_radio(obs)
-    if detected is not None:
-        mask, points = detected
-        if best_radio is None or len(points) > len(best_radio):
-            best_radio = points
-            best_observation = obs
-            save_current_observation("radio_search_candidate_" + str(search_step))
-        if len(points) >= 500:
-            break
-    assert rotate_base(np.pi / 4)
-assert best_radio is not None, "No radio-sized red object found in a full visual scan"
-radio = np.median(best_radio, axis=0)
-assert lift_arm(arm=0, distance=.12, lock_last_trunk=True)
-assert lift_arm(arm=1, distance=.12, lock_last_trunk=True)
-table_points = observed_support_surface(best_observation, best_radio)
-goal = get_navigation_pose(table_points, best_radio)
-base, _, _ = get_robot_position()
-edge = goal[:2] - radio[:2]
-edge_distance = np.linalg.norm(edge)
-skill_radius = float(np.hypot(1.18, .18))
-if .4 < edge_distance < skill_radius:
-    edge_normal = edge / edge_distance
-    edge_tangent = np.array([-edge_normal[1], edge_normal[0]])
-    tangent_sign = np.sign(np.dot(base[:2] - radio[:2], edge_tangent)) or 1.0
-    goal[:2] = (radio[:2] + edge
-                + tangent_sign * edge_tangent * np.sqrt(skill_radius ** 2 - edge_distance ** 2))
-    bearing = np.arctan2(radio[1] - goal[1], radio[0] - goal[0])
-    goal[2] = bearing - np.arctan2(.18, 1.18)
-if abs(goal[0] - radio[0]) > abs(goal[1] - radio[1]):
-    waypoint = np.array([goal[0], base[1], np.arctan2(goal[1] - base[1], 1e-6)])
-else:
-    waypoint = np.array([base[0], goal[1], np.arctan2(1e-6, goal[0] - base[0])])
-if np.linalg.norm(waypoint[:2] - base[:2]) > .1:
-    assert navigate_to_pose(waypoint)
-assert navigate_to_pose(goal)
-save_current_observation("before_grasp")
-
-# Code block 2
-obs = get_observation()
-detected = observed_radio(obs)
-assert detected is not None, "Radio was not visible after navigation"
-mask, points = detected
-radio_center = np.median(points, axis=0)
-
-# Stage the free hand before grasping. This keeps the press arm near the radio
-# while allowing IK to choose a trunk state from the current observed geometry.
-base, _, yaw = get_robot_position()
-base_forward = np.array([np.cos(yaw), np.sin(yaw), 0.0])
-base_left = np.array([-np.sin(yaw), np.cos(yaw), 0.0])
-direction = radio_center - obs["world_from_camera"][:3, 3]
-direction /= np.linalg.norm(direction)
-reference = np.array([0, 0, 1]) if abs(direction[2]) < 0.9 else np.array([0, 1, 0])
-axis_x = np.cross(reference, direction)
-axis_x /= np.linalg.norm(axis_x)
-axis_y = np.cross(direction, axis_x)
-stage_quat = Rotation.from_matrix(np.column_stack([axis_x, axis_y, direction])).as_quat()[[3, 0, 1, 2]]
-stage_position = (radio_center - .18 * base_forward + .18 * base_left
-                  - .02 * direction + np.array([0.0, 0.0, .08]))
-stage_solutions = []
-for _ in range(12):
-    joints = solve_ik(stage_position, stage_quat, arm=0, lock_last_trunk=True)
-    if joints is not None:
-        stage_solutions.append(joints)
-if stage_solutions:
-    stage_posture = np.array([.574, .142, .425, 0.0])
-    stage_joints = min(stage_solutions, key=lambda joints:
-                       np.linalg.norm(joints[6:10] - stage_posture))
-    move_to_joints(stage_joints)
-    save_current_observation("after_left_stage")
-# Capture this staged torso / free-arm posture for post-grasp normalization.
-right_position, right_quat = get_current_eef_pose(arm=1)
-solve_ik(right_position, right_quat, arm=1, lock_trunk=True)
-
-def radio_is_held(before_height):
-    hand, _ = get_current_eef_pose(arm=1)
-    for camera_name in ("head", "right_wrist"):
-        current = get_observation(camera_name)
-        image = current["rgb"].astype(float)
-        depth = current["depth"]
-        red_pixels = ((image[..., 0] > 145) & (image[..., 0] > 2 * image[..., 1])
-                      & (image[..., 0] > 2 * image[..., 2])
-                      & np.isfinite(depth) & (depth > 0) & (depth < 10))
-        world = mask_to_world_points(red_pixels, depth, current["intrinsics"],
-                                     current["world_from_camera"])
-        if len(world) < 20:
-            continue
-        nearby = world[np.linalg.norm(world - hand, axis=1) < .30]
-        if len(nearby) < 20:
-            continue
-        center = np.median(nearby, axis=0)
-        if center[2] - before_height > .04 and np.linalg.norm(center - hand) < .25:
-            return True
-    return False
-
-candidate = -1
-grasp_motion_completed = False
-grasp_verified = False
-grasp_backend = "contact-graspnet"
-
-# The successful reference rollouts use this object-relative side grasp after
-# staging the free hand.  Recompute it from current RGB-D rather than replaying
-# demonstration coordinates.
-for reference_round, grasp_height in enumerate((.068, .048, .088)):
-    obs = get_observation()
-    detected = observed_radio(obs, radio_center)
-    if detected is None:
-        detected = observed_radio(obs)
-    if detected is None:
-        break
-    _, points = detected
-    radio_center = np.median(points, axis=0)
-    before_height = float(radio_center[2])
-    base, _, yaw = get_robot_position()
-    base_forward = np.array([np.cos(yaw), np.sin(yaw), 0.0])
-    base_left = np.array([-np.sin(yaw), np.cos(yaw), 0.0])
-    local_grasp_rotation = Rotation.from_quat(np.array([.11519, .99248, .03530, .02166]))
-    grasp_rotation = Rotation.from_euler("z", yaw) * local_grasp_rotation
-    grasp_quat = grasp_rotation.as_quat()[[3, 0, 1, 2]]
-    grasp_position = (radio_center + .023 * base_forward - .008 * base_left
-                      + np.array([0.0, 0.0, grasp_height]))
-    pregrasp_position = (radio_center + .017 * base_forward - .015 * base_left
-                         + np.array([0.0, 0.0, .188]))
-    current_joints = get_current_joint_positions()
-    pregrasp_solutions = []
-    for _ in range(6):
-        joints = solve_ik(pregrasp_position, grasp_quat, arm=1, lock_last_trunk=True)
-        if joints is not None:
-            pregrasp_solutions.append(joints)
-    if pregrasp_solutions:
-        open_gripper(arm=1)
-        pregrasp_joints = min(pregrasp_solutions,
-                              key=lambda joints: np.linalg.norm(joints - current_joints))
-        move_to_joints(pregrasp_joints)
-        current_joints = get_current_joint_positions()
-        grasp_solutions = []
-        for _ in range(6):
-            joints = solve_ik(grasp_position, grasp_quat, arm=1, lock_last_trunk=True)
-            if joints is not None:
-                grasp_solutions.append(joints)
-        if grasp_solutions:
-            grasp_joints = min(grasp_solutions,
-                               key=lambda joints: np.linalg.norm(joints - current_joints))
-            move_to_joints(grasp_joints, max_joint_step=.005)
-            close_gripper(arm=1)
-            motion_ok = lift_arm(arm=1, distance=.12, lock_last_trunk=True)
-            grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
-            grasp_verified = bool(motion_ok and radio_is_held(before_height))
-            if grasp_verified:
-                candidate = 0
-                grasp_backend = "visual-reference"
-                break
-            save_current_observation("failed_reference_grasp_" + str(reference_round))
-            open_gripper(arm=1)
-            move_hand((right_position, right_quat), arm=1, lock_trunk=True)
-
-for grasp_round in range(3):
-    if grasp_verified:
-        break
-    obs = get_observation()
-    detected = observed_radio(obs, radio_center)
-    if detected is None:
-        detected = observed_radio(obs)
-    if detected is None:
-        break
-    mask, points = detected
-    radio_center = np.median(points, axis=0)
-    before_height = float(radio_center[2])
-    pregrasps, grasps = [], []
-    for _ in range(2):
-        try:
-            sampled_pregrasps, sampled_grasps = sample_contact_grasp_pose(
-                mask, arm=1, max_candidates=16)
-        except (ValueError, RuntimeError):
-            continue
-        pregrasps.extend(sampled_pregrasps)
-        grasps.extend(sampled_grasps)
-    if not grasps:
-        continue
-    order = sorted(
-        range(len(grasps)),
-        key=lambda index: (
-            not (abs(float(grasps[index][1][0])) < .20
-                 and abs(float(grasps[index][1][1])) > .85),
-            float(np.linalg.norm(grasps[index][0] - radio_center)),
-        ),
-    )
-    current_joints = get_current_joint_positions()
-    feasible = []
-    for index in order:
-        if grasps[index][0][2] <= radio_center[2] - .20:
-            continue
-        pregrasp_joints = solve_ik(*pregrasps[index], arm=1)
-        grasp_joints = solve_ik(*grasps[index], arm=1)
-        if pregrasp_joints is not None and grasp_joints is not None:
-            feasible.append((float(np.max(np.abs(pregrasp_joints - current_joints))), index,
-                             pregrasp_joints, grasp_joints))
-    if feasible:
-        _, index, pregrasp_joints, grasp_joints = feasible[0]
-        open_gripper(arm=1)
-        motion_ok = move_to_joints(pregrasp_joints)
-        motion_ok = bool(motion_ok and move_to_joints(grasp_joints, max_joint_step=.005))
-        if motion_ok:
-            close_gripper(arm=1)
-            motion_ok = lift_arm(arm=1, distance=.12)
-        grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
-        if motion_ok and radio_is_held(before_height):
-            candidate = index
-            grasp_verified = True
-            break
-        save_current_observation("failed_grasp_" + str(grasp_round))
-        open_gripper(arm=1)
-        move_hand((right_position, right_quat), arm=1, lock_trunk=True)
-    if grasp_verified:
-        break
-assert candidate >= 0 and grasp_verified, "No visually verified radio grasp"
-save_current_observation("after_grasp")
-save_current_observation("after_grasp_right", camera="right_wrist")
-
-# Slide the grasped radio into the fixed-torso workspace shared by both arms.
-base, _, _ = get_robot_position()
-holder_position, holder_quat = get_current_eef_pose(arm=1)
-inward = base - holder_position
-inward[2] = 0.0
-if np.linalg.norm(inward) > 1e-6:
-    inward /= np.linalg.norm(inward)
-    target_pose = (holder_position + .16 * inward, holder_quat)
-    move_hand(target_pose, arm=1, max_joint_step=.008, lock_trunk=True)
-    save_current_observation("after_grasp_reposition")
-
-# Normalize both arms after the visual lift. This is one offline posture prior,
-# not a trajectory: the medoid of 200 training pre-toggle action postures
-# (raw episode 600, frame 1280). Re-ground the radio after moving it.
-assert move_to_posture(
-    arm=0,
-    arm_joints=np.array([-.22080, -.17450, -.12706, -1.21113, -.06744, .26086, .01642]),
-    trunk_joints=np.array([.95217, -1.31700, -.55497, 0.0]),
-    max_joint_step=.008,
-)
-assert move_to_posture(
-    arm=1,
-    arm_joints=np.array([-.79518, .11351, .20091, -.77596, .24680, .77338, .72667]),
-    max_joint_step=.008,
-)
-save_current_observation("after_demo_press_posture")
-
-# Code block 3
-def held_radio_pixels(camera="head"):
-    current = get_observation(camera)
-    image = current["rgb"].astype(float)
-    depth = current["depth"]
-    red_pixels = (image[..., 0] > 145) & (image[..., 0] > 2 * image[..., 1]) & (image[..., 0] > 2 * image[..., 2])
-    valid_pixels = red_pixels & np.isfinite(depth) & (depth > 0) & (depth < 10)
-    pixel_y, pixel_x = np.nonzero(valid_pixels)
-    world = mask_to_world_points(valid_pixels, depth, current["intrinsics"], current["world_from_camera"])
-    hand, _ = get_current_eef_pose(arm=1)
-    held = np.linalg.norm(world - hand, axis=1) < (.75 if camera != "head" else .35)
-    return current, image, pixel_x[held], pixel_y[held]
-
 def find_button(rgb, xs, ys, top_only=False):
     x0, x1 = int(xs.min()), int(xs.max())
     y0, y1 = int(ys.min()), int(ys.max())
@@ -483,6 +125,404 @@ def find_button(rgb, xs, ys, top_only=False):
     return (int(np.median(component[:, 1])) + x0,
             int(np.median(component[:, 0])) + y0,
             [x0, y0, x1, y1])
+
+obs = get_observation()
+
+def observed_radio(observation, near_position=None):
+    image = observation["rgb"].astype(float)
+    depth = observation["depth"]
+    valid = ((image[..., 0] > 145) & (image[..., 0] > 2 * image[..., 1])
+             & (image[..., 0] > 2 * image[..., 2])
+             & np.isfinite(depth) & (depth > 0) & (depth < 10))
+    visited = np.zeros(valid.shape, dtype=bool)
+    components = []
+    for start_y, start_x in zip(*np.nonzero(valid)):
+        if visited[start_y, start_x]:
+            continue
+        stack = [(int(start_y), int(start_x))]
+        visited[start_y, start_x] = True
+        pixels = []
+        while stack:
+            y0, x0 = stack.pop()
+            pixels.append((y0, x0))
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    y1, x1 = y0 + dy, x0 + dx
+                    if (0 <= y1 < valid.shape[0] and 0 <= x1 < valid.shape[1]
+                            and valid[y1, x1] and not visited[y1, x1]):
+                        visited[y1, x1] = True
+                        stack.append((y1, x1))
+        if len(pixels) < 12:
+            continue
+        pixels = np.asarray(pixels, dtype=int)
+        component_mask = np.zeros(valid.shape, dtype=bool)
+        component_mask[pixels[:, 0], pixels[:, 1]] = True
+        world = mask_to_world_points(component_mask, depth, observation["intrinsics"],
+                                     observation["world_from_camera"])
+        if len(world) < 12:
+            continue
+        extent = np.percentile(world, 95, axis=0) - np.percentile(world, 5, axis=0)
+        center = np.median(world, axis=0)
+        if not .075 <= float(np.max(extent)) <= .45:
+            continue
+        if near_position is not None and np.linalg.norm(center - near_position) > .55:
+            continue
+        components.append((len(world), center, pixels))
+    if not components:
+        return None
+    _, center, _ = max(components, key=lambda item: item[0])
+    all_y, all_x = np.nonzero(valid)
+    all_world = mask_to_world_points(valid, depth, observation["intrinsics"],
+                                     observation["world_from_camera"])
+    nearby = np.linalg.norm(all_world - center, axis=1) < .35
+    mask = np.zeros(valid.shape, dtype=bool)
+    mask[all_y[nearby], all_x[nearby]] = True
+    points = mask_to_world_points(mask, depth, observation["intrinsics"],
+                                  observation["world_from_camera"])
+    return mask, points
+
+def observed_support_surface(observation, object_points):
+    depth = observation["depth"]
+    valid = np.isfinite(depth) & (depth > 0) & (depth < 10)
+    ys, xs = np.nonzero(valid)
+    world = mask_to_world_points(valid, depth, observation["intrinsics"],
+                                 observation["world_from_camera"])
+    object_center = np.median(object_points, axis=0)
+    surface_height = float(np.percentile(object_points[:, 2], 2) - .075)
+    on_surface = ((np.abs(world[:, 2] - surface_height) < .03)
+                  & (np.linalg.norm(world[:, :2] - object_center[:2], axis=1) < 1.5))
+    surface = np.zeros(valid.shape, dtype=bool)
+    surface[ys[on_surface], xs[on_surface]] = True
+    visited = np.zeros(valid.shape, dtype=bool)
+    components = []
+    for start_y, start_x in zip(*np.nonzero(surface)):
+        if visited[start_y, start_x]:
+            continue
+        stack = [(int(start_y), int(start_x))]
+        visited[start_y, start_x] = True
+        pixels = []
+        while stack:
+            y0, x0 = stack.pop()
+            pixels.append((y0, x0))
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    y1, x1 = y0 + dy, x0 + dx
+                    if (0 <= y1 < surface.shape[0] and 0 <= x1 < surface.shape[1]
+                            and surface[y1, x1] and not visited[y1, x1]):
+                        visited[y1, x1] = True
+                        stack.append((y1, x1))
+        if len(pixels) >= 500:
+            pixels = np.asarray(pixels, dtype=int)
+            component_mask = np.zeros(valid.shape, dtype=bool)
+            component_mask[pixels[:, 0], pixels[:, 1]] = True
+            points = mask_to_world_points(component_mask, depth, observation["intrinsics"],
+                                          observation["world_from_camera"])
+            distance = np.linalg.norm(np.median(points[:, :2], axis=0) - object_center[:2])
+            components.append((distance, points))
+    assert components, "No visual support surface found under radio"
+    return min(components, key=lambda item: item[0])[1]
+
+best_radio = None
+best_observation = None
+for search_step in range(8):
+    obs = get_observation()
+    detected = observed_radio(obs)
+    if detected is not None:
+        mask, points = detected
+        if best_radio is None or len(points) > len(best_radio):
+            best_radio = points
+            best_observation = obs
+            save_current_observation("radio_search_candidate_" + str(search_step))
+        if len(points) >= 500:
+            break
+    assert rotate_base(np.pi / 4)
+assert best_radio is not None, "No radio-sized red object found in a full visual scan"
+radio = np.median(best_radio, axis=0)
+assert lift_arm(arm=0, distance=.12, lock_last_trunk=True)
+assert lift_arm(arm=1, distance=.12, lock_last_trunk=True)
+table_points = observed_support_surface(best_observation, best_radio)
+goal = get_navigation_pose(table_points, best_radio)
+base, _, _ = get_robot_position()
+edge = goal[:2] - radio[:2]
+edge_distance = np.linalg.norm(edge)
+# Training demonstrations first grasp at median base-to-radio distance .794 m.
+skill_radius = .80
+if .4 < edge_distance < skill_radius:
+    edge_normal = edge / edge_distance
+    edge_tangent = np.array([-edge_normal[1], edge_normal[0]])
+    tangent_sign = np.sign(np.dot(base[:2] - radio[:2], edge_tangent)) or 1.0
+    goal[:2] = (radio[:2] + edge
+                + tangent_sign * edge_tangent * np.sqrt(skill_radius ** 2 - edge_distance ** 2))
+    bearing = np.arctan2(radio[1] - goal[1], radio[0] - goal[0])
+    goal[2] = bearing - np.arcsin(.18 / skill_radius)
+if abs(goal[0] - radio[0]) > abs(goal[1] - radio[1]):
+    waypoint = np.array([goal[0], base[1], np.arctan2(goal[1] - base[1], 1e-6)])
+else:
+    waypoint = np.array([base[0], goal[1], np.arctan2(1e-6, goal[0] - base[0])])
+if np.linalg.norm(waypoint[:2] - base[:2]) > .1:
+    assert navigate_to_pose(waypoint)
+assert navigate_to_pose(goal)
+save_current_observation("before_grasp")
+
+# The task goal is only toggled_on. Try the visible control on its support
+# before incurring the extra uncertainty of picking up and presenting it.
+for table_press_attempt in range(2):
+    table_button = None
+    for table_camera in ("head", "right_wrist", "left_wrist"):
+        table_obs = get_observation(table_camera)
+        table_radio = observed_radio(table_obs)
+        if table_radio is None:
+            continue
+        table_ys, table_xs = np.nonzero(table_radio[0])
+        try:
+            table_x, table_y, _ = find_button(
+                table_obs["rgb"].astype(float), table_xs, table_ys, top_only=True)
+        except AssertionError:
+            continue
+        table_button = (table_x, table_y, table_camera)
+        break
+    if table_button is None:
+        break
+    table_x, table_y, table_camera = table_button
+    save_current_observation("table_press_" + str(table_press_attempt), table_camera)
+    press_at_pixel(table_x, table_y, camera=table_camera, arm=1, travel=.03,
+                   surface_offset=.04 * table_press_attempt, allow_torso=True)
+
+# Code block 2
+obs = get_observation()
+detected = observed_radio(obs)
+assert detected is not None, "Radio was not visible after navigation"
+mask, points = detected
+radio_center = np.median(points, axis=0)
+
+# Stage the free hand before grasping. This keeps the press arm near the radio
+# while allowing IK to choose a trunk state from the current observed geometry.
+base, _, yaw = get_robot_position()
+base_forward = np.array([np.cos(yaw), np.sin(yaw), 0.0])
+base_left = np.array([-np.sin(yaw), np.cos(yaw), 0.0])
+direction = radio_center - obs["world_from_camera"][:3, 3]
+direction /= np.linalg.norm(direction)
+reference = np.array([0, 0, 1]) if abs(direction[2]) < 0.9 else np.array([0, 1, 0])
+axis_x = np.cross(reference, direction)
+axis_x /= np.linalg.norm(axis_x)
+axis_y = np.cross(direction, axis_x)
+stage_quat = Rotation.from_matrix(np.column_stack([axis_x, axis_y, direction])).as_quat()[[3, 0, 1, 2]]
+stage_position = (radio_center - .18 * base_forward + .18 * base_left
+                  - .02 * direction + np.array([0.0, 0.0, .08]))
+stage_solutions = []
+for _ in range(12):
+    joints = solve_ik(stage_position, stage_quat, arm=0, lock_last_trunk=True)
+    if joints is not None:
+        stage_solutions.append(joints)
+if stage_solutions:
+    stage_posture = np.array([.574, .142, .425, 0.0])
+    stage_joints = min(stage_solutions, key=lambda joints:
+                       np.linalg.norm(joints[6:10] - stage_posture))
+    move_to_joints(stage_joints)
+    save_current_observation("after_left_stage")
+# Capture this staged torso / free-arm posture for post-grasp normalization.
+right_position, right_quat = get_current_eef_pose(arm=1)
+solve_ik(right_position, right_quat, arm=1, lock_trunk=True)
+
+grasp_probe_count = 0
+
+def radio_is_held(before_height):
+    global grasp_probe_count
+    hand, quat = get_current_eef_pose(arm=1)
+    for camera_name in ("right_wrist", "head"):
+        detected = observed_radio(get_observation(camera_name), hand)
+        if detected is None:
+            continue
+        center = np.median(detected[1], axis=0)
+        if center[2] - before_height <= .035 or np.linalg.norm(center - hand) >= .30:
+            continue
+        grasp_probe_count += 1
+        stem = "grasp_probe_" + str(grasp_probe_count)
+        save_current_observation(stem + "_before", camera_name)
+        # Nearby radio pixels alone can describe an empty hand above a table.
+        # Require the observed radio to follow a separate closed-gripper lift.
+        if not move_hand((hand + np.array([0.0, 0.0, .08]), quat), arm=1,
+                         max_joint_step=.01, lock_last_trunk=True):
+            return False
+        moved_hand, _ = get_current_eef_pose(arm=1)
+        displacement = moved_hand - hand
+        save_current_observation(stem + "_after", camera_name)
+        after = observed_radio(get_observation(camera_name), center + displacement)
+        if after is None or np.linalg.norm(displacement) < .045:
+            return False
+        object_displacement = np.median(after[1], axis=0) - center
+        follows = (np.linalg.norm(object_displacement) > .04
+                   and np.linalg.norm(object_displacement - displacement) < .035
+                   and np.dot(object_displacement, displacement) > .8
+                   * np.linalg.norm(object_displacement) * np.linalg.norm(displacement))
+        print("grasp_probe", stem, "hand_delta", displacement.tolist(),
+              "radio_delta", object_displacement.tolist(), "follows", bool(follows))
+        return bool(follows)
+    return False
+
+candidate = -1
+grasp_motion_completed = False
+grasp_verified = False
+grasp_backend = "contact-graspnet"
+
+# The successful reference rollouts use this object-relative side grasp after
+# staging the free hand.  Recompute it from current RGB-D rather than replaying
+# demonstration coordinates.
+for reference_round, grasp_height in enumerate((.068, .048, .088)):
+    obs = get_observation()
+    detected = observed_radio(obs, radio_center)
+    if detected is None:
+        detected = observed_radio(obs)
+    if detected is None:
+        break
+    _, points = detected
+    radio_center = np.median(points, axis=0)
+    before_height = float(radio_center[2])
+    base, _, yaw = get_robot_position()
+    base_forward = np.array([np.cos(yaw), np.sin(yaw), 0.0])
+    base_left = np.array([-np.sin(yaw), np.cos(yaw), 0.0])
+    local_grasp_rotation = Rotation.from_quat(np.array([.11519, .99248, .03530, .02166]))
+    grasp_rotation = Rotation.from_euler("z", yaw) * local_grasp_rotation
+    grasp_quat = grasp_rotation.as_quat()[[3, 0, 1, 2]]
+    grasp_position = (radio_center + .023 * base_forward - .008 * base_left
+                      + np.array([0.0, 0.0, grasp_height]))
+    pregrasp_position = (radio_center + .017 * base_forward - .015 * base_left
+                         + np.array([0.0, 0.0, .188]))
+    current_joints = get_current_joint_positions()
+    pregrasp_solutions = []
+    for _ in range(6):
+        joints = solve_ik(pregrasp_position, grasp_quat, arm=1, lock_last_trunk=True)
+        if joints is not None:
+            pregrasp_solutions.append(joints)
+    if pregrasp_solutions:
+        open_gripper(arm=1)
+        pregrasp_joints = min(pregrasp_solutions,
+                              key=lambda joints: np.linalg.norm(joints - current_joints))
+        if not move_to_joints(pregrasp_joints):
+            continue
+        current_joints = get_current_joint_positions()
+        grasp_solutions = []
+        for _ in range(6):
+            joints = solve_ik(grasp_position, grasp_quat, arm=1, lock_last_trunk=True)
+            if joints is not None:
+                grasp_solutions.append(joints)
+        if grasp_solutions:
+            grasp_joints = min(grasp_solutions,
+                               key=lambda joints: np.linalg.norm(joints - current_joints))
+            if not move_to_joints(grasp_joints, max_joint_step=.005):
+                continue
+            close_gripper(arm=1)
+            motion_ok = lift_arm(arm=1, distance=.12, lock_last_trunk=True)
+            grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
+            grasp_verified = bool(motion_ok and radio_is_held(before_height))
+            if grasp_verified:
+                candidate = 0
+                grasp_backend = "visual-reference"
+                break
+            save_current_observation("failed_reference_grasp_" + str(reference_round))
+            open_gripper(arm=1)
+            move_hand((right_position, right_quat), arm=1, lock_trunk=True)
+
+for grasp_round in range(3):
+    if grasp_verified:
+        break
+    obs = get_observation()
+    detected = observed_radio(obs, radio_center)
+    if detected is None:
+        detected = observed_radio(obs)
+    if detected is None:
+        break
+    mask, points = detected
+    radio_center = np.median(points, axis=0)
+    before_height = float(radio_center[2])
+    pregrasps, grasps = [], []
+    for _ in range(2):
+        try:
+            sampled_pregrasps, sampled_grasps = sample_contact_grasp_pose(
+                mask, arm=1, max_candidates=16)
+        except (ValueError, RuntimeError):
+            continue
+        pregrasps.extend(sampled_pregrasps)
+        grasps.extend(sampled_grasps)
+    if not grasps:
+        continue
+    current_joints = get_current_joint_positions()
+    feasible = []
+    for index in range(len(grasps)):
+        if grasps[index][0][2] <= radio_center[2] - .20:
+            continue
+        pregrasp_joints = solve_ik(*pregrasps[index], arm=1)
+        grasp_joints = solve_ik(*grasps[index], arm=1)
+        if pregrasp_joints is not None and grasp_joints is not None:
+            feasible.append((float(np.max(np.abs(pregrasp_joints - current_joints))), index,
+                             pregrasp_joints, grasp_joints))
+    if feasible:
+        _, index, pregrasp_joints, grasp_joints = min(feasible, key=lambda item: item[0])
+        open_gripper(arm=1)
+        motion_ok = move_to_joints(pregrasp_joints)
+        if motion_ok:
+            # Seed contact IK from the reached pregrasp, not the earlier pose.
+            grasp_joints = solve_ik(*grasps[index], arm=1)
+            motion_ok = bool(grasp_joints is not None
+                             and move_to_joints(grasp_joints, max_joint_step=.005))
+        if motion_ok:
+            close_gripper(arm=1)
+            motion_ok = lift_arm(arm=1, distance=.12)
+        grasp_motion_completed = bool(grasp_motion_completed or motion_ok)
+        if motion_ok and radio_is_held(before_height):
+            candidate = index
+            grasp_verified = True
+            break
+        save_current_observation("failed_grasp_" + str(grasp_round))
+        open_gripper(arm=1)
+        move_hand((right_position, right_quat), arm=1, lock_trunk=True)
+    if grasp_verified:
+        break
+assert candidate >= 0 and grasp_verified, "No visually verified radio grasp"
+save_current_observation("after_grasp")
+save_current_observation("after_grasp_right", camera="right_wrist")
+
+# Slide the grasped radio into the fixed-torso workspace shared by both arms.
+base, _, _ = get_robot_position()
+holder_position, holder_quat = get_current_eef_pose(arm=1)
+inward = base - holder_position
+inward[2] = 0.0
+if np.linalg.norm(inward) > 1e-6:
+    inward /= np.linalg.norm(inward)
+    target_pose = (holder_position + .16 * inward, holder_quat)
+    move_hand(target_pose, arm=1, max_joint_step=.008, lock_trunk=True)
+    save_current_observation("after_grasp_reposition")
+
+# Normalize the holder after the visual lift. This is one offline posture prior,
+# not a trajectory: the medoid of 200 training pre-toggle action postures
+# (raw episode 600, frame 1280). Keep the free arm clear during this rotation;
+# moving it to a contact posture first can obstruct the differently held radio.
+assert move_to_posture(
+    arm=0,
+    arm_joints=np.zeros(7),
+    trunk_joints=np.array([.95217, -1.31700, -.55497, 0.0]),
+    max_joint_step=.008,
+)
+assert move_to_posture(
+    arm=1,
+    arm_joints=np.array([-.79518, .11351, .20091, -.77596, .24680, .77338, .72667]),
+    max_joint_step=.008,
+)
+save_current_observation("after_demo_press_posture")
+
+# Code block 3
+def held_radio_pixels(camera="head"):
+    current = get_observation(camera)
+    image = current["rgb"].astype(float)
+    depth = current["depth"]
+    red_pixels = (image[..., 0] > 145) & (image[..., 0] > 2 * image[..., 1]) & (image[..., 0] > 2 * image[..., 2])
+    valid_pixels = red_pixels & np.isfinite(depth) & (depth > 0) & (depth < 10)
+    pixel_y, pixel_x = np.nonzero(valid_pixels)
+    world = mask_to_world_points(valid_pixels, depth, current["intrinsics"], current["world_from_camera"])
+    hand, _ = get_current_eef_pose(arm=1)
+    held = np.linalg.norm(world - hand, axis=1) < (.75 if camera != "head" else .35)
+    return current, image, pixel_x[held], pixel_y[held]
+
 
 held_views = []
 for view_camera in ("head", "right_wrist", "left_wrist"):

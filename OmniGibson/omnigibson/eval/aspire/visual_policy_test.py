@@ -505,11 +505,18 @@ def test_move_to_posture_preserves_other_arm():
         arm_control_idx={"left": th.tensor([2, 3]), "right": th.tensor([4, 5])},
         trunk_control_idx=th.tensor([0, 1]),
     )
-    harness.get_current_joint_positions = lambda: np.arange(6, dtype=float)
-    harness.move_to_joints = MagicMock(return_value=True)
+    actual = np.arange(6, dtype=float)
+    harness.get_current_joint_positions = lambda: actual.copy()
+    def loaded_move(target, **kwargs):
+        actual[:] = target
+        actual[4] += .03
+        return False
+    harness.move_to_joints = MagicMock(side_effect=loaded_move)
     assert harness.move_to_posture(0, [-2, -3], [.5, .6], max_joint_step=.01)
     np.testing.assert_allclose(harness.move_to_joints.call_args.args[0], [.5, .6, -2, -3, 4, 5])
     assert harness.move_to_joints.call_args.kwargs["max_joint_step"] == .01
+    harness.move_to_joints.side_effect = lambda *args, **kwargs: False
+    assert not harness.move_to_posture(0, [-1, -3])
 
 
 def test_pixel_mode_captures_before_fresh_policy_construction():

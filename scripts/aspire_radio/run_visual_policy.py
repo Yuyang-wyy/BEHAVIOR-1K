@@ -66,11 +66,13 @@ def main():
     OmegaConf.save(cfg, args.output_dir / "config.yaml")
     source_paths = [args.policy, Path(__file__),
                     root / "OmniGibson/omnigibson/eval/aspire/visual_radio_harness.py",
-                    root / "OmniGibson/omnigibson/eval/aspire/visual_perception.py"]
+                    root / "OmniGibson/omnigibson/eval/aspire/visual_perception.py",
+                    root / "OmniGibson/omnigibson/utils/aspire_kinematics.py"]
     payload = {"task": "turning_on_radio", "mode": args.mode, "instance": args.instance, "seed": args.seed,
                "grounding_backend": args.grounding,
-               "policy_inputs": ["RGB-D", "robot proprioception", "simulator robot/camera world poses"],
-               "oracle_robot_localization": True,
+               "policy_inputs": ["RGB-D", "robot proprioception", "official relative camera calibration",
+                                 "static robot finger geometry", "body-velocity odometry"],
+               "oracle_robot_localization": False,
                "grasping_mode": cfg.robot.grasping_mode,
                "source_sha256": {str(path.resolve().relative_to(root)):
                                  hashlib.sha256(path.read_bytes()).hexdigest()
@@ -83,6 +85,9 @@ def main():
             evaluator.reset(seed=args.seed)
             evaluator.load_task_instance(args.instance)
             evaluator.reset(seed=args.seed)
+            payload["grasping_mode"] = evaluator.robot.grasping_mode
+            if payload["grasping_mode"] != cfg.robot.grasping_mode:
+                raise ValueError("Loaded robot grasping mode differs from the requested configuration")
             if args.record_video:
                 evaluator.start_recording(str((args.output_dir / "rollout.mp4").resolve()))
                 evaluator._write_video()

@@ -12,12 +12,16 @@ has one historical successful rollout, but is not yet reliably reproduced.
 ## Inputs and limits
 
 The visual adapter exposes RGB-D, robot geometry, SAM3 segmentation, observed
-geometry, robot-only IK, and motor commands. **The current implementation also
-reads exact simulator camera, base, EEF, and finger world poses.** These are
-oracle localization inputs: this version is not a verified challenge-compliant
-onboard-observation policy. Removing object-state queries alone does not establish
-compliance. Encoder-driven kinematics and onboard odometry are being implemented
-to replace those transforms. The adapter
+geometry, robot-only IK, and motor commands. Historical versions used exact
+simulator camera, base, EEF, and finger world poses; those results used oracle
+localization. The current adapter instead consumes the official observation's
+`cam_rel_poses`, relative EEF proprioception, and physical joint encoders. It
+integrates body-frame base velocity in an episode-local odometry frame and uses
+the static robot URDF for finger geometry. Virtual base coordinates are zeroed
+before local-frame IK. The legacy key `world_from_camera` now denotes this
+odometry frame, not simulator world coordinates. This removes the known global
+pose input; it does not establish a successful reproduction or official approval.
+The adapter
 does not load demonstrations, inspect scene/object assets, resolve simulator
 objects, read contacts/attachments, or locate simulator toggle markers.
 Robot kinematics/configuration are used for IK. CuRobo world-obstacle updates
@@ -43,13 +47,17 @@ not a policy input. Visual grasp checks are heuristics and can be wrong.
 `turning_on_radio`. Its online sequence is:
 
 1. Navigate from current RGB-D to the table using visual red-radio geometry.
-2. Ground the radio from current RGB-D, sample Contact-GraspNet candidates,
-   execute a right-arm grasp, and verify the lift from fresh camera views.
-3. Preserve the right-arm holder while moving the free left arm to the
+2. Try a visible button directly on the table. The BDDL goal requires only
+   `toggled_on`, so grasping is a fallback, not a scoring prerequisite.
+3. Otherwise ground the radio from current RGB-D, sample Contact-GraspNet
+   candidates, and execute a right-arm grasp. Verify that the radio follows
+   a separate 8 cm closed-gripper lift; proximity and apparent height alone
+   produced false positives in earlier runs.
+4. Preserve the right-arm holder while moving the free left arm to the
    observed radio control. The press adapter tracks the holder, restores its
    saved trunk/holder joint posture after torso-enabled approach, and relies on
    normal physical finger overlap for the task toggle.
-4. Reacquire the visible red control before press attempts. The policy never
+5. Reacquire the visible red control before press attempts. The policy never
    reads `ToggledOn`, contacts, object registry, simulator markers, or
    demonstration action arrays online. Its hardcoded staging posture includes
    an offline demonstration-derived prior; it is not a replayed action sequence.
@@ -145,6 +153,18 @@ minimize summed Euclidean distance over trunk and both arm joint targets.
 This preserves an actual demonstrated joint configuration, unlike independently
 taking each joint's median. It is an offline prior and still requires fresh
 visual grounding and evaluator-confirmed validation after grasping.
+
+Training references also show a first-grasp base-to-radio distance median of
+0.794 m and 90th percentile of 0.929 m. The current docking radius is 0.80 m;
+the old 1.194 m radius unnecessarily moved reachable approaches farther away.
+Table clearance is preserved when selecting a reachable edge.
+
+Onboard-input diagnostic `public-test-20260920-probe-302` visually verified a
+held radio: the probe moved the hand 0.07938 m up and the observed radio
+0.07935 m up. It still ended with Q=0 because subsequent holder staging did
+not settle. This is a grasp diagnostic, not a task success. The preceding
+`public-test-20260920-onboard-302` exposed the old false-positive grasp check:
+its saved images showed the radio remaining on the table.
 
 The AST/import guard prevents common accidental privileged calls. It is NOT
 a hardened Python security sandbox. Workers run without provider credentials
