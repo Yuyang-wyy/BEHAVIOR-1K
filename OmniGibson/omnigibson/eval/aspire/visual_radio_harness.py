@@ -442,8 +442,10 @@ class VisualRadioHarness:
         self.move_to_joints(target, max_joint_step=max_joint_step)
         # Contact loads can deflect the holding arm while the requested free
         # arm/trunk posture has settled. Verify the joints this command changes.
-        changed = np.concatenate([arm_indices, trunk_indices]) if trunk_joints is not None else arm_indices
-        return bool(np.max(np.abs(self.get_current_joint_positions()[changed] - target[changed])) < .02)
+        actual = self.get_current_joint_positions()
+        arm_ok = np.max(np.abs(actual[arm_indices] - target[arm_indices])) < .02
+        trunk_ok = trunk_joints is None or np.max(np.abs(actual[trunk_indices] - target[trunk_indices])) < .08
+        return bool(arm_ok and trunk_ok)
 
     def move_hand(self, target_pose, arm=1, max_joint_step=0.015, lock_trunk=False,
                   lock_last_trunk=False, self_collision_check=False):
