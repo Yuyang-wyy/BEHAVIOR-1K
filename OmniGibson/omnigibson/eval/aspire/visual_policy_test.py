@@ -209,6 +209,7 @@ def test_contact_graspnet_protocol_and_robot_frame_conversion():
         mask = np.load(io.BytesIO(base64.b64decode(sent["segmap_base64"])), allow_pickle=False)
         assert np.all(mask == 1) and sent["segmap_id"] == 1
         assert sent["forward_passes"] == 1 and sent["max_retries"] == 7
+        assert sent["filter_grasps"] is True
         pre, goal = contact_grasps_to_eef(poses, np.eye(4), .02)
         np.testing.assert_allclose(goal[0, :3, 3], [0, 0, -.0984])
         np.testing.assert_allclose(pre[0, :3, 3], [0, 0, .0216])

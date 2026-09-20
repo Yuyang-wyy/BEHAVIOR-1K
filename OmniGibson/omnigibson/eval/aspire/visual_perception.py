@@ -81,7 +81,7 @@ class ContactGraspNetClient:
         request = {
             "depth_base64": encode(np.where(valid, depth, 0)), "cam_K_base64": encode(intrinsics),
             "segmap_base64": encode((mask & valid).astype(np.uint8)), "segmap_id": 1,
-            "filter_grasps": False, "z_range": [.2, 3.0], "forward_passes": 1,
+            "filter_grasps": True, "z_range": [.2, 3.0], "forward_passes": 1,
             "max_retries": 7,
         }
         for attempt in range(3):
