@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import dataclasses
+import hashlib
 import json
 import traceback
 from pathlib import Path
@@ -16,6 +17,7 @@ def main():
     parser.add_argument("--seed", type=int, default=2026091500)
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--robot-config", type=Path)
+    parser.add_argument("--grasping-mode", choices=("physical", "assisted"))
     parser.add_argument("--mode", choices=("train", "public_test", "hidden_test"), default="train")
     parser.add_argument("--sam3-url", default="http://127.0.0.1:8114")
     parser.add_argument("--grounding", choices=("sam3", "codex-pixels"), default="sam3")
@@ -57,11 +59,23 @@ def main():
         "write_video": args.record_video, "write_side_video": False,
         "mode": args.mode, "task": {"name": "turning_on_radio"}, "robot": OmegaConf.load(robot_config),
     })
+    if args.grasping_mode is not None:
+        cfg.robot.grasping_mode = args.grasping_mode
     args.output_dir.mkdir(parents=True, exist_ok=False)
     (args.output_dir / "policy.py").write_text(source)
+    OmegaConf.save(cfg, args.output_dir / "config.yaml")
+    source_paths = [args.policy, Path(__file__),
+                    root / "OmniGibson/omnigibson/eval/aspire/visual_radio_harness.py",
+                    root / "OmniGibson/omnigibson/eval/aspire/visual_perception.py"]
     payload = {"task": "turning_on_radio", "mode": args.mode, "instance": args.instance, "seed": args.seed,
                "grounding_backend": args.grounding,
-               "policy_inputs": ["RGB-D", "camera calibration", "robot proprioception"],
+               "policy_inputs": ["RGB-D", "robot proprioception", "simulator robot/camera world poses"],
+               "oracle_robot_localization": True,
+               "grasping_mode": cfg.robot.grasping_mode,
+               "source_sha256": {str(path.resolve().relative_to(root)):
+                                 hashlib.sha256(path.read_bytes()).hexdigest()
+                                 for path in source_paths if path.resolve().is_relative_to(root)},
+               "policy_sha256": hashlib.sha256(source.encode()).hexdigest(),
                "demonstration_actions": False, "ground_truth_object_state": False,
                "task_success": False, "status": "infrastructure_error", "blocks": []}
     try:

@@ -331,12 +331,18 @@ if np.linalg.norm(inward) > 1e-6:
     move_hand(target_pose, arm=1, max_joint_step=.008, lock_trunk=True)
     save_current_observation("after_grasp_reposition")
 
-# Enter the shared fixed-torso press workspace only after the right hand has
-# secured the radio, so the head view used for grasp sampling stays unchanged.
+# Normalize both arms after the visual lift. This is one offline posture prior,
+# not a trajectory: the medoid of 200 training pre-toggle action postures
+# (raw episode 600, frame 1280). Re-ground the radio after moving it.
 assert move_to_posture(
     arm=0,
-    arm_joints=np.array([-.4924, -.1745, -.1789, -1.2943, .1627, .6289, -.2927]),
-    trunk_joints=np.array([.7682, -.9810, -.5789, 0.0]),
+    arm_joints=np.array([-.22080, -.17450, -.12706, -1.21113, -.06744, .26086, .01642]),
+    trunk_joints=np.array([.95217, -1.31700, -.55497, 0.0]),
+    max_joint_step=.008,
+)
+assert move_to_posture(
+    arm=1,
+    arm_joints=np.array([-.79518, .11351, .20091, -.77596, .24680, .77338, .72667]),
     max_joint_step=.008,
 )
 save_current_observation("after_demo_press_posture")
