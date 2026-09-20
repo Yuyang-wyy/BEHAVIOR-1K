@@ -10,7 +10,7 @@ import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from types import SimpleNamespace
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import numpy as np
 import torch as th
@@ -289,11 +289,12 @@ def test_left_ik_config_targets_left_eef_and_locks_right_arm():
         harness = object.__new__(VisualRadioHarness)
         harness.output_dir = Path(temp)
         harness.motion_generators = {}
+        joint_state = np.zeros(3)
         harness.robot = SimpleNamespace(curobo_path={CuRoboEmbodimentSelection.ARM: str(source)},
                                         trunk_joint_names=["torso_j", "torso_lift"],
                                         arm_joint_names={"right": ["right_j"], "left": ["left_j"]},
                                         joints={"right_j": None, "torso_j": None, "torso_lift": None},
-                                        get_joint_positions=lambda: np.zeros(3))
+                                        get_joint_positions=lambda: joint_state)
         with patch("omnigibson.action_primitives.curobo.CuRoboMotionGenerator") as constructor:
             generator = harness._init_ik(arm=0)
             assert generator is constructor.return_value
@@ -302,31 +303,48 @@ def test_left_ik_config_targets_left_eef_and_locks_right_arm():
             assert config["robot_cfg"]["kinematics"]["ee_link"] == "left_eef_link"
             assert harness._init_ik(arm=0) is generator
             assert constructor.call_count == 1
-            harness._init_ik(arm=0, lock_trunk=True)
+            fixed_generator = harness._init_ik(arm=0, lock_trunk=True)
             assert constructor.call_args.kwargs["lock_joint_names"] == []
             assert constructor.call_count == 2
             harness._init_ik(arm=0, lock_last_trunk=True)
             assert constructor.call_args.kwargs["lock_joint_names"] == []
             assert constructor.call_count == 3
+            joint_state[1] = .2
+            harness._init_ik(arm=0, lock_trunk=True)
+            assert constructor.call_count == 4
 
 
-def test_solve_ik_restores_solver_omitted_locked_joints():
+def test_solve_ik_preserves_current_solver_omitted_locked_joints():
     path = SimpleNamespace(position=th.tensor([[.5]]), joint_names=["right_arm"])
     generator = SimpleNamespace(compute_trajectories=lambda *args, **kwargs: (th.tensor([True]), [path]))
     harness = object.__new__(VisualRadioHarness)
     harness.motion_generators = {"right_fixed_trunk": generator}
-    harness.motion_generator_locks = {"right_fixed_trunk": {"torso": .25}}
+    harness.motion_generator_locks = {"right_fixed_trunk": {"torso": .9}}
     harness.robot = SimpleNamespace(
         get_joint_positions=lambda: th.tensor([.9, .1]),
         joints={"torso": None, "right_arm": None},
+        trunk_joint_names=["torso"],
         trunk_control_idx=th.tensor([0]), arm_names=["right"],
         arm_control_idx={"right": th.tensor([1])},
         joint_lower_limits=th.tensor([-2., -2.]), joint_upper_limits=th.tensor([2., 2.]),
     )
     np.testing.assert_allclose(
         harness.solve_ik(np.zeros(3), np.array([1., 0., 0., 0.]), arm=1, lock_trunk=True),
-        [.25, .5],
+        [.9, .5],
     )
+
+
+def test_move_to_posture_preserves_other_arm():
+    harness = object.__new__(VisualRadioHarness)
+    harness.robot = SimpleNamespace(
+        arm_control_idx={"left": th.tensor([2, 3]), "right": th.tensor([4, 5])},
+        trunk_control_idx=th.tensor([0, 1]),
+    )
+    harness.get_current_joint_positions = lambda: np.arange(6, dtype=float)
+    harness.move_to_joints = MagicMock(return_value=True)
+    assert harness.move_to_posture(0, [-2, -3], [.5, .6], max_joint_step=.01)
+    np.testing.assert_allclose(harness.move_to_joints.call_args.args[0], [.5, .6, -2, -3, 4, 5])
+    assert harness.move_to_joints.call_args.kwargs["max_joint_step"] == .01
 
 
 def test_pixel_mode_captures_before_fresh_policy_construction():

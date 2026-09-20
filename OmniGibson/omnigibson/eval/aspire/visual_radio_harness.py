@@ -46,7 +46,7 @@ class VisualRadioHarness:
                  "sample_grasp_pose", "sample_grasp_pose_from_points", "sample_contact_grasp_pose", "execute_grasp", "grasp_object",
                  "check_object_in_hand", "open_gripper", "close_gripper",
                  "get_current_eef_pose", "get_current_finger_center", "get_current_joint_positions", "solve_ik", "move_hand",
-                 "move_to_joints", "lift_arm", "press_at_pixel", "mask_to_world_points")
+                 "move_to_joints", "move_to_posture", "lift_arm", "press_at_pixel", "mask_to_world_points")
         return {name: getattr(self, name) for name in names}
 
     def _trace(self, event, **fields):
@@ -230,7 +230,17 @@ class VisualRadioHarness:
         key = (arm_name + ("_fixed_trunk" if lock_trunk else "_fixed_distal_trunk" if lock_last_trunk else "")
                + ("_self_collision" if self_collision_check else ""))
         if key in self.motion_generators:
-            return self.motion_generators[key]
+            locked_trunk = (list(self.robot.trunk_joint_names) if lock_trunk else
+                            [self.robot.trunk_joint_names[-1]] if lock_last_trunk else [])
+            current = self.robot.get_joint_positions()
+            current = current.detach().cpu().numpy() if hasattr(current, "detach") else np.asarray(current)
+            indices = {name: index for index, name in enumerate(self.robot.joints)}
+            captured = self.motion_generator_locks[key]
+            if all(abs(float(current[indices[name]]) - captured[name]) < 1e-4
+                   for name in locked_trunk):
+                return self.motion_generators[key]
+            del self.motion_generators[key]
+            del self.motion_generator_locks[key]
         import yaml
         from omnigibson.action_primitives.curobo import CuRoboEmbodimentSelection, CuRoboMotionGenerator
 
@@ -290,14 +300,18 @@ class VisualRadioHarness:
             return None
         path = paths[0]
         values = path.position[-1] if path.position.ndim > 1 else path.position
-        target = self.robot.get_joint_positions().detach().cpu().clone()
+        current = self.robot.get_joint_positions().detach().cpu().clone()
+        target = current.clone()
         indices = {name: index for index, name in enumerate(self.robot.joints)}
         for name, value in zip(path.joint_names, values.detach().cpu()):
             target[indices[name]] = value
         key = (arm_name + ("_fixed_trunk" if lock_trunk else "_fixed_distal_trunk" if lock_last_trunk else "")
                + ("_self_collision" if self_collision_check else ""))
-        for name, value in getattr(self, "motion_generator_locks", {}).get(key, {}).items():
-            target[indices[name]] = value
+        # Cached generators retain the lock values from construction, but the
+        # other arm may have moved since then. Preserve its current joints in
+        # the command instead of replaying those stale cached values.
+        for name in getattr(self, "motion_generator_locks", {}).get(key, {}):
+            target[indices[name]] = current[indices[name]]
         controlled = th.cat([self.robot.trunk_control_idx,
                              *[self.robot.arm_control_idx[arm_name] for arm_name in self.robot.arm_names]])
         if bool(th.any(target[controlled] < self.robot.joint_lower_limits[controlled] - 1e-4)) or bool(
@@ -349,6 +363,24 @@ class VisualRadioHarness:
                     joint_names=[list(self.robot.joints)[index] for index in controlled.tolist()],
                     target=values.numpy(), actual=self.get_current_joint_positions()[controlled.numpy()])
         return settled
+
+    def move_to_posture(self, arm, arm_joints, trunk_joints=None, max_joint_step=0.015):
+        if arm not in (0, 1):
+            raise ValueError("Arm must be 0 (left) or 1 (right)")
+        arm_name = "right" if arm == 1 else "left"
+        arm_joints = np.asarray(arm_joints, dtype=float)
+        arm_indices = self.robot.arm_control_idx[arm_name].detach().cpu().numpy()
+        if arm_joints.shape != arm_indices.shape or not np.isfinite(arm_joints).all():
+            raise ValueError("Arm posture has the wrong shape or non-finite values")
+        target = self.get_current_joint_positions()
+        target[arm_indices] = arm_joints
+        if trunk_joints is not None:
+            trunk_joints = np.asarray(trunk_joints, dtype=float)
+            trunk_indices = self.robot.trunk_control_idx.detach().cpu().numpy()
+            if trunk_joints.shape != trunk_indices.shape or not np.isfinite(trunk_joints).all():
+                raise ValueError("Trunk posture has the wrong shape or non-finite values")
+            target[trunk_indices] = trunk_joints
+        return self.move_to_joints(target, max_joint_step=max_joint_step)
 
     def move_hand(self, target_pose, arm=1, max_joint_step=0.015, lock_trunk=False,
                   lock_last_trunk=False, self_collision_check=False):
@@ -481,6 +513,8 @@ class VisualRadioHarness:
 
     def press_at_pixel(self, x, y, camera="head", travel=0.015, arm=1, surface_offset=0.08,
                        direction_override=None, allow_torso=False, fixed_torso=False):
+        if getattr(self, "terminated", False) or getattr(self, "truncated", False):
+            return True
         if arm not in (0, 1):
             raise ValueError("Arm must be 0 (left) or 1 (right)")
         arm_name = "right" if arm == 1 else "left"
@@ -516,6 +550,7 @@ class VisualRadioHarness:
         # small RGB-D surface-to-center offset for the overlap press.
         point = point + direction * surface_offset
         holder_tracking = None
+        holder_restore_target = None
         holder_arm = 1 - arm
         holder_name = "right" if holder_arm == 1 else "left"
         if self.gripper_closed[holder_name]:
@@ -528,6 +563,7 @@ class VisualRadioHarness:
                     holder_rotation.inv().apply(direction),
                     holder_rotation,
                 )
+                holder_restore_target = self.get_current_joint_positions()
             except (AttributeError, KeyError, TypeError):
                 pass
         reference = np.array([0, 0, 1]) if abs(direction[2]) < 0.9 else np.array([0, 1, 0])
@@ -536,16 +572,20 @@ class VisualRadioHarness:
         axis_y = np.cross(direction, axis_x)
         base_rotation = np.column_stack([axis_x, axis_y, direction])
         fingertip_length = float(np.mean(list(self.robot.eef_to_fingertip_lengths[arm_name].values())))
+        # Successful demonstrations press with a closed free gripper and one
+        # fingertip, rather than centering the button in the gap between jaws.
+        self.close_gripper(arm)
         current_rotation = None
+        target_finger = None
         try:
             eef_position, eef_quat = self.get_current_eef_pose(arm)
-            finger_origins = np.stack([
-                link.get_position_orientation()[0].detach().cpu().numpy()
-                for link in self.robot.finger_links[arm_name]
-            ])
+            finger = self.robot.finger_links[arm_name][0]
+            finger_origin = finger.get_position_orientation()[0].detach().cpu().numpy()
             eef_rotation = Rotation.from_quat(eef_quat[[1, 2, 3, 0]])
             current_rotation = eef_rotation.as_matrix()
-            finger_offset_local = eef_rotation.inv().apply(finger_origins.mean(axis=0) - eef_position)
+            finger_offset_local = eef_rotation.inv().apply(finger_origin - eef_position)
+            finger_offset_local[2] = self.robot.eef_to_fingertip_lengths[arm_name][finger.name]
+            target_finger = finger.name
         except (AttributeError, KeyError, TypeError):
             finger_offset_local = None
         candidates = []
@@ -586,12 +626,24 @@ class VisualRadioHarness:
         max_joint_delta, joint_delta_norm, quat, offset, wrist_roll, approach_joints = selected
         self._trace("visual_press", pixel=[x, y], point=point, direction=direction,
                     wrist_roll=wrist_roll, holder_tracking=holder_tracking is not None,
-                    max_joint_delta=max_joint_delta, joint_delta_norm=joint_delta_norm)
-        self.close_gripper(arm)
+                    target_finger=target_finger, max_joint_delta=max_joint_delta,
+                    joint_delta_norm=joint_delta_norm)
         self.move_to_joints(approach_joints, max_joint_step=0.02)
         if holder_tracking is not None:
-            if not self.move_hand(holder_world_pose, holder_arm, max_joint_step=0.01,
-                                  lock_trunk=True):
+            if holder_restore_target is not None and hasattr(self.robot, "arm_control_idx"):
+                # Restoring the saved trunk and holder joints is more reliable
+                # than solving a new IK target after the free approach moved it.
+                restore_target = holder_restore_target.copy()
+                current = self.get_current_joint_positions()
+                holder_indices = self.robot.arm_control_idx[holder_name].detach().cpu().numpy()
+                trunk_indices = self.robot.trunk_control_idx.detach().cpu().numpy()
+                current[holder_indices] = restore_target[holder_indices]
+                current[trunk_indices] = restore_target[trunk_indices]
+                restored = self.move_to_joints(current, max_joint_step=0.01)
+            else:
+                restored = self.move_hand(holder_world_pose, holder_arm, max_joint_step=0.01,
+                                          lock_trunk=True)
+            if not restored:
                 self._trace("visual_press_holder_restore_partial", pixel=[x, y])
         final_lock = initial_lock
         if holder_tracking is not None:
@@ -609,7 +661,10 @@ class VisualRadioHarness:
                 offset = (press_rotation.apply(finger_offset_local) if finger_offset_local is not None
                           else press_rotation.apply(np.array([0, 0, fingertip_length])))
                 precontact_pose = (point - direction * 0.03 - offset, quat)
-                final_lock = {} if allow_torso else {"lock_trunk": True}
+                # Torso motion is allowed only for the initial approach. Once
+                # the holder is restored, the contact segment must not move
+                # the held radio away from the visually observed button.
+                final_lock = {"lock_trunk": True}
                 if self.solve_ik(*precontact_pose, arm=arm, **final_lock) is not None:
                     if not self.move_hand(precontact_pose, arm, max_joint_step=0.01, **final_lock):
                         return False
@@ -631,7 +686,10 @@ class VisualRadioHarness:
         # avoiding nine full IK settle cycles inside the episode budget.
         for distance in np.linspace(-0.03, travel, 3):
             target_pose = (point + direction * distance - offset, quat)
-            reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
+            try:
+                reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
+            except EpisodeFinished:
+                return True
             if not reached:
                 actual_position, actual_quat = self.get_current_eef_pose(arm)
                 actual_rotation = Rotation.from_quat(actual_quat[[1, 2, 3, 0]])
@@ -649,6 +707,9 @@ class VisualRadioHarness:
                 np.min(np.linalg.norm(finger_positions - point, axis=1))))
         # BEHAVIOR toggles only after several consecutive finger-overlap steps.
         for _ in range(12):
-            self._step(self._action())
+            try:
+                self._step(self._action())
+            except EpisodeFinished:
+                return True
         self.save_current_observation("after_press", camera)
         return True  # Motion completed; NOT a task-success assertion.

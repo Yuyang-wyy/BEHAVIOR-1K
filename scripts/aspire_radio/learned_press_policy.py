@@ -146,8 +146,8 @@ assert detected is not None, "Radio was not visible after navigation"
 mask, points = detected
 radio_center = np.median(points, axis=0)
 
-# Stage the free hand before grasping.  This keeps the press arm near the
-# demonstrated contact posture while the holder later takes the radio.
+# Stage the free hand before grasping. This keeps the press arm near the radio
+# while allowing IK to choose a trunk state from the current observed geometry.
 base, _, yaw = get_robot_position()
 base_forward = np.array([np.cos(yaw), np.sin(yaw), 0.0])
 base_left = np.array([-np.sin(yaw), np.cos(yaw), 0.0])
@@ -269,9 +269,16 @@ for grasp_round in range(3):
     mask, points = detected
     radio_center = np.median(points, axis=0)
     before_height = float(radio_center[2])
-    try:
-        pregrasps, grasps = sample_contact_grasp_pose(mask, arm=1, max_candidates=16)
-    except (ValueError, RuntimeError):
+    pregrasps, grasps = [], []
+    for _ in range(2):
+        try:
+            sampled_pregrasps, sampled_grasps = sample_contact_grasp_pose(
+                mask, arm=1, max_candidates=16)
+        except (ValueError, RuntimeError):
+            continue
+        pregrasps.extend(sampled_pregrasps)
+        grasps.extend(sampled_grasps)
+    if not grasps:
         continue
     order = sorted(
         range(len(grasps)),
@@ -324,6 +331,16 @@ if np.linalg.norm(inward) > 1e-6:
     move_hand(target_pose, arm=1, max_joint_step=.008, lock_trunk=True)
     save_current_observation("after_grasp_reposition")
 
+# Enter the shared fixed-torso press workspace only after the right hand has
+# secured the radio, so the head view used for grasp sampling stays unchanged.
+assert move_to_posture(
+    arm=0,
+    arm_joints=np.array([-.4924, -.1745, -.1789, -1.2943, .1627, .6289, -.2927]),
+    trunk_joints=np.array([.7682, -.9810, -.5789, 0.0]),
+    max_joint_step=.008,
+)
+save_current_observation("after_demo_press_posture")
+
 # Code block 3
 def held_radio_pixels(camera="head"):
     current = get_observation(camera)
@@ -340,7 +357,7 @@ def held_radio_pixels(camera="head"):
 def find_button(rgb, xs, ys, top_only=False):
     x0, x1 = int(xs.min()), int(xs.max())
     y0, y1 = int(ys.min()), int(ys.max())
-    if top_only and (x1 - x0) < .8 * (y1 - y0):
+    if top_only and (x1 - x0) < .35 * (y1 - y0):
         raise AssertionError("Radio top face is not visible")
     if top_only and (x0 < 10 or y0 < 10 or x1 >= rgb.shape[1] - 10
                      or y1 >= rgb.shape[0] - 10):
@@ -470,7 +487,7 @@ assert len(xs) >= 20, "Held radio front is not visible after grasp"
 
 # Recenter the held radio in the head view before rotating it.  Contact-GraspNet
 # grasps can otherwise leave the radio clipped at the image edge.
-for recenter_step in range(3):
+for recenter_step in range(8):
     from_wrist = False
     obs, rgb, xs, ys = held_radio_pixels("head")
     if len(xs) < 20:
@@ -526,7 +543,7 @@ for presentation_step, presentation_rotation in enumerate(presentation_rotations
     presentation_quat = presentation_rotation.as_quat()[[3, 0, 1, 2]]
     if presentation_step:
         move_hand((safe_position, presentation_quat), arm=1,
-                  max_joint_step=.03, lock_last_trunk=True)
+                  max_joint_step=.03, lock_trunk=True)
     for presentation_camera in ("head", "right_wrist", "left_wrist"):
         candidate_view = held_radio_pixels(presentation_camera)
         if len(candidate_view[2]) < 20:
@@ -553,7 +570,32 @@ button_world = np.median(mask_to_world_points(
 button_direction = button_world - obs["world_from_camera"][:3, 3]
 button_direction /= np.linalg.norm(button_direction)
 pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
-                         arm=0, surface_offset=0.0, allow_torso=True)
+                         arm=0, surface_offset=0.0, fixed_torso=True)
+if not pressed:
+    pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
+                             arm=0, surface_offset=0.0, allow_torso=True)
+if pressed:
+    for retry_camera in ("head", "left_wrist", "right_wrist"):
+        retry_view = held_radio_pixels(retry_camera)
+        if len(retry_view[2]) < 20:
+            continue
+        try:
+            retry_x, retry_y, _ = find_button(
+                retry_view[1], retry_view[2], retry_view[3], top_only=True)
+        except AssertionError:
+            continue
+        button_x, button_y = retry_x, retry_y
+        obs = retry_view[0]
+        button_mask = np.zeros(obs["depth"].shape, dtype=bool)
+        button_mask[max(0, button_y - 1):button_y + 2,
+                    max(0, button_x - 1):button_x + 2] = True
+        button_world = np.median(mask_to_world_points(
+            button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
+        button_direction = button_world - obs["world_from_camera"][:3, 3]
+        button_direction /= np.linalg.norm(button_direction)
+        pressed = press_at_pixel(button_x, button_y, camera=retry_camera, travel=.03,
+                                 arm=0, surface_offset=.06, fixed_torso=True)
+        break
 if not pressed:
     left_position, left_quat = get_current_eef_pose(arm=0)
     finger_center = get_current_finger_center(arm=0)
