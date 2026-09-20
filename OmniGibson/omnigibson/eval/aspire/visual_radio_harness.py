@@ -174,19 +174,18 @@ class VisualRadioHarness:
     def rotate_base(self, radians):
         if not np.isfinite(radians) or abs(radians) > 2 * math.pi:
             raise ValueError("Rotation must be finite and at most one revolution")
-        _, _, yaw = self.get_robot_position()
-        target = yaw + radians
-        for _ in range(400):
-            error = math.atan2(math.sin(target - self.get_robot_position()[2]), math.cos(target - self.get_robot_position()[2]))
-            if abs(error) < 0.03:
-                self._step(self._action())
-                return True
+        # Use only commanded body velocity for visual search. Closing the loop
+        # against simulator yaw would reintroduce a forbidden global pose input.
+        steps = max(1, int(round(abs(radians) / 0.75 *
+                                 self.evaluator.env.env_config["action_frequency"])))
+        for _ in range(steps):
             action = self._action()
             action[self.robot.base_action_idx] = th.tensor(
-                [0, 0, np.clip(error * 1.5, -0.5, 0.5)], dtype=th.float32
+                [0, 0, np.sign(radians) * 0.75], dtype=th.float32
             )
             self._step(action)
-        return False
+        self._step(self._action())
+        return True
 
     def find_object_base_rotate(self, object_name):
         for _ in range(50):
