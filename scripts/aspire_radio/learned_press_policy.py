@@ -260,7 +260,9 @@ if abs(goal[0] - radio[0]) > abs(goal[1] - radio[1]):
 else:
     waypoint = np.array([base[0], goal[1], np.arctan2(1e-6, goal[0] - base[0])])
 if np.linalg.norm(waypoint[:2] - base[:2]) > .1:
-    assert navigate_to_pose(waypoint)
+    # A straight staging waypoint can be blocked by furniture; the visual
+    # dock remains the meaningful goal and the navigation helper is bounded.
+    navigate_to_pose(waypoint)
 assert navigate_to_pose(goal)
 save_current_observation("before_grasp")
 
