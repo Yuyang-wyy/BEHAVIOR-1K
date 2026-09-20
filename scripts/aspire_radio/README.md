@@ -41,10 +41,69 @@ The task evaluator alone reads task success after execution; that value is
 not a policy input. Visual grasp checks are heuristics and can be wrong.
 `press_at_pixel` returning true means motion completed, not that the task passed.
 
-## Current turning-on-radio policy
+## Current turning-on-radio policy, 2026-09-20
 
-`learned_press_policy.py` is the current ASPIRE-style visual code policy for
-`turning_on_radio`. Its online sequence is:
+`press_marker_policy.py` supersedes `learned_press_policy.py`. Measured over
+the full public set (instances 301-320, one seed each,
+`seed = 2026092500 + instance - 300`, assisted grasping, `codex-pixels`,
+6000 steps): **7/20**, against **0/20** for `learned_press_policy.py` on the
+same 20 instances with pristine sources. Full table, caveats and rendered
+rollouts in `/home/ywang/Behavior/radio_generalization_20260920/`.
+
+Two harness defects were behind most of the old failures:
+
+1. `VisualRadioHarness._finger_positions` indexed URDF-keyed finger offsets
+   with scene-prefixed link names, so it raised `KeyError` on every call.
+   `get_current_finger_center` propagated it; `press_at_pixel` *swallowed* it
+   and then aimed as if the fingertip were on the EEF +Z axis. The real
+   finger-1 origin is `(0.0001, 0.0135, -0.0231)` m in the EEF frame, so every
+   press was systematically 13.5 mm off to the side.
+2. `navigate_to_pose` had no stalled-approach guard and burned its entire
+   800-step allowance against obstacles it cannot plan around.
+
+The 13.5 mm matters because `radio/wxnicr` carries one `togglebutton` meta
+link with sphere `size = 0.011179`, and `ToggledOn` requires a finger link to
+be in contact with the radio **and** to overlap that sphere for
+`CAN_TOGGLE_STEPS = 5` consecutive steps. The aiming error was wider than the
+target.
+
+The BDDL goal is only `toggled_on`, so the new policy never grasps: it scans
+for the red body, docks by repeated visual re-grounding, grounds the raised red
+control cap in RGB-D by metric size, roundness and dark surround, and pushes one
+closed fingertip along the face normal, orbiting when the cap faces away.
+
+```bash
+PYTHONPATH=$PWD/OmniGibson \
+OMNIGIBSON_HEADLESS=1 OMNI_KIT_ACCEPT_EULA=YES OMNIGIBSON_GPU_ID=0 \
+/home/ywang/miniconda3/envs/behavior/bin/python \
+scripts/aspire_radio/run_visual_policy.py \
+  --policy scripts/aspire_radio/press_marker_policy.py \
+  --instance 301 --seed 2026092501 --mode public_test \
+  --grasping-mode assisted --grounding codex-pixels --max-steps 6000 \
+  --output-dir outputs/behavior/aspire-campaigns/radio/press-marker-301
+```
+
+Known and unfixed, both documented with evidence in that directory: the press
+can topple the radio instead of toggling it, and the pure-Python connected
+component pass over the red mask is unbounded and once hung a rollout for
+90 minutes. `press_marker_policy_v10.py` is a variant with a tighter detector
+(image-border rejection, cap-height gate, search anchored to the tracked
+radio); it scored 5/20, so its filters are worth merging into the simpler
+search but the merge has not been validated.
+
+The detector keys on the same rendered red blob that
+`learned_press_policy.find_button` already used, which is the `ToggledOn`
+visual marker mesh. Its *position* is read as a shape in the camera image; its
+colour state is the goal predicate itself and is deliberately never tested.
+Three constants (marker span range, the 0.18 m long-axis threshold, pressing
+horizontally) come from offline inspection of this asset, which every public
+instance shares; they are search-ordering priors, not runtime asset access.
+
+## Historical turning-on-radio policy
+
+`learned_press_policy.py` was the ASPIRE-style visual code policy for
+`turning_on_radio` until 2026-09-20; it scores 0/20 on the public set and is
+kept for reference. Its online sequence is:
 
 1. Navigate from current RGB-D to the table using visual red-radio geometry.
 2. Try a visible button directly on the table. The BDDL goal requires only

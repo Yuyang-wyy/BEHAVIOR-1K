@@ -258,12 +258,26 @@ class VisualRadioHarness:
         self._trace("navigation", target=pose)
         # ponytail: short RGB-D-docked approaches only; add obstacle-aware navigation for room-scale motion.
         docked = False
+        # Straight-line docking has no obstacle model, so a blocked approach
+        # otherwise burns the whole 800-step allowance without moving.
+        closest = float("inf")
+        stalled = 0
+        docked_steps = 0
         for index in range(800):
             base, _, yaw = self.get_robot_position()
             delta = pose[:2] - base[:2]
             distance = np.linalg.norm(delta)
             if index % 50 == 0:
                 self._trace("navigation_feedback", position=base, yaw=yaw, distance=float(distance))
+            if distance < closest - 0.02:
+                closest, stalled = distance, 0
+            else:
+                stalled += 1
+            docked_steps = docked_steps + 1 if docked else 0
+            if (stalled > 200 and not docked) or docked_steps > 250:
+                self._trace("navigation_stalled", position=base, distance=float(distance),
+                            docked=bool(docked), index=index)
+                return False
             # Hysteresis prevents small base drift from interrupting the final rotation.
             docked = distance < (0.14 if docked else 0.11)
             heading = pose[2] if docked else math.atan2(delta[1], delta[0])
@@ -409,7 +423,9 @@ class VisualRadioHarness:
         position, quat = self.get_current_eef_pose(arm)
         rotation = Rotation.from_quat(quat[[1, 2, 3, 0]])
         arm_name = "right" if arm == 1 else "left"
-        return np.stack([position + rotation.apply(offsets[link.name][:3, 3])
+        # Robot link names carry the scene prefix (``robot_r1:left_gripper_...``)
+        # while the URDF-derived offsets are keyed by the bare link name.
+        return np.stack([position + rotation.apply(offsets[link.name.split(":")[-1]][:3, 3])
                          for link in self.robot.finger_links[arm_name]])
 
     def get_current_finger_center(self, arm=1):

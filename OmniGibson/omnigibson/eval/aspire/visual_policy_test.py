@@ -572,3 +572,42 @@ def test_refinement_keeps_full_resolution_grasp_evidence():
         names = {path.stem for path in images}
         assert {"initial_head", "before_grasp", "after_grasp", "after_grasp_right", "after_left_motion"} <= names
         assert "initial_left_wrist" not in names and "initial_right_wrist" not in names
+
+
+def test_finger_positions_strip_the_scene_prefix_from_link_names():
+    """Robot link names are scene-prefixed; URDF finger offsets are not.
+
+    Indexing the offsets with the raw link name raised ``KeyError`` on every
+    call, which ``press_at_pixel`` swallowed and then aimed as if the fingertip
+    sat on the EEF +Z axis - a systematic 13.5 mm lateral error on a control
+    whose overlap volume is about a centimetre across.
+    """
+    harness = object.__new__(VisualRadioHarness)
+    offset = np.eye(4)
+    offset[:3, 3] = [0.0, .0135, .1]
+    harness.finger_geometry = SimpleNamespace(update=lambda joints: {
+        "right_gripper_finger_link1": offset, "right_gripper_finger_link2": offset})
+    harness.robot = SimpleNamespace(
+        joints={"a": None},
+        finger_links={"right": [SimpleNamespace(name="robot_r1:right_gripper_finger_link1"),
+                                SimpleNamespace(name="robot_r1:right_gripper_finger_link2")]})
+    with patch.object(harness, "get_current_joint_positions", return_value=np.zeros(1)), \
+         patch.object(harness, "get_current_eef_pose",
+                      return_value=(np.array([1., 2., 3.]), np.array([1., 0., 0., 0.]))):
+        positions = harness._finger_positions(1)
+        center = harness.get_current_finger_center(1)
+    np.testing.assert_allclose(positions, [[1., 2.0135, 3.1]] * 2)
+    np.testing.assert_allclose(center, [1., 2.0135, 3.1])
+
+
+def test_navigate_to_pose_gives_up_on_a_blocked_approach():
+    """A straight-line dock with no obstacle model must not burn 800 steps."""
+    harness = object.__new__(VisualRadioHarness)
+    harness.robot = SimpleNamespace(base_action_idx=th.tensor([0, 1, 2]))
+    with patch.object(harness, "get_robot_position",
+                      return_value=(np.array([0., 0., 0.]), None, 0.0)), \
+         patch.object(harness, "_action", side_effect=lambda *a, **k: th.zeros(3)), \
+         patch.object(harness, "_step") as step, patch.object(harness, "_trace") as trace:
+        assert harness.navigate_to_pose(np.array([1.0, 0.0, 0.0])) is False
+    assert step.call_count < 300
+    assert any(call.args[0] == "navigation_stalled" for call in trace.call_args_list)
