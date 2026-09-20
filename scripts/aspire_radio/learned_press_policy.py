@@ -243,7 +243,7 @@ assert lift_arm(arm=1, distance=.12, lock_last_trunk=True)
 table_points = observed_support_surface(best_observation, best_radio)
 goal = get_navigation_pose(table_points, best_radio)
 base, _, _ = get_robot_position()
-skill_radius = .80
+skill_radius = .60
 approach = base[:2] - radio[:2]
 if np.linalg.norm(approach) > 1e-6:
     # Edge selection can choose the far side of a wide table. Approach the
