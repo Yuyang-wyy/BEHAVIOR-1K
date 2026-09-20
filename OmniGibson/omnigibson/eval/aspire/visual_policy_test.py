@@ -22,6 +22,7 @@ from omnigibson.eval.aspire.visual_perception import (
     ContactGraspNetClient, Sam3Client, contact_grasps_to_eef, mask_to_world_points, observed_box,
 )
 from omnigibson.eval.aspire.visual_radio_harness import VisualRadioHarness
+from omnigibson.utils.aspire_kinematics import PlanarOdometry
 
 
 def test_camera_convention_and_invalid_depth():
@@ -34,17 +35,108 @@ def test_camera_convention_and_invalid_depth():
     np.testing.assert_allclose(points, [[2, 1, 1]])
 
 
-def test_observation_uses_live_sensor_world_pose():
+def _legal_observation_harness():
     harness = object.__new__(VisualRadioHarness)
-    sensor = SimpleNamespace(
-        intrinsic_matrix=np.eye(3),
-        get_position_orientation=lambda: (th.tensor([1., 2., 3.]), th.tensor([0., 0., 0., 1.])),
+    class ForbiddenPose:
+        intrinsic_matrix = np.eye(3)
+        def get_position_orientation(self):
+            raise AssertionError("policy must not read simulator sensor pose")
+    robot = SimpleNamespace(
+        name="r1pro", sensors={"head_camera": ForbiddenPose()},
+        joints=["base_x", "base_y", "base_z", "left", "right"],
+        arm_names=["left", "right"],
+        trunk_control_idx=th.tensor([0, 1, 2]),
+        arm_control_idx={"left": th.tensor([3]), "right": th.tensor([4])},
+        gripper_control_idx={"left": th.tensor([], dtype=th.long), "right": th.tensor([], dtype=th.long)},
     )
-    harness.evaluator = SimpleNamespace(robot_camera_names={"head": "r1pro::head_camera"})
-    harness.robot = SimpleNamespace(sensors={"head_camera": sensor}, get_joint_positions=lambda: th.zeros(2))
-    with patch.object(harness, "get_env_observation", return_value=(np.zeros((2, 2, 3)), np.ones((2, 2)))):
+    harness.robot = robot
+    harness.evaluator = SimpleNamespace(
+        robot_camera_names={"head": "r1pro::head_camera"},
+        obs={
+            "r1pro::head_camera::rgb": th.zeros((2, 2, 3), dtype=th.uint8),
+            "r1pro::head_camera::depth_linear": th.ones((2, 2)),
+            "r1pro::cam_rel_poses": th.tensor([[.5, -.25, .75, 0., 0., 0., 1.]]),
+            "r1pro::proprio": th.tensor([0., 0., 0., .2, .3]),
+        },
+    )
+    harness.odometry = PlanarOdometry()
+    harness.odometry._odom_from_base[:3, 3] = [2., 3., .1]
+    harness.proprio_slices = {
+        "base_qvel": slice(0, 3), "trunk_qpos": slice(0, 3), "arm_left_qpos": slice(3, 4),
+        "arm_right_qpos": slice(4, 5), "gripper_left_qpos": slice(0, 0), "gripper_right_qpos": slice(0, 0),
+    }
+    return harness
+
+
+def test_observation_forbids_robot_pose_access_and_uses_relative_camera_odom():
+    harness = _legal_observation_harness()
+    with patch.object(harness, "get_env_observation", return_value=(np.zeros((2, 2, 3), np.uint8), np.ones((2, 2)))):
         observation = harness.get_observation()
-    np.testing.assert_allclose(observation["world_from_camera"][:3, 3], [1, 2, 3])
+    np.testing.assert_allclose(observation["world_from_camera"][:3, 3], [2.5, 2.75, .85])
+
+
+def test_proprio_joints_keep_virtual_base_zero_and_eef_uses_odom():
+    harness = _legal_observation_harness()
+    np.testing.assert_allclose(harness.get_current_joint_positions(), [0., 0., 0., .2, .3])
+    harness.proprio_slices.update({"eef_left_pos": slice(3, 6), "eef_left_quat": slice(6, 10)})
+    harness.evaluator.obs["r1pro::proprio"] = th.tensor([0., 0., 0., .1, .2, .3, 0., 0., 0., 1.])
+    position, quat = harness.get_current_eef_pose(arm=0)
+    np.testing.assert_allclose(position, [2.1, 3.2, .4])
+    np.testing.assert_allclose(quat, [1., 0., 0., 0.])
+
+
+def _extract_radio_is_held():
+    root = Path(__file__).resolve().parents[4]
+    tree = ast.parse((root / "scripts/aspire_radio/learned_press_policy.py").read_text())
+    function = next(node for node in tree.body
+                    if isinstance(node, ast.FunctionDef) and node.name == "radio_is_held")
+    namespace = {"np": np}
+    exec(compile(ast.Module(body=[function], type_ignores=[]), "<radio_is_held>", "exec"), namespace)
+    return namespace["radio_is_held"]
+
+
+def test_radio_is_held_rejects_stationary_radio_near_empty_hand():
+    radio_is_held = _extract_radio_is_held()
+    state = {"eef_calls": 0, "saves": 0}
+    center = np.array([0., 0., .10])
+
+    def eef(_arm=1, **_kwargs):
+        state["eef_calls"] += 1
+        return (np.zeros(3), np.array([1., 0., 0., 0.])) if state["eef_calls"] == 1 else (
+            np.array([0., 0., .08]), np.array([1., 0., 0., 0.]))
+    def observed(_observation, _near=None):
+        return (np.ones((1, 1), dtype=bool), np.array([center]))
+
+    namespace = radio_is_held.__globals__
+    namespace.update({"get_current_eef_pose": eef, "observed_radio": observed,
+                      "get_observation": lambda _camera: object(),
+                      "move_hand": lambda *_args, **_kwargs: True,
+                      "save_current_observation": lambda *_args, **_kwargs: state.__setitem__("saves", state["saves"] + 1),
+                      "grasp_probe_count": 0})
+    assert radio_is_held(0.) is False
+    assert state["saves"] == 2
+
+
+def test_radio_is_held_accepts_radio_matching_hand_lift():
+    radio_is_held = _extract_radio_is_held()
+    state = {"eef_calls": 0}
+    centers = [np.array([0., 0., .10]), np.array([0., 0., .18])]
+
+    def eef(_arm=1, **_kwargs):
+        state["eef_calls"] += 1
+        position = np.zeros(3) if state["eef_calls"] == 1 else np.array([0., 0., .08])
+        return position, np.array([1., 0., 0., 0.])
+    def observed(_observation, near=None):
+        index = 0 if near is None or np.linalg.norm(np.asarray(near) - centers[1]) > .05 else 1
+        return (np.ones((1, 1), dtype=bool), np.array([centers[index]]))
+
+    namespace = radio_is_held.__globals__
+    namespace.update({"get_current_eef_pose": eef, "observed_radio": observed,
+                      "get_observation": lambda _camera: object(),
+                      "move_hand": lambda *_args, **_kwargs: True,
+                      "save_current_observation": lambda *_args, **_kwargs: None,
+                      "grasp_probe_count": 0})
+    assert radio_is_held(0.) is True
 
 
 def test_observed_box_is_fitted_to_points():
@@ -209,11 +301,24 @@ def test_navigation_final_rotation_survives_small_base_drift():
 
 def test_navigation_pose_approaches_nearest_table_edge():
     harness = object.__new__(VisualRadioHarness)
+    harness.output_dir = Path(tempfile.mkdtemp())
+    harness.steps = 0
     harness.get_robot_position = lambda: (np.array([3., .5, 0]), None, 0)
     table = np.array([[0, 0, .4], [2, 0, .4], [2, 1, .4], [0, 1, .4]])
     goal = harness.get_navigation_pose(table, [[1.8, .5, .6]])
     np.testing.assert_allclose(goal[:2], [2.4, .5], atol=1e-6)
     assert abs(abs(goal[2]) - np.pi) < 1e-6
+
+
+def test_navigation_long_table_rejects_unreachable_near_base_edge():
+    harness = object.__new__(VisualRadioHarness)
+    harness.output_dir = Path(tempfile.mkdtemp())
+    harness.steps = 0
+    harness.get_robot_position = lambda: (np.array([0., .5, 0]), None, 0)
+    table = np.array([[0, 0, .4], [10, 0, .4], [10, 1, .4], [0, 1, .4]])
+    goal = harness.get_navigation_pose(table, [[9.5, .5, .6]])
+    assert goal[0] > 9.0
+    assert np.linalg.norm(goal[:2] - np.array([9.5, .5])) <= .93 + 1e-6
 
 
 def test_motor_settling_is_bounded_and_reports_obstruction():
@@ -349,22 +454,27 @@ def test_left_ik_config_targets_left_eef_and_locks_right_arm():
                                         joints={"right_j": None, "torso_j": None, "torso_lift": None},
                                         get_joint_positions=lambda: joint_state)
         with patch("omnigibson.action_primitives.curobo.CuRoboMotionGenerator") as constructor:
-            generator = harness._init_ik(arm=0)
+            with patch.object(harness, "get_current_joint_positions", return_value=joint_state):
+                generator = harness._init_ik(arm=0)
             assert generator is constructor.return_value
             assert constructor.call_args.kwargs["lock_joint_names"] == []
             config = yaml.safe_load((Path(temp) / "robot_left_ik.yaml").read_text())
             assert config["robot_cfg"]["kinematics"]["ee_link"] == "left_eef_link"
-            assert harness._init_ik(arm=0) is generator
+            with patch.object(harness, "get_current_joint_positions", return_value=joint_state):
+                assert harness._init_ik(arm=0) is generator
             assert constructor.call_count == 1
-            fixed_generator = harness._init_ik(arm=0, lock_trunk=True)
+            with patch.object(harness, "get_current_joint_positions", return_value=joint_state):
+                fixed_generator = harness._init_ik(arm=0, lock_trunk=True)
             assert constructor.call_args.kwargs["lock_joint_names"] == []
             assert constructor.call_count == 2
-            harness._init_ik(arm=0, lock_last_trunk=True)
+            with patch.object(harness, "get_current_joint_positions", return_value=joint_state):
+                harness._init_ik(arm=0, lock_last_trunk=True)
             assert constructor.call_args.kwargs["lock_joint_names"] == []
             assert constructor.call_count == 3
             joint_state[1] = .2
-            harness._init_ik(arm=0, lock_trunk=True)
-            assert constructor.call_count == 4
+            with patch.object(harness, "get_current_joint_positions", return_value=joint_state):
+                assert harness._init_ik(arm=0, lock_trunk=True) is fixed_generator
+            assert constructor.call_count == 3
 
 
 def test_solve_ik_preserves_current_solver_omitted_locked_joints():
@@ -373,6 +483,7 @@ def test_solve_ik_preserves_current_solver_omitted_locked_joints():
     harness = object.__new__(VisualRadioHarness)
     harness.motion_generators = {"right_fixed_trunk": generator}
     harness.motion_generator_locks = {"right_fixed_trunk": {"torso": .9}}
+    harness.odometry = PlanarOdometry()
     harness.robot = SimpleNamespace(
         get_joint_positions=lambda: th.tensor([.9, .1]),
         joints={"torso": None, "right_arm": None},
@@ -381,10 +492,11 @@ def test_solve_ik_preserves_current_solver_omitted_locked_joints():
         arm_control_idx={"right": th.tensor([1])},
         joint_lower_limits=th.tensor([-2., -2.]), joint_upper_limits=th.tensor([2., 2.]),
     )
-    np.testing.assert_allclose(
-        harness.solve_ik(np.zeros(3), np.array([1., 0., 0., 0.]), arm=1, lock_trunk=True),
-        [.9, .5],
-    )
+    with patch.object(harness, "get_current_joint_positions", return_value=np.array([.9, .1])):
+        np.testing.assert_allclose(
+            harness.solve_ik(np.zeros(3), np.array([1., 0., 0., 0.]), arm=1, lock_trunk=True),
+            [.9, .5],
+        )
 
 
 def test_move_to_posture_preserves_other_arm():
