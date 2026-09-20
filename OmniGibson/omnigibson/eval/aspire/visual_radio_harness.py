@@ -161,9 +161,9 @@ class VisualRadioHarness:
         return pose[:3, 3], quat[[3, 0, 1, 2]], math.atan2(pose[1, 0], pose[0, 0])
 
     @staticmethod
-    def _pose_matrix(position, quat_xyzw):
+    def _pose_matrix(position, quat_wxyz):
         pose = np.eye(4)
-        pose[:3, :3] = Rotation.from_quat(quat_xyzw).as_matrix()
+        pose[:3, :3] = Rotation.from_quat(np.asarray(quat_wxyz)[[1, 2, 3, 0]]).as_matrix()
         pose[:3, 3] = position
         return pose
 
