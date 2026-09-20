@@ -44,11 +44,9 @@ class PlanarOdometry:
         else:
             dx = (math.sin(theta) * vx + (math.cos(theta) - 1) * vy) / wz
             dy = ((1 - math.cos(theta)) * vx + math.sin(theta) * vy) / wz
-        yaw = math.atan2(self._odom_from_base[1, 0], self._odom_from_base[0, 0])
-        c, s = math.cos(yaw), math.sin(yaw)
         delta = np.eye(4)
         delta[:2, :2] = ((math.cos(theta), -math.sin(theta)), (math.sin(theta), math.cos(theta)))
-        delta[:2, 3] = (c * dx - s * dy, s * dx + c * dy)
+        delta[:2, 3] = (dx, dy)
         candidate = self._odom_from_base.copy()
         candidate[:2, :3] = (self._odom_from_base @ delta)[:2, :3]
         candidate[:2, 3] = (self._odom_from_base @ delta)[:2, 3]

@@ -12,6 +12,9 @@ def test_exact_body_twist_and_validation():
     odom = PlanarOdometry()
     np.testing.assert_allclose(odom.update([1, 0, 1], np.pi / 2)[:2, 3], [1, 1], atol=1e-12)
     np.testing.assert_allclose(PlanarOdometry().update([1, 2, 0], 1)[:2, 3], [1, 2])
+    odom = PlanarOdometry()
+    odom.update([0, 0, 1], np.pi / 2)
+    np.testing.assert_allclose(odom.update([1, 0, 0], 1)[:2, 3], [0, 1], atol=1e-12)
     for qvel, dt in [([0, 0], 1), ([np.nan, 0, 0], 1), ([0, 0, 0], -1), ([0, 0, 0], np.nan)]:
         try:
             odom.update(qvel, dt)
