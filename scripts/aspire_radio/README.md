@@ -121,6 +121,31 @@ fixed-torso contact solve. Unit coverage remains `19 passed` in
 `visual_policy_test.py`; this change still needs another successful public
 rollout before it should be described as improving the matrix above.
 
+### Fixed-version baseline, 2026-09-20
+
+Revision `746176312`, seed `2026092000`, max 6000 steps, default assisted grasp,
+with the oracle robot/camera transforms described above: **0/3 successes**.
+
+| Instance | Steps | Task success | Q | Failure |
+| --- | ---: | ---: | ---: | --- |
+| 305 | 2942 | 0 | 0.0 | Button not visible after presentation |
+| 306 | 3386 | 0 | 0.0 | Press did not complete the task |
+| 307 | 1125 | 0 | 0.0 | No visually verified grasp |
+
+Artifacts are under `/home/ywang/Behavior/artifacts/public-test-20260920-baseline-{305,306,307}`.
+The `public-test-20260920-baseline-repro` sibling directory retains source hashes,
+commands, logs, and exit codes. These are all attempts in this three-instance
+batch; none succeeded. The remaining public instances have not been evaluated
+with this fixed version.
+
+The next posture experiment uses the medoid of all 200 training pre-toggle
+postures (raw episode 600, action frame 1280). For each training episode, take
+the action 16 frames before its first positive sampled `toggled` label, then
+minimize summed Euclidean distance over trunk and both arm joint targets.
+This preserves an actual demonstrated joint configuration, unlike independently
+taking each joint's median. It is an offline prior and still requires fresh
+visual grounding and evaluator-confirmed validation after grasping.
+
 The AST/import guard prevents common accidental privileged calls. It is NOT
 a hardened Python security sandbox. Workers run without provider credentials
 in their environment; stronger protection requires host/container isolation.

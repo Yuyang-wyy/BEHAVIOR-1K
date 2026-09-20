@@ -687,10 +687,7 @@ class VisualRadioHarness:
         # avoiding nine full IK settle cycles inside the episode budget.
         for distance in np.linspace(-0.03, travel, 3):
             target_pose = (point + direction * distance - offset, quat)
-            try:
-                reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
-            except EpisodeFinished:
-                raise
+            reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
             if not reached:
                 actual_position, actual_quat = self.get_current_eef_pose(arm)
                 actual_rotation = Rotation.from_quat(actual_quat[[1, 2, 3, 0]])
@@ -708,9 +705,6 @@ class VisualRadioHarness:
                 np.min(np.linalg.norm(finger_positions - point, axis=1))))
         # BEHAVIOR toggles only after several consecutive finger-overlap steps.
         for _ in range(12):
-            try:
-                self._step(self._action())
-            except EpisodeFinished:
-                raise
+            self._step(self._action())
         self.save_current_observation("after_press", camera)
         return True  # Motion completed; NOT a task-success assertion.

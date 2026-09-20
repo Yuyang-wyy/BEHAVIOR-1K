@@ -577,31 +577,29 @@ button_direction = button_world - obs["world_from_camera"][:3, 3]
 button_direction /= np.linalg.norm(button_direction)
 pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
                          arm=0, surface_offset=0.0, fixed_torso=True)
-if not pressed:
-    pressed = press_at_pixel(button_x, button_y, camera=view_camera, travel=.03,
-                             arm=0, surface_offset=0.0, allow_torso=True)
-if not pressed:
-    for retry_camera in ("head", "left_wrist", "right_wrist"):
-        retry_view = held_radio_pixels(retry_camera)
-        if len(retry_view[2]) < 20:
-            continue
-        try:
-            retry_x, retry_y, _ = find_button(
-                retry_view[1], retry_view[2], retry_view[3], top_only=True)
-        except AssertionError:
-            continue
-        button_x, button_y = retry_x, retry_y
-        obs = retry_view[0]
-        button_mask = np.zeros(obs["depth"].shape, dtype=bool)
-        button_mask[max(0, button_y - 1):button_y + 2,
-                    max(0, button_x - 1):button_x + 2] = True
-        button_world = np.median(mask_to_world_points(
-            button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
-        button_direction = button_world - obs["world_from_camera"][:3, 3]
-        button_direction /= np.linalg.norm(button_direction)
-        pressed = press_at_pixel(button_x, button_y, camera=retry_camera, travel=.03,
-                                 arm=0, surface_offset=.06, allow_torso=True)
-        break
+# Motor completion does not establish a toggle. If execution is still active,
+# reacquire the red control before a second depth-offset attempt.
+for retry_camera in ("head", "left_wrist", "right_wrist"):
+    retry_view = held_radio_pixels(retry_camera)
+    if len(retry_view[2]) < 20:
+        continue
+    try:
+        retry_x, retry_y, _ = find_button(
+            retry_view[1], retry_view[2], retry_view[3], top_only=True)
+    except AssertionError:
+        continue
+    button_x, button_y = retry_x, retry_y
+    obs = retry_view[0]
+    button_mask = np.zeros(obs["depth"].shape, dtype=bool)
+    button_mask[max(0, button_y - 1):button_y + 2,
+                max(0, button_x - 1):button_x + 2] = True
+    button_world = np.median(mask_to_world_points(
+        button_mask, obs["depth"], obs["intrinsics"], obs["world_from_camera"]), axis=0)
+    button_direction = button_world - obs["world_from_camera"][:3, 3]
+    button_direction /= np.linalg.norm(button_direction)
+    pressed = press_at_pixel(button_x, button_y, camera=retry_camera, travel=.03,
+                             arm=0, surface_offset=.06, allow_torso=True)
+    break
 if not pressed:
     # The holder may have moved during a failed press attempt. Re-ground the
     # control before any bimanual fallback uses its world position.
