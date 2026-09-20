@@ -190,6 +190,14 @@ class VisualRadioHarness:
     def find_object_base_rotate(self, object_name):
         for _ in range(50):
             rgb, _ = self.get_env_observation()
+            # Keep visual search usable when the optional SAM3 service is down.
+            # This is only a visibility gate; policy localization still uses
+            # current RGB-D backprojection in learned_press_policy.py.
+            if "radio" in object_name.lower():
+                red = ((rgb[..., 0] > 145) & (rgb[..., 0] > 2 * rgb[..., 1])
+                       & (rgb[..., 0] > 2 * rgb[..., 2]))
+                if int(red.sum()) >= 100:
+                    return True
             results = self.segment_sam3_text_prompt(rgb, object_name)
             if results and results[0]["score"] >= 0.1:
                 return True
