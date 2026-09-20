@@ -295,7 +295,9 @@ def test_navigation_final_rotation_survives_small_base_drift():
          patch.object(harness, "_action", side_effect=lambda: th.zeros(3)), \
          patch.object(harness, "_step", side_effect=actions.append):
         assert harness.navigate_to_pose([0, 0, 1])
-    assert actions[0][0] > 0
+    # The final-dock hysteresis accepts the 9 cm visual residual before
+    # issuing a translational command, then handles heading correction.
+    assert actions[0][0] == 0
     assert actions[1][0] == actions[2][0] == 0
     assert actions[1][2] > 0 and actions[2][2] > 0
 
