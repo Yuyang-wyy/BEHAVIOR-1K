@@ -6,18 +6,27 @@ demonstration-replay diagnostic and must not be counted as code-policy success.
 
 `visual_policy.py` starts from the sequence in the local ASPIRE
 `aspire/sim/cap/envs/tasks/r1pro/r1pro_pickup_radio.py:ORACLE_CODE`. That example
-targets pickup, not turning on the radio. The final button-grounding block is
-an unvalidated extension for the current `turning_on_radio` benchmark.
+targets pickup, not turning on the radio. The local button-grounding extension
+has one historical successful rollout, but is not yet reliably reproduced.
 
 ## Inputs and limits
 
-The visual adapter exposes RGB-D, camera calibration, robot proprioception,
-SAM3 segmentation, observed geometry, robot-only IK, and motor commands. It
+The visual adapter exposes RGB-D, robot geometry, SAM3 segmentation, observed
+geometry, robot-only IK, and motor commands. **The current implementation also
+reads exact simulator camera, base, EEF, and finger world poses.** These are
+oracle localization inputs: this version is not a verified challenge-compliant
+onboard-observation policy. Removing object-state queries alone does not establish
+compliance. Encoder-driven kinematics and onboard odometry are being implemented
+to replace those transforms. The adapter
 does not load demonstrations, inspect scene/object assets, resolve simulator
 objects, read contacts/attachments, or locate simulator toggle markers.
 Robot kinematics/configuration are used for IK. CuRobo world-obstacle updates
 and ground-truth world collision checks are disabled; short straight-line
 navigation and interpolated IK are not obstacle-aware motion planning.
+
+The default `eval/r1pro.yaml` uses `grasping_mode: assisted`. Results obtained
+with this configuration must not be described as pure physical-grasp results.
+Grasp mode and observation provenance must accompany any reported score.
 
 The existing local ASPIRE Contact-GraspNet code/checkpoint is reused via its
 loopback service. `sample_contact_grasp_pose(mask)` plans learned grasps from
@@ -42,7 +51,8 @@ not a policy input. Visual grasp checks are heuristics and can be wrong.
    normal physical finger overlap for the task toggle.
 4. Reacquire the visible red control before press attempts. The policy never
    reads `ToggledOn`, contacts, object registry, simulator markers, or
-   demonstration action arrays.
+   demonstration action arrays online. Its hardcoded staging posture includes
+   an offline demonstration-derived prior; it is not a replayed action sequence.
 
 The policy samples Contact-GraspNet twice from the same current RGB-D frame to
 reduce candidate variance. This is a robustness measure, not a success oracle.
@@ -51,13 +61,12 @@ Success is reported only from the evaluator's final `task_success` and
 
 ### Verified evidence
 
-The first verified public-test success is instance `302`, seed `2026091609`:
+The historical evaluator-confirmed success is instance `302`, seed `2026091609`:
 
 ```text
 task_success=true
 status=success
 q_score.final=1.0
-policy_inputs=RGB-D, camera calibration, robot proprioception
 demonstration_actions=false
 ground_truth_object_state=false
 ```
@@ -66,6 +75,9 @@ Evidence is in
 `outputs/behavior/aspire-campaigns/radio/public-test-20260919-final7/`:
 `result.json`, `trace.jsonl`, and `rollout.mp4`. The run contains rendered
 evidence of the right-hand hold and left-hand control approach.
+The two false flags describe specific excluded inputs, not the absence of all
+privileged inputs. The simulator-derived robot/camera transforms above remain
+a limitation of this result.
 
 Grasp and presentation remain stochastic across repeated rollouts; failed
 attempts must remain in the report. A single successful rollout is not evidence
@@ -80,7 +92,7 @@ OMNIGIBSON_HEADLESS=1 OMNI_KIT_ACCEPT_EULA=YES OMNIGIBSON_GPU_ID=0 \
 scripts/aspire_radio/run_visual_policy.py \
   --policy scripts/aspire_radio/learned_press_policy.py \
   --instance 302 --seed 2026091609 \
-  --output-dir outputs/behavior/aspire-campaigns/radio/public-test-20260919-final7 \
+  --output-dir outputs/behavior/aspire-campaigns/radio/public-test-new-302 \
   --mode public_test --grounding codex-pixels --max-steps 6000 --record-video
 ```
 
@@ -94,13 +106,15 @@ scripts/aspire_radio/run_visual_policy.py \
 | 304 | 2026091611 | 0 | 0.0 | `public-test-20260920-304` |
 | 303 (rerun) | 2026091610 | 0 | 0.0 | `public-test-20260920-303-roll2` |
 
-The first cross-instance batch is therefore `1/4` successful (`25%`), with
-instance `302` as the only success. In the `301`, `303`, and `304` failures,
-the radio grasp was visually verified but the press block ended with
+These are debugging runs across policy revisions, not a fixed-version batch.
+The selected `302` success must not be combined with three later failures to
+claim a `25%` success rate. Later `302` attempts (`final8` and `final9`) also
+failed. In the `301`, `303`, and `304` failures,
+the visual grasp heuristic returned true but the press block ended with
 `press_motor_completed=false`; their traces repeatedly show partial holder
 restoration followed by `fixed_trunk_precontact` IK failure. The `303-roll2`
 rerun failed earlier during grasp verification. These results are retained as
-the current baseline rather than being hidden by retry selection.
+historical diagnostics rather than being hidden by retry selection.
 
 The current press harness additionally tries multiple wrist rolls during the
 fixed-torso contact solve. Unit coverage remains `19 passed` in
@@ -114,9 +128,10 @@ in their environment; stronger protection requires host/container isolation.
 Both arm IK adapters lock the other arm's joints and preserve independent
 gripper commands. The offline RGB reference shows right-hand holding and
 left-hand pressing. The starting SAM3 policy follows that sequence; successful
-grasp has development visual evidence, but button operation is not yet established.
+grasp has development visual evidence, and button operation has one historical success.
 Optional torso-locked IK prevents hand setup from changing the head-camera pitch;
-pressing always locks the torso. Motor holds retain command targets, not measured drift.
+contact attempts lock the torso, while some approach and correction paths allow
+torso movement. Motor holds retain command targets, not measured drift.
 
 ## Run
 
@@ -145,7 +160,7 @@ PYTHONPATH=../references/ASPIRE \
 ```
 
 Its checkpoint is already local; no download is needed. Learned inference has
-been tested on saved current RGB-D, but task success is not yet established.
+been tested on saved current RGB-D; reliable task success is not yet established.
 
 Run the bounded external Codex loop on one development instance:
 
