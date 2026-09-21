@@ -104,6 +104,31 @@ def main():
                     % (inst, entry["object"], ",".join(entry["meta_links"]) or "none", entry["aabb"]))
 
           options = task.ground_goal_state_options or []
+          # What can this gripper actually hold? Assisted grasping needs the
+          # object between the fingers: contact AND a ray from a start point on
+          # one finger to an end point on the other passing through it. The
+          # span of those rays is therefore the hard ceiling on object width.
+          robot = evaluator.robot
+          try:
+              import numpy as _np
+              starts = robot.assisted_grasp_start_points
+              ends = robot.assisted_grasp_end_points
+              print("\ngripper grasp-ray span (the ceiling on graspable width):")
+              for arm in robot.arm_names:
+                  sp = starts.get(arm) if starts else None
+                  ep = ends.get(arm) if ends else None
+                  if not sp or not ep:
+                      print("   %-6s no assisted grasp points defined" % arm)
+                      continue
+                  spa = _np.asarray([[float(v) for v in g.position] for g in sp])
+                  epa = _np.asarray([[float(v) for v in g.position] for g in ep])
+                  widest = max(float(_np.linalg.norm(a - b)) for a in spa for b in epa)
+                  print("   %-6s %d start x %d end points, widest ray %.3f m"
+                        % (arm, len(spa), len(epa), widest))
+                  report.setdefault("grasp_span", {})[arm] = round(widest, 4)
+          except Exception as error:
+              print("   grasp span unavailable: %s" % error)
+
           print("\n%d ground goal option(s); literals of each:" % len(options))
           for index, option in enumerate(options):
               satisfied = 0
