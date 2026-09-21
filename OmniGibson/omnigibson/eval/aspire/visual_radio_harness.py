@@ -699,6 +699,16 @@ class VisualRadioHarness:
             current_rotation = eef_rotation.as_matrix()
             finger_offset_local = eef_rotation.inv().apply(finger_origin - eef_position)
             finger_offset_local[2] = self.robot.eef_to_fingertip_lengths[arm_name][finger.name]
+            # Aim the fingertip, not the finger link origin. press_at_pixel
+            # closes the gripper first, and on this parallel jaw the two tips
+            # converge onto the EEF axis while their link origins stay 13.5 mm
+            # apart: measured against the URDF meshes with the joints closed,
+            # the tip centroid is 1.2 mm off the axis. Keeping the origin's x,y
+            # here puts the nearest finger surface 8.9 mm from the control
+            # centre against an 11.2 mm overlap radius - only 2.3 mm of margin,
+            # where aiming the tip leaves 10.7 mm.
+            finger_offset_local[0] = 0.0
+            finger_offset_local[1] = 0.0
             target_finger = finger.name
         except (AttributeError, KeyError, TypeError):
             finger_offset_local = None
@@ -723,7 +733,13 @@ class VisualRadioHarness:
             offset = (Rotation.from_quat(quat[[1, 2, 3, 0]]).apply(finger_offset_local)
                       if finger_offset_local is not None
                       else rotation @ np.array([0, 0, fingertip_length]))
-            approach_distance = 0.14 if holder_tracking is not None and not fixed_torso else 0.06
+            # The joint-space move that reaches this stand-off interpolates in
+            # joint space and solves with ik_world_collision_check=False, so the
+            # hand sweeps an unplanned arc to get here. Ending that arc only
+            # 6 cm from the control put it through the object often enough to
+            # knock it over; stop further out and cover the rest in a straight
+            # Cartesian advance along the press normal.
+            approach_distance = 0.14 if holder_tracking is not None and not fixed_torso else 0.13
             approach = point - direction * approach_distance - offset
             for _ in range(6):
                 target_joints = self.solve_ik(approach, quat, arm=arm, **initial_lock)
@@ -797,9 +813,14 @@ class VisualRadioHarness:
                 self._trace("visual_press_ik_failed", pixel=[x, y], point=point,
                             direction=direction, phase="fixed_trunk_precontact")
                 return False
-        # ponytail: three poses preserve the approach/press/retract motion while
-        # avoiding nine full IK settle cycles inside the episode budget.
-        for distance in np.linspace(-0.03, travel, 3):
+        # Advance in a straight line from wherever the arm was staged, so the
+        # final approach is collinear with the press normal instead of an arc.
+        # The holder path already re-staged itself at 3 cm; the free-hand path
+        # is parked at the full stand-off. Four poses keep the IK settle cycles
+        # inside the step budget.
+        advance_start = -0.03 if holder_tracking is not None else -approach_distance
+        advance_poses = 3 if holder_tracking is not None else 4
+        for distance in np.linspace(advance_start, travel, advance_poses):
             target_pose = (point + direction * distance - offset, quat)
             reached = self.move_hand(target_pose, arm, max_joint_step=0.01, **final_lock)
             if not reached:

@@ -25,14 +25,30 @@ TRACE = {"marker_spans": [], "press_attempts": 0, "press_completed": 0,
          "orbit_stops": 0, "marker_views": 0, "dock_iterations": 0}
 
 
+# One rollout stalled for 90 minutes with its trace frozen mid-episode and had
+# to be killed by the batch timeout.  The cause was never established, so this
+# is a bound rather than a fix: the pass below is the only place in the policy
+# whose cost scales with how much red happens to be in view, and an unbounded
+# red region (standing right on top of the radio, a red wall, a poster) is the
+# one input that could make it grind.  Cap the work, keep the best component
+# found so far, and say so out loud so a recurrence is diagnosable.
+COMPONENT_PIXEL_BUDGET = 120000
+COMPONENT_COUNT_BUDGET = 400
+
+
 def connected_components(mask, min_pixels=1):
     height, width = mask.shape
     visited = np.zeros(mask.shape, dtype=bool)
     found = []
+    budget = COMPONENT_PIXEL_BUDGET
     all_y, all_x = np.nonzero(mask)
     for start_y, start_x in zip(all_y, all_x):
         if visited[start_y, start_x]:
             continue
+        if budget <= 0 or len(found) >= COMPONENT_COUNT_BUDGET:
+            print("component budget exhausted", len(found), "components,",
+                  int(mask.sum()), "masked pixels")
+            break
         stack = [(int(start_y), int(start_x))]
         visited[start_y, start_x] = True
         pixels = []
@@ -46,6 +62,7 @@ def connected_components(mask, min_pixels=1):
                             and mask[next_y, next_x] and not visited[next_y, next_x]):
                         visited[next_y, next_x] = True
                         stack.append((next_y, next_x))
+        budget -= len(pixels)
         if len(pixels) >= min_pixels:
             found.append(np.asarray(pixels, dtype=int))
     return found
@@ -118,6 +135,12 @@ def find_marker(observation, radio_center):
         width = int(columns.max() - columns.min() + 1)
         if max(height, width) > 110:
             continue
+        # A blob clipped by the frame edge is not a whole cap: it only looks
+        # small and round because the rest is off-screen, and the depth there
+        # is unreliable enough to backproject it through the table.
+        if (rows.min() < 2 or columns.min() < 2
+                or rows.max() > image.shape[0] - 3 or columns.max() > image.shape[1] - 3):
+            continue
         aspect = min(height, width) / max(height, width)
         fill = len(pixels) / float(height * width)
         if aspect < .45 or fill < .5:
@@ -130,6 +153,9 @@ def find_marker(observation, radio_center):
             continue
         point = np.median(world, axis=0)
         if np.linalg.norm(point - radio_center) > .24:
+            continue
+        # The cap sits on the body, not beneath it: the radio is 0.235 m tall.
+        if abs(float(point[2] - radio_center[2])) > .12:
             continue
         span = float(np.max(np.percentile(world, 90, axis=0) - np.percentile(world, 10, axis=0)))
         if not .002 <= span <= .05:
@@ -270,12 +296,23 @@ print("dock", TRACE["dock_iterations"], "radio", np.round(radio_center, 3).tolis
 # (surface_offset, travel).  The control cap is a ~11 mm sphere, so the
 # fingertip target is only a centimetre or two past the depth surface;
 # larger offsets shove the radio across the table instead of touching it.
-# The cap's rendered radius is ~6 mm, so a fingertip driven
-# (surface_offset + travel) past the depth surface should stop within a
-# couple of centimetres of the cap centre.  Deeper commands only shove
-# the radio across the table.
-PRESS_LADDER = ((.004, .008), (.012, .014), (.022, .020))
-MAX_COMPLETED_PER_VIEW = 2
+# (surface_offset, travel); the fingertip ends (surface_offset + travel) past
+# the depth surface of the cap.  That total has a hard window, measured from
+# the asset: the togglebutton sphere centre sits 2.0 mm inside the collision
+# face, the rendered cap stands 3.6 mm proud of it, and the overlap radius is
+# 11.2 mm.  Shallower than 3.6 mm never contacts the collision mesh, and the
+# contact is half of what ToggledOn requires; deeper than 16.8 mm puts the
+# fingertip outside the overlap sphere while driving it far enough into a body
+# only 0.138 m deep to tip the whole radio over.  Every entry stays inside.
+PRESS_LADDER = ((.004, .008), (.002, .006), (.004, .012))
+# One completed touch per sighting.  Measured on instance 315: with the press
+# depth inside the window and the approach collinear, the first press leaves
+# the radio upright (top z 0.653 -> 0.652), but an immediate second press from
+# the contact pose topples it (-> 0.573) and every later attempt then chases a
+# target lying on its side.  Every success in this task toggles on the first
+# press, so a second poke at the same sighting is all risk and no reward; the
+# orbit loop is the retry path.
+MAX_COMPLETED_PER_VIEW = 1
 
 
 def press_marker(observation, camera, marker):
@@ -329,9 +366,10 @@ def press_marker(observation, camera, marker):
 def look_for_marker():
     for camera in ("head", "left_wrist", "right_wrist"):
         observation = get_observation(camera)
+        # Stay anchored to the tracked radio.  An unconstrained red search can
+        # latch onto wall switches or artwork once the base has turned away,
+        # and then drags the whole search off to a phantom target.
         detected = observed_radio(observation, radio_center)
-        if detected is None:
-            detected = observed_radio(observation)
         if detected is None:
             continue
         center = np.median(detected[1], axis=0)
@@ -385,11 +423,9 @@ for orbit_index, offset in enumerate(orbit_offsets):
           "span", round(marker[4], 4))
     if press_marker(observation, camera, marker):
         pressed_any = True
-        # A completed touch that did not toggle is worth repeating from a
-        # slightly different stand-off before paying for another orbit hop.
-        retry = look_for_marker()
-        if retry is not None:
-            press_marker(retry[0], retry[1], retry[2])
+        # Deliberately no immediate second press here: re-ground from the next
+        # orbit stop instead.  Poking twice from the contact pose is what put
+        # the radio on its side.
 
 save_current_observation("after_press_phase")
 print("press attempts", TRACE["press_attempts"], "completed", TRACE["press_completed"],

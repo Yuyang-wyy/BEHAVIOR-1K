@@ -53,19 +53,26 @@ rollouts in `/home/ywang/Behavior/radio_generalization_20260920/`.
 Two harness defects were behind most of the old failures:
 
 1. `VisualRadioHarness._finger_positions` indexed URDF-keyed finger offsets
-   with scene-prefixed link names, so it raised `KeyError` on every call.
-   `get_current_finger_center` propagated it; `press_at_pixel` *swallowed* it
-   and then aimed as if the fingertip were on the EEF +Z axis. The real
-   finger-1 origin is `(0.0001, 0.0135, -0.0231)` m in the EEF frame, so every
-   press was systematically 13.5 mm off to the side.
+   with scene-prefixed link names, so it raised `KeyError` on every call, and
+   `get_current_finger_center` propagated it - it killed 6 of the 20 baseline
+   rollouts outright.
+   An earlier revision of this file also claimed the `KeyError` mis-aimed every
+   press by 13.5 mm, because `press_at_pixel` swallows it and falls back to an
+   on-axis fingertip offset. **That claim was wrong.** Measured against the
+   R1Pro finger meshes with the gripper closed, that fallback puts the nearest
+   finger surface 0.5 mm from the control centre; it aims the tip almost
+   exactly. Restoring the link origin (which is 13.5 mm off-axis on a closed
+   parallel jaw) is what narrows the aim, and correcting *that* back to the tip
+   scored 6/20 against 7/20 - no measurable difference. The 0/20 -> 7/20 gain
+   came from not grasping, plus fixing the crash.
 2. `navigate_to_pose` had no stalled-approach guard and burned its entire
    800-step allowance against obstacles it cannot plan around.
 
-The 13.5 mm matters because `radio/wxnicr` carries one `togglebutton` meta
-link with sphere `size = 0.011179`, and `ToggledOn` requires a finger link to
-be in contact with the radio **and** to overlap that sphere for
-`CAN_TOGGLE_STEPS = 5` consecutive steps. The aiming error was wider than the
-target.
+`radio/wxnicr` carries one `togglebutton` meta link with sphere
+`size = 0.011179`, an overlap radius of 11.2 mm. `ToggledOn` requires a finger
+link to be in contact with the radio **and** to overlap that sphere for
+`CAN_TOGGLE_STEPS = 5` consecutive steps, firing on exact equality - so holding
+contact is safe, but a second separate touch flips it back off.
 
 The BDDL goal is only `toggled_on`, so the new policy never grasps: it scans
 for the red body, docks by repeated visual re-grounding, grounds the raised red

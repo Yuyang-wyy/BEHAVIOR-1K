@@ -611,3 +611,60 @@ def test_navigate_to_pose_gives_up_on_a_blocked_approach():
         assert harness.navigate_to_pose(np.array([1.0, 0.0, 0.0])) is False
     assert step.call_count < 300
     assert any(call.args[0] == "navigation_stalled" for call in trace.call_args_list)
+
+
+def test_press_advances_in_a_straight_line_from_the_standoff():
+    """The approach arc is unplanned, so it must end clear of the object.
+
+    ``move_to_joints`` interpolates in joint space and ``solve_ik`` runs with
+    ``ik_world_collision_check=False``, so the sweep that reaches the stand-off
+    can pass through whatever it is pressing. Parking 13 cm out and covering
+    the rest with collinear Cartesian steps is what keeps it from toppling a
+    free-standing object.
+    """
+    harness = object.__new__(VisualRadioHarness)
+    harness.last_grasp = None
+    harness.grasp_arm = 1
+    harness.gripper_closed = {"left": False, "right": False}
+    harness.robot = SimpleNamespace(eef_to_fingertip_lengths={"left": {"finger": .02}})
+    observation = {"depth": np.ones((5, 5)), "intrinsics": np.eye(3), "world_from_camera": np.eye(4)}
+    with patch.object(harness, "get_observation", return_value=observation), \
+         patch.object(harness, "_trace"), patch.object(harness, "close_gripper"), \
+         patch.object(harness, "save_current_observation"), \
+         patch.object(harness, "_action", return_value=np.zeros(1)), \
+         patch.object(harness, "_step"), \
+         patch.object(harness, "get_current_joint_positions", return_value=np.zeros(1)), \
+         patch.object(harness, "get_current_eef_pose",
+                      return_value=(np.zeros(3), np.array([1., 0., 0., 0.]))), \
+         patch.object(harness, "solve_ik", return_value=np.zeros(1)), \
+         patch.object(harness, "move_to_joints"), \
+         patch.object(harness, "move_hand", return_value=True) as move:
+        assert harness.press_at_pixel(2, 2, arm=0, travel=.008, surface_offset=.004)
+    # With K = I and unit depth, pixel (2, 2) backprojects to [2, -2, -1], so
+    # the press normal is that direction normalised.
+    direction = np.array([2., -2., -1.]) / 3.0
+    poses = [call.args[0][0] for call in move.call_args_list]
+    assert len(poses) == 4, poses
+    # every commanded pose lies on one line along the press normal
+    for pose in poses[1:]:
+        offset = pose - poses[0]
+        assert np.allclose(offset, direction * float(np.dot(offset, direction)), atol=1e-9)
+    # and the advance spans the full stand-off (0.13) plus the travel (0.008)
+    span = float(np.dot(poses[-1] - poses[0], direction))
+    assert abs(span - 0.138) < 1e-6, span
+
+
+def test_connected_component_pass_is_bounded():
+    """A rollout once stalled with its trace frozen; the red pass is capped."""
+    import importlib.util
+    path = Path(__file__).resolve().parents[4] / "scripts/aspire_radio/press_marker_policy.py"
+    source = path.read_text()
+    namespace = {"np": np}
+    helpers = source[source.index("COMPONENT_PIXEL_BUDGET"):source.index("def observed_radio")]
+    exec(compile(helpers, "helpers", "exec"), namespace, namespace)  # noqa: S102
+    mask = np.ones((400, 400), dtype=bool)          # 160k pixels, over the budget
+    found = namespace["connected_components"](mask, 1)
+    assert len(found) == 1                          # one giant blob, then stop
+    checkerboard = np.zeros((200, 200), dtype=bool)
+    checkerboard[::2, ::2] = True                   # 10k separate components
+    assert len(namespace["connected_components"](checkerboard, 1)) <= namespace["COMPONENT_COUNT_BUDGET"]
