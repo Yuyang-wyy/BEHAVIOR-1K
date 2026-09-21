@@ -19,6 +19,8 @@ def main():
     parser.add_argument("--robot-config", type=Path)
     parser.add_argument("--grasping-mode", choices=("physical", "assisted"))
     parser.add_argument("--mode", choices=("train", "public_test", "hidden_test"), default="train")
+    parser.add_argument("--task", default="turning_on_radio",
+                        help="BEHAVIOR activity name; the harness itself is task agnostic")
     parser.add_argument("--sam3-url", default="http://127.0.0.1:8114")
     parser.add_argument("--grounding", choices=("sam3", "codex-pixels"), default="sam3")
     parser.add_argument("--max-steps", type=int, default=2500)
@@ -57,7 +59,7 @@ def main():
         "model": {"_target_": "omnigibson.eval.policies.LocalPolicy", "action_dim": None},
         "headless": True, "partial_scene_load": True, "max_steps": args.max_steps,
         "write_video": args.record_video, "write_side_video": False,
-        "mode": args.mode, "task": {"name": "turning_on_radio"}, "robot": OmegaConf.load(robot_config),
+        "mode": args.mode, "task": {"name": args.task}, "robot": OmegaConf.load(robot_config),
     })
     if args.grasping_mode is not None:
         cfg.robot.grasping_mode = args.grasping_mode
@@ -68,7 +70,7 @@ def main():
                     root / "OmniGibson/omnigibson/eval/aspire/visual_radio_harness.py",
                     root / "OmniGibson/omnigibson/eval/aspire/visual_perception.py",
                     root / "OmniGibson/omnigibson/utils/aspire_kinematics.py"]
-    payload = {"task": "turning_on_radio", "mode": args.mode, "instance": args.instance, "seed": args.seed,
+    payload = {"task": args.task, "mode": args.mode, "instance": args.instance, "seed": args.seed,
                "grounding_backend": args.grounding,
                "policy_inputs": ["RGB-D", "robot proprioception", "official relative camera calibration",
                                  "static robot finger geometry", "body-velocity odometry"],
