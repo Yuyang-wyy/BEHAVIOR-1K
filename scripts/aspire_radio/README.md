@@ -244,6 +244,34 @@ Optional torso-locked IK prevents hand setup from changing the head-camera pitch
 contact attempts lock the torso, while some approach and correction paths allow
 torso movement. Motor holds retain command targets, not measured drift.
 
+## clean_a_keyboard policy, 2026-09-21
+
+Second task, `clean_a_keyboard` (`office_cubicles_right`, public instances
+301-320, official step limit 5814, assisted grasping). The goal is
+`not covered keyboard dust`: pick up the pipe cleaner and sweep all 20 dust
+particles off the keyboard. Full history, measurements and failure analysis:
+`KEYBOARD_RESULTS.md`.
+
+| policy | tuning seeds `2026092200+i-300` | fresh seeds `2026093100+i-300` |
+|---|---|---|
+| `wipe_keyboard_policy.py` (v1, first success) | 1/20 | - |
+| `wipe_keyboard_policy_v38.py` (best on tuning seeds) | 4/20 | - |
+| `wipe_keyboard_policy_v40.py` (latest) | - | 1/20 |
+| v35 (not committed; see `KEYBOARD_RESULTS.md`) | 3/20 | 1/20 |
+
+The honest rate is the fresh-seed one, about 5%. Harness calls used: RGB-D
+`get_observation`, `mask_to_world_points`, `get_robot_position` (odometry),
+`rotate_base`, `navigate_to_pose`, `sample_grasp_pose_from_points`,
+`open_gripper` / `close_gripper`, `lift_arm`, `move_hand`, `move_to_joints`,
+`move_to_posture`, `get_current_eef_pose`, `get_current_joint_positions`,
+`save_current_observation`. No privileged simulator state reaches the policy;
+the runner's `ASPIRE_DEBUG_AABB=1` log and `debug_remaining_particles` are
+evaluator-side diagnostics only.
+
+The main open failure is the robot tipping or climbing while it carries the
+tool: the reported camera pose assumes a level base, so later point clouds are
+tilted and both detection and arm targets go wrong.
+
 ## Run
 
 From the BEHAVIOR-1K root, use the existing `behavior` Python environment:

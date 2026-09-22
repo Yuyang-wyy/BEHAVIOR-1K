@@ -104,6 +104,35 @@ def main():
                     % (inst, entry["object"], ",".join(entry["meta_links"]) or "none", entry["aabb"]))
 
           options = task.ground_goal_state_options or []
+          # Which object states matter here, and what do they require?  For a
+          # cleaning task the question is whether touching with the tool is
+          # enough, or whether the remover carries extra conditions.
+          print("\nstates of interest:")
+          for inst, obj in sorted(task.object_scope.items()):
+              if obj is None or not hasattr(obj, "states"):
+                  continue
+              names = sorted(st.__name__ for st in obj.states)
+              interesting = [n for n in names
+                             if n in ("ParticleRemover", "ParticleApplier", "Covered",
+                                      "ToggledOn", "Open", "AttachedTo")]
+              if interesting:
+                  print("   %-20s %s" % (inst, interesting))
+              for st in obj.states:
+                  if st.__name__ != "ParticleRemover":
+                      continue
+                  state = obj.states[st]
+                  try:
+                      conds = getattr(state, "conditions", None)
+                      print("      ParticleRemover method=%s conditions=%s"
+                            % (getattr(state, "method", "?"),
+                               {k: [str(c) for c in (v or [])] for k, v in (conds or {}).items()}))
+                      report["particle_remover"] = {
+                          "object": inst,
+                          "method": str(getattr(state, "method", "?")),
+                          "systems": sorted((conds or {}).keys())}
+                  except Exception as err:
+                      print("      ParticleRemover inspect failed: %s" % err)
+
           # What can this gripper actually hold? Assisted grasping needs the
           # object between the fingers: contact AND a ray from a start point on
           # one finger to an end point on the other passing through it. The

@@ -94,6 +94,57 @@ def main():
                 evaluator.start_recording(str((args.output_dir / "rollout.mp4").resolve()))
                 evaluator._write_video()
             harness = VisualRadioHarness(evaluator, args.output_dir, args.sam3_url)
+            # A stalled trial (trace stops, one core busy, GPU idle) has been
+            # seen twice with no way to attach a debugger; dump every thread's
+            # stack if the trial runs past 15 minutes.
+            import faulthandler
+            stack_dump = open(args.output_dir / "stack_dump.txt", "w")
+            faulthandler.dump_traceback_later(900, repeat=True, file=stack_dump)
+            import os
+            if os.environ.get("ASPIRE_DEBUG_AABB"):
+                # Evaluator-side debugging only: log where the tool and keyboard
+                # are and where the dust sits, every few steps, to a file the
+                # policy never sees. Enabled only for diagnostic runs.
+                from omnigibson.systems.system_base import VisualParticleSystem
+                scene = evaluator.env.scene
+                tool_obj = next((o for o in scene.objects if "pipe_cleaner" in o.category), None)
+                keyboard_obj = next((o for o in scene.objects if o.category == "keyboard"), None)
+                debug_file = open(args.output_dir / "debug_aabb.jsonl", "w")
+                original_step = harness._step
+
+                def logged_step(action):
+                    original_step(action)
+                    if harness.steps % 5 or tool_obj is None or keyboard_obj is None:
+                        return
+                    record = {"step": harness.steps,
+                              "tool": [v.tolist() for v in (x.detach().cpu().numpy() for x in tool_obj.aabb)],
+                              "tool_visual": [v.tolist() for v in (x.detach().cpu().numpy()
+                                                                   for x in tool_obj.root_link.visual_aabb)],
+                              "keyboard": [v.tolist() for v in (x.detach().cpu().numpy() for x in keyboard_obj.aabb)]}
+                    try:
+                        robot = evaluator.env.robots[0]
+                        record["eef"] = robot.get_eef_position(arm="right").detach().cpu().numpy().round(4).tolist()
+                        record["base"] = robot.get_position_orientation()[0].detach().cpu().numpy().round(4).tolist()
+                    except Exception as error:
+                        record["robot_error"] = repr(error)[:120]
+                    try:
+                        from omnigibson.object_states import ModifiedParticles, ParticleRemover, Saturated
+                        dust_system = scene.get_system("dust", force_init=False)
+                        record["modified"] = int(tool_obj.states[ModifiedParticles].get_value(dust_system))
+                        record["saturated"] = bool(tool_obj.states[Saturated].get_value(system=dust_system))
+                        record["remover"] = ParticleRemover in tool_obj.states
+                    except Exception as error:
+                        record["state_error"] = repr(error)[:120]
+                    for system in scene.active_systems.values():
+                        if isinstance(system, VisualParticleSystem):
+                            group = VisualParticleSystem.get_group_name(obj=keyboard_obj)
+                            if group in system.groups and system.num_group_particles(group=group):
+                                positions = system.get_group_particles_position_orientation(group=group)[0]
+                                record["dust"] = positions.detach().cpu().numpy().round(4).tolist()
+                    debug_file.write(json.dumps(record) + "\n")
+                    debug_file.flush()
+
+                harness._step = logged_step
             try:
                 for camera in ("head", "right_wrist", "left_wrist"):
                     harness.save_current_observation(f"initial_{camera}", camera)
@@ -102,6 +153,30 @@ def main():
                     payload["blocks"] = [dataclasses.asdict(block) for block in executor.run_source(source)]
                 # Evaluator-only score: never injected into policy APIs or observations.
                 payload["task_success"] = bool(evaluator.env.task.success)
+                # Evaluator-only debugging aid with the same standing as the
+                # score above: which covering particles are left, in each
+                # object's own frame. Written after the policy has finished and
+                # never passed to any policy API.
+                try:
+                    from omnigibson.systems.system_base import VisualParticleSystem
+                    remaining = {}
+                    scene = evaluator.env.scene
+                    for system in scene.active_systems.values():
+                        if not isinstance(system, VisualParticleSystem):
+                            continue
+                        for obj in scene.objects:
+                            group = VisualParticleSystem.get_group_name(obj=obj)
+                            if group not in system.groups:
+                                continue
+                            count = int(system.num_group_particles(group=group))
+                            local = system.get_group_particles_local_pose(group=group)[0] if count else []
+                            remaining[f"{system.name}@{obj.name}"] = {
+                                "count": count,
+                                "local_positions": [[round(float(v), 4) for v in row] for row in local],
+                            }
+                    payload["debug_remaining_particles"] = remaining
+                except Exception as error:  # diagnostics must never break a trial
+                    payload["debug_remaining_particles"] = f"unavailable: {error!r}"
                 payload["steps"] = harness.steps
                 payload["terminated"] = bool(harness.terminated)
                 payload["truncated"] = bool(harness.truncated)
