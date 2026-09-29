@@ -152,3 +152,26 @@ Live 314 (0.4, alone 0): drove to the dining switch myself (poke skill found it 
 but after my repositioning Comet on the global prompt turned off both the dining (at ~322 s) and the kitchen switch.
 Tally on 311/313/314: live 0.33 mean vs alone 0.13 (seed 0). Gains came from getting Comet to the right room
 (scripted drives, look) and one scripted poke; losses from the utility room detour on 311.
+
+### High-switch poke (update)
+`poke_marker.py --horizontal --normal --square` now handles 1.44 m wall switches: fit the wall plane from 8
+depth points around the marker, drive the base to 0.65 m in front of the wall facing it, point the gripper
+horizontally at the switch (base-frame quat = yaw toward the wall * 90 deg pitch), approach from 15 cm, push until
+blocked, retract. Dev test on 314 (snapshot, dining switch): 3/4 presses toggled it (one from the angled
+start view with full square-up). Kitchen switch (0.94 m) with --horizontal: 1/1.
+`green_watch.py` is the reflex trigger: runs Comet checkpoints until a green marker is within 1.2 m.
+Live 315: robot starts in a closed stub room (7/20 instances do); neither Comet nor manual grips opened the
+sliding door in 330 s (handle at 1.18 m needs the base within ~0.6 m; two grips closed on air). That door, not
+the switches, is the failure point for stub-room starts.
+
+## thawing_frozen_food - diagnosis (Comet alone v2, 311-315 seed 0: 0.33, 0.22 x4)
+Every run: Comet opens the fridge within ~20-55 s, both foods thaw on their own (2 of 9 literals = 0.22), and
+Comet never carries a plate out (311 briefly lifted the chicken plate). The missing literals need the demo chain
+pick plate -> bar / microwave -> close door -> turn on, the same pattern that succeeded on cook_hot_dogs 311.
+Candidate for skill-prompt supervision.
+
+## chop_an_onion - diagnosis (Comet alone v2, 311-315: 0 x5)
+Dicing needs two knife contacts with the onion, then a pour; Comet never gets there. But 2 of the 4 literals are
+"parer inside sink" and "cutting board inside sink", reachable with trained skills ("pick up the parer from the
+bar", "place the parer in the drop in sink", "pick up the cutting board from the bar"). Supervision plan: bank
+those two for Q 0.5 first, then try the dice.

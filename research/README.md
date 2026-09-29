@@ -30,7 +30,7 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 | --- | --- | --- | --- |
 | picking_up_trash (311-320) | 0.40 (v2), 0.37 (old) | 0.70 (v2), 0.77 (old) | code-as-policy reflexes: scripted grasp when a hand stalls near a can, scripted place that levels the held bin |
 | cook_hot_dogs (311, 313, 315) | 0, 0, 0 | 1.0, 0, 0 | skill prompts for fridge/microwave steps + navigation help to reach the microwave |
-| turning_out_all_lights (311, 313, 314) | 0.4, 0, 0 | 0.2, 0.4, 0.4 | scripted drives to the right room + `poke_marker.py` on a low switch |
+| turning_out_all_lights (311, 313, 314) | 0.4, 0, 0 | 0.2, 0.4, 0.4 | scripted drives to the right room + `poke_marker.py` (now also 1.44 m switches, squared to the wall) |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
 | collecting_aluminum_cans / putting_away_toys | 0.53 / 0.65 | 0.27-0.46 / noise | takeovers hurt when Comet is already progressing |
