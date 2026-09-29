@@ -35,12 +35,12 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 | chop_an_onion (311-315, 2 seeds) | 0.0 (0/9) | 0.175 (7/10 score 0.25) | whichever tool Comet grasps + `place_at.py` into the sink; dicing too long for 320 s |
 | carrying_in_groceries (311-315) | 0.30 | 0.15 (hurts; banking the trunk locks the bag in) |
 | composting_waste (311-313) | 1.0, 0.5, 0.5 | 0.5, 0, 0 (hurts) | Comet already bins fruit; interventions cost the 182 s budget |
-| make_microwave_popcorn (311-315) | 0 x5 | 0.40 (2 successes) | code-as-policy: Comet walks to the bag, poke the burner's red marker, push the bag to the flame (`popcorn_burner.py`) |
+| make_microwave_popcorn (311-315, 2 seeds) | 0 x5 (seed 0) | 0.30 (3/10 full successes) | code-as-policy: Comet walks to the bag, poke the burner's red marker, push the bag to the flame (`popcorn_burner.py`) |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
 | collecting_aluminum_cans / putting_away_toys | 0.53 / 0.65 | 0.27-0.46 / noise | takeovers hurt when Comet is already progressing |
 
-Only picking_up_trash, chop_an_onion and (seed 0 so far) make_microwave_popcorn show gains that hold on a second seed.
+Only picking_up_trash and make_microwave_popcorn show gains that hold on a second seed.
 
 Noise: one seed per instance moves a 5-instance mean by 0.1-0.3, so only the picking_up_trash gain is
 well established. The others are 1-5 episodes and should be read as hints.

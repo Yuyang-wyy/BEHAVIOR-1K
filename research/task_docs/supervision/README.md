@@ -283,3 +283,12 @@ Live v2 seed 0: 0, **1.0, 1.0**, 0, 0 = **0.40 with 2 full successes** (Comet al
 - 311: navigation ran out the clock (robot starts in the living room, kitchen far).
 - 314/315: flame detector fired on a yellow object before any press, so the burner was never lit -> v3 requires
   a successful press before accepting the flame.
+Live v3 seed 1: 0, 0, 0, 0, **1.0** (315 cooked at step 3362). **Popcorn total: 3 successes / 10 episodes
+(Q 0.30) vs Comet alone 0/5 seed 0 (seed-1 baseline pending).** Failures v3: 311/313 navigation ran out
+(kitchen far from the start); 312 burner pressed but pushes didn't close the 0.2 m gap in time; 314 never found
+the burner marker (arrived at step 1950).
+
+### Correction: chop_an_onion with a third baseline seed
+Comet alone seed 2: 0.25, 0, 0.25, 0, 0.25 = 0.15. Over 3 seeds Comet alone = 0.067 (0, 0.05, 0.15); supervised
+0.175 over 2 seeds. The gain shrinks to ~0.1, i.e. at the noise level. Comet alone also sometimes drops the parer
+in the sink. **Not a demonstrated gain.**
