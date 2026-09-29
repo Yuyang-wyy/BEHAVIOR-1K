@@ -245,3 +245,20 @@ from 311 was not in the script). Groceries total 0.25/0.25/0.25/0/0 = 0.15 vs Co
 running): no demonstrated gain. Note: Comet alone on 311 scored 0.5 - it can carry the groceries when not
 interrupted; banking the trunk first locks the bag in the trunk and caps the episode at 0.25.
 Thawing seed-1 baseline 0.33/0.22/0.11/0.22/0.33 = 0.24 (seed 0 0.24): live 0.22 on 2 instances, no gain.
+
+## composting_waste (182 s limit)
+Live 311: 0.5 - skill move+pick stalled, my manual grasp (2nd try, hand 18 cm lower) held the pomegranate
+(0.082), "move to the trash can" + "place the half pomegranate in the trash can" released it inside at 113 s.
+Live 312: 0 - Comet wandered to the hallway, counter found by turning, two manual pomegranate grasps missed.
+Live 313: 0 - manual banana grasp missed; skill picked the banana (0.046) but "place ... in the trash can"
+never released in 25 s.
+Manual grasps on small fruit: 1/5. Time is the binding constraint (182 s).
+Comet alone (seed 0, run locally): 1.0, 0.5, 0.5, 0, 0.5 = 0.50 with one success. Live 0.5, 0, 0 on 311-313
+= **supervision hurts** (-0.33 on the same instances). Comet already picks and bins the fruit in ~60 s per item;
+my interventions (turns, manual grasps) cost the 182 s budget. Stopped.
+
+## Pattern across all tasks so far
+Supervision raised Q only where Comet alone was stuck at ~0 on a literal that a code skill or a single skill
+prompt can reach (picking_up_trash: scripted grasp/place; chop_an_onion: tool into the sink). Where Comet alone
+already scores (composting 0.50, groceries, cook_hot_dogs seed 1, lights seed 1), interventions lower Q.
+Rule: only intervene on tasks where Comet alone is ~0 on the target literal across 2 seeds.

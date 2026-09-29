@@ -34,6 +34,7 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 | thawing_frozen_food (311-312) | 0.24 (2 seeds) | 0.22 (no gain) | skill prompts: fridge, pick plate, bar; chicken lost to the fridge door closing |
 | chop_an_onion (311-315, 2 seeds) | 0.0 (0/9) | 0.175 (7/10 score 0.25) | whichever tool Comet grasps + `place_at.py` into the sink; dicing too long for 320 s |
 | carrying_in_groceries (311-315) | 0.5, 0 (partial) | 0.15 (no gain; banking the trunk locks the bag in) |
+| composting_waste (311-313) | 1.0, 0.5, 0.5 | 0.5, 0, 0 (hurts) | Comet already bins fruit; interventions cost the 182 s budget |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
 | collecting_aluminum_cans / putting_away_toys | 0.53 / 0.65 | 0.27-0.46 / noise | takeovers hurt when Comet is already progressing |
@@ -44,6 +45,8 @@ Noise: one seed per instance moves a 5-instance mean by 0.1-0.3, so only the pic
 well established. The others are 1-5 episodes and should be read as hints.
 
 ## Lessons
+
+- Only intervene where Comet alone is ~0 on the target literal across two seeds; elsewhere supervision lowered Q.
 
 - Supervision pays off where Comet has a specific, repeatable failure; fast code skills fix those best.
 - Live 5 s prompting is too slow for sub-2 s stalls, but works for strategic errors: wrong room, wrong
