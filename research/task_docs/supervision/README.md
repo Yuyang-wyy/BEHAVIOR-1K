@@ -175,3 +175,14 @@ Dicing needs two knife contacts with the onion, then a pour; Comet never gets th
 "parer inside sink" and "cutting board inside sink", reachable with trained skills ("pick up the parer from the
 bar", "place the parer in the drop in sink", "pick up the cutting board from the bar"). Supervision plan: bank
 those two for Q 0.5 first, then try the dice.
+Live chop_an_onion 311: 0 (alone 0). Comet picked the cutting board by its handle hole within 50 s, but
+"place the cutting board in the drop in sink" drove to the cooktop (sink lookalike), then idled at the sink edge;
+my manual move over the basin went the wrong way (IK with the arm near its limit) and dropped it on the counter.
+Time limit is only 320 s; the dice chain (onion to board, knife, 3 chops, pour) needs ~250 s of skills alone.
+Verdict: sink literals are the only realistic Q here; needs a reliable scripted "carry held object over a
+container and release" skill, which exists only for the trash bin (auto_place).
+Live thawing_frozen_food 312: 0.33 (alone 0.22). look -> turn -> "move to the fridge" -> "open the door of the
+fridge" -> "pick up the plate from the fridge" (bread plate, 128 s) -> "move to the bar" -> "place the plate on the
+bar" (+1 literal at 163 s). The chicken plate was never reached: the fridge door swung shut twice while Comet
+was away and "pick up the plate from the fridge" then idled at the closed door for 60+ s. Same pattern as
+cook_hot_dogs: manipulation skills work, the time budget is lost to doors and repositioning.
