@@ -270,3 +270,16 @@ different red marker (1.23 m high, 0.43 m away) - the choice of marker needs a h
 Moving the bag next to the flame (heat radius 0.2 m, ~0.35 m away) failed: a single hand push moved it 7 cm.
 `push_to.py` (iterative push skill) written, not yet validated. In one run Comet grasped the bag itself and
 spilled popcorn (spilled kernels no longer count). The v2 baseline for popcorn is still queued; parked until then.
+
+### popcorn burner pipeline (`popcorn_burner.py`, code-as-policy + Comet navigation)
+Comet alone v2 seed 0: 0 x5. Dev (snapshot reloads, not a legal run): burner on by poke, bag pushed toward the
+flame with push_to.py -> SUCCESS at step 3601 (Q 1.0).
+Live v1 on 311-315: 0 x5. Burner on 3/5 (red cooktop marker, height filter 0.85-0.97 m; the first press often
+hits another red marker). Failures: bag tracker lost the bag (template match) or colour-matched tan furniture
+2.5 m away; one navigation phase used the whole episode. Live v2: per-round colour re-detection with a 1.2 m range
+filter, navigation capped at 60 s.
+Live v2 seed 0: 0, **1.0, 1.0**, 0, 0 = **0.40 with 2 full successes** (Comet alone 0 x5).
+- 312: burner on 1st press, 2 pushes, cooked at step 3988. 313: 2nd poke attempt, pushes, cooked at 4447.
+- 311: navigation ran out the clock (robot starts in the living room, kitchen far).
+- 314/315: flame detector fired on a yellow object before any press, so the burner was never lit -> v3 requires
+  a successful press before accepting the flame.

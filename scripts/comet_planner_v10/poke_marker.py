@@ -39,6 +39,7 @@ def main():
     ap.add_argument("--arm", default="right")
     ap.add_argument("--max-range", type=float, default=1.1)
     ap.add_argument("--min-z", type=float, default=0.3)
+    ap.add_argument("--max-z", type=float, default=2.0)
     ap.add_argument("--push", type=float, default=0.065)
     ap.add_argument("--pick", default=None, help="u,v native head pixel to use instead of auto-detect")
     ap.add_argument("--color", default="green", choices=["green", "red"], help="press ON (green) or OFF (red) toggles")
@@ -60,7 +61,7 @@ def main():
         x, y, z = p["point_base"]
         rng = float(np.hypot(x, y))
         pts.append({"uv": [round(u), round(v)], "area": area, "p": [x, y, z], "range": round(rng, 2)})
-    ok = [q for q in pts if q["range"] <= a.max_range and q["p"][2] >= a.min_z]
+    ok = [q for q in pts if q["range"] <= a.max_range and a.min_z <= q["p"][2] <= a.max_z]
     print(json.dumps({"candidates": pts}))
     if not ok:
         print(json.dumps({"result": "no green marker in reach"}))
