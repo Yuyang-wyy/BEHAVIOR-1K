@@ -217,9 +217,31 @@ chop contacts + pour) and the second tool (board pick succeeded 2/5, never place
 Rule from now on: a supervision gain is claimed only against the mean of both baseline seeds.
 
 ### chop_an_onion, seed 1 (second seed)
-Live seed 1: 0.25, 0, 0.25, 0.25, 0 = 0.15. Comet alone seed 1 so far 0, 0, 0, 0 (5th running).
-**Over both seeds: supervised 0.175 (7/10 episodes score) vs Comet alone 0.0 (0/9).** First task with a
+Live seed 1: 0.25, 0, 0.25, 0.25, 0 = 0.15. Comet alone seed 1: 0, 0, 0, 0, 0.25.
+**Over both seeds: supervised 0.175 (7/10 episodes score) vs Comet alone 0.025 (1/10).** First task with a
 live-supervision gain that holds across seeds. Mechanism in 5 of the 7: Comet grasps a tool in the
 recipe's first minute; the carry to the sink knocks or drops the parer into it (3x) or place_at releases it
 (2x); board-in-sink twice. Failures: "pick up the parer from the bar" 0/5 when the parer lies flat; board
 dropped on the counter and not re-grasped (2x); long IK reaches from a low arm pose stop ~0.4 m short.
+Live thawing 311: 0.11 (alone 0.33). Bread plate out of the fridge by skill at 129 s (plate rim grip reads 0.005,
+thin), then Comet did a "hand over the plate" (trained, 447 demos) under "move to the bar", the left hand closed
+on nothing and the plate fell to the floor; no trained floor-plate pick. Thawing total live 0.11/0.33 vs alone
+0.33/0.22: no gain. Failure point: plate hand-overs and flat plates; not fixable with current skills.
+
+## Candidate search (zero-Q tasks with one cheap literal)
+Explore-agent ranking of 43 zero-Q task pages (see chat log 2026-09-28): carrying_in_groceries (close the car
+trunk, 1/4), composting_waste (one half into the bin, 1/2), picking_up_toys, make_microwave_popcorn (burner path),
+hiding_Easter_eggs, installing_a_scanner, cleaning_up_plates_and_food, outfit_a_basic_toolbox. Baselines queued.
+
+## carrying_in_groceries
+Live 311: 0.25 (trunk closed at 105 s). Comet grabbed the bag within 15 s; "close the lid of the car" brought
+the left hand under the raised lid but stalled 50 s; scripted push: left hand up 0.35, forward, down 0.6 ->
+`not open car` true. Then "move to the door" + "open the door of the door" opened the garage door, but the bag
+(and tomato) were dropped on the way; nothing else scored in 600 s.
+Groceries 313-315 were run by a script that replays my 311/312 decision (close skill until the trunk literal
+is true, then global, re-close if lost; `planner_runs/groceries_episode.sh`) - i.e. not live-supervised.
+Results 0.25, 0, 0: on 314/315 "close the lid of the car" never closed it in 3 tries of 90 s (the manual push
+from 311 was not in the script). Groceries total 0.25/0.25/0.25/0/0 = 0.15 vs Comet alone 0.5, 0 (3 more
+running): no demonstrated gain. Note: Comet alone on 311 scored 0.5 - it can carry the groceries when not
+interrupted; banking the trunk first locks the bag in the trunk and caps the episode at 0.25.
+Thawing seed-1 baseline 0.33/0.22/0.11/0.22/0.33 = 0.24 (seed 0 0.24): live 0.22 on 2 instances, no gain.
