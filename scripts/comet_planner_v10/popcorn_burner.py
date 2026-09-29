@@ -49,9 +49,16 @@ for attempt, fix in enumerate([None, {"turn_deg": -30}, {"turn_deg": -25}, {"for
     send(S, {"op": "trunk"})
     img = cv2.imread(send(S, {"op": "observe"})["images"]["head"])
     log.setdefault("poke", []).append(res[:80])
-    bgs = blobs(img, "bag")
-    fls = [f for f in blobs(img, "flame") if not bgs or np.hypot(f[0] - bgs[0][0], f[1] - bgs[0][1]) > 60]
-    if fls and '"pressed"' in res:
+    # ON check: a green toggle marker at cooktop height within reach (the burner's own marker turns green).
+    # A second press would toggle it off again, so stop pressing as soon as this is seen.
+    from poke_marker import green_blobs
+    greens = []
+    for u, v, area in green_blobs(img):
+        p = send(S, {"op": "point", "cam": "head", "u": u, "v": v})["point_base"]
+        if 0.85 <= p[2] <= 0.97 and np.hypot(p[0], p[1]) < 1.3:
+            greens.append([round(u), round(v)])
+    log.setdefault("green", []).append(greens)
+    if greens and '"pressed"' in res:
         on = True; break
 log["burner_on"] = on
 for k in range(6):                       # one push per round, bag and flame re-detected by colour each time

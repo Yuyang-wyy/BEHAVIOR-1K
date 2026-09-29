@@ -292,3 +292,13 @@ the burner marker (arrived at step 1950).
 Comet alone seed 2: 0.25, 0, 0.25, 0, 0.25 = 0.15. Over 3 seeds Comet alone = 0.067 (0, 0.05, 0.15); supervised
 0.175 over 2 seeds. The gain shrinks to ~0.1, i.e. at the noise level. Comet alone also sometimes drops the parer
 in the sink. **Not a demonstrated gain.**
+Live v4 (stop pressing once a green cooktop marker is seen), both seeds: 0/10. In 6 of 10 runs no red cooktop
+marker was in reach after Comet's "move to the popcorn bag" (arrival pose varies), so nothing was pressed; in the
+others the first presses hit other red markers (oven knob) before the burner.
+**Popcorn over all live runs: 3 full successes / 20 episodes (0.15) vs Comet alone 0/5 seed 0.** The success
+rate is limited by where Comet parks the robot, not by the press or push once the burner is in view (dev: 1/1).
+Next fix would be a scripted approach to a fixed stand-off in front of the cooktop (look + drive), not built.
+
+### picking_up_trash, second seed
+Comet alone seed 1: 0, 0.67, 0.33, 0.33, 0.33, 0.67, 0.33, 1.0, 0.67, 0.67 = 0.50 (seed 0: 0.40).
+Scripted grasp/place (v5) seed 1 in progress (1.0, 0.33 so far). v5 seed 0 was 0.70.
