@@ -302,3 +302,12 @@ Next fix would be a scripted approach to a fixed stand-off in front of the cookt
 ### picking_up_trash, second seed
 Comet alone seed 1: 0, 0.67, 0.33, 0.33, 0.33, 0.67, 0.33, 1.0, 0.67, 0.67 = 0.50 (seed 0: 0.40).
 Scripted grasp/place (v5) seed 1 in progress (1.0, 0.33 so far). v5 seed 0 was 0.70.
+Live v5 (search up to 2 m + square-up drive to the cooktop before pressing), both seeds: 0/10; several episodes
+crashed in the square-up drive and the rest pressed the wrong marker or none. **Popcorn over all 30 live episodes
+(v1-v5): 3 successes = 0.10**, all from v2/v3 (3/10). Later "fixes" did not help; the result is fragile and
+dominated by where Comet parks the robot. Treat as a weak, unconfirmed gain.
+
+### picking_up_trash scripted grasp/place (v5) on seed 1 - weakens the headline result
+v5 seed 1 (8 of 10 so far): 1.0, 0.33, 0, 0.33, 0.67, 0.33, 0.67, 0.67 = 0.50; Comet alone seed 1 = 0.50.
+So on the v2 checkpoint: seed 0 0.70 vs 0.40, seed 1 0.50 vs 0.50. On the old checkpoint the gain held on two
+seeds (0.77 vs 0.37, 0.73 vs 0.27). The v2 checkpoint may already fix part of the stall the reflexes target.

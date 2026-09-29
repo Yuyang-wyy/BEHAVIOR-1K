@@ -28,19 +28,19 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 
 | task | Comet alone | supervised | how |
 | --- | --- | --- | --- |
-| picking_up_trash (311-320) | 0.40 (v2), 0.37 (old) | 0.70 (v2), 0.77 (old) | code-as-policy reflexes: scripted grasp when a hand stalls near a can, scripted place that levels the held bin |
+| picking_up_trash (311-320) | old: 0.37/0.27 (2 seeds); v2: 0.40/0.50 | old: 0.77/0.73; v2: 0.70/0.50 | code-as-policy reflexes: scripted grasp when a hand stalls near a can, scripted place that levels the held bin |
 | cook_hot_dogs (311, 313, 315) | seed 0: 0, 0, 0; seed 1: 0.5, 0.5, 1.0 | 1.0, 0, 0 | skill prompts for fridge/microwave steps + navigation help to reach the microwave |
 | turning_out_all_lights (311, 313-315) | seed 0: 0.4, 0, 0, 0; seed 1: 0.6, 0.4, 0.4, 0.4 | 0.2, 0.4, 0.4, 0 (no gain) | scripted drives to the right room + `poke_marker.py` (now also 1.44 m switches, squared to the wall) |
 | thawing_frozen_food (311-312) | 0.24 (2 seeds) | 0.22 (no gain) | skill prompts: fridge, pick plate, bar; chicken lost to the fridge door closing |
 | chop_an_onion (311-315, 2 seeds) | 0.0 (0/9) | 0.175 (7/10 score 0.25) | whichever tool Comet grasps + `place_at.py` into the sink; dicing too long for 320 s |
 | carrying_in_groceries (311-315) | 0.30 | 0.15 (hurts; banking the trunk locks the bag in) |
 | composting_waste (311-313) | 1.0, 0.5, 0.5 | 0.5, 0, 0 (hurts) | Comet already bins fruit; interventions cost the 182 s budget |
-| make_microwave_popcorn (311-315, 2 seeds) | 0 x5 (seed 0) | 0.15 (3/20 full successes over 4 pipeline versions) | code-as-policy: Comet walks to the bag, poke the burner's red marker, push the bag to the flame (`popcorn_burner.py`) |
+| make_microwave_popcorn (311-315, 2 seeds) | 0 x5 (seed 0) | 0.10 (3/30 full successes over 5 pipeline versions) - weak | code-as-policy: Comet walks to the bag, poke the burner's red marker, push the bag to the flame (`popcorn_burner.py`) |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
 | collecting_aluminum_cans / putting_away_toys | 0.53 / 0.65 | 0.27-0.46 / noise | takeovers hurt when Comet is already progressing |
 
-Only picking_up_trash and make_microwave_popcorn show gains that hold on a second seed.
+Only picking_up_trash on the old checkpoint shows a gain that holds on two seeds; on v2 it holds on seed 0 only, and popcorn is a weak 3/30 that hold on a second seed.
 
 Noise: one seed per instance moves a 5-instance mean by 0.1-0.3, so only the picking_up_trash gain is
 well established. The others are 1-5 episodes and should be read as hints.

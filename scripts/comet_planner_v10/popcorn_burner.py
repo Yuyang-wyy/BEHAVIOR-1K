@@ -41,11 +41,12 @@ send(S, {"op": "trunk"})
 for arm in ("left", "right"):
     send(S, {"op": "hand", "arm": arm, "forward": -0.25, "up": 0.1, "trunk": False, "why": "popcorn: tuck"})
 on = False
-for attempt, fix in enumerate([None, {"turn_deg": -30}, {"turn_deg": -25}, {"forward": -0.15}, {"turn_deg": 50}]):
+for attempt, fix in enumerate([None, {"turn_deg": -35}, {"turn_deg": 70}, {"turn_deg": 35}, {"turn_deg": 35}]):
     if over(): break
     if fix: send(S, {"op": "base", "gentle": True, **fix, "why": "popcorn: find burner marker"})
-    res = run(HERE / "poke_marker.py", S, "--arm", "right", "--horizontal", "--color", "red", "--max-range", "1.1",
-              "--min-z", "0.85", "--max-z", "0.97")
+    # search up to 2 m; --normal --square drives to 0.65 m in front of the cooktop face before pressing
+    res = run(HERE / "poke_marker.py", S, "--arm", "right", "--horizontal", "--normal", "--square", "--color", "red",
+              "--max-range", "2.0", "--min-z", "0.85", "--max-z", "0.97")
     send(S, {"op": "trunk"})
     img = cv2.imread(send(S, {"op": "observe"})["images"]["head"])
     log.setdefault("poke", []).append(res[:80])
