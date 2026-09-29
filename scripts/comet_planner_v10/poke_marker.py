@@ -19,6 +19,13 @@ def send(session, cmd, timeout=900):
     return json.loads(out.stdout.split("\nDONE")[0])
 
 
+def red_blobs(img):
+    b, g, r = img[..., 0].astype(int), img[..., 1].astype(int), img[..., 2].astype(int)
+    m = ((r > 150) & (r - g > 90) & (r - b > 90)).astype(np.uint8)
+    n, lab, stats, cent = cv2.connectedComponentsWithStats(m)
+    return [(float(cent[i][0]), float(cent[i][1]), int(stats[i][4])) for i in range(1, n) if 4 <= stats[i][4] <= 400]
+
+
 def green_blobs(img):
     b, g, r = img[..., 0].astype(int), img[..., 1].astype(int), img[..., 2].astype(int)
     m = ((g > 140) & (g - r > 70) & (g - b > 70)).astype(np.uint8)
@@ -34,6 +41,7 @@ def main():
     ap.add_argument("--min-z", type=float, default=0.3)
     ap.add_argument("--push", type=float, default=0.065)
     ap.add_argument("--pick", default=None, help="u,v native head pixel to use instead of auto-detect")
+    ap.add_argument("--color", default="green", choices=["green", "red"], help="press ON (green) or OFF (red) toggles")
     ap.add_argument("--horizontal", action="store_true",
                     help="point the gripper at the marker (approach axis horizontal) - needed for high wall switches")
     ap.add_argument("--normal", action="store_true", help="approach along the wall normal fitted from depth around the marker")
@@ -45,7 +53,7 @@ def main():
     if a.pick:
         cands = [tuple(map(float, a.pick.split(","))) + (0,)]
     else:
-        cands = green_blobs(img)
+        cands = green_blobs(img) if a.color == "green" else red_blobs(img)
     pts = []
     for u, v, area in cands:
         p = send(a.session, {"op": "point", "cam": "head", "u": u, "v": v})

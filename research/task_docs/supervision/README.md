@@ -262,3 +262,11 @@ Supervision raised Q only where Comet alone was stuck at ~0 on a literal that a 
 prompt can reach (picking_up_trash: scripted grasp/place; chop_an_onion: tool into the sink). Where Comet alone
 already scores (composting 0.50, groceries, cook_hot_dogs seed 1, lights seed 1), interventions lower Q.
 Rule: only intervene on tasks where Comet alone is ~0 on the target literal across 2 seeds.
+
+## make_microwave_popcorn, burner shortcut (dev only)
+`poke_marker.py --color red` turned the cooktop burner on from 0.7 m (red marker on the cooktop front -> green,
+flame on the left-back burner), 1/1 when the red marker nearest in range is the burner's. A second run picked a
+different red marker (1.23 m high, 0.43 m away) - the choice of marker needs a height/position filter.
+Moving the bag next to the flame (heat radius 0.2 m, ~0.35 m away) failed: a single hand push moved it 7 cm.
+`push_to.py` (iterative push skill) written, not yet validated. In one run Comet grasped the bag itself and
+spilled popcorn (spilled kernels no longer count). The v2 baseline for popcorn is still queued; parked until then.
