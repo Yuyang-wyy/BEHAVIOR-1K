@@ -241,8 +241,8 @@ the left hand under the raised lid but stalled 50 s; scripted push: left hand up
 Groceries 313-315 were run by a script that replays my 311/312 decision (close skill until the trunk literal
 is true, then global, re-close if lost; `planner_runs/groceries_episode.sh`) - i.e. not live-supervised.
 Results 0.25, 0, 0: on 314/315 "close the lid of the car" never closed it in 3 tries of 90 s (the manual push
-from 311 was not in the script). Groceries total 0.25/0.25/0.25/0/0 = 0.15 vs Comet alone 0.5, 0 (3 more
-running): no demonstrated gain. Note: Comet alone on 311 scored 0.5 - it can carry the groceries when not
+from 311 was not in the script). Groceries total 0.25/0.25/0.25/0/0 = 0.15 vs Comet alone 0.5, 0, 0.25, 0.25, 0.5 = 0.30:
+supervision hurts. Note: Comet alone on 311 scored 0.5 - it can carry the groceries when not
 interrupted; banking the trunk first locks the bag in the trunk and caps the episode at 0.25.
 Thawing seed-1 baseline 0.33/0.22/0.11/0.22/0.33 = 0.24 (seed 0 0.24): live 0.22 on 2 instances, no gain.
 

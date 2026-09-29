@@ -33,7 +33,7 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 | turning_out_all_lights (311, 313-315) | seed 0: 0.4, 0, 0, 0; seed 1: 0.6, 0.4, 0.4, 0.4 | 0.2, 0.4, 0.4, 0 (no gain) | scripted drives to the right room + `poke_marker.py` (now also 1.44 m switches, squared to the wall) |
 | thawing_frozen_food (311-312) | 0.24 (2 seeds) | 0.22 (no gain) | skill prompts: fridge, pick plate, bar; chicken lost to the fridge door closing |
 | chop_an_onion (311-315, 2 seeds) | 0.0 (0/9) | 0.175 (7/10 score 0.25) | whichever tool Comet grasps + `place_at.py` into the sink; dicing too long for 320 s |
-| carrying_in_groceries (311-315) | 0.5, 0 (partial) | 0.15 (no gain; banking the trunk locks the bag in) |
+| carrying_in_groceries (311-315) | 0.30 | 0.15 (hurts; banking the trunk locks the bag in) |
 | composting_waste (311-313) | 1.0, 0.5, 0.5 | 0.5, 0, 0 (hurts) | Comet already bins fruit; interventions cost the 182 s budget |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
