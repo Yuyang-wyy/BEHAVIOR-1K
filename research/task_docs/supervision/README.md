@@ -186,3 +186,24 @@ fridge" -> "pick up the plate from the fridge" (bread plate, 128 s) -> "move to 
 bar" (+1 literal at 163 s). The chicken plate was never reached: the fridge door swung shut twice while Comet
 was away and "pick up the plate from the fridge" then idled at the closed door for 60+ s. Same pattern as
 cook_hot_dogs: manipulation skills work, the time budget is lost to doors and repositioning.
+New code skill `place_at.py`: carry the held object over a head-camera pixel and release (lift, move over,
+lower, open, lift, straighten). Drive mode is unreliable (turn odometry drifts), so position first, re-point,
+then `--no-drive`. Dev on onion 311: "move to the drop in sink" with the board held put it right over the basin,
+plain release -> `inside board sink` true (1/1). Comet's "pick up the parer from the bar" 0/4 from a hover right
+over the handle (the parer lies against the backsplash); manual grip 0/1.
+Live chop_an_onion 312: 0.25 (alone 0). Comet grabbed the bowl instead of the board and knocked the parer into
+the sink while carrying it (+0.25 at 111 s). Then board: "move to the cutting board" + "pick up the cutting board
+from the bar" (held at 227 s) + "move to the drop in sink" + place_at: board landed tilted on the rim (centre
+above the basin), missed by a few cm.
+Live chop_an_onion 313: 0.25 (alone 0). "move to the cutting board" -> Comet picked the PARER (right hand,
+width 0.034) next to the sink -> place_at into the basin: `inside parer sink` at 128 s. The board then:
+pick skill grasped/released it on the counter twice; a base-driven sweep failed (arm could not get past the
+board's far edge); ran out. Tally live 0 / 0.25 / 0.25 vs alone 0 / 0 / 0.
+Recipe that generalises: whatever tool Comet grasps first (board or parer), carry it to the sink and release
+with place_at; one sink literal (0.25) per episode is reliable, the second is ~50/50.
+Live 314: 0.25 (Comet itself dropped the parer in the sink after the recipe start; board pick never grasped).
+Live 315: 0.25 (Comet grasped the parer; place_at into the basin at 110 s; then Comet picked the onion and
+drove to the board, but "place the vidalia onion on the cutting board" did not release in 40 s).
+**chop_an_onion total: live 0 / 0.25 / 0.25 / 0.25 / 0.25 = 0.20 vs alone 0 x5.** Every gain is one sink
+literal via the tool Comet grasps first + place_at. Not solvable in 320 s: dicing (needs onion on board + 2
+chop contacts + pour) and the second tool (board pick succeeded 2/5, never placed flat inside).

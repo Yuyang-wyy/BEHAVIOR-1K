@@ -13,7 +13,7 @@ Comet checkpoints: old ft 40k (`step-00040000`) and v2 (`v2-step-00040000`, skil
 | `scripts/comet_planner/` | harness v5: interactive episode server (`planner_episode.py`), client, batch runner, scripted grasp/place supervisor |
 | `scripts/comet_planner_v6..v8/` | takeover variants tried on other tasks (drop-in container, gated takeover) |
 | `scripts/comet_planner_v9/` | skill-prompt supervisor with optional scripted grasp fallback / scripted place |
-| `scripts/comet_planner_v10/` | same harness + `seq_supervisor.py` (demo skill sequencer, retired) + `poke_marker.py` code skill + GPU/hang guards |
+| `scripts/comet_planner_v10/` | same harness + code skills `poke_marker.py`, `place_at.py`, `green_watch.py`, `onion_board.sh` + GPU/hang guards (`seq_supervisor.py` retired) |
 
 ## Harness in one paragraph
 
@@ -32,7 +32,7 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 | cook_hot_dogs (311, 313, 315) | 0, 0, 0 | 1.0, 0, 0 | skill prompts for fridge/microwave steps + navigation help to reach the microwave |
 | turning_out_all_lights (311, 313-315) | 0.4, 0, 0, 0 | 0.2, 0.4, 0.4, 0 | scripted drives to the right room + `poke_marker.py` (now also 1.44 m switches, squared to the wall) |
 | thawing_frozen_food (312) | 0.22 | 0.33 | skill prompts: fridge, pick plate, bar; chicken lost to the fridge door closing |
-| chop_an_onion (311) | 0 | 0 | board-to-sink failed (Comet went to the cooktop); dicing chain longer than the 320 s limit |
+| chop_an_onion (311-315) | 0 x5 | 0.20 (0.25 on 4/5) | whichever tool Comet grasps + `place_at.py` into the sink; dicing too long for 320 s |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
 | collecting_aluminum_cans / putting_away_toys | 0.53 / 0.65 | 0.27-0.46 / noise | takeovers hurt when Comet is already progressing |
