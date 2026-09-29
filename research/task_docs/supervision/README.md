@@ -207,3 +207,19 @@ drove to the board, but "place the vidalia onion on the cutting board" did not r
 **chop_an_onion total: live 0 / 0.25 / 0.25 / 0.25 / 0.25 = 0.20 vs alone 0 x5.** Every gain is one sink
 literal via the tool Comet grasps first + place_at. Not solvable in 320 s: dicing (needs onion on board + 2
 chop contacts + pour) and the second tool (board pick succeeded 2/5, never placed flat inside).
+
+## Correction: second-seed baselines (Comet alone, v2)
+- turning_out_all_lights seed 1: 0.6, 0, 0.4, 0.4, 0.4 = 0.36. Seed 0 was 0.16. Live 0.25 (311, 313-315) is
+  within noise of Comet alone - no demonstrated gain on lights.
+- cook_hot_dogs seed 1: 0.5, 1, 0.5, 1, 1 = 0.80 (seed 0: 0.20). Live 0.33 on 311/313/315 is BELOW the seed-1
+  baseline; the 311 success is a single-instance result, not a gain.
+- chop_an_onion and thawing seed-1 baselines queued to check those two claims the same way.
+Rule from now on: a supervision gain is claimed only against the mean of both baseline seeds.
+
+### chop_an_onion, seed 1 (second seed)
+Live seed 1: 0.25, 0, 0.25, 0.25, 0 = 0.15. Comet alone seed 1 so far 0, 0, 0, 0 (5th running).
+**Over both seeds: supervised 0.175 (7/10 episodes score) vs Comet alone 0.0 (0/9).** First task with a
+live-supervision gain that holds across seeds. Mechanism in 5 of the 7: Comet grasps a tool in the
+recipe's first minute; the carry to the sink knocks or drops the parer into it (3x) or place_at releases it
+(2x); board-in-sink twice. Failures: "pick up the parer from the bar" 0/5 when the parer lies flat; board
+dropped on the counter and not re-grasped (2x); long IK reaches from a low arm pose stop ~0.4 m short.
