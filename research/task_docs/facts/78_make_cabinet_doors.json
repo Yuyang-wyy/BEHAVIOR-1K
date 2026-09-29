@@ -1,0 +1,444 @@
+{
+ "index": 78,
+ "name": "make_cabinet_doors",
+ "instruction": "Attach the cabinet door to the cabinet base.",
+ "title": "Make Cabinet Doors",
+ "rooms_listed": [
+  "bedroom",
+  "entryway",
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/rqqgwEPTLwk",
+ "scene_model": "Rs_int",
+ "comet_pretrain_sentence": "Attach the cabinet door to the cabinet base.",
+ "human": {
+  "mean_steps": 3442.525,
+  "mean_seconds": 114.8,
+  "step_limit": 5163,
+  "time_limit_seconds": 172.1,
+  "base_distance_m": 4.4664,
+  "eef_displacement_m": {
+   "left": 5.7108,
+   "right": 4.2765
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "entryway_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom",
+   "entryway",
+   "kitchen",
+   "living_room"
+  ],
+  "Rs_int": {
+   "whitelist": {
+    "cabinet_base.n.01": {
+     "cabinet_base": {
+      "dcmhhh": null
+     }
+    },
+    "cabinet_door.n.01": {
+     "cabinet_door": {
+      "ertkre": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem make_cabinet_doors-0)\n    (:domain behavior-1k)\n\n    (:objects\n        cabinet_base.n.01_1 - cabinet_base.n.01\n        cabinet_door.n.01_1 - cabinet_door.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inroom floor.n.01_1 living_room) \n        (ontop cabinet_base.n.01_1 floor.n.01_1) \n        (ontop cabinet_door.n.01_1 floor.n.01_1) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (attached ?cabinet_door.n.01_1 ?cabinet_base.n.01_1)\n        )\n    )\n)",
+ "scene": "Rs_int",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "cabinet_base.n.01": [
+   "cabinet_base.n.01_1"
+  ],
+  "cabinet_door.n.01": [
+   "cabinet_door.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop cabinet_base.n.01_1 floor.n.01_1)",
+  "(ontop cabinet_door.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching cabinet_base.n.01_1 floor.n.01_1)",
+  "(touching cabinet_door.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 cabinet_base.n.01_1)",
+  "(touching floor.n.01_1 cabinet_door.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(attached cabinet_door.n.01_1 cabinet_base.n.01_1)",
+    "negated": false,
+    "predicate": "attached",
+    "args": [
+     "cabinet_door.n.01_1",
+     "cabinet_base.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "attached",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "cabinet_base.n.01_1",
+   "scene_object": "cabinet_base_72",
+   "substance": false,
+   "category": "cabinet_base",
+   "model": "dcmhhh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.23,
+    "median": 0.23,
+    "max": 0.23
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 1.59,
+    "max": 3.3
+   },
+   "xy_spread_m": 4.81,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet_door.n.01_1",
+   "scene_object": "cabinet_door_73",
+   "substance": false,
+   "category": "cabinet_door",
+   "model": "ertkre",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.23,
+    "median": 0.23,
+    "max": 0.23
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.72,
+    "median": 1.31,
+    "max": 3.03
+   },
+   "xy_spread_m": 4.74,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ptwlei_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ptwlei",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.57,
+    "median": 1.0,
+    "max": 2.03
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_yxrmhe",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   0.59,
+   -0.56
+  ],
+  [
+   0.65,
+   -1.19
+  ],
+  [
+   0.84,
+   -2.74
+  ],
+  [
+   0.47,
+   -0.91
+  ],
+  [
+   0.3,
+   0.09
+  ],
+  [
+   0.5,
+   -1.89
+  ],
+  [
+   -0.0,
+   0.37
+  ],
+  [
+   0.41,
+   -0.39
+  ],
+  [
+   -0.02,
+   -0.19
+  ],
+  [
+   0.32,
+   -0.43
+  ],
+  [
+   0.49,
+   -1.47
+  ],
+  [
+   0.12,
+   0.32
+  ],
+  [
+   0.53,
+   -1.38
+  ],
+  [
+   0.48,
+   -1.0
+  ],
+  [
+   1.25,
+   -2.82
+  ],
+  [
+   0.4,
+   -1.61
+  ],
+  [
+   0.22,
+   0.41
+  ],
+  [
+   0.11,
+   -0.09
+  ],
+  [
+   0.43,
+   -0.68
+  ],
+  [
+   0.32,
+   0.12
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 5,
+   "median": 6.0,
+   "max": 9
+  },
+  "demo_seconds": {
+   "min": 64.6,
+   "median": 112.07,
+   "max": 222.27
+  },
+  "distinct_verb_sequences": 12,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "tip over",
+   "place on",
+   "attach"
+  ],
+  "modal_verb_sequence_share": 0.595,
+  "modal_verb_counts": {
+   "attach": 1,
+   "move to": 2,
+   "pick up from": 1,
+   "place on": 1,
+   "tip over": 1
+  },
+  "modal_verb_counts_share": 0.605,
+  "representative_episode": {
+   "file": "episode_00782310.json",
+   "seconds": 110.1,
+   "steps": [
+    {
+     "prompt": "move to the cabinet door",
+     "start_s": 0.0,
+     "end_s": 38.0
+    },
+    {
+     "prompt": "pick up the cabinet door from the floors",
+     "start_s": 38.0,
+     "end_s": 52.0
+    },
+    {
+     "prompt": "move to the cabinet base",
+     "start_s": 52.0,
+     "end_s": 70.5
+    },
+    {
+     "prompt": "tip over the cabinet base",
+     "start_s": 70.5,
+     "end_s": 77.8
+    },
+    {
+     "prompt": "place the cabinet door on the cabinet base",
+     "start_s": 77.8,
+     "end_s": 98.3
+    },
+    {
+     "prompt": "attach the cabinet door to the cabinet base",
+     "start_s": 98.3,
+     "end_s": 106.2
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "attach": 14.2,
+   "lift": 9.8,
+   "move to": 15.9,
+   "pick up from": 16.8,
+   "place on": 30.1,
+   "tip over": 13.8,
+   "turn to": 13.9
+  },
+  "verb_counts_total": {
+   "move to": 449,
+   "pick up from": 200,
+   "tip over": 200,
+   "place on": 200,
+   "attach": 200,
+   "turn to": 38,
+   "lift": 1
+  },
+  "top_prompts": [
+   [
+    "move to the cabinet base",
+    249
+   ],
+   [
+    "move to the cabinet door",
+    200
+   ],
+   [
+    "pick up the cabinet door from the floors",
+    200
+   ],
+   [
+    "place the cabinet door on the cabinet base",
+    200
+   ],
+   [
+    "attach the cabinet door to the cabinet base",
+    200
+   ],
+   [
+    "tip over the cabinet base",
+    199
+   ],
+   [
+    "turn to the cabinet door",
+    24
+   ],
+   [
+    "turn to the cabinet base",
+    14
+   ],
+   [
+    "tip over the cabinet door",
+    1
+   ],
+   [
+    "lift the cabinet door",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

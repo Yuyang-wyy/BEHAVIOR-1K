@@ -1,0 +1,816 @@
+{
+ "index": 70,
+ "name": "thawing_frozen_food",
+ "instruction": "Take the frozen food from the refrigerator, put it in the microwave, and heat it until it is thawed.",
+ "title": "Thawing Frozen Food",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/FF3HiYSHGdc",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Take the frozen food from the refrigerator, put it in the microwave, and heat it until it is thawed.",
+ "human": {
+  "mean_steps": 8229.62,
+  "mean_seconds": 274.3,
+  "step_limit": 12344,
+  "time_limit_seconds": 411.5,
+  "base_distance_m": 17.4536,
+  "eef_displacement_m": {
+   "left": 7.3009,
+   "right": 23.0254
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "kitchen"
+  ],
+  "house_double_floor_lower": {
+   "whitelist": {
+    "bread_slice.n.01": {
+     "bread_slice": {
+      "pfggnm": null
+     }
+    },
+    "chicken_breast.n.02": {
+     "chicken_breast": {
+      "iuuyre": [
+       0.135,
+       0.105,
+       0.04
+      ]
+     }
+    },
+    "plate.n.04": {
+     "plate": {
+      "kkmkbd": [
+       0.248,
+       0.248,
+       0.016
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem thawing_frozen_food-0)\n    (:domain behavior-1k)\n\n    (:objects\n        chicken_breast.n.02_1 - chicken_breast.n.02\n        bread_slice.n.01_1 - bread_slice.n.01\n        plate.n.04_1 plate.n.04_2 - plate.n.04\n        microwave.n.02_1 - microwave.n.02\n        countertop.n.01_1 - countertop.n.01\n    \telectric_refrigerator.n.01_1 - electric_refrigerator.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop chicken_breast.n.02_1 plate.n.04_1)\n        (ontop bread_slice.n.01_1 plate.n.04_2)\n        (inside plate.n.04_1 electric_refrigerator.n.01_1)\n        (inside plate.n.04_2 electric_refrigerator.n.01_1)\n        (frozen chicken_breast.n.02_1)\n        (frozen bread_slice.n.01_1)\n        (inroom microwave.n.02_1 kitchen)\n        (inroom countertop.n.01_1 kitchen)\n        (inroom electric_refrigerator.n.01_1 kitchen)\n        (inroom floor.n.01_1 kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (not\n                (frozen chicken_breast.n.02_1)\n            )\n            (exists\n                (?plate.n.04 - plate.n.04)\n                (and\n                    (ontop chicken_breast.n.02_1 ?plate.n.04)\n                    (inside ?plate.n.04 microwave.n.02_1)\n                )\n            )\n            (toggled_on microwave.n.02_1)\n            (not\n                (open microwave.n.02_1)\n            )\n            (not\n                (open electric_refrigerator.n.01_1)\n            )\n            (not\n                (frozen bread_slice.n.01_1)\n            )\n            (exists\n                (?plate.n.04 - plate.n.04)\n                (and\n                    (ontop bread_slice.n.01_1 ?plate.n.04)\n                    (ontop ?plate.n.04 countertop.n.01_1)\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "chicken_breast.n.02": [
+   "chicken_breast.n.02_1"
+  ],
+  "bread_slice.n.01": [
+   "bread_slice.n.01_1"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1",
+   "plate.n.04_2"
+  ],
+  "microwave.n.02": [
+   "microwave.n.02_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "microwave.n.02_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.001
+  }
+ },
+ "init_literals": [
+  "(frozen bread_slice.n.01_1)",
+  "(frozen chicken_breast.n.02_1)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom microwave.n.02_1 kitchen)",
+  "(inside plate.n.04_1 electric_refrigerator.n.01_1)",
+  "(inside plate.n.04_2 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bread_slice.n.01_1 plate.n.04_2)",
+  "(ontop chicken_breast.n.02_1 plate.n.04_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bread_slice.n.01_1 plate.n.04_2)",
+  "(touching chicken_breast.n.02_1 plate.n.04_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching plate.n.04_1 chicken_breast.n.02_1)",
+  "(touching plate.n.04_2 bread_slice.n.01_1)"
+ ],
+ "n_ground_options": 4,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 9,
+  "n_initially_true": 2,
+  "max_partial_q": 0.778,
+  "literals": [
+   {
+    "literal": "(not frozen chicken_breast.n.02_1))",
+    "negated": true,
+    "predicate": "frozen",
+    "args": [
+     "chicken_breast.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop chicken_breast.n.02_1 plate.n.04_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "chicken_breast.n.02_1",
+     "plate.n.04_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_2 microwave.n.02_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_2",
+     "microwave.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(toggled_on microwave.n.02_1)",
+    "negated": false,
+    "predicate": "toggled_on",
+    "args": [
+     "microwave.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open microwave.n.02_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "microwave.n.02_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open electric_refrigerator.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not frozen bread_slice.n.01_1))",
+    "negated": true,
+    "predicate": "frozen",
+    "args": [
+     "bread_slice.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop bread_slice.n.01_1 plate.n.04_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "bread_slice.n.01_1",
+     "plate.n.04_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop plate.n.04_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plate.n.04_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   9,
+   4
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   3
+  ],
+  [
+   "not frozen",
+   2
+  ],
+  [
+   "not open",
+   2
+  ],
+  [
+   "inside",
+   1
+  ],
+  [
+   "toggled_on",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "chicken_breast.n.02_1",
+   "scene_object": "chicken_breast_81",
+   "substance": false,
+   "category": "chicken_breast",
+   "model": "iuuyre",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.4972709119319916,
+    0.5004282593727112,
+    0.5063328742980957
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 1.33,
+    "max": 1.67
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.24,
+    "median": 2.59,
+    "max": 4.34
+   },
+   "xy_spread_m": 0.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "bread_slice.n.01_1",
+   "scene_object": "bread_slice_80",
+   "substance": false,
+   "category": "bread_slice",
+   "model": "pfggnm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 1.22,
+    "max": 1.67
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 2.48,
+    "max": 4.43
+   },
+   "xy_spread_m": 0.64,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_79",
+   "substance": false,
+   "category": "plate",
+   "model": "kkmkbd",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.7951093912124634,
+    0.7951093316078186,
+    1.011305809020996
+   ],
+   "z": {
+    "min": 0.71,
+    "median": 1.32,
+    "max": 1.66
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.23,
+    "median": 2.6,
+    "max": 4.34
+   },
+   "xy_spread_m": 0.64,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_2",
+   "scene_object": "plate_78",
+   "substance": false,
+   "category": "plate",
+   "model": "kkmkbd",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.7951093912124634,
+    0.7951093316078186,
+    1.011305809020996
+   ],
+   "z": {
+    "min": 0.71,
+    "median": 1.21,
+    "max": 1.66
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 2.48,
+    "max": 4.43
+   },
+   "xy_spread_m": 0.63,
+   "n_poses": 20
+  },
+  {
+   "inst": "microwave.n.02_1",
+   "scene_object": "microwave_hjjxmi_0",
+   "substance": false,
+   "category": "microwave",
+   "model": "hjjxmi",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998999238014221,
+    1.00001859664917,
+    0.9998341202735901
+   ],
+   "z": {
+    "min": 1.01,
+    "median": 1.01,
+    "max": 1.01
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.32,
+    "median": 2.23,
+    "max": 5.46
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_byvbuc_0",
+   "substance": false,
+   "category": "bar",
+   "model": "byvbuc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999271035194397,
+    1.0000065565109253,
+    1.0000300407409668
+   ],
+   "z": {
+    "min": 0.4,
+    "median": 0.4,
+    "max": 0.4
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.24,
+    "median": 2.2,
+    "max": 5.96
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_petcxr_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "petcxr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000007152557373,
+    1.00002920627594,
+    1.0000027418136597
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.33,
+    "median": 2.49,
+    "max": 4.69
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 1.97,
+    "max": 3.35
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_fngjjj",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   7.63,
+   2.27
+  ],
+  [
+   1.92,
+   2.78
+  ],
+  [
+   6.05,
+   0.92
+  ],
+  [
+   6.33,
+   0.89
+  ],
+  [
+   7.07,
+   0.49
+  ],
+  [
+   7.51,
+   2.58
+  ],
+  [
+   6.3,
+   0.7
+  ],
+  [
+   6.05,
+   0.64
+  ],
+  [
+   6.65,
+   2.57
+  ],
+  [
+   6.4,
+   1.47
+  ],
+  [
+   4.45,
+   2.96
+  ],
+  [
+   5.91,
+   0.9
+  ],
+  [
+   7.05,
+   0.97
+  ],
+  [
+   5.85,
+   0.59
+  ],
+  [
+   5.45,
+   2.88
+  ],
+  [
+   6.88,
+   1.13
+  ],
+  [
+   7.17,
+   2.14
+  ],
+  [
+   6.75,
+   1.5
+  ],
+  [
+   7.29,
+   1.85
+  ],
+  [
+   4.27,
+   3.05
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 15,
+   "median": 15.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 178.57,
+   "median": 259.83,
+   "max": 530.67
+  },
+  "distinct_verb_sequences": 17,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "hand over",
+   "close door",
+   "move to",
+   "open door",
+   "hand over",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.5,
+  "modal_verb_counts": {
+   "close door": 2,
+   "hand over": 2,
+   "move to": 4,
+   "open door": 2,
+   "pick up from": 2,
+   "place in": 1,
+   "place on": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.52,
+  "representative_episode": {
+   "file": "episode_00702220.json",
+   "seconds": 226.7,
+   "steps": [
+    {
+     "prompt": "move to the fridge",
+     "start_s": 0.0,
+     "end_s": 12.0
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 12.0,
+     "end_s": 47.3
+    },
+    {
+     "prompt": "pick up the plate from the fridge",
+     "start_s": 47.3,
+     "end_s": 62.0
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 62.0,
+     "end_s": 66.0
+    },
+    {
+     "prompt": "place the plate on the bar",
+     "start_s": 66.0,
+     "end_s": 75.0
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 75.0,
+     "end_s": 88.4
+    },
+    {
+     "prompt": "pick up the plate from the fridge",
+     "start_s": 88.4,
+     "end_s": 114.0
+    },
+    {
+     "prompt": "hand over the plate",
+     "start_s": 114.0,
+     "end_s": 134.0
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 134.0,
+     "end_s": 157.0
+    },
+    {
+     "prompt": "move to the microwave",
+     "start_s": 157.0,
+     "end_s": 161.0
+    },
+    {
+     "prompt": "open the door of the microwave",
+     "start_s": 161.0,
+     "end_s": 183.9
+    },
+    {
+     "prompt": "hand over the plate",
+     "start_s": 183.9,
+     "end_s": 197.8
+    },
+    {
+     "prompt": "place the plate in the microwave",
+     "start_s": 197.8,
+     "end_s": 211.0
+    },
+    {
+     "prompt": "close the door of the microwave",
+     "start_s": 211.0,
+     "end_s": 219.0
+    },
+    {
+     "prompt": "turn on the microwave",
+     "start_s": 219.0,
+     "end_s": 226.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 15.5,
+   "hand over": 12.5,
+   "move to": 12.1,
+   "open door": 30.1,
+   "pick up from": 24.1,
+   "place in": 15.2,
+   "place on": 11.4,
+   "push to": 18.0,
+   "turn on switch": 9.6
+  },
+  "verb_counts_total": {
+   "move to": 800,
+   "open door": 495,
+   "close door": 492,
+   "hand over": 447,
+   "pick up from": 400,
+   "place in": 207,
+   "turn on switch": 200,
+   "place on": 193,
+   "push to": 1
+  },
+  "top_prompts": [
+   [
+    "hand over the plate",
+    447
+   ],
+   [
+    "pick up the plate from the fridge",
+    400
+   ],
+   [
+    "move to the fridge",
+    398
+   ],
+   [
+    "open the door of the fridge",
+    295
+   ],
+   [
+    "close the door of the fridge",
+    292
+   ],
+   [
+    "move to the bar",
+    200
+   ],
+   [
+    "move to the microwave",
+    200
+   ],
+   [
+    "open the door of the microwave",
+    200
+   ],
+   [
+    "place the plate in the microwave",
+    200
+   ],
+   [
+    "close the door of the microwave",
+    200
+   ],
+   [
+    "turn on the microwave",
+    200
+   ],
+   [
+    "place the plate on the bar",
+    192
+   ],
+   [
+    "place the plate in the bar",
+    7
+   ],
+   [
+    "move to the plate",
+    2
+   ],
+   [
+    "place the plate on the countertop",
+    1
+   ],
+   [
+    "push the plate to the fridge",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.3333333333333333,
+   "success": false,
+   "steps": 12345
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.3333333333333333,
+   "success": false,
+   "steps": 12345
+  }
+ }
+}

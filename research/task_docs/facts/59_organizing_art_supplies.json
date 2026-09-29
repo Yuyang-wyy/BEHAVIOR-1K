@@ -1,0 +1,754 @@
+{
+ "index": 59,
+ "name": "organizing_art_supplies",
+ "instruction": "Put the marker, paintbrush, glue stick, and rubber eraser into the tote, then place the tote on the desk.",
+ "title": "Organizing Art Supplies",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://www.youtube.com/embed/M1D9oCKBJZg",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "Put the marker, paintbrush, glue stick, and rubber eraser into the tote, then place the tote on the desk.",
+ "human": {
+  "mean_steps": 6194.365,
+  "mean_seconds": 206.5,
+  "step_limit": 9291,
+  "time_limit_seconds": 309.7,
+  "base_distance_m": 11.5079,
+  "eef_displacement_m": {
+   "left": 12.29,
+   "right": 12.3566
+  }
+ },
+ "rooms_loaded": [
+  "bathroom_0",
+  "bedroom_0",
+  "bedroom_1",
+  "bedroom_2",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom"
+  ],
+  "house_double_floor_upper": {
+   "whitelist": {
+    "carryall.n.01": {
+     "tote": {
+      "bnkjle": null
+     }
+    },
+    "glue_stick.n.01": {
+     "glue_stick": {
+      "sqzyci": [
+       0.12,
+       0.03,
+       0.03
+      ]
+     }
+    },
+    "marker.n.03": {
+     "marker": {
+      "kjxpdi": [
+       0.14,
+       0.022,
+       0.022
+      ]
+     }
+    },
+    "paintbrush.n.01": {
+     "paintbrush": {
+      "gngyrk": [
+       0.18,
+       0.05,
+       0.015
+      ]
+     }
+    },
+    "rubber_eraser.n.01": {
+     "rubber_eraser": {
+      "cungod": [
+       0.075,
+       0.035,
+       0.02
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem organizing_art_supplies-0)\n    (:domain behavior-1k)\n\n    (:objects\n        desk.n.01_1 - desk.n.01\n        floor.n.01_1 - floor.n.01\n        carryall.n.01_1 - carryall.n.01\n        glue_stick.n.01_1 - glue_stick.n.01\n        rubber_eraser.n.01_1 - rubber_eraser.n.01\n        paintbrush.n.01_1 - paintbrush.n.01\n        marker.n.03_1 - marker.n.03\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop carryall.n.01_1 floor.n.01_1)\n        (ontop glue_stick.n.01_1 desk.n.01_1)\n        (ontop rubber_eraser.n.01_1 desk.n.01_1)\n        (ontop paintbrush.n.01_1 desk.n.01_1)\n        (ontop marker.n.03_1 desk.n.01_1)\n        (inroom floor.n.01_1 bedroom)\n        (inroom desk.n.01_1 bedroom)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (inside glue_stick.n.01_1 carryall.n.01_1)\n            (inside rubber_eraser.n.01_1 carryall.n.01_1)\n            (inside paintbrush.n.01_1 carryall.n.01_1)\n            (inside marker.n.03_1 carryall.n.01_1)\n            (ontop carryall.n.01_1 desk.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "desk.n.01": [
+   "desk.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "carryall.n.01": [
+   "carryall.n.01_1"
+  ],
+  "glue_stick.n.01": [
+   "glue_stick.n.01_1"
+  ],
+  "rubber_eraser.n.01": [
+   "rubber_eraser.n.01_1"
+  ],
+  "paintbrush.n.01": [
+   "paintbrush.n.01_1"
+  ],
+  "marker.n.03": [
+   "marker.n.03_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "desk.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom desk.n.01_1 bedroom)",
+  "(inroom floor.n.01_1 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop carryall.n.01_1 floor.n.01_1)",
+  "(ontop glue_stick.n.01_1 desk.n.01_1)",
+  "(ontop marker.n.03_1 desk.n.01_1)",
+  "(ontop paintbrush.n.01_1 desk.n.01_1)",
+  "(ontop rubber_eraser.n.01_1 desk.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching carryall.n.01_1 floor.n.01_1)",
+  "(touching desk.n.01_1 glue_stick.n.01_1)",
+  "(touching desk.n.01_1 marker.n.03_1)",
+  "(touching desk.n.01_1 paintbrush.n.01_1)",
+  "(touching desk.n.01_1 rubber_eraser.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 carryall.n.01_1)",
+  "(touching glue_stick.n.01_1 desk.n.01_1)",
+  "(touching marker.n.03_1 desk.n.01_1)",
+  "(touching paintbrush.n.01_1 desk.n.01_1)",
+  "(touching rubber_eraser.n.01_1 desk.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 5,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside glue_stick.n.01_1 carryall.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "glue_stick.n.01_1",
+     "carryall.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside rubber_eraser.n.01_1 carryall.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "rubber_eraser.n.01_1",
+     "carryall.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside paintbrush.n.01_1 carryall.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "paintbrush.n.01_1",
+     "carryall.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside marker.n.03_1 carryall.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "marker.n.03_1",
+     "carryall.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop carryall.n.01_1 desk.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "carryall.n.01_1",
+     "desk.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   5,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   4
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "desk.n.01_1",
+   "scene_object": "desk_aduafr_0",
+   "substance": false,
+   "category": "desk",
+   "model": "aduafr",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999683499336243,
+    0.9999781847000122,
+    0.9999521970748901
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.44
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 1.96,
+    "max": 2.84
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_nlswvt_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nlswvt",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000108480453491,
+    1.0000033378601074,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.16,
+    "median": 0.64,
+    "max": 1.51
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "carryall.n.01_1",
+   "scene_object": "tote_93",
+   "substance": false,
+   "category": "tote",
+   "model": "bnkjle",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.19,
+    "median": 0.19,
+    "max": 0.19
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 1.3,
+    "max": 2.31
+   },
+   "xy_spread_m": 3.62,
+   "n_poses": 20
+  },
+  {
+   "inst": "glue_stick.n.01_1",
+   "scene_object": "glue_stick_92",
+   "substance": false,
+   "category": "glue_stick",
+   "model": "sqzyci",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.89,
+    "median": 1.86,
+    "max": 3.04
+   },
+   "xy_spread_m": 1.38,
+   "n_poses": 20
+  },
+  {
+   "inst": "rubber_eraser.n.01_1",
+   "scene_object": "rubber_eraser_91",
+   "substance": false,
+   "category": "rubber_eraser",
+   "model": "cungod",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 1.88,
+    "max": 3.16
+   },
+   "xy_spread_m": 1.49,
+   "n_poses": 20
+  },
+  {
+   "inst": "paintbrush.n.01_1",
+   "scene_object": "paintbrush_90",
+   "substance": false,
+   "category": "paintbrush",
+   "model": "gngyrk",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 1.85,
+    "max": 2.76
+   },
+   "xy_spread_m": 1.24,
+   "n_poses": 20
+  },
+  {
+   "inst": "marker.n.03_1",
+   "scene_object": "marker_89",
+   "substance": false,
+   "category": "marker",
+   "model": "kjxpdi",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 2.02,
+    "max": 3.37
+   },
+   "xy_spread_m": 1.29,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_lfhdqr",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -4.8,
+   1.73
+  ],
+  [
+   -4.41,
+   1.69
+  ],
+  [
+   -3.53,
+   2.23
+  ],
+  [
+   -4.61,
+   1.86
+  ],
+  [
+   -4.44,
+   1.77
+  ],
+  [
+   -5.17,
+   1.48
+  ],
+  [
+   -3.61,
+   1.76
+  ],
+  [
+   -4.89,
+   1.2
+  ],
+  [
+   -5.63,
+   0.98
+  ],
+  [
+   -3.55,
+   1.97
+  ],
+  [
+   -4.05,
+   1.79
+  ],
+  [
+   -5.31,
+   1.17
+  ],
+  [
+   -3.78,
+   1.94
+  ],
+  [
+   -3.77,
+   1.32
+  ],
+  [
+   -4.46,
+   1.34
+  ],
+  [
+   -4.02,
+   1.76
+  ],
+  [
+   -5.22,
+   1.38
+  ],
+  [
+   -4.92,
+   1.75
+  ],
+  [
+   -4.22,
+   1.73
+  ],
+  [
+   -4.05,
+   1.51
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 15,
+   "median": 17.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 134.33,
+   "median": 201.42,
+   "max": 332.17
+  },
+  "distinct_verb_sequences": 15,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.805,
+  "modal_verb_counts": {
+   "move to": 7,
+   "pick up from": 5,
+   "place in": 4,
+   "place on": 1
+  },
+  "modal_verb_counts_share": 0.82,
+  "representative_episode": {
+   "file": "episode_00591790.json",
+   "seconds": 202.3,
+   "steps": [
+    {
+     "prompt": "move to the marker",
+     "start_s": 0.0,
+     "end_s": 7.9
+    },
+    {
+     "prompt": "pick up the marker from the desk",
+     "start_s": 7.9,
+     "end_s": 29.0
+    },
+    {
+     "prompt": "move to the rubber eraser",
+     "start_s": 29.0,
+     "end_s": 34.0
+    },
+    {
+     "prompt": "pick up the rubber eraser from the desk",
+     "start_s": 34.0,
+     "end_s": 56.0
+    },
+    {
+     "prompt": "move to the tote",
+     "start_s": 56.0,
+     "end_s": 66.0
+    },
+    {
+     "prompt": "place the marker in the tote",
+     "start_s": 66.0,
+     "end_s": 79.0
+    },
+    {
+     "prompt": "place the rubber eraser in the tote",
+     "start_s": 79.0,
+     "end_s": 104.0
+    },
+    {
+     "prompt": "move to the glue stick",
+     "start_s": 104.0,
+     "end_s": 109.9
+    },
+    {
+     "prompt": "pick up the glue stick from the desk",
+     "start_s": 109.9,
+     "end_s": 123.0
+    },
+    {
+     "prompt": "move to the paintbrush",
+     "start_s": 123.0,
+     "end_s": 128.2
+    },
+    {
+     "prompt": "pick up the paintbrush from the desk",
+     "start_s": 128.2,
+     "end_s": 142.0
+    },
+    {
+     "prompt": "move to the tote",
+     "start_s": 142.0,
+     "end_s": 159.0
+    },
+    {
+     "prompt": "place the paintbrush in the tote",
+     "start_s": 159.0,
+     "end_s": 172.0
+    },
+    {
+     "prompt": "place the glue stick in the tote",
+     "start_s": 172.0,
+     "end_s": 182.1
+    },
+    {
+     "prompt": "pick up the tote from the floors",
+     "start_s": 182.1,
+     "end_s": 189.6
+    },
+    {
+     "prompt": "move to the desk",
+     "start_s": 189.6,
+     "end_s": 196.2
+    },
+    {
+     "prompt": "place the tote on the desk",
+     "start_s": 196.2,
+     "end_s": 202.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 9.8,
+   "pick up from": 16.7,
+   "place in": 11.1,
+   "place on": 10.0
+  },
+  "verb_counts_total": {
+   "move to": 1399,
+   "pick up from": 1000,
+   "place in": 800,
+   "place on": 200
+  },
+  "top_prompts": [
+   [
+    "move to the tote",
+    418
+   ],
+   [
+    "pick up the marker from the desk",
+    201
+   ],
+   [
+    "move to the paintbrush",
+    200
+   ],
+   [
+    "place the marker in the tote",
+    200
+   ],
+   [
+    "place the paintbrush in the tote",
+    200
+   ],
+   [
+    "pick up the glue stick from the desk",
+    200
+   ],
+   [
+    "pick up the rubber eraser from the desk",
+    200
+   ],
+   [
+    "place the rubber eraser in the tote",
+    200
+   ],
+   [
+    "place the glue stick in the tote",
+    200
+   ],
+   [
+    "pick up the tote from the floors",
+    200
+   ],
+   [
+    "place the tote on the desk",
+    200
+   ],
+   [
+    "pick up the paintbrush from the desk",
+    199
+   ],
+   [
+    "move to the marker",
+    197
+   ],
+   [
+    "move to the rubber eraser",
+    197
+   ],
+   [
+    "move to the desk",
+    194
+   ],
+   [
+    "move to the glue stick",
+    193
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 9292
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 9292
+  }
+ }
+}

@@ -1,0 +1,490 @@
+{
+ "index": 92,
+ "name": "installing_a_scanner",
+ "instruction": "Install the scanner by turning it on and leaving it on the desk near the laptop.",
+ "title": "Installing A Scanner",
+ "rooms_listed": [
+  "private_office"
+ ],
+ "video": "https://www.youtube.com/embed/fVy3dPNOBYk",
+ "scene_model": "office_cubicles_right",
+ "comet_pretrain_sentence": "Install the scanner by turning it on and leaving it on the desk near the laptop.",
+ "human": {
+  "mean_steps": 4258.535,
+  "mean_seconds": 142.0,
+  "step_limit": 6387,
+  "time_limit_seconds": 212.9,
+  "base_distance_m": 6.4139,
+  "eef_displacement_m": {
+   "left": 7.0658,
+   "right": 7.8887
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "private_office_0",
+  "private_office_1",
+  "private_office_2",
+  "private_office_3",
+  "copy_room_0",
+  "shared_office_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "private_office"
+  ],
+  "office_cubicles_right": {
+   "whitelist": {
+    "scanner.n.02": {
+     "scanner": {
+      "juzkjp": null
+     }
+    },
+    "laptop.n.01": {
+     "laptop": {
+      "nvulcs": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem installing_a_scanner-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tscanner.n.02_1 - scanner.n.02\n        laptop.n.01_1 - laptop.n.01\n    \ttable.n.02_1 - table.n.02\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop scanner.n.02_1 table.n.02_1)\n        (not \n            (toggled_on scanner.n.02_1)\n        )\n        (ontop laptop.n.01_1 table.n.02_1)\n        (inroom table.n.02_1 private_office) \n        (inroom floor.n.01_1 private_office) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (toggled_on ?scanner.n.02_1) \n            (nextto ?scanner.n.02_1 ?laptop.n.01_1)\n        )\n    )\n)",
+ "scene": "office_cubicles_right",
+ "n_public_instances": 20,
+ "room_instances": {
+  "private_office": "private_office_3"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "scanner.n.02": [
+   "scanner.n.02_1"
+  ],
+  "laptop.n.01": [
+   "laptop.n.01_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "laptop.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom floor.n.01_1 private_office)",
+  "(inroom table.n.02_1 private_office)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop laptop.n.01_1 table.n.02_1)",
+  "(ontop scanner.n.02_1 table.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching laptop.n.01_1 table.n.02_1)",
+  "(touching scanner.n.02_1 table.n.02_1)",
+  "(touching table.n.02_1 laptop.n.01_1)",
+  "(touching table.n.02_1 scanner.n.02_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(toggled_on scanner.n.02_1)",
+    "negated": false,
+    "predicate": "toggled_on",
+    "args": [
+     "scanner.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto scanner.n.02_1 laptop.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "scanner.n.02_1",
+     "laptop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "toggled_on",
+   1
+  ],
+  [
+   "nextto",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "scanner.n.02_1",
+   "scene_object": "scanner_121",
+   "substance": false,
+   "category": "scanner",
+   "model": "juzkjp",
+   "in_rooms": [
+    "private_office_3"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.82,
+    "median": 0.82,
+    "max": 0.82
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.19,
+    "median": 2.63,
+    "max": 3.64
+   },
+   "xy_spread_m": 2.52,
+   "n_poses": 20
+  },
+  {
+   "inst": "laptop.n.01_1",
+   "scene_object": "laptop_120",
+   "substance": false,
+   "category": "laptop",
+   "model": "nvulcs",
+   "in_rooms": [
+    "private_office_3"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.79,
+    "median": 0.79,
+    "max": 0.79
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 1.93,
+    "max": 3.48
+   },
+   "xy_spread_m": 2.47,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "desk_mdhelw_0",
+   "substance": false,
+   "category": "desk",
+   "model": "mdhelw",
+   "in_rooms": [
+    "private_office_3"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999847412109375,
+    1.0000094175338745,
+    0.9999880790710449
+   ],
+   "z": {
+    "min": 0.6,
+    "median": 0.6,
+    "max": 0.6
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.86,
+    "median": 2.38,
+    "max": 2.72
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zwzwbs_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zwzwbs",
+   "in_rooms": [
+    "private_office_3"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.6,
+    "median": 2.08,
+    "max": 2.4
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_pqqfcu",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   17.91,
+   -11.91
+  ],
+  [
+   18.24,
+   -12.35
+  ],
+  [
+   18.16,
+   -12.22
+  ],
+  [
+   18.53,
+   -12.05
+  ],
+  [
+   18.3,
+   -12.75
+  ],
+  [
+   18.52,
+   -12.93
+  ],
+  [
+   14.61,
+   -11.58
+  ],
+  [
+   18.41,
+   -11.68
+  ],
+  [
+   18.4,
+   -11.87
+  ],
+  [
+   18.61,
+   -11.7
+  ],
+  [
+   18.19,
+   -12.26
+  ],
+  [
+   18.03,
+   -12.41
+  ],
+  [
+   18.44,
+   -11.98
+  ],
+  [
+   18.63,
+   -11.68
+  ],
+  [
+   18.4,
+   -12.27
+  ],
+  [
+   18.06,
+   -12.2
+  ],
+  [
+   18.62,
+   -11.84
+  ],
+  [
+   18.34,
+   -12.04
+  ],
+  [
+   18.48,
+   -12.04
+  ],
+  [
+   18.47,
+   -12.25
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 5,
+   "median": 6.0,
+   "max": 8
+  },
+  "demo_seconds": {
+   "min": 42.9,
+   "median": 128.4,
+   "max": 289.6
+  },
+  "distinct_verb_sequences": 7,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "turn on switch",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.575,
+  "modal_verb_counts": {
+   "move to": 2,
+   "pick up from": 1,
+   "place on": 1,
+   "push to": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.575,
+  "representative_episode": {
+   "file": "episode_00922390.json",
+   "seconds": 133.9,
+   "steps": [
+    {
+     "prompt": "move to the scanner",
+     "start_s": 0.0,
+     "end_s": 16.0
+    },
+    {
+     "prompt": "push the scanner to the desk",
+     "start_s": 16.0,
+     "end_s": 46.5
+    },
+    {
+     "prompt": "pick up the scanner from the desk",
+     "start_s": 46.5,
+     "end_s": 69.0
+    },
+    {
+     "prompt": "move to the laptop",
+     "start_s": 69.0,
+     "end_s": 81.0
+    },
+    {
+     "prompt": "turn on the scanner",
+     "start_s": 81.0,
+     "end_s": 101.4
+    },
+    {
+     "prompt": "place the scanner on the desk",
+     "start_s": 101.4,
+     "end_s": 121.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 29.5,
+   "pick up from": 28.0,
+   "place on": 19.9,
+   "push to": 28.5,
+   "turn on switch": 11.1
+  },
+  "verb_counts_total": {
+   "move to": 397,
+   "pick up from": 200,
+   "turn on switch": 200,
+   "place on": 200,
+   "push to": 152
+  },
+  "top_prompts": [
+   [
+    "move to the scanner",
+    204
+   ],
+   [
+    "turn on the scanner",
+    200
+   ],
+   [
+    "place the scanner on the desk",
+    200
+   ],
+   [
+    "pick up the scanner from the desk",
+    199
+   ],
+   [
+    "move to the laptop",
+    193
+   ],
+   [
+    "push the scanner to the desk",
+    152
+   ],
+   [
+    "pick up the laptop from the desk",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 6388
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 6388
+  }
+ }
+}

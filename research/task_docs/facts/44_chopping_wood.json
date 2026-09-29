@@ -1,0 +1,865 @@
+{
+ "index": 44,
+ "name": "chopping_wood",
+ "instruction": "Chop the four logs on the driveway in the garden into eight half logs using the axe and the chopping block.",
+ "title": "Chopping Wood",
+ "rooms_listed": [
+  "garden"
+ ],
+ "video": "https://player.vimeo.com/video/1114061262",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Chop the four logs on the driveway in the garden into eight half logs using the axe and the chopping block.",
+ "human": {
+  "mean_steps": 10751.985,
+  "mean_seconds": 358.4,
+  "step_limit": 16127,
+  "time_limit_seconds": 537.6,
+  "base_distance_m": 37.8297,
+  "eef_displacement_m": {
+   "left": 18.5278,
+   "right": 16.5819
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garage_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem chopping_wood-0)\n    (:domain behavior-1k)\n\n    (:objects\n        log.n.01_1 log.n.01_2 log.n.01_3 log.n.01_4 - log.n.01\n        half__log.n.01_1 half__log.n.01_2 half__log.n.01_3 half__log.n.01_4 half__log.n.01_5 half__log.n.01_6 half__log.n.01_7 half__log.n.01_8 - half__log.n.01\n        driveway.n.01_1 - driveway.n.01\n        ax.n.01_1 - ax.n.01\n        chopping_block.n.01_1 - chopping_block.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init\n        (ontop agent.n.01_1 driveway.n.01_1)\n        (ontop log.n.01_1 driveway.n.01_1) \n        (ontop log.n.01_2 driveway.n.01_1) \n        (ontop log.n.01_3 driveway.n.01_1) \n        (ontop log.n.01_4 driveway.n.01_1) \n        (ontop ax.n.01_1 driveway.n.01_1)\n        (ontop chopping_block.n.01_1 driveway.n.01_1) \n        (inroom driveway.n.01_1 garden)\n        (future half__log.n.01_1)\n        (future half__log.n.01_2)\n        (future half__log.n.01_3)\n        (future half__log.n.01_4)\n        (future half__log.n.01_5)\n        (future half__log.n.01_6)\n        (future half__log.n.01_7)\n        (future half__log.n.01_8)\n    )\n    \n    (:goal \n        (and \n            (real ?half__log.n.01_1)\n            (real ?half__log.n.01_2)\n            (real ?half__log.n.01_3)\n            (real ?half__log.n.01_4)\n            (real ?half__log.n.01_5)\n            (real ?half__log.n.01_6)\n            (real ?half__log.n.01_7)\n            (real ?half__log.n.01_8)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "log.n.01": [
+   "log.n.01_1",
+   "log.n.01_2",
+   "log.n.01_3",
+   "log.n.01_4"
+  ],
+  "half__log.n.01": [
+   "half__log.n.01_1",
+   "half__log.n.01_2",
+   "half__log.n.01_3",
+   "half__log.n.01_4",
+   "half__log.n.01_5",
+   "half__log.n.01_6",
+   "half__log.n.01_7",
+   "half__log.n.01_8"
+  ],
+  "driveway.n.01": [
+   "driveway.n.01_1"
+  ],
+  "ax.n.01": [
+   "ax.n.01_1"
+  ],
+  "chopping_block.n.01": [
+   "chopping_block.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "half__log.n.01_1",
+  "half__log.n.01_2",
+  "half__log.n.01_3",
+  "half__log.n.01_4",
+  "half__log.n.01_5",
+  "half__log.n.01_6",
+  "half__log.n.01_7",
+  "half__log.n.01_8"
+ ],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(future half__log.n.01_1)",
+  "(future half__log.n.01_2)",
+  "(future half__log.n.01_3)",
+  "(future half__log.n.01_4)",
+  "(future half__log.n.01_5)",
+  "(future half__log.n.01_6)",
+  "(future half__log.n.01_7)",
+  "(future half__log.n.01_8)",
+  "(inroom driveway.n.01_1 garden)",
+  "(ontop agent.n.01_1 driveway.n.01_1)",
+  "(ontop ax.n.01_1 driveway.n.01_1)",
+  "(ontop chopping_block.n.01_1 driveway.n.01_1)",
+  "(ontop log.n.01_1 driveway.n.01_1)",
+  "(ontop log.n.01_2 driveway.n.01_1)",
+  "(ontop log.n.01_3 driveway.n.01_1)",
+  "(ontop log.n.01_4 driveway.n.01_1)",
+  "(touching agent.n.01_1 driveway.n.01_1)",
+  "(touching ax.n.01_1 driveway.n.01_1)",
+  "(touching chopping_block.n.01_1 driveway.n.01_1)",
+  "(touching driveway.n.01_1 agent.n.01_1)",
+  "(touching driveway.n.01_1 ax.n.01_1)",
+  "(touching driveway.n.01_1 chopping_block.n.01_1)",
+  "(touching driveway.n.01_1 log.n.01_1)",
+  "(touching driveway.n.01_1 log.n.01_2)",
+  "(touching driveway.n.01_1 log.n.01_3)",
+  "(touching driveway.n.01_1 log.n.01_4)",
+  "(touching log.n.01_1 driveway.n.01_1)",
+  "(touching log.n.01_2 driveway.n.01_1)",
+  "(touching log.n.01_3 driveway.n.01_1)",
+  "(touching log.n.01_4 driveway.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 8,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(real half__log.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_2)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_3)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_4)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_4"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_5)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_5"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_6)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_6"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_7)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_7"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__log.n.01_8)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__log.n.01_8"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   8,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "real",
+   8
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "log.n.01_1",
+   "scene_object": "log_177",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6700000166893005,
+    0.6700000166893005,
+    0.6700000166893005
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.06,
+    "median": 2.28,
+    "max": 6.3
+   },
+   "xy_spread_m": 8.49,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_2",
+   "scene_object": "log_176",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6700000166893005,
+    0.6700000166893005,
+    0.6700000166893005
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 2.67,
+    "max": 6.99
+   },
+   "xy_spread_m": 8.8,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_3",
+   "scene_object": "log_175",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6700000166893005,
+    0.6700000166893005,
+    0.6700000166893005
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 2.79,
+    "max": 7.61
+   },
+   "xy_spread_m": 8.75,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_4",
+   "scene_object": "log_174",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6700000166893005,
+    0.6700000166893005,
+    0.6700000166893005
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 3.36,
+    "max": 5.66
+   },
+   "xy_spread_m": 8.39,
+   "n_poses": 20
+  },
+  {
+   "inst": "half__log.n.01_1",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_2",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_3",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_4",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_5",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_6",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_7",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__log.n.01_8",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_log"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "driveway.n.01_1",
+   "scene_object": "driveway_umalys_0",
+   "substance": false,
+   "category": "driveway",
+   "model": "umalys",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999949932098389,
+    1.0000005960464478,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 2.67,
+    "max": 3.71
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "ax.n.01_1",
+   "scene_object": "axe_173",
+   "substance": false,
+   "category": "axe",
+   "model": "plqyos",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 3.35,
+    "max": 6.39
+   },
+   "xy_spread_m": 8.41,
+   "n_poses": 20
+  },
+  {
+   "inst": "chopping_block.n.01_1",
+   "scene_object": "chopping_block_172",
+   "substance": false,
+   "category": "chopping_block",
+   "model": "ekowsj",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9872042536735535,
+    1.0054078102111816,
+    6.799535751342773
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 3.41,
+    "max": 6.36
+   },
+   "xy_spread_m": 7.91,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -13.73,
+   2.82
+  ],
+  [
+   -10.2,
+   4.3
+  ],
+  [
+   -13.71,
+   3.3
+  ],
+  [
+   -13.66,
+   3.65
+  ],
+  [
+   -13.58,
+   3.12
+  ],
+  [
+   -13.89,
+   4.19
+  ],
+  [
+   -13.96,
+   3.28
+  ],
+  [
+   -10.79,
+   5.38
+  ],
+  [
+   -10.82,
+   3.35
+  ],
+  [
+   -11.25,
+   4.97
+  ],
+  [
+   -11.62,
+   4.21
+  ],
+  [
+   -15.29,
+   8.37
+  ],
+  [
+   -10.23,
+   3.84
+  ],
+  [
+   -10.85,
+   3.62
+  ],
+  [
+   -10.77,
+   5.28
+  ],
+  [
+   -11.26,
+   2.81
+  ],
+  [
+   -10.34,
+   4.87
+  ],
+  [
+   -14.26,
+   4.6
+  ],
+  [
+   -10.93,
+   3.45
+  ],
+  [
+   -12.48,
+   4.77
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 25,
+   "median": 28.0,
+   "max": 34
+  },
+  "demo_seconds": {
+   "min": 181.0,
+   "median": 334.75,
+   "max": 622.97
+  },
+  "distinct_verb_sequences": 46,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "chop",
+   "sweep off",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "chop",
+   "sweep off",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "chop",
+   "sweep off",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "chop",
+   "sweep off",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.31,
+  "modal_verb_counts": {
+   "chop": 4,
+   "move to": 9,
+   "pick up from": 5,
+   "place on": 5,
+   "sweep off": 4
+  },
+  "modal_verb_counts_share": 0.325,
+  "representative_episode": {
+   "file": "episode_00441090.json",
+   "seconds": 334.1,
+   "steps": [
+    {
+     "prompt": "move to the axe",
+     "start_s": 0.1,
+     "end_s": 14.2
+    },
+    {
+     "prompt": "pick up the axe from the driveway",
+     "start_s": 14.2,
+     "end_s": 42.9
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 42.9,
+     "end_s": 50.7
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 50.7,
+     "end_s": 66.2
+    },
+    {
+     "prompt": "move to the chopping block",
+     "start_s": 66.2,
+     "end_s": 76.8
+    },
+    {
+     "prompt": "place the log on the chopping block",
+     "start_s": 76.8,
+     "end_s": 85.3
+    },
+    {
+     "prompt": "chop the axe with the log",
+     "start_s": 85.3,
+     "end_s": 90.6
+    },
+    {
+     "prompt": "sweep the half log 176 and half log 176 off the driveway",
+     "start_s": 90.6,
+     "end_s": 97.2
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 97.2,
+     "end_s": 133.6
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 133.6,
+     "end_s": 145.3
+    },
+    {
+     "prompt": "move to the chopping block",
+     "start_s": 145.3,
+     "end_s": 184.9
+    },
+    {
+     "prompt": "place the log on the chopping block",
+     "start_s": 184.9,
+     "end_s": 196.6
+    },
+    {
+     "prompt": "chop the axe with the log",
+     "start_s": 196.6,
+     "end_s": 200.5
+    },
+    {
+     "prompt": "sweep the half log 176 and half log 176 off the driveway",
+     "start_s": 200.5,
+     "end_s": 205.3
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 206.3,
+     "end_s": 220.4
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 220.4,
+     "end_s": 233.5
+    },
+    {
+     "prompt": "move to the chopping block",
+     "start_s": 233.5,
+     "end_s": 242.5
+    },
+    {
+     "prompt": "place the log on the chopping block",
+     "start_s": 242.5,
+     "end_s": 251.6
+    },
+    {
+     "prompt": "chop the axe with the log",
+     "start_s": 251.6,
+     "end_s": 261.1
+    },
+    {
+     "prompt": "sweep the half log 176 and half log 176 off the driveway",
+     "start_s": 261.1,
+     "end_s": 265.4
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 265.4,
+     "end_s": 282.9
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 282.9,
+     "end_s": 299.8
+    },
+    {
+     "prompt": "move to the chopping block",
+     "start_s": 299.9,
+     "end_s": 310.1
+    },
+    {
+     "prompt": "place the log on the chopping block",
+     "start_s": 310.1,
+     "end_s": 318.6
+    },
+    {
+     "prompt": "chop the axe with the log",
+     "start_s": 318.7,
+     "end_s": 324.2
+    },
+    {
+     "prompt": "sweep the half log 176 and half log 176 off the driveway",
+     "start_s": 324.2,
+     "end_s": 328.0
+    },
+    {
+     "prompt": "place the axe on the driveway",
+     "start_s": 328.0,
+     "end_s": 334.2
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "chop": 8.3,
+   "move to": 14.4,
+   "pick up from": 16.9,
+   "place on": 14.1,
+   "push to": 4.8,
+   "sweep off": 5.6
+  },
+  "verb_counts_total": {
+   "move to": 1915,
+   "pick up from": 1001,
+   "place on": 1001,
+   "chop": 800,
+   "push to": 431,
+   "sweep off": 417
+  },
+  "top_prompts": [
+   [
+    "move to the log",
+    922
+   ],
+   [
+    "pick up the log from the driveway",
+    800
+   ],
+   [
+    "chop the axe with the log",
+    800
+   ],
+   [
+    "place the log on the chopping block",
+    799
+   ],
+   [
+    "move to the chopping block",
+    793
+   ],
+   [
+    "sweep the half log 176 and half log 176 off the driveway",
+    417
+   ],
+   [
+    "pick up the axe from the driveway",
+    201
+   ],
+   [
+    "place the axe on the driveway",
+    201
+   ],
+   [
+    "move to the axe",
+    200
+   ],
+   [
+    "push the log to the driveway",
+    152
+   ],
+   [
+    "push the half log 174 to the driveway",
+    72
+   ],
+   [
+    "push the half log 175 to the driveway",
+    71
+   ],
+   [
+    "push the half log 177 to the driveway",
+    69
+   ],
+   [
+    "push the half log 176 to the driveway",
+    66
+   ],
+   [
+    "push the half-log-176-0 to the driveway",
+    1
+   ],
+   [
+    "place the log on the driveway",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "sweep off",
+  "move to",
+  "place on",
+  "pick up from",
+  "chop",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 16128
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 16128
+  }
+ }
+}

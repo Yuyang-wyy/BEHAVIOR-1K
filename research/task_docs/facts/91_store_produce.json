@@ -1,0 +1,800 @@
+{
+ "index": 91,
+ "name": "store_produce",
+ "instruction": "Take the mangoes and pomegranates from the basket and put them into the refrigerator.",
+ "title": "Store Produce",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/jppOziwq7xI",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Take the mangoes and pomegranates from the basket and put them into the refrigerator.",
+ "human": {
+  "mean_steps": 9522.355,
+  "mean_seconds": 317.4,
+  "step_limit": 14283,
+  "time_limit_seconds": 476.1,
+  "base_distance_m": 26.5297,
+  "eef_displacement_m": {
+   "left": 18.9635,
+   "right": 22.6036
+  }
+ },
+ "rooms_loaded": [
+  "kitchen_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "kitchen"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "mango.n.02": {
+     "mango": {
+      "nwwjbw": null
+     }
+    },
+    "pomegranate.n.02": {
+     "pomegranate": {
+      "tldskr": null
+     }
+    },
+    "wicker_basket.n.01": {
+     "wicker_basket": {
+      "tsjvyu": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem store_produce-0)\n    (:domain behavior-1k)\n\n    (:objects\n        mango.n.02_1 mango.n.02_2 - mango.n.02 \n        pomegranate.n.02_1 pomegranate.n.02_2 - pomegranate.n.02\n        wicker_basket.n.01_1 - wicker_basket.n.01\n        floor.n.01_1 - floor.n.01\n        electric_refrigerator.n.01_1 electric_refrigerator.n.01_2 - electric_refrigerator.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside mango.n.02_1 wicker_basket.n.01_1) \n        (inside mango.n.02_2 wicker_basket.n.01_1) \n        (inside pomegranate.n.02_1 wicker_basket.n.01_1) \n        (inside pomegranate.n.02_2 wicker_basket.n.01_1) \n        (ontop wicker_basket.n.01_1 floor.n.01_1) \n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom electric_refrigerator.n.01_2 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists\n                (?electric_refrigerator.n.01 - electric_refrigerator.n.01)\n                (and\n                    (forall \n                        (?pomegranate.n.02 - pomegranate.n.02)\n                        (inside ?pomegranate.n.02 ?electric_refrigerator.n.01) \n                    )\n                    (forall \n                        (?mango.n.02 - mango.n.02)\n                        (inside ?mango.n.02 ?electric_refrigerator.n.01) \n                    )\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "mango.n.02": [
+   "mango.n.02_1",
+   "mango.n.02_2"
+  ],
+  "pomegranate.n.02": [
+   "pomegranate.n.02_1",
+   "pomegranate.n.02_2"
+  ],
+  "wicker_basket.n.01": [
+   "wicker_basket.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1",
+   "electric_refrigerator.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "electric_refrigerator.n.01_2": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_2 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inside mango.n.02_1 wicker_basket.n.01_1)",
+  "(inside mango.n.02_2 wicker_basket.n.01_1)",
+  "(inside pomegranate.n.02_1 wicker_basket.n.01_1)",
+  "(inside pomegranate.n.02_2 wicker_basket.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop wicker_basket.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 wicker_basket.n.01_1)",
+  "(touching wicker_basket.n.01_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside pomegranate.n.02_1 electric_refrigerator.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "pomegranate.n.02_1",
+     "electric_refrigerator.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside pomegranate.n.02_2 electric_refrigerator.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "pomegranate.n.02_2",
+     "electric_refrigerator.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside mango.n.02_2 electric_refrigerator.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "mango.n.02_2",
+     "electric_refrigerator.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside mango.n.02_1 electric_refrigerator.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "mango.n.02_1",
+     "electric_refrigerator.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   4
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "mango.n.02_1",
+   "scene_object": "mango_78",
+   "substance": false,
+   "category": "mango",
+   "model": "nwwjbw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.08,
+    "max": 0.08
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 4.38,
+    "max": 6.39
+   },
+   "xy_spread_m": 7.8,
+   "n_poses": 20
+  },
+  {
+   "inst": "mango.n.02_2",
+   "scene_object": "mango_77",
+   "substance": false,
+   "category": "mango",
+   "model": "nwwjbw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.08,
+    "max": 0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.86,
+    "median": 4.43,
+    "max": 6.3
+   },
+   "xy_spread_m": 7.64,
+   "n_poses": 20
+  },
+  {
+   "inst": "pomegranate.n.02_1",
+   "scene_object": "pomegranate_76",
+   "substance": false,
+   "category": "pomegranate",
+   "model": "tldskr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.07,
+    "max": 0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.87,
+    "median": 4.31,
+    "max": 6.37
+   },
+   "xy_spread_m": 7.86,
+   "n_poses": 20
+  },
+  {
+   "inst": "pomegranate.n.02_2",
+   "scene_object": "pomegranate_75",
+   "substance": false,
+   "category": "pomegranate",
+   "model": "tldskr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.08,
+    "max": 0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 4.37,
+    "max": 6.4
+   },
+   "xy_spread_m": 7.89,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_1",
+   "scene_object": "wicker_basket_74",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "tsjvyu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.19,
+    "median": 0.19,
+    "max": 0.19
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 4.37,
+    "max": 6.36
+   },
+   "xy_spread_m": 7.76,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_vikfyd_0",
+   "substance": false,
+   "category": "floors",
+   "model": "vikfyd",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.56,
+    "median": 2.67,
+    "max": 3.42
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_jtqazu_1",
+   "substance": false,
+   "category": "fridge",
+   "model": "jtqazu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.6483378410339355,
+    2.014077663421631,
+    1.2680704593658447
+   ],
+   "z": {
+    "min": 1.08,
+    "median": 1.08,
+    "max": 1.08
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.65,
+    "median": 3.07,
+    "max": 7.54
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_2",
+   "scene_object": "fridge_jtqazu_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "jtqazu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.6483378410339355,
+    2.014077663421631,
+    1.2680704593658447
+   ],
+   "z": {
+    "min": 1.08,
+    "median": 1.08,
+    "max": 1.08
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.35,
+    "median": 2.21,
+    "max": 7.06
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_vchmsd",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -6.65,
+   -5.7
+  ],
+  [
+   -6.62,
+   -5.18
+  ],
+  [
+   -9.47,
+   -0.18
+  ],
+  [
+   -9.12,
+   -1.45
+  ],
+  [
+   -9.24,
+   -1.01
+  ],
+  [
+   -7.64,
+   -0.61
+  ],
+  [
+   -8.13,
+   -1.04
+  ],
+  [
+   -7.95,
+   -0.82
+  ],
+  [
+   -7.21,
+   -0.67
+  ],
+  [
+   -9.77,
+   -0.26
+  ],
+  [
+   -10.42,
+   -0.83
+  ],
+  [
+   -8.96,
+   -5.74
+  ],
+  [
+   -7.51,
+   -1.19
+  ],
+  [
+   -8.32,
+   -0.91
+  ],
+  [
+   -9.8,
+   -0.4
+  ],
+  [
+   -8.07,
+   -0.56
+  ],
+  [
+   -6.31,
+   -5.45
+  ],
+  [
+   -10.46,
+   -5.63
+  ],
+  [
+   -8.73,
+   -0.07
+  ],
+  [
+   -7.63,
+   -0.46
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 18,
+   "median": 20.0,
+   "max": 22
+  },
+  "demo_seconds": {
+   "min": 211.63,
+   "median": 302.55,
+   "max": 515.1
+  },
+  "distinct_verb_sequences": 10,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pour",
+   "place on",
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place in next to",
+   "place in next to",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.455,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 7,
+   "open door": 1,
+   "pick up from": 5,
+   "place in": 2,
+   "place in next to": 2,
+   "place on": 1,
+   "pour": 1
+  },
+  "modal_verb_counts_share": 0.455,
+  "representative_episode": {
+   "file": "episode_00911800.json",
+   "seconds": 294.7,
+   "steps": [
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 0.0,
+     "end_s": 14.0
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 14.0,
+     "end_s": 31.0
+    },
+    {
+     "prompt": "move to the commercial kitchen table",
+     "start_s": 31.0,
+     "end_s": 60.0
+    },
+    {
+     "prompt": "pour the mango and mango and pomegranate and pomegranate into the wicker basket",
+     "start_s": 60.0,
+     "end_s": 80.2
+    },
+    {
+     "prompt": "place the wicker basket on the floors",
+     "start_s": 80.2,
+     "end_s": 100.0
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 100.0,
+     "end_s": 119.0
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 119.0,
+     "end_s": 157.0
+    },
+    {
+     "prompt": "move to the commercial kitchen table",
+     "start_s": 157.0,
+     "end_s": 164.0
+    },
+    {
+     "prompt": "pick up the mango from the commercial kitchen table",
+     "start_s": 164.0,
+     "end_s": 172.0
+    },
+    {
+     "prompt": "pick up the pomegranate from the commercial kitchen table",
+     "start_s": 172.0,
+     "end_s": 180.0
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 180.0,
+     "end_s": 195.0
+    },
+    {
+     "prompt": "place the pomegranate in the fridge",
+     "start_s": 195.0,
+     "end_s": 202.8
+    },
+    {
+     "prompt": "place the mango in the fridge",
+     "start_s": 202.8,
+     "end_s": 210.0
+    },
+    {
+     "prompt": "move to the commercial kitchen table",
+     "start_s": 210.0,
+     "end_s": 225.0
+    },
+    {
+     "prompt": "pick up the mango from the commercial kitchen table",
+     "start_s": 225.0,
+     "end_s": 231.0
+    },
+    {
+     "prompt": "pick up the pomegranate from the commercial kitchen table",
+     "start_s": 231.0,
+     "end_s": 241.0
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 241.0,
+     "end_s": 254.0
+    },
+    {
+     "prompt": "place the pomegranate in the fridge next to the pomegranate",
+     "start_s": 254.0,
+     "end_s": 262.1
+    },
+    {
+     "prompt": "place the mango in the fridge next to the mango",
+     "start_s": 262.1,
+     "end_s": 267.0
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 267.0,
+     "end_s": 294.7
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 19.1,
+   "move to": 17.5,
+   "open door": 31.8,
+   "pick up from": 14.9,
+   "place in": 6.3,
+   "place in next to": 5.6,
+   "place on": 24.9,
+   "pour": 18.7
+  },
+  "verb_counts_total": {
+   "move to": 1415,
+   "pick up from": 1000,
+   "place in": 601,
+   "pour": 200,
+   "place on": 200,
+   "open door": 200,
+   "close door": 198,
+   "place in next to": 197
+  },
+  "top_prompts": [
+   [
+    "move to the commercial kitchen table",
+    600
+   ],
+   [
+    "move to the fridge",
+    600
+   ],
+   [
+    "pick up the pomegranate from the commercial kitchen table",
+    398
+   ],
+   [
+    "pick up the mango from the commercial kitchen table",
+    397
+   ],
+   [
+    "place the mango in the fridge",
+    291
+   ],
+   [
+    "place the pomegranate in the fridge",
+    287
+   ],
+   [
+    "pour the mango and mango and pomegranate and pomegranate into the wicker basket",
+    200
+   ],
+   [
+    "open the door of the fridge",
+    200
+   ],
+   [
+    "move to the wicker basket",
+    199
+   ],
+   [
+    "pick up the wicker basket from the floors",
+    199
+   ],
+   [
+    "place the wicker basket on the floors",
+    198
+   ],
+   [
+    "close the door of the fridge",
+    197
+   ],
+   [
+    "place the pomegranate in the fridge next to the pomegranate",
+    91
+   ],
+   [
+    "place the mango in the fridge next to the mango",
+    84
+   ],
+   [
+    "place the pomegranate in the fridge next to the mango",
+    11
+   ],
+   [
+    "move to the floors",
+    9
+   ],
+   [
+    "place the pomegranate in the mango",
+    6
+   ],
+   [
+    "place the pomegranate in the commercial kitchen table",
+    6
+   ],
+   [
+    "place the mango in the commercial kitchen table",
+    6
+   ],
+   [
+    "place the mango in the fridge next to the pomegranate",
+    5
+   ],
+   [
+    "place the mango in the pomegranate",
+    5
+   ],
+   [
+    "move to the pomegranate",
+    4
+   ],
+   [
+    "place the pomegranate in the fridge next to the commercial kitchen table",
+    3
+   ],
+   [
+    "move to the mango",
+    3
+   ],
+   [
+    "pick up the mango from the fridge",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14284
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14284
+  }
+ }
+}

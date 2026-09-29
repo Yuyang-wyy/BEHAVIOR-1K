@@ -1,0 +1,428 @@
+{
+ "index": 35,
+ "name": "attach_a_camera_to_a_tripod",
+ "instruction": "Attach the digital camera to the camera tripod in the bedroom.",
+ "title": "Attach a Camera to a Tripod",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://player.vimeo.com/video/1114060393",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "Attach the digital camera to the camera tripod in the bedroom.",
+ "human": {
+  "mean_steps": 3911.575,
+  "mean_seconds": 130.4,
+  "step_limit": 5867,
+  "time_limit_seconds": 195.6,
+  "base_distance_m": 11.3036,
+  "eef_displacement_m": {
+   "left": 7.9194,
+   "right": 5.829
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "bedroom_1",
+  "bedroom_2"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem attach_a_camera_to_a_tripod-0)\n    (:domain behavior-1k)\n\n    (:objects\n        digital_camera.n.01_1 - digital_camera.n.01\n        camera_tripod.n.01_1 - camera_tripod.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop digital_camera.n.01_1 floor.n.01_1)\n        (ontop camera_tripod.n.01_1 floor.n.01_1)\n        (inroom floor.n.01_1 bedroom) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (attached ?digital_camera.n.01_1 ?camera_tripod.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "digital_camera.n.01": [
+   "digital_camera.n.01_1"
+  ],
+  "camera_tripod.n.01": [
+   "camera_tripod.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop camera_tripod.n.01_1 floor.n.01_1)",
+  "(ontop digital_camera.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching camera_tripod.n.01_1 floor.n.01_1)",
+  "(touching digital_camera.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 camera_tripod.n.01_1)",
+  "(touching floor.n.01_1 digital_camera.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(attached digital_camera.n.01_1 camera_tripod.n.01_1)",
+    "negated": false,
+    "predicate": "attached",
+    "args": [
+     "digital_camera.n.01_1",
+     "camera_tripod.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "attached",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "digital_camera.n.01_1",
+   "scene_object": "digital_camera_87",
+   "substance": false,
+   "category": "digital_camera",
+   "model": "zcnxuz",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.04,
+    "max": 0.04
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.61,
+    "median": 1.13,
+    "max": 2.35
+   },
+   "xy_spread_m": 3.38,
+   "n_poses": 20
+  },
+  {
+   "inst": "camera_tripod.n.01_1",
+   "scene_object": "camera_tripod_86",
+   "substance": false,
+   "category": "camera_tripod",
+   "model": "hnpofr",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.8,
+    "median": 0.8,
+    "max": 0.8
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.81,
+    "median": 1.3,
+    "max": 2.68
+   },
+   "xy_spread_m": 2.91,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_nlswvt_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nlswvt",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000108480453491,
+    1.0000033378601074,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.23,
+    "median": 0.67,
+    "max": 1.67
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -4.52,
+   1.64
+  ],
+  [
+   -3.56,
+   1.63
+  ],
+  [
+   -5.08,
+   1.63
+  ],
+  [
+   -5.51,
+   1.06
+  ],
+  [
+   -5.47,
+   1.19
+  ],
+  [
+   -3.44,
+   1.11
+  ],
+  [
+   -4.89,
+   1.8
+  ],
+  [
+   -4.15,
+   1.87
+  ],
+  [
+   -4.45,
+   1.15
+  ],
+  [
+   -4.64,
+   1.78
+  ],
+  [
+   -3.31,
+   0.71
+  ],
+  [
+   -3.88,
+   0.91
+  ],
+  [
+   -4.24,
+   1.76
+  ],
+  [
+   -4.81,
+   1.41
+  ],
+  [
+   -4.85,
+   1.41
+  ],
+  [
+   -4.97,
+   1.87
+  ],
+  [
+   -4.76,
+   1.93
+  ],
+  [
+   -5.71,
+   1.03
+  ],
+  [
+   -4.74,
+   1.69
+  ],
+  [
+   -5.24,
+   1.24
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 5,
+   "median": 6.0,
+   "max": 9
+  },
+  "demo_seconds": {
+   "min": 61.7,
+   "median": 123.8,
+   "max": 223.23
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "hold",
+   "attach",
+   "release"
+  ],
+  "modal_verb_sequence_share": 0.835,
+  "modal_verb_counts": {
+   "attach": 1,
+   "hold": 1,
+   "move to": 2,
+   "pick up from": 1,
+   "release": 1
+  },
+  "modal_verb_counts_share": 0.835,
+  "representative_episode": {
+   "file": "episode_00352460.json",
+   "seconds": 117.6,
+   "steps": [
+    {
+     "prompt": "move to the digital camera",
+     "start_s": 0.0,
+     "end_s": 20.4
+    },
+    {
+     "prompt": "pick up the digital camera from the floors",
+     "start_s": 20.4,
+     "end_s": 62.1
+    },
+    {
+     "prompt": "move to the camera tripod",
+     "start_s": 62.1,
+     "end_s": 73.8
+    },
+    {
+     "prompt": "hold the camera tripod",
+     "start_s": 73.8,
+     "end_s": 86.6
+    },
+    {
+     "prompt": "attach the digital camera to the camera tripod",
+     "start_s": 86.6,
+     "end_s": 108.6
+    },
+    {
+     "prompt": "release the camera tripod",
+     "start_s": 108.6,
+     "end_s": 117.6
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "attach": 14.2,
+   "hold": 13.7,
+   "move to": 19.1,
+   "pick up from": 35.3,
+   "place on": 12.5,
+   "release": 9.4
+  },
+  "verb_counts_total": {
+   "move to": 425,
+   "pick up from": 230,
+   "hold": 200,
+   "attach": 200,
+   "release": 200,
+   "place on": 30
+  },
+  "top_prompts": [
+   [
+    "move to the camera tripod",
+    224
+   ],
+   [
+    "move to the digital camera",
+    201
+   ],
+   [
+    "pick up the digital camera from the floors",
+    200
+   ],
+   [
+    "attach the digital camera to the camera tripod",
+    200
+   ],
+   [
+    "hold the camera tripod",
+    199
+   ],
+   [
+    "release the camera tripod",
+    197
+   ],
+   [
+    "pick up the camera tripod from the floors",
+    30
+   ],
+   [
+    "place the camera tripod on the floors",
+    30
+   ],
+   [
+    "release the digital camera",
+    2
+   ],
+   [
+    "hold the digital camera",
+    1
+   ],
+   [
+    "release the floors",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "hold",
+  "move to",
+  "attach",
+  "place on",
+  "pick up from",
+  "release"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5868
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5868
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5868
+  }
+ }
+}

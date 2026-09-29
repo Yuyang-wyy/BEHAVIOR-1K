@@ -1,0 +1,434 @@
+{
+ "index": 34,
+ "name": "hanging_pictures",
+ "instruction": "Pick up the poster from the kitchen countertop and hang it on one of the wall nails in the kitchen.",
+ "title": "Hanging Pictures",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114060330",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Pick up the poster from the kitchen countertop and hang it on one of the wall nails in the kitchen.",
+ "human": {
+  "mean_steps": 2387.415,
+  "mean_seconds": 79.6,
+  "step_limit": 3581,
+  "time_limit_seconds": 119.4,
+  "base_distance_m": 6.6305,
+  "eef_displacement_m": {
+   "left": 2.3685,
+   "right": 3.942
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem hanging_pictures-0)\n    (:domain behavior-1k)\n\n    (:objects\n        poster.n.01_1 - poster.n.01\n        floor.n.01_1 - floor.n.01\n        countertop.n.01_1 - countertop.n.01\n        wall_nail.n.01_1 wall_nail.n.01_* - wall_nail.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop poster.n.01_1 countertop.n.01_1)\n        (inroom floor.n.01_1 kitchen)\n        (inroom countertop.n.01_1 kitchen)\n        (inroom wall_nail.n.01_1 kitchen)\n        (inroom wall_nail.n.01_* kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists\n                (?wall_nail.n.01 - wall_nail.n.01)\n                (attached ?poster.n.01_1 ?wall_nail.n.01)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "poster.n.01": [
+   "poster.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "wall_nail.n.01": [
+   "wall_nail.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom wall_nail.n.01_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop poster.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 poster.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching poster.n.01_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(attached poster.n.01_1 wall_nail.n.01_1)",
+    "negated": false,
+    "predicate": "attached",
+    "args": [
+     "poster.n.01_1",
+     "wall_nail.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "attached",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "poster.n.01_1",
+   "scene_object": "poster_73",
+   "substance": false,
+   "category": "poster",
+   "model": "dsrcyt",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9776579737663269,
+    0.5020166039466858,
+    0.5011332035064697
+   ],
+   "z": {
+    "min": 1.11,
+    "median": 1.11,
+    "max": 1.11
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.89,
+    "median": 2.75,
+    "max": 7.27
+   },
+   "xy_spread_m": 2.22,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.25,
+    "median": 1.82,
+    "max": 3.86
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_egwapq_0",
+   "substance": false,
+   "category": "bar",
+   "model": "egwapq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999869465827942,
+    0.9999972581863403,
+    1.0000406503677368
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.43,
+    "median": 2.64,
+    "max": 7.28
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "wall_nail.n.01_1",
+   "scene_object": "wall_nail_wlnail_1",
+   "substance": false,
+   "category": "wall_nail",
+   "model": "wlnail",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    2.438278913497925,
+    2.4331214427948,
+    2.437626838684082
+   ],
+   "z": {
+    "min": 1.71,
+    "median": 1.71,
+    "max": 1.71
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.6,
+    "median": 2.77,
+    "max": 6.97
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   6.75,
+   0.43
+  ],
+  [
+   5.03,
+   2.79
+  ],
+  [
+   6.57,
+   1.82
+  ],
+  [
+   5.77,
+   1.97
+  ],
+  [
+   6.87,
+   0.79
+  ],
+  [
+   6.31,
+   1.06
+  ],
+  [
+   5.72,
+   2.22
+  ],
+  [
+   6.19,
+   1.75
+  ],
+  [
+   5.67,
+   2.7
+  ],
+  [
+   7.21,
+   1.57
+  ],
+  [
+   6.77,
+   1.67
+  ],
+  [
+   6.18,
+   2.08
+  ],
+  [
+   3.55,
+   2.62
+  ],
+  [
+   3.99,
+   2.87
+  ],
+  [
+   6.05,
+   0.49
+  ],
+  [
+   6.98,
+   2.16
+  ],
+  [
+   2.73,
+   2.3
+  ],
+  [
+   6.19,
+   1.26
+  ],
+  [
+   1.43,
+   2.96
+  ],
+  [
+   4.03,
+   0.08
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 4,
+   "median": 5.0,
+   "max": 6
+  },
+  "demo_seconds": {
+   "min": 31.13,
+   "median": 74.8,
+   "max": 277.9
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "hand over",
+   "move to",
+   "hang"
+  ],
+  "modal_verb_sequence_share": 0.51,
+  "modal_verb_counts": {
+   "hand over": 1,
+   "hang": 1,
+   "move to": 2,
+   "pick up from": 1
+  },
+  "modal_verb_counts_share": 0.51,
+  "representative_episode": {
+   "file": "episode_00342050.json",
+   "seconds": 82.0,
+   "steps": [
+    {
+     "prompt": "move to the poster",
+     "start_s": 0.0,
+     "end_s": 17.4
+    },
+    {
+     "prompt": "pick up the poster from the bar",
+     "start_s": 17.4,
+     "end_s": 28.9
+    },
+    {
+     "prompt": "hand over the poster with the left",
+     "start_s": 28.9,
+     "end_s": 48.5
+    },
+    {
+     "prompt": "move to the wall nail",
+     "start_s": 48.5,
+     "end_s": 55.5
+    },
+    {
+     "prompt": "hang the poster on the wall nail",
+     "start_s": 55.5,
+     "end_s": 82.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 15.6,
+   "hang": 24.5,
+   "move to": 13.1,
+   "pick up from": 16.8,
+   "push to": 66.3
+  },
+  "verb_counts_total": {
+   "move to": 400,
+   "pick up from": 200,
+   "hang": 200,
+   "hand over": 103,
+   "push to": 4
+  },
+  "top_prompts": [
+   [
+    "move to the poster",
+    200
+   ],
+   [
+    "pick up the poster from the bar",
+    200
+   ],
+   [
+    "hang the poster on the wall nail",
+    200
+   ],
+   [
+    "move to the wall nail",
+    199
+   ],
+   [
+    "hand over the poster with the left",
+    103
+   ],
+   [
+    "push the poster to the to_the_edge_of bar",
+    4
+   ],
+   [
+    "move to the floors",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "pick up from",
+  "hang",
+  "hand over",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3582
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3582
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3582
+  }
+ }
+}

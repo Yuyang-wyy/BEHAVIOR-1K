@@ -1,0 +1,1193 @@
+{
+ "index": 24,
+ "name": "storing_food",
+ "instruction": "Put away all the food on the kitchen countertop by storing it inside the kitchen cabinets: move the two boxes of oatmeal, two bags of chips, two bottles of olive oil, and two jars of sugar from the countertop into the kitchen cabinets (each item can go into either cabinet).",
+ "title": "Storing Food",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114059272",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Put away all the food on the kitchen countertop by storing it inside the kitchen cabinets: move the two boxes of oatmeal, two bags of chips, two bottles of olive oil, and two jars of sugar from the countertop into the kitchen cabinets (each item can go into either cabinet).",
+ "human": {
+  "mean_steps": 19869.12,
+  "mean_seconds": 662.3,
+  "step_limit": 29803,
+  "time_limit_seconds": 993.5,
+  "base_distance_m": 55.6409,
+  "eef_displacement_m": {
+   "left": 30.6866,
+   "right": 27.5186
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem storing_food-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tbox__of__oatmeal.n.01_1 box__of__oatmeal.n.01_2 - box__of__oatmeal.n.01\n    \tcountertop.n.01_1 - countertop.n.01\n    \tbag__of__chips.n.01_1 bag__of__chips.n.01_2 - bag__of__chips.n.01\n    \tbottle__of__olive_oil.n.01_1 bottle__of__olive_oil.n.01_2 - bottle__of__olive_oil.n.01\n    \tjar__of__sugar.n.01_1 jar__of__sugar.n.01_2 - jar__of__sugar.n.01\n    \tcabinet.n.01_1 cabinet.n.01_* - cabinet.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop box__of__oatmeal.n.01_1 countertop.n.01_1) \n        (ontop box__of__oatmeal.n.01_2 countertop.n.01_1) \n        (ontop bag__of__chips.n.01_1 countertop.n.01_1) \n        (ontop bag__of__chips.n.01_2 countertop.n.01_1) \n        (ontop bottle__of__olive_oil.n.01_1 countertop.n.01_1) \n        (ontop bottle__of__olive_oil.n.01_2 countertop.n.01_1) \n        (ontop jar__of__sugar.n.01_1 countertop.n.01_1) \n        (ontop jar__of__sugar.n.01_2 countertop.n.01_1) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom cabinet.n.01_1 kitchen) \n        (inroom cabinet.n.01_* kitchen)\n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall\n                (?box__of__oatmeal.n.01 - box__of__oatmeal.n.01)\n                (exists \n                    (?cabinet.n.01 - cabinet.n.01) \n                    (inside ?box__of__oatmeal.n.01 ?cabinet.n.01)\n                )\n            )\n            (forall\n                (?bag__of__chips.n.01 - bag__of__chips.n.01)\n                (exists \n                    (?cabinet.n.01 - cabinet.n.01) \n                    (inside ?bag__of__chips.n.01 ?cabinet.n.01)\n                )\n            )\n            (forall\n                (?bottle__of__olive_oil.n.01 - bottle__of__olive_oil.n.01)\n                (exists \n                    (?cabinet.n.01 - cabinet.n.01) \n                    (inside ?bottle__of__olive_oil.n.01 ?cabinet.n.01)\n                )\n            )\n            (forall\n                (?jar__of__sugar.n.01 - jar__of__sugar.n.01)\n                (exists \n                    (?cabinet.n.01 - cabinet.n.01) \n                    (inside ?jar__of__sugar.n.01 ?cabinet.n.01)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "box__of__oatmeal.n.01": [
+   "box__of__oatmeal.n.01_1",
+   "box__of__oatmeal.n.01_2"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "bag__of__chips.n.01": [
+   "bag__of__chips.n.01_1",
+   "bag__of__chips.n.01_2"
+  ],
+  "bottle__of__olive_oil.n.01": [
+   "bottle__of__olive_oil.n.01_1",
+   "bottle__of__olive_oil.n.01_2"
+  ],
+  "jar__of__sugar.n.01": [
+   "jar__of__sugar.n.01_1",
+   "jar__of__sugar.n.01_2"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1",
+   "cabinet.n.01_2",
+   "cabinet.n.01_3",
+   "cabinet.n.01_4",
+   "cabinet.n.01_5",
+   "cabinet.n.01_6"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_2": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_3": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_4": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_5": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_6": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom cabinet.n.01_2 kitchen)",
+  "(inroom cabinet.n.01_3 kitchen)",
+  "(inroom cabinet.n.01_4 kitchen)",
+  "(inroom cabinet.n.01_5 kitchen)",
+  "(inroom cabinet.n.01_6 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bag__of__chips.n.01_1 countertop.n.01_1)",
+  "(ontop bag__of__chips.n.01_2 countertop.n.01_1)",
+  "(ontop bottle__of__olive_oil.n.01_1 countertop.n.01_1)",
+  "(ontop bottle__of__olive_oil.n.01_2 countertop.n.01_1)",
+  "(ontop box__of__oatmeal.n.01_1 countertop.n.01_1)",
+  "(ontop box__of__oatmeal.n.01_2 countertop.n.01_1)",
+  "(ontop jar__of__sugar.n.01_1 countertop.n.01_1)",
+  "(ontop jar__of__sugar.n.01_2 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bag__of__chips.n.01_1 countertop.n.01_1)",
+  "(touching bag__of__chips.n.01_2 countertop.n.01_1)",
+  "(touching bottle__of__olive_oil.n.01_1 countertop.n.01_1)",
+  "(touching bottle__of__olive_oil.n.01_2 countertop.n.01_1)",
+  "(touching box__of__oatmeal.n.01_1 countertop.n.01_1)",
+  "(touching box__of__oatmeal.n.01_2 countertop.n.01_1)",
+  "(touching countertop.n.01_1 bag__of__chips.n.01_1)",
+  "(touching countertop.n.01_1 bag__of__chips.n.01_2)",
+  "(touching countertop.n.01_1 bottle__of__olive_oil.n.01_1)",
+  "(touching countertop.n.01_1 bottle__of__olive_oil.n.01_2)",
+  "(touching countertop.n.01_1 box__of__oatmeal.n.01_1)",
+  "(touching countertop.n.01_1 box__of__oatmeal.n.01_2)",
+  "(touching countertop.n.01_1 jar__of__sugar.n.01_1)",
+  "(touching countertop.n.01_1 jar__of__sugar.n.01_2)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching jar__of__sugar.n.01_1 countertop.n.01_1)",
+  "(touching jar__of__sugar.n.01_2 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1679616,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 8,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside box__of__oatmeal.n.01_2 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "box__of__oatmeal.n.01_2",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside box__of__oatmeal.n.01_1 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "box__of__oatmeal.n.01_1",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bag__of__chips.n.01_2 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bag__of__chips.n.01_2",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bag__of__chips.n.01_1 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bag__of__chips.n.01_1",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bottle__of__olive_oil.n.01_1 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bottle__of__olive_oil.n.01_1",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bottle__of__olive_oil.n.01_2 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bottle__of__olive_oil.n.01_2",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside jar__of__sugar.n.01_2 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "jar__of__sugar.n.01_2",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside jar__of__sugar.n.01_1 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "jar__of__sugar.n.01_1",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   8,
+   1679616
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   8
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "box__of__oatmeal.n.01_1",
+   "scene_object": "box_of_oatmeal_214",
+   "substance": false,
+   "category": "box_of_oatmeal",
+   "model": "zkggxm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.0,
+    "median": 1.0,
+    "max": 1.0
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 2.75,
+    "max": 3.82
+   },
+   "xy_spread_m": 2.53,
+   "n_poses": 20
+  },
+  {
+   "inst": "box__of__oatmeal.n.01_2",
+   "scene_object": "box_of_oatmeal_213",
+   "substance": false,
+   "category": "box_of_oatmeal",
+   "model": "zkggxm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.0,
+    "median": 1.0,
+    "max": 1.0
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.92,
+    "median": 2.98,
+    "max": 3.74
+   },
+   "xy_spread_m": 2.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_kelzer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "kelzer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000444650650024,
+    0.9999945759773254,
+    1.0007061958312988
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.09,
+    "median": 2.28,
+    "max": 3.62
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bag__of__chips.n.01_1",
+   "scene_object": "bag_of_chips_212",
+   "substance": false,
+   "category": "bag_of_chips",
+   "model": "bryahw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 2.18,
+    "max": 3.76
+   },
+   "xy_spread_m": 2.7,
+   "n_poses": 20
+  },
+  {
+   "inst": "bag__of__chips.n.01_2",
+   "scene_object": "bag_of_chips_211",
+   "substance": false,
+   "category": "bag_of_chips",
+   "model": "bryahw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.13,
+    "median": 2.55,
+    "max": 3.48
+   },
+   "xy_spread_m": 2.22,
+   "n_poses": 20
+  },
+  {
+   "inst": "bottle__of__olive_oil.n.01_1",
+   "scene_object": "bottle_of_olive_oil_210",
+   "substance": false,
+   "category": "bottle_of_olive_oil",
+   "model": "ajswsh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.01,
+    "median": 1.01,
+    "max": 1.01
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.81,
+    "median": 1.87,
+    "max": 3.89
+   },
+   "xy_spread_m": 3.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bottle__of__olive_oil.n.01_2",
+   "scene_object": "bottle_of_olive_oil_209",
+   "substance": false,
+   "category": "bottle_of_olive_oil",
+   "model": "ajswsh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.01,
+    "median": 1.01,
+    "max": 1.01
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.94,
+    "median": 2.26,
+    "max": 3.73
+   },
+   "xy_spread_m": 2.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "jar__of__sugar.n.01_1",
+   "scene_object": "jar_of_sugar_208",
+   "substance": false,
+   "category": "jar_of_sugar",
+   "model": "pnbbfb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.94,
+    "median": 0.94,
+    "max": 0.94
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 2.24,
+    "max": 3.8
+   },
+   "xy_spread_m": 2.89,
+   "n_poses": 20
+  },
+  {
+   "inst": "jar__of__sugar.n.01_2",
+   "scene_object": "jar_of_sugar_207",
+   "substance": false,
+   "category": "jar_of_sugar",
+   "model": "pnbbfb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.94,
+    "median": 0.94,
+    "max": 0.94
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 2.28,
+    "max": 3.8
+   },
+   "xy_spread_m": 2.46,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "top_cabinet_lkxmne_0",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.48,
+    "median": 3.14,
+    "max": 4.36
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_2",
+   "scene_object": "bottom_cabinet_no_top_rkgjer_0",
+   "substance": false,
+   "category": "bottom_cabinet_no_top",
+   "model": "rkgjer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000126361846924,
+    0.9999865293502808,
+    0.9999390840530396
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.42,
+    "max": 0.42
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 2.36,
+    "max": 3.67
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_3",
+   "scene_object": "bottom_cabinet_fancyy_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "fancyy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000628232955933,
+    1.0000044107437134,
+    0.9999768137931824
+   ],
+   "z": {
+    "min": 1.12,
+    "median": 1.12,
+    "max": 1.12
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 3.66,
+    "max": 5.1
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_4",
+   "scene_object": "bottom_cabinet_no_top_gjeoer_0",
+   "substance": false,
+   "category": "bottom_cabinet_no_top",
+   "model": "gjeoer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999522566795349,
+    1.0000033378601074,
+    0.9999667406082153
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.42,
+    "max": 0.42
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 1.9,
+    "max": 4.27
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_5",
+   "scene_object": "top_cabinet_lkxmne_2",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 1.91,
+    "max": 4.56
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_6",
+   "scene_object": "top_cabinet_lkxmne_1",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.22,
+    "median": 2.17,
+    "max": 4.32
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.83,
+    "median": 1.55,
+    "max": 2.37
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.14,
+   0.13
+  ],
+  [
+   5.43,
+   1.59
+  ],
+  [
+   6.05,
+   -0.89
+  ],
+  [
+   4.97,
+   1.46
+  ],
+  [
+   5.24,
+   0.81
+  ],
+  [
+   8.3,
+   -0.89
+  ],
+  [
+   5.2,
+   -0.25
+  ],
+  [
+   7.64,
+   -0.92
+  ],
+  [
+   8.08,
+   -1.03
+  ],
+  [
+   5.2,
+   -0.75
+  ],
+  [
+   5.36,
+   1.21
+  ],
+  [
+   5.19,
+   1.01
+  ],
+  [
+   7.66,
+   -1.02
+  ],
+  [
+   7.52,
+   -0.95
+  ],
+  [
+   5.21,
+   0.53
+  ],
+  [
+   5.33,
+   -0.84
+  ],
+  [
+   7.63,
+   -0.87
+  ],
+  [
+   8.19,
+   -1.01
+  ],
+  [
+   5.61,
+   -0.9
+  ],
+  [
+   5.31,
+   1.25
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 33,
+   "median": 37.5,
+   "max": 43
+  },
+  "demo_seconds": {
+   "min": 532.7,
+   "median": 631.07,
+   "max": 867.0
+  },
+  "distinct_verb_sequences": 116,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "tip over",
+   "push to",
+   "pick up from",
+   "move to",
+   "place in",
+   "push to",
+   "move to",
+   "tip over",
+   "push to",
+   "pick up from",
+   "move to",
+   "place in",
+   "push to",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.05,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 13,
+   "open door": 1,
+   "pick up from": 8,
+   "place in": 8,
+   "push to": 4,
+   "tip over": 2
+  },
+  "modal_verb_counts_share": 0.19,
+  "representative_episode": {
+   "file": "episode_00240270.json",
+   "seconds": 723.0,
+   "steps": [
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 0.0,
+     "end_s": 29.9
+    },
+    {
+     "prompt": "open the door of the left_door bottom cabinet",
+     "start_s": 29.9,
+     "end_s": 60.0
+    },
+    {
+     "prompt": "move to the bottle of olive oil",
+     "start_s": 60.0,
+     "end_s": 77.5
+    },
+    {
+     "prompt": "pick up the bottle of olive oil from the countertop",
+     "start_s": 77.5,
+     "end_s": 93.5
+    },
+    {
+     "prompt": "move to the bottle of olive oil",
+     "start_s": 93.5,
+     "end_s": 108.2
+    },
+    {
+     "prompt": "pick up the bottle of olive oil from the countertop",
+     "start_s": 108.2,
+     "end_s": 122.1
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 122.1,
+     "end_s": 151.1
+    },
+    {
+     "prompt": "place the bottle of olive oil in the layer_2 bottom cabinet",
+     "start_s": 151.1,
+     "end_s": 175.8
+    },
+    {
+     "prompt": "place the bottle of olive oil in the layer_2 bottom cabinet",
+     "start_s": 175.8,
+     "end_s": 184.0
+    },
+    {
+     "prompt": "move to the bag of chips",
+     "start_s": 184.0,
+     "end_s": 200.2
+    },
+    {
+     "prompt": "pick up the bag of chips from the countertop",
+     "start_s": 200.2,
+     "end_s": 215.2
+    },
+    {
+     "prompt": "move to the bag of chips",
+     "start_s": 215.2,
+     "end_s": 231.2
+    },
+    {
+     "prompt": "pick up the bag of chips from the countertop",
+     "start_s": 231.2,
+     "end_s": 246.2
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 246.2,
+     "end_s": 270.6
+    },
+    {
+     "prompt": "place the bag of chips in the layer_3 bottom cabinet",
+     "start_s": 270.7,
+     "end_s": 280.0
+    },
+    {
+     "prompt": "place the bag of chips in the layer_3 bottom cabinet",
+     "start_s": 280.0,
+     "end_s": 300.2
+    },
+    {
+     "prompt": "move to the jar of sugar",
+     "start_s": 300.2,
+     "end_s": 318.6
+    },
+    {
+     "prompt": "pick up the jar of sugar from the countertop",
+     "start_s": 318.7,
+     "end_s": 335.2
+    },
+    {
+     "prompt": "move to the jar of sugar",
+     "start_s": 335.2,
+     "end_s": 345.2
+    },
+    {
+     "prompt": "pick up the jar of sugar from the countertop",
+     "start_s": 345.2,
+     "end_s": 364.1
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 364.1,
+     "end_s": 387.2
+    },
+    {
+     "prompt": "place the jar of sugar in the layer_2 bottom cabinet",
+     "start_s": 387.2,
+     "end_s": 417.0
+    },
+    {
+     "prompt": "place the jar of sugar in the layer_2 bottom cabinet",
+     "start_s": 417.0,
+     "end_s": 440.1
+    },
+    {
+     "prompt": "move to the box of oatmeal",
+     "start_s": 440.1,
+     "end_s": 457.1
+    },
+    {
+     "prompt": "tip over the box of oatmeal",
+     "start_s": 457.1,
+     "end_s": 469.1
+    },
+    {
+     "prompt": "push the box of oatmeal to the to_the_edge_of countertop",
+     "start_s": 469.1,
+     "end_s": 482.5
+    },
+    {
+     "prompt": "pick up the box of oatmeal from the countertop",
+     "start_s": 482.5,
+     "end_s": 514.5
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 514.5,
+     "end_s": 532.5
+    },
+    {
+     "prompt": "place the box of oatmeal in the layer_4 bottom cabinet",
+     "start_s": 532.5,
+     "end_s": 550.1
+    },
+    {
+     "prompt": "push the box of oatmeal to the center bottom cabinet",
+     "start_s": 550.1,
+     "end_s": 561.1
+    },
+    {
+     "prompt": "move to the box of oatmeal",
+     "start_s": 561.1,
+     "end_s": 585.2
+    },
+    {
+     "prompt": "tip over the box of oatmeal",
+     "start_s": 585.2,
+     "end_s": 591.2
+    },
+    {
+     "prompt": "push the box of oatmeal to the to_the_edge_of countertop",
+     "start_s": 591.2,
+     "end_s": 604.1
+    },
+    {
+     "prompt": "pick up the box of oatmeal from the countertop",
+     "start_s": 604.1,
+     "end_s": 631.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 631.0,
+     "end_s": 663.0
+    },
+    {
+     "prompt": "place the box of oatmeal in the layer_4 bottom cabinet",
+     "start_s": 663.0,
+     "end_s": 681.0
+    },
+    {
+     "prompt": "push the box of oatmeal to the center bottom cabinet",
+     "start_s": 681.0,
+     "end_s": 695.2
+    },
+    {
+     "prompt": "close the door of the left_door bottom cabinet",
+     "start_s": 695.2,
+     "end_s": 723.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 19.3,
+   "move to": 21.0,
+   "open door": 28.6,
+   "pick up from": 16.9,
+   "place in": 16.5,
+   "place on": 5.7,
+   "push to": 12.0,
+   "tip over": 8.3
+  },
+  "verb_counts_total": {
+   "move to": 2581,
+   "pick up from": 1635,
+   "place in": 1598,
+   "push to": 888,
+   "tip over": 400,
+   "open door": 200,
+   "close door": 199,
+   "place on": 35
+  },
+  "top_prompts": [
+   [
+    "move to the bottom cabinet",
+    1200
+   ],
+   [
+    "push the box of oatmeal to the to_the_edge_of countertop",
+    457
+   ],
+   [
+    "pick up the box of oatmeal from the countertop",
+    434
+   ],
+   [
+    "pick up the bag of chips from the countertop",
+    400
+   ],
+   [
+    "place the bag of chips in the layer_3 bottom cabinet",
+    400
+   ],
+   [
+    "pick up the jar of sugar from the countertop",
+    400
+   ],
+   [
+    "place the jar of sugar in the layer_2 bottom cabinet",
+    400
+   ],
+   [
+    "move to the box of oatmeal",
+    400
+   ],
+   [
+    "tip over the box of oatmeal",
+    400
+   ],
+   [
+    "pick up the bottle of olive oil from the countertop",
+    400
+   ],
+   [
+    "place the box of oatmeal in the layer_4 bottom cabinet",
+    398
+   ],
+   [
+    "place the bottle of olive oil in the layer_2 bottom cabinet",
+    397
+   ],
+   [
+    "push the box of oatmeal to the center bottom cabinet",
+    393
+   ],
+   [
+    "move to the bag of chips",
+    345
+   ],
+   [
+    "move to the bottle of olive oil",
+    319
+   ],
+   [
+    "move to the jar of sugar",
+    317
+   ],
+   [
+    "open the door of the left_door bottom cabinet",
+    200
+   ],
+   [
+    "close the door of the left_door bottom cabinet",
+    198
+   ],
+   [
+    "push the box of oatmeal to the center countertop",
+    37
+   ],
+   [
+    "place the box of oatmeal on the to_the_edge_of countertop",
+    35
+   ],
+   [
+    "place the box of oatmeal in the bottom cabinet",
+    2
+   ],
+   [
+    "close the door of the left_door box of oatmeal",
+    1
+   ],
+   [
+    "place the bottle of olive oil in the layer_2 bottle of olive oil",
+    1
+   ],
+   [
+    "pick up the box of oatmeal from the bottom cabinet",
+    1
+   ],
+   [
+    "push the box of oatmeal to the to_the_edge_of bottom cabinet",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "tip over",
+  "move to",
+  "close door",
+  "place on",
+  "pick up from",
+  "place in",
+  "open door",
+  "push to"
+ ],
+ "results": {}
+}

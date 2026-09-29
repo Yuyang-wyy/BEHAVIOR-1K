@@ -1,0 +1,982 @@
+{
+ "index": 41,
+ "name": "cook_cabbage",
+ "instruction": "From the kitchen refrigerator, take the cabbage and the chili, dice them on the chopping board with the knife, cook the diced cabbage and diced chili in the frying pan on the stove, and leave the cooked, diced cabbage and cooked, diced chili in the frying pan.",
+ "title": "Cook Cabbage",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114060935",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "From the kitchen refrigerator, take the cabbage and the chili, dice them on the chopping board with the knife, cook the diced cabbage and diced chili in the frying pan on the stove, and leave the cooked, diced cabbage and cooked, diced chili in the frying pan.",
+ "human": {
+  "mean_steps": 14144.81,
+  "mean_seconds": 471.5,
+  "step_limit": 21217,
+  "time_limit_seconds": 707.2,
+  "base_distance_m": 39.3143,
+  "eef_displacement_m": {
+   "left": 20.8745,
+   "right": 22.8551
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem cook_cabbage-0)\n    (:domain behavior-1k)\n\n    (:objects\n        head_cabbage.n.02_1 - head_cabbage.n.02\n        cooked__diced__chili.n.01_1 - cooked__diced__chili.n.01\n        cooked__diced__head_cabbage.n.01_1 - cooked__diced__head_cabbage.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        chili.n.02_1 - chili.n.02\n        chopping_board.n.01_1 - chopping_board.n.01\n        carving_knife.n.01_1 - carving_knife.n.01\n        frying_pan.n.01_1 - frying_pan.n.01\n        plate.n.04_1 - plate.n.04\n        stove.n.01_1 - stove.n.01\n        countertop.n.01_1 - countertop.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside head_cabbage.n.02_1 electric_refrigerator.n.01_1)\n        (ontop frying_pan.n.01_1 countertop.n.01_1) \n        (ontop plate.n.04_1 countertop.n.01_1) \n        (inside chili.n.02_1 electric_refrigerator.n.01_1) \n        (not \n            (cooked head_cabbage.n.02_1)\n        ) \n        (ontop chopping_board.n.01_1 countertop.n.01_1)\n        (ontop carving_knife.n.01_1 countertop.n.01_1)\n        (future cooked__diced__chili.n.01_1)\n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom stove.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen)\n        (future cooked__diced__head_cabbage.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (real ?cooked__diced__head_cabbage.n.01_1)\n            (real ?cooked__diced__chili.n.01_1)\n            (contains ?frying_pan.n.01_1 ?cooked__diced__head_cabbage.n.01_1)\n            (contains ?frying_pan.n.01_1 ?cooked__diced__chili.n.01_1) \n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "head_cabbage.n.02": [
+   "head_cabbage.n.02_1"
+  ],
+  "cooked__diced__chili.n.01": [
+   "cooked__diced__chili.n.01_1"
+  ],
+  "cooked__diced__head_cabbage.n.01": [
+   "cooked__diced__head_cabbage.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "chili.n.02": [
+   "chili.n.02_1"
+  ],
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "carving_knife.n.01": [
+   "carving_knife.n.01_1"
+  ],
+  "frying_pan.n.01": [
+   "frying_pan.n.01_1"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1"
+  ],
+  "stove.n.01": [
+   "stove.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "cooked__diced__chili.n.01_1",
+  "cooked__diced__head_cabbage.n.01_1"
+ ],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.009
+  }
+ },
+ "init_literals": [
+  "(future cooked__diced__chili.n.01_1)",
+  "(future cooked__diced__head_cabbage.n.01_1)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom stove.n.01_1 kitchen)",
+  "(inside chili.n.02_1 electric_refrigerator.n.01_1)",
+  "(inside head_cabbage.n.02_1 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop carving_knife.n.01_1 countertop.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(ontop frying_pan.n.01_1 countertop.n.01_1)",
+  "(ontop plate.n.04_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching carving_knife.n.01_1 countertop.n.01_1)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching countertop.n.01_1 carving_knife.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching countertop.n.01_1 frying_pan.n.01_1)",
+  "(touching countertop.n.01_1 plate.n.04_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching frying_pan.n.01_1 countertop.n.01_1)",
+  "(touching plate.n.04_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(real cooked__diced__head_cabbage.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "cooked__diced__head_cabbage.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real cooked__diced__chili.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "cooked__diced__chili.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(contains frying_pan.n.01_1 cooked__diced__head_cabbage.n.01_1)",
+    "negated": false,
+    "predicate": "contains",
+    "args": [
+     "frying_pan.n.01_1",
+     "cooked__diced__head_cabbage.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(contains frying_pan.n.01_1 cooked__diced__chili.n.01_1)",
+    "negated": false,
+    "predicate": "contains",
+    "args": [
+     "frying_pan.n.01_1",
+     "cooked__diced__chili.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "real",
+   2
+  ],
+  [
+   "contains",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "head_cabbage.n.02_1",
+   "scene_object": "head_cabbage_212",
+   "substance": false,
+   "category": "head_cabbage",
+   "model": "tqohvs",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.54,
+    "median": 0.95,
+    "max": 1.35
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.13,
+    "median": 2.64,
+    "max": 4.63
+   },
+   "xy_spread_m": 0.41,
+   "n_poses": 20
+  },
+  {
+   "inst": "cooked__diced__chili.n.01_1",
+   "scene_object": null,
+   "substance": true,
+   "systems": [
+    "cooked__diced__chili"
+   ]
+  },
+  {
+   "inst": "cooked__diced__head_cabbage.n.01_1",
+   "scene_object": null,
+   "substance": true,
+   "systems": [
+    "cooked__diced__head_cabbage"
+   ]
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_dszchb_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "dszchb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0291646718978882,
+    0.9616702198982239,
+    1.021162748336792
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 2.69,
+    "max": 4.55
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "chili.n.02_1",
+   "scene_object": "chili_211",
+   "substance": false,
+   "category": "chili",
+   "model": "xhbpqh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    6.0,
+    6.0,
+    6.0
+   ],
+   "z": {
+    "min": 0.49,
+    "median": 0.9,
+    "max": 1.3
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 2.62,
+    "max": 4.51
+   },
+   "xy_spread_m": 0.31,
+   "n_poses": 20
+  },
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "cutting_board_210",
+   "substance": false,
+   "category": "cutting_board",
+   "model": "tcdrzs",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.64,
+    "max": 4.75
+   },
+   "xy_spread_m": 1.63,
+   "n_poses": 20
+  },
+  {
+   "inst": "carving_knife.n.01_1",
+   "scene_object": "carving_knife_209",
+   "substance": false,
+   "category": "carving_knife",
+   "model": "awvoox",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 1.77,
+    "max": 4.73
+   },
+   "xy_spread_m": 3.09,
+   "n_poses": 20
+  },
+  {
+   "inst": "frying_pan.n.01_1",
+   "scene_object": "frying_pan_208",
+   "substance": false,
+   "category": "frying_pan",
+   "model": "cprjvq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.92,
+    "median": 0.92,
+    "max": 0.92
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 1.67,
+    "max": 4.54
+   },
+   "xy_spread_m": 0.64,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_207",
+   "substance": false,
+   "category": "plate",
+   "model": "zpddxu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 1.92,
+    "max": 4.66
+   },
+   "xy_spread_m": 2.42,
+   "n_poses": 20
+  },
+  {
+   "inst": "stove.n.01_1",
+   "scene_object": "burner_mjvqii_0",
+   "substance": false,
+   "category": "burner",
+   "model": "mjvqii",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000821352005005,
+    1.0000149011611938,
+    0.9986956119537354
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.01,
+    "median": 1.7,
+    "max": 4.63
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_kelker_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "kelker",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999452829360962,
+    1.0000067949295044,
+    1.0006266832351685
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.0,
+    "median": 1.69,
+    "max": 4.62
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.36,
+    "max": 2.45
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   6.24,
+   -0.97
+  ],
+  [
+   5.39,
+   -0.85
+  ],
+  [
+   5.43,
+   -0.85
+  ],
+  [
+   6.26,
+   -0.93
+  ],
+  [
+   8.78,
+   -0.93
+  ],
+  [
+   4.96,
+   1.57
+  ],
+  [
+   6.01,
+   -0.94
+  ],
+  [
+   5.31,
+   -0.79
+  ],
+  [
+   5.53,
+   -0.83
+  ],
+  [
+   5.07,
+   0.06
+  ],
+  [
+   5.15,
+   1.17
+  ],
+  [
+   5.3,
+   1.16
+  ],
+  [
+   5.17,
+   -0.4
+  ],
+  [
+   5.58,
+   -1.04
+  ],
+  [
+   5.19,
+   -0.55
+  ],
+  [
+   5.34,
+   -0.83
+  ],
+  [
+   5.28,
+   1.56
+  ],
+  [
+   7.7,
+   -0.85
+  ],
+  [
+   5.39,
+   -0.76
+  ],
+  [
+   6.25,
+   -1.06
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 30,
+   "median": 36.0,
+   "max": 47
+  },
+  "demo_seconds": {
+   "min": 253.93,
+   "median": 480.85,
+   "max": 654.0
+  },
+  "distinct_verb_sequences": 134,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "pick up from",
+   "close door",
+   "move to",
+   "place on",
+   "move to",
+   "place on",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "chop",
+   "chop",
+   "chop",
+   "place on next to",
+   "push to",
+   "pick up from",
+   "pour",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "pick up from",
+   "chop",
+   "chop",
+   "chop",
+   "place on",
+   "pick up from",
+   "pour",
+   "place on",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.11,
+  "modal_verb_counts": {
+   "chop": 6,
+   "close door": 1,
+   "move to": 8,
+   "open door": 1,
+   "pick up from": 8,
+   "place on": 7,
+   "place on next to": 1,
+   "pour": 2,
+   "push to": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.15,
+  "representative_episode": {
+   "file": "episode_00412280.json",
+   "seconds": 494.3,
+   "steps": [
+    {
+     "prompt": "move to the fridge",
+     "start_s": 0.5,
+     "end_s": 34.6
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 34.6,
+     "end_s": 66.4
+    },
+    {
+     "prompt": "pick up the chili from the low_level fridge",
+     "start_s": 66.4,
+     "end_s": 113.8
+    },
+    {
+     "prompt": "pick up the head cabbage from the high_level fridge",
+     "start_s": 113.8,
+     "end_s": 136.3
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 136.3,
+     "end_s": 165.9
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 165.9,
+     "end_s": 175.6
+    },
+    {
+     "prompt": "place the head cabbage on the cutting board",
+     "start_s": 175.6,
+     "end_s": 197.2
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 197.2,
+     "end_s": 201.8
+    },
+    {
+     "prompt": "place the chili on the plate",
+     "start_s": 201.8,
+     "end_s": 218.1
+    },
+    {
+     "prompt": "pick up the frying pan from the countertop",
+     "start_s": 218.1,
+     "end_s": 235.7
+    },
+    {
+     "prompt": "move to the burner",
+     "start_s": 235.7,
+     "end_s": 245.9
+    },
+    {
+     "prompt": "place the frying pan on the right burner",
+     "start_s": 245.9,
+     "end_s": 259.9
+    },
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 259.9,
+     "end_s": 265.7
+    },
+    {
+     "prompt": "pick up the carving knife from the countertop",
+     "start_s": 265.7,
+     "end_s": 290.7
+    },
+    {
+     "prompt": "move to the head cabbage",
+     "start_s": 290.7,
+     "end_s": 298.3
+    },
+    {
+     "prompt": "chop the carving knife with the head cabbage",
+     "start_s": 298.3,
+     "end_s": 304.1
+    },
+    {
+     "prompt": "chop the carving knife with the half head cabbage 212",
+     "start_s": 304.1,
+     "end_s": 307.9
+    },
+    {
+     "prompt": "chop the carving knife with the half head cabbage 212",
+     "start_s": 307.9,
+     "end_s": 313.2
+    },
+    {
+     "prompt": "place the carving knife on the countertop next to the right cutting board",
+     "start_s": 313.2,
+     "end_s": 318.8
+    },
+    {
+     "prompt": "push the cutting board to the to_the_edge_of countertop",
+     "start_s": 318.8,
+     "end_s": 339.2
+    },
+    {
+     "prompt": "pick up the cutting board from the countertop",
+     "start_s": 339.2,
+     "end_s": 362.2
+    },
+    {
+     "prompt": "pour the diced  head cabbage into the cutting board",
+     "start_s": 362.2,
+     "end_s": 370.0
+    },
+    {
+     "prompt": "place the cutting board on the to_the_edge_of countertop",
+     "start_s": 370.0,
+     "end_s": 384.8
+    },
+    {
+     "prompt": "move to the chili",
+     "start_s": 384.8,
+     "end_s": 386.8
+    },
+    {
+     "prompt": "pick up the chili from the plate",
+     "start_s": 386.8,
+     "end_s": 398.4
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 398.4,
+     "end_s": 405.4
+    },
+    {
+     "prompt": "place the chili on the cutting board",
+     "start_s": 405.4,
+     "end_s": 413.5
+    },
+    {
+     "prompt": "pick up the carving knife from the countertop",
+     "start_s": 413.5,
+     "end_s": 427.1
+    },
+    {
+     "prompt": "chop the carving knife with the chili",
+     "start_s": 427.1,
+     "end_s": 438.5
+    },
+    {
+     "prompt": "chop the carving knife with the half chili 211",
+     "start_s": 438.5,
+     "end_s": 442.7
+    },
+    {
+     "prompt": "chop the carving knife with the half chili 211",
+     "start_s": 442.7,
+     "end_s": 445.3
+    },
+    {
+     "prompt": "place the carving knife on the countertop",
+     "start_s": 445.3,
+     "end_s": 451.7
+    },
+    {
+     "prompt": "pick up the cutting board from the countertop",
+     "start_s": 451.7,
+     "end_s": 467.5
+    },
+    {
+     "prompt": "pour the diced  chili into the cutting board",
+     "start_s": 467.5,
+     "end_s": 472.4
+    },
+    {
+     "prompt": "place the cutting board on the countertop",
+     "start_s": 472.4,
+     "end_s": 482.4
+    },
+    {
+     "prompt": "turn on the burner",
+     "start_s": 482.6,
+     "end_s": 494.8
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "chop": 5.7,
+   "close door": 34.6,
+   "move to": 8.0,
+   "open door": 37.6,
+   "pick up from": 18.7,
+   "place on": 12.0,
+   "place on next to": 7.0,
+   "pour": 9.2,
+   "push to": 18.7,
+   "turn on switch": 14.6,
+   "turn to": 24.8
+  },
+  "verb_counts_total": {
+   "move to": 1828,
+   "pick up from": 1603,
+   "place on": 1404,
+   "chop": 1191,
+   "pour": 400,
+   "open door": 200,
+   "close door": 200,
+   "turn on switch": 200,
+   "place on next to": 199,
+   "push to": 173,
+   "turn to": 3
+  },
+  "top_prompts": [
+   [
+    "move to the cutting board",
+    464
+   ],
+   [
+    "pick up the carving knife from the countertop",
+    403
+   ],
+   [
+    "pick up the cutting board from the countertop",
+    400
+   ],
+   [
+    "chop the carving knife with the half head cabbage 212",
+    396
+   ],
+   [
+    "chop the carving knife with the half chili 211",
+    394
+   ],
+   [
+    "move to the burner",
+    219
+   ],
+   [
+    "move to the chili",
+    208
+   ],
+   [
+    "place the cutting board on the countertop",
+    201
+   ],
+   [
+    "open the door of the fridge",
+    200
+   ],
+   [
+    "close the door of the fridge",
+    200
+   ],
+   [
+    "place the head cabbage on the cutting board",
+    200
+   ],
+   [
+    "place the chili on the plate",
+    200
+   ],
+   [
+    "pick up the frying pan from the countertop",
+    200
+   ],
+   [
+    "place the frying pan on the right burner",
+    200
+   ],
+   [
+    "chop the carving knife with the head cabbage",
+    200
+   ],
+   [
+    "pour the diced  head cabbage into the cutting board",
+    200
+   ],
+   [
+    "place the cutting board on the to_the_edge_of countertop",
+    200
+   ],
+   [
+    "pick up the chili from the plate",
+    200
+   ],
+   [
+    "place the chili on the cutting board",
+    200
+   ],
+   [
+    "chop the carving knife with the chili",
+    200
+   ],
+   [
+    "pour the diced  chili into the cutting board",
+    200
+   ],
+   [
+    "turn on the burner",
+    200
+   ],
+   [
+    "place the carving knife on the countertop",
+    199
+   ],
+   [
+    "move to the fridge",
+    198
+   ],
+   [
+    "move to the carving knife",
+    195
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "pour",
+  "place on next to",
+  "turn to",
+  "place on",
+  "pick up from",
+  "open door",
+  "chop",
+  "turn on switch",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 21218
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 21218
+  }
+ }
+}

@@ -1,0 +1,736 @@
+{
+ "index": 94,
+ "name": "dispose_of_batteries",
+ "instruction": "Pick up all of the batteries and put them into the trash can.",
+ "title": "Dispose Of Batteries",
+ "rooms_listed": [
+  "copy_room",
+  "corridor",
+  "private_office",
+  "shared_office"
+ ],
+ "video": "https://www.youtube.com/embed/TmJ7dNwDyws",
+ "scene_model": "office_cubicles_right",
+ "comet_pretrain_sentence": "Pick up all of the batteries and put them into the trash can.",
+ "human": {
+  "mean_steps": 14428.39,
+  "mean_seconds": 480.9,
+  "step_limit": 21642,
+  "time_limit_seconds": 721.4,
+  "base_distance_m": 46.6197,
+  "eef_displacement_m": {
+   "left": 19.6368,
+   "right": 13.1188
+  }
+ },
+ "rooms_loaded": [
+  "copy_room_0",
+  "corridor_0",
+  "private_office_0",
+  "private_office_1",
+  "private_office_2",
+  "private_office_3",
+  "shared_office_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "copy_room",
+   "corridor",
+   "private_office",
+   "shared_office"
+  ],
+  "office_cubicles_right": {
+   "whitelist": {
+    "ashcan.n.01": {
+     "trash_can": {
+      "wklill": null
+     }
+    },
+    "battery.n.02": {
+     "battery": {
+      "dcjyzg": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem dispose_of_batteries-0)\n    (:domain behavior-1k)\n\n    (:objects\n        battery.n.02_1 battery.n.02_2 battery.n.02_3 - battery.n.02\n        desk.n.01_1 - desk.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        ashcan.n.01_1 - ashcan.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop battery.n.02_1 desk.n.01_1)\n        (ontop battery.n.02_2 desk.n.01_1)\n        (ontop battery.n.02_3 cabinet.n.01_1)\n        (ontop ashcan.n.01_1 floor.n.01_1)\n        (inroom desk.n.01_1 private_office)\n        (inroom cabinet.n.01_1 copy_room)\n        (inroom floor.n.01_1 copy_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (forall\n                (?battery.n.02 - battery.n.02)\n                (inside ?battery.n.02 ?ashcan.n.01_1)\n            )\n            (ontop ?ashcan.n.01_1 ?floor.n.01_1)\n        )\n    )\n)\n",
+ "scene": "office_cubicles_right",
+ "n_public_instances": 20,
+ "room_instances": {
+  "private_office": "private_office_0",
+  "copy_room": "copy_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "battery.n.02": [
+   "battery.n.02_1",
+   "battery.n.02_2",
+   "battery.n.02_3"
+  ],
+  "desk.n.01": [
+   "desk.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "ashcan.n.01": [
+   "ashcan.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 copy_room)",
+  "(inroom desk.n.01_1 private_office)",
+  "(inroom floor.n.01_1 copy_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop ashcan.n.01_1 floor.n.01_1)",
+  "(ontop battery.n.02_1 desk.n.01_1)",
+  "(ontop battery.n.02_2 desk.n.01_1)",
+  "(ontop battery.n.02_3 cabinet.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching ashcan.n.01_1 floor.n.01_1)",
+  "(touching battery.n.02_1 desk.n.01_1)",
+  "(touching battery.n.02_2 desk.n.01_1)",
+  "(touching battery.n.02_3 cabinet.n.01_1)",
+  "(touching cabinet.n.01_1 battery.n.02_3)",
+  "(touching desk.n.01_1 battery.n.02_1)",
+  "(touching desk.n.01_1 battery.n.02_2)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 ashcan.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 1,
+  "max_partial_q": 0.75,
+  "literals": [
+   {
+    "literal": "(inside battery.n.02_2 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "battery.n.02_2",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside battery.n.02_1 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "battery.n.02_1",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside battery.n.02_3 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "battery.n.02_3",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop ashcan.n.01_1 floor.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "ashcan.n.01_1",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "battery.n.02_1",
+   "scene_object": "battery_162",
+   "substance": false,
+   "category": "battery",
+   "model": "dcjyzg",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.81,
+    "median": 0.81,
+    "max": 0.81
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 13.96,
+    "median": 14.54,
+    "max": 15.04
+   },
+   "xy_spread_m": 2.73,
+   "n_poses": 20
+  },
+  {
+   "inst": "battery.n.02_2",
+   "scene_object": "battery_161",
+   "substance": false,
+   "category": "battery",
+   "model": "dcjyzg",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.81,
+    "median": 0.81,
+    "max": 0.81
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 13.69,
+    "median": 14.49,
+    "max": 15.08
+   },
+   "xy_spread_m": 2.74,
+   "n_poses": 20
+  },
+  {
+   "inst": "battery.n.02_3",
+   "scene_object": "battery_160",
+   "substance": false,
+   "category": "battery",
+   "model": "dcjyzg",
+   "in_rooms": [
+    "copy_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.05,
+    "median": 1.05,
+    "max": 1.05
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.82,
+    "median": 1.5,
+    "max": 2.47
+   },
+   "xy_spread_m": 2.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "desk.n.01_1",
+   "scene_object": "desk_mdhelw_2",
+   "substance": false,
+   "category": "desk",
+   "model": "mdhelw",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999847412109375,
+    1.0000094175338745,
+    0.9999880790710449
+   ],
+   "z": {
+    "min": 0.6,
+    "median": 0.6,
+    "max": 0.6
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 13.99,
+    "median": 14.19,
+    "max": 14.61
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_jhymlr_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "jhymlr",
+   "in_rooms": [
+    "copy_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    2.4429163932800293,
+    5.114148139953613,
+    2.720041513442993
+   ],
+   "z": {
+    "min": 0.51,
+    "median": 0.51,
+    "max": 0.51
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 1.43,
+    "max": 1.78
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "ashcan.n.01_1",
+   "scene_object": "trash_can_159",
+   "substance": false,
+   "category": "trash_can",
+   "model": "wklill",
+   "in_rooms": [
+    "copy_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.22,
+    "median": 0.22,
+    "max": 0.22
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 0.94,
+    "max": 2.6
+   },
+   "xy_spread_m": 3.22,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_tkyckr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "tkyckr",
+   "in_rooms": [
+    "copy_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.34,
+    "median": 0.7,
+    "max": 1.08
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_pibkee",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   8.92,
+   -9.96
+  ],
+  [
+   9.65,
+   -10.51
+  ],
+  [
+   9.01,
+   -10.06
+  ],
+  [
+   9.56,
+   -10.44
+  ],
+  [
+   9.12,
+   -10.08
+  ],
+  [
+   8.96,
+   -10.4
+  ],
+  [
+   9.57,
+   -10.33
+  ],
+  [
+   9.21,
+   -10.01
+  ],
+  [
+   9.48,
+   -10.21
+  ],
+  [
+   9.42,
+   -9.89
+  ],
+  [
+   9.55,
+   -10.1
+  ],
+  [
+   8.99,
+   -9.96
+  ],
+  [
+   8.95,
+   -10.11
+  ],
+  [
+   9.03,
+   -10.04
+  ],
+  [
+   9.02,
+   -10.29
+  ],
+  [
+   9.63,
+   -10.09
+  ],
+  [
+   9.29,
+   -9.99
+  ],
+  [
+   9.52,
+   -10.16
+  ],
+  [
+   9.01,
+   -10.07
+  ],
+  [
+   9.36,
+   -9.97
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 14,
+   "median": 17.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 255.63,
+   "median": 454.98,
+   "max": 863.97
+  },
+  "distinct_verb_sequences": 27,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "place in",
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "place in",
+   "move to",
+   "push to",
+   "move to",
+   "pick up from",
+   "place in",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.23,
+  "modal_verb_counts": {
+   "move to": 7,
+   "open door": 1,
+   "pick up from": 4,
+   "place in": 3,
+   "place on": 1,
+   "push to": 1
+  },
+  "modal_verb_counts_share": 0.34,
+  "representative_episode": {
+   "file": "episode_00940830.json",
+   "seconds": 468.7,
+   "steps": [
+    {
+     "prompt": "move to the trash can",
+     "start_s": 0.0,
+     "end_s": 21.0
+    },
+    {
+     "prompt": "pick up the trash can from the floors",
+     "start_s": 21.0,
+     "end_s": 47.0
+    },
+    {
+     "prompt": "move to the battery",
+     "start_s": 47.0,
+     "end_s": 59.0
+    },
+    {
+     "prompt": "pick up the battery from the cabinet",
+     "start_s": 59.0,
+     "end_s": 76.0
+    },
+    {
+     "prompt": "place the battery in the trash can",
+     "start_s": 76.0,
+     "end_s": 83.0
+    },
+    {
+     "prompt": "move to the wooden door",
+     "start_s": 83.0,
+     "end_s": 156.0
+    },
+    {
+     "prompt": "open the door of the wooden door",
+     "start_s": 156.0,
+     "end_s": 163.0
+    },
+    {
+     "prompt": "move to the battery",
+     "start_s": 163.0,
+     "end_s": 189.0
+    },
+    {
+     "prompt": "pick up the battery from the desk",
+     "start_s": 189.0,
+     "end_s": 196.1
+    },
+    {
+     "prompt": "place the battery in the trash can",
+     "start_s": 196.1,
+     "end_s": 200.0
+    },
+    {
+     "prompt": "move to the battery",
+     "start_s": 200.0,
+     "end_s": 240.7
+    },
+    {
+     "prompt": "push the swivel chair to the floors",
+     "start_s": 240.7,
+     "end_s": 253.1
+    },
+    {
+     "prompt": "move to the battery",
+     "start_s": 253.1,
+     "end_s": 289.0
+    },
+    {
+     "prompt": "pick up the battery from the desk",
+     "start_s": 289.0,
+     "end_s": 294.2
+    },
+    {
+     "prompt": "place the battery in the trash can",
+     "start_s": 294.2,
+     "end_s": 305.0
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 305.0,
+     "end_s": 441.0
+    },
+    {
+     "prompt": "place the trash can on the floors",
+     "start_s": 441.0,
+     "end_s": 460.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 44.1,
+   "open door": 16.6,
+   "pick up from": 19.0,
+   "place in": 14.1,
+   "place on": 21.8,
+   "push to": 22.3,
+   "turn to": 19.8
+  },
+  "verb_counts_total": {
+   "move to": 1394,
+   "pick up from": 802,
+   "place in": 601,
+   "open door": 201,
+   "place on": 200,
+   "push to": 128,
+   "turn to": 3
+  },
+  "top_prompts": [
+   [
+    "move to the battery",
+    686
+   ],
+   [
+    "place the battery in the trash can",
+    600
+   ],
+   [
+    "pick up the battery from the desk",
+    402
+   ],
+   [
+    "move to the wooden door",
+    292
+   ],
+   [
+    "open the door of the wooden door",
+    201
+   ],
+   [
+    "move to the floors",
+    201
+   ],
+   [
+    "move to the trash can",
+    200
+   ],
+   [
+    "pick up the trash can from the floors",
+    200
+   ],
+   [
+    "pick up the battery from the cabinet",
+    200
+   ],
+   [
+    "place the trash can on the floors",
+    200
+   ],
+   [
+    "push the swivel chair to the desk",
+    110
+   ],
+   [
+    "move to the swivel chair",
+    14
+   ],
+   [
+    "push the swivel chair to the floors",
+    13
+   ],
+   [
+    "turn to the trash can",
+    3
+   ],
+   [
+    "push the chair to the desk",
+    2
+   ],
+   [
+    "push the battery to the desk",
+    2
+   ],
+   [
+    "move to the chair",
+    1
+   ],
+   [
+    "push the office chair to the desk",
+    1
+   ],
+   [
+    "place the swivel chair in the desk",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 21643
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 21643
+  }
+ }
+}

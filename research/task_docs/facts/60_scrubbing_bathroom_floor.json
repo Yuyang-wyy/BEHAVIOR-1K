@@ -1,0 +1,435 @@
+{
+ "index": 60,
+ "name": "scrubbing_bathroom_floor",
+ "instruction": "Use the scrub brush to scrub the bathroom floor until the floor is clean.",
+ "title": "Scrubbing Bathroom Floor",
+ "rooms_listed": [
+  "bathroom"
+ ],
+ "video": "https://www.youtube.com/embed/u9wtUgoB8o8",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Use the scrub brush to scrub the bathroom floor until the floor is clean.",
+ "human": {
+  "mean_steps": 3153.83,
+  "mean_seconds": 105.1,
+  "step_limit": 4730,
+  "time_limit_seconds": 157.7,
+  "base_distance_m": 5.3838,
+  "eef_displacement_m": {
+   "left": 7.7988,
+   "right": 7.8396
+  }
+ },
+ "rooms_loaded": [
+  "bathroom_0",
+  "bathroom_1",
+  "garden_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bathroom"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "scrub_brush.n.01": {
+     "scrub_brush": {
+      "hsejyi": [
+       0.156,
+       0.048,
+       0.024
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem scrubbing_bathroom_floor-0)\n    (:domain behavior-1k)\n\n    (:objects\n        dirt.n.02_1 - dirt.n.02\n        floor.n.01_1 - floor.n.01\n        scrub_brush.n.01_1 - scrub_brush.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (covered floor.n.01_1 dirt.n.02_1) \n        (ontop scrub_brush.n.01_1 floor.n.01_1) \n        (inroom floor.n.01_1 bathroom) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (not \n                (covered ?floor.n.01_1 ?dirt.n.02_1)\n            )\n        )\n    )\n)\n",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bathroom": "bathroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "dirt.n.02": [
+   "dirt.n.02_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "scrub_brush.n.01": [
+   "scrub_brush.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(covered floor.n.01_1 dirt.n.02_1)",
+  "(inroom floor.n.01_1 bathroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop scrub_brush.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 scrub_brush.n.01_1)",
+  "(touching scrub_brush.n.01_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered floor.n.01_1 dirt.n.02_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "floor.n.01_1",
+     "dirt.n.02_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "dirt.n.02_1",
+   "scene_object": "dirt",
+   "substance": true,
+   "systems": [
+    "dirt"
+   ]
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_mawnss_0",
+   "substance": false,
+   "category": "floors",
+   "model": "mawnss",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000041723251343,
+    0.9999998807907104,
+    0.9999321699142456
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.4,
+    "median": 0.53,
+    "max": 0.69
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "scrub_brush.n.01_1",
+   "scene_object": "scrub_brush_222",
+   "substance": false,
+   "category": "scrub_brush",
+   "model": "hsejyi",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.2283467054367065,
+    1.3284690380096436,
+    1.1250053644180298
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.23,
+    "median": 0.76,
+    "max": 2.7
+   },
+   "xy_spread_m": 4.47,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_cweoix",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   21.94,
+   10.68
+  ],
+  [
+   21.86,
+   10.62
+  ],
+  [
+   21.91,
+   10.67
+  ],
+  [
+   21.91,
+   10.68
+  ],
+  [
+   21.88,
+   10.66
+  ],
+  [
+   21.89,
+   10.6
+  ],
+  [
+   21.74,
+   10.69
+  ],
+  [
+   21.89,
+   10.62
+  ],
+  [
+   21.85,
+   10.58
+  ],
+  [
+   21.77,
+   10.61
+  ],
+  [
+   21.95,
+   10.71
+  ],
+  [
+   21.86,
+   10.71
+  ],
+  [
+   21.96,
+   10.86
+  ],
+  [
+   21.8,
+   10.46
+  ],
+  [
+   21.78,
+   10.61
+  ],
+  [
+   21.89,
+   10.88
+  ],
+  [
+   21.77,
+   10.71
+  ],
+  [
+   21.94,
+   10.95
+  ],
+  [
+   21.84,
+   10.9
+  ],
+  [
+   21.99,
+   10.64
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 4,
+   "median": 9.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 35.53,
+   "median": 103.38,
+   "max": 188.53
+  },
+  "distinct_verb_sequences": 40,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "hand over",
+   "move to",
+   "wipe hard",
+   "move to",
+   "wipe hard",
+   "move to",
+   "wipe hard"
+  ],
+  "modal_verb_sequence_share": 0.2,
+  "modal_verb_counts": {
+   "hand over": 1,
+   "move to": 4,
+   "pick up from": 1,
+   "wipe hard": 3
+  },
+  "modal_verb_counts_share": 0.2,
+  "representative_episode": {
+   "file": "episode_00602640.json",
+   "seconds": 103.4,
+   "steps": [
+    {
+     "prompt": "move to the scrub brush",
+     "start_s": 0.0,
+     "end_s": 14.0
+    },
+    {
+     "prompt": "pick up the scrub brush from the floors",
+     "start_s": 14.0,
+     "end_s": 24.3
+    },
+    {
+     "prompt": "hand over the scrub brush",
+     "start_s": 24.3,
+     "end_s": 30.0
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 30.0,
+     "end_s": 49.0
+    },
+    {
+     "prompt": "wipe the scrub brush",
+     "start_s": 49.0,
+     "end_s": 55.0
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 55.0,
+     "end_s": 62.0
+    },
+    {
+     "prompt": "wipe the scrub brush",
+     "start_s": 62.0,
+     "end_s": 68.0
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 68.0,
+     "end_s": 95.7
+    },
+    {
+     "prompt": "wipe the scrub brush",
+     "start_s": 95.7,
+     "end_s": 103.4
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 7.3,
+   "move to": 12.2,
+   "pick up from": 13.6,
+   "wipe hard": 8.9
+  },
+  "verb_counts_total": {
+   "move to": 847,
+   "wipe hard": 708,
+   "pick up from": 201,
+   "hand over": 200
+  },
+  "top_prompts": [
+   [
+    "wipe the scrub brush",
+    708
+   ],
+   [
+    "move to the floors",
+    647
+   ],
+   [
+    "pick up the scrub brush from the floors",
+    201
+   ],
+   [
+    "move to the scrub brush",
+    200
+   ],
+   [
+    "hand over the scrub brush",
+    200
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4731
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4731
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4731
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4731
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4731
+  }
+ }
+}

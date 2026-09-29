@@ -1,0 +1,686 @@
+{
+ "index": 13,
+ "name": "loading_the_car",
+ "instruction": "Put the digital camera from the living room table into the container on the living room floor. Then take the container and the tennis racket to the garage, place both in the car trunk, and close it.",
+ "title": "Loading The Car",
+ "rooms_listed": [
+  "living_room",
+  "garage"
+ ],
+ "video": "https://player.vimeo.com/video/1114057519",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Put the digital camera from the living room table into the container on the living room floor. Then take the container and the tennis racket to the garage, place both in the car trunk, and close it.",
+ "human": {
+  "mean_steps": 19226.37,
+  "mean_seconds": 640.9,
+  "step_limit": 28839,
+  "time_limit_seconds": 961.3,
+  "base_distance_m": 48.3176,
+  "eef_displacement_m": {
+   "left": 18.5855,
+   "right": 22.0973
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garage_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem loading_the_car-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tcar.n.01_1 - car.n.01\n    \tcontainer.n.01_1 - container.n.01\n        tennis_racket.n.01_1 - tennis_racket.n.01\n        digital_camera.n.01_1 - digital_camera.n.01\n        table.n.02_1 - table.n.02\n    \tfloor.n.01_1 floor.n.01_2 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inroom car.n.01_1 garage) \n        (ontop container.n.01_1 floor.n.01_2) \n        (ontop tennis_racket.n.01_1 table.n.02_1) \n        (ontop digital_camera.n.01_1 table.n.02_1)\n        (inroom table.n.02_1 living_room)\n        (inroom floor.n.01_1 garage) \n        (inroom floor.n.01_2 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (inside ?container.n.01_1 ?car.n.01_1) \n            (inside ?digital_camera.n.01_1 ?container.n.01_1)\n            (inside ?tennis_racket.n.01_1 ?car.n.01_1)\n        )\n        (not \n            (open ?car.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garage": "garage_0",
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "car.n.01": [
+   "car.n.01_1"
+  ],
+  "container.n.01": [
+   "container.n.01_1"
+  ],
+  "tennis_racket.n.01": [
+   "tennis_racket.n.01_1"
+  ],
+  "digital_camera.n.01": [
+   "digital_camera.n.01_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "car.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom car.n.01_1 garage)",
+  "(inroom floor.n.01_1 garage)",
+  "(inroom floor.n.01_2 living_room)",
+  "(inroom table.n.02_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop container.n.01_1 floor.n.01_2)",
+  "(ontop digital_camera.n.01_1 table.n.02_1)",
+  "(ontop tennis_racket.n.01_1 table.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching container.n.01_1 floor.n.01_2)",
+  "(touching digital_camera.n.01_1 table.n.02_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_2 container.n.01_1)",
+  "(touching table.n.02_1 digital_camera.n.01_1)",
+  "(touching table.n.02_1 tennis_racket.n.01_1)",
+  "(touching tennis_racket.n.01_1 table.n.02_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside container.n.01_1 car.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "container.n.01_1",
+     "car.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside digital_camera.n.01_1 container.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "digital_camera.n.01_1",
+     "container.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside tennis_racket.n.01_1 car.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "tennis_racket.n.01_1",
+     "car.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "car.n.01_1",
+   "scene_object": "car_ssxsje_0",
+   "substance": false,
+   "category": "car",
+   "model": "ssxsje",
+   "in_rooms": [
+    "garage_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000019073486328,
+    0.9999808073043823,
+    1.0000020265579224
+   ],
+   "z": {
+    "min": 0.67,
+    "median": 0.67,
+    "max": 0.67
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.67,
+    "median": 3.48,
+    "max": 4.07
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "container.n.01_1",
+   "scene_object": "toy_box_81",
+   "substance": false,
+   "category": "toy_box",
+   "model": "uvhflb",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    3.0222153663635254,
+    3.102994203567505,
+    3.038041114807129
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 6.94,
+    "median": 9.96,
+    "max": 13.34
+   },
+   "xy_spread_m": 5.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tennis_racket.n.01_1",
+   "scene_object": "tennis_racket_80",
+   "substance": false,
+   "category": "tennis_racket",
+   "model": "rmvafy",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.44
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 5.84,
+    "median": 10.12,
+    "max": 11.57
+   },
+   "xy_spread_m": 0.77,
+   "n_poses": 20
+  },
+  {
+   "inst": "digital_camera.n.01_1",
+   "scene_object": "digital_camera_79",
+   "substance": false,
+   "category": "digital_camera",
+   "model": "wbzzjl",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.49,
+    "median": 0.49,
+    "max": 0.49
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 5.65,
+    "median": 10.17,
+    "max": 11.67
+   },
+   "xy_spread_m": 1.49,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "coffee_table_koagbh_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "koagbh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999982714653015,
+    1.0000159740447998,
+    1.000001311302185
+   ],
+   "z": {
+    "min": 0.36,
+    "median": 0.36,
+    "max": 0.36
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 5.75,
+    "median": 10.21,
+    "max": 11.4
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_nbxnpk_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nbxnpk",
+   "in_rooms": [
+    "garage_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999986290931702,
+    1.000006079673767,
+    1.0000001192092896
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.19,
+    "median": 2.12,
+    "max": 3.49
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 6.14,
+    "median": 10.58,
+    "max": 11.77
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -4.15,
+   4.79
+  ],
+  [
+   -6.82,
+   4.35
+  ],
+  [
+   -4.22,
+   5.23
+  ],
+  [
+   -2.78,
+   3.17
+  ],
+  [
+   -7.87,
+   4.78
+  ],
+  [
+   -5.69,
+   3.1
+  ],
+  [
+   -4.32,
+   4.39
+  ],
+  [
+   -6.32,
+   4.41
+  ],
+  [
+   -2.2,
+   4.71
+  ],
+  [
+   -5.77,
+   4.24
+  ],
+  [
+   -7.65,
+   7.02
+  ],
+  [
+   -6.86,
+   4.17
+  ],
+  [
+   -7.74,
+   5.84
+  ],
+  [
+   -7.87,
+   5.35
+  ],
+  [
+   -7.11,
+   4.66
+  ],
+  [
+   -6.58,
+   3.62
+  ],
+  [
+   -3.1,
+   3.13
+  ],
+  [
+   -6.67,
+   5.07
+  ],
+  [
+   -7.19,
+   4.07
+  ],
+  [
+   -6.72,
+   5.1
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 14,
+   "median": 16.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 309.87,
+   "median": 661.45,
+   "max": 758.7
+  },
+  "distinct_verb_sequences": 15,
+  "modal_verb_sequence": [
+   "move to",
+   "open lid",
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "close lid"
+  ],
+  "modal_verb_sequence_share": 0.6,
+  "modal_verb_counts": {
+   "close lid": 1,
+   "move to": 7,
+   "open door": 1,
+   "open lid": 1,
+   "pick up from": 3,
+   "place in": 3
+  },
+  "modal_verb_counts_share": 0.6,
+  "representative_episode": {
+   "file": "episode_00131800.json",
+   "seconds": 672.0,
+   "steps": [
+    {
+     "prompt": "move to the car",
+     "start_s": 0.0,
+     "end_s": 23.2
+    },
+    {
+     "prompt": "open the lid of the car",
+     "start_s": 23.2,
+     "end_s": 94.7
+    },
+    {
+     "prompt": "move to the door",
+     "start_s": 94.7,
+     "end_s": 123.4
+    },
+    {
+     "prompt": "open the door of the door",
+     "start_s": 123.4,
+     "end_s": 145.8
+    },
+    {
+     "prompt": "move to the toy box",
+     "start_s": 145.8,
+     "end_s": 197.1
+    },
+    {
+     "prompt": "pick up the toy box from the floors",
+     "start_s": 197.1,
+     "end_s": 228.9
+    },
+    {
+     "prompt": "move to the car",
+     "start_s": 228.9,
+     "end_s": 320.0
+    },
+    {
+     "prompt": "place the toy box in the car",
+     "start_s": 320.0,
+     "end_s": 327.5
+    },
+    {
+     "prompt": "move to the digital camera",
+     "start_s": 327.5,
+     "end_s": 405.6
+    },
+    {
+     "prompt": "pick up the digital camera from the coffee table",
+     "start_s": 405.6,
+     "end_s": 419.3
+    },
+    {
+     "prompt": "move to the tennis racket",
+     "start_s": 419.3,
+     "end_s": 453.3
+    },
+    {
+     "prompt": "pick up the tennis racket from the coffee table",
+     "start_s": 453.3,
+     "end_s": 495.9
+    },
+    {
+     "prompt": "move to the car",
+     "start_s": 495.9,
+     "end_s": 598.0
+    },
+    {
+     "prompt": "place the tennis racket in the car",
+     "start_s": 598.0,
+     "end_s": 611.4
+    },
+    {
+     "prompt": "place the digital camera in the toy box",
+     "start_s": 611.4,
+     "end_s": 635.5
+    },
+    {
+     "prompt": "close the lid of the car",
+     "start_s": 635.5,
+     "end_s": 672.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close lid": 32.9,
+   "move to": 57.2,
+   "open door": 18.7,
+   "open lid": 67.6,
+   "pick up from": 25.9,
+   "place in": 15.8,
+   "push to": 29.4
+  },
+  "verb_counts_total": {
+   "move to": 1359,
+   "pick up from": 600,
+   "place in": 600,
+   "open lid": 200,
+   "open door": 200,
+   "close lid": 200,
+   "push to": 45
+  },
+  "top_prompts": [
+   [
+    "move to the car",
+    557
+   ],
+   [
+    "move to the toy box",
+    240
+   ],
+   [
+    "open the lid of the car",
+    200
+   ],
+   [
+    "move to the door",
+    200
+   ],
+   [
+    "open the door of the door",
+    200
+   ],
+   [
+    "place the toy box in the car",
+    200
+   ],
+   [
+    "pick up the digital camera from the coffee table",
+    200
+   ],
+   [
+    "pick up the tennis racket from the coffee table",
+    200
+   ],
+   [
+    "place the tennis racket in the car",
+    200
+   ],
+   [
+    "close the lid of the car",
+    200
+   ],
+   [
+    "pick up the toy box from the floors",
+    199
+   ],
+   [
+    "place the digital camera in the toy box",
+    199
+   ],
+   [
+    "move to the digital camera",
+    188
+   ],
+   [
+    "move to the tennis racket",
+    174
+   ],
+   [
+    "push the digital camera to the reorient coffee table",
+    34
+   ],
+   [
+    "push the tennis racket to the reorient coffee table",
+    10
+   ],
+   [
+    "push the door to the away robot",
+    1
+   ],
+   [
+    "place the digital camera in the car",
+    1
+   ],
+   [
+    "pick up the toy box from the coffee table",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "open lid",
+  "pick up from",
+  "place in",
+  "close lid",
+  "open door",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 28840
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 28840
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 28840
+  }
+ }
+}

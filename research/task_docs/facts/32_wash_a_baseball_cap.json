@@ -1,0 +1,556 @@
+{
+ "index": 32,
+ "name": "wash_a_baseball_cap",
+ "instruction": "Wash the two baseball caps on the countertop in the utility room using the washer until they are no longer dirty.",
+ "title": "Wash A Baseball Cap",
+ "rooms_listed": [
+  "utility_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114060147",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Wash the two baseball caps on the countertop in the utility room using the washer until they are no longer dirty.",
+ "human": {
+  "mean_steps": 8349.41,
+  "mean_seconds": 278.3,
+  "step_limit": 12524,
+  "time_limit_seconds": 417.5,
+  "base_distance_m": 28.9362,
+  "eef_displacement_m": {
+   "left": 10.7124,
+   "right": 11.4883
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "utility_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem wash_a_baseball_cap-0)\n    (:domain behavior-1k)\n\n    (:objects\n        baseball_cap.n.01_1 baseball_cap.n.01_2 - baseball_cap.n.01\n        dirt.n.02_1 - dirt.n.02\n        floor.n.01_1 - floor.n.01\n        washer.n.03_1 - washer.n.03\n        countertop.n.01_1 - countertop.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop baseball_cap.n.01_1 countertop.n.01_1)\n        (covered baseball_cap.n.01_1 dirt.n.02_1) \n        (ontop baseball_cap.n.01_2 countertop.n.01_1)\n        (covered baseball_cap.n.01_2 dirt.n.02_1) \n        (inroom floor.n.01_1 utility_room) \n        (inroom washer.n.03_1 utility_room) \n        (inroom countertop.n.01_1 utility_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall\n                (?baseball_cap.n.01 - baseball_cap.n.01)\n                (not \n                    (covered ?baseball_cap.n.01 ?dirt.n.02_1)\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "utility_room": "utility_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "baseball_cap.n.01": [
+   "baseball_cap.n.01_1",
+   "baseball_cap.n.01_2"
+  ],
+  "dirt.n.02": [
+   "dirt.n.02_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "washer.n.03": [
+   "washer.n.03_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "washer.n.03_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(covered baseball_cap.n.01_1 dirt.n.02_1)",
+  "(covered baseball_cap.n.01_2 dirt.n.02_1)",
+  "(inroom countertop.n.01_1 utility_room)",
+  "(inroom floor.n.01_1 utility_room)",
+  "(inroom washer.n.03_1 utility_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop baseball_cap.n.01_1 countertop.n.01_1)",
+  "(ontop baseball_cap.n.01_2 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching baseball_cap.n.01_1 countertop.n.01_1)",
+  "(touching baseball_cap.n.01_2 countertop.n.01_1)",
+  "(touching countertop.n.01_1 baseball_cap.n.01_1)",
+  "(touching countertop.n.01_1 baseball_cap.n.01_2)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered baseball_cap.n.01_2 dirt.n.02_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "baseball_cap.n.01_2",
+     "dirt.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not covered baseball_cap.n.01_1 dirt.n.02_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "baseball_cap.n.01_1",
+     "dirt.n.02_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "baseball_cap.n.01_1",
+   "scene_object": "baseball_cap_189",
+   "substance": false,
+   "category": "baseball_cap",
+   "model": "ogptul",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 1.7,
+    "max": 3.57
+   },
+   "xy_spread_m": 4.11,
+   "n_poses": 20
+  },
+  {
+   "inst": "baseball_cap.n.01_2",
+   "scene_object": "baseball_cap_188",
+   "substance": false,
+   "category": "baseball_cap",
+   "model": "ogptul",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 1.78,
+    "max": 3.32
+   },
+   "xy_spread_m": 4.09,
+   "n_poses": 20
+  },
+  {
+   "inst": "dirt.n.02_1",
+   "scene_object": "dirt",
+   "substance": true,
+   "systems": [
+    "dirt"
+   ]
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_glwobe_0",
+   "substance": false,
+   "category": "floors",
+   "model": "glwobe",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999873042106628,
+    1.000001072883606,
+    0.9999303221702576
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.13,
+    "median": 0.76,
+    "max": 1.5
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "washer.n.03_1",
+   "scene_object": "washer_ynwamu_0",
+   "substance": false,
+   "category": "washer",
+   "model": "ynwamu",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000474452972412,
+    0.9999510645866394,
+    1.0000536441802979
+   ],
+   "z": {
+    "min": 0.47,
+    "median": 0.47,
+    "max": 0.47
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.04,
+    "median": 1.47,
+    "max": 2.15
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_ikwqer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "ikwqer",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000056266784668,
+    1.0000085830688477,
+    0.9999606609344482
+   ],
+   "z": {
+    "min": 0.91,
+    "median": 0.91,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.13,
+    "median": 1.48,
+    "max": 1.95
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   23.15,
+   0.17
+  ],
+  [
+   23.43,
+   -0.38
+  ],
+  [
+   23.28,
+   -0.59
+  ],
+  [
+   23.04,
+   -1.25
+  ],
+  [
+   23.11,
+   1.15
+  ],
+  [
+   23.34,
+   0.22
+  ],
+  [
+   23.04,
+   0.33
+  ],
+  [
+   23.56,
+   -1.14
+  ],
+  [
+   23.18,
+   0.61
+  ],
+  [
+   23.21,
+   -1.01
+  ],
+  [
+   23.17,
+   1.3
+  ],
+  [
+   23.28,
+   -0.3
+  ],
+  [
+   23.32,
+   -1.12
+  ],
+  [
+   23.43,
+   -1.02
+  ],
+  [
+   23.37,
+   -0.31
+  ],
+  [
+   23.39,
+   0.02
+  ],
+  [
+   22.98,
+   -0.43
+  ],
+  [
+   23.38,
+   0.58
+  ],
+  [
+   23.48,
+   -1.0
+  ],
+  [
+   23.09,
+   0.52
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 12.0,
+   "max": 13
+  },
+  "demo_seconds": {
+   "min": 190.57,
+   "median": 269.28,
+   "max": 379.0
+  },
+  "distinct_verb_sequences": 10,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "turn to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.2,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 4,
+   "open door": 1,
+   "pick up from": 2,
+   "place in": 2,
+   "turn on switch": 1,
+   "turn to": 1
+  },
+  "modal_verb_counts_share": 0.36,
+  "representative_episode": {
+   "file": "episode_00320240.json",
+   "seconds": 284.7,
+   "steps": [
+    {
+     "prompt": "move to the washer",
+     "start_s": 0.0,
+     "end_s": 10.4
+    },
+    {
+     "prompt": "open the door of the washer",
+     "start_s": 10.4,
+     "end_s": 59.8
+    },
+    {
+     "prompt": "move to the baseball cap",
+     "start_s": 59.8,
+     "end_s": 88.3
+    },
+    {
+     "prompt": "turn to the baseball cap",
+     "start_s": 88.3,
+     "end_s": 108.3
+    },
+    {
+     "prompt": "pick up the baseball cap from the countertop",
+     "start_s": 108.3,
+     "end_s": 117.2
+    },
+    {
+     "prompt": "move to the baseball cap",
+     "start_s": 117.2,
+     "end_s": 135.2
+    },
+    {
+     "prompt": "pick up the baseball cap from the countertop",
+     "start_s": 135.2,
+     "end_s": 149.1
+    },
+    {
+     "prompt": "move to the washer",
+     "start_s": 149.1,
+     "end_s": 168.0
+    },
+    {
+     "prompt": "place the baseball cap in the washer",
+     "start_s": 168.0,
+     "end_s": 198.2
+    },
+    {
+     "prompt": "place the baseball cap in the washer",
+     "start_s": 198.2,
+     "end_s": 226.9
+    },
+    {
+     "prompt": "close the door of the washer",
+     "start_s": 226.9,
+     "end_s": 252.8
+    },
+    {
+     "prompt": "turn on the washer",
+     "start_s": 252.8,
+     "end_s": 284.7
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 23.9,
+   "move to": 18.2,
+   "open door": 46.7,
+   "pick up from": 15.4,
+   "place in": 27.6,
+   "turn on switch": 24.6,
+   "turn to": 22.7
+  },
+  "verb_counts_total": {
+   "move to": 726,
+   "pick up from": 400,
+   "place in": 400,
+   "turn to": 211,
+   "open door": 200,
+   "close door": 200,
+   "turn on switch": 200
+  },
+  "top_prompts": [
+   [
+    "place the baseball cap in the washer",
+    400
+   ],
+   [
+    "move to the washer",
+    399
+   ],
+   [
+    "pick up the baseball cap from the countertop",
+    398
+   ],
+   [
+    "move to the baseball cap",
+    327
+   ],
+   [
+    "turn to the baseball cap",
+    211
+   ],
+   [
+    "open the door of the washer",
+    200
+   ],
+   [
+    "close the door of the washer",
+    200
+   ],
+   [
+    "turn on the washer",
+    200
+   ],
+   [
+    "pick up the baseball cap from the washer",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "turn to",
+  "pick up from",
+  "place in",
+  "open door",
+  "turn on switch"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12525
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12525
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12525
+  }
+ }
+}

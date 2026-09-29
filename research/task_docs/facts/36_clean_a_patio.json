@@ -1,0 +1,696 @@
+{
+ "index": 36,
+ "name": "clean_a_patio",
+ "instruction": "Pick up the broom in the garden and sweep the mud off the patio floor until the floor is no longer covered in mud.",
+ "title": "Clean a Patio",
+ "rooms_listed": [
+  "garden"
+ ],
+ "video": "https://player.vimeo.com/video/1114060492",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Pick up the broom in the garden and sweep the mud off the patio floor until the floor is no longer covered in mud.",
+ "human": {
+  "mean_steps": 12070.81,
+  "mean_seconds": 402.4,
+  "step_limit": 18106,
+  "time_limit_seconds": 603.5,
+  "base_distance_m": 37.2109,
+  "eef_displacement_m": {
+   "left": 11.7318,
+   "right": 11.2542
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem clean_a_patio-0)\n    (:domain behavior-1k)\n\n    (:objects\n        mud.n.03_1 - mud.n.03\n        broom.n.01_1 - broom.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (covered floor.n.01_1 mud.n.03_1) \n        (ontop broom.n.01_1 floor.n.01_1) \n        (inroom floor.n.01_1 garden) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (not \n                (covered ?floor.n.01_1 ?mud.n.03_1)\n            ) \n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "mud.n.03": [
+   "mud.n.03_1"
+  ],
+  "broom.n.01": [
+   "broom.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(covered floor.n.01_1 mud.n.03_1)",
+  "(inroom floor.n.01_1 garden)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop broom.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching broom.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 broom.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered floor.n.01_1 mud.n.03_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "floor.n.01_1",
+     "mud.n.03_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "mud.n.03_1",
+   "scene_object": "mud",
+   "substance": true,
+   "systems": [
+    "mud"
+   ]
+  },
+  {
+   "inst": "broom.n.01_1",
+   "scene_object": "broom_172",
+   "substance": false,
+   "category": "broom",
+   "model": "tpyvbt",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.9756855964660645,
+    3.176348924636841,
+    1.9919809103012085
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.83,
+    "median": 3.84,
+    "max": 8.54
+   },
+   "xy_spread_m": 12.37,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ghetev_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ghetev",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999978542327881,
+    1.0000015497207642,
+    0.9999032616615295
+   ],
+   "z": {
+    "min": -0.08,
+    "median": -0.08,
+    "max": -0.08
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.11,
+    "median": 2.29,
+    "max": 4.13
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   15.49,
+   13.67
+  ],
+  [
+   13.66,
+   9.68
+  ],
+  [
+   15.56,
+   13.44
+  ],
+  [
+   14.1,
+   12.8
+  ],
+  [
+   15.14,
+   12.58
+  ],
+  [
+   14.9,
+   13.33
+  ],
+  [
+   15.26,
+   13.08
+  ],
+  [
+   15.09,
+   9.34
+  ],
+  [
+   14.94,
+   9.81
+  ],
+  [
+   15.09,
+   12.94
+  ],
+  [
+   15.26,
+   9.34
+  ],
+  [
+   15.58,
+   8.79
+  ],
+  [
+   14.64,
+   12.79
+  ],
+  [
+   16.04,
+   9.57
+  ],
+  [
+   15.24,
+   8.45
+  ],
+  [
+   13.87,
+   12.52
+  ],
+  [
+   14.79,
+   8.99
+  ],
+  [
+   15.97,
+   13.0
+  ],
+  [
+   15.21,
+   8.48
+  ],
+  [
+   15.19,
+   9.44
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 41,
+   "median": 51.0,
+   "max": 63
+  },
+  "demo_seconds": {
+   "min": 286.7,
+   "median": 388.63,
+   "max": 738.0
+  },
+  "distinct_verb_sequences": 167,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "move to",
+   "pick up from",
+   "hold",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "release",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.02,
+  "modal_verb_counts": {
+   "hold": 2,
+   "move to": 24,
+   "pick up from": 1,
+   "place on": 1,
+   "push to": 3,
+   "release": 2,
+   "sweep surface": 20
+  },
+  "modal_verb_counts_share": 0.135,
+  "representative_episode": {
+   "file": "episode_00360030.json",
+   "seconds": 342.8,
+   "steps": [
+    {
+     "prompt": "move to the garden chair",
+     "start_s": 0.2,
+     "end_s": 22.2
+    },
+    {
+     "prompt": "push the garden chair to the away robot",
+     "start_s": 22.2,
+     "end_s": 45.7
+    },
+    {
+     "prompt": "move to the broom",
+     "start_s": 45.7,
+     "end_s": 56.2
+    },
+    {
+     "prompt": "pick up the broom from the floors",
+     "start_s": 56.2,
+     "end_s": 78.9
+    },
+    {
+     "prompt": "hold the broom",
+     "start_s": 78.9,
+     "end_s": 84.5
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 84.5,
+     "end_s": 98.4
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 98.4,
+     "end_s": 100.2
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 100.2,
+     "end_s": 114.5
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 114.5,
+     "end_s": 116.1
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 116.1,
+     "end_s": 124.8
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 124.8,
+     "end_s": 126.4
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 126.4,
+     "end_s": 135.4
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 135.4,
+     "end_s": 138.0
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 138.0,
+     "end_s": 141.8
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 141.8,
+     "end_s": 143.8
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 143.8,
+     "end_s": 153.0
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 153.0,
+     "end_s": 154.5
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 154.5,
+     "end_s": 159.0
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 159.0,
+     "end_s": 165.2
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 165.2,
+     "end_s": 181.0
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 181.0,
+     "end_s": 182.4
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 182.4,
+     "end_s": 194.3
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 194.3,
+     "end_s": 196.5
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 196.5,
+     "end_s": 207.9
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 207.9,
+     "end_s": 209.9
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 209.9,
+     "end_s": 216.4
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 216.4,
+     "end_s": 217.6
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 217.6,
+     "end_s": 219.3
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 219.3,
+     "end_s": 220.2
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 220.2,
+     "end_s": 232.6
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 232.6,
+     "end_s": 234.1
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 234.1,
+     "end_s": 241.2
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 241.2,
+     "end_s": 243.0
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 243.0,
+     "end_s": 250.8
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 250.8,
+     "end_s": 252.9
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 252.9,
+     "end_s": 259.1
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 259.1,
+     "end_s": 267.5
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 267.5,
+     "end_s": 298.7
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 298.7,
+     "end_s": 301.0
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 301.0,
+     "end_s": 312.9
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 312.9,
+     "end_s": 314.6
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 314.6,
+     "end_s": 315.9
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 315.9,
+     "end_s": 317.0
+    },
+    {
+     "prompt": "move to the mud",
+     "start_s": 317.0,
+     "end_s": 322.4
+    },
+    {
+     "prompt": "sweep the broom",
+     "start_s": 322.4,
+     "end_s": 324.0
+    },
+    {
+     "prompt": "release the broom",
+     "start_s": 324.0,
+     "end_s": 326.1
+    },
+    {
+     "prompt": "place the broom on the floors",
+     "start_s": 326.1,
+     "end_s": 343.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 10.8,
+   "hold": 7.5,
+   "move to": 10.9,
+   "pick up from": 28.8,
+   "place on": 15.5,
+   "push to": 14.0,
+   "release": 3.7,
+   "sweep surface": 3.2
+  },
+  "verb_counts_total": {
+   "move to": 4514,
+   "sweep surface": 3839,
+   "push to": 474,
+   "hold": 448,
+   "release": 448,
+   "pick up from": 208,
+   "place on": 208,
+   "hand over": 12
+  },
+  "top_prompts": [
+   [
+    "sweep the broom",
+    3837
+   ],
+   [
+    "move to the mud",
+    3828
+   ],
+   [
+    "move to the garden chair",
+    485
+   ],
+   [
+    "push the garden chair to the away robot",
+    474
+   ],
+   [
+    "release the broom",
+    448
+   ],
+   [
+    "hold the broom",
+    447
+   ],
+   [
+    "move to the broom",
+    200
+   ],
+   [
+    "pick up the broom from the floors",
+    200
+   ],
+   [
+    "place the broom on the floors",
+    200
+   ],
+   [
+    "pick up the garden chair from the floors",
+    8
+   ],
+   [
+    "place the garden chair on the floors",
+    8
+   ],
+   [
+    "hand over the broom with the right",
+    5
+   ],
+   [
+    "hand over the broom with the left",
+    4
+   ],
+   [
+    "move to the robot",
+    1
+   ],
+   [
+    "hold the mud",
+    1
+   ],
+   [
+    "sweep the garden chair",
+    1
+   ],
+   [
+    "sweep the mud",
+    1
+   ],
+   [
+    "hand over the broom with the Left",
+    1
+   ],
+   [
+    "hand over the broom with the Right",
+    1
+   ],
+   [
+    "hand over the broom with the right right",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "hold",
+  "sweep surface",
+  "move to",
+  "place on",
+  "pick up from",
+  "push to",
+  "hand over",
+  "release"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 18107
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 18107
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 18107
+  }
+ }
+}

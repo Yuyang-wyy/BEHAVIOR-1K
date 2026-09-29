@@ -1,0 +1,1406 @@
+{
+ "index": 6,
+ "name": "hiding_Easter_eggs",
+ "instruction": "Take the three Easter eggs out of the wicker basket on the lawn in the garden, then place them on the lawn next to a single tree (choose any tree) so that all three eggs are next to the same tree and none are left in the basket.",
+ "title": "Hiding Easter Eggs",
+ "rooms_listed": [
+  "garden"
+ ],
+ "video": "https://player.vimeo.com/video/1114055436",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Take the three Easter eggs out of the wicker basket on the lawn in the garden, then place them on the lawn next to a single tree (choose any tree) so that all three eggs are next to the same tree and none are left in the basket.",
+ "human": {
+  "mean_steps": 7619.725,
+  "mean_seconds": 254.0,
+  "step_limit": 11429,
+  "time_limit_seconds": 381.0,
+  "base_distance_m": 21.8954,
+  "eef_displacement_m": {
+   "left": 10.7223,
+   "right": 12.2295
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem hiding_Easter_eggs-0)\n    (:domain behavior-1k)\n\n    (:objects\n        easter_egg.n.01_1 easter_egg.n.01_2 easter_egg.n.01_3 - easter_egg.n.01\n        wicker_basket.n.01_1 - wicker_basket.n.01\n        lawn.n.01_1 - lawn.n.01\n        tree.n.01_1 tree.n.01_* - tree.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside easter_egg.n.01_1 wicker_basket.n.01_1) \n        (inside easter_egg.n.01_2 wicker_basket.n.01_1) \n        (inside easter_egg.n.01_3 wicker_basket.n.01_1) \n        (ontop wicker_basket.n.01_1 lawn.n.01_1) \n        (inroom lawn.n.01_1 garden) \n        (inroom tree.n.01_1 garden)\n        (inroom tree.n.01_* garden)\n        (ontop agent.n.01_1 lawn.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists\n                (?tree.n.01 - tree.n.01)\n                (forall\n                    (?easter_egg.n.01 - easter_egg.n.01)\n                    (and\n                        (nextto ?easter_egg.n.01 ?tree.n.01)\n                    )\n                )\n            )\n            (forall\n                (?easter_egg.n.01 - easter_egg.n.01)\n                (and\n                    (not\n                        (inside ?easter_egg.n.01 ?wicker_basket.n.01_1)\n                    )\n                    (ontop ?easter_egg.n.01 ?lawn.n.01_1)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "easter_egg.n.01": [
+   "easter_egg.n.01_1",
+   "easter_egg.n.01_2",
+   "easter_egg.n.01_3"
+  ],
+  "wicker_basket.n.01": [
+   "wicker_basket.n.01_1"
+  ],
+  "lawn.n.01": [
+   "lawn.n.01_1"
+  ],
+  "tree.n.01": [
+   "tree.n.01_1",
+   "tree.n.01_2",
+   "tree.n.01_3",
+   "tree.n.01_4",
+   "tree.n.01_5",
+   "tree.n.01_6",
+   "tree.n.01_7",
+   "tree.n.01_8",
+   "tree.n.01_9",
+   "tree.n.01_10",
+   "tree.n.01_11",
+   "tree.n.01_12",
+   "tree.n.01_13",
+   "tree.n.01_14",
+   "tree.n.01_15",
+   "tree.n.01_16",
+   "tree.n.01_17",
+   "tree.n.01_18",
+   "tree.n.01_19",
+   "tree.n.01_20",
+   "tree.n.01_21",
+   "tree.n.01_22",
+   "tree.n.01_23",
+   "tree.n.01_24",
+   "tree.n.01_25",
+   "tree.n.01_26"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom lawn.n.01_1 garden)",
+  "(inroom tree.n.01_1 garden)",
+  "(inroom tree.n.01_10 garden)",
+  "(inroom tree.n.01_11 garden)",
+  "(inroom tree.n.01_12 garden)",
+  "(inroom tree.n.01_13 garden)",
+  "(inroom tree.n.01_14 garden)",
+  "(inroom tree.n.01_15 garden)",
+  "(inroom tree.n.01_16 garden)",
+  "(inroom tree.n.01_17 garden)",
+  "(inroom tree.n.01_18 garden)",
+  "(inroom tree.n.01_19 garden)",
+  "(inroom tree.n.01_2 garden)",
+  "(inroom tree.n.01_20 garden)",
+  "(inroom tree.n.01_21 garden)",
+  "(inroom tree.n.01_22 garden)",
+  "(inroom tree.n.01_23 garden)",
+  "(inroom tree.n.01_24 garden)",
+  "(inroom tree.n.01_25 garden)",
+  "(inroom tree.n.01_26 garden)",
+  "(inroom tree.n.01_3 garden)",
+  "(inroom tree.n.01_4 garden)",
+  "(inroom tree.n.01_5 garden)",
+  "(inroom tree.n.01_6 garden)",
+  "(inroom tree.n.01_7 garden)",
+  "(inroom tree.n.01_8 garden)",
+  "(inroom tree.n.01_9 garden)",
+  "(inside easter_egg.n.01_1 wicker_basket.n.01_1)",
+  "(inside easter_egg.n.01_2 wicker_basket.n.01_1)",
+  "(inside easter_egg.n.01_3 wicker_basket.n.01_1)",
+  "(ontop agent.n.01_1 lawn.n.01_1)",
+  "(ontop wicker_basket.n.01_1 lawn.n.01_1)",
+  "(touching agent.n.01_1 lawn.n.01_1)",
+  "(touching lawn.n.01_1 agent.n.01_1)",
+  "(touching lawn.n.01_1 wicker_basket.n.01_1)",
+  "(touching wicker_basket.n.01_1 lawn.n.01_1)"
+ ],
+ "n_ground_options": 26,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 9,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(nextto easter_egg.n.01_1 tree.n.01_3)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "easter_egg.n.01_1",
+     "tree.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto easter_egg.n.01_3 tree.n.01_3)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "easter_egg.n.01_3",
+     "tree.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto easter_egg.n.01_2 tree.n.01_3)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "easter_egg.n.01_2",
+     "tree.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not inside easter_egg.n.01_1 wicker_basket.n.01_1))",
+    "negated": true,
+    "predicate": "inside",
+    "args": [
+     "easter_egg.n.01_1",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop easter_egg.n.01_1 lawn.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "easter_egg.n.01_1",
+     "lawn.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not inside easter_egg.n.01_3 wicker_basket.n.01_1))",
+    "negated": true,
+    "predicate": "inside",
+    "args": [
+     "easter_egg.n.01_3",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop easter_egg.n.01_3 lawn.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "easter_egg.n.01_3",
+     "lawn.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not inside easter_egg.n.01_2 wicker_basket.n.01_1))",
+    "negated": true,
+    "predicate": "inside",
+    "args": [
+     "easter_egg.n.01_2",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop easter_egg.n.01_2 lawn.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "easter_egg.n.01_2",
+     "lawn.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   9,
+   26
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "nextto",
+   3
+  ],
+  [
+   "not inside",
+   3
+  ],
+  [
+   "ontop",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "easter_egg.n.01_1",
+   "scene_object": "easter_egg_181",
+   "substance": false,
+   "category": "easter_egg",
+   "model": "rxwfse",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.734586000442505,
+    3.36807918548584,
+    3.002685070037842
+   ],
+   "z": {
+    "min": 0.1,
+    "median": 0.15,
+    "max": 0.2
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.66,
+    "median": 14.8,
+    "max": 43.96
+   },
+   "xy_spread_m": 47.18,
+   "n_poses": 20
+  },
+  {
+   "inst": "easter_egg.n.01_2",
+   "scene_object": "easter_egg_180",
+   "substance": false,
+   "category": "easter_egg",
+   "model": "rxwfse",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.734586000442505,
+    3.36807918548584,
+    3.002685070037842
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.1
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.55,
+    "median": 14.83,
+    "max": 43.92
+   },
+   "xy_spread_m": 47.21,
+   "n_poses": 20
+  },
+  {
+   "inst": "easter_egg.n.01_3",
+   "scene_object": "easter_egg_179",
+   "substance": false,
+   "category": "easter_egg",
+   "model": "rxwfse",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.734586000442505,
+    3.36807918548584,
+    3.002685070037842
+   ],
+   "z": {
+    "min": 0.17,
+    "median": 0.2,
+    "max": 0.22
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.55,
+    "median": 14.8,
+    "max": 43.88
+   },
+   "xy_spread_m": 47.04,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_1",
+   "scene_object": "wicker_basket_178",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "drxfmr",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.19,
+    "median": 0.19,
+    "max": 0.19
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.61,
+    "median": 14.81,
+    "max": 43.95
+   },
+   "xy_spread_m": 47.18,
+   "n_poses": 20
+  },
+  {
+   "inst": "lawn.n.01_1",
+   "scene_object": "lawn_aztwla_0",
+   "substance": false,
+   "category": "lawn",
+   "model": "aztwla",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999991059303284,
+    1.0000005960464478,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 4.26,
+    "median": 13.46,
+    "max": 23.61
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_1",
+   "scene_object": "tree_wtyipq_6",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.31,
+    "median": 12.91,
+    "max": 34.17
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_2",
+   "scene_object": "tree_wtyipq_1",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.79,
+    "median": 24.84,
+    "max": 34.67
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_3",
+   "scene_object": "tree_gmzozb_4",
+   "substance": false,
+   "category": "tree",
+   "model": "gmzozb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.48671355843544006,
+    0.48672476410865784,
+    0.486715167760849
+   ],
+   "z": {
+    "min": 4.97,
+    "median": 4.97,
+    "max": 4.97
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 17.32,
+    "median": 23.82,
+    "max": 36.53
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_4",
+   "scene_object": "tree_gmzozb_2",
+   "substance": false,
+   "category": "tree",
+   "model": "gmzozb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.48671355843544006,
+    0.48672476410865784,
+    0.486715167760849
+   ],
+   "z": {
+    "min": 4.97,
+    "median": 4.97,
+    "max": 4.97
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 19.74,
+    "median": 30.97,
+    "max": 43.24
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_5",
+   "scene_object": "tree_rrhqpw_0",
+   "substance": false,
+   "category": "tree",
+   "model": "rrhqpw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.6139122843742371,
+    0.613919198513031,
+    0.6139238476753235
+   ],
+   "z": {
+    "min": 3.86,
+    "median": 3.86,
+    "max": 3.86
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.54,
+    "median": 11.61,
+    "max": 41.05
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_6",
+   "scene_object": "tree_wtyipq_3",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.0,
+    "median": 19.16,
+    "max": 29.03
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_7",
+   "scene_object": "tree_rrhqpw_3",
+   "substance": false,
+   "category": "tree",
+   "model": "rrhqpw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.6139122843742371,
+    0.613919198513031,
+    0.6139238476753235
+   ],
+   "z": {
+    "min": 3.86,
+    "median": 3.86,
+    "max": 3.86
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.9,
+    "median": 9.32,
+    "max": 39.48
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_8",
+   "scene_object": "tree_wtyipq_7",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 4.33,
+    "median": 17.01,
+    "max": 32.38
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_9",
+   "scene_object": "tree_rrhqpw_1",
+   "substance": false,
+   "category": "tree",
+   "model": "rrhqpw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.6139122843742371,
+    0.613919198513031,
+    0.6139238476753235
+   ],
+   "z": {
+    "min": 3.86,
+    "median": 3.86,
+    "max": 3.86
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 5.28,
+    "median": 12.34,
+    "max": 24.91
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_10",
+   "scene_object": "tree_wtyipq_2",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.04,
+    "median": 9.34,
+    "max": 37.56
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_11",
+   "scene_object": "tree_flkzbo_2",
+   "substance": false,
+   "category": "tree",
+   "model": "flkzbo",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470294237136841,
+    0.747040867805481,
+    0.7470352649688721
+   ],
+   "z": {
+    "min": 3.78,
+    "median": 3.78,
+    "max": 3.78
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.96,
+    "median": 36.65,
+    "max": 46.46
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_12",
+   "scene_object": "tree_dyymaq_2",
+   "substance": false,
+   "category": "tree",
+   "model": "dyymaq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470368146896362,
+    0.7470313310623169,
+    0.7470372319221497
+   ],
+   "z": {
+    "min": 3.72,
+    "median": 3.72,
+    "max": 3.72
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.28,
+    "median": 12.68,
+    "max": 30.9
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_13",
+   "scene_object": "tree_gmzozb_1",
+   "substance": false,
+   "category": "tree",
+   "model": "gmzozb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.48671355843544006,
+    0.48672476410865784,
+    0.486715167760849
+   ],
+   "z": {
+    "min": 4.97,
+    "median": 4.97,
+    "max": 4.97
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 18.71,
+    "median": 28.42,
+    "max": 40.89
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_14",
+   "scene_object": "tree_rrhqpw_4",
+   "substance": false,
+   "category": "tree",
+   "model": "rrhqpw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.6139122843742371,
+    0.613919198513031,
+    0.6139238476753235
+   ],
+   "z": {
+    "min": 3.86,
+    "median": 3.86,
+    "max": 3.86
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.95,
+    "median": 11.49,
+    "max": 40.37
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_15",
+   "scene_object": "tree_wtyipq_5",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.72,
+    "median": 16.0,
+    "max": 38.52
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_16",
+   "scene_object": "tree_wtyipq_0",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 5.2,
+    "median": 37.16,
+    "max": 46.99
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_17",
+   "scene_object": "tree_flkzbo_1",
+   "substance": false,
+   "category": "tree",
+   "model": "flkzbo",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470294237136841,
+    0.747040867805481,
+    0.7470352649688721
+   ],
+   "z": {
+    "min": 3.78,
+    "median": 3.78,
+    "max": 3.78
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.05,
+    "median": 27.2,
+    "max": 37.11
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_18",
+   "scene_object": "tree_gmzozb_0",
+   "substance": false,
+   "category": "tree",
+   "model": "gmzozb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.48671355843544006,
+    0.48672476410865784,
+    0.486715167760849
+   ],
+   "z": {
+    "min": 4.97,
+    "median": 4.97,
+    "max": 4.97
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 17.99,
+    "median": 26.37,
+    "max": 38.84
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_19",
+   "scene_object": "tree_rrhqpw_2",
+   "substance": false,
+   "category": "tree",
+   "model": "rrhqpw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.6139122843742371,
+    0.613919198513031,
+    0.6139238476753235
+   ],
+   "z": {
+    "min": 3.86,
+    "median": 3.86,
+    "max": 3.86
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.63,
+    "median": 14.95,
+    "max": 23.64
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_20",
+   "scene_object": "tree_flkzbo_0",
+   "substance": false,
+   "category": "tree",
+   "model": "flkzbo",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470294237136841,
+    0.747040867805481,
+    0.7470352649688721
+   ],
+   "z": {
+    "min": 3.78,
+    "median": 3.78,
+    "max": 3.78
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 6.41,
+    "median": 35.6,
+    "max": 45.54
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_21",
+   "scene_object": "tree_wtyipq_4",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 4.33,
+    "median": 10.45,
+    "max": 41.13
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_22",
+   "scene_object": "tree_rrhqpw_5",
+   "substance": false,
+   "category": "tree",
+   "model": "rrhqpw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.6139122843742371,
+    0.613919198513031,
+    0.6139238476753235
+   ],
+   "z": {
+    "min": 3.86,
+    "median": 3.86,
+    "max": 3.86
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.65,
+    "median": 18.71,
+    "max": 38.36
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_23",
+   "scene_object": "tree_gmzozb_3",
+   "substance": false,
+   "category": "tree",
+   "model": "gmzozb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.48671355843544006,
+    0.48672476410865784,
+    0.486715167760849
+   ],
+   "z": {
+    "min": 4.97,
+    "median": 4.97,
+    "max": 4.97
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 20.24,
+    "median": 33.35,
+    "max": 45.45
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_24",
+   "scene_object": "tree_dyymaq_0",
+   "substance": false,
+   "category": "tree",
+   "model": "dyymaq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470368146896362,
+    0.7470313310623169,
+    0.7470372319221497
+   ],
+   "z": {
+    "min": 3.72,
+    "median": 3.72,
+    "max": 3.72
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.97,
+    "median": 31.98,
+    "max": 41.75
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_25",
+   "scene_object": "tree_wtyipq_8",
+   "substance": false,
+   "category": "tree",
+   "model": "wtyipq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5642488598823547,
+    0.564253032207489,
+    0.564262866973877
+   ],
+   "z": {
+    "min": 2.21,
+    "median": 2.21,
+    "max": 2.21
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.15,
+    "median": 13.88,
+    "max": 23.8
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_26",
+   "scene_object": "tree_dyymaq_1",
+   "substance": false,
+   "category": "tree",
+   "model": "dyymaq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470368146896362,
+    0.7470313310623169,
+    0.7470372319221497
+   ],
+   "z": {
+    "min": 3.72,
+    "median": 3.72,
+    "max": 3.72
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.0,
+    "median": 12.86,
+    "max": 37.71
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   23.77,
+   -2.81
+  ],
+  [
+   16.62,
+   -1.37
+  ],
+  [
+   20.03,
+   -1.27
+  ],
+  [
+   -11.05,
+   15.96
+  ],
+  [
+   28.13,
+   9.16
+  ],
+  [
+   18.22,
+   -0.32
+  ],
+  [
+   -7.62,
+   16.85
+  ],
+  [
+   6.42,
+   15.54
+  ],
+  [
+   17.54,
+   -4.53
+  ],
+  [
+   18.85,
+   -2.87
+  ],
+  [
+   11.35,
+   14.31
+  ],
+  [
+   9.42,
+   11.81
+  ],
+  [
+   -1.59,
+   13.1
+  ],
+  [
+   27.93,
+   -4.15
+  ],
+  [
+   25.65,
+   15.8
+  ],
+  [
+   24.62,
+   9.82
+  ],
+  [
+   23.67,
+   3.44
+  ],
+  [
+   -3.39,
+   13.57
+  ],
+  [
+   16.86,
+   3.2
+  ],
+  [
+   21.01,
+   3.2
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 8,
+   "median": 12.0,
+   "max": 15
+  },
+  "demo_seconds": {
+   "min": 106.33,
+   "median": 230.0,
+   "max": 532.83
+  },
+  "distinct_verb_sequences": 26,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "pick up from",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "place on next to"
+  ],
+  "modal_verb_sequence_share": 0.53,
+  "modal_verb_counts": {
+   "move to": 4,
+   "pick up from": 4,
+   "place on": 1,
+   "place on next to": 3
+  },
+  "modal_verb_counts_share": 0.55,
+  "representative_episode": {
+   "file": "episode_00062920.json",
+   "seconds": 227.8,
+   "steps": [
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 13.2,
+     "end_s": 96.4
+    },
+    {
+     "prompt": "pick up the wicker basket from the lawn",
+     "start_s": 96.4,
+     "end_s": 107.5
+    },
+    {
+     "prompt": "move to the tree",
+     "start_s": 107.5,
+     "end_s": 125.5
+    },
+    {
+     "prompt": "place the wicker basket on the lawn",
+     "start_s": 125.5,
+     "end_s": 138.1
+    },
+    {
+     "prompt": "pick up the easter egg from the wicker basket",
+     "start_s": 138.1,
+     "end_s": 154.3
+    },
+    {
+     "prompt": "place the easter egg on the lawn next to the in_front_of tree",
+     "start_s": 154.3,
+     "end_s": 168.8
+    },
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 168.8,
+     "end_s": 170.7
+    },
+    {
+     "prompt": "pick up the easter egg from the wicker basket",
+     "start_s": 170.7,
+     "end_s": 184.3
+    },
+    {
+     "prompt": "place the easter egg on the lawn next to the in_front_of tree",
+     "start_s": 184.3,
+     "end_s": 196.0
+    },
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 196.1,
+     "end_s": 203.1
+    },
+    {
+     "prompt": "pick up the easter egg from the wicker basket",
+     "start_s": 203.1,
+     "end_s": 221.4
+    },
+    {
+     "prompt": "place the easter egg on the lawn next to the in_front_of tree",
+     "start_s": 221.4,
+     "end_s": 241.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 27.7,
+   "pick up from": 21.0,
+   "place on": 9.6,
+   "place on next to": 18.7
+  },
+  "verb_counts_total": {
+   "pick up from": 790,
+   "move to": 746,
+   "place on next to": 566,
+   "place on": 190
+  },
+  "top_prompts": [
+   [
+    "pick up the easter egg from the wicker basket",
+    599
+   ],
+   [
+    "place the easter egg on the lawn next to the in_front_of tree",
+    565
+   ],
+   [
+    "move to the wicker basket",
+    498
+   ],
+   [
+    "move to the tree",
+    248
+   ],
+   [
+    "pick up the wicker basket from the lawn",
+    190
+   ],
+   [
+    "place the wicker basket on the lawn",
+    188
+   ],
+   [
+    "place the wicker basket on the tree",
+    2
+   ],
+   [
+    "pick up the easter egg from the lawn",
+    1
+   ],
+   [
+    "place the easter egg on the wicker basket next to the in_front_of tree",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "place on next to",
+  "move to",
+  "place on",
+  "pick up from"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 11430
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 1.0,
+   "success": true,
+   "steps": 8697
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 11430
+  }
+ }
+}

@@ -1,0 +1,472 @@
+{
+ "index": 16,
+ "name": "moving_boxes_to_storage",
+ "instruction": "Move the two storage containers from the living room to the garage. In the garage, place one container on the floor and stack the other container on top of it (either order is fine).",
+ "title": "Moving Boxes To Storage",
+ "rooms_listed": [
+  "living_room",
+  "garage"
+ ],
+ "video": "https://player.vimeo.com/video/1114058315",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Move the two storage containers from the living room to the garage. In the garage, place one container on the floor and stack the other container on top of it (either order is fine).",
+ "human": {
+  "mean_steps": 14596.225,
+  "mean_seconds": 486.5,
+  "step_limit": 21894,
+  "time_limit_seconds": 729.8,
+  "base_distance_m": 36.8051,
+  "eef_displacement_m": {
+   "left": 8.3621,
+   "right": 10.7875
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garage_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem moving_boxes_to_storage-0)\n    (:domain behavior-1k)\n\n    (:objects\n        storage_container.n.01_1 storage_container.n.01_2 - storage_container.n.01\n    \tfloor.n.01_1 floor.n.01_2 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop storage_container.n.01_1 floor.n.01_1)\n        (ontop storage_container.n.01_2 floor.n.01_1)\n        (inroom floor.n.01_1 living_room) \n        (inroom floor.n.01_2 garage) \n        (ontop agent.n.01_1 floor.n.01_2)\n    )\n    \n    (:goal \n        (and \n            (or\n                (and\n                    (ontop ?storage_container.n.01_1 ?floor.n.01_2)\n                    (ontop ?storage_container.n.01_2 ?storage_container.n.01_1)\n                )\n                (and\n                    (ontop ?storage_container.n.01_2 ?floor.n.01_2)\n                    (ontop ?storage_container.n.01_1 ?storage_container.n.01_2)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0",
+  "garage": "garage_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "storage_container.n.01": [
+   "storage_container.n.01_1",
+   "storage_container.n.01_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom floor.n.01_2 garage)",
+  "(ontop agent.n.01_1 floor.n.01_2)",
+  "(ontop storage_container.n.01_1 floor.n.01_1)",
+  "(ontop storage_container.n.01_2 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_2)",
+  "(touching floor.n.01_1 storage_container.n.01_1)",
+  "(touching floor.n.01_1 storage_container.n.01_2)",
+  "(touching floor.n.01_2 agent.n.01_1)",
+  "(touching storage_container.n.01_1 floor.n.01_1)",
+  "(touching storage_container.n.01_2 floor.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop storage_container.n.01_1 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "storage_container.n.01_1",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop storage_container.n.01_2 storage_container.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "storage_container.n.01_2",
+     "storage_container.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "storage_container.n.01_1",
+   "scene_object": "storage_box_80",
+   "substance": false,
+   "category": "storage_box",
+   "model": "izcglf",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.07,
+    "max": 0.07
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 5.27,
+    "median": 9.41,
+    "max": 12.41
+   },
+   "xy_spread_m": 4.36,
+   "n_poses": 20
+  },
+  {
+   "inst": "storage_container.n.01_2",
+   "scene_object": "storage_box_79",
+   "substance": false,
+   "category": "storage_box",
+   "model": "izcglf",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.07,
+    "max": 0.07
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 6.99,
+    "median": 9.7,
+    "max": 13.26
+   },
+   "xy_spread_m": 3.83,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 6.53,
+    "median": 8.84,
+    "max": 11.67
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_nbxnpk_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nbxnpk",
+   "in_rooms": [
+    "garage_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999986290931702,
+    1.000006079673767,
+    1.0000001192092896
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 2.52,
+    "max": 3.65
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -4.88,
+   3.79
+  ],
+  [
+   -5.65,
+   3.84
+  ],
+  [
+   -2.3,
+   3.53
+  ],
+  [
+   -3.23,
+   4.26
+  ],
+  [
+   -6.24,
+   3.69
+  ],
+  [
+   -7.8,
+   6.08
+  ],
+  [
+   -2.91,
+   4.59
+  ],
+  [
+   -2.46,
+   3.7
+  ],
+  [
+   -4.17,
+   3.16
+  ],
+  [
+   -7.55,
+   6.8
+  ],
+  [
+   -4.78,
+   4.41
+  ],
+  [
+   -7.17,
+   3.66
+  ],
+  [
+   -6.18,
+   3.34
+  ],
+  [
+   -5.8,
+   5.0
+  ],
+  [
+   -4.75,
+   4.68
+  ],
+  [
+   -3.34,
+   3.62
+  ],
+  [
+   -2.64,
+   4.81
+  ],
+  [
+   -2.93,
+   3.57
+  ],
+  [
+   -7.66,
+   6.84
+  ],
+  [
+   -7.27,
+   4.87
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 10.0,
+   "max": 10
+  },
+  "demo_seconds": {
+   "min": 312.5,
+   "median": 478.07,
+   "max": 635.23
+  },
+  "distinct_verb_sequences": 1,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 1.0,
+  "modal_verb_counts": {
+   "move to": 5,
+   "open door": 1,
+   "pick up from": 2,
+   "place on": 2
+  },
+  "modal_verb_counts_share": 1.0,
+  "representative_episode": {
+   "file": "episode_00161010.json",
+   "seconds": 478.1,
+   "steps": [
+    {
+     "prompt": "move to the door",
+     "start_s": 0.6,
+     "end_s": 15.5
+    },
+    {
+     "prompt": "open the door of the door",
+     "start_s": 15.5,
+     "end_s": 33.9
+    },
+    {
+     "prompt": "move to the storage box",
+     "start_s": 34.0,
+     "end_s": 83.6
+    },
+    {
+     "prompt": "pick up the storage box from the floors",
+     "start_s": 83.6,
+     "end_s": 127.4
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 127.4,
+     "end_s": 198.7
+    },
+    {
+     "prompt": "place the storage box on the floors",
+     "start_s": 198.7,
+     "end_s": 227.6
+    },
+    {
+     "prompt": "move to the storage box",
+     "start_s": 242.8,
+     "end_s": 312.6
+    },
+    {
+     "prompt": "pick up the storage box from the floors",
+     "start_s": 312.7,
+     "end_s": 361.3
+    },
+    {
+     "prompt": "move to the storage box",
+     "start_s": 361.4,
+     "end_s": 439.5
+    },
+    {
+     "prompt": "place the storage box on the storage box",
+     "start_s": 439.5,
+     "end_s": 478.7
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 60.0,
+   "open door": 24.0,
+   "pick up from": 42.0,
+   "place on": 33.3
+  },
+  "verb_counts_total": {
+   "move to": 1000,
+   "pick up from": 400,
+   "place on": 400,
+   "open door": 200
+  },
+  "top_prompts": [
+   [
+    "move to the storage box",
+    600
+   ],
+   [
+    "pick up the storage box from the floors",
+    400
+   ],
+   [
+    "place the storage box on the floors",
+    201
+   ],
+   [
+    "move to the door",
+    200
+   ],
+   [
+    "open the door of the door",
+    200
+   ],
+   [
+    "move to the floors",
+    200
+   ],
+   [
+    "place the storage box on the storage box",
+    199
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "place on",
+  "pick up from",
+  "open door"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 1.0,
+   "success": true,
+   "steps": 14103
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 21895
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 1.0,
+   "success": true,
+   "steps": 14103
+  }
+ }
+}

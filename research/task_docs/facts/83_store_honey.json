@@ -1,0 +1,575 @@
+{
+ "index": 83,
+ "name": "store_honey",
+ "instruction": "Put the jar of honey into the cabinet drawer, then close the drawer.",
+ "title": "Store Honey",
+ "rooms_listed": [
+  "bedroom",
+  "entryway",
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/oFu38YPgVEU",
+ "scene_model": "Rs_int",
+ "comet_pretrain_sentence": "Put the jar of honey into the cabinet drawer, then close the drawer.",
+ "human": {
+  "mean_steps": 6766.84,
+  "mean_seconds": 225.6,
+  "step_limit": 10150,
+  "time_limit_seconds": 338.3,
+  "base_distance_m": 12.0735,
+  "eef_displacement_m": {
+   "left": 7.5574,
+   "right": 15.3248
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "entryway_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom",
+   "entryway",
+   "kitchen",
+   "living_room"
+  ],
+  "Rs_int": {
+   "whitelist": {
+    "jar__of__honey.n.01": {
+     "jar_of_honey": {
+      "wdxfaq": [
+       0.075,
+       0.085,
+       0.15
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem store_honey-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tjar__of__honey.n.01_1 - jar__of__honey.n.01\n    \tcountertop.n.01_1 - countertop.n.01\n    \tcabinet.n.01_1 - cabinet.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop jar__of__honey.n.01_1 countertop.n.01_1) \n        (inroom cabinet.n.01_1 entryway) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (inside ?jar__of__honey.n.01_1 ?cabinet.n.01_1)\n        )\n    )\n)",
+ "scene": "Rs_int",
+ "n_public_instances": 20,
+ "room_instances": {
+  "entryway": "entryway_0",
+  "kitchen": "kitchen_0",
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "jar__of__honey.n.01": [
+   "jar__of__honey.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 entryway)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop jar__of__honey.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 jar__of__honey.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching jar__of__honey.n.01_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside jar__of__honey.n.01_1 cabinet.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "jar__of__honey.n.01_1",
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "jar__of__honey.n.01_1",
+   "scene_object": "jar_of_honey_72",
+   "substance": false,
+   "category": "jar_of_honey",
+   "model": "wdxfaq",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.39210161566734314,
+    0.39609888195991516,
+    0.5742279887199402
+   ],
+   "z": {
+    "min": 1.16,
+    "median": 1.16,
+    "max": 1.16
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.33,
+    "median": 2.24,
+    "max": 3.41
+   },
+   "xy_spread_m": 1.56,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_tpuwys_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "tpuwys",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5878769159317017,
+    1.7666583061218262,
+    1.3196852207183838
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.22,
+    "median": 2.2,
+    "max": 2.87
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_slgzfc_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "slgzfc",
+   "in_rooms": [
+    "entryway_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.1548038721084595,
+    2.520944356918335,
+    1.546757459640503
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.42,
+    "max": 0.42
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.46,
+    "median": 2.94,
+    "max": 3.47
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ptwlei_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ptwlei",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.56,
+    "median": 1.07,
+    "max": 1.79
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_iusvan",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   0.48,
+   -0.46
+  ],
+  [
+   -0.86,
+   0.32
+  ],
+  [
+   -0.95,
+   -0.06
+  ],
+  [
+   0.34,
+   -0.2
+  ],
+  [
+   -0.27,
+   0.09
+  ],
+  [
+   -0.32,
+   0.22
+  ],
+  [
+   -0.28,
+   0.4
+  ],
+  [
+   0.03,
+   0.36
+  ],
+  [
+   0.44,
+   -1.05
+  ],
+  [
+   0.26,
+   -0.43
+  ],
+  [
+   0.45,
+   -0.45
+  ],
+  [
+   0.55,
+   -0.55
+  ],
+  [
+   0.63,
+   -0.88
+  ],
+  [
+   0.59,
+   -0.84
+  ],
+  [
+   0.51,
+   -0.61
+  ],
+  [
+   0.07,
+   -0.1
+  ],
+  [
+   0.71,
+   -0.91
+  ],
+  [
+   0.05,
+   -0.06
+  ],
+  [
+   0.71,
+   -0.63
+  ],
+  [
+   0.41,
+   -0.27
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 6,
+   "median": 18.0,
+   "max": 18
+  },
+  "demo_seconds": {
+   "min": 95.37,
+   "median": 240.87,
+   "max": 336.57
+  },
+  "distinct_verb_sequences": 2,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "open drawer",
+   "place in",
+   "close drawer"
+  ],
+  "modal_verb_sequence_share": 0.995,
+  "modal_verb_counts": {
+   "close drawer": 1,
+   "move to": 8,
+   "open drawer": 1,
+   "pick up from": 4,
+   "place in": 1,
+   "place on": 3
+  },
+  "modal_verb_counts_share": 0.995,
+  "representative_episode": {
+   "file": "episode_00831080.json",
+   "seconds": 241.2,
+   "steps": [
+    {
+     "prompt": "move to the chair",
+     "start_s": 0.0,
+     "end_s": 11.0
+    },
+    {
+     "prompt": "pick up the chair from the floors",
+     "start_s": 11.0,
+     "end_s": 28.0
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 28.0,
+     "end_s": 40.3
+    },
+    {
+     "prompt": "place the chair on the floors",
+     "start_s": 40.3,
+     "end_s": 48.0
+    },
+    {
+     "prompt": "move to the jar of honey",
+     "start_s": 48.0,
+     "end_s": 65.0
+    },
+    {
+     "prompt": "pick up the jar of honey from the countertop",
+     "start_s": 65.0,
+     "end_s": 74.0
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 74.0,
+     "end_s": 91.0
+    },
+    {
+     "prompt": "place the jar of honey on the breakfast table",
+     "start_s": 91.0,
+     "end_s": 107.8
+    },
+    {
+     "prompt": "move to the chair",
+     "start_s": 107.8,
+     "end_s": 126.0
+    },
+    {
+     "prompt": "pick up the chair from the floors",
+     "start_s": 126.0,
+     "end_s": 143.0
+    },
+    {
+     "prompt": "move to the countertop",
+     "start_s": 143.0,
+     "end_s": 154.0
+    },
+    {
+     "prompt": "place the chair on the floors",
+     "start_s": 154.0,
+     "end_s": 162.0
+    },
+    {
+     "prompt": "move to the jar of honey",
+     "start_s": 162.0,
+     "end_s": 177.0
+    },
+    {
+     "prompt": "pick up the jar of honey from the breakfast table",
+     "start_s": 177.0,
+     "end_s": 190.0
+    },
+    {
+     "prompt": "move to the cabinet",
+     "start_s": 190.0,
+     "end_s": 208.0
+    },
+    {
+     "prompt": "open the drawer of the cabinet",
+     "start_s": 208.0,
+     "end_s": 218.0
+    },
+    {
+     "prompt": "place the jar of honey in the cabinet",
+     "start_s": 218.0,
+     "end_s": 228.6
+    },
+    {
+     "prompt": "close the drawer of the cabinet",
+     "start_s": 228.6,
+     "end_s": 237.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close drawer": 10.0,
+   "move to": 13.7,
+   "open drawer": 11.6,
+   "pick up from": 14.1,
+   "place in": 7.0,
+   "place on": 10.3
+  },
+  "verb_counts_total": {
+   "move to": 1594,
+   "pick up from": 797,
+   "place on": 597,
+   "open drawer": 200,
+   "place in": 200,
+   "close drawer": 200
+  },
+  "top_prompts": [
+   [
+    "move to the chair",
+    401
+   ],
+   [
+    "pick up the chair from the floors",
+    398
+   ],
+   [
+    "place the chair on the floors",
+    398
+   ],
+   [
+    "move to the jar of honey",
+    395
+   ],
+   [
+    "move to the cabinet",
+    201
+   ],
+   [
+    "pick up the jar of honey from the countertop",
+    200
+   ],
+   [
+    "move to the breakfast table",
+    200
+   ],
+   [
+    "open the drawer of the cabinet",
+    200
+   ],
+   [
+    "place the jar of honey in the cabinet",
+    200
+   ],
+   [
+    "close the drawer of the cabinet",
+    200
+   ],
+   [
+    "place the jar of honey on the breakfast table",
+    199
+   ],
+   [
+    "pick up the jar of honey from the breakfast table",
+    199
+   ],
+   [
+    "move to the countertop",
+    198
+   ],
+   [
+    "move to the floors",
+    197
+   ],
+   [
+    "move to the storage container",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

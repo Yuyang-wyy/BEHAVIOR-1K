@@ -1,0 +1,649 @@
+{
+ "index": 90,
+ "name": "composting_waste",
+ "instruction": "Put the food waste into the compost bin.",
+ "title": "Composting Waste",
+ "rooms_listed": [
+  "entryway",
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/RR3PLEFcdYg",
+ "scene_model": "Rs_int",
+ "comet_pretrain_sentence": "Put the food waste into the compost bin.",
+ "human": {
+  "mean_steps": 3638.62,
+  "mean_seconds": 121.3,
+  "step_limit": 5457,
+  "time_limit_seconds": 181.9,
+  "base_distance_m": 6.4352,
+  "eef_displacement_m": {
+   "left": 10.552,
+   "right": 4.4448
+  }
+ },
+ "rooms_loaded": [
+  "entryway_0",
+  "kitchen_0",
+  "bedroom_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "entryway",
+   "kitchen",
+   "living_room"
+  ],
+  "Rs_int": {
+   "whitelist": {
+    "ashcan.n.01": {
+     "trash_can": {
+      "ifzxzj": null
+     }
+    },
+    "half__banana.n.01": {
+     "half_banana": {
+      "xytkre": null
+     }
+    },
+    "half__pomegranate.n.01": {
+     "half_pomegranate": {
+      "vqybii": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem composting_waste-0)\n    (:domain behavior-1k)\n\n    (:objects\n        countertop.n.01_1 - countertop.n.01\n        half__banana.n.01_1 - half__banana.n.01\n        half__pomegranate.n.01_1 - half__pomegranate.n.01\n        ashcan.n.01_1 - ashcan.n.01\n        floor.n.01_1 floor.n.01_2 floor.n.01_3 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop half__banana.n.01_1 countertop.n.01_1) \n        (ontop half__pomegranate.n.01_1 countertop.n.01_1) \n        (ontop ashcan.n.01_1 floor.n.01_1) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (inroom floor.n.01_2 living_room)\n        (inroom floor.n.01_3 entryway)\n        (ontop agent.n.01_1 floor.n.01_2)\n    )\n    \n    (:goal \n        (and \n            (inside ?half__banana.n.01_1 ?ashcan.n.01_1) \n            (inside ?half__pomegranate.n.01_1 ?ashcan.n.01_1) \n        )\n    )\n)",
+ "scene": "Rs_int",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0",
+  "living_room": "living_room_0",
+  "entryway": "entryway_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "half__banana.n.01": [
+   "half__banana.n.01_1"
+  ],
+  "half__pomegranate.n.01": [
+   "half__pomegranate.n.01_1"
+  ],
+  "ashcan.n.01": [
+   "ashcan.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2",
+   "floor.n.01_3"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "ashcan.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 20,
+   "max_abs_joint_pos": 0.656
+  }
+ },
+ "init_literals": [
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom floor.n.01_2 living_room)",
+  "(inroom floor.n.01_3 entryway)",
+  "(ontop agent.n.01_1 floor.n.01_2)",
+  "(ontop ashcan.n.01_1 floor.n.01_1)",
+  "(ontop half__banana.n.01_1 countertop.n.01_1)",
+  "(ontop half__pomegranate.n.01_1 countertop.n.01_1)",
+  "(open ashcan.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_2)",
+  "(touching ashcan.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 half__banana.n.01_1)",
+  "(touching countertop.n.01_1 half__pomegranate.n.01_1)",
+  "(touching floor.n.01_1 ashcan.n.01_1)",
+  "(touching floor.n.01_2 agent.n.01_1)",
+  "(touching half__banana.n.01_1 countertop.n.01_1)",
+  "(touching half__pomegranate.n.01_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside half__banana.n.01_1 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__banana.n.01_1",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__pomegranate.n.01_1 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__pomegranate.n.01_1",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_tpuwys_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "tpuwys",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5878769159317017,
+    1.7666583061218262,
+    1.3196852207183838
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 1.5,
+    "max": 4.79
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "half__banana.n.01_1",
+   "scene_object": "half_banana_68",
+   "substance": false,
+   "category": "half_banana",
+   "model": "xytkre",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.1,
+    "median": 1.1,
+    "max": 1.1
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 1.56,
+    "max": 4.55
+   },
+   "xy_spread_m": 1.55,
+   "n_poses": 20
+  },
+  {
+   "inst": "half__pomegranate.n.01_1",
+   "scene_object": "half_pomegranate_67",
+   "substance": false,
+   "category": "half_pomegranate",
+   "model": "vqybii",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.12,
+    "median": 1.12,
+    "max": 1.12
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.3,
+    "median": 1.7,
+    "max": 4.85
+   },
+   "xy_spread_m": 1.44,
+   "n_poses": 20
+  },
+  {
+   "inst": "ashcan.n.01_1",
+   "scene_object": "trash_can_66",
+   "substance": false,
+   "category": "trash_can",
+   "model": "ifzxzj",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.33,
+    "median": 0.33,
+    "max": 0.33
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.8,
+    "median": 2.27,
+    "max": 5.7
+   },
+   "xy_spread_m": 1.33,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ifmioj_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ifmioj",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.19,
+    "median": 2.5,
+    "max": 5.73
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_ptwlei_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ptwlei",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.61,
+    "median": 1.55,
+    "max": 1.92
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_3",
+   "scene_object": "floors_gjemfr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "gjemfr",
+   "in_rooms": [
+    "entryway_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.31,
+    "median": 2.98,
+    "max": 5.45
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_lvbzkx",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   0.12,
+   0.47
+  ],
+  [
+   0.17,
+   -0.15
+  ],
+  [
+   -0.98,
+   0.03
+  ],
+  [
+   -0.5,
+   0.16
+  ],
+  [
+   -0.8,
+   -0.04
+  ],
+  [
+   0.55,
+   -0.5
+  ],
+  [
+   -0.32,
+   0.28
+  ],
+  [
+   -0.04,
+   0.35
+  ],
+  [
+   0.44,
+   -0.94
+  ],
+  [
+   0.93,
+   -2.93
+  ],
+  [
+   -0.97,
+   0.03
+  ],
+  [
+   -0.04,
+   0.35
+  ],
+  [
+   -0.6,
+   0.07
+  ],
+  [
+   -0.18,
+   0.21
+  ],
+  [
+   -1.08,
+   0.2
+  ],
+  [
+   -0.95,
+   0.08
+  ],
+  [
+   -0.51,
+   0.36
+  ],
+  [
+   0.07,
+   0.11
+  ],
+  [
+   -0.26,
+   0.01
+  ],
+  [
+   0.53,
+   -0.94
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 12.0,
+   "max": 12
+  },
+  "demo_seconds": {
+   "min": 89.1,
+   "median": 119.17,
+   "max": 181.33
+  },
+  "distinct_verb_sequences": 5,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in"
+  ],
+  "modal_verb_sequence_share": 0.875,
+  "modal_verb_counts": {
+   "move to": 6,
+   "pick up from": 3,
+   "place in": 2,
+   "place on next to": 1
+  },
+  "modal_verb_counts_share": 0.875,
+  "representative_episode": {
+   "file": "episode_00901200.json",
+   "seconds": 119.3,
+   "steps": [
+    {
+     "prompt": "move to the trash can",
+     "start_s": 0.0,
+     "end_s": 13.0
+    },
+    {
+     "prompt": "pick up the trash can from the floors",
+     "start_s": 13.0,
+     "end_s": 20.0
+    },
+    {
+     "prompt": "move to the furniture sink",
+     "start_s": 20.0,
+     "end_s": 32.0
+    },
+    {
+     "prompt": "place the trash can on the floors next to the furniture sink",
+     "start_s": 32.0,
+     "end_s": 47.0
+    },
+    {
+     "prompt": "move to the half pomegranate",
+     "start_s": 47.0,
+     "end_s": 55.8
+    },
+    {
+     "prompt": "pick up the half pomegranate from the countertop",
+     "start_s": 55.8,
+     "end_s": 66.3
+    },
+    {
+     "prompt": "move to the trash can",
+     "start_s": 66.3,
+     "end_s": 75.0
+    },
+    {
+     "prompt": "place the half pomegranate in the trash can",
+     "start_s": 75.0,
+     "end_s": 81.0
+    },
+    {
+     "prompt": "move to the half banana",
+     "start_s": 81.0,
+     "end_s": 86.0
+    },
+    {
+     "prompt": "pick up the half banana from the countertop",
+     "start_s": 86.0,
+     "end_s": 98.0
+    },
+    {
+     "prompt": "move to the trash can",
+     "start_s": 98.0,
+     "end_s": 110.0
+    },
+    {
+     "prompt": "place the half banana in the trash can",
+     "start_s": 110.0,
+     "end_s": 119.3
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 10.2,
+   "pick up from": 9.8,
+   "place in": 8.9,
+   "place on next to": 12.8
+  },
+  "verb_counts_total": {
+   "move to": 1160,
+   "pick up from": 600,
+   "place in": 400,
+   "place on next to": 200
+  },
+  "top_prompts": [
+   [
+    "move to the trash can",
+    562
+   ],
+   [
+    "pick up the half pomegranate from the countertop",
+    201
+   ],
+   [
+    "place the half banana in the trash can",
+    201
+   ],
+   [
+    "pick up the trash can from the floors",
+    200
+   ],
+   [
+    "place the trash can on the floors next to the furniture sink",
+    200
+   ],
+   [
+    "move to the half banana",
+    200
+   ],
+   [
+    "move to the half pomegranate",
+    199
+   ],
+   [
+    "place the half pomegranate in the trash can",
+    199
+   ],
+   [
+    "pick up the half banana from the countertop",
+    199
+   ],
+   [
+    "move to the furniture sink",
+    195
+   ],
+   [
+    "move to the sink",
+    3
+   ],
+   [
+    "move to the countertop",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5458
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5458
+  }
+ }
+}

@@ -1,0 +1,596 @@
+{
+ "index": 45,
+ "name": "cook_hot_dogs",
+ "instruction": "Take the two hot dogs out of the refrigerator in the kitchen and cook them in the microwave until both are cooked.",
+ "title": "Cook Hot Dogs",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114061371",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Take the two hot dogs out of the refrigerator in the kitchen and cook them in the microwave until both are cooked.",
+ "human": {
+  "mean_steps": 9144.855,
+  "mean_seconds": 304.8,
+  "step_limit": 13717,
+  "time_limit_seconds": 457.2,
+  "base_distance_m": 25.7822,
+  "eef_displacement_m": {
+   "left": 14.8412,
+   "right": 16.541
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem cook_hot_dogs-0)\n    (:domain behavior-1k)\n\n    (:objects\n        microwave.n.02_1 - microwave.n.02\n        hotdog.n.02_1 hotdog.n.02_2 - hotdog.n.02\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside hotdog.n.02_1 electric_refrigerator.n.01_1) \n        (inside hotdog.n.02_2 electric_refrigerator.n.01_1) \n        (not \n            (cooked hotdog.n.02_1)\n        ) \n        (not \n            (cooked hotdog.n.02_2)\n        ) \n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom microwave.n.02_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?hotdog.n.02 - hotdog.n.02) \n                (cooked ?hotdog.n.02)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "microwave.n.02": [
+   "microwave.n.02_1"
+  ],
+  "hotdog.n.02": [
+   "hotdog.n.02_1",
+   "hotdog.n.02_2"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "microwave.n.02_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom microwave.n.02_1 kitchen)",
+  "(inside hotdog.n.02_1 electric_refrigerator.n.01_1)",
+  "(inside hotdog.n.02_2 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(cooked hotdog.n.02_1)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "hotdog.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked hotdog.n.02_2)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "hotdog.n.02_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "cooked",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "microwave.n.02_1",
+   "scene_object": "microwave_abzvij_0",
+   "substance": false,
+   "category": "microwave",
+   "model": "abzvij",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000813007354736,
+    0.9999414682388306,
+    0.9998689889907837
+   ],
+   "z": {
+    "min": 1.04,
+    "median": 1.04,
+    "max": 1.04
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 1.84,
+    "max": 4.39
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "hotdog.n.02_1",
+   "scene_object": "hotdog_208",
+   "substance": false,
+   "category": "hotdog",
+   "model": "lsajfg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.5,
+    "median": 0.91,
+    "max": 1.32
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.79,
+    "median": 2.71,
+    "max": 4.27
+   },
+   "xy_spread_m": 0.4,
+   "n_poses": 20
+  },
+  {
+   "inst": "hotdog.n.02_2",
+   "scene_object": "hotdog_207",
+   "substance": false,
+   "category": "hotdog",
+   "model": "lsajfg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.5,
+    "median": 0.91,
+    "max": 1.31
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.77,
+    "median": 2.68,
+    "max": 4.3
+   },
+   "xy_spread_m": 0.39,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_dszchb_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "dszchb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0291646718978882,
+    0.9616702198982239,
+    1.021162748336792
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 2.84,
+    "max": 4.31
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.44,
+    "max": 2.21
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.1,
+   -0.28
+  ],
+  [
+   5.27,
+   -0.66
+  ],
+  [
+   5.6,
+   -0.82
+  ],
+  [
+   5.93,
+   -1.05
+  ],
+  [
+   7.89,
+   -1.0
+  ],
+  [
+   7.06,
+   -0.93
+  ],
+  [
+   5.68,
+   -0.93
+  ],
+  [
+   5.23,
+   -0.38
+  ],
+  [
+   5.6,
+   -0.86
+  ],
+  [
+   5.16,
+   1.32
+  ],
+  [
+   5.4,
+   -1.04
+  ],
+  [
+   5.14,
+   -0.18
+  ],
+  [
+   5.23,
+   -0.81
+  ],
+  [
+   8.27,
+   -0.89
+  ],
+  [
+   5.18,
+   0.59
+  ],
+  [
+   5.33,
+   -0.59
+  ],
+  [
+   5.37,
+   1.51
+  ],
+  [
+   5.4,
+   1.5
+  ],
+  [
+   5.29,
+   1.52
+  ],
+  [
+   6.74,
+   -0.99
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 12,
+   "median": 13.0,
+   "max": 13
+  },
+  "demo_seconds": {
+   "min": 211.5,
+   "median": 288.9,
+   "max": 737.93
+  },
+  "distinct_verb_sequences": 2,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "pick up from",
+   "close door",
+   "move to",
+   "place on",
+   "open door",
+   "place in",
+   "pick up from",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.995,
+  "modal_verb_counts": {
+   "close door": 2,
+   "move to": 2,
+   "open door": 2,
+   "pick up from": 3,
+   "place in": 2,
+   "place on": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.995,
+  "representative_episode": {
+   "file": "episode_00451760.json",
+   "seconds": 288.6,
+   "steps": [
+    {
+     "prompt": "move to the fridge",
+     "start_s": 0.0,
+     "end_s": 31.0
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 31.0,
+     "end_s": 66.9
+    },
+    {
+     "prompt": "pick up the hotdog from the high_level fridge",
+     "start_s": 66.9,
+     "end_s": 91.4
+    },
+    {
+     "prompt": "pick up the hotdog from the middle_level fridge",
+     "start_s": 91.4,
+     "end_s": 113.9
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 113.9,
+     "end_s": 142.6
+    },
+    {
+     "prompt": "move to the microwave",
+     "start_s": 142.6,
+     "end_s": 170.1
+    },
+    {
+     "prompt": "place the hotdog on the countertop",
+     "start_s": 170.1,
+     "end_s": 185.7
+    },
+    {
+     "prompt": "open the door of the microwave",
+     "start_s": 185.7,
+     "end_s": 214.6
+    },
+    {
+     "prompt": "place the hotdog in the microwave",
+     "start_s": 214.6,
+     "end_s": 227.7
+    },
+    {
+     "prompt": "pick up the hotdog from the countertop",
+     "start_s": 227.7,
+     "end_s": 249.7
+    },
+    {
+     "prompt": "place the hotdog in the microwave",
+     "start_s": 249.7,
+     "end_s": 263.7
+    },
+    {
+     "prompt": "close the door of the microwave",
+     "start_s": 263.7,
+     "end_s": 273.2
+    },
+    {
+     "prompt": "turn on the microwave",
+     "start_s": 273.2,
+     "end_s": 288.6
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 23.2,
+   "move to": 24.1,
+   "open door": 34.6,
+   "pick up from": 25.8,
+   "place in": 17.0,
+   "place on": 11.8,
+   "turn on switch": 11.2
+  },
+  "verb_counts_total": {
+   "pick up from": 600,
+   "move to": 400,
+   "open door": 400,
+   "place in": 400,
+   "close door": 399,
+   "place on": 200,
+   "turn on switch": 200
+  },
+  "top_prompts": [
+   [
+    "place the hotdog in the microwave",
+    398
+   ],
+   [
+    "move to the fridge",
+    200
+   ],
+   [
+    "place the hotdog on the countertop",
+    200
+   ],
+   [
+    "open the door of the microwave",
+    200
+   ],
+   [
+    "close the door of the microwave",
+    200
+   ],
+   [
+    "close the door of the fridge",
+    199
+   ],
+   [
+    "move to the microwave",
+    199
+   ],
+   [
+    "open the door of the fridge",
+    198
+   ],
+   [
+    "turn on the microwave",
+    198
+   ],
+   [
+    "pick up the hotdog from the countertop",
+    197
+   ],
+   [
+    "pick up the hotdog from the low_level fridge",
+    148
+   ],
+   [
+    "pick up the hotdog from the middle_level fridge",
+    136
+   ],
+   [
+    "pick up the hotdog from the high_level fridge",
+    115
+   ],
+   [
+    "pick up the hotdog from the microwave",
+    2
+   ],
+   [
+    "turn on the fridge",
+    2
+   ],
+   [
+    "place the hotdog in the fridge",
+    1
+   ],
+   [
+    "open the door of the hotdog",
+    1
+   ],
+   [
+    "open the door of the floors",
+    1
+   ],
+   [
+    "move to the countertop",
+    1
+   ],
+   [
+    "place the hotdog in the floors",
+    1
+   ],
+   [
+    "pick up the hotdog from the floors",
+    1
+   ],
+   [
+    "pick up the middle_level hotdog from the low_level fridge",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "place on",
+  "pick up from",
+  "place in",
+  "open door",
+  "turn on switch"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 13718
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 13718
+  }
+ }
+}

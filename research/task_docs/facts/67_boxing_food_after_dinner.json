@@ -1,0 +1,872 @@
+{
+ "index": 67,
+ "name": "boxing_food_after_dinner",
+ "instruction": "Pack the food from the plates into the tupperware container, put the container in the refrigerator, and close the refrigerator.",
+ "title": "Boxing Food After Dinner",
+ "rooms_listed": [
+  "dining_room",
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/OmpbFiXPwMo",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Pack the food from the plates into the tupperware container, put the container in the refrigerator, and close the refrigerator.",
+ "human": {
+  "mean_steps": 6697.715,
+  "mean_seconds": 223.3,
+  "step_limit": 10046,
+  "time_limit_seconds": 334.9,
+  "base_distance_m": 16.1108,
+  "eef_displacement_m": {
+   "left": 11.1626,
+   "right": 17.701
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "dining_room",
+   "kitchen"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "plate.n.04": {
+     "plate": {
+      "amhlqh": null
+     }
+    },
+    "taco.n.02": {
+     "taco": {
+      "werkla": null
+     }
+    },
+    "tupperware.n.01": {
+     "tupperware": {
+      "mkstwr": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem boxing_food_after_dinner-0)\n    (:domain behavior-1k)\n\n    (:objects\n        countertop.n.01_1 - countertop.n.01\n        sink.n.01_1 - sink.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        taco.n.02_1 taco.n.02_2 - taco.n.02\n        plate.n.04_1 plate.n.04_2 - plate.n.04\n        tupperware.n.01_1 - tupperware.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop taco.n.02_1 plate.n.04_1)\n        (ontop taco.n.02_2 plate.n.04_2)\n        (ontop plate.n.04_1 countertop.n.01_1)\n        (ontop plate.n.04_2 countertop.n.01_1)\n        (inroom countertop.n.01_1 kitchen)\n        (inside tupperware.n.01_1 cabinet.n.01_1)\n        (inroom cabinet.n.01_1 kitchen)\n        (inroom sink.n.01_1 kitchen)\n        (inroom electric_refrigerator.n.01_1 kitchen)\n        (inroom floor.n.01_1 kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (forall\n                (?taco.n.02 - taco.n.02)\n                (inside ?taco.n.02 ?tupperware.n.01_1)\n            )\n\t    (ontop ?plate.n.04_1 sink.n.01_1)\n\t    (ontop ?plate.n.04_2 sink.n.01_1)\n            (inside ?tupperware.n.01_1 ?electric_refrigerator.n.01_1)\n            (not\n                (open ?electric_refrigerator.n.01_1)\n            )\n        )\n    )\n)\n",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "sink.n.01": [
+   "sink.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "taco.n.02": [
+   "taco.n.02_1",
+   "taco.n.02_2"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1",
+   "plate.n.04_2"
+  ],
+  "tupperware.n.01": [
+   "tupperware.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.006
+  },
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom sink.n.01_1 kitchen)",
+  "(inside tupperware.n.01_1 cabinet.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop plate.n.04_1 countertop.n.01_1)",
+  "(ontop plate.n.04_2 countertop.n.01_1)",
+  "(ontop taco.n.02_1 plate.n.04_1)",
+  "(ontop taco.n.02_2 plate.n.04_2)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 plate.n.04_1)",
+  "(touching countertop.n.01_1 plate.n.04_2)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching plate.n.04_1 countertop.n.01_1)",
+  "(touching plate.n.04_1 taco.n.02_1)",
+  "(touching plate.n.04_2 countertop.n.01_1)",
+  "(touching plate.n.04_2 taco.n.02_2)",
+  "(touching taco.n.02_1 plate.n.04_1)",
+  "(touching taco.n.02_2 plate.n.04_2)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 6,
+  "n_initially_true": 1,
+  "max_partial_q": 0.833,
+  "literals": [
+   {
+    "literal": "(inside taco.n.02_2 tupperware.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "taco.n.02_2",
+     "tupperware.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside taco.n.02_1 tupperware.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "taco.n.02_1",
+     "tupperware.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop plate.n.04_1 sink.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plate.n.04_1",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop plate.n.04_2 sink.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plate.n.04_2",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside tupperware.n.01_1 electric_refrigerator.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "tupperware.n.01_1",
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open electric_refrigerator.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   6,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ],
+  [
+   "ontop",
+   2
+  ],
+  [
+   "not open",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_kelzer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "kelzer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000444650650024,
+    0.9999945759773254,
+    1.0007061958312988
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 2.28,
+    "max": 4.44
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sink.n.01_1",
+   "scene_object": "drop_in_sink_awvzkn_0",
+   "substance": false,
+   "category": "drop_in_sink",
+   "model": "awvzkn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000107288360596,
+    1.0000001192092896,
+    0.9999061226844788
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 2.22,
+    "max": 4.55
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_no_top_rkgjer_0",
+   "substance": false,
+   "category": "bottom_cabinet_no_top",
+   "model": "rkgjer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000126361846924,
+    0.9999865293502808,
+    0.9999390840530396
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.42,
+    "max": 0.42
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 2.3,
+    "max": 4.57
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_dszchb_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "dszchb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0291646718978882,
+    0.9616702198982239,
+    1.021162748336792
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 3.37,
+    "max": 4.42
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "taco.n.02_1",
+   "scene_object": "taco_235",
+   "substance": false,
+   "category": "taco",
+   "model": "werkla",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.94,
+    "median": 0.94,
+    "max": 0.94
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.34,
+    "median": 2.63,
+    "max": 3.99
+   },
+   "xy_spread_m": 2.18,
+   "n_poses": 20
+  },
+  {
+   "inst": "taco.n.02_2",
+   "scene_object": "taco_234",
+   "substance": false,
+   "category": "taco",
+   "model": "werkla",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.94,
+    "median": 0.94,
+    "max": 0.94
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 2.66,
+    "max": 4.71
+   },
+   "xy_spread_m": 2.26,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_233",
+   "substance": false,
+   "category": "plate",
+   "model": "amhlqh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.33,
+    "median": 2.66,
+    "max": 3.99
+   },
+   "xy_spread_m": 2.16,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_2",
+   "scene_object": "plate_232",
+   "substance": false,
+   "category": "plate",
+   "model": "amhlqh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.94,
+    "median": 2.65,
+    "max": 4.76
+   },
+   "xy_spread_m": 2.2,
+   "n_poses": 20
+  },
+  {
+   "inst": "tupperware.n.01_1",
+   "scene_object": "tupperware_231",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.56,
+    "median": 0.56,
+    "max": 0.56
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 2.14,
+    "max": 4.85
+   },
+   "xy_spread_m": 1.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.32,
+    "median": 1.52,
+    "max": 2.8
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_wdcbhj",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.22,
+   1.55
+  ],
+  [
+   5.12,
+   1.54
+  ],
+  [
+   7.69,
+   -1.04
+  ],
+  [
+   5.29,
+   -0.59
+  ],
+  [
+   5.11,
+   0.28
+  ],
+  [
+   5.13,
+   1.1
+  ],
+  [
+   5.2,
+   0.22
+  ],
+  [
+   5.17,
+   0.05
+  ],
+  [
+   5.33,
+   -0.7
+  ],
+  [
+   7.77,
+   -0.95
+  ],
+  [
+   5.08,
+   -0.73
+  ],
+  [
+   5.31,
+   1.57
+  ],
+  [
+   5.42,
+   -0.88
+  ],
+  [
+   5.15,
+   1.52
+  ],
+  [
+   5.25,
+   -0.18
+  ],
+  [
+   5.19,
+   -0.66
+  ],
+  [
+   5.19,
+   -0.07
+  ],
+  [
+   8.77,
+   1.51
+  ],
+  [
+   5.22,
+   1.35
+  ],
+  [
+   5.35,
+   1.37
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 19,
+   "median": 22.0,
+   "max": 24
+  },
+  "demo_seconds": {
+   "min": 162.7,
+   "median": 219.28,
+   "max": 342.1
+  },
+  "distinct_verb_sequences": 20,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "place on",
+   "close door",
+   "pick up from",
+   "pour",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pour",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "open door",
+   "place in",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.245,
+  "modal_verb_counts": {
+   "close door": 2,
+   "move to": 8,
+   "open door": 2,
+   "pick up from": 4,
+   "place in": 2,
+   "place on": 2,
+   "pour": 2
+  },
+  "modal_verb_counts_share": 0.33,
+  "representative_episode": {
+   "file": "episode_00670750.json",
+   "seconds": 228.0,
+   "steps": [
+    {
+     "prompt": "move to the bottom cabinet no top",
+     "start_s": 0.0,
+     "end_s": 17.0
+    },
+    {
+     "prompt": "open the door of the bottom cabinet no top",
+     "start_s": 17.0,
+     "end_s": 56.0
+    },
+    {
+     "prompt": "pick up the tupperware from the bottom cabinet no top",
+     "start_s": 56.0,
+     "end_s": 68.0
+    },
+    {
+     "prompt": "place the tupperware on the countertop",
+     "start_s": 68.0,
+     "end_s": 75.5
+    },
+    {
+     "prompt": "close the door of the bottom cabinet no top",
+     "start_s": 75.5,
+     "end_s": 93.0
+    },
+    {
+     "prompt": "pick up the plate from the countertop",
+     "start_s": 93.0,
+     "end_s": 98.9
+    },
+    {
+     "prompt": "pour the taco into the plate",
+     "start_s": 98.9,
+     "end_s": 109.5
+    },
+    {
+     "prompt": "place the plate on the sink",
+     "start_s": 109.5,
+     "end_s": 116.8
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 116.8,
+     "end_s": 122.4
+    },
+    {
+     "prompt": "pick up the plate from the countertop",
+     "start_s": 122.4,
+     "end_s": 126.8
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 126.8,
+     "end_s": 136.3
+    },
+    {
+     "prompt": "pour the taco into the plate",
+     "start_s": 136.3,
+     "end_s": 142.0
+    },
+    {
+     "prompt": "place the plate in the sink",
+     "start_s": 142.0,
+     "end_s": 150.0
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 150.0,
+     "end_s": 159.0
+    },
+    {
+     "prompt": "pick up the tupperware from the countertop",
+     "start_s": 159.0,
+     "end_s": 162.0
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 162.0,
+     "end_s": 179.0
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 179.0,
+     "end_s": 206.0
+    },
+    {
+     "prompt": "place the tupperware in the fridge",
+     "start_s": 206.0,
+     "end_s": 219.0
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 219.0,
+     "end_s": 227.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 12.5,
+   "move to": 9.0,
+   "open door": 25.6,
+   "pick up from": 8.6,
+   "place in": 9.4,
+   "place on": 7.5,
+   "pour": 6.3
+  },
+  "verb_counts_total": {
+   "move to": 1433,
+   "pick up from": 801,
+   "close door": 404,
+   "open door": 402,
+   "place on": 400,
+   "pour": 400,
+   "place in": 400
+  },
+  "top_prompts": [
+   [
+    "move to the tupperware",
+    521
+   ],
+   [
+    "pick up the plate from the countertop",
+    401
+   ],
+   [
+    "pour the taco into the plate",
+    400
+   ],
+   [
+    "move to the plate",
+    297
+   ],
+   [
+    "close the door of the bottom cabinet no top",
+    204
+   ],
+   [
+    "open the door of the bottom cabinet no top",
+    202
+   ],
+   [
+    "move to the bottom cabinet no top",
+    201
+   ],
+   [
+    "pick up the tupperware from the bottom cabinet no top",
+    200
+   ],
+   [
+    "place the tupperware on the countertop",
+    200
+   ],
+   [
+    "place the plate on the sink",
+    200
+   ],
+   [
+    "place the plate in the sink",
+    200
+   ],
+   [
+    "pick up the tupperware from the countertop",
+    200
+   ],
+   [
+    "move to the fridge",
+    200
+   ],
+   [
+    "open the door of the fridge",
+    200
+   ],
+   [
+    "place the tupperware in the fridge",
+    200
+   ],
+   [
+    "close the door of the fridge",
+    200
+   ],
+   [
+    "move to the sink",
+    192
+   ],
+   [
+    "move to the countertop",
+    22
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 10047
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 10047
+  }
+ }
+}

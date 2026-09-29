@@ -1,0 +1,1183 @@
+{
+ "index": 9,
+ "name": "putting_up_Christmas_decorations_inside",
+ "instruction": "In the living room, take the wreath, three candy canes, and two pillar candles out of the wicker basket. Place the wreath and two of the candy canes on the same living-room sofa. Put the remaining candy cane on top of a dining-room table. Put both pillar candles together on top of one dining-room table (they can share the same table). Finally, place all three gift boxes under or right next to the Christmas tree in the living room.",
+ "title": "Putting Up Christmas Decorations Inside",
+ "rooms_listed": [
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114056731",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "In the living room, take the wreath, three candy canes, and two pillar candles out of the wicker basket. Place the wreath and two of the candy canes on the same living-room sofa. Put the remaining candy cane on top of a dining-room table. Put both pillar candles together on top of one dining-room table (they can share the same table). Finally, place all three gift boxes under or right next to the Christmas tree in the living room.",
+ "human": {
+  "mean_steps": 13718.76,
+  "mean_seconds": 457.3,
+  "step_limit": 20578,
+  "time_limit_seconds": 685.9,
+  "base_distance_m": 41.3256,
+  "eef_displacement_m": {
+   "left": 16.7478,
+   "right": 22.5356
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem putting_up_Christmas_decorations_inside-0)\n    (:domain behavior-1k)\n\n    (:objects\n        christmas_tree.n.05_1 - christmas_tree.n.05\n        wreath.n.01_1 - wreath.n.01\n        candy_cane.n.01_1 candy_cane.n.01_2 candy_cane.n.01_3 - candy_cane.n.01\n        pillar_candle.n.01_1 pillar_candle.n.01_2 - pillar_candle.n.01\n        gift_box.n.01_1 gift_box.n.01_2 gift_box.n.01_3 - gift_box.n.01\n        wicker_basket.n.01_1 - wicker_basket.n.01\n        floor.n.01_1 - floor.n.01\n        table.n.02_1 table.n.02_* - table.n.02\n        sofa.n.01_1 sofa.n.01_* - sofa.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop christmas_tree.n.05_1 floor.n.01_1)\n        (ontop wicker_basket.n.01_1 floor.n.01_1)\n        (inside wreath.n.01_1 wicker_basket.n.01_1)\n        (inside candy_cane.n.01_1 wicker_basket.n.01_1)\n        (inside candy_cane.n.01_2 wicker_basket.n.01_1)\n        (inside candy_cane.n.01_3 wicker_basket.n.01_1)\n        (inside pillar_candle.n.01_1 wicker_basket.n.01_1)\n        (inside pillar_candle.n.01_2 wicker_basket.n.01_1)\n        (ontop gift_box.n.01_1 floor.n.01_1)\n        (ontop gift_box.n.01_2 floor.n.01_1)\n        (ontop gift_box.n.01_3 floor.n.01_1)\n        (inroom floor.n.01_1 living_room)\n        (inroom table.n.02_1 dining_room)\n        (inroom table.n.02_* dining_room)\n        (inroom sofa.n.01_1 living_room)\n        (inroom sofa.n.01_* living_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?gift_box.n.01 - gift_box.n.01)\n                (or \n                    (nextto ?gift_box.n.01 ?christmas_tree.n.05_1)\n                    (under ?gift_box.n.01 ?christmas_tree.n.05_1)\n                    (touching ?gift_box.n.01 ?christmas_tree.n.05_1)\n                )\n            )\n            (exists\n                (?table.n.02 - table.n.02)\n                (forall\n                    (?pillar_candle.n.01 - pillar_candle.n.01)\n                    (ontop ?pillar_candle.n.01 ?table.n.02)\n                )\n            )\n            (exists\n                (?table.n.02 - table.n.02)\n                (forn\n                    (1)\n                    (?candy_cane.n.01 - candy_cane.n.01)\n                    (ontop ?candy_cane.n.01 ?table.n.02)\n                )\n            )\n            (exists\n                (?sofa.n.01 - sofa.n.01)\n                (forall\n                    (?wreath.n.01 - wreath.n.01)\n                    (ontop ?wreath.n.01 ?sofa.n.01)\n                )\n            )\n            (exists\n                (?sofa.n.01 - sofa.n.01)\n                (forn\n                    (2)\n                    (?candy_cane.n.01 - candy_cane.n.01)\n                    (ontop ?candy_cane.n.01 ?sofa.n.01)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0",
+  "dining_room": "dining_room_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "christmas_tree.n.05": [
+   "christmas_tree.n.05_1"
+  ],
+  "wreath.n.01": [
+   "wreath.n.01_1"
+  ],
+  "candy_cane.n.01": [
+   "candy_cane.n.01_1",
+   "candy_cane.n.01_2",
+   "candy_cane.n.01_3"
+  ],
+  "pillar_candle.n.01": [
+   "pillar_candle.n.01_1",
+   "pillar_candle.n.01_2"
+  ],
+  "gift_box.n.01": [
+   "gift_box.n.01_1",
+   "gift_box.n.01_2",
+   "gift_box.n.01_3"
+  ],
+  "wicker_basket.n.01": [
+   "wicker_basket.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "sofa.n.01": [
+   "sofa.n.01_1",
+   "sofa.n.01_2",
+   "sofa.n.01_3",
+   "sofa.n.01_4"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom sofa.n.01_1 living_room)",
+  "(inroom sofa.n.01_2 living_room)",
+  "(inroom sofa.n.01_3 living_room)",
+  "(inroom sofa.n.01_4 living_room)",
+  "(inroom table.n.02_1 dining_room)",
+  "(inside candy_cane.n.01_1 wicker_basket.n.01_1)",
+  "(inside candy_cane.n.01_2 wicker_basket.n.01_1)",
+  "(inside candy_cane.n.01_3 wicker_basket.n.01_1)",
+  "(inside pillar_candle.n.01_1 wicker_basket.n.01_1)",
+  "(inside pillar_candle.n.01_2 wicker_basket.n.01_1)",
+  "(inside wreath.n.01_1 wicker_basket.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop christmas_tree.n.05_1 floor.n.01_1)",
+  "(ontop gift_box.n.01_1 floor.n.01_1)",
+  "(ontop gift_box.n.01_2 floor.n.01_1)",
+  "(ontop gift_box.n.01_3 floor.n.01_1)",
+  "(ontop wicker_basket.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching christmas_tree.n.05_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 christmas_tree.n.05_1)",
+  "(touching floor.n.01_1 gift_box.n.01_1)",
+  "(touching floor.n.01_1 gift_box.n.01_2)",
+  "(touching floor.n.01_1 gift_box.n.01_3)",
+  "(touching floor.n.01_1 wicker_basket.n.01_1)",
+  "(touching gift_box.n.01_1 floor.n.01_1)",
+  "(touching gift_box.n.01_2 floor.n.01_1)",
+  "(touching gift_box.n.01_3 floor.n.01_1)",
+  "(touching wicker_basket.n.01_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 3888,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 9,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(nextto gift_box.n.01_2 christmas_tree.n.05_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "gift_box.n.01_2",
+     "christmas_tree.n.05_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto gift_box.n.01_1 christmas_tree.n.05_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "gift_box.n.01_1",
+     "christmas_tree.n.05_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto gift_box.n.01_3 christmas_tree.n.05_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "gift_box.n.01_3",
+     "christmas_tree.n.05_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop pillar_candle.n.01_1 table.n.02_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "pillar_candle.n.01_1",
+     "table.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop pillar_candle.n.01_2 table.n.02_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "pillar_candle.n.01_2",
+     "table.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop candy_cane.n.01_3 table.n.02_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "candy_cane.n.01_3",
+     "table.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop wreath.n.01_1 sofa.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "wreath.n.01_1",
+     "sofa.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop candy_cane.n.01_3 sofa.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "candy_cane.n.01_3",
+     "sofa.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop candy_cane.n.01_1 sofa.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "candy_cane.n.01_1",
+     "sofa.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   9,
+   3888
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   6
+  ],
+  [
+   "nextto",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "christmas_tree.n.05_1",
+   "scene_object": "christmas_tree_228",
+   "substance": false,
+   "category": "christmas_tree",
+   "model": "eadukw",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.83,
+    "median": 0.83,
+    "max": 0.83
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.18,
+    "median": 2.48,
+    "max": 5.67
+   },
+   "xy_spread_m": 7.42,
+   "n_poses": 20
+  },
+  {
+   "inst": "wreath.n.01_1",
+   "scene_object": "wreath_227",
+   "substance": false,
+   "category": "wreath",
+   "model": "rkrxno",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.08,
+    "median": 0.15,
+    "max": 0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 2.67,
+    "max": 6.95
+   },
+   "xy_spread_m": 8.72,
+   "n_poses": 20
+  },
+  {
+   "inst": "candy_cane.n.01_1",
+   "scene_object": "candy_cane_226",
+   "substance": false,
+   "category": "candy_cane",
+   "model": "qfomjj",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.506513237953186,
+    1.3812847137451172,
+    2.9308581352233887
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.04,
+    "max": 0.12
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.09,
+    "median": 2.67,
+    "max": 6.87
+   },
+   "xy_spread_m": 8.77,
+   "n_poses": 20
+  },
+  {
+   "inst": "candy_cane.n.01_2",
+   "scene_object": "candy_cane_225",
+   "substance": false,
+   "category": "candy_cane",
+   "model": "qfomjj",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.506513237953186,
+    1.3812847137451172,
+    2.9308581352233887
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.05,
+    "max": 0.11
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 2.57,
+    "max": 6.87
+   },
+   "xy_spread_m": 8.53,
+   "n_poses": 20
+  },
+  {
+   "inst": "candy_cane.n.01_3",
+   "scene_object": "candy_cane_224",
+   "substance": false,
+   "category": "candy_cane",
+   "model": "qfomjj",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.506513237953186,
+    1.3812847137451172,
+    2.9308581352233887
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.07
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 2.62,
+    "max": 6.91
+   },
+   "xy_spread_m": 8.58,
+   "n_poses": 20
+  },
+  {
+   "inst": "pillar_candle.n.01_1",
+   "scene_object": "pillar_candle_223",
+   "substance": false,
+   "category": "pillar_candle",
+   "model": "cxswbc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5000000596046448,
+    0.49949243664741516,
+    0.5049075484275818
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.14,
+    "median": 2.58,
+    "max": 6.85
+   },
+   "xy_spread_m": 8.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "pillar_candle.n.01_2",
+   "scene_object": "pillar_candle_222",
+   "substance": false,
+   "category": "pillar_candle",
+   "model": "cxswbc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5000000596046448,
+    0.49949243664741516,
+    0.5049075484275818
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.1
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 2.58,
+    "max": 6.86
+   },
+   "xy_spread_m": 8.59,
+   "n_poses": 20
+  },
+  {
+   "inst": "gift_box.n.01_1",
+   "scene_object": "gift_box_221",
+   "substance": false,
+   "category": "gift_box",
+   "model": "mfalrc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.08,
+    "median": 0.08,
+    "max": 0.08
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 2.87,
+    "max": 6.95
+   },
+   "xy_spread_m": 9.06,
+   "n_poses": 20
+  },
+  {
+   "inst": "gift_box.n.01_2",
+   "scene_object": "gift_box_220",
+   "substance": false,
+   "category": "gift_box",
+   "model": "mfalrc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.08,
+    "median": 0.08,
+    "max": 0.08
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 3.54,
+    "max": 5.94
+   },
+   "xy_spread_m": 9.56,
+   "n_poses": 20
+  },
+  {
+   "inst": "gift_box.n.01_3",
+   "scene_object": "gift_box_219",
+   "substance": false,
+   "category": "gift_box",
+   "model": "mfalrc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.08,
+    "median": 0.08,
+    "max": 0.08
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.77,
+    "median": 2.82,
+    "max": 6.68
+   },
+   "xy_spread_m": 8.29,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_1",
+   "scene_object": "wicker_basket_218",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.15,
+    "median": 2.65,
+    "max": 6.9
+   },
+   "xy_spread_m": 8.63,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_uzsntg_0",
+   "substance": false,
+   "category": "floors",
+   "model": "uzsntg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999973177909851,
+    1.0000057220458984,
+    0.9999462366104126
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.53,
+    "median": 2.46,
+    "max": 4.07
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "breakfast_table_rhjoby_0",
+   "substance": false,
+   "category": "breakfast_table",
+   "model": "rhjoby",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999933242797852,
+    0.9999943971633911,
+    0.9999465942382812
+   ],
+   "z": {
+    "min": 0.76,
+    "median": 0.76,
+    "max": 0.76
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.7,
+    "median": 7.16,
+    "max": 9.46
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sofa.n.01_1",
+   "scene_object": "sofa_lugrhk_1",
+   "substance": false,
+   "category": "sofa",
+   "model": "lugrhk",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000072717666626,
+    0.9999846816062927,
+    1.000067949295044
+   ],
+   "z": {
+    "min": 0.27,
+    "median": 0.27,
+    "max": 0.27
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.97,
+    "median": 3.49,
+    "max": 6.17
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sofa.n.01_2",
+   "scene_object": "sofa_hiphpn_0",
+   "substance": false,
+   "category": "sofa",
+   "model": "hiphpn",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000189542770386,
+    1.000008463859558,
+    1.0000444650650024
+   ],
+   "z": {
+    "min": 0.25,
+    "median": 0.25,
+    "max": 0.25
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.29,
+    "median": 3.71,
+    "max": 6.33
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sofa.n.01_3",
+   "scene_object": "sofa_wnzdke_0",
+   "substance": false,
+   "category": "sofa",
+   "model": "wnzdke",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999887943267822,
+    1.0000040531158447,
+    0.9999432563781738
+   ],
+   "z": {
+    "min": 0.3,
+    "median": 0.3,
+    "max": 0.3
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.54,
+    "median": 4.46,
+    "max": 7.05
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sofa.n.01_4",
+   "scene_object": "sofa_lugrhk_0",
+   "substance": false,
+   "category": "sofa",
+   "model": "lugrhk",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000072717666626,
+    0.9999846816062927,
+    1.000067949295044
+   ],
+   "z": {
+    "min": 0.27,
+    "median": 0.27,
+    "max": 0.27
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.09,
+    "median": 4.08,
+    "max": 5.77
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   13.9,
+   3.2
+  ],
+  [
+   10.94,
+   2.49
+  ],
+  [
+   16.43,
+   1.41
+  ],
+  [
+   9.83,
+   2.56
+  ],
+  [
+   13.94,
+   1.98
+  ],
+  [
+   11.53,
+   2.43
+  ],
+  [
+   14.35,
+   1.7
+  ],
+  [
+   14.11,
+   0.55
+  ],
+  [
+   13.2,
+   2.35
+  ],
+  [
+   15.88,
+   2.29
+  ],
+  [
+   16.32,
+   3.04
+  ],
+  [
+   11.11,
+   2.62
+  ],
+  [
+   14.32,
+   3.14
+  ],
+  [
+   13.0,
+   2.84
+  ],
+  [
+   14.86,
+   0.16
+  ],
+  [
+   16.54,
+   1.5
+  ],
+  [
+   13.98,
+   0.6
+  ],
+  [
+   13.93,
+   0.25
+  ],
+  [
+   15.61,
+   2.08
+  ],
+  [
+   12.49,
+   2.0
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 23,
+   "median": 32.0,
+   "max": 34
+  },
+  "demo_seconds": {
+   "min": 323.0,
+   "median": 444.25,
+   "max": 660.8
+  },
+  "distinct_verb_sequences": 29,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pour",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "push to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "push to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to"
+  ],
+  "modal_verb_sequence_share": 0.515,
+  "modal_verb_counts": {
+   "move to": 15,
+   "pick up from": 7,
+   "place on": 4,
+   "place on next to": 3,
+   "pour": 1,
+   "push to": 2
+  },
+  "modal_verb_counts_share": 0.55,
+  "representative_episode": {
+   "file": "episode_00092630.json",
+   "seconds": 456.8,
+   "steps": [
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 1.0,
+     "end_s": 10.6
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 10.6,
+     "end_s": 26.1
+    },
+    {
+     "prompt": "move to the sofa",
+     "start_s": 26.1,
+     "end_s": 57.4
+    },
+    {
+     "prompt": "pour the candy cane and candy cane and candy cane and pillar candle and pillar candle and wreath into the wicker basket",
+     "start_s": 57.4,
+     "end_s": 85.5
+    },
+    {
+     "prompt": "move to the coffee table",
+     "start_s": 85.5,
+     "end_s": 91.1
+    },
+    {
+     "prompt": "place the wicker basket on the coffee table",
+     "start_s": 91.1,
+     "end_s": 100.4
+    },
+    {
+     "prompt": "move to the candy cane",
+     "start_s": 100.4,
+     "end_s": 111.4
+    },
+    {
+     "prompt": "pick up the candy cane from the sofa",
+     "start_s": 111.4,
+     "end_s": 147.8
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 147.8,
+     "end_s": 158.4
+    },
+    {
+     "prompt": "place the candy cane on the breakfast table",
+     "start_s": 158.4,
+     "end_s": 165.8
+    },
+    {
+     "prompt": "move to the pillar candle",
+     "start_s": 165.8,
+     "end_s": 177.4
+    },
+    {
+     "prompt": "pick up the pillar candle from the sofa",
+     "start_s": 177.4,
+     "end_s": 213.0
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 213.0,
+     "end_s": 227.3
+    },
+    {
+     "prompt": "place the pillar candle on the breakfast table",
+     "start_s": 227.3,
+     "end_s": 239.9
+    },
+    {
+     "prompt": "move to the pillar candle",
+     "start_s": 240.0,
+     "end_s": 249.6
+    },
+    {
+     "prompt": "pick up the pillar candle from the sofa",
+     "start_s": 249.6,
+     "end_s": 280.2
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 280.2,
+     "end_s": 293.3
+    },
+    {
+     "prompt": "place the pillar candle on the breakfast table",
+     "start_s": 293.3,
+     "end_s": 304.0
+    },
+    {
+     "prompt": "move to the gift box",
+     "start_s": 304.0,
+     "end_s": 332.5
+    },
+    {
+     "prompt": "pick up the gift box from the floors",
+     "start_s": 332.5,
+     "end_s": 348.9
+    },
+    {
+     "prompt": "move to the christmas tree",
+     "start_s": 348.9,
+     "end_s": 361.3
+    },
+    {
+     "prompt": "place the gift box on the floors next to the in_front_of christmas tree",
+     "start_s": 361.3,
+     "end_s": 367.6
+    },
+    {
+     "prompt": "push the gift box to the center christmas tree",
+     "start_s": 367.6,
+     "end_s": 376.5
+    },
+    {
+     "prompt": "move to the gift box",
+     "start_s": 376.5,
+     "end_s": 382.6
+    },
+    {
+     "prompt": "pick up the gift box from the floors",
+     "start_s": 382.6,
+     "end_s": 390.3
+    },
+    {
+     "prompt": "move to the christmas tree",
+     "start_s": 390.3,
+     "end_s": 394.0
+    },
+    {
+     "prompt": "place the gift box on the floors next to the in_front_of christmas tree",
+     "start_s": 394.0,
+     "end_s": 403.0
+    },
+    {
+     "prompt": "push the gift box to the center christmas tree",
+     "start_s": 403.0,
+     "end_s": 410.4
+    },
+    {
+     "prompt": "move to the gift box",
+     "start_s": 410.4,
+     "end_s": 425.1
+    },
+    {
+     "prompt": "pick up the gift box from the floors",
+     "start_s": 425.1,
+     "end_s": 432.8
+    },
+    {
+     "prompt": "move to the christmas tree",
+     "start_s": 432.8,
+     "end_s": 447.0
+    },
+    {
+     "prompt": "place the gift box on the floors next to the in_front_of christmas tree",
+     "start_s": 447.0,
+     "end_s": 457.8
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 14.1,
+   "pick up from": 18.2,
+   "place on": 13.5,
+   "place on next to": 9.2,
+   "pour": 23.4,
+   "push to": 8.2
+  },
+  "verb_counts_total": {
+   "move to": 2946,
+   "pick up from": 1371,
+   "place on": 800,
+   "place on next to": 571,
+   "push to": 413,
+   "pour": 200
+  },
+  "top_prompts": [
+   [
+    "move to the breakfast table",
+    600
+   ],
+   [
+    "move to the gift box",
+    579
+   ],
+   [
+    "pick up the gift box from the floors",
+    571
+   ],
+   [
+    "place the gift box on the floors next to the in_front_of christmas tree",
+    571
+   ],
+   [
+    "move to the christmas tree",
+    568
+   ],
+   [
+    "push the gift box to the center christmas tree",
+    404
+   ],
+   [
+    "pick up the pillar candle from the sofa",
+    400
+   ],
+   [
+    "place the pillar candle on the breakfast table",
+    400
+   ],
+   [
+    "move to the pillar candle",
+    394
+   ],
+   [
+    "pick up the wicker basket from the floors",
+    200
+   ],
+   [
+    "move to the sofa",
+    200
+   ],
+   [
+    "move to the coffee table",
+    200
+   ],
+   [
+    "place the wicker basket on the coffee table",
+    200
+   ],
+   [
+    "pick up the candy cane from the sofa",
+    200
+   ],
+   [
+    "place the candy cane on the breakfast table",
+    200
+   ],
+   [
+    "move to the wicker basket",
+    199
+   ],
+   [
+    "move to the candy cane",
+    199
+   ],
+   [
+    "pour the candy cane and candy cane and candy cane and pillar candle and pillar candle and wreath into the wicker basket",
+    104
+   ],
+   [
+    "pour the pillar candle and pillar candle and candy cane and candy cane and candy cane and wreath into the wicker basket",
+    57
+   ],
+   [
+    "pour the candy cane and candy cane and candy cane and wreath and pillar candle and pillar candle into the wicker basket",
+    10
+   ],
+   [
+    "pour the pillar candle and pillar candle and wreath and candy cane and candy cane and candy cane into the wicker basket",
+    9
+   ],
+   [
+    "move to the wreath",
+    7
+   ],
+   [
+    "push the wreath to the away robot",
+    7
+   ],
+   [
+    "pour the candy cane and candy cane and candy cane and pillar candle and wreath and pillar candle into the wicker basket",
+    6
+   ],
+   [
+    "pour the candy cane and candy cane and pillar candle and pillar candle and candy cane and wreath into the wicker basket",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "pour",
+  "move to",
+  "place on",
+  "pick up from",
+  "place on next to",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.2222222222222222,
+   "success": false,
+   "steps": 20579
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.3333333333333333,
+   "success": false,
+   "steps": 20579
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.2222222222222222,
+   "success": false,
+   "steps": 20579
+  }
+ }
+}

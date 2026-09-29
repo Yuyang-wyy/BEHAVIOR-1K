@@ -1,0 +1,476 @@
+{
+ "index": 37,
+ "name": "clean_a_trumpet",
+ "instruction": "In the bedroom, pick up the scrub brush from the desk and scrub the cornet (trumpet) on the desk until it's no longer covered in dust.",
+ "title": "Clean a Trumpet",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://player.vimeo.com/video/1114060606",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "In the bedroom, pick up the scrub brush from the desk and scrub the cornet (trumpet) on the desk until it's no longer covered in dust.",
+ "human": {
+  "mean_steps": 5307.16,
+  "mean_seconds": 176.9,
+  "step_limit": 7960,
+  "time_limit_seconds": 265.4,
+  "base_distance_m": 12.3853,
+  "eef_displacement_m": {
+   "left": 7.6569,
+   "right": 11.4991
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "bedroom_1",
+  "bedroom_2"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem clean_a_trumpet-0)\n    (:domain behavior-1k)\n\n    (:objects\n        dust.n.01_1 - dust.n.01\n        cornet.n.01_1 - cornet.n.01\n        scrub_brush.n.01_1 - scrub_brush.n.01\n        desk.n.01_1 - desk.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (covered cornet.n.01_1 dust.n.01_1) \n        (ontop scrub_brush.n.01_1 desk.n.01_1) \n        (ontop cornet.n.01_1 desk.n.01_1) \n        (inroom desk.n.01_1 bedroom) \n        (inroom floor.n.01_1 bedroom) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (not \n                (covered ?cornet.n.01_1 ?dust.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "dust.n.01": [
+   "dust.n.01_1"
+  ],
+  "cornet.n.01": [
+   "cornet.n.01_1"
+  ],
+  "scrub_brush.n.01": [
+   "scrub_brush.n.01_1"
+  ],
+  "desk.n.01": [
+   "desk.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "desk.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(covered cornet.n.01_1 dust.n.01_1)",
+  "(inroom desk.n.01_1 bedroom)",
+  "(inroom floor.n.01_1 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop cornet.n.01_1 desk.n.01_1)",
+  "(ontop scrub_brush.n.01_1 desk.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching cornet.n.01_1 desk.n.01_1)",
+  "(touching desk.n.01_1 cornet.n.01_1)",
+  "(touching desk.n.01_1 scrub_brush.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching scrub_brush.n.01_1 desk.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered cornet.n.01_1 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "cornet.n.01_1",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "dust.n.01_1",
+   "scene_object": "dust",
+   "substance": true,
+   "systems": [
+    "dust"
+   ]
+  },
+  {
+   "inst": "cornet.n.01_1",
+   "scene_object": "trumpet_87",
+   "substance": false,
+   "category": "trumpet",
+   "model": "bafgow",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.82,
+    "median": 0.84,
+    "max": 0.84
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 1.72,
+    "max": 2.47
+   },
+   "xy_spread_m": 0.85,
+   "n_poses": 20
+  },
+  {
+   "inst": "scrub_brush.n.01_1",
+   "scene_object": "scrub_brush_86",
+   "substance": false,
+   "category": "scrub_brush",
+   "model": "hsejyi",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.79,
+    "median": 0.79,
+    "max": 0.79
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.2,
+    "median": 1.8,
+    "max": 2.62
+   },
+   "xy_spread_m": 1.4,
+   "n_poses": 20
+  },
+  {
+   "inst": "desk.n.01_1",
+   "scene_object": "desk_aduafr_0",
+   "substance": false,
+   "category": "desk",
+   "model": "aduafr",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999683499336243,
+    0.9999781847000122,
+    0.9999521970748901
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.44
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.13,
+    "median": 1.81,
+    "max": 2.36
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_nlswvt_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nlswvt",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000108480453491,
+    1.0000033378601074,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.39,
+    "median": 0.82,
+    "max": 1.56
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -3.73,
+   1.2
+  ],
+  [
+   -5.03,
+   1.38
+  ],
+  [
+   -3.28,
+   1.13
+  ],
+  [
+   -4.07,
+   1.91
+  ],
+  [
+   -3.63,
+   1.69
+  ],
+  [
+   -4.73,
+   1.39
+  ],
+  [
+   -5.43,
+   1.11
+  ],
+  [
+   -5.65,
+   1.13
+  ],
+  [
+   -3.4,
+   0.78
+  ],
+  [
+   -3.99,
+   1.83
+  ],
+  [
+   -4.03,
+   1.19
+  ],
+  [
+   -5.0,
+   1.72
+  ],
+  [
+   -4.66,
+   1.41
+  ],
+  [
+   -3.91,
+   1.67
+  ],
+  [
+   -5.03,
+   1.37
+  ],
+  [
+   -4.85,
+   1.81
+  ],
+  [
+   -4.43,
+   1.09
+  ],
+  [
+   -5.06,
+   1.3
+  ],
+  [
+   -3.87,
+   1.33
+  ],
+  [
+   -4.02,
+   1.56
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 5,
+   "median": 6.0,
+   "max": 9
+  },
+  "demo_seconds": {
+   "min": 93.0,
+   "median": 161.47,
+   "max": 241.57
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "hand over",
+   "move to",
+   "wipe hard",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.95,
+  "modal_verb_counts": {
+   "hand over": 1,
+   "move to": 2,
+   "pick up from": 1,
+   "place on": 1,
+   "wipe hard": 1
+  },
+  "modal_verb_counts_share": 0.95,
+  "representative_episode": {
+   "file": "episode_00370500.json",
+   "seconds": 160.2,
+   "steps": [
+    {
+     "prompt": "move to the scrub brush",
+     "start_s": 0.0,
+     "end_s": 32.0
+    },
+    {
+     "prompt": "pick up the scrub brush from the desk",
+     "start_s": 32.0,
+     "end_s": 59.0
+    },
+    {
+     "prompt": "hand over the scrub brush with the left",
+     "start_s": 61.5,
+     "end_s": 79.0
+    },
+    {
+     "prompt": "move to the trumpet",
+     "start_s": 80.8,
+     "end_s": 85.7
+    },
+    {
+     "prompt": "wipe the scrub brush",
+     "start_s": 85.7,
+     "end_s": 148.6
+    },
+    {
+     "prompt": "place the scrub brush on the desk",
+     "start_s": 149.8,
+     "end_s": 160.2
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 17.2,
+   "move to": 11.8,
+   "pick up from": 32.9,
+   "place on": 10.1,
+   "wipe hard": 70.9
+  },
+  "verb_counts_total": {
+   "move to": 402,
+   "pick up from": 208,
+   "place on": 208,
+   "hand over": 200,
+   "wipe hard": 200
+  },
+  "top_prompts": [
+   [
+    "move to the trumpet",
+    207
+   ],
+   [
+    "hand over the scrub brush with the left",
+    200
+   ],
+   [
+    "wipe the scrub brush",
+    200
+   ],
+   [
+    "pick up the scrub brush from the desk",
+    197
+   ],
+   [
+    "move to the scrub brush",
+    195
+   ],
+   [
+    "place the scrub brush on the desk",
+    195
+   ],
+   [
+    "place the trumpet on the desk",
+    10
+   ],
+   [
+    "pick up the trumpet from the desk",
+    9
+   ],
+   [
+    "pick up the scrub brush from the floors",
+    2
+   ],
+   [
+    "place the scrub brush on the to_the_edge_of desk",
+    2
+   ],
+   [
+    "place the floors on the desk",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "wipe hard",
+  "place on",
+  "pick up from",
+  "hand over"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 7961
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 7961
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 7961
+  }
+ }
+}

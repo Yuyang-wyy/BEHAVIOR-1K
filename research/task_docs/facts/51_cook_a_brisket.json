@@ -1,0 +1,748 @@
+{
+ "index": 51,
+ "name": "cook_a_brisket",
+ "instruction": "Take the brisket from the refrigerator, cook it in a frying pan on the burner, and place the cooked brisket on the chopping board.",
+ "title": "Cook A Brisket",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/RCSy8B0_s5Y",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Take the brisket from the refrigerator, cook it in a frying pan on the burner, and place the cooked brisket on the chopping board.",
+ "human": {
+  "mean_steps": 7334.995,
+  "mean_seconds": 244.5,
+  "step_limit": 11002,
+  "time_limit_seconds": 366.7,
+  "base_distance_m": 14.2032,
+  "eef_displacement_m": {
+   "left": 11.9717,
+   "right": 16.5149
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "kitchen"
+  ],
+  "house_double_floor_lower": {
+   "whitelist": {
+    "brisket.n.01": {
+     "brisket": {
+      "nnnnqw": [
+       0.15,
+       0.1,
+       0.02
+      ]
+     }
+    },
+    "chopping_board.n.01": {
+     "chopping_board": {
+      "afwefw": null
+     },
+     "cutting_board": {
+      "nsvnai": null
+     }
+    },
+    "frying_pan.n.01": {
+     "frying_pan": {
+      "jpzusm": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem cook_a_brisket-0)\n    (:domain behavior-1k)\n\n    (:objects\n        chopping_board.n.01_1 - chopping_board.n.01\n        brisket.n.01_1 - brisket.n.01\n        frying_pan.n.01_1 - frying_pan.n.01\n        countertop.n.01_1 - countertop.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        oven.n.01_1 - oven.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop chopping_board.n.01_1 countertop.n.01_1) \n        (inside brisket.n.01_1 electric_refrigerator.n.01_1) \n        (not \n            (cooked brisket.n.01_1)\n        )\n        (ontop frying_pan.n.01_1 countertop.n.01_1)\n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom oven.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (cooked ?brisket.n.01_1) \n            (ontop ?brisket.n.01_1 ?chopping_board.n.01_1)\n            (ontop ?frying_pan.n.01_1 ?countertop.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "brisket.n.01": [
+   "brisket.n.01_1"
+  ],
+  "frying_pan.n.01": [
+   "frying_pan.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "oven.n.01": [
+   "oven.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "oven.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom oven.n.01_1 kitchen)",
+  "(inside brisket.n.01_1 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(ontop frying_pan.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching countertop.n.01_1 frying_pan.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching frying_pan.n.01_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 1,
+  "max_partial_q": 0.667,
+  "literals": [
+   {
+    "literal": "(cooked brisket.n.01_1)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "brisket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop brisket.n.01_1 chopping_board.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "brisket.n.01_1",
+     "chopping_board.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop frying_pan.n.01_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "frying_pan.n.01_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   2
+  ],
+  [
+   "cooked",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "chopping_board_80",
+   "substance": false,
+   "category": "chopping_board",
+   "model": "afwefw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.35,
+    "median": 3.02,
+    "max": 5.82
+   },
+   "xy_spread_m": 2.08,
+   "n_poses": 20
+  },
+  {
+   "inst": "brisket.n.01_1",
+   "scene_object": "brisket_79",
+   "substance": false,
+   "category": "brisket",
+   "model": "nnnnqw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.7175997495651245,
+    1.6631174087524414,
+    1.5383423566818237
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 1.15,
+    "max": 1.67
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.98,
+    "median": 3.41,
+    "max": 3.88
+   },
+   "xy_spread_m": 0.78,
+   "n_poses": 20
+  },
+  {
+   "inst": "frying_pan.n.01_1",
+   "scene_object": "frying_pan_78",
+   "substance": false,
+   "category": "frying_pan",
+   "model": "jpzusm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.91,
+    "median": 0.91,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.32,
+    "median": 4.11,
+    "max": 6.33
+   },
+   "xy_spread_m": 2.04,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_egwapq_0",
+   "substance": false,
+   "category": "bar",
+   "model": "egwapq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999869465827942,
+    0.9999972581863403,
+    1.0000406503677368
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.17,
+    "median": 3.57,
+    "max": 6.13
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_petcxr_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "petcxr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000007152557373,
+    1.00002920627594,
+    1.0000027418136597
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.0,
+    "median": 3.54,
+    "max": 4.21
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "oven.n.01_1",
+   "scene_object": "oven_ffitak_0",
+   "substance": false,
+   "category": "oven",
+   "model": "ffitak",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.216524362564087,
+    0.9933228492736816,
+    0.9864447116851807
+   ],
+   "z": {
+    "min": 0.54,
+    "median": 0.54,
+    "max": 0.54
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.27,
+    "median": 3.51,
+    "max": 5.49
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 2.08,
+    "max": 3.05
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_nujyvu",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   7.15,
+   2.13
+  ],
+  [
+   3.59,
+   3.15
+  ],
+  [
+   6.4,
+   1.99
+  ],
+  [
+   7.51,
+   2.59
+  ],
+  [
+   6.33,
+   1.89
+  ],
+  [
+   3.33,
+   2.8
+  ],
+  [
+   5.67,
+   1.7
+  ],
+  [
+   3.91,
+   2.94
+  ],
+  [
+   2.59,
+   2.73
+  ],
+  [
+   6.94,
+   2.62
+  ],
+  [
+   5.8,
+   1.33
+  ],
+  [
+   2.8,
+   1.88
+  ],
+  [
+   3.6,
+   2.74
+  ],
+  [
+   6.95,
+   1.97
+  ],
+  [
+   4.1,
+   3.22
+  ],
+  [
+   5.49,
+   2.52
+  ],
+  [
+   4.38,
+   3.07
+  ],
+  [
+   6.16,
+   2.41
+  ],
+  [
+   5.55,
+   2.63
+  ],
+  [
+   5.26,
+   3.23
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 6,
+   "median": 17.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 134.07,
+   "median": 242.32,
+   "max": 355.2
+  },
+  "distinct_verb_sequences": 16,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "open door",
+   "pick up from",
+   "hand over",
+   "close door",
+   "move to",
+   "place in",
+   "turn on switch",
+   "turn off switch",
+   "pick up from",
+   "move to",
+   "pour",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.495,
+  "modal_verb_counts": {
+   "close door": 1,
+   "hand over": 1,
+   "move to": 5,
+   "open door": 1,
+   "pick up from": 3,
+   "place in": 1,
+   "place on": 2,
+   "pour": 1,
+   "turn off switch": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.5,
+  "representative_episode": {
+   "file": "episode_00511640.json",
+   "seconds": 252.0,
+   "steps": [
+    {
+     "prompt": "move to the frying pan",
+     "start_s": 0.0,
+     "end_s": 12.0
+    },
+    {
+     "prompt": "pick up the frying pan from the bar",
+     "start_s": 12.0,
+     "end_s": 33.0
+    },
+    {
+     "prompt": "move to the burner",
+     "start_s": 33.0,
+     "end_s": 38.0
+    },
+    {
+     "prompt": "place the frying pan on the burner",
+     "start_s": 38.0,
+     "end_s": 51.0
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 51.0,
+     "end_s": 71.0
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 71.0,
+     "end_s": 113.1
+    },
+    {
+     "prompt": "pick up the brisket from the fridge",
+     "start_s": 113.1,
+     "end_s": 131.0
+    },
+    {
+     "prompt": "hand over the brisket",
+     "start_s": 131.0,
+     "end_s": 146.0
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 146.0,
+     "end_s": 169.0
+    },
+    {
+     "prompt": "move to the frying pan",
+     "start_s": 169.0,
+     "end_s": 178.0
+    },
+    {
+     "prompt": "place the brisket in the frying pan",
+     "start_s": 178.0,
+     "end_s": 187.0
+    },
+    {
+     "prompt": "turn on the burner",
+     "start_s": 187.0,
+     "end_s": 198.8
+    },
+    {
+     "prompt": "turn off the burner",
+     "start_s": 198.8,
+     "end_s": 203.0
+    },
+    {
+     "prompt": "pick up the frying pan from the burner",
+     "start_s": 203.0,
+     "end_s": 219.0
+    },
+    {
+     "prompt": "move to the chopping board",
+     "start_s": 219.0,
+     "end_s": 230.0
+    },
+    {
+     "prompt": "pour the brisket into the frying pan",
+     "start_s": 230.0,
+     "end_s": 235.1
+    },
+    {
+     "prompt": "place the frying pan on the bar",
+     "start_s": 235.1,
+     "end_s": 251.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 20.1,
+   "hand over": 13.4,
+   "move to": 11.8,
+   "open door": 39.2,
+   "pick up from": 20.1,
+   "place in": 10.3,
+   "place on": 9.8,
+   "pour": 7.3,
+   "push to": 28.9,
+   "turn off switch": 3.9,
+   "turn on switch": 8.5
+  },
+  "verb_counts_total": {
+   "move to": 1009,
+   "pick up from": 596,
+   "place on": 397,
+   "turn on switch": 200,
+   "turn off switch": 200,
+   "pour": 200,
+   "place in": 199,
+   "open door": 198,
+   "close door": 198,
+   "hand over": 137,
+   "push to": 30
+  },
+  "top_prompts": [
+   [
+    "move to the burner",
+    313
+   ],
+   [
+    "move to the frying pan",
+    276
+   ],
+   [
+    "turn on the burner",
+    200
+   ],
+   [
+    "turn off the burner",
+    200
+   ],
+   [
+    "pick up the frying pan from the burner",
+    200
+   ],
+   [
+    "move to the chopping board",
+    200
+   ],
+   [
+    "pour the brisket into the frying pan",
+    200
+   ],
+   [
+    "move to the fridge",
+    199
+   ],
+   [
+    "pick up the brisket from the fridge",
+    199
+   ],
+   [
+    "place the brisket in the frying pan",
+    199
+   ],
+   [
+    "open the door of the fridge",
+    198
+   ],
+   [
+    "close the door of the fridge",
+    198
+   ],
+   [
+    "place the frying pan on the bar",
+    198
+   ],
+   [
+    "pick up the frying pan from the bar",
+    197
+   ],
+   [
+    "place the frying pan on the burner",
+    197
+   ],
+   [
+    "hand over the brisket",
+    136
+   ],
+   [
+    "push the brisket to the fridge",
+    30
+   ],
+   [
+    "move to the bar",
+    21
+   ],
+   [
+    "place the frying pan on the chopping board",
+    2
+   ],
+   [
+    "hand over the fridge",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 11003
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 11003
+  }
+ }
+}

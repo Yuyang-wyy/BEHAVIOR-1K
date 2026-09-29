@@ -1,0 +1,754 @@
+{
+ "index": 55,
+ "name": "re_shelving_library_books",
+ "instruction": "Put the library books and notebooks from the desk into the bookcase.",
+ "title": "Re Shelving Library Books",
+ "rooms_listed": [
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/AQdhTrye7NQ",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "Put the library books and notebooks from the desk into the bookcase.",
+ "human": {
+  "mean_steps": 9528.43,
+  "mean_seconds": 317.6,
+  "step_limit": 14292,
+  "time_limit_seconds": 476.4,
+  "base_distance_m": 19.6242,
+  "eef_displacement_m": {
+   "left": 18.9446,
+   "right": 16.5616
+  }
+ },
+ "rooms_loaded": [
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "living_room"
+  ],
+  "house_double_floor_upper": {
+   "whitelist": {
+    "book.n.02": {
+     "notebook": {
+      "aanuhi": null
+     },
+     "hardback": {
+      "aceozs": null,
+      "agbqsy": null,
+      "atxzzy": null
+     }
+    }
+   },
+   "blacklist": {
+    "table.n.02": {
+     "coffee_table": {
+      "osroux": null
+     }
+    }
+   }
+  }
+ },
+ "bddl_definition": "(define (problem re_shelving_library_books-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tbook.n.02_1 book.n.02_2 book.n.02_3 - book.n.02\n    \ttable.n.02_1 - table.n.02\n    \tbookcase.n.01_* - bookcase.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop book.n.02_1 table.n.02_1) \n        (ontop book.n.02_2 table.n.02_1) \n        (ontop book.n.02_3 table.n.02_1) \n        (inroom table.n.02_1 living_room)\n        (inroom bookcase.n.01_* living_room)\n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal\n        (and\n            (forall\n                (?book.n.02 - book.n.02)\n                (exists\n                    (?bookcase.n.01 - bookcase.n.01)\n                    (inside ?book.n.02 ?bookcase.n.01)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "book.n.02": [
+   "book.n.02_1",
+   "book.n.02_2",
+   "book.n.02_3"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "bookcase.n.01": [
+   "bookcase.n.01_1",
+   "bookcase.n.01_2",
+   "bookcase.n.01_3",
+   "bookcase.n.01_4"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom bookcase.n.01_1 living_room)",
+  "(inroom bookcase.n.01_2 living_room)",
+  "(inroom bookcase.n.01_3 living_room)",
+  "(inroom bookcase.n.01_4 living_room)",
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom table.n.02_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop book.n.02_1 table.n.02_1)",
+  "(ontop book.n.02_2 table.n.02_1)",
+  "(ontop book.n.02_3 table.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching book.n.02_1 table.n.02_1)",
+  "(touching book.n.02_2 table.n.02_1)",
+  "(touching book.n.02_3 table.n.02_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching table.n.02_1 book.n.02_1)",
+  "(touching table.n.02_1 book.n.02_2)",
+  "(touching table.n.02_1 book.n.02_3)"
+ ],
+ "n_ground_options": 64,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside book.n.02_3 bookcase.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "book.n.02_3",
+     "bookcase.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside book.n.02_2 bookcase.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "book.n.02_2",
+     "bookcase.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside book.n.02_1 bookcase.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "book.n.02_1",
+     "bookcase.n.01_3"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   64
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "book.n.02_1",
+   "scene_object": "hardback_53",
+   "substance": false,
+   "category": "hardback",
+   "model": "aceozs",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.75,
+    "median": 0.75,
+    "max": 0.75
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.56,
+    "median": 3.5,
+    "max": 4.36
+   },
+   "xy_spread_m": 1.18,
+   "n_poses": 20
+  },
+  {
+   "inst": "book.n.02_2",
+   "scene_object": "notebook_52",
+   "substance": false,
+   "category": "notebook",
+   "model": "aanuhi",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.75,
+    "median": 0.75,
+    "max": 0.75
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.28,
+    "median": 3.4,
+    "max": 4.81
+   },
+   "xy_spread_m": 1.16,
+   "n_poses": 20
+  },
+  {
+   "inst": "book.n.02_3",
+   "scene_object": "hardback_51",
+   "substance": false,
+   "category": "hardback",
+   "model": "agbqsy",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.75,
+    "median": 0.75,
+    "max": 0.75
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.1,
+    "median": 3.57,
+    "max": 4.68
+   },
+   "xy_spread_m": 0.77,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "desk_iotfzl_0",
+   "substance": false,
+   "category": "desk",
+   "model": "iotfzl",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.999945342540741,
+    0.9999765753746033,
+    0.9999732971191406
+   ],
+   "z": {
+    "min": 0.62,
+    "median": 0.62,
+    "max": 0.62
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.99,
+    "median": 3.29,
+    "max": 4.4
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bookcase.n.01_1",
+   "scene_object": "bookcase_otwukr_0",
+   "substance": false,
+   "category": "bookcase",
+   "model": "otwukr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999989867210388,
+    0.9999999403953552,
+    0.9999998807907104
+   ],
+   "z": {
+    "min": 0.53,
+    "median": 0.53,
+    "max": 0.53
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.24,
+    "median": 5.14,
+    "max": 7.19
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bookcase.n.01_2",
+   "scene_object": "bookcase_otwukr_1",
+   "substance": false,
+   "category": "bookcase",
+   "model": "otwukr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999989867210388,
+    0.9999999403953552,
+    0.9999998807907104
+   ],
+   "z": {
+    "min": 0.53,
+    "median": 0.53,
+    "max": 0.53
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 3.66,
+    "max": 5.69
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bookcase.n.01_3",
+   "scene_object": "bookcase_otwukr_2",
+   "substance": false,
+   "category": "bookcase",
+   "model": "otwukr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999989867210388,
+    0.9999999403953552,
+    0.9999998807907104
+   ],
+   "z": {
+    "min": 0.53,
+    "median": 0.53,
+    "max": 0.53
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 2.94,
+    "max": 4.94
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bookcase.n.01_4",
+   "scene_object": "bookcase_otwukr_3",
+   "substance": false,
+   "category": "bookcase",
+   "model": "otwukr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999989867210388,
+    0.9999999403953552,
+    0.9999998807907104
+   ],
+   "z": {
+    "min": 0.53,
+    "median": 0.53,
+    "max": 0.53
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 4.39,
+    "max": 6.44
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_rfqizg_0",
+   "substance": false,
+   "category": "floors",
+   "model": "rfqizg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999974966049194,
+    1.0000001192092896,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.92,
+    "median": 2.83,
+    "max": 4.23
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_isiobh",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -2.67,
+   -1.37
+  ],
+  [
+   -2.53,
+   -1.38
+  ],
+  [
+   0.35,
+   0.38
+  ],
+  [
+   0.91,
+   0.25
+  ],
+  [
+   -0.59,
+   -0.12
+  ],
+  [
+   -3.52,
+   -1.43
+  ],
+  [
+   -0.6,
+   0.03
+  ],
+  [
+   0.15,
+   -0.43
+  ],
+  [
+   0.42,
+   0.42
+  ],
+  [
+   -1.13,
+   0.08
+  ],
+  [
+   1.5,
+   -0.57
+  ],
+  [
+   1.45,
+   0.36
+  ],
+  [
+   1.54,
+   0.41
+  ],
+  [
+   -0.68,
+   0.37
+  ],
+  [
+   0.54,
+   0.39
+  ],
+  [
+   -0.43,
+   0.51
+  ],
+  [
+   -4.87,
+   -1.65
+  ],
+  [
+   -1.61,
+   -0.69
+  ],
+  [
+   0.48,
+   -0.28
+  ],
+  [
+   -1.22,
+   -0.63
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 17,
+   "median": 21.0,
+   "max": 22
+  },
+  "demo_seconds": {
+   "min": 165.4,
+   "median": 321.48,
+   "max": 475.7
+  },
+  "distinct_verb_sequences": 19,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "hand over",
+   "move to",
+   "insert",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "hand over",
+   "move to",
+   "insert",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "hand over",
+   "move to",
+   "insert"
+  ],
+  "modal_verb_sequence_share": 0.8,
+  "modal_verb_counts": {
+   "hand over": 3,
+   "insert": 3,
+   "move to": 9,
+   "pick up from": 3,
+   "push to": 3
+  },
+  "modal_verb_counts_share": 0.8,
+  "representative_episode": {
+   "file": "episode_00552620.json",
+   "seconds": 325.5,
+   "steps": [
+    {
+     "prompt": "move to the notebook",
+     "start_s": 0.0,
+     "end_s": 30.0
+    },
+    {
+     "prompt": "push the notebook to the desk",
+     "start_s": 30.0,
+     "end_s": 50.8
+    },
+    {
+     "prompt": "pick up the notebook from the desk",
+     "start_s": 50.8,
+     "end_s": 64.0
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 64.0,
+     "end_s": 75.5
+    },
+    {
+     "prompt": "hand over the notebook",
+     "start_s": 75.5,
+     "end_s": 89.1
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 89.1,
+     "end_s": 97.1
+    },
+    {
+     "prompt": "insert the notebook into the bookcase",
+     "start_s": 97.1,
+     "end_s": 115.0
+    },
+    {
+     "prompt": "move to the hardback",
+     "start_s": 115.0,
+     "end_s": 142.0
+    },
+    {
+     "prompt": "push the hardback to the desk",
+     "start_s": 142.0,
+     "end_s": 157.1
+    },
+    {
+     "prompt": "pick up the hardback from the desk",
+     "start_s": 157.1,
+     "end_s": 170.0
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 170.0,
+     "end_s": 187.3
+    },
+    {
+     "prompt": "hand over the hardback",
+     "start_s": 187.3,
+     "end_s": 204.0
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 204.0,
+     "end_s": 209.9
+    },
+    {
+     "prompt": "insert the hardback into the bookcase",
+     "start_s": 209.9,
+     "end_s": 223.0
+    },
+    {
+     "prompt": "move to the hardback",
+     "start_s": 223.0,
+     "end_s": 241.9
+    },
+    {
+     "prompt": "push the hardback to the desk",
+     "start_s": 241.9,
+     "end_s": 267.4
+    },
+    {
+     "prompt": "pick up the hardback from the desk",
+     "start_s": 267.4,
+     "end_s": 276.0
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 276.0,
+     "end_s": 286.1
+    },
+    {
+     "prompt": "hand over the hardback",
+     "start_s": 286.1,
+     "end_s": 298.0
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 298.0,
+     "end_s": 303.8
+    },
+    {
+     "prompt": "insert the hardback into the bookcase",
+     "start_s": 303.8,
+     "end_s": 325.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 11.9,
+   "insert": 14.7,
+   "move to": 15.2,
+   "pick up from": 12.9,
+   "push to": 22.5
+  },
+  "verb_counts_total": {
+   "move to": 1760,
+   "pick up from": 600,
+   "insert": 600,
+   "push to": 596,
+   "hand over": 570
+  },
+  "top_prompts": [
+   [
+    "move to the bookcase",
+    1160
+   ],
+   [
+    "move to the hardback",
+    400
+   ],
+   [
+    "pick up the hardback from the desk",
+    400
+   ],
+   [
+    "insert the hardback into the bookcase",
+    400
+   ],
+   [
+    "push the hardback to the desk",
+    396
+   ],
+   [
+    "hand over the hardback",
+    382
+   ],
+   [
+    "move to the notebook",
+    200
+   ],
+   [
+    "push the notebook to the desk",
+    200
+   ],
+   [
+    "pick up the notebook from the desk",
+    200
+   ],
+   [
+    "insert the notebook into the bookcase",
+    200
+   ],
+   [
+    "hand over the notebook",
+    188
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14293
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14293
+  }
+ }
+}

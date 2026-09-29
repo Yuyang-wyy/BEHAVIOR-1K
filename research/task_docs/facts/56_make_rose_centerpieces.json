@@ -1,0 +1,690 @@
+{
+ "index": 56,
+ "name": "make_rose_centerpieces",
+ "instruction": "Place all four roses into the vase and leave the vase on the coffee table.",
+ "title": "Make Rose Centerpieces",
+ "rooms_listed": [
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/Nb8kdrf7c_M",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Place all four roses into the vase and leave the vase on the coffee table.",
+ "human": {
+  "mean_steps": 4532.155,
+  "mean_seconds": 151.1,
+  "step_limit": 6798,
+  "time_limit_seconds": 226.6,
+  "base_distance_m": 9.0471,
+  "eef_displacement_m": {
+   "left": 9.8679,
+   "right": 9.7403
+  }
+ },
+ "rooms_loaded": [
+  "bathroom_0",
+  "corridor_0",
+  "garage_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "living_room"
+  ],
+  "house_double_floor_lower": {
+   "whitelist": {
+    "rose.n.01": {
+     "rose": {
+      "hrwson": [
+       0.27,
+       0.13,
+       0.08
+      ]
+     }
+    },
+    "vase.n.01": {
+     "vase": {
+      "jpwsrp": [
+       0.32,
+       0.32,
+       0.35
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem make_rose_centerpieces-0)\n    (:domain behavior-1k)\n\n    (:objects\n        vase.n.01_1 - vase.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        coffee_table.n.01_1 - coffee_table.n.01\n        rose.n.01_1 rose.n.01_2 rose.n.01_3 - rose.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop vase.n.01_1 cabinet.n.01_1) \n        (ontop rose.n.01_1 cabinet.n.01_1) \n        (ontop rose.n.01_2 cabinet.n.01_1) \n        (ontop rose.n.01_3 cabinet.n.01_1) \n        (inroom cabinet.n.01_1 living_room) \n        (inroom coffee_table.n.01_1 living_room) \n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (inside ?rose.n.01_1 ?vase.n.01_1) \n            (inside ?rose.n.01_2 ?vase.n.01_1) \n            (inside ?rose.n.01_3 ?vase.n.01_1) \n            (ontop ?vase.n.01_1 ?coffee_table.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "vase.n.01": [
+   "vase.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "coffee_table.n.01": [
+   "coffee_table.n.01_1"
+  ],
+  "rose.n.01": [
+   "rose.n.01_1",
+   "rose.n.01_2",
+   "rose.n.01_3"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 living_room)",
+  "(inroom coffee_table.n.01_1 living_room)",
+  "(inroom floor.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop rose.n.01_1 cabinet.n.01_1)",
+  "(ontop rose.n.01_2 cabinet.n.01_1)",
+  "(ontop rose.n.01_3 cabinet.n.01_1)",
+  "(ontop vase.n.01_1 cabinet.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching cabinet.n.01_1 rose.n.01_1)",
+  "(touching cabinet.n.01_1 rose.n.01_2)",
+  "(touching cabinet.n.01_1 rose.n.01_3)",
+  "(touching cabinet.n.01_1 vase.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching rose.n.01_1 cabinet.n.01_1)",
+  "(touching rose.n.01_2 cabinet.n.01_1)",
+  "(touching rose.n.01_3 cabinet.n.01_1)",
+  "(touching vase.n.01_1 cabinet.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside rose.n.01_1 vase.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "rose.n.01_1",
+     "vase.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside rose.n.01_2 vase.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "rose.n.01_2",
+     "vase.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside rose.n.01_3 vase.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "rose.n.01_3",
+     "vase.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop vase.n.01_1 coffee_table.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "vase.n.01_1",
+     "coffee_table.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "vase.n.01_1",
+   "scene_object": "vase_81",
+   "substance": false,
+   "category": "vase",
+   "model": "jpwsrp",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.8443212509155273,
+    1.872643232345581,
+    1.7973761558532715
+   ],
+   "z": {
+    "min": 0.59,
+    "median": 0.59,
+    "max": 0.59
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 1.99,
+    "max": 3.71
+   },
+   "xy_spread_m": 1.97,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_rhdbzv_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "rhdbzv",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999125599861145,
+    0.9999962449073792,
+    0.9999184012413025
+   ],
+   "z": {
+    "min": 0.21,
+    "median": 0.21,
+    "max": 0.21
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 2.23,
+    "max": 3.12
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "coffee_table.n.01_1",
+   "scene_object": "coffee_table_koagbh_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "koagbh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999982714653015,
+    1.0000159740447998,
+    1.000001311302185
+   ],
+   "z": {
+    "min": 0.36,
+    "median": 0.36,
+    "max": 0.36
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 1.51,
+    "max": 1.92
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "rose.n.01_1",
+   "scene_object": "rose_80",
+   "substance": false,
+   "category": "rose",
+   "model": "hrwson",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9063357710838318,
+    0.7093951106071472,
+    0.6314075589179993
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.91,
+    "median": 2.23,
+    "max": 3.66
+   },
+   "xy_spread_m": 1.76,
+   "n_poses": 20
+  },
+  {
+   "inst": "rose.n.01_2",
+   "scene_object": "rose_79",
+   "substance": false,
+   "category": "rose",
+   "model": "hrwson",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9063357710838318,
+    0.7093951106071472,
+    0.6314075589179993
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 1.95,
+    "max": 3.71
+   },
+   "xy_spread_m": 1.76,
+   "n_poses": 20
+  },
+  {
+   "inst": "rose.n.01_3",
+   "scene_object": "rose_78",
+   "substance": false,
+   "category": "rose",
+   "model": "hrwson",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9063357710838318,
+    0.7093951106071472,
+    0.6314075589179993
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.16,
+    "median": 1.96,
+    "max": 3.64
+   },
+   "xy_spread_m": 2.19,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 1.26,
+    "max": 1.79
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_oqxuyb",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.27,
+   5.19
+  ],
+  [
+   5.07,
+   4.51
+  ],
+  [
+   5.02,
+   5.11
+  ],
+  [
+   4.02,
+   3.92
+  ],
+  [
+   4.57,
+   4.68
+  ],
+  [
+   4.94,
+   5.45
+  ],
+  [
+   4.06,
+   3.88
+  ],
+  [
+   4.47,
+   6.75
+  ],
+  [
+   4.57,
+   6.18
+  ],
+  [
+   4.33,
+   6.98
+  ],
+  [
+   4.44,
+   6.58
+  ],
+  [
+   4.63,
+   6.85
+  ],
+  [
+   4.83,
+   4.69
+  ],
+  [
+   5.26,
+   4.93
+  ],
+  [
+   4.3,
+   6.55
+  ],
+  [
+   4.77,
+   6.11
+  ],
+  [
+   5.08,
+   5.59
+  ],
+  [
+   4.29,
+   6.83
+  ],
+  [
+   4.7,
+   4.46
+  ],
+  [
+   4.52,
+   6.19
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 11,
+   "median": 14.0,
+   "max": 16
+  },
+  "demo_seconds": {
+   "min": 102.93,
+   "median": 144.2,
+   "max": 268.8
+  },
+  "distinct_verb_sequences": 18,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.435,
+  "modal_verb_counts": {
+   "move to": 6,
+   "pick up from": 4,
+   "place in": 3,
+   "place on": 1
+  },
+  "modal_verb_counts_share": 0.45,
+  "representative_episode": {
+   "file": "episode_00562440.json",
+   "seconds": 146.3,
+   "steps": [
+    {
+     "prompt": "move to the rose",
+     "start_s": 0.0,
+     "end_s": 13.0
+    },
+    {
+     "prompt": "pick up the rose from the bottom cabinet",
+     "start_s": 13.0,
+     "end_s": 25.0
+    },
+    {
+     "prompt": "move to the rose",
+     "start_s": 25.0,
+     "end_s": 34.0
+    },
+    {
+     "prompt": "pick up the rose from the bottom cabinet",
+     "start_s": 34.0,
+     "end_s": 46.0
+    },
+    {
+     "prompt": "move to the vase",
+     "start_s": 46.0,
+     "end_s": 53.0
+    },
+    {
+     "prompt": "place the rose in the vase",
+     "start_s": 53.0,
+     "end_s": 63.0
+    },
+    {
+     "prompt": "place the rose in the vase",
+     "start_s": 63.0,
+     "end_s": 73.0
+    },
+    {
+     "prompt": "move to the rose",
+     "start_s": 73.0,
+     "end_s": 80.1
+    },
+    {
+     "prompt": "pick up the rose from the bottom cabinet",
+     "start_s": 80.1,
+     "end_s": 97.0
+    },
+    {
+     "prompt": "move to the vase",
+     "start_s": 97.0,
+     "end_s": 103.0
+    },
+    {
+     "prompt": "place the rose in the vase",
+     "start_s": 103.0,
+     "end_s": 110.8
+    },
+    {
+     "prompt": "pick up the vase from the bottom cabinet",
+     "start_s": 110.8,
+     "end_s": 120.9
+    },
+    {
+     "prompt": "move to the coffee table",
+     "start_s": 120.9,
+     "end_s": 136.7
+    },
+    {
+     "prompt": "place the vase on the coffee table",
+     "start_s": 136.7,
+     "end_s": 146.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 7.8,
+   "move to": 10.4,
+   "pick up from": 12.8,
+   "place in": 10.7,
+   "place on": 10.0
+  },
+  "verb_counts_total": {
+   "move to": 1093,
+   "pick up from": 800,
+   "place in": 599,
+   "place on": 200,
+   "hand over": 3
+  },
+  "top_prompts": [
+   [
+    "pick up the rose from the bottom cabinet",
+    600
+   ],
+   [
+    "place the rose in the vase",
+    599
+   ],
+   [
+    "move to the rose",
+    567
+   ],
+   [
+    "move to the vase",
+    325
+   ],
+   [
+    "pick up the vase from the bottom cabinet",
+    200
+   ],
+   [
+    "move to the coffee table",
+    200
+   ],
+   [
+    "place the vase on the coffee table",
+    200
+   ],
+   [
+    "hand over the rose",
+    3
+   ],
+   [
+    "move to the bottom cabinet",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 6799
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 6799
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.75,
+   "success": false,
+   "steps": 6799
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 6799
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.75,
+   "success": false,
+   "steps": 6799
+  }
+ }
+}

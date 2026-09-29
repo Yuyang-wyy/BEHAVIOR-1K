@@ -1,0 +1,729 @@
+{
+ "index": 82,
+ "name": "store_batteries",
+ "instruction": "Put all of the batteries into the bottom-cabinet drawer, then close the drawer.",
+ "title": "Store Batteries",
+ "rooms_listed": [
+  "bedroom",
+  "entryway",
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/jMSkFQy95FY",
+ "scene_model": "Rs_int",
+ "comet_pretrain_sentence": "Put all of the batteries into the bottom-cabinet drawer, then close the drawer.",
+ "human": {
+  "mean_steps": 7704.235,
+  "mean_seconds": 256.8,
+  "step_limit": 11556,
+  "time_limit_seconds": 385.2,
+  "base_distance_m": 14.1564,
+  "eef_displacement_m": {
+   "left": 12.8752,
+   "right": 16.4904
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "entryway_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom",
+   "entryway",
+   "kitchen",
+   "living_room"
+  ],
+  "Rs_int": {
+   "whitelist": {
+    "battery.n.02": {
+     "battery": {
+      "dcjyzg": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem store_batteries-0)\n    (:domain behavior-1k)\n\n    (:objects\n        battery.n.02_1 battery.n.02_2 battery.n.02_3 - battery.n.02\n        coffee_table.n.01_1 - coffee_table.n.01\n        cabinet.n.01_1 cabinet.n.01_2 - cabinet.n.01\n        countertop.n.01_1 - countertop.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop battery.n.02_1 coffee_table.n.01_1)\n        (ontop battery.n.02_2 coffee_table.n.01_1)\n        (ontop battery.n.02_3 countertop.n.01_1)\n        (inroom coffee_table.n.01_1 living_room) \n        (inroom cabinet.n.01_1 living_room) \n        (inroom cabinet.n.01_2 living_room) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists \n                (?cabinet.n.01 - cabinet.n.01)\n                (forall \n                    (?battery.n.02 - battery.n.02)\n                    (inside ?battery.n.02 ?cabinet.n.01)\n                )\n            )\n        )\n    )\n)",
+ "scene": "Rs_int",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0",
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "battery.n.02": [
+   "battery.n.02_1",
+   "battery.n.02_2",
+   "battery.n.02_3"
+  ],
+  "coffee_table.n.01": [
+   "coffee_table.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1",
+   "cabinet.n.01_2"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_2": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 living_room)",
+  "(inroom cabinet.n.01_2 living_room)",
+  "(inroom coffee_table.n.01_1 living_room)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop battery.n.02_1 coffee_table.n.01_1)",
+  "(ontop battery.n.02_2 coffee_table.n.01_1)",
+  "(ontop battery.n.02_3 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching battery.n.02_1 coffee_table.n.01_1)",
+  "(touching battery.n.02_2 coffee_table.n.01_1)",
+  "(touching battery.n.02_3 countertop.n.01_1)",
+  "(touching coffee_table.n.01_1 battery.n.02_1)",
+  "(touching coffee_table.n.01_1 battery.n.02_2)",
+  "(touching countertop.n.01_1 battery.n.02_3)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside battery.n.02_2 cabinet.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "battery.n.02_2",
+     "cabinet.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside battery.n.02_1 cabinet.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "battery.n.02_1",
+     "cabinet.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside battery.n.02_3 cabinet.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "battery.n.02_3",
+     "cabinet.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "battery.n.02_1",
+   "scene_object": "battery_74",
+   "substance": false,
+   "category": "battery",
+   "model": "dcjyzg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 1.26,
+    "max": 2.03
+   },
+   "xy_spread_m": 1.17,
+   "n_poses": 20
+  },
+  {
+   "inst": "battery.n.02_2",
+   "scene_object": "battery_73",
+   "substance": false,
+   "category": "battery",
+   "model": "dcjyzg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.82,
+    "median": 1.19,
+    "max": 2.13
+   },
+   "xy_spread_m": 0.94,
+   "n_poses": 20
+  },
+  {
+   "inst": "battery.n.02_3",
+   "scene_object": "battery_72",
+   "substance": false,
+   "category": "battery",
+   "model": "dcjyzg",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.11,
+    "median": 1.11,
+    "max": 1.11
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.42,
+    "median": 3.1,
+    "max": 4.79
+   },
+   "xy_spread_m": 1.74,
+   "n_poses": 20
+  },
+  {
+   "inst": "coffee_table.n.01_1",
+   "scene_object": "coffee_table_fqluyq_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "fqluyq",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.1711909770965576,
+    1.0265920162200928,
+    0.9481316208839417
+   ],
+   "z": {
+    "min": 0.26,
+    "median": 0.26,
+    "max": 0.26
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.86,
+    "median": 1.25,
+    "max": 2.22
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_jhymlr_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "jhymlr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    2.3134634494781494,
+    2.4062798023223877,
+    2.0003676414489746
+   ],
+   "z": {
+    "min": 0.38,
+    "median": 0.38,
+    "max": 0.38
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 1.49,
+    "max": 2.56
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_2",
+   "scene_object": "bottom_cabinet_bamfsz_1",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "bamfsz",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9254347085952759,
+    1.0425928831100464,
+    1.273688554763794
+   ],
+   "z": {
+    "min": 0.38,
+    "median": 0.38,
+    "max": 0.38
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.69,
+    "median": 2.43,
+    "max": 3.69
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_tpuwys_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "tpuwys",
+   "in_rooms": [
+    "kitchen_0",
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.5878769159317017,
+    1.7666583061218262,
+    1.3196852207183838
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.36,
+    "median": 2.98,
+    "max": 4.76
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ptwlei_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ptwlei",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.45,
+    "median": 1.0,
+    "max": 1.91
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_zzwbnu",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   0.36,
+   -0.76
+  ],
+  [
+   0.79,
+   -2.7
+  ],
+  [
+   1.01,
+   -2.86
+  ],
+  [
+   0.12,
+   -0.12
+  ],
+  [
+   -0.03,
+   0.0
+  ],
+  [
+   0.58,
+   -1.26
+  ],
+  [
+   0.42,
+   -0.65
+  ],
+  [
+   0.35,
+   -1.47
+  ],
+  [
+   0.58,
+   -1.21
+  ],
+  [
+   -0.16,
+   -0.0
+  ],
+  [
+   0.64,
+   -0.66
+  ],
+  [
+   -0.08,
+   0.38
+  ],
+  [
+   0.52,
+   -1.41
+  ],
+  [
+   0.58,
+   -0.99
+  ],
+  [
+   0.55,
+   -0.45
+  ],
+  [
+   -0.06,
+   0.1
+  ],
+  [
+   0.67,
+   -1.59
+  ],
+  [
+   0.66,
+   -2.56
+  ],
+  [
+   0.56,
+   -1.81
+  ],
+  [
+   0.63,
+   -2.59
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 16,
+   "median": 20.0,
+   "max": 21
+  },
+  "demo_seconds": {
+   "min": 149.3,
+   "median": 267.32,
+   "max": 359.67
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "open drawer",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "close drawer"
+  ],
+  "modal_verb_sequence_share": 0.625,
+  "modal_verb_counts": {
+   "close drawer": 1,
+   "move to": 8,
+   "open drawer": 1,
+   "pick up from": 5,
+   "place in": 3,
+   "place on": 2
+  },
+  "modal_verb_counts_share": 0.625,
+  "representative_episode": {
+   "file": "episode_00820570.json",
+   "seconds": 256.8,
+   "steps": [
+    {
+     "prompt": "move to the chair",
+     "start_s": 0.0,
+     "end_s": 19.0
+    },
+    {
+     "prompt": "pick up the chair from the floors",
+     "start_s": 19.0,
+     "end_s": 33.6
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 33.6,
+     "end_s": 42.4
+    },
+    {
+     "prompt": "place the chair on the floors",
+     "start_s": 42.4,
+     "end_s": 47.1
+    },
+    {
+     "prompt": "move to the battery",
+     "start_s": 47.1,
+     "end_s": 58.0
+    },
+    {
+     "prompt": "pick up the battery from the countertop",
+     "start_s": 58.0,
+     "end_s": 75.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 75.0,
+     "end_s": 86.0
+    },
+    {
+     "prompt": "open the drawer of the bottom cabinet",
+     "start_s": 86.0,
+     "end_s": 96.1
+    },
+    {
+     "prompt": "place the battery in the bottom cabinet",
+     "start_s": 96.1,
+     "end_s": 106.0
+    },
+    {
+     "prompt": "move to the chair",
+     "start_s": 106.0,
+     "end_s": 124.0
+    },
+    {
+     "prompt": "pick up the chair from the floors",
+     "start_s": 124.0,
+     "end_s": 137.0
+    },
+    {
+     "prompt": "move to the countertop",
+     "start_s": 137.0,
+     "end_s": 145.1
+    },
+    {
+     "prompt": "place the chair on the floors",
+     "start_s": 145.1,
+     "end_s": 150.0
+    },
+    {
+     "prompt": "move to the battery",
+     "start_s": 150.0,
+     "end_s": 173.0
+    },
+    {
+     "prompt": "pick up the battery from the coffee table",
+     "start_s": 173.0,
+     "end_s": 190.6
+    },
+    {
+     "prompt": "pick up the battery from the coffee table",
+     "start_s": 190.6,
+     "end_s": 207.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 207.0,
+     "end_s": 221.0
+    },
+    {
+     "prompt": "place the battery in the bottom cabinet",
+     "start_s": 221.0,
+     "end_s": 237.0
+    },
+    {
+     "prompt": "place the battery in the bottom cabinet",
+     "start_s": 237.0,
+     "end_s": 249.0
+    },
+    {
+     "prompt": "close the drawer of the bottom cabinet",
+     "start_s": 249.0,
+     "end_s": 256.8
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close drawer": 7.3,
+   "move to": 14.2,
+   "open drawer": 10.9,
+   "pick up from": 15.8,
+   "place in": 9.0,
+   "place on": 7.3
+  },
+  "verb_counts_total": {
+   "move to": 1652,
+   "pick up from": 992,
+   "place in": 600,
+   "place on": 392,
+   "open drawer": 200,
+   "close drawer": 200
+  },
+  "top_prompts": [
+   [
+    "place the battery in the bottom cabinet",
+    600
+   ],
+   [
+    "move to the bottom cabinet",
+    400
+   ],
+   [
+    "pick up the battery from the coffee table",
+    400
+   ],
+   [
+    "move to the chair",
+    393
+   ],
+   [
+    "pick up the chair from the floors",
+    392
+   ],
+   [
+    "place the chair on the floors",
+    392
+   ],
+   [
+    "move to the battery",
+    308
+   ],
+   [
+    "pick up the battery from the countertop",
+    200
+   ],
+   [
+    "open the drawer of the bottom cabinet",
+    200
+   ],
+   [
+    "close the drawer of the bottom cabinet",
+    200
+   ],
+   [
+    "move to the floors",
+    199
+   ],
+   [
+    "move to the countertop",
+    192
+   ],
+   [
+    "move to the coffee table",
+    160
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

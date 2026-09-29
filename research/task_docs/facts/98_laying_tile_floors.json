@@ -1,0 +1,699 @@
+{
+ "index": 98,
+ "name": "laying_tile_floors",
+ "instruction": "Lay the ceramic tiles on the floor next to each other.",
+ "title": "Laying Tile Floors",
+ "rooms_listed": [
+  "bathroom",
+  "corridor"
+ ],
+ "video": "https://www.youtube.com/embed/a3OjMFaaSs8",
+ "scene_model": "office_cubicles_right",
+ "comet_pretrain_sentence": "Lay the ceramic tiles on the floor next to each other.",
+ "human": {
+  "mean_steps": 14350.96,
+  "mean_seconds": 478.4,
+  "step_limit": 21526,
+  "time_limit_seconds": 717.5,
+  "base_distance_m": 64.8431,
+  "eef_displacement_m": {
+   "left": 22.5205,
+   "right": 21.336
+  }
+ },
+ "rooms_loaded": [
+  "bathroom_0",
+  "corridor_0",
+  "empty_room_0",
+  "private_office_0",
+  "private_office_1",
+  "private_office_2",
+  "private_office_3",
+  "copy_room_0",
+  "shared_office_0",
+  "conference_hall_0",
+  "meeting_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bathroom",
+   "corridor"
+  ],
+  "office_cubicles_right": {
+   "whitelist": {
+    "tile.n.01": {
+     "ceramic_tile": {
+      "bpaedx": [
+       0.45,
+       0.42,
+       0.03
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem laying_tile_floors-0)\n    (:domain behavior-1k)\n\n    (:objects\n        tile.n.01_1 tile.n.01_2 tile.n.01_3 tile.n.01_4 - tile.n.01\n        floor.n.01_1 floor.n.01_2 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop tile.n.01_1 floor.n.01_1) \n        (ontop tile.n.01_2 floor.n.01_1) \n        (ontop tile.n.01_3 floor.n.01_1) \n        (ontop tile.n.01_4 floor.n.01_1) \n        (inroom floor.n.01_1 corridor) \n        (inroom floor.n.01_2 bathroom) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?tile.n.01 - tile.n.01) \n                (ontop ?tile.n.01 ?floor.n.01_2)\n            )\n            (forall\n                (?tile.n.01 - tile.n.01)\n                (or\n                    (nextto ?tile.n.01 tile.n.01_1)\n                    (nextto ?tile.n.01 tile.n.01_2)\n                    (nextto ?tile.n.01 tile.n.01_3)\n                    (nextto ?tile.n.01 tile.n.01_4)\n                )\n            )\n        )\n    )\n)",
+ "scene": "office_cubicles_right",
+ "n_public_instances": 20,
+ "room_instances": {
+  "corridor": "corridor_0",
+  "bathroom": "bathroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "tile.n.01": [
+   "tile.n.01_1",
+   "tile.n.01_2",
+   "tile.n.01_3",
+   "tile.n.01_4"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 corridor)",
+  "(inroom floor.n.01_2 bathroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop tile.n.01_1 floor.n.01_1)",
+  "(ontop tile.n.01_2 floor.n.01_1)",
+  "(ontop tile.n.01_3 floor.n.01_1)",
+  "(ontop tile.n.01_4 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 tile.n.01_1)",
+  "(touching floor.n.01_1 tile.n.01_2)",
+  "(touching floor.n.01_1 tile.n.01_3)",
+  "(touching floor.n.01_1 tile.n.01_4)",
+  "(touching tile.n.01_1 floor.n.01_1)",
+  "(touching tile.n.01_2 floor.n.01_1)",
+  "(touching tile.n.01_3 floor.n.01_1)",
+  "(touching tile.n.01_4 floor.n.01_1)"
+ ],
+ "n_ground_options": 256,
+ "n_self_paired_options": 175,
+ "ground_option_example": {
+  "n_literals": 8,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop tile.n.01_1 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "tile.n.01_1",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop tile.n.01_2 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "tile.n.01_2",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop tile.n.01_3 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "tile.n.01_3",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop tile.n.01_4 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "tile.n.01_4",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto tile.n.01_1 tile.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "tile.n.01_1",
+     "tile.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto tile.n.01_2 tile.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "tile.n.01_2",
+     "tile.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto tile.n.01_3 tile.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "tile.n.01_3",
+     "tile.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto tile.n.01_4 tile.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "tile.n.01_4",
+     "tile.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   8,
+   256
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   4
+  ],
+  [
+   "nextto",
+   4
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "tile.n.01_1",
+   "scene_object": "ceramic_tile_188",
+   "substance": false,
+   "category": "ceramic_tile",
+   "model": "bpaedx",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.9658596515655518,
+    3.013756036758423,
+    2.2403664588928223
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.94,
+    "median": 4.29,
+    "max": 12.43
+   },
+   "xy_spread_m": 14.75,
+   "n_poses": 20
+  },
+  {
+   "inst": "tile.n.01_2",
+   "scene_object": "ceramic_tile_187",
+   "substance": false,
+   "category": "ceramic_tile",
+   "model": "bpaedx",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.9658596515655518,
+    3.013756036758423,
+    2.2403664588928223
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.78,
+    "median": 3.08,
+    "max": 11.71
+   },
+   "xy_spread_m": 15.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tile.n.01_3",
+   "scene_object": "ceramic_tile_186",
+   "substance": false,
+   "category": "ceramic_tile",
+   "model": "bpaedx",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.9658596515655518,
+    3.013756036758423,
+    2.2403664588928223
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.19,
+    "median": 4.46,
+    "max": 11.08
+   },
+   "xy_spread_m": 15.2,
+   "n_poses": 20
+  },
+  {
+   "inst": "tile.n.01_4",
+   "scene_object": "ceramic_tile_185",
+   "substance": false,
+   "category": "ceramic_tile",
+   "model": "bpaedx",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.9658596515655518,
+    3.013756036758423,
+    2.2403664588928223
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 4.32,
+    "max": 14.0
+   },
+   "xy_spread_m": 15.23,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulczuz_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulczuz",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.53,
+    "median": 2.48,
+    "max": 7.18
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_mlogeo_0",
+   "substance": false,
+   "category": "floors",
+   "model": "mlogeo",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 7.74,
+    "median": 15.48,
+    "max": 21.24
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_odlgbb",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   2.72,
+   9.21
+  ],
+  [
+   3.96,
+   9.34
+  ],
+  [
+   1.93,
+   8.91
+  ],
+  [
+   -2.46,
+   9.1
+  ],
+  [
+   -0.8,
+   8.56
+  ],
+  [
+   6.28,
+   9.32
+  ],
+  [
+   0.36,
+   9.01
+  ],
+  [
+   1.91,
+   9.31
+  ],
+  [
+   5.63,
+   9.09
+  ],
+  [
+   4.42,
+   8.85
+  ],
+  [
+   9.61,
+   9.16
+  ],
+  [
+   -0.15,
+   8.87
+  ],
+  [
+   2.55,
+   9.29
+  ],
+  [
+   -3.7,
+   9.35
+  ],
+  [
+   9.89,
+   9.01
+  ],
+  [
+   1.73,
+   9.16
+  ],
+  [
+   2.17,
+   9.01
+  ],
+  [
+   0.33,
+   8.83
+  ],
+  [
+   4.58,
+   8.91
+  ],
+  [
+   -0.39,
+   8.67
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 16,
+   "median": 18.0,
+   "max": 19
+  },
+  "demo_seconds": {
+   "min": 363.8,
+   "median": 474.8,
+   "max": 633.27
+  },
+  "distinct_verb_sequences": 12,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "open door",
+   "move to",
+   "place on next to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "turn to",
+   "move to",
+   "place on next to",
+   "place on next to"
+  ],
+  "modal_verb_sequence_share": 0.405,
+  "modal_verb_counts": {
+   "move to": 8,
+   "open door": 1,
+   "pick up from": 4,
+   "place on next to": 4,
+   "turn to": 1
+  },
+  "modal_verb_counts_share": 0.42,
+  "representative_episode": {
+   "file": "episode_00980310.json",
+   "seconds": 486.1,
+   "steps": [
+    {
+     "prompt": "move to the ceramic tile",
+     "start_s": 0.0,
+     "end_s": 31.0
+    },
+    {
+     "prompt": "pick up the ceramic tile from the floors",
+     "start_s": 31.0,
+     "end_s": 58.0
+    },
+    {
+     "prompt": "move to the ceramic tile",
+     "start_s": 58.0,
+     "end_s": 84.0
+    },
+    {
+     "prompt": "pick up the ceramic tile from the floors",
+     "start_s": 84.0,
+     "end_s": 102.0
+    },
+    {
+     "prompt": "move to the brown door",
+     "start_s": 102.0,
+     "end_s": 148.0
+    },
+    {
+     "prompt": "open the door of the brown door",
+     "start_s": 148.0,
+     "end_s": 164.5
+    },
+    {
+     "prompt": "move to the window",
+     "start_s": 164.5,
+     "end_s": 186.0
+    },
+    {
+     "prompt": "place the ceramic tile on the floors next to the window",
+     "start_s": 186.0,
+     "end_s": 197.8
+    },
+    {
+     "prompt": "place the ceramic tile on the floors next to the ceramic tile",
+     "start_s": 197.8,
+     "end_s": 214.0
+    },
+    {
+     "prompt": "move to the ceramic tile",
+     "start_s": 214.0,
+     "end_s": 310.0
+    },
+    {
+     "prompt": "pick up the ceramic tile from the floors",
+     "start_s": 310.0,
+     "end_s": 327.0
+    },
+    {
+     "prompt": "move to the ceramic tile",
+     "start_s": 327.0,
+     "end_s": 334.0
+    },
+    {
+     "prompt": "pick up the ceramic tile from the floors",
+     "start_s": 334.0,
+     "end_s": 348.0
+    },
+    {
+     "prompt": "move to the brown door",
+     "start_s": 348.0,
+     "end_s": 419.0
+    },
+    {
+     "prompt": "turn to the ceramic tile",
+     "start_s": 421.0,
+     "end_s": 428.0
+    },
+    {
+     "prompt": "move to the ceramic tile",
+     "start_s": 428.0,
+     "end_s": 451.0
+    },
+    {
+     "prompt": "place the ceramic tile on the floors next to the ceramic tile",
+     "start_s": 451.0,
+     "end_s": 466.0
+    },
+    {
+     "prompt": "place the ceramic tile on the floors next to the ceramic tile",
+     "start_s": 466.0,
+     "end_s": 486.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 36.5,
+   "open door": 14.4,
+   "pick up from": 21.8,
+   "place on": 16.0,
+   "place on next to": 19.2,
+   "turn to": 4.3
+  },
+  "verb_counts_total": {
+   "move to": 1623,
+   "pick up from": 800,
+   "place on next to": 755,
+   "open door": 200,
+   "turn to": 159,
+   "place on": 45
+  },
+  "top_prompts": [
+   [
+    "move to the ceramic tile",
+    1031
+   ],
+   [
+    "pick up the ceramic tile from the floors",
+    800
+   ],
+   [
+    "place the ceramic tile on the floors next to the ceramic tile",
+    595
+   ],
+   [
+    "move to the brown door",
+    392
+   ],
+   [
+    "open the door of the brown door",
+    200
+   ],
+   [
+    "move to the window",
+    200
+   ],
+   [
+    "turn to the ceramic tile",
+    159
+   ],
+   [
+    "place the ceramic tile on the floors next to the window",
+    155
+   ],
+   [
+    "place the ceramic tile on the floors",
+    45
+   ],
+   [
+    "place on next to the ceramic tile with the floors",
+    5
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 21527
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 21527
+  }
+ }
+}

@@ -1,0 +1,629 @@
+{
+ "index": 5,
+ "name": "setting_mousetraps",
+ "instruction": "Take the four mousetraps from the cabinet in the bathroom and place them on the bathroom floor. Make sure all four end up on the same floor surface, and ensure that at least two of them are either under or directly next to the same bathroom sink.",
+ "title": "Setting Mousetraps",
+ "rooms_listed": [
+  "bathroom"
+ ],
+ "video": "https://player.vimeo.com/video/1114054686",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "Take the four mousetraps from the cabinet in the bathroom and place them on the bathroom floor. Make sure all four end up on the same floor surface, and ensure that at least two of them are either under or directly next to the same bathroom sink.",
+ "human": {
+  "mean_steps": 10196.11,
+  "mean_seconds": 339.9,
+  "step_limit": 15294,
+  "time_limit_seconds": 509.8,
+  "base_distance_m": 31.6006,
+  "eef_displacement_m": {
+   "left": 13.1544,
+   "right": 12.3781
+  }
+ },
+ "rooms_loaded": [
+  "bathroom_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem setting_mousetraps-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tmousetrap.n.01_1 mousetrap.n.01_2 mousetrap.n.01_3 mousetrap.n.01_4 - mousetrap.n.01\n        floor.n.01_1 floor.n.01_* - floor.n.01\n        sink.n.01_1 sink.n.01_* - sink.n.01\n        cabinet.n.01_1 - cabinet.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop mousetrap.n.01_1 cabinet.n.01_1)\n        (ontop mousetrap.n.01_2 cabinet.n.01_1)\n        (ontop mousetrap.n.01_3 cabinet.n.01_1)\n        (ontop mousetrap.n.01_4 cabinet.n.01_1)\n        (inroom sink.n.01_1 bathroom)\n        (inroom sink.n.01_* bathroom)\n        (inroom floor.n.01_1 bathroom)\n        (inroom floor.n.01_* bathroom)\n        (inroom cabinet.n.01_1 bathroom)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists\n                (?floor.n.01 - floor.n.01)\n                (forall\n                    (?mousetrap.n.01 - mousetrap.n.01)\n                    (ontop ?mousetrap.n.01 ?floor.n.01)\n                )\n            )\n            (exists\n                (?sink.n.01 - sink.n.01)\n                (forn\n                    (2)\n                    (?mousetrap.n.01 - mousetrap.n.01)\n                    (or\n                        (under ?mousetrap.n.01 ?sink.n.01)\n                        (nextto ?mousetrap.n.01 ?sink.n.01)\n                    )\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bathroom": "bathroom_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "mousetrap.n.01": [
+   "mousetrap.n.01_1",
+   "mousetrap.n.01_2",
+   "mousetrap.n.01_3",
+   "mousetrap.n.01_4"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "sink.n.01": [
+   "sink.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 bathroom)",
+  "(inroom floor.n.01_1 bathroom)",
+  "(inroom sink.n.01_1 bathroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop mousetrap.n.01_1 cabinet.n.01_1)",
+  "(ontop mousetrap.n.01_2 cabinet.n.01_1)",
+  "(ontop mousetrap.n.01_3 cabinet.n.01_1)",
+  "(ontop mousetrap.n.01_4 cabinet.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching cabinet.n.01_1 mousetrap.n.01_1)",
+  "(touching cabinet.n.01_1 mousetrap.n.01_2)",
+  "(touching cabinet.n.01_1 mousetrap.n.01_3)",
+  "(touching cabinet.n.01_1 mousetrap.n.01_4)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching mousetrap.n.01_1 cabinet.n.01_1)",
+  "(touching mousetrap.n.01_2 cabinet.n.01_1)",
+  "(touching mousetrap.n.01_3 cabinet.n.01_1)",
+  "(touching mousetrap.n.01_4 cabinet.n.01_1)"
+ ],
+ "n_ground_options": 96,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 6,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop mousetrap.n.01_4 floor.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "mousetrap.n.01_4",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop mousetrap.n.01_3 floor.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "mousetrap.n.01_3",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop mousetrap.n.01_2 floor.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "mousetrap.n.01_2",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop mousetrap.n.01_1 floor.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "mousetrap.n.01_1",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(under mousetrap.n.01_4 sink.n.01_1)",
+    "negated": false,
+    "predicate": "under",
+    "args": [
+     "mousetrap.n.01_4",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(under mousetrap.n.01_3 sink.n.01_1)",
+    "negated": false,
+    "predicate": "under",
+    "args": [
+     "mousetrap.n.01_3",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   6,
+   96
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   4
+  ],
+  [
+   "under",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "mousetrap.n.01_1",
+   "scene_object": "mousetrap_50",
+   "substance": false,
+   "category": "mousetrap",
+   "model": "mwfwsv",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.0,
+    "median": 1.8,
+    "max": 2.9
+   },
+   "xy_spread_m": 1.14,
+   "n_poses": 20
+  },
+  {
+   "inst": "mousetrap.n.01_2",
+   "scene_object": "mousetrap_49",
+   "substance": false,
+   "category": "mousetrap",
+   "model": "mwfwsv",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.89,
+    "median": 1.82,
+    "max": 3.21
+   },
+   "xy_spread_m": 1.03,
+   "n_poses": 20
+  },
+  {
+   "inst": "mousetrap.n.01_3",
+   "scene_object": "mousetrap_48",
+   "substance": false,
+   "category": "mousetrap",
+   "model": "mwfwsv",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 1.66,
+    "max": 3.06
+   },
+   "xy_spread_m": 1.11,
+   "n_poses": 20
+  },
+  {
+   "inst": "mousetrap.n.01_4",
+   "scene_object": "mousetrap_47",
+   "substance": false,
+   "category": "mousetrap",
+   "model": "mwfwsv",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.88,
+    "median": 1.66,
+    "max": 3.1
+   },
+   "xy_spread_m": 1.08,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_tfuahz_0",
+   "substance": false,
+   "category": "floors",
+   "model": "tfuahz",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000072717666626,
+    1.0000156164169312,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.3,
+    "median": 0.81,
+    "max": 1.32
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sink.n.01_1",
+   "scene_object": "furniture_sink_ojjqku_0",
+   "substance": false,
+   "category": "furniture_sink",
+   "model": "ojjqku",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0000003576278687,
+    0.9999823570251465
+   ],
+   "z": {
+    "min": 0.63,
+    "median": 0.63,
+    "max": 0.63
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.2,
+    "median": 2.53,
+    "max": 3.29
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_jhymlr_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "jhymlr",
+   "in_rooms": [
+    "bathroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.6128703355789185,
+    1.7241984605789185,
+    2.0688953399658203
+   ],
+   "z": {
+    "min": 0.49,
+    "median": 0.49,
+    "max": 0.49
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 1.73,
+    "max": 3.16
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   0.35,
+   2.23
+  ],
+  [
+   -0.35,
+   2.52
+  ],
+  [
+   0.52,
+   2.71
+  ],
+  [
+   0.39,
+   2.08
+  ],
+  [
+   1.12,
+   2.23
+  ],
+  [
+   -1.02,
+   2.58
+  ],
+  [
+   0.96,
+   2.0
+  ],
+  [
+   0.85,
+   2.14
+  ],
+  [
+   -0.24,
+   1.97
+  ],
+  [
+   -0.45,
+   2.21
+  ],
+  [
+   0.96,
+   2.19
+  ],
+  [
+   -0.6,
+   2.38
+  ],
+  [
+   1.0,
+   2.29
+  ],
+  [
+   -0.07,
+   2.44
+  ],
+  [
+   -0.02,
+   1.98
+  ],
+  [
+   0.25,
+   2.31
+  ],
+  [
+   1.07,
+   2.3
+  ],
+  [
+   -0.71,
+   2.41
+  ],
+  [
+   0.73,
+   2.49
+  ],
+  [
+   0.79,
+   2.19
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 12.0,
+   "max": 12
+  },
+  "demo_seconds": {
+   "min": 186.8,
+   "median": 309.95,
+   "max": 751.07
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "place on next to"
+  ],
+  "modal_verb_sequence_share": 0.93,
+  "modal_verb_counts": {
+   "move to": 4,
+   "pick up from": 4,
+   "place on next to": 4
+  },
+  "modal_verb_counts_share": 0.93,
+  "representative_episode": {
+   "file": "episode_00052470.json",
+   "seconds": 307.8,
+   "steps": [
+    {
+     "prompt": "move to the mousetrap",
+     "start_s": 3.7,
+     "end_s": 8.8
+    },
+    {
+     "prompt": "pick up the mousetrap from the bottom cabinet",
+     "start_s": 8.8,
+     "end_s": 39.7
+    },
+    {
+     "prompt": "pick up the mousetrap from the bottom cabinet",
+     "start_s": 39.7,
+     "end_s": 71.4
+    },
+    {
+     "prompt": "move to the furniture sink",
+     "start_s": 71.5,
+     "end_s": 93.0
+    },
+    {
+     "prompt": "place the mousetrap on the floors next to the under furniture sink",
+     "start_s": 93.0,
+     "end_s": 127.0
+    },
+    {
+     "prompt": "place the mousetrap on the floors next to the under furniture sink",
+     "start_s": 127.0,
+     "end_s": 128.1
+    },
+    {
+     "prompt": "move to the mousetrap",
+     "start_s": 128.1,
+     "end_s": 178.7
+    },
+    {
+     "prompt": "pick up the mousetrap from the bottom cabinet",
+     "start_s": 178.7,
+     "end_s": 211.4
+    },
+    {
+     "prompt": "pick up the mousetrap from the bottom cabinet",
+     "start_s": 211.4,
+     "end_s": 270.9
+    },
+    {
+     "prompt": "move to the toilet",
+     "start_s": 270.9,
+     "end_s": 281.2
+    },
+    {
+     "prompt": "place the mousetrap on the floors next to the under toilet",
+     "start_s": 281.3,
+     "end_s": 310.3
+    },
+    {
+     "prompt": "place the mousetrap on the floors next to the under toilet",
+     "start_s": 310.3,
+     "end_s": 311.5
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 24.0,
+   "pick up from": 31.4,
+   "place on next to": 22.8
+  },
+  "verb_counts_total": {
+   "move to": 800,
+   "pick up from": 800,
+   "place on next to": 782
+  },
+  "top_prompts": [
+   [
+    "pick up the mousetrap from the bottom cabinet",
+    800
+   ],
+   [
+    "move to the mousetrap",
+    400
+   ],
+   [
+    "place the mousetrap on the floors next to the under furniture sink",
+    391
+   ],
+   [
+    "place the mousetrap on the floors next to the under toilet",
+    387
+   ],
+   [
+    "move to the furniture sink",
+    200
+   ],
+   [
+    "move to the toilet",
+    200
+   ],
+   [
+    "place the mousetrap on the furniture sink next to the under toilet",
+    2
+   ],
+   [
+    "place the mousetrap on the furniture sink next to the under floors",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "place on next to",
+  "move to",
+  "pick up from"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.3333333333333333,
+   "success": false,
+   "steps": 15295
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 15295
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.3333333333333333,
+   "success": false,
+   "steps": 15295
+  }
+ }
+}

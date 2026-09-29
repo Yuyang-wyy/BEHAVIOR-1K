@@ -1,0 +1,5 @@
+{
+  "03_cleaning_up_plates_and_food": {"max_partial_q": 0.571, "reason": "0.857 needs the two pizzas swapped between plates; with each pizza kept on its own plate the ceiling is 4/7 (notes)."},
+  "77_installing_a_modem": {"max_partial_q": 0.75, "reason": "the TV already rests on the console at reset in all 20 instances, so `ontop television_receiver cabinet` never scores (notes)."},
+  "99_sorting_books_on_shelf": {"max_partial_q": 0.36, "reason": "all 7 books start inside the bookcase in all 20 instances, so only the 4 `ontop` literals can score (notes)."}
+}

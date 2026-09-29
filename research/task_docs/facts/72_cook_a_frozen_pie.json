@@ -1,0 +1,625 @@
+{
+ "index": 72,
+ "name": "cook_a_frozen_pie",
+ "instruction": "Take the frozen apple pie from the refrigerator, put it in the oven, and heat it until it is hot and no longer frozen.",
+ "title": "Cook A Frozen Pie",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/H4z3xTJn058",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Take the frozen apple pie from the refrigerator, put it in the oven, and heat it until it is hot and no longer frozen.",
+ "human": {
+  "mean_steps": 8667.96,
+  "mean_seconds": 288.9,
+  "step_limit": 13001,
+  "time_limit_seconds": 433.4,
+  "base_distance_m": 18.9939,
+  "eef_displacement_m": {
+   "left": 14.494,
+   "right": 19.4444
+  }
+ },
+ "rooms_loaded": [
+  "kitchen_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "kitchen"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "apple_pie.n.01": {
+     "apple_pie": {
+      "rpdhbr": null
+     }
+    },
+    "tray.n.01": {
+     "tray": {
+      "mhhoga": [
+       0.2,
+       0.3,
+       0.02
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem cook_a_frozen_pie-0)\n    (:domain behavior-1k)\n\n    (:objects\n        apple_pie.n.01_1 - apple_pie.n.01\n        tray.n.01_1 - tray.n.01\n        oven.n.01_1 - oven.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        countertop.n.01_1 - countertop.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init \n        (inside apple_pie.n.01_1 electric_refrigerator.n.01_1) \n        (frozen apple_pie.n.01_1)\n        (inroom countertop.n.01_1 kitchen)\n        (inroom oven.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (inroom electric_refrigerator.n.01_1 kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n        (ontop tray.n.01_1 countertop.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (ontop apple_pie.n.01_1 tray.n.01_1)\n            (cooked ?apple_pie.n.01_1)\n        )\n    )\n)",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "apple_pie.n.01": [
+   "apple_pie.n.01_1"
+  ],
+  "tray.n.01": [
+   "tray.n.01_1"
+  ],
+  "oven.n.01": [
+   "oven.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "oven.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(frozen apple_pie.n.01_1)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom oven.n.01_1 kitchen)",
+  "(inside apple_pie.n.01_1 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop tray.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 tray.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching tray.n.01_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop apple_pie.n.01_1 tray.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "apple_pie.n.01_1",
+     "tray.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked apple_pie.n.01_1)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "apple_pie.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   1
+  ],
+  [
+   "cooked",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "apple_pie.n.01_1",
+   "scene_object": "apple_pie_75",
+   "substance": false,
+   "category": "apple_pie",
+   "model": "rpdhbr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.4,
+    "median": 0.87,
+    "max": 1.46
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.86,
+    "median": 5.48,
+    "max": 7.87
+   },
+   "xy_spread_m": 0.74,
+   "n_poses": 20
+  },
+  {
+   "inst": "tray.n.01_1",
+   "scene_object": "tray_74",
+   "substance": false,
+   "category": "tray",
+   "model": "mhhoga",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6436376571655273,
+    0.6495913863182068,
+    0.8774638175964355
+   ],
+   "z": {
+    "min": 0.88,
+    "median": 0.88,
+    "max": 0.88
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  },
+  {
+   "inst": "oven.n.01_1",
+   "scene_object": "oven_amblrk_0",
+   "substance": false,
+   "category": "oven",
+   "model": "amblrk",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000383853912354,
+    1.0000638961791992,
+    0.999982476234436
+   ],
+   "z": {
+    "min": 0.97,
+    "median": 0.97,
+    "max": 0.97
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.39,
+    "median": 5.04,
+    "max": 6.03
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_jtqazu_1",
+   "substance": false,
+   "category": "fridge",
+   "model": "jtqazu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.6483378410339355,
+    2.014077663421631,
+    1.2680704593658447
+   ],
+   "z": {
+    "min": 1.08,
+    "median": 1.08,
+    "max": 1.08
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.93,
+    "median": 5.61,
+    "max": 7.68
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "commercial_kitchen_table_nisnrl_0",
+   "substance": false,
+   "category": "commercial_kitchen_table",
+   "model": "nisnrl",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.000044822692871,
+    1.0000184774398804,
+    0.9999951720237732
+   ],
+   "z": {
+    "min": 0.62,
+    "median": 0.62,
+    "max": 0.62
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_vikfyd_0",
+   "substance": false,
+   "category": "floors",
+   "model": "vikfyd",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.79,
+    "median": 2.74,
+    "max": 3.54
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_dknjak",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -6.43,
+   -4.43
+  ],
+  [
+   -8.23,
+   -0.28
+  ],
+  [
+   -8.0,
+   -1.13
+  ],
+  [
+   -6.77,
+   -5.72
+  ],
+  [
+   -6.76,
+   -5.0
+  ],
+  [
+   -7.25,
+   -5.62
+  ],
+  [
+   -7.99,
+   -5.59
+  ],
+  [
+   -6.62,
+   -5.09
+  ],
+  [
+   -6.48,
+   -3.43
+  ],
+  [
+   -6.46,
+   -3.92
+  ],
+  [
+   -10.3,
+   -0.45
+  ],
+  [
+   -6.78,
+   -4.96
+  ],
+  [
+   -8.23,
+   -0.31
+  ],
+  [
+   -10.32,
+   -5.87
+  ],
+  [
+   -7.22,
+   -5.75
+  ],
+  [
+   -10.26,
+   -0.3
+  ],
+  [
+   -8.04,
+   -5.58
+  ],
+  [
+   -9.51,
+   -0.76
+  ],
+  [
+   -7.63,
+   -1.04
+  ],
+  [
+   -10.45,
+   -5.7
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 13,
+   "median": 13.0,
+   "max": 14
+  },
+  "demo_seconds": {
+   "min": 152.4,
+   "median": 297.75,
+   "max": 387.53
+  },
+  "distinct_verb_sequences": 2,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "hand over",
+   "close door",
+   "move to",
+   "place on",
+   "pick up from",
+   "move to",
+   "open door",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.87,
+  "modal_verb_counts": {
+   "close door": 2,
+   "hand over": 1,
+   "move to": 3,
+   "open door": 2,
+   "pick up from": 2,
+   "place in": 1,
+   "place on": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.87,
+  "representative_episode": {
+   "file": "episode_00722680.json",
+   "seconds": 297.3,
+   "steps": [
+    {
+     "prompt": "move to the electric refrigerator",
+     "start_s": 0.0,
+     "end_s": 8.0
+    },
+    {
+     "prompt": "open the door of the electric refrigerator",
+     "start_s": 8.0,
+     "end_s": 46.0
+    },
+    {
+     "prompt": "pick up the apple pie from the electric refrigerator",
+     "start_s": 46.0,
+     "end_s": 73.0
+    },
+    {
+     "prompt": "hand over the apple pie",
+     "start_s": 73.0,
+     "end_s": 83.0
+    },
+    {
+     "prompt": "close the door of the electric refrigerator",
+     "start_s": 83.0,
+     "end_s": 105.0
+    },
+    {
+     "prompt": "move to the tray",
+     "start_s": 105.0,
+     "end_s": 117.0
+    },
+    {
+     "prompt": "place the apple pie on the tray",
+     "start_s": 117.0,
+     "end_s": 132.0
+    },
+    {
+     "prompt": "pick up the tray from the commercial kitchen table",
+     "start_s": 132.0,
+     "end_s": 160.0
+    },
+    {
+     "prompt": "move to the oven",
+     "start_s": 160.0,
+     "end_s": 179.0
+    },
+    {
+     "prompt": "open the door of the oven",
+     "start_s": 179.0,
+     "end_s": 223.0
+    },
+    {
+     "prompt": "place the tray in the oven",
+     "start_s": 223.0,
+     "end_s": 255.0
+    },
+    {
+     "prompt": "close the door of the oven",
+     "start_s": 255.0,
+     "end_s": 283.0
+    },
+    {
+     "prompt": "turn on the oven",
+     "start_s": 283.0,
+     "end_s": 297.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 20.0,
+   "hand over": 14.2,
+   "move to": 16.9,
+   "open door": 37.8,
+   "pick up from": 27.9,
+   "place in": 22.3,
+   "place on": 13.3,
+   "turn on switch": 12.9
+  },
+  "verb_counts_total": {
+   "move to": 626,
+   "open door": 400,
+   "pick up from": 400,
+   "close door": 400,
+   "hand over": 200,
+   "place on": 200,
+   "place in": 200,
+   "turn on switch": 200
+  },
+  "top_prompts": [
+   [
+    "move to the tray",
+    226
+   ],
+   [
+    "move to the electric refrigerator",
+    200
+   ],
+   [
+    "open the door of the electric refrigerator",
+    200
+   ],
+   [
+    "pick up the apple pie from the electric refrigerator",
+    200
+   ],
+   [
+    "hand over the apple pie",
+    200
+   ],
+   [
+    "close the door of the electric refrigerator",
+    200
+   ],
+   [
+    "place the apple pie on the tray",
+    200
+   ],
+   [
+    "pick up the tray from the commercial kitchen table",
+    200
+   ],
+   [
+    "move to the oven",
+    200
+   ],
+   [
+    "open the door of the oven",
+    200
+   ],
+   [
+    "place the tray in the oven",
+    200
+   ],
+   [
+    "close the door of the oven",
+    200
+   ],
+   [
+    "turn on the oven",
+    200
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 13002
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 13002
+  }
+ }
+}

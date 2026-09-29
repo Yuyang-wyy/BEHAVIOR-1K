@@ -1,0 +1,407 @@
+{
+ "index": 0,
+ "name": "turning_on_radio",
+ "instruction": "Turn on the radio receiver that's on the table in the living room.",
+ "title": "Turning On Radio",
+ "rooms_listed": [
+  "living_room"
+ ],
+ "video": "https://player.vimeo.com/video/1109198872",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Turn on the radio receiver that's on the table in the living room.",
+ "human": {
+  "mean_steps": 2149.64,
+  "mean_seconds": 71.7,
+  "step_limit": 3224,
+  "time_limit_seconds": 107.5,
+  "base_distance_m": 5.6955,
+  "eef_displacement_m": {
+   "left": 3.2579,
+   "right": 4.0725
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem turning_on_radio-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tradio_receiver.n.01_1 - radio_receiver.n.01\n    \ttable.n.02_1 - table.n.02\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (not \n            (toggled_on radio_receiver.n.01_1)\n        ) \n        (ontop radio_receiver.n.01_1 table.n.02_1)\n        (inroom table.n.02_1 living_room)\n        (inroom floor.n.01_1 living_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (toggled_on ?radio_receiver.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "radio_receiver.n.01": [
+   "radio_receiver.n.01_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom table.n.02_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop radio_receiver.n.01_1 table.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching radio_receiver.n.01_1 table.n.02_1)",
+  "(touching table.n.02_1 radio_receiver.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(toggled_on radio_receiver.n.01_1)",
+    "negated": false,
+    "predicate": "toggled_on",
+    "args": [
+     "radio_receiver.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "toggled_on",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "radio_receiver.n.01_1",
+   "scene_object": "radio_89",
+   "substance": false,
+   "category": "radio",
+   "model": "wxnicr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.53,
+    "median": 0.53,
+    "max": 0.53
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.69,
+    "max": 2.25
+   },
+   "xy_spread_m": 1.4,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "coffee_table_koagbh_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "koagbh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999982714653015,
+    1.0000159740447998,
+    1.000001311302185
+   ],
+   "z": {
+    "min": 0.36,
+    "median": 0.36,
+    "max": 0.36
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.19,
+    "median": 1.63,
+    "max": 2.01
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.27,
+    "max": 2.11
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   4.9,
+   3.83
+  ],
+  [
+   3.94,
+   3.9
+  ],
+  [
+   4.87,
+   4.34
+  ],
+  [
+   4.59,
+   5.87
+  ],
+  [
+   4.84,
+   5.19
+  ],
+  [
+   5.41,
+   5.14
+  ],
+  [
+   4.57,
+   4.73
+  ],
+  [
+   4.44,
+   6.83
+  ],
+  [
+   4.72,
+   5.25
+  ],
+  [
+   4.35,
+   6.78
+  ],
+  [
+   4.73,
+   6.24
+  ],
+  [
+   4.78,
+   3.83
+  ],
+  [
+   4.56,
+   4.02
+  ],
+  [
+   4.28,
+   3.85
+  ],
+  [
+   4.28,
+   6.47
+  ],
+  [
+   4.87,
+   6.23
+  ],
+  [
+   4.24,
+   6.56
+  ],
+  [
+   5.25,
+   4.93
+  ],
+  [
+   5.21,
+   4.79
+  ],
+  [
+   4.91,
+   5.0
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 4,
+   "median": 4.0,
+   "max": 4
+  },
+  "demo_seconds": {
+   "min": 31.03,
+   "median": 66.23,
+   "max": 142.0
+  },
+  "distinct_verb_sequences": 1,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "press",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 1.0,
+  "modal_verb_counts": {
+   "move to": 1,
+   "pick up from": 1,
+   "place on": 1,
+   "press": 1
+  },
+  "modal_verb_counts_share": 1.0,
+  "representative_episode": {
+   "file": "episode_00001540.json",
+   "seconds": 66.3,
+   "steps": [
+    {
+     "prompt": "move to the radio",
+     "start_s": 0.0,
+     "end_s": 17.3
+    },
+    {
+     "prompt": "pick up the radio from the coffee table",
+     "start_s": 17.3,
+     "end_s": 39.8
+    },
+    {
+     "prompt": "press the radio",
+     "start_s": 39.8,
+     "end_s": 50.0
+    },
+    {
+     "prompt": "place the radio on the coffee table",
+     "start_s": 50.0,
+     "end_s": 66.3
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 17.8,
+   "pick up from": 25.1,
+   "place on": 13.5,
+   "press": 9.7
+  },
+  "verb_counts_total": {
+   "move to": 200,
+   "pick up from": 200,
+   "press": 200,
+   "place on": 200
+  },
+  "top_prompts": [
+   [
+    "pick up the radio from the coffee table",
+    200
+   ],
+   [
+    "press the radio",
+    200
+   ],
+   [
+    "place the radio on the coffee table",
+    200
+   ],
+   [
+    "move to the radio",
+    198
+   ],
+   [
+    "move to the coffee table",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "press",
+  "move to",
+  "place on",
+  "pick up from"
+ ],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  },
+  "smoke@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  },
+  "ft24k_local@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3225
+  }
+ }
+}

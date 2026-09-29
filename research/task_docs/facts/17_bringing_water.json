@@ -1,0 +1,568 @@
+{
+ "index": 17,
+ "name": "bringing_water",
+ "instruction": "Retrieve the two bottles from the refrigerator in the kitchen, bring them to the living room, and place both on the coffee table. Make sure the refrigerator is closed when you finish.",
+ "title": "Bringing Water",
+ "rooms_listed": [
+  "living_room",
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114058418",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Retrieve the two bottles from the refrigerator in the kitchen, bring them to the living room, and place both on the coffee table. Make sure the refrigerator is closed when you finish.",
+ "human": {
+  "mean_steps": 9438.545,
+  "mean_seconds": 314.6,
+  "step_limit": 14157,
+  "time_limit_seconds": 471.9,
+  "base_distance_m": 26.2495,
+  "eef_displacement_m": {
+   "left": 9.3574,
+   "right": 11.0538
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem bringing_water-0)\n    (:domain behavior-1k)\n\n    (:objects\n        bottle.n.01_1 bottle.n.01_2 - bottle.n.01\n        coffee_table.n.01_1 - coffee_table.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside bottle.n.01_1 electric_refrigerator.n.01_1) \n        (inside bottle.n.01_2 electric_refrigerator.n.01_1)\n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom coffee_table.n.01_1 living_room)\n        (inroom floor.n.01_1 kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall\n                (?bottle.n.01 - bottle.n.01)\n                (ontop ?bottle.n.01 ?coffee_table.n.01_1)\n            )\n            (not\n                (open ?electric_refrigerator.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0",
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "bottle.n.01": [
+   "bottle.n.01_1",
+   "bottle.n.01_2"
+  ],
+  "coffee_table.n.01": [
+   "coffee_table.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom coffee_table.n.01_1 living_room)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inside bottle.n.01_1 electric_refrigerator.n.01_1)",
+  "(inside bottle.n.01_2 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 1,
+  "max_partial_q": 0.667,
+  "literals": [
+   {
+    "literal": "(ontop bottle.n.01_1 coffee_table.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "bottle.n.01_1",
+     "coffee_table.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop bottle.n.01_2 coffee_table.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "bottle.n.01_2",
+     "coffee_table.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open electric_refrigerator.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   2
+  ],
+  [
+   "not open",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "bottle.n.01_1",
+   "scene_object": "beer_bottle_268",
+   "substance": false,
+   "category": "beer_bottle",
+   "model": "nigfha",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.58,
+    "median": 0.58,
+    "max": 0.58
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.04,
+    "median": 2.84,
+    "max": 4.61
+   },
+   "xy_spread_m": 0.54,
+   "n_poses": 20
+  },
+  {
+   "inst": "bottle.n.01_2",
+   "scene_object": "beer_bottle_267",
+   "substance": false,
+   "category": "beer_bottle",
+   "model": "nigfha",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.58,
+    "median": 0.58,
+    "max": 0.58
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 2.85,
+    "max": 4.43
+   },
+   "xy_spread_m": 0.56,
+   "n_poses": 20
+  },
+  {
+   "inst": "coffee_table.n.01_1",
+   "scene_object": "coffee_table_rlsebe_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "rlsebe",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0000269412994385,
+    1.000026822090149,
+    0.999855637550354
+   ],
+   "z": {
+    "min": 0.15,
+    "median": 0.15,
+    "max": 0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.82,
+    "median": 7.24,
+    "max": 7.58
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_dszchb_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "dszchb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0291646718978882,
+    0.9616702198982239,
+    1.021162748336792
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.06,
+    "median": 2.78,
+    "max": 4.39
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.65,
+    "median": 1.63,
+    "max": 2.83
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   8.87,
+   1.43
+  ],
+  [
+   6.46,
+   -0.89
+  ],
+  [
+   5.16,
+   1.3
+  ],
+  [
+   8.54,
+   -0.9
+  ],
+  [
+   7.68,
+   -0.91
+  ],
+  [
+   5.06,
+   1.45
+  ],
+  [
+   5.41,
+   -0.75
+  ],
+  [
+   5.3,
+   0.94
+  ],
+  [
+   5.21,
+   -0.81
+  ],
+  [
+   5.53,
+   -0.84
+  ],
+  [
+   7.11,
+   -0.93
+  ],
+  [
+   5.22,
+   1.13
+  ],
+  [
+   6.66,
+   -0.93
+  ],
+  [
+   6.17,
+   -0.99
+  ],
+  [
+   5.18,
+   0.95
+  ],
+  [
+   5.14,
+   0.91
+  ],
+  [
+   5.46,
+   -0.79
+  ],
+  [
+   5.52,
+   1.43
+  ],
+  [
+   5.37,
+   1.54
+  ],
+  [
+   7.25,
+   -0.99
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 8,
+   "median": 10.0,
+   "max": 10
+  },
+  "demo_seconds": {
+   "min": 192.0,
+   "median": 303.4,
+   "max": 489.7
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "hand over",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.59,
+  "modal_verb_counts": {
+   "close door": 1,
+   "hand over": 1,
+   "move to": 3,
+   "open door": 1,
+   "pick up from": 2,
+   "place on": 2
+  },
+  "modal_verb_counts_share": 0.595,
+  "representative_episode": {
+   "file": "episode_00172620.json",
+   "seconds": 291.1,
+   "steps": [
+    {
+     "prompt": "move to the fridge",
+     "start_s": 1.9,
+     "end_s": 26.1
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 26.1,
+     "end_s": 67.9
+    },
+    {
+     "prompt": "pick up the beer bottle from the high_level fridge",
+     "start_s": 68.0,
+     "end_s": 84.8
+    },
+    {
+     "prompt": "hand over the beer bottle with the right",
+     "start_s": 84.9,
+     "end_s": 93.5
+    },
+    {
+     "prompt": "pick up the beer bottle from the middle_level fridge",
+     "start_s": 93.6,
+     "end_s": 111.4
+    },
+    {
+     "prompt": "move to the coffee table",
+     "start_s": 111.5,
+     "end_s": 182.5
+    },
+    {
+     "prompt": "place the beer bottle on the coffee table",
+     "start_s": 182.5,
+     "end_s": 202.8
+    },
+    {
+     "prompt": "place the beer bottle on the coffee table",
+     "start_s": 202.8,
+     "end_s": 209.2
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 210.0,
+     "end_s": 274.0
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 274.5,
+     "end_s": 293.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 21.6,
+   "hand over": 10.7,
+   "move to": 47.0,
+   "open door": 50.5,
+   "pick up from": 26.6,
+   "place on": 18.7
+  },
+  "verb_counts_total": {
+   "move to": 598,
+   "pick up from": 400,
+   "place on": 400,
+   "open door": 200,
+   "close door": 200,
+   "hand over": 119
+  },
+  "top_prompts": [
+   [
+    "move to the fridge",
+    397
+   ],
+   [
+    "place the beer bottle on the coffee table",
+    396
+   ],
+   [
+    "move to the coffee table",
+    201
+   ],
+   [
+    "open the door of the fridge",
+    200
+   ],
+   [
+    "close the door of the fridge",
+    199
+   ],
+   [
+    "pick up the beer bottle from the low_level fridge",
+    146
+   ],
+   [
+    "pick up the beer bottle from the middle_level fridge",
+    144
+   ],
+   [
+    "hand over the beer bottle with the right",
+    119
+   ],
+   [
+    "pick up the beer bottle from the high_level fridge",
+    104
+   ],
+   [
+    "place the beer bottle on the fridge",
+    4
+   ],
+   [
+    "pick up the beer bottle from the middle_level coffee table",
+    2
+   ],
+   [
+    "pick up the beer bottle from the high_level beer bottle",
+    1
+   ],
+   [
+    "pick up the low_level beer bottle from the low_level fridge",
+    1
+   ],
+   [
+    "pick up the beer bottle from the high_level coffee table",
+    1
+   ],
+   [
+    "close the door of the coffee table",
+    1
+   ],
+   [
+    "pick up the beer bottle from the low_level coffee table",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "place on",
+  "pick up from",
+  "open door",
+  "hand over"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14158
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14158
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 14158
+  }
+ }
+}

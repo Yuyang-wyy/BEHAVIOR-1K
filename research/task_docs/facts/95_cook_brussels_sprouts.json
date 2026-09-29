@@ -1,0 +1,1454 @@
+{
+ "index": 95,
+ "name": "cook_brussels_sprouts",
+ "instruction": "Take the brussels sprouts from the refrigerator, cut them on the cutting board, put the pieces onto the baking sheet, and cook them in the oven.",
+ "title": "Cook Brussels Sprouts",
+ "rooms_listed": [
+  "bar",
+  "corridor",
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/9XPaPQmWAgI",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Take the brussels sprouts from the refrigerator, cut them on the cutting board, put the pieces onto the baking sheet, and cook them in the oven.",
+ "human": {
+  "mean_steps": 15661.77,
+  "mean_seconds": 522.1,
+  "step_limit": 23492,
+  "time_limit_seconds": 783.1,
+  "base_distance_m": 34.869,
+  "eef_displacement_m": {
+   "left": 36.1291,
+   "right": 26.9862
+  }
+ },
+ "rooms_loaded": [
+  "bar_0",
+  "corridor_0",
+  "kitchen_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bar",
+   "corridor",
+   "kitchen"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "brussels_sprouts.n.01": {
+     "brussels_sprouts": {
+      "hkwyzk": null,
+      "mbkrxe": null,
+      "siodbb": null,
+      "vdamtq": null
+     }
+    },
+    "carving_knife.n.01": {
+     "carving_knife": {
+      "zaihmr": null
+     }
+    },
+    "chopping_board.n.01": {
+     "chopping_board": {
+      "mqsqhl": null
+     },
+     "cutting_board": {
+      "tcdrzs": null
+     }
+    },
+    "cookie_sheet.n.01": {
+     "baking_sheet": {
+      "yhurut": null
+     }
+    },
+    "half__brussels_sprouts.n.01": {
+     "half_brussels_sprouts": {
+      "txelwc": null,
+      "wbisku": null
+     }
+    },
+    "tupperware.n.01": {
+     "tupperware": {
+      "mkstwr": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem cook_brussels_sprouts-0)\n    (:domain behavior-1k)\n\n    (:objects\n        brussels_sprouts.n.01_1 brussels_sprouts.n.01_2 brussels_sprouts.n.01_3 brussels_sprouts.n.01_4 - brussels_sprouts.n.01\n        half__brussels_sprouts.n.01_1 half__brussels_sprouts.n.01_2 half__brussels_sprouts.n.01_3 half__brussels_sprouts.n.01_4 half__brussels_sprouts.n.01_5 half__brussels_sprouts.n.01_6 half__brussels_sprouts.n.01_7 half__brussels_sprouts.n.01_8 - half__brussels_sprouts.n.01\n        tupperware.n.01_1 - tupperware.n.01\n        carving_knife.n.01_1 - carving_knife.n.01\n        chopping_board.n.01_1 - chopping_board.n.01\n        cookie_sheet.n.01_1 - cookie_sheet.n.01\n        oven.n.01_1 - oven.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        countertop.n.01_1 - countertop.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (inside brussels_sprouts.n.01_1 tupperware.n.01_1)\n        (inside brussels_sprouts.n.01_2 tupperware.n.01_1)\n        (inside brussels_sprouts.n.01_3 tupperware.n.01_1)\n        (inside brussels_sprouts.n.01_4 tupperware.n.01_1)\n        (inside tupperware.n.01_1 electric_refrigerator.n.01_1)\n        (not (cooked brussels_sprouts.n.01_1))\n        (not (cooked brussels_sprouts.n.01_2))\n        (not (cooked brussels_sprouts.n.01_3))\n        (not (cooked brussels_sprouts.n.01_4))\n        (ontop chopping_board.n.01_1 countertop.n.01_1)\n        (ontop carving_knife.n.01_1 chopping_board.n.01_1)\n        (ontop cookie_sheet.n.01_1 countertop.n.01_1)\n        (future half__brussels_sprouts.n.01_1)\n        (future half__brussels_sprouts.n.01_2)\n        (future half__brussels_sprouts.n.01_3)\n        (future half__brussels_sprouts.n.01_4)\n        (future half__brussels_sprouts.n.01_5)\n        (future half__brussels_sprouts.n.01_6)\n        (future half__brussels_sprouts.n.01_7)\n        (future half__brussels_sprouts.n.01_8)\n        (inroom electric_refrigerator.n.01_1 kitchen)\n        (inroom oven.n.01_1 kitchen)\n        (inroom countertop.n.01_1 kitchen)\n        (inroom floor.n.01_1 kitchen)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (forall\n                (?half__brussels_sprouts.n.01 - half__brussels_sprouts.n.01)\n                (and\n                    (real ?half__brussels_sprouts.n.01)\n                    (cooked ?half__brussels_sprouts.n.01)\n                    (inside ?half__brussels_sprouts.n.01 oven.n.01_1)\n                )\n            )\n            (not\n                (open ?electric_refrigerator.n.01_1)\n            )\n            (not\n                (open ?oven.n.01_1)\n            )\n        )\n    )\n)\n",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "brussels_sprouts.n.01": [
+   "brussels_sprouts.n.01_1",
+   "brussels_sprouts.n.01_2",
+   "brussels_sprouts.n.01_3",
+   "brussels_sprouts.n.01_4"
+  ],
+  "half__brussels_sprouts.n.01": [
+   "half__brussels_sprouts.n.01_1",
+   "half__brussels_sprouts.n.01_2",
+   "half__brussels_sprouts.n.01_3",
+   "half__brussels_sprouts.n.01_4",
+   "half__brussels_sprouts.n.01_5",
+   "half__brussels_sprouts.n.01_6",
+   "half__brussels_sprouts.n.01_7",
+   "half__brussels_sprouts.n.01_8"
+  ],
+  "tupperware.n.01": [
+   "tupperware.n.01_1"
+  ],
+  "carving_knife.n.01": [
+   "carving_knife.n.01_1"
+  ],
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "cookie_sheet.n.01": [
+   "cookie_sheet.n.01_1"
+  ],
+  "oven.n.01": [
+   "oven.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "half__brussels_sprouts.n.01_1",
+  "half__brussels_sprouts.n.01_2",
+  "half__brussels_sprouts.n.01_3",
+  "half__brussels_sprouts.n.01_4",
+  "half__brussels_sprouts.n.01_5",
+  "half__brussels_sprouts.n.01_6",
+  "half__brussels_sprouts.n.01_7",
+  "half__brussels_sprouts.n.01_8"
+ ],
+ "articulated_start_state": {
+  "oven.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(future half__brussels_sprouts.n.01_1)",
+  "(future half__brussels_sprouts.n.01_2)",
+  "(future half__brussels_sprouts.n.01_3)",
+  "(future half__brussels_sprouts.n.01_4)",
+  "(future half__brussels_sprouts.n.01_5)",
+  "(future half__brussels_sprouts.n.01_6)",
+  "(future half__brussels_sprouts.n.01_7)",
+  "(future half__brussels_sprouts.n.01_8)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom oven.n.01_1 kitchen)",
+  "(inside brussels_sprouts.n.01_1 tupperware.n.01_1)",
+  "(inside brussels_sprouts.n.01_2 tupperware.n.01_1)",
+  "(inside brussels_sprouts.n.01_3 tupperware.n.01_1)",
+  "(inside brussels_sprouts.n.01_4 tupperware.n.01_1)",
+  "(inside tupperware.n.01_1 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop carving_knife.n.01_1 chopping_board.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(ontop cookie_sheet.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching carving_knife.n.01_1 chopping_board.n.01_1)",
+  "(touching chopping_board.n.01_1 carving_knife.n.01_1)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching cookie_sheet.n.01_1 countertop.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching countertop.n.01_1 cookie_sheet.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 26,
+  "n_initially_true": 2,
+  "max_partial_q": 0.923,
+  "literals": [
+   {
+    "literal": "(real half__brussels_sprouts.n.01_4)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_4"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_4)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_4"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_4 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_4",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_3)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_3)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_3 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_3",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_1)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_1 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_1",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_7)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_7"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_7)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_7"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_7 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_7",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_5)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_5"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_5)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_5"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_5 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_5",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_8)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_8"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_8)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_8"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_8 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_8",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_6)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_6"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_6)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_6"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_6 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_6",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real half__brussels_sprouts.n.01_2)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "half__brussels_sprouts.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked half__brussels_sprouts.n.01_2)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "half__brussels_sprouts.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__brussels_sprouts.n.01_2 oven.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__brussels_sprouts.n.01_2",
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open electric_refrigerator.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open oven.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "oven.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   26,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "real",
+   8
+  ],
+  [
+   "cooked",
+   8
+  ],
+  [
+   "inside",
+   8
+  ],
+  [
+   "not open",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "brussels_sprouts.n.01_1",
+   "scene_object": "brussels_sprouts_95",
+   "substance": false,
+   "category": "brussels_sprouts",
+   "model": "hkwyzk",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.91,
+    "max": 1.51
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.58,
+    "median": 3.55,
+    "max": 6.65
+   },
+   "xy_spread_m": 0.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "brussels_sprouts.n.01_2",
+   "scene_object": "brussels_sprouts_94",
+   "substance": false,
+   "category": "brussels_sprouts",
+   "model": "hkwyzk",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.41,
+    "median": 0.88,
+    "max": 1.5
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.59,
+    "median": 3.52,
+    "max": 6.63
+   },
+   "xy_spread_m": 0.77,
+   "n_poses": 20
+  },
+  {
+   "inst": "brussels_sprouts.n.01_3",
+   "scene_object": "brussels_sprouts_93",
+   "substance": false,
+   "category": "brussels_sprouts",
+   "model": "hkwyzk",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.41,
+    "median": 0.88,
+    "max": 1.47
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.57,
+    "median": 3.53,
+    "max": 6.63
+   },
+   "xy_spread_m": 0.75,
+   "n_poses": 20
+  },
+  {
+   "inst": "brussels_sprouts.n.01_4",
+   "scene_object": "brussels_sprouts_92",
+   "substance": false,
+   "category": "brussels_sprouts",
+   "model": "hkwyzk",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.41,
+    "median": 0.88,
+    "max": 1.48
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.59,
+    "median": 3.54,
+    "max": 6.67
+   },
+   "xy_spread_m": 0.73,
+   "n_poses": 20
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_1",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_2",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_3",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_4",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_5",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_6",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_7",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "half__brussels_sprouts.n.01_8",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "half_brussels_sprouts"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "tupperware.n.01_1",
+   "scene_object": "tupperware_91",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.91,
+    "max": 1.51
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.59,
+    "median": 3.54,
+    "max": 6.63
+   },
+   "xy_spread_m": 0.71,
+   "n_poses": 20
+  },
+  {
+   "inst": "carving_knife.n.01_1",
+   "scene_object": "carving_knife_90",
+   "substance": false,
+   "category": "carving_knife",
+   "model": "zaihmr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.23,
+    "median": 3.11,
+    "max": 4.48
+   },
+   "xy_spread_m": 2.3,
+   "n_poses": 20
+  },
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "chopping_board_89",
+   "substance": false,
+   "category": "chopping_board",
+   "model": "mqsqhl",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.88,
+    "median": 0.88,
+    "max": 0.88
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.13,
+    "median": 3.07,
+    "max": 4.44
+   },
+   "xy_spread_m": 2.39,
+   "n_poses": 20
+  },
+  {
+   "inst": "cookie_sheet.n.01_1",
+   "scene_object": "baking_sheet_88",
+   "substance": false,
+   "category": "baking_sheet",
+   "model": "yhurut",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.88,
+    "median": 0.88,
+    "max": 0.88
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.36,
+    "median": 2.98,
+    "max": 4.14
+   },
+   "xy_spread_m": 2.05,
+   "n_poses": 20
+  },
+  {
+   "inst": "oven.n.01_1",
+   "scene_object": "oven_amblrk_0",
+   "substance": false,
+   "category": "oven",
+   "model": "amblrk",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000383853912354,
+    1.0000638961791992,
+    0.999982476234436
+   ],
+   "z": {
+    "min": 0.97,
+    "median": 0.97,
+    "max": 0.97
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.28,
+    "median": 4.19,
+    "max": 6.3
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_jtqazu_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "jtqazu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.6483378410339355,
+    2.014077663421631,
+    1.2680704593658447
+   ],
+   "z": {
+    "min": 1.08,
+    "median": 1.08,
+    "max": 1.08
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.61,
+    "median": 3.72,
+    "max": 6.85
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "commercial_kitchen_table_vxvtec_0",
+   "substance": false,
+   "category": "commercial_kitchen_table",
+   "model": "vxvtec",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999405145645142,
+    1.0000137090682983,
+    1.000051498413086
+   ],
+   "z": {
+    "min": 0.54,
+    "median": 0.54,
+    "max": 0.54
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.12,
+    "median": 3.01,
+    "max": 3.81
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_vikfyd_0",
+   "substance": false,
+   "category": "floors",
+   "model": "vikfyd",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.33,
+    "median": 2.52,
+    "max": 3.51
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_gfswdt",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -9.03,
+   -5.73
+  ],
+  [
+   -6.4,
+   -4.51
+  ],
+  [
+   -10.35,
+   -0.53
+  ],
+  [
+   -8.52,
+   -1.53
+  ],
+  [
+   -9.69,
+   -0.29
+  ],
+  [
+   -7.57,
+   -0.96
+  ],
+  [
+   -7.04,
+   -0.5
+  ],
+  [
+   -8.57,
+   -0.99
+  ],
+  [
+   -6.38,
+   -4.06
+  ],
+  [
+   -6.31,
+   -3.89
+  ],
+  [
+   -6.71,
+   -5.23
+  ],
+  [
+   -7.08,
+   -1.3
+  ],
+  [
+   -6.59,
+   -3.26
+  ],
+  [
+   -7.47,
+   -1.29
+  ],
+  [
+   -6.39,
+   -4.69
+  ],
+  [
+   -8.29,
+   -1.48
+  ],
+  [
+   -10.05,
+   -5.56
+  ],
+  [
+   -6.39,
+   -5.7
+  ],
+  [
+   -6.32,
+   -3.64
+  ],
+  [
+   -10.6,
+   -0.41
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 42,
+   "median": 48.0,
+   "max": 54
+  },
+  "demo_seconds": {
+   "min": 340.47,
+   "median": 505.25,
+   "max": 813.6
+  },
+  "distinct_verb_sequences": 162,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "pick up from",
+   "close door",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "push to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "pour",
+   "place on",
+   "pick up from",
+   "chop",
+   "place on",
+   "pick up from",
+   "place on",
+   "pick up from",
+   "chop",
+   "place on",
+   "pick up from",
+   "place on",
+   "pick up from",
+   "chop",
+   "place on",
+   "pick up from",
+   "place on",
+   "pick up from",
+   "chop",
+   "place on",
+   "pick up from",
+   "place on",
+   "place on",
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.03,
+  "modal_verb_counts": {
+   "chop": 4,
+   "close door": 2,
+   "move to": 9,
+   "open door": 2,
+   "pick up from": 15,
+   "place in": 1,
+   "place on": 11,
+   "place on next to": 2,
+   "pour": 1,
+   "push to": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.035,
+  "representative_episode": {
+   "file": "episode_00950990.json",
+   "seconds": 593.3,
+   "steps": [
+    {
+     "prompt": "move to the electric refrigerator",
+     "start_s": 0.0,
+     "end_s": 27.0
+    },
+    {
+     "prompt": "open the door of the electric refrigerator",
+     "start_s": 27.0,
+     "end_s": 46.0
+    },
+    {
+     "prompt": "pick up the tupperware from the electric refrigerator",
+     "start_s": 46.0,
+     "end_s": 69.0
+    },
+    {
+     "prompt": "close the door of the electric refrigerator",
+     "start_s": 69.0,
+     "end_s": 92.0
+    },
+    {
+     "prompt": "move to the commercial kitchen table",
+     "start_s": 92.0,
+     "end_s": 107.0
+    },
+    {
+     "prompt": "place the tupperware on the commercial kitchen table",
+     "start_s": 107.0,
+     "end_s": 114.0
+    },
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 114.0,
+     "end_s": 144.0
+    },
+    {
+     "prompt": "pick up the carving knife from the cutting board",
+     "start_s": 144.0,
+     "end_s": 155.0
+    },
+    {
+     "prompt": "push the cutting board to the commercial kitchen table",
+     "start_s": 155.0,
+     "end_s": 167.0
+    },
+    {
+     "prompt": "pick up the cutting board from the commercial kitchen table",
+     "start_s": 167.0,
+     "end_s": 210.9
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 210.9,
+     "end_s": 224.4
+    },
+    {
+     "prompt": "place the cutting board on the commercial kitchen table next to the tupperware",
+     "start_s": 224.4,
+     "end_s": 228.0
+    },
+    {
+     "prompt": "move to the baking sheet",
+     "start_s": 228.0,
+     "end_s": 233.0
+    },
+    {
+     "prompt": "pick up the baking sheet from the commercial kitchen table",
+     "start_s": 233.0,
+     "end_s": 255.0
+    },
+    {
+     "prompt": "place the baking sheet on the commercial kitchen table next to the cutting board",
+     "start_s": 255.0,
+     "end_s": 274.0
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 274.0,
+     "end_s": 283.0
+    },
+    {
+     "prompt": "pick up the tupperware from the commercial kitchen table",
+     "start_s": 283.0,
+     "end_s": 288.0
+    },
+    {
+     "prompt": "pour the brussels sprouts and brussels sprouts and brussels sprouts and brussels sprouts into the tupperware",
+     "start_s": 288.0,
+     "end_s": 291.0
+    },
+    {
+     "prompt": "place the tupperware on the commercial kitchen table",
+     "start_s": 291.0,
+     "end_s": 298.0
+    },
+    {
+     "prompt": "pick up the brussels sprouts from the cutting board",
+     "start_s": 298.0,
+     "end_s": 311.2
+    },
+    {
+     "prompt": "chop the carving knife with the brussels sprouts",
+     "start_s": 308.0,
+     "end_s": 315.0
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 315.0,
+     "end_s": 321.9
+    },
+    {
+     "prompt": "pick up the half brussels sprouts from the cutting board",
+     "start_s": 321.9,
+     "end_s": 326.6
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 326.6,
+     "end_s": 330.1
+    },
+    {
+     "prompt": "pick up the brussels sprouts from the cutting board",
+     "start_s": 330.1,
+     "end_s": 340.3
+    },
+    {
+     "prompt": "chop the carving knife with the brussels sprouts",
+     "start_s": 340.3,
+     "end_s": 346.0
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 346.0,
+     "end_s": 353.4
+    },
+    {
+     "prompt": "pick up the half brussels sprouts from the cutting board",
+     "start_s": 353.4,
+     "end_s": 358.2
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 358.2,
+     "end_s": 363.5
+    },
+    {
+     "prompt": "pick up the brussels sprouts from the cutting board",
+     "start_s": 363.5,
+     "end_s": 379.5
+    },
+    {
+     "prompt": "chop the carving knife with the brussels sprouts",
+     "start_s": 379.5,
+     "end_s": 382.0
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 382.0,
+     "end_s": 389.1
+    },
+    {
+     "prompt": "pick up the half brussels sprouts from the cutting board",
+     "start_s": 389.1,
+     "end_s": 393.7
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 393.7,
+     "end_s": 399.9
+    },
+    {
+     "prompt": "pick up the brussels sprouts from the cutting board",
+     "start_s": 399.9,
+     "end_s": 418.8
+    },
+    {
+     "prompt": "chop the carving knife with the brussels sprouts",
+     "start_s": 418.8,
+     "end_s": 421.7
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 421.7,
+     "end_s": 428.2
+    },
+    {
+     "prompt": "pick up the half brussels sprouts from the cutting board",
+     "start_s": 428.2,
+     "end_s": 435.3
+    },
+    {
+     "prompt": "place the half brussels sprouts on the baking sheet",
+     "start_s": 435.3,
+     "end_s": 443.5
+    },
+    {
+     "prompt": "place the carving knife on the cutting board",
+     "start_s": 443.5,
+     "end_s": 456.0
+    },
+    {
+     "prompt": "move to the oven",
+     "start_s": 456.0,
+     "end_s": 481.0
+    },
+    {
+     "prompt": "open the door of the oven",
+     "start_s": 481.0,
+     "end_s": 504.0
+    },
+    {
+     "prompt": "move to the baking sheet",
+     "start_s": 504.0,
+     "end_s": 521.0
+    },
+    {
+     "prompt": "pick up the baking sheet from the commercial kitchen table",
+     "start_s": 521.0,
+     "end_s": 537.0
+    },
+    {
+     "prompt": "move to the oven",
+     "start_s": 537.0,
+     "end_s": 551.0
+    },
+    {
+     "prompt": "place the baking sheet in the oven",
+     "start_s": 551.0,
+     "end_s": 568.0
+    },
+    {
+     "prompt": "close the door of the oven",
+     "start_s": 568.0,
+     "end_s": 582.0
+    },
+    {
+     "prompt": "turn on the oven",
+     "start_s": 582.0,
+     "end_s": 593.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "chop": 5.7,
+   "close door": 18.9,
+   "move to": 15.2,
+   "open door": 24.6,
+   "pick up from": 9.3,
+   "place in": 19.2,
+   "place on": 5.8,
+   "place on next to": 10.5,
+   "pour": 9.5,
+   "push to": 20.3,
+   "turn on switch": 9.8
+  },
+  "verb_counts_total": {
+   "pick up from": 2956,
+   "place on": 2367,
+   "move to": 1908,
+   "chop": 800,
+   "open door": 400,
+   "close door": 400,
+   "pour": 200,
+   "place in": 200,
+   "turn on switch": 200,
+   "place on next to": 171,
+   "push to": 115
+  },
+  "top_prompts": [
+   [
+    "place the half brussels sprouts on the baking sheet",
+    1538
+   ],
+   [
+    "pick up the half brussels sprouts from the cutting board",
+    956
+   ],
+   [
+    "pick up the brussels sprouts from the cutting board",
+    800
+   ],
+   [
+    "chop the carving knife with the brussels sprouts",
+    800
+   ],
+   [
+    "move to the oven",
+    402
+   ],
+   [
+    "place the tupperware on the commercial kitchen table",
+    400
+   ],
+   [
+    "pick up the baking sheet from the commercial kitchen table",
+    400
+   ],
+   [
+    "move to the baking sheet",
+    382
+   ],
+   [
+    "move to the tupperware",
+    359
+   ],
+   [
+    "move to the electric refrigerator",
+    222
+   ],
+   [
+    "move to the commercial kitchen table",
+    217
+   ],
+   [
+    "open the door of the electric refrigerator",
+    200
+   ],
+   [
+    "pick up the tupperware from the electric refrigerator",
+    200
+   ],
+   [
+    "close the door of the electric refrigerator",
+    200
+   ],
+   [
+    "pick up the carving knife from the cutting board",
+    200
+   ],
+   [
+    "pour the brussels sprouts and brussels sprouts and brussels sprouts and brussels sprouts into the tupperware",
+    200
+   ],
+   [
+    "place the carving knife on the cutting board",
+    200
+   ],
+   [
+    "open the door of the oven",
+    200
+   ],
+   [
+    "place the baking sheet in the oven",
+    200
+   ],
+   [
+    "close the door of the oven",
+    200
+   ],
+   [
+    "turn on the oven",
+    200
+   ],
+   [
+    "pick up the cutting board from the commercial kitchen table",
+    199
+   ],
+   [
+    "pick up the tupperware from the commercial kitchen table",
+    199
+   ],
+   [
+    "move to the carving knife",
+    192
+   ],
+   [
+    "move to the cutting board",
+    134
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23493
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23493
+  }
+ }
+}

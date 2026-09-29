@@ -1,0 +1,738 @@
+{
+ "index": 85,
+ "name": "putting_dirty_dishes_in_sink",
+ "instruction": "Put all of the dirty bowls and plates into the kitchen sink.",
+ "title": "Putting Dirty Dishes In Sink",
+ "rooms_listed": [
+  "kitchen",
+  "dining_room"
+ ],
+ "video": "https://www.youtube.com/embed/SCX0NPFlMhI",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Put all of the dirty bowls and plates into the kitchen sink.",
+ "human": {
+  "mean_steps": 12148.58,
+  "mean_seconds": 405.0,
+  "step_limit": 18222,
+  "time_limit_seconds": 607.4,
+  "base_distance_m": 57.395,
+  "eef_displacement_m": {
+   "left": 18.0193,
+   "right": 25.6506
+  }
+ },
+ "rooms_loaded": [
+  "kitchen_0",
+  "bar_0",
+  "dining_room_0",
+  "corridor_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "kitchen",
+   "dining_room"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "bowl.n.01": {
+     "bowl": {
+      "fiarri": null
+     }
+    },
+    "plate.n.04": {
+     "plate": {
+      "lkomhp": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem putting_dirty_dishes_in_sink-0)\n    (:domain behavior-1k)\n\n    (:objects\n        stain.n.01_1 - stain.n.01\n        dirt.n.02_1 - dirt.n.02\n        bowl.n.01_1 bowl.n.01_2 - bowl.n.01\n        plate.n.04_1 plate.n.04_2 - plate.n.04\n        booth.n.01_1 - booth.n.01\n        sink.n.01_1 - sink.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (covered bowl.n.01_1 dirt.n.02_1)\n        (covered bowl.n.01_2 dirt.n.02_1)\n        (covered plate.n.04_1 stain.n.01_1)\n        (covered plate.n.04_2 stain.n.01_1)\n        (ontop bowl.n.01_1 booth.n.01_1)\n        (ontop bowl.n.01_2 booth.n.01_1)\n        (ontop plate.n.04_1 booth.n.01_1)\n        (ontop plate.n.04_2 booth.n.01_1)\n        (inroom floor.n.01_1 dining_room)\n        (inroom sink.n.01_1 kitchen)\n        (inroom booth.n.01_1 dining_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (forall\n                (?bowl.n.01 - bowl.n.01)\n                (inside ?bowl.n.01 ?sink.n.01_1)\n            )\n            (forall\n                (?plate.n.04 - plate.n.04)\n                (inside ?plate.n.04 ?sink.n.01_1)\n            )\n        )\n    )\n)\n",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "dining_room": "dining_room_0",
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "stain.n.01": [
+   "stain.n.01_1"
+  ],
+  "dirt.n.02": [
+   "dirt.n.02_1"
+  ],
+  "bowl.n.01": [
+   "bowl.n.01_1",
+   "bowl.n.01_2"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1",
+   "plate.n.04_2"
+  ],
+  "booth.n.01": [
+   "booth.n.01_1"
+  ],
+  "sink.n.01": [
+   "sink.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(covered bowl.n.01_1 dirt.n.02_1)",
+  "(covered bowl.n.01_2 dirt.n.02_1)",
+  "(covered plate.n.04_1 stain.n.01_1)",
+  "(covered plate.n.04_2 stain.n.01_1)",
+  "(inroom booth.n.01_1 dining_room)",
+  "(inroom floor.n.01_1 dining_room)",
+  "(inroom sink.n.01_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bowl.n.01_1 booth.n.01_1)",
+  "(ontop bowl.n.01_2 booth.n.01_1)",
+  "(ontop plate.n.04_1 booth.n.01_1)",
+  "(ontop plate.n.04_2 booth.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching booth.n.01_1 bowl.n.01_1)",
+  "(touching booth.n.01_1 bowl.n.01_2)",
+  "(touching booth.n.01_1 plate.n.04_1)",
+  "(touching booth.n.01_1 plate.n.04_2)",
+  "(touching bowl.n.01_1 booth.n.01_1)",
+  "(touching bowl.n.01_2 booth.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching plate.n.04_1 booth.n.01_1)",
+  "(touching plate.n.04_2 booth.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside bowl.n.01_2 sink.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bowl.n.01_2",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bowl.n.01_1 sink.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bowl.n.01_1",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_1 sink.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_1",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_2 sink.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_2",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   4
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "stain.n.01_1",
+   "scene_object": "stain",
+   "substance": true,
+   "systems": [
+    "stain"
+   ]
+  },
+  {
+   "inst": "dirt.n.02_1",
+   "scene_object": "dirt",
+   "substance": true,
+   "systems": [
+    "dirt"
+   ]
+  },
+  {
+   "inst": "bowl.n.01_1",
+   "scene_object": "bowl_136",
+   "substance": false,
+   "category": "bowl",
+   "model": "fiarri",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.12,
+    "median": 3.78,
+    "max": 11.11
+   },
+   "xy_spread_m": 0.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "bowl.n.01_2",
+   "scene_object": "bowl_135",
+   "substance": false,
+   "category": "bowl",
+   "model": "fiarri",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.91,
+    "median": 3.9,
+    "max": 10.7
+   },
+   "xy_spread_m": 0.66,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_134",
+   "substance": false,
+   "category": "plate",
+   "model": "lkomhp",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.77,
+    "median": 0.77,
+    "max": 0.77
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.16,
+    "median": 3.82,
+    "max": 10.9
+   },
+   "xy_spread_m": 0.65,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_2",
+   "scene_object": "plate_133",
+   "substance": false,
+   "category": "plate",
+   "model": "lkomhp",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.77,
+    "median": 0.77,
+    "max": 0.77
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.16,
+    "median": 3.93,
+    "max": 11.03
+   },
+   "xy_spread_m": 0.49,
+   "n_poses": 20
+  },
+  {
+   "inst": "booth.n.01_1",
+   "scene_object": "booth_xzrpar_2",
+   "substance": false,
+   "category": "booth",
+   "model": "xzrpar",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000146627426147,
+    1.0000314712524414,
+    1.000038504600525
+   ],
+   "z": {
+    "min": 0.62,
+    "median": 0.62,
+    "max": 0.62
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.44,
+    "median": 4.12,
+    "max": 11.26
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sink.n.01_1",
+   "scene_object": "commercial_kitchen_sink_xecfyh_0",
+   "substance": false,
+   "category": "commercial_kitchen_sink",
+   "model": "xecfyh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999845623970032,
+    1.0000169277191162,
+    0.9999992251396179
+   ],
+   "z": {
+    "min": 0.62,
+    "median": 0.62,
+    "max": 0.62
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 8.55,
+    "median": 10.96,
+    "max": 12.52
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_cxcxqq_0",
+   "substance": false,
+   "category": "floors",
+   "model": "cxcxqq",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000039339065552,
+    0.9999991655349731,
+    0.9958263039588928
+   ],
+   "z": {
+    "min": -0.0,
+    "median": -0.0,
+    "max": -0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 3.12,
+    "max": 5.21
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_slwzxc",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -0.46,
+   -6.17
+  ],
+  [
+   -2.62,
+   -5.91
+  ],
+  [
+   -0.38,
+   -2.46
+  ],
+  [
+   -0.62,
+   -1.45
+  ],
+  [
+   -0.39,
+   -5.37
+  ],
+  [
+   -1.34,
+   0.68
+  ],
+  [
+   -0.09,
+   -1.68
+  ],
+  [
+   -1.37,
+   1.78
+  ],
+  [
+   -1.86,
+   -7.14
+  ],
+  [
+   -1.7,
+   -7.27
+  ],
+  [
+   -1.31,
+   -0.09
+  ],
+  [
+   -1.38,
+   2.06
+  ],
+  [
+   -3.26,
+   -6.93
+  ],
+  [
+   -2.3,
+   -7.49
+  ],
+  [
+   -0.33,
+   -4.71
+  ],
+  [
+   -2.23,
+   1.24
+  ],
+  [
+   -0.82,
+   -5.99
+  ],
+  [
+   -2.45,
+   -6.02
+  ],
+  [
+   -2.04,
+   -6.1
+  ],
+  [
+   -1.17,
+   -7.04
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 18,
+   "median": 20.0,
+   "max": 20
+  },
+  "demo_seconds": {
+   "min": 308.27,
+   "median": 395.53,
+   "max": 518.47
+  },
+  "distinct_verb_sequences": 3,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "open lid",
+   "move to",
+   "open door",
+   "move to",
+   "place in",
+   "place on",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "close lid",
+   "move to",
+   "close door",
+   "move to",
+   "place in",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.985,
+  "modal_verb_counts": {
+   "close door": 1,
+   "close lid": 1,
+   "move to": 8,
+   "open door": 1,
+   "open lid": 1,
+   "pick up from": 4,
+   "place in": 2,
+   "place on": 2
+  },
+  "modal_verb_counts_share": 0.985,
+  "representative_episode": {
+   "file": "episode_00850650.json",
+   "seconds": 396.0,
+   "steps": [
+    {
+     "prompt": "move to the booth",
+     "start_s": 0.0,
+     "end_s": 23.0
+    },
+    {
+     "prompt": "pick up the bowl from the booth",
+     "start_s": 23.0,
+     "end_s": 33.3
+    },
+    {
+     "prompt": "pick up the bowl from the booth",
+     "start_s": 33.3,
+     "end_s": 43.1
+    },
+    {
+     "prompt": "move to the flipup countertop",
+     "start_s": 43.1,
+     "end_s": 62.4
+    },
+    {
+     "prompt": "open the lid of the flipup countertop",
+     "start_s": 62.4,
+     "end_s": 69.4
+    },
+    {
+     "prompt": "move to the kitchen door",
+     "start_s": 69.4,
+     "end_s": 79.0
+    },
+    {
+     "prompt": "open the door of the kitchen door",
+     "start_s": 79.0,
+     "end_s": 87.6
+    },
+    {
+     "prompt": "move to the commercial kitchen sink",
+     "start_s": 87.6,
+     "end_s": 130.0
+    },
+    {
+     "prompt": "place the bowl in the commercial kitchen sink",
+     "start_s": 130.0,
+     "end_s": 143.4
+    },
+    {
+     "prompt": "place the bowl on the bowl",
+     "start_s": 143.4,
+     "end_s": 154.7
+    },
+    {
+     "prompt": "move to the booth",
+     "start_s": 154.7,
+     "end_s": 230.0
+    },
+    {
+     "prompt": "pick up the plate from the booth",
+     "start_s": 230.0,
+     "end_s": 239.5
+    },
+    {
+     "prompt": "pick up the plate from the booth",
+     "start_s": 239.5,
+     "end_s": 246.0
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 246.0,
+     "end_s": 278.0
+    },
+    {
+     "prompt": "close the lid of the flipup countertop",
+     "start_s": 278.0,
+     "end_s": 287.0
+    },
+    {
+     "prompt": "move to the kitchen door",
+     "start_s": 287.0,
+     "end_s": 331.9
+    },
+    {
+     "prompt": "close the door of the kitchen door",
+     "start_s": 331.9,
+     "end_s": 347.6
+    },
+    {
+     "prompt": "move to the commercial kitchen sink",
+     "start_s": 347.6,
+     "end_s": 370.0
+    },
+    {
+     "prompt": "place the plate in the commercial kitchen sink",
+     "start_s": 370.0,
+     "end_s": 386.2
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 386.2,
+     "end_s": 396.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 19.2,
+   "close lid": 11.0,
+   "move to": 33.6,
+   "open door": 9.8,
+   "open lid": 6.7,
+   "pick up from": 8.4,
+   "place in": 14.5,
+   "place on": 12.2
+  },
+  "verb_counts_total": {
+   "move to": 1597,
+   "pick up from": 800,
+   "place in": 400,
+   "place on": 400,
+   "open lid": 200,
+   "open door": 200,
+   "close lid": 199,
+   "close door": 198
+  },
+  "top_prompts": [
+   [
+    "move to the booth",
+    400
+   ],
+   [
+    "pick up the bowl from the booth",
+    400
+   ],
+   [
+    "move to the commercial kitchen sink",
+    400
+   ],
+   [
+    "pick up the plate from the booth",
+    400
+   ],
+   [
+    "move to the kitchen door",
+    398
+   ],
+   [
+    "move to the flipup countertop",
+    200
+   ],
+   [
+    "open the lid of the flipup countertop",
+    200
+   ],
+   [
+    "open the door of the kitchen door",
+    200
+   ],
+   [
+    "place the bowl in the commercial kitchen sink",
+    200
+   ],
+   [
+    "place the bowl on the bowl",
+    200
+   ],
+   [
+    "place the plate in the commercial kitchen sink",
+    200
+   ],
+   [
+    "place the plate on the plate",
+    200
+   ],
+   [
+    "move to the bar",
+    199
+   ],
+   [
+    "close the lid of the flipup countertop",
+    199
+   ],
+   [
+    "close the door of the kitchen door",
+    198
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

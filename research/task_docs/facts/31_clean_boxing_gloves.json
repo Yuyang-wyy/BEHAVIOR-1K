@@ -1,0 +1,551 @@
+{
+ "index": 31,
+ "name": "clean_boxing_gloves",
+ "instruction": "Wash the two dusty boxing gloves from the countertop in the utility room in the washer until they are no longer covered with dust.",
+ "title": "Clean Boxing Gloves",
+ "rooms_listed": [
+  "utility_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114060008",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Wash the two dusty boxing gloves from the countertop in the utility room in the washer until they are no longer covered with dust.",
+ "human": {
+  "mean_steps": 8235.36,
+  "mean_seconds": 274.5,
+  "step_limit": 12353,
+  "time_limit_seconds": 411.8,
+  "base_distance_m": 28.582,
+  "eef_displacement_m": {
+   "left": 10.6524,
+   "right": 11.1744
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "utility_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem clean_boxing_gloves-0)\n    (:domain behavior-1k)\n\n    (:objects\n        boxing_glove.n.01_1 boxing_glove.n.01_2 - boxing_glove.n.01\n        dust.n.01_1 - dust.n.01\n        washer.n.03_1 - washer.n.03\n        countertop.n.01_1 - countertop.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop boxing_glove.n.01_1 countertop.n.01_1) \n        (ontop boxing_glove.n.01_2 countertop.n.01_1) \n        (covered boxing_glove.n.01_1 dust.n.01_1)\n        (covered boxing_glove.n.01_2 dust.n.01_1)\n        (inroom washer.n.03_1 utility_room)\n        (inroom countertop.n.01_1 utility_room)\n        (inroom floor.n.01_1 utility_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?boxing_glove.n.01 - boxing_glove.n.01)\n                (not \n                    (covered ?boxing_glove.n.01 ?dust.n.01_1)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "utility_room": "utility_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "boxing_glove.n.01": [
+   "boxing_glove.n.01_1",
+   "boxing_glove.n.01_2"
+  ],
+  "dust.n.01": [
+   "dust.n.01_1"
+  ],
+  "washer.n.03": [
+   "washer.n.03_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "washer.n.03_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(covered boxing_glove.n.01_1 dust.n.01_1)",
+  "(covered boxing_glove.n.01_2 dust.n.01_1)",
+  "(inroom countertop.n.01_1 utility_room)",
+  "(inroom floor.n.01_1 utility_room)",
+  "(inroom washer.n.03_1 utility_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop boxing_glove.n.01_1 countertop.n.01_1)",
+  "(ontop boxing_glove.n.01_2 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching boxing_glove.n.01_1 countertop.n.01_1)",
+  "(touching boxing_glove.n.01_2 countertop.n.01_1)",
+  "(touching countertop.n.01_1 boxing_glove.n.01_1)",
+  "(touching countertop.n.01_1 boxing_glove.n.01_2)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered boxing_glove.n.01_1 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "boxing_glove.n.01_1",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not covered boxing_glove.n.01_2 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "boxing_glove.n.01_2",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "boxing_glove.n.01_1",
+   "scene_object": "boxing_gloves_189",
+   "substance": false,
+   "category": "boxing_gloves",
+   "model": "jlfuaf",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6971402168273926,
+    0.688379168510437,
+    0.7072876691818237
+   ],
+   "z": {
+    "min": 0.99,
+    "median": 0.99,
+    "max": 0.99
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.04,
+    "median": 2.22,
+    "max": 3.6
+   },
+   "xy_spread_m": 0.37,
+   "n_poses": 20
+  },
+  {
+   "inst": "boxing_glove.n.01_2",
+   "scene_object": "boxing_gloves_188",
+   "substance": false,
+   "category": "boxing_gloves",
+   "model": "jlfuaf",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6971402168273926,
+    0.688379168510437,
+    0.7072876691818237
+   ],
+   "z": {
+    "min": 0.99,
+    "median": 0.99,
+    "max": 0.99
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 2.14,
+    "max": 3.76
+   },
+   "xy_spread_m": 0.78,
+   "n_poses": 20
+  },
+  {
+   "inst": "dust.n.01_1",
+   "scene_object": "dust",
+   "substance": true,
+   "systems": [
+    "dust"
+   ]
+  },
+  {
+   "inst": "washer.n.03_1",
+   "scene_object": "washer_ynwamu_0",
+   "substance": false,
+   "category": "washer",
+   "model": "ynwamu",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000474452972412,
+    0.9999510645866394,
+    1.0000536441802979
+   ],
+   "z": {
+    "min": 0.47,
+    "median": 0.47,
+    "max": 0.47
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 1.57,
+    "max": 2.03
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_sjxber_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "sjxber",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000237226486206,
+    1.000012755393982,
+    0.9999550580978394
+   ],
+   "z": {
+    "min": 0.91,
+    "median": 0.91,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 2.17,
+    "max": 3.68
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_glwobe_0",
+   "substance": false,
+   "category": "floors",
+   "model": "glwobe",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999873042106628,
+    1.000001072883606,
+    0.9999303221702576
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.14,
+    "median": 0.88,
+    "max": 1.77
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   23.6,
+   1.04
+  ],
+  [
+   23.05,
+   1.55
+  ],
+  [
+   22.92,
+   -0.21
+  ],
+  [
+   22.97,
+   -1.17
+  ],
+  [
+   23.29,
+   0.84
+  ],
+  [
+   22.91,
+   1.21
+  ],
+  [
+   23.5,
+   -1.03
+  ],
+  [
+   23.01,
+   -0.56
+  ],
+  [
+   23.37,
+   0.29
+  ],
+  [
+   23.47,
+   -0.05
+  ],
+  [
+   23.3,
+   1.08
+  ],
+  [
+   23.12,
+   -0.88
+  ],
+  [
+   23.09,
+   1.56
+  ],
+  [
+   22.89,
+   0.1
+  ],
+  [
+   23.07,
+   0.75
+  ],
+  [
+   23.2,
+   -1.17
+  ],
+  [
+   23.3,
+   -1.08
+  ],
+  [
+   23.41,
+   -1.03
+  ],
+  [
+   23.51,
+   0.44
+  ],
+  [
+   23.4,
+   -0.69
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 9,
+   "median": 11.0,
+   "max": 14
+  },
+  "demo_seconds": {
+   "min": 139.43,
+   "median": 251.98,
+   "max": 503.4
+  },
+  "distinct_verb_sequences": 15,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.375,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 3,
+   "open door": 1,
+   "pick up from": 2,
+   "place in": 2,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.375,
+  "representative_episode": {
+   "file": "episode_00311080.json",
+   "seconds": 236.1,
+   "steps": [
+    {
+     "prompt": "move to the washer",
+     "start_s": 0.0,
+     "end_s": 17.4
+    },
+    {
+     "prompt": "open the door of the washer",
+     "start_s": 17.4,
+     "end_s": 59.6
+    },
+    {
+     "prompt": "move to the boxing gloves",
+     "start_s": 59.6,
+     "end_s": 76.9
+    },
+    {
+     "prompt": "pick up the boxing gloves from the countertop",
+     "start_s": 76.9,
+     "end_s": 98.0
+    },
+    {
+     "prompt": "pick up the boxing gloves from the countertop",
+     "start_s": 98.0,
+     "end_s": 113.4
+    },
+    {
+     "prompt": "move to the washer",
+     "start_s": 113.4,
+     "end_s": 141.8
+    },
+    {
+     "prompt": "place the boxing gloves in the washer",
+     "start_s": 142.4,
+     "end_s": 162.6
+    },
+    {
+     "prompt": "place the boxing gloves in the washer",
+     "start_s": 162.6,
+     "end_s": 195.9
+    },
+    {
+     "prompt": "close the door of the washer",
+     "start_s": 195.9,
+     "end_s": 225.1
+    },
+    {
+     "prompt": "turn on the washer",
+     "start_s": 225.1,
+     "end_s": 236.1
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 27.8,
+   "move to": 18.7,
+   "open door": 46.0,
+   "pick up from": 21.0,
+   "place in": 28.1,
+   "turn on switch": 20.5,
+   "turn to": 29.2
+  },
+  "verb_counts_total": {
+   "move to": 599,
+   "pick up from": 400,
+   "place in": 400,
+   "open door": 200,
+   "close door": 200,
+   "turn on switch": 200,
+   "turn to": 164
+  },
+  "top_prompts": [
+   [
+    "place the boxing gloves in the washer",
+    398
+   ],
+   [
+    "pick up the boxing gloves from the countertop",
+    396
+   ],
+   [
+    "move to the washer",
+    382
+   ],
+   [
+    "move to the boxing gloves",
+    217
+   ],
+   [
+    "open the door of the washer",
+    200
+   ],
+   [
+    "close the door of the washer",
+    200
+   ],
+   [
+    "turn on the washer",
+    200
+   ],
+   [
+    "turn to the boxing gloves",
+    164
+   ],
+   [
+    "pick up the boxing gloves from the washer",
+    3
+   ],
+   [
+    "place the boxing gloves in the countertop",
+    2
+   ],
+   [
+    "pick up the boxing gloves from the robot",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "turn to",
+  "pick up from",
+  "place in",
+  "open door",
+  "turn on switch"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12354
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12354
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12354
+  }
+ }
+}

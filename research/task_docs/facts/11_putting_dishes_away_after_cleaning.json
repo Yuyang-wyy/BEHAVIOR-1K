@@ -1,0 +1,1206 @@
+{
+ "index": 11,
+ "name": "putting_dishes_away_after_cleaning",
+ "instruction": "In the kitchen, gather all eight plates from the two countertops, place them all inside a single cabinet (either one), and make sure all cabinets are closed when you're done.",
+ "title": "Putting Dishes Away After Cleaning",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114057082",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "In the kitchen, gather all eight plates from the two countertops, place them all inside a single cabinet (either one), and make sure all cabinets are closed when you're done.",
+ "human": {
+  "mean_steps": 10953.43,
+  "mean_seconds": 365.1,
+  "step_limit": 16430,
+  "time_limit_seconds": 547.7,
+  "base_distance_m": 33.0487,
+  "eef_displacement_m": {
+   "left": 28.343,
+   "right": 31.5145
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem putting_dishes_away_after_cleaning-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tplate.n.04_1 plate.n.04_2 plate.n.04_3 plate.n.04_4 plate.n.04_5 plate.n.04_6 plate.n.04_7 plate.n.04_8 - plate.n.04\n    \tcountertop.n.01_1 countertop.n.01_2 - countertop.n.01\n    \tcabinet.n.01_1 cabinet.n.01_* - cabinet.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop plate.n.04_1 countertop.n.01_1) \n        (ontop plate.n.04_2 countertop.n.01_1) \n        (ontop plate.n.04_3 countertop.n.01_1) \n        (ontop plate.n.04_4 countertop.n.01_1) \n        (ontop plate.n.04_5 countertop.n.01_2) \n        (ontop plate.n.04_6 countertop.n.01_2) \n        (ontop plate.n.04_7 countertop.n.01_2) \n        (ontop plate.n.04_8 countertop.n.01_2) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom countertop.n.01_2 kitchen) \n        (inroom cabinet.n.01_1 kitchen) \n        (inroom cabinet.n.01_* kitchen)\n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists \n                (?cabinet.n.01 - cabinet.n.01) \n                (forall \n                    (?plate.n.04 - plate.n.04) \n                    (inside ?plate.n.04 ?cabinet.n.01)\n                )\n            )\n            (forall\n                (?cabinet.n.01 - cabinet.n.01)\n                (not\n                    (open ?cabinet.n.01)\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "plate.n.04": [
+   "plate.n.04_1",
+   "plate.n.04_2",
+   "plate.n.04_3",
+   "plate.n.04_4",
+   "plate.n.04_5",
+   "plate.n.04_6",
+   "plate.n.04_7",
+   "plate.n.04_8"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1",
+   "countertop.n.01_2"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1",
+   "cabinet.n.01_2",
+   "cabinet.n.01_3",
+   "cabinet.n.01_4",
+   "cabinet.n.01_5",
+   "cabinet.n.01_6"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_2": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_3": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_4": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_5": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_6": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom cabinet.n.01_2 kitchen)",
+  "(inroom cabinet.n.01_3 kitchen)",
+  "(inroom cabinet.n.01_4 kitchen)",
+  "(inroom cabinet.n.01_5 kitchen)",
+  "(inroom cabinet.n.01_6 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom countertop.n.01_2 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop plate.n.04_1 countertop.n.01_1)",
+  "(ontop plate.n.04_2 countertop.n.01_1)",
+  "(ontop plate.n.04_3 countertop.n.01_1)",
+  "(ontop plate.n.04_4 countertop.n.01_1)",
+  "(ontop plate.n.04_5 countertop.n.01_2)",
+  "(ontop plate.n.04_6 countertop.n.01_2)",
+  "(ontop plate.n.04_7 countertop.n.01_2)",
+  "(ontop plate.n.04_8 countertop.n.01_2)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 plate.n.04_1)",
+  "(touching countertop.n.01_1 plate.n.04_2)",
+  "(touching countertop.n.01_1 plate.n.04_3)",
+  "(touching countertop.n.01_1 plate.n.04_4)",
+  "(touching countertop.n.01_2 plate.n.04_5)",
+  "(touching countertop.n.01_2 plate.n.04_6)",
+  "(touching countertop.n.01_2 plate.n.04_7)",
+  "(touching countertop.n.01_2 plate.n.04_8)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching plate.n.04_1 countertop.n.01_1)",
+  "(touching plate.n.04_2 countertop.n.01_1)",
+  "(touching plate.n.04_3 countertop.n.01_1)",
+  "(touching plate.n.04_4 countertop.n.01_1)",
+  "(touching plate.n.04_5 countertop.n.01_2)",
+  "(touching plate.n.04_6 countertop.n.01_2)",
+  "(touching plate.n.04_7 countertop.n.01_2)",
+  "(touching plate.n.04_8 countertop.n.01_2)"
+ ],
+ "n_ground_options": 6,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 14,
+  "n_initially_true": 6,
+  "max_partial_q": 0.571,
+  "literals": [
+   {
+    "literal": "(inside plate.n.04_1 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_1",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_3 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_3",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_6 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_6",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_2 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_2",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_7 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_7",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_5 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_5",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_8 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_8",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside plate.n.04_4 cabinet.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "plate.n.04_4",
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open cabinet.n.01_3))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_3"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open cabinet.n.01_5))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_5"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open cabinet.n.01_6))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_6"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open cabinet.n.01_2))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_2"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open cabinet.n.01_4))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_4"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open cabinet.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   14,
+   6
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   8
+  ],
+  [
+   "not open",
+   6
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_214",
+   "substance": false,
+   "category": "plate",
+   "model": "xfjmld",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.07,
+    "median": 1.07,
+    "max": 1.07
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.81,
+    "median": 1.61,
+    "max": 3.41
+   },
+   "xy_spread_m": 2.74,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_2",
+   "scene_object": "plate_213",
+   "substance": false,
+   "category": "plate",
+   "model": "luhkiz",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.0,
+    "median": 1.9,
+    "max": 3.62
+   },
+   "xy_spread_m": 2.85,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_3",
+   "scene_object": "plate_212",
+   "substance": false,
+   "category": "plate",
+   "model": "luhkiz",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.76,
+    "median": 1.94,
+    "max": 3.71
+   },
+   "xy_spread_m": 2.83,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_4",
+   "scene_object": "plate_211",
+   "substance": false,
+   "category": "plate",
+   "model": "luhkiz",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.94,
+    "median": 2.16,
+    "max": 3.58
+   },
+   "xy_spread_m": 2.78,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_5",
+   "scene_object": "plate_210",
+   "substance": false,
+   "category": "plate",
+   "model": "xfjmld",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.98,
+    "median": 2.3,
+    "max": 3.66
+   },
+   "xy_spread_m": 2.32,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_6",
+   "scene_object": "plate_209",
+   "substance": false,
+   "category": "plate",
+   "model": "ntedfx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.82,
+    "median": 2.2,
+    "max": 3.82
+   },
+   "xy_spread_m": 2.71,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_7",
+   "scene_object": "plate_208",
+   "substance": false,
+   "category": "plate",
+   "model": "pkkgzc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 2.55,
+    "max": 3.84
+   },
+   "xy_spread_m": 2.69,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_8",
+   "scene_object": "plate_207",
+   "substance": false,
+   "category": "plate",
+   "model": "ntedfx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 1.98,
+    "max": 3.64
+   },
+   "xy_spread_m": 2.78,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_udatjt_0",
+   "substance": false,
+   "category": "bar",
+   "model": "udatjt",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.999976396560669,
+    1.000006914138794,
+    0.9999703764915466
+   ],
+   "z": {
+    "min": 0.66,
+    "median": 0.66,
+    "max": 0.66
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.18,
+    "median": 2.17,
+    "max": 2.52
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_2",
+   "scene_object": "countertop_kelzer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "kelzer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000444650650024,
+    0.9999945759773254,
+    1.0007061958312988
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 1.99,
+    "max": 3.57
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_no_top_gjeoer_0",
+   "substance": false,
+   "category": "bottom_cabinet_no_top",
+   "model": "gjeoer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999522566795349,
+    1.0000033378601074,
+    0.9999667406082153
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.42,
+    "max": 0.42
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.01,
+    "median": 1.55,
+    "max": 4.55
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_2",
+   "scene_object": "bottom_cabinet_fancyy_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "fancyy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000628232955933,
+    1.0000044107437134,
+    0.9999768137931824
+   ],
+   "z": {
+    "min": 1.12,
+    "median": 1.12,
+    "max": 1.12
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 3.87,
+    "max": 4.97
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_3",
+   "scene_object": "top_cabinet_lkxmne_1",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 1.67,
+    "max": 4.6
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_4",
+   "scene_object": "top_cabinet_lkxmne_2",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.04,
+    "median": 1.77,
+    "max": 4.84
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_5",
+   "scene_object": "top_cabinet_lkxmne_0",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.5,
+    "median": 2.62,
+    "max": 4.64
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_6",
+   "scene_object": "bottom_cabinet_no_top_rkgjer_0",
+   "substance": false,
+   "category": "bottom_cabinet_no_top",
+   "model": "rkgjer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000126361846924,
+    0.9999865293502808,
+    0.9999390840530396
+   ],
+   "z": {
+    "min": 0.42,
+    "median": 0.42,
+    "max": 0.42
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.28,
+    "median": 2.07,
+    "max": 3.62
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.74,
+    "median": 1.43,
+    "max": 2.24
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   7.86,
+   -0.87
+  ],
+  [
+   5.49,
+   -0.82
+  ],
+  [
+   5.41,
+   -0.83
+  ],
+  [
+   5.17,
+   -0.29
+  ],
+  [
+   5.03,
+   1.34
+  ],
+  [
+   6.79,
+   -0.97
+  ],
+  [
+   5.03,
+   0.78
+  ],
+  [
+   8.59,
+   -0.89
+  ],
+  [
+   5.21,
+   -0.13
+  ],
+  [
+   5.07,
+   -0.44
+  ],
+  [
+   5.58,
+   1.56
+  ],
+  [
+   5.19,
+   0.74
+  ],
+  [
+   5.23,
+   -0.53
+  ],
+  [
+   5.55,
+   -0.82
+  ],
+  [
+   5.16,
+   0.94
+  ],
+  [
+   5.48,
+   1.52
+  ],
+  [
+   5.27,
+   -0.81
+  ],
+  [
+   7.66,
+   -0.91
+  ],
+  [
+   7.3,
+   -1.03
+  ],
+  [
+   5.05,
+   0.73
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 29,
+   "median": 32.0,
+   "max": 33
+  },
+  "demo_seconds": {
+   "min": 262.1,
+   "median": 352.67,
+   "max": 536.4
+  },
+  "distinct_verb_sequences": 29,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "close door",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.225,
+  "modal_verb_counts": {
+   "close door": 2,
+   "move to": 12,
+   "open door": 2,
+   "pick up from": 8,
+   "place in": 2,
+   "place on": 6
+  },
+  "modal_verb_counts_share": 0.4,
+  "representative_episode": {
+   "file": "episode_00111340.json",
+   "seconds": 370.6,
+   "steps": [
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 0.0,
+     "end_s": 11.7
+    },
+    {
+     "prompt": "open the door of the right_door top cabinet",
+     "start_s": 11.7,
+     "end_s": 39.5
+    },
+    {
+     "prompt": "open the door of the left_door top cabinet",
+     "start_s": 39.5,
+     "end_s": 51.0
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 51.0,
+     "end_s": 70.2
+    },
+    {
+     "prompt": "pick up the plate from the countertop",
+     "start_s": 70.2,
+     "end_s": 78.3
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 78.3,
+     "end_s": 78.7
+    },
+    {
+     "prompt": "pick up the plate from the countertop",
+     "start_s": 78.7,
+     "end_s": 84.4
+    },
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 84.4,
+     "end_s": 96.5
+    },
+    {
+     "prompt": "place the plate in the low_level top cabinet",
+     "start_s": 96.5,
+     "end_s": 110.4
+    },
+    {
+     "prompt": "place the plate in the low_level top cabinet",
+     "start_s": 110.4,
+     "end_s": 115.2
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 116.2,
+     "end_s": 123.0
+    },
+    {
+     "prompt": "pick up the plate from the countertop",
+     "start_s": 123.0,
+     "end_s": 132.3
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 132.3,
+     "end_s": 146.2
+    },
+    {
+     "prompt": "pick up the plate from the countertop",
+     "start_s": 146.2,
+     "end_s": 151.1
+    },
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 151.1,
+     "end_s": 165.2
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 165.2,
+     "end_s": 182.1
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 182.1,
+     "end_s": 191.1
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 191.1,
+     "end_s": 215.6
+    },
+    {
+     "prompt": "pick up the plate from the bar",
+     "start_s": 215.6,
+     "end_s": 226.7
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 226.7,
+     "end_s": 232.0
+    },
+    {
+     "prompt": "pick up the plate from the bar",
+     "start_s": 232.0,
+     "end_s": 238.2
+    },
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 238.2,
+     "end_s": 263.1
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 263.1,
+     "end_s": 274.5
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 274.5,
+     "end_s": 280.3
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 280.3,
+     "end_s": 298.1
+    },
+    {
+     "prompt": "pick up the plate from the bar",
+     "start_s": 298.1,
+     "end_s": 305.7
+    },
+    {
+     "prompt": "move to the plate",
+     "start_s": 305.7,
+     "end_s": 307.7
+    },
+    {
+     "prompt": "pick up the plate from the bar",
+     "start_s": 307.7,
+     "end_s": 315.6
+    },
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 315.6,
+     "end_s": 327.9
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 327.9,
+     "end_s": 339.4
+    },
+    {
+     "prompt": "place the plate on the plate",
+     "start_s": 339.4,
+     "end_s": 345.3
+    },
+    {
+     "prompt": "close the door of the left_door top cabinet",
+     "start_s": 345.3,
+     "end_s": 355.7
+    },
+    {
+     "prompt": "close the door of the right_door top cabinet",
+     "start_s": 355.7,
+     "end_s": 370.6
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 14.4,
+   "move to": 11.6,
+   "open door": 25.7,
+   "pick up from": 8.4,
+   "place in": 9.7,
+   "place on": 10.0
+  },
+  "verb_counts_total": {
+   "move to": 2339,
+   "pick up from": 1600,
+   "place on": 1200,
+   "open door": 400,
+   "place in": 400,
+   "close door": 400
+  },
+  "top_prompts": [
+   [
+    "move to the plate",
+    1340
+   ],
+   [
+    "place the plate on the plate",
+    1200
+   ],
+   [
+    "move to the top cabinet",
+    999
+   ],
+   [
+    "pick up the plate from the countertop",
+    800
+   ],
+   [
+    "pick up the plate from the bar",
+    800
+   ],
+   [
+    "place the plate in the low_level top cabinet",
+    398
+   ],
+   [
+    "open the door of the right_door top cabinet",
+    200
+   ],
+   [
+    "open the door of the left_door top cabinet",
+    200
+   ],
+   [
+    "close the door of the left_door top cabinet",
+    200
+   ],
+   [
+    "close the door of the right_door top cabinet",
+    199
+   ],
+   [
+    "place the plate in the low_level countertop",
+    2
+   ],
+   [
+    "close the door of the right top cabinet",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "place on",
+  "pick up from",
+  "place in",
+  "open door"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 16431
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 16431
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 16431
+  }
+ }
+}

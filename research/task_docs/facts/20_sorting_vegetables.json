@@ -1,0 +1,1309 @@
+{
+ "index": 20,
+ "name": "sorting_vegetables",
+ "instruction": "Sort the vegetables from the two wicker baskets on the kitchen floor into the mixing bowls on the kitchen countertop: put all three bok choy and all three Vidalia onions together into one mixing bowl; put both leeks and both broccoli together into a second mixing bowl; and put all three sweet corn into a third mixing bowl.",
+ "title": "Sorting Vegetables",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114058741",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Sort the vegetables from the two wicker baskets on the kitchen floor into the mixing bowls on the kitchen countertop: put all three bok choy and all three Vidalia onions together into one mixing bowl; put both leeks and both broccoli together into a second mixing bowl; and put all three sweet corn into a third mixing bowl.",
+ "human": {
+  "mean_steps": 11903.7,
+  "mean_seconds": 396.8,
+  "step_limit": 17855,
+  "time_limit_seconds": 595.2,
+  "base_distance_m": 33.9547,
+  "eef_displacement_m": {
+   "left": 46.3001,
+   "right": 22.8779
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem sorting_vegetables-0)\n    (:domain behavior-1k)\n\n    (:objects\n        mixing_bowl.n.01_1 mixing_bowl.n.01_2 mixing_bowl.n.01_3 - mixing_bowl.n.01\n        countertop.n.01_1 - countertop.n.01\n        wicker_basket.n.01_1 wicker_basket.n.01_2 - wicker_basket.n.01\n        bok_choy.n.02_1 bok_choy.n.02_2 bok_choy.n.02_3 - bok_choy.n.02\n        vidalia_onion.n.01_1 vidalia_onion.n.01_2 vidalia_onion.n.01_3 - vidalia_onion.n.01\n        sweet_corn.n.02_1 sweet_corn.n.02_2 sweet_corn.n.02_3 - sweet_corn.n.02\n        broccoli.n.02_1 broccoli.n.02_2 - broccoli.n.02\n        leek.n.02_1 leek.n.02_2 - leek.n.02\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop mixing_bowl.n.01_1 countertop.n.01_1) \n        (ontop mixing_bowl.n.01_2 countertop.n.01_1) \n        (ontop mixing_bowl.n.01_3 countertop.n.01_1) \n        (ontop wicker_basket.n.01_1 floor.n.01_1)\n        (ontop wicker_basket.n.01_2 floor.n.01_1)\n        (inside bok_choy.n.02_1 wicker_basket.n.01_1)\n        (inside bok_choy.n.02_2 wicker_basket.n.01_1)\n        (inside bok_choy.n.02_3 wicker_basket.n.01_1)\n        (inside sweet_corn.n.02_1 wicker_basket.n.01_1)\n        (inside sweet_corn.n.02_2 wicker_basket.n.01_1)\n        (inside sweet_corn.n.02_3 wicker_basket.n.01_1)\n        (inside broccoli.n.02_1 wicker_basket.n.01_2) \n        (inside broccoli.n.02_2 wicker_basket.n.01_2)\n        (inside leek.n.02_1 wicker_basket.n.01_2)\n        (inside leek.n.02_2 wicker_basket.n.01_2)\n        (inside vidalia_onion.n.01_1 wicker_basket.n.01_2)\n        (inside vidalia_onion.n.01_2 wicker_basket.n.01_2)\n        (inside vidalia_onion.n.01_3 wicker_basket.n.01_2)\n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists \n                (?mixing_bowl.n.01 - mixing_bowl.n.01)\n                (and \n                    (forall \n                        (?bok_choy.n.02 - bok_choy.n.02)\n                        (inside ?bok_choy.n.02 ?mixing_bowl.n.01)\n                    )\n                    (forall \n                        (?vidalia_onion.n.01 - vidalia_onion.n.01)\n                        (inside ?vidalia_onion.n.01 ?mixing_bowl.n.01)\n                    )\n                )\n            )\n            (exists \n                (?mixing_bowl.n.01 - mixing_bowl.n.01)\n                (and \n                    (forall \n                        (?leek.n.02 - leek.n.02)\n                        (inside ?leek.n.02 ?mixing_bowl.n.01)\n                    )\n                    (forall \n                        (?broccoli.n.02 - broccoli.n.02)\n                        (inside ?broccoli.n.02 ?mixing_bowl.n.01)\n                    )\n                )\n            )\n            (exists \n                (?mixing_bowl.n.01 - mixing_bowl.n.01)\n                (and \n                    (forall \n                        (?sweet_corn.n.02 - sweet_corn.n.02)\n                        (inside ?sweet_corn.n.02 ?mixing_bowl.n.01)\n                    )\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "mixing_bowl.n.01": [
+   "mixing_bowl.n.01_1",
+   "mixing_bowl.n.01_2",
+   "mixing_bowl.n.01_3"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "wicker_basket.n.01": [
+   "wicker_basket.n.01_1",
+   "wicker_basket.n.01_2"
+  ],
+  "bok_choy.n.02": [
+   "bok_choy.n.02_1",
+   "bok_choy.n.02_2",
+   "bok_choy.n.02_3"
+  ],
+  "vidalia_onion.n.01": [
+   "vidalia_onion.n.01_1",
+   "vidalia_onion.n.01_2",
+   "vidalia_onion.n.01_3"
+  ],
+  "sweet_corn.n.02": [
+   "sweet_corn.n.02_1",
+   "sweet_corn.n.02_2",
+   "sweet_corn.n.02_3"
+  ],
+  "broccoli.n.02": [
+   "broccoli.n.02_1",
+   "broccoli.n.02_2"
+  ],
+  "leek.n.02": [
+   "leek.n.02_1",
+   "leek.n.02_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inside bok_choy.n.02_1 wicker_basket.n.01_1)",
+  "(inside bok_choy.n.02_2 wicker_basket.n.01_1)",
+  "(inside bok_choy.n.02_3 wicker_basket.n.01_1)",
+  "(inside broccoli.n.02_1 wicker_basket.n.01_2)",
+  "(inside broccoli.n.02_2 wicker_basket.n.01_2)",
+  "(inside leek.n.02_1 wicker_basket.n.01_2)",
+  "(inside leek.n.02_2 wicker_basket.n.01_2)",
+  "(inside sweet_corn.n.02_1 wicker_basket.n.01_1)",
+  "(inside sweet_corn.n.02_2 wicker_basket.n.01_1)",
+  "(inside sweet_corn.n.02_3 wicker_basket.n.01_1)",
+  "(inside vidalia_onion.n.01_1 wicker_basket.n.01_2)",
+  "(inside vidalia_onion.n.01_2 wicker_basket.n.01_2)",
+  "(inside vidalia_onion.n.01_3 wicker_basket.n.01_2)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop mixing_bowl.n.01_1 countertop.n.01_1)",
+  "(ontop mixing_bowl.n.01_2 countertop.n.01_1)",
+  "(ontop mixing_bowl.n.01_3 countertop.n.01_1)",
+  "(ontop wicker_basket.n.01_1 floor.n.01_1)",
+  "(ontop wicker_basket.n.01_2 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 mixing_bowl.n.01_1)",
+  "(touching countertop.n.01_1 mixing_bowl.n.01_2)",
+  "(touching countertop.n.01_1 mixing_bowl.n.01_3)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 wicker_basket.n.01_1)",
+  "(touching floor.n.01_1 wicker_basket.n.01_2)",
+  "(touching mixing_bowl.n.01_1 countertop.n.01_1)",
+  "(touching mixing_bowl.n.01_2 countertop.n.01_1)",
+  "(touching mixing_bowl.n.01_3 countertop.n.01_1)",
+  "(touching wicker_basket.n.01_1 floor.n.01_1)",
+  "(touching wicker_basket.n.01_2 floor.n.01_1)"
+ ],
+ "n_ground_options": 27,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 13,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside bok_choy.n.02_1 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bok_choy.n.02_1",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bok_choy.n.02_2 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bok_choy.n.02_2",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bok_choy.n.02_3 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bok_choy.n.02_3",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside vidalia_onion.n.01_1 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "vidalia_onion.n.01_1",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside vidalia_onion.n.01_2 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "vidalia_onion.n.01_2",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside vidalia_onion.n.01_3 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "vidalia_onion.n.01_3",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside leek.n.02_2 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "leek.n.02_2",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside leek.n.02_1 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "leek.n.02_1",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside broccoli.n.02_1 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "broccoli.n.02_1",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside broccoli.n.02_2 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "broccoli.n.02_2",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside sweet_corn.n.02_2 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "sweet_corn.n.02_2",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside sweet_corn.n.02_1 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "sweet_corn.n.02_1",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside sweet_corn.n.02_3 mixing_bowl.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "sweet_corn.n.02_3",
+     "mixing_bowl.n.01_3"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   13,
+   27
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   13
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "mixing_bowl.n.01_1",
+   "scene_object": "mixing_bowl_224",
+   "substance": false,
+   "category": "mixing_bowl",
+   "model": "bsgybx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.503788948059082,
+    1.487800121307373,
+    1.4496490955352783
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 1.91,
+    "max": 3.52
+   },
+   "xy_spread_m": 2.59,
+   "n_poses": 20
+  },
+  {
+   "inst": "mixing_bowl.n.01_2",
+   "scene_object": "mixing_bowl_223",
+   "substance": false,
+   "category": "mixing_bowl",
+   "model": "bsgybx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.503788948059082,
+    1.487800121307373,
+    1.4496490955352783
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 2.11,
+    "max": 3.55
+   },
+   "xy_spread_m": 0.66,
+   "n_poses": 20
+  },
+  {
+   "inst": "mixing_bowl.n.01_3",
+   "scene_object": "mixing_bowl_222",
+   "substance": false,
+   "category": "mixing_bowl",
+   "model": "bsgybx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.503788948059082,
+    1.487800121307373,
+    1.4496490955352783
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.92,
+    "median": 1.97,
+    "max": 3.78
+   },
+   "xy_spread_m": 2.62,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_kelzer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "kelzer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000444650650024,
+    0.9999945759773254,
+    1.0007061958312988
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 1.62,
+    "max": 3.59
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_1",
+   "scene_object": "wicker_basket_221",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.1612493991851807,
+    1.0920430421829224,
+    0.9770687818527222
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.69,
+    "median": 2.44,
+    "max": 3.84
+   },
+   "xy_spread_m": 4.86,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_2",
+   "scene_object": "wicker_basket_220",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.1612493991851807,
+    1.0920430421829224,
+    0.9770687818527222
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.71,
+    "median": 2.17,
+    "max": 4.0
+   },
+   "xy_spread_m": 5.57,
+   "n_poses": 20
+  },
+  {
+   "inst": "bok_choy.n.02_1",
+   "scene_object": "bok_choy_219",
+   "substance": false,
+   "category": "bok_choy",
+   "model": "bbvcji",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.07,
+    "max": 0.11
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 2.52,
+    "max": 3.84
+   },
+   "xy_spread_m": 4.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "bok_choy.n.02_2",
+   "scene_object": "bok_choy_218",
+   "substance": false,
+   "category": "bok_choy",
+   "model": "bbvcji",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.06,
+    "max": 0.11
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 2.44,
+    "max": 3.95
+   },
+   "xy_spread_m": 5.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bok_choy.n.02_3",
+   "scene_object": "bok_choy_217",
+   "substance": false,
+   "category": "bok_choy",
+   "model": "bbvcji",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.09,
+    "max": 0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.78,
+    "median": 2.39,
+    "max": 3.86
+   },
+   "xy_spread_m": 4.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "vidalia_onion.n.01_1",
+   "scene_object": "vidalia_onion_216",
+   "substance": false,
+   "category": "vidalia_onion",
+   "model": "buyxll",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.07,
+    "max": 0.12
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.65,
+    "median": 2.15,
+    "max": 4.09
+   },
+   "xy_spread_m": 5.55,
+   "n_poses": 20
+  },
+  {
+   "inst": "vidalia_onion.n.01_2",
+   "scene_object": "vidalia_onion_215",
+   "substance": false,
+   "category": "vidalia_onion",
+   "model": "buyxll",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.1
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.65,
+    "median": 2.21,
+    "max": 3.92
+   },
+   "xy_spread_m": 5.39,
+   "n_poses": 20
+  },
+  {
+   "inst": "vidalia_onion.n.01_3",
+   "scene_object": "vidalia_onion_214",
+   "substance": false,
+   "category": "vidalia_onion",
+   "model": "buyxll",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.09,
+    "max": 0.12
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.68,
+    "median": 2.06,
+    "max": 4.01
+   },
+   "xy_spread_m": 5.65,
+   "n_poses": 20
+  },
+  {
+   "inst": "sweet_corn.n.02_1",
+   "scene_object": "sweet_corn_213",
+   "substance": false,
+   "category": "sweet_corn",
+   "model": "qtesku",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.08,
+    "median": 0.13,
+    "max": 0.18
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 2.46,
+    "max": 3.76
+   },
+   "xy_spread_m": 4.83,
+   "n_poses": 20
+  },
+  {
+   "inst": "sweet_corn.n.02_2",
+   "scene_object": "sweet_corn_212",
+   "substance": false,
+   "category": "sweet_corn",
+   "model": "qtesku",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.05,
+    "max": 0.12
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.63,
+    "median": 2.41,
+    "max": 3.82
+   },
+   "xy_spread_m": 4.86,
+   "n_poses": 20
+  },
+  {
+   "inst": "sweet_corn.n.02_3",
+   "scene_object": "sweet_corn_211",
+   "substance": false,
+   "category": "sweet_corn",
+   "model": "qtesku",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.14,
+    "max": 0.17
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.69,
+    "median": 2.46,
+    "max": 3.91
+   },
+   "xy_spread_m": 4.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "broccoli.n.02_1",
+   "scene_object": "broccoli_210",
+   "substance": false,
+   "category": "broccoli",
+   "model": "wsxavx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    3.0941686630249023,
+    3.100154399871826,
+    2.7448537349700928
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.08,
+    "max": 0.11
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 2.12,
+    "max": 4.05
+   },
+   "xy_spread_m": 5.72,
+   "n_poses": 20
+  },
+  {
+   "inst": "broccoli.n.02_2",
+   "scene_object": "broccoli_209",
+   "substance": false,
+   "category": "broccoli",
+   "model": "wsxavx",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    3.0941686630249023,
+    3.100154399871826,
+    2.7448537349700928
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.11
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.63,
+    "median": 2.13,
+    "max": 3.95
+   },
+   "xy_spread_m": 5.78,
+   "n_poses": 20
+  },
+  {
+   "inst": "leek.n.02_1",
+   "scene_object": "leek_208",
+   "substance": false,
+   "category": "leek",
+   "model": "fyihsq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.04,
+    "max": 0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.72,
+    "median": 2.18,
+    "max": 4.05
+   },
+   "xy_spread_m": 5.57,
+   "n_poses": 20
+  },
+  {
+   "inst": "leek.n.02_2",
+   "scene_object": "leek_207",
+   "substance": false,
+   "category": "leek",
+   "model": "fyihsq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.07,
+    "max": 0.12
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.76,
+    "median": 2.17,
+    "max": 3.99
+   },
+   "xy_spread_m": 5.57,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 1.41,
+    "max": 2.36
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.24,
+   -0.01
+  ],
+  [
+   5.15,
+   -0.71
+  ],
+  [
+   7.06,
+   -0.87
+  ],
+  [
+   8.17,
+   -0.92
+  ],
+  [
+   7.06,
+   -0.89
+  ],
+  [
+   6.59,
+   -0.93
+  ],
+  [
+   5.62,
+   -0.89
+  ],
+  [
+   5.5,
+   -0.75
+  ],
+  [
+   5.26,
+   -0.51
+  ],
+  [
+   5.25,
+   1.11
+  ],
+  [
+   5.2,
+   -0.65
+  ],
+  [
+   8.24,
+   -0.97
+  ],
+  [
+   5.39,
+   -0.84
+  ],
+  [
+   5.62,
+   1.43
+  ],
+  [
+   5.27,
+   1.4
+  ],
+  [
+   4.96,
+   1.45
+  ],
+  [
+   5.39,
+   -0.7
+  ],
+  [
+   5.41,
+   1.43
+  ],
+  [
+   5.36,
+   -0.7
+  ],
+  [
+   5.14,
+   0.79
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 36,
+   "median": 41.0,
+   "max": 47
+  },
+  "demo_seconds": {
+   "min": 207.0,
+   "median": 386.25,
+   "max": 642.7
+  },
+  "distinct_verb_sequences": 195,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "move to",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "move to",
+   "place in",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.015,
+  "modal_verb_counts": {
+   "move to": 10,
+   "pick up from": 15,
+   "place in": 13,
+   "place on": 2
+  },
+  "modal_verb_counts_share": 0.135,
+  "representative_episode": {
+   "file": "episode_00200530.json",
+   "seconds": 346.7,
+   "steps": [
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 0.0,
+     "end_s": 9.0
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 9.0,
+     "end_s": 34.9
+    },
+    {
+     "prompt": "move to the mixing bowl",
+     "start_s": 34.9,
+     "end_s": 39.0
+    },
+    {
+     "prompt": "pick up the broccoli from the wicker basket",
+     "start_s": 39.0,
+     "end_s": 49.7
+    },
+    {
+     "prompt": "place the broccoli in the mixing bowl",
+     "start_s": 49.8,
+     "end_s": 55.8
+    },
+    {
+     "prompt": "pick up the broccoli from the wicker basket",
+     "start_s": 55.9,
+     "end_s": 66.8
+    },
+    {
+     "prompt": "place the broccoli in the mixing bowl",
+     "start_s": 66.8,
+     "end_s": 70.0
+    },
+    {
+     "prompt": "pick up the leek from the wicker basket",
+     "start_s": 70.0,
+     "end_s": 82.7
+    },
+    {
+     "prompt": "place the leek in the mixing bowl",
+     "start_s": 82.7,
+     "end_s": 86.1
+    },
+    {
+     "prompt": "pick up the leek from the wicker basket",
+     "start_s": 86.1,
+     "end_s": 103.2
+    },
+    {
+     "prompt": "place the leek in the mixing bowl",
+     "start_s": 103.2,
+     "end_s": 107.6
+    },
+    {
+     "prompt": "move to the mixing bowl",
+     "start_s": 107.6,
+     "end_s": 114.8
+    },
+    {
+     "prompt": "pick up the vidalia onion from the wicker basket",
+     "start_s": 114.9,
+     "end_s": 124.1
+    },
+    {
+     "prompt": "place the vidalia onion in the mixing bowl",
+     "start_s": 124.1,
+     "end_s": 127.1
+    },
+    {
+     "prompt": "pick up the vidalia onion from the wicker basket",
+     "start_s": 127.1,
+     "end_s": 134.1
+    },
+    {
+     "prompt": "place the vidalia onion in the mixing bowl",
+     "start_s": 134.1,
+     "end_s": 136.6
+    },
+    {
+     "prompt": "pick up the vidalia onion from the wicker basket",
+     "start_s": 136.6,
+     "end_s": 143.7
+    },
+    {
+     "prompt": "place the vidalia onion in the mixing bowl",
+     "start_s": 143.7,
+     "end_s": 147.9
+    },
+    {
+     "prompt": "place the wicker basket on the floors",
+     "start_s": 147.9,
+     "end_s": 166.9
+    },
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 166.9,
+     "end_s": 182.7
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 182.7,
+     "end_s": 201.0
+    },
+    {
+     "prompt": "move to the mixing bowl",
+     "start_s": 201.0,
+     "end_s": 243.7
+    },
+    {
+     "prompt": "pick up the bok choy from the wicker basket",
+     "start_s": 226.8,
+     "end_s": 241.5
+    },
+    {
+     "prompt": "place the bok choy in the mixing bowl",
+     "start_s": 243.7,
+     "end_s": 245.0
+    },
+    {
+     "prompt": "pick up the bok choy from the wicker basket",
+     "start_s": 245.0,
+     "end_s": 255.6
+    },
+    {
+     "prompt": "place the bok choy in the mixing bowl",
+     "start_s": 255.6,
+     "end_s": 258.5
+    },
+    {
+     "prompt": "pick up the bok choy from the wicker basket",
+     "start_s": 258.5,
+     "end_s": 269.0
+    },
+    {
+     "prompt": "place the bok choy in the mixing bowl",
+     "start_s": 269.0,
+     "end_s": 272.9
+    },
+    {
+     "prompt": "pick up the sweet corn from the wicker basket",
+     "start_s": 272.9,
+     "end_s": 289.3
+    },
+    {
+     "prompt": "move to the mixing bowl",
+     "start_s": 289.3,
+     "end_s": 293.7
+    },
+    {
+     "prompt": "place the sweet corn in the mixing bowl",
+     "start_s": 293.7,
+     "end_s": 295.6
+    },
+    {
+     "prompt": "pick up the sweet corn from the wicker basket",
+     "start_s": 295.6,
+     "end_s": 306.8
+    },
+    {
+     "prompt": "place the sweet corn in the mixing bowl",
+     "start_s": 306.8,
+     "end_s": 310.7
+    },
+    {
+     "prompt": "pick up the sweet corn from the wicker basket",
+     "start_s": 310.7,
+     "end_s": 323.7
+    },
+    {
+     "prompt": "place the sweet corn in the mixing bowl",
+     "start_s": 323.7,
+     "end_s": 329.0
+    },
+    {
+     "prompt": "place the wicker basket on the floors",
+     "start_s": 329.0,
+     "end_s": 346.7
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 12.8,
+   "pick up from": 11.8,
+   "place in": 4.2,
+   "place on": 17.8,
+   "push to": 10.0
+  },
+  "verb_counts_total": {
+   "pick up from": 3001,
+   "place in": 2600,
+   "move to": 2205,
+   "place on": 401,
+   "push to": 1
+  },
+  "top_prompts": [
+   [
+    "move to the mixing bowl",
+    1630
+   ],
+   [
+    "place the vidalia onion in the mixing bowl",
+    600
+   ],
+   [
+    "pick up the bok choy from the wicker basket",
+    600
+   ],
+   [
+    "place the bok choy in the mixing bowl",
+    600
+   ],
+   [
+    "pick up the vidalia onion from the wicker basket",
+    599
+   ],
+   [
+    "pick up the sweet corn from the wicker basket",
+    599
+   ],
+   [
+    "place the sweet corn in the mixing bowl",
+    598
+   ],
+   [
+    "pick up the wicker basket from the floors",
+    401
+   ],
+   [
+    "place the wicker basket on the floors",
+    401
+   ],
+   [
+    "pick up the leek from the wicker basket",
+    400
+   ],
+   [
+    "place the leek in the mixing bowl",
+    400
+   ],
+   [
+    "place the broccoli in the mixing bowl",
+    400
+   ],
+   [
+    "pick up the broccoli from the wicker basket",
+    399
+   ],
+   [
+    "move to the wicker basket",
+    398
+   ],
+   [
+    "move to the floors",
+    177
+   ],
+   [
+    "place the sweet corn in the wicker basket",
+    2
+   ],
+   [
+    "pick up the sweet corn from the mixing bowl",
+    1
+   ],
+   [
+    "pick up the broccoli from the mixing bowl",
+    1
+   ],
+   [
+    "pick up the vidalia onion from the mixing bowl",
+    1
+   ],
+   [
+    "push the bok choy to the center mixing bowl",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "place on",
+  "pick up from",
+  "place in",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.23076923076923078,
+   "success": false,
+   "steps": 17856
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.3076923076923077,
+   "success": false,
+   "steps": 17856
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.23076923076923078,
+   "success": false,
+   "steps": 17856
+  }
+ }
+}

@@ -1,0 +1,1245 @@
+{
+ "index": 48,
+ "name": "canning_food",
+ "instruction": "In the kitchen, open the refrigerator and the cabinet. Take the steak and the pineapple out of the refrigerator and take two bowls from the cabinet. On the chopping board on the countertop, use the carving knife to dice the steak and to dice the pineapple. Put only the diced steak into one bowl and only the diced pineapple into the other bowl - do not mix them. Place both bowls back inside the cabinet, then close the refrigerator and close the cabinet.",
+ "title": "Canning Food",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114061821",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "In the kitchen, open the refrigerator and the cabinet. Take the steak and the pineapple out of the refrigerator and take two bowls from the cabinet. On the chopping board on the countertop, use the carving knife to dice the steak and to dice the pineapple. Put only the diced steak into one bowl and only the diced pineapple into the other bowl - do not mix them. Place both bowls back inside the cabinet, then close the refrigerator and close the cabinet.",
+ "human": {
+  "mean_steps": 22975.49,
+  "mean_seconds": 765.8,
+  "step_limit": 34463,
+  "time_limit_seconds": 1148.8,
+  "base_distance_m": 64.4919,
+  "eef_displacement_m": {
+   "left": 45.9693,
+   "right": 45.9911
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem canning_food-0)\n    (:domain behavior-1k)\n\n    (:objects\n        steak.n.01_1 - steak.n.01 \n        diced__steak.n.01_1 - diced__steak.n.01\n        pineapple.n.02_1 - pineapple.n.02\n        diced__pineapple.n.01_1 - diced__pineapple.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        bowl.n.01_1 bowl.n.01_2 - bowl.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        chopping_board.n.01_1 - chopping_board.n.01\n        countertop.n.01_1 - countertop.n.01\n        carving_knife.n.01_1 - carving_knife.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside steak.n.01_1 electric_refrigerator.n.01_1) \n        (inside pineapple.n.02_1 electric_refrigerator.n.01_1) \n        (inside bowl.n.01_1 cabinet.n.01_1) \n        (inside bowl.n.01_2 cabinet.n.01_1) \n        (ontop chopping_board.n.01_1 countertop.n.01_1) \n        (ontop carving_knife.n.01_1 chopping_board.n.01_1)\n        (inroom cabinet.n.01_1 kitchen) \n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (future diced__pineapple.n.01_1)\n        (future diced__steak.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (real ?diced__steak.n.01_1)\n            (real ?diced__pineapple.n.01_1)\n            (exists\n                (?bowl.n.01 - bowl.n.01)\n                (and \n                    (filled ?bowl.n.01 ?diced__steak.n.01_1)\n                    (not\n                        (contains ?bowl.n.01 ?diced__pineapple.n.01_1)\n                    )\n                )\n            )\n            (exists\n                (?bowl.n.01 - bowl.n.01)\n                (and \n                    (filled ?bowl.n.01 ?diced__pineapple.n.01_1)\n                    (not\n                        (contains ?bowl.n.01 ?diced__steak.n.01_1)\n                    )\n                )\n            )\n            (forall \n                (?bowl.n.01 - bowl.n.01) \n                (and\n                    (inside ?bowl.n.01 ?cabinet.n.01_1)\n                )\n            ) \n            (not \n                (open ?electric_refrigerator.n.01_1)\n            )\n            (not\n                (open ?cabinet.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "steak.n.01": [
+   "steak.n.01_1"
+  ],
+  "diced__steak.n.01": [
+   "diced__steak.n.01_1"
+  ],
+  "pineapple.n.02": [
+   "pineapple.n.02_1"
+  ],
+  "diced__pineapple.n.01": [
+   "diced__pineapple.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "bowl.n.01": [
+   "bowl.n.01_1",
+   "bowl.n.01_2"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "carving_knife.n.01": [
+   "carving_knife.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "diced__pineapple.n.01_1",
+  "diced__steak.n.01_1"
+ ],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(future diced__pineapple.n.01_1)",
+  "(future diced__steak.n.01_1)",
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inside bowl.n.01_1 cabinet.n.01_1)",
+  "(inside bowl.n.01_2 cabinet.n.01_1)",
+  "(inside pineapple.n.02_1 electric_refrigerator.n.01_1)",
+  "(inside steak.n.01_1 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop carving_knife.n.01_1 chopping_board.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching carving_knife.n.01_1 chopping_board.n.01_1)",
+  "(touching chopping_board.n.01_1 carving_knife.n.01_1)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 4,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 10,
+  "n_initially_true": 6,
+  "max_partial_q": 0.4,
+  "literals": [
+   {
+    "literal": "(real diced__steak.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "diced__steak.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(real diced__pineapple.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "diced__pineapple.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(filled bowl.n.01_1 diced__steak.n.01_1)",
+    "negated": false,
+    "predicate": "filled",
+    "args": [
+     "bowl.n.01_1",
+     "diced__steak.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not contains bowl.n.01_1 diced__pineapple.n.01_1))",
+    "negated": true,
+    "predicate": "contains",
+    "args": [
+     "bowl.n.01_1",
+     "diced__pineapple.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(filled bowl.n.01_1 diced__pineapple.n.01_1)",
+    "negated": false,
+    "predicate": "filled",
+    "args": [
+     "bowl.n.01_1",
+     "diced__pineapple.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not contains bowl.n.01_1 diced__steak.n.01_1))",
+    "negated": true,
+    "predicate": "contains",
+    "args": [
+     "bowl.n.01_1",
+     "diced__steak.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(inside bowl.n.01_1 cabinet.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bowl.n.01_1",
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(inside bowl.n.01_2 cabinet.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bowl.n.01_2",
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open electric_refrigerator.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open cabinet.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   10,
+   4
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "real",
+   2
+  ],
+  [
+   "filled",
+   2
+  ],
+  [
+   "not contains",
+   2
+  ],
+  [
+   "inside",
+   2
+  ],
+  [
+   "not open",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "steak.n.01_1",
+   "scene_object": "steak_212",
+   "substance": false,
+   "category": "steak",
+   "model": "ppykkp",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9970859289169312,
+    0.9769926071166992,
+    1.8001757860183716
+   ],
+   "z": {
+    "min": 0.49,
+    "median": 0.9,
+    "max": 1.3
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.87,
+    "median": 2.64,
+    "max": 4.27
+   },
+   "xy_spread_m": 0.32,
+   "n_poses": 20
+  },
+  {
+   "inst": "diced__steak.n.01_1",
+   "scene_object": null,
+   "substance": true,
+   "systems": [
+    "diced__steak"
+   ]
+  },
+  {
+   "inst": "pineapple.n.02_1",
+   "scene_object": "pineapple_211",
+   "substance": false,
+   "category": "pineapple",
+   "model": "wfaybl",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.53,
+    "median": 0.94,
+    "max": 1.34
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 2.53,
+    "max": 4.36
+   },
+   "xy_spread_m": 0.29,
+   "n_poses": 20
+  },
+  {
+   "inst": "diced__pineapple.n.01_1",
+   "scene_object": null,
+   "substance": true,
+   "systems": [
+    "diced__pineapple"
+   ]
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_dszchb_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "dszchb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0291646718978882,
+    0.9616702198982239,
+    1.021162748336792
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.94,
+    "median": 2.56,
+    "max": 4.31
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bowl.n.01_1",
+   "scene_object": "bowl_210",
+   "substance": false,
+   "category": "bowl",
+   "model": "belcml",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.5216678380966187,
+    1.5216693878173828,
+    1.4630391597747803
+   ],
+   "z": {
+    "min": 0.55,
+    "median": 0.62,
+    "max": 1.55
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 3.47,
+    "max": 5.12
+   },
+   "xy_spread_m": 0.95,
+   "n_poses": 20
+  },
+  {
+   "inst": "bowl.n.01_2",
+   "scene_object": "bowl_209",
+   "substance": false,
+   "category": "bowl",
+   "model": "belcml",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.5216678380966187,
+    1.5216693878173828,
+    1.4630391597747803
+   ],
+   "z": {
+    "min": 0.55,
+    "median": 0.92,
+    "max": 1.55
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.95,
+    "median": 3.69,
+    "max": 5.24
+   },
+   "xy_spread_m": 0.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_fancyy_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "fancyy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000628232955933,
+    1.0000044107437134,
+    0.9999768137931824
+   ],
+   "z": {
+    "min": 1.12,
+    "median": 1.12,
+    "max": 1.12
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 3.42,
+    "max": 4.91
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "cutting_board_208",
+   "substance": false,
+   "category": "cutting_board",
+   "model": "aibvew",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.5193861722946167,
+    1.5166707038879395,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 1.86,
+    "max": 3.83
+   },
+   "xy_spread_m": 2.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_kelzer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "kelzer",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000444650650024,
+    0.9999945759773254,
+    1.0007061958312988
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.09,
+    "median": 1.98,
+    "max": 3.57
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "carving_knife.n.01_1",
+   "scene_object": "carving_knife_207",
+   "substance": false,
+   "category": "carving_knife",
+   "model": "usqmjc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.91,
+    "median": 0.91,
+    "max": 0.92
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 1.84,
+    "max": 3.86
+   },
+   "xy_spread_m": 2.71,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.76,
+    "median": 1.49,
+    "max": 2.44
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   8.95,
+   -0.91
+  ],
+  [
+   7.35,
+   -0.83
+  ],
+  [
+   7.67,
+   -1.04
+  ],
+  [
+   5.1,
+   1.0
+  ],
+  [
+   6.02,
+   -0.83
+  ],
+  [
+   5.47,
+   -0.89
+  ],
+  [
+   5.12,
+   -0.57
+  ],
+  [
+   5.15,
+   -0.23
+  ],
+  [
+   8.88,
+   -0.84
+  ],
+  [
+   5.59,
+   1.56
+  ],
+  [
+   5.49,
+   -0.94
+  ],
+  [
+   5.26,
+   1.5
+  ],
+  [
+   5.22,
+   1.06
+  ],
+  [
+   5.24,
+   1.06
+  ],
+  [
+   5.23,
+   -0.78
+  ],
+  [
+   5.6,
+   1.43
+  ],
+  [
+   7.75,
+   -0.96
+  ],
+  [
+   6.63,
+   -1.02
+  ],
+  [
+   8.95,
+   -0.78
+  ],
+  [
+   5.92,
+   -0.9
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 59,
+   "median": 67.5,
+   "max": 73
+  },
+  "demo_seconds": {
+   "min": 505.9,
+   "median": 743.93,
+   "max": 1282.9
+  },
+  "distinct_verb_sequences": 164,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to",
+   "move to",
+   "open door",
+   "pick up from",
+   "pick up from",
+   "close door",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "chop",
+   "chop",
+   "chop",
+   "place on next to",
+   "move to",
+   "open door",
+   "pick up from",
+   "pick up from",
+   "close door",
+   "move to",
+   "place on next to",
+   "place in",
+   "move to",
+   "pick up from",
+   "pour",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "open door",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "chop",
+   "pick up from",
+   "place on",
+   "chop",
+   "place on next to",
+   "pick up from",
+   "place in",
+   "move to",
+   "pick up from",
+   "pour",
+   "place on",
+   "pick up from",
+   "place on",
+   "move to",
+   "pick up from",
+   "chop",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "pour",
+   "place on",
+   "pick up from",
+   "move to",
+   "place in",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.03,
+  "modal_verb_counts": {
+   "chop": 6,
+   "close door": 3,
+   "move to": 17,
+   "open door": 3,
+   "pick up from": 18,
+   "place in": 4,
+   "place on": 9,
+   "place on next to": 5,
+   "pour": 3
+  },
+  "modal_verb_counts_share": 0.095,
+  "representative_episode": {
+   "file": "episode_00481460.json",
+   "seconds": 953.6,
+   "steps": [
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 0.0,
+     "end_s": 2.7
+    },
+    {
+     "prompt": "pick up the carving knife from the cutting board",
+     "start_s": 2.7,
+     "end_s": 15.5
+    },
+    {
+     "prompt": "pick up the cutting board from the countertop",
+     "start_s": 15.5,
+     "end_s": 29.4
+    },
+    {
+     "prompt": "move to the drop in sink",
+     "start_s": 29.4,
+     "end_s": 32.2
+    },
+    {
+     "prompt": "place the cutting board on the drop in sink",
+     "start_s": 32.2,
+     "end_s": 50.6
+    },
+    {
+     "prompt": "place the carving knife on the countertop next to the right cutting board",
+     "start_s": 50.6,
+     "end_s": 62.3
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 62.3,
+     "end_s": 81.9
+    },
+    {
+     "prompt": "open the door of the fridge",
+     "start_s": 82.0,
+     "end_s": 125.6
+    },
+    {
+     "prompt": "pick up the steak from the high_level fridge",
+     "start_s": 125.6,
+     "end_s": 155.7
+    },
+    {
+     "prompt": "pick up the pineapple from the low_level fridge",
+     "start_s": 155.7,
+     "end_s": 201.5
+    },
+    {
+     "prompt": "close the door of the fridge",
+     "start_s": 201.5,
+     "end_s": 241.3
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 241.3,
+     "end_s": 261.8
+    },
+    {
+     "prompt": "place the steak on the cutting board",
+     "start_s": 261.8,
+     "end_s": 269.8
+    },
+    {
+     "prompt": "place the pineapple on the countertop",
+     "start_s": 269.8,
+     "end_s": 278.3
+    },
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 278.3,
+     "end_s": 279.8
+    },
+    {
+     "prompt": "pick up the carving knife from the countertop",
+     "start_s": 279.8,
+     "end_s": 287.0
+    },
+    {
+     "prompt": "move to the steak",
+     "start_s": 287.0,
+     "end_s": 288.8
+    },
+    {
+     "prompt": "chop the carving knife with the steak",
+     "start_s": 288.8,
+     "end_s": 291.6
+    },
+    {
+     "prompt": "chop the carving knife with the half steak 212",
+     "start_s": 291.6,
+     "end_s": 293.9
+    },
+    {
+     "prompt": "chop the carving knife with the half steak 212",
+     "start_s": 293.9,
+     "end_s": 296.8
+    },
+    {
+     "prompt": "place the carving knife on the countertop next to the right cutting board",
+     "start_s": 296.8,
+     "end_s": 306.5
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 306.5,
+     "end_s": 331.8
+    },
+    {
+     "prompt": "open the door of the left_door bottom cabinet",
+     "start_s": 331.8,
+     "end_s": 358.9
+    },
+    {
+     "prompt": "pick up the bowl from the layer_2 bottom cabinet",
+     "start_s": 358.9,
+     "end_s": 387.5
+    },
+    {
+     "prompt": "pick up the bowl from the layer_4 bottom cabinet",
+     "start_s": 387.5,
+     "end_s": 416.4
+    },
+    {
+     "prompt": "close the door of the left_door bottom cabinet",
+     "start_s": 416.4,
+     "end_s": 454.1
+    },
+    {
+     "prompt": "move to the countertop",
+     "start_s": 454.1,
+     "end_s": 488.5
+    },
+    {
+     "prompt": "place the bowl on the countertop next to the right drop in sink",
+     "start_s": 488.5,
+     "end_s": 501.2
+    },
+    {
+     "prompt": "place the bowl in the drop in sink",
+     "start_s": 501.2,
+     "end_s": 515.8
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 515.8,
+     "end_s": 518.1
+    },
+    {
+     "prompt": "pick up the cutting board from the drop in sink",
+     "start_s": 518.1,
+     "end_s": 530.8
+    },
+    {
+     "prompt": "pour the diced  steak into the cutting board",
+     "start_s": 530.8,
+     "end_s": 543.4
+    },
+    {
+     "prompt": "place the cutting board on the drop in sink",
+     "start_s": 543.4,
+     "end_s": 548.8
+    },
+    {
+     "prompt": "move to the bowl",
+     "start_s": 548.8,
+     "end_s": 551.8
+    },
+    {
+     "prompt": "pick up the bowl from the drop in sink",
+     "start_s": 551.8,
+     "end_s": 559.5
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 559.5,
+     "end_s": 586.8
+    },
+    {
+     "prompt": "open the door of the left_door bottom cabinet",
+     "start_s": 586.8,
+     "end_s": 614.6
+    },
+    {
+     "prompt": "place the bowl in the layer_4 bottom cabinet",
+     "start_s": 614.6,
+     "end_s": 638.7
+    },
+    {
+     "prompt": "move to the pineapple",
+     "start_s": 638.7,
+     "end_s": 660.6
+    },
+    {
+     "prompt": "pick up the pineapple from the countertop",
+     "start_s": 660.6,
+     "end_s": 674.4
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 674.4,
+     "end_s": 677.7
+    },
+    {
+     "prompt": "place the pineapple on the cutting board",
+     "start_s": 677.7,
+     "end_s": 689.7
+    },
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 689.7,
+     "end_s": 691.6
+    },
+    {
+     "prompt": "pick up the carving knife from the countertop",
+     "start_s": 691.6,
+     "end_s": 696.5
+    },
+    {
+     "prompt": "chop the carving knife with the pineapple",
+     "start_s": 696.5,
+     "end_s": 703.4
+    },
+    {
+     "prompt": "pick up the half pineapple 211 from the cutting board",
+     "start_s": 703.4,
+     "end_s": 710.4
+    },
+    {
+     "prompt": "place the half pineapple 211 on the countertop",
+     "start_s": 710.4,
+     "end_s": 715.9
+    },
+    {
+     "prompt": "chop the carving knife with the half pineapple 211",
+     "start_s": 715.9,
+     "end_s": 719.5
+    },
+    {
+     "prompt": "place the carving knife on the countertop next to the right cutting board",
+     "start_s": 719.5,
+     "end_s": 726.6
+    },
+    {
+     "prompt": "pick up the bowl from the countertop",
+     "start_s": 726.6,
+     "end_s": 733.0
+    },
+    {
+     "prompt": "place the bowl in the drop in sink",
+     "start_s": 733.0,
+     "end_s": 745.5
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 745.5,
+     "end_s": 746.2
+    },
+    {
+     "prompt": "pick up the cutting board from the drop in sink",
+     "start_s": 746.2,
+     "end_s": 762.8
+    },
+    {
+     "prompt": "pour the diced  pineapple into the cutting board",
+     "start_s": 762.8,
+     "end_s": 801.3
+    },
+    {
+     "prompt": "place the cutting board on the drop in sink",
+     "start_s": 801.3,
+     "end_s": 806.8
+    },
+    {
+     "prompt": "pick up the half pineapple 211 from the countertop",
+     "start_s": 806.8,
+     "end_s": 812.0
+    },
+    {
+     "prompt": "place the half pineapple 211 on the cutting board",
+     "start_s": 812.0,
+     "end_s": 818.7
+    },
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 818.7,
+     "end_s": 820.8
+    },
+    {
+     "prompt": "pick up the carving knife from the countertop",
+     "start_s": 820.8,
+     "end_s": 828.7
+    },
+    {
+     "prompt": "chop the carving knife with the half pineapple 211",
+     "start_s": 828.7,
+     "end_s": 832.3
+    },
+    {
+     "prompt": "place the carving knife on the countertop next to the right cutting board",
+     "start_s": 832.3,
+     "end_s": 839.7
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 839.7,
+     "end_s": 840.9
+    },
+    {
+     "prompt": "pick up the cutting board from the drop in sink",
+     "start_s": 840.9,
+     "end_s": 854.5
+    },
+    {
+     "prompt": "pour the diced  pineapple into the cutting board",
+     "start_s": 854.5,
+     "end_s": 871.4
+    },
+    {
+     "prompt": "place the cutting board on the drop in sink",
+     "start_s": 871.4,
+     "end_s": 883.5
+    },
+    {
+     "prompt": "pick up the bowl from the drop in sink",
+     "start_s": 883.5,
+     "end_s": 898.2
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 898.2,
+     "end_s": 916.6
+    },
+    {
+     "prompt": "place the bowl in the layer_3 bottom cabinet",
+     "start_s": 916.6,
+     "end_s": 937.6
+    },
+    {
+     "prompt": "close the door of the left_door bottom cabinet",
+     "start_s": 937.6,
+     "end_s": 953.6
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "chop": 3.5,
+   "close door": 25.3,
+   "move to": 10.8,
+   "open door": 26.1,
+   "pick up from": 12.3,
+   "place in": 13.2,
+   "place on": 6.3,
+   "place on next to": 7.7,
+   "pour": 13.3,
+   "push to": 11.3
+  },
+  "verb_counts_total": {
+   "pick up from": 3600,
+   "move to": 2936,
+   "place on": 1800,
+   "chop": 1184,
+   "place on next to": 1000,
+   "place in": 800,
+   "open door": 670,
+   "close door": 670,
+   "pour": 600,
+   "push to": 66
+  },
+  "top_prompts": [
+   [
+    "place the carving knife on the countertop next to the right cutting board",
+    772
+   ],
+   [
+    "place the cutting board on the drop in sink",
+    771
+   ],
+   [
+    "pick up the carving knife from the countertop",
+    600
+   ],
+   [
+    "move to the bottom cabinet",
+    600
+   ],
+   [
+    "pick up the cutting board from the drop in sink",
+    596
+   ],
+   [
+    "move to the cutting board",
+    581
+   ],
+   [
+    "move to the carving knife",
+    516
+   ],
+   [
+    "pick up the bowl from the drop in sink",
+    400
+   ],
+   [
+    "chop the carving knife with the half pineapple 211",
+    400
+   ],
+   [
+    "pour the diced  pineapple into the cutting board",
+    400
+   ],
+   [
+    "place the bowl in the drop in sink",
+    399
+   ],
+   [
+    "open the door of the left_door bottom cabinet",
+    398
+   ],
+   [
+    "close the door of the left_door bottom cabinet",
+    392
+   ],
+   [
+    "chop the carving knife with the half steak 212",
+    383
+   ],
+   [
+    "move to the countertop",
+    260
+   ],
+   [
+    "pick up the half pineapple 211 from the countertop",
+    206
+   ],
+   [
+    "pick up the cutting board from the countertop",
+    204
+   ],
+   [
+    "place the pineapple on the cutting board",
+    201
+   ],
+   [
+    "pick up the carving knife from the cutting board",
+    200
+   ],
+   [
+    "move to the fridge",
+    200
+   ],
+   [
+    "open the door of the fridge",
+    200
+   ],
+   [
+    "close the door of the fridge",
+    200
+   ],
+   [
+    "place the pineapple on the countertop",
+    200
+   ],
+   [
+    "place the steak on the cutting board",
+    200
+   ],
+   [
+    "chop the carving knife with the steak",
+    200
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "pour",
+  "place on",
+  "pick up from",
+  "place in",
+  "chop",
+  "open door",
+  "place on next to",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 34464
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 34464
+  }
+ }
+}

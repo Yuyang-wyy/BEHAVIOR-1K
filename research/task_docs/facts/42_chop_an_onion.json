@@ -1,0 +1,747 @@
+{
+ "index": 42,
+ "name": "chop_an_onion",
+ "instruction": "In the kitchen, take the Vidalia onion out of the sink, dice it on the chopping board with the paring knife, put the diced onion into the bowl on the countertop, then place both the paring knife and the chopping board into the sink.",
+ "title": "Chop an Onion",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114061062",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "In the kitchen, take the Vidalia onion out of the sink, dice it on the chopping board with the paring knife, put the diced onion into the bowl on the countertop, then place both the paring knife and the chopping board into the sink.",
+ "human": {
+  "mean_steps": 6399.8,
+  "mean_seconds": 213.3,
+  "step_limit": 9599,
+  "time_limit_seconds": 320.0,
+  "base_distance_m": 16.9982,
+  "eef_displacement_m": {
+   "left": 6.3667,
+   "right": 11.0499
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem chop_an_onion-0)\n    (:domain behavior-1k)\n\n    (:objects\n        chopping_board.n.01_1 - chopping_board.n.01\n        sink.n.01_1 - sink.n.01\n        vidalia_onion.n.01_1 - vidalia_onion.n.01\n        diced__vidalia_onion.n.01_1 - diced__vidalia_onion.n.01\n        parer.n.02_1 - parer.n.02\n        countertop.n.01_1 - countertop.n.01\n        bowl.n.01_1 - bowl.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init\n        (ontop bowl.n.01_1 countertop.n.01_1)\n        (ontop chopping_board.n.01_1 countertop.n.01_1) \n        (ontop parer.n.02_1 countertop.n.01_1)\n        (inside vidalia_onion.n.01_1 sink.n.01_1)\n        (inroom countertop.n.01_1 kitchen)\n        (inroom sink.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (future diced__vidalia_onion.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (real ?diced__vidalia_onion.n.01_1)\n            (inside ?parer.n.02_1 ?sink.n.01_1)\n            (inside ?chopping_board.n.01_1 ?sink.n.01_1)\n            (contains ?bowl.n.01_1 ?diced__vidalia_onion.n.01_1)\n        )\n    )\n)\n",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "sink.n.01": [
+   "sink.n.01_1"
+  ],
+  "vidalia_onion.n.01": [
+   "vidalia_onion.n.01_1"
+  ],
+  "diced__vidalia_onion.n.01": [
+   "diced__vidalia_onion.n.01_1"
+  ],
+  "parer.n.02": [
+   "parer.n.02_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "bowl.n.01": [
+   "bowl.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "diced__vidalia_onion.n.01_1"
+ ],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(future diced__vidalia_onion.n.01_1)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom sink.n.01_1 kitchen)",
+  "(inside vidalia_onion.n.01_1 sink.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bowl.n.01_1 countertop.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(ontop parer.n.02_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bowl.n.01_1 countertop.n.01_1)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching countertop.n.01_1 bowl.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching countertop.n.01_1 parer.n.02_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching parer.n.02_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(real diced__vidalia_onion.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "diced__vidalia_onion.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside parer.n.02_1 sink.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "parer.n.02_1",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside chopping_board.n.01_1 sink.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "chopping_board.n.01_1",
+     "sink.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(contains bowl.n.01_1 diced__vidalia_onion.n.01_1)",
+    "negated": false,
+    "predicate": "contains",
+    "args": [
+     "bowl.n.01_1",
+     "diced__vidalia_onion.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   2
+  ],
+  [
+   "real",
+   1
+  ],
+  [
+   "contains",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "cutting_board_76",
+   "substance": false,
+   "category": "cutting_board",
+   "model": "aibvew",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.3023310899734497,
+    1.2133365869522095,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.06,
+    "median": 1.97,
+    "max": 6.7
+   },
+   "xy_spread_m": 2.09,
+   "n_poses": 20
+  },
+  {
+   "inst": "sink.n.01_1",
+   "scene_object": "drop_in_sink_lkklqs_0",
+   "substance": false,
+   "category": "drop_in_sink",
+   "model": "lkklqs",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000046491622925,
+    0.9999699592590332,
+    1.0000004768371582
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.37,
+    "median": 2.5,
+    "max": 6.51
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "vidalia_onion.n.01_1",
+   "scene_object": "vidalia_onion_75",
+   "substance": false,
+   "category": "vidalia_onion",
+   "model": "buyxll",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.81,
+    "median": 0.81,
+    "max": 0.81
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 2.41,
+    "max": 6.43
+   },
+   "xy_spread_m": 0.41,
+   "n_poses": 20
+  },
+  {
+   "inst": "diced__vidalia_onion.n.01_1",
+   "scene_object": null,
+   "substance": true,
+   "systems": [
+    "diced__vidalia_onion"
+   ]
+  },
+  {
+   "inst": "parer.n.02_1",
+   "scene_object": "parer_74",
+   "substance": false,
+   "category": "parer",
+   "model": "lwpdhi",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 2.6,
+    "max": 6.91
+   },
+   "xy_spread_m": 2.11,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_egwapq_0",
+   "substance": false,
+   "category": "bar",
+   "model": "egwapq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999869465827942,
+    0.9999972581863403,
+    1.0000406503677368
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.43,
+    "median": 2.58,
+    "max": 6.58
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bowl.n.01_1",
+   "scene_object": "bowl_73",
+   "substance": false,
+   "category": "bowl",
+   "model": "aspeds",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.550701379776001,
+    1.5507431030273438,
+    1.3811830282211304
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 2.6,
+    "max": 6.18
+   },
+   "xy_spread_m": 2.1,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.83,
+    "median": 2.04,
+    "max": 3.22
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   6.52,
+   2.08
+  ],
+  [
+   5.63,
+   2.71
+  ],
+  [
+   2.22,
+   3.0
+  ],
+  [
+   6.95,
+   2.63
+  ],
+  [
+   6.57,
+   1.44
+  ],
+  [
+   6.77,
+   0.53
+  ],
+  [
+   6.18,
+   0.67
+  ],
+  [
+   6.64,
+   2.17
+  ],
+  [
+   6.83,
+   1.02
+  ],
+  [
+   6.81,
+   1.76
+  ],
+  [
+   7.84,
+   2.29
+  ],
+  [
+   4.61,
+   3.17
+  ],
+  [
+   6.44,
+   2.38
+  ],
+  [
+   2.39,
+   2.73
+  ],
+  [
+   5.63,
+   0.91
+  ],
+  [
+   6.62,
+   1.05
+  ],
+  [
+   4.11,
+   -0.09
+  ],
+  [
+   7.16,
+   2.01
+  ],
+  [
+   4.92,
+   3.18
+  ],
+  [
+   3.49,
+   3.2
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 14,
+   "median": 19.5,
+   "max": 28
+  },
+  "demo_seconds": {
+   "min": 123.57,
+   "median": 206.35,
+   "max": 394.2
+  },
+  "distinct_verb_sequences": 158,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "pick up from",
+   "move to",
+   "chop",
+   "chop",
+   "chop",
+   "place in",
+   "pick up from",
+   "move to",
+   "pour",
+   "move to",
+   "place in"
+  ],
+  "modal_verb_sequence_share": 0.03,
+  "modal_verb_counts": {
+   "chop": 3,
+   "move to": 6,
+   "pick up from": 4,
+   "place in": 2,
+   "place on": 1,
+   "place on next to": 1,
+   "pour": 1
+  },
+  "modal_verb_counts_share": 0.155,
+  "representative_episode": {
+   "file": "episode_00420160.json",
+   "seconds": 201.9,
+   "steps": [
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 1.4,
+     "end_s": 16.7
+    },
+    {
+     "prompt": "pick up the cutting board from the bar",
+     "start_s": 16.7,
+     "end_s": 43.5
+    },
+    {
+     "prompt": "place the cutting board on the bar next to the left drop in sink",
+     "start_s": 43.5,
+     "end_s": 64.7
+    },
+    {
+     "prompt": "move to the vidalia onion",
+     "start_s": 64.7,
+     "end_s": 67.7
+    },
+    {
+     "prompt": "pick up the vidalia onion from the drop in sink",
+     "start_s": 67.7,
+     "end_s": 84.3
+    },
+    {
+     "prompt": "move to the cutting board",
+     "start_s": 84.3,
+     "end_s": 86.1
+    },
+    {
+     "prompt": "place the vidalia onion on the cutting board",
+     "start_s": 86.1,
+     "end_s": 104.4
+    },
+    {
+     "prompt": "pick up the parer from the bar",
+     "start_s": 104.4,
+     "end_s": 132.1
+    },
+    {
+     "prompt": "move to the vidalia onion",
+     "start_s": 132.1,
+     "end_s": 139.6
+    },
+    {
+     "prompt": "chop the parer with the vidalia onion",
+     "start_s": 139.6,
+     "end_s": 148.2
+    },
+    {
+     "prompt": "chop the parer with the half vidalia onion 75",
+     "start_s": 148.2,
+     "end_s": 149.1
+    },
+    {
+     "prompt": "chop the parer with the half vidalia onion 75",
+     "start_s": 149.1,
+     "end_s": 152.4
+    },
+    {
+     "prompt": "place the parer in the drop in sink",
+     "start_s": 152.4,
+     "end_s": 157.3
+    },
+    {
+     "prompt": "pick up the cutting board from the bar",
+     "start_s": 157.3,
+     "end_s": 171.9
+    },
+    {
+     "prompt": "move to the bowl",
+     "start_s": 171.9,
+     "end_s": 175.8
+    },
+    {
+     "prompt": "pour the diced  vidalia onion into the cutting board",
+     "start_s": 175.8,
+     "end_s": 183.3
+    },
+    {
+     "prompt": "move to the drop in sink",
+     "start_s": 183.3,
+     "end_s": 185.4
+    },
+    {
+     "prompt": "place the cutting board in the drop in sink",
+     "start_s": 185.4,
+     "end_s": 203.3
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "chop": 6.1,
+   "move to": 5.4,
+   "pick up from": 18.8,
+   "place in": 11.6,
+   "place on": 12.8,
+   "place on next to": 14.1,
+   "pour": 11.0,
+   "push to": 22.8,
+   "turn to": 25.3
+  },
+  "verb_counts_total": {
+   "move to": 1423,
+   "pick up from": 878,
+   "chop": 577,
+   "place in": 400,
+   "place on next to": 276,
+   "place on": 202,
+   "pour": 200,
+   "push to": 19,
+   "turn to": 14
+  },
+  "top_prompts": [
+   [
+    "move to the cutting board",
+    531
+   ],
+   [
+    "pick up the cutting board from the bar",
+    389
+   ],
+   [
+    "chop the parer with the half vidalia onion 75",
+    376
+   ],
+   [
+    "move to the vidalia onion",
+    282
+   ],
+   [
+    "move to the drop in sink",
+    242
+   ],
+   [
+    "pick up the parer from the bar",
+    205
+   ],
+   [
+    "place the parer in the drop in sink",
+    202
+   ],
+   [
+    "pick up the vidalia onion from the drop in sink",
+    200
+   ],
+   [
+    "place the vidalia onion on the cutting board",
+    200
+   ],
+   [
+    "chop the parer with the vidalia onion",
+    200
+   ],
+   [
+    "pour the diced  vidalia onion into the cutting board",
+    200
+   ],
+   [
+    "move to the bowl",
+    199
+   ],
+   [
+    "place the cutting board in the drop in sink",
+    198
+   ],
+   [
+    "place the cutting board on the bar next to the left drop in sink",
+    173
+   ],
+   [
+    "move to the parer",
+    169
+   ],
+   [
+    "pick up the bowl from the bar",
+    80
+   ],
+   [
+    "place the bowl on the bar next to the left cutting board",
+    64
+   ],
+   [
+    "place the cutting board on the bar next to the left parer",
+    14
+   ],
+   [
+    "turn to the parer",
+    14
+   ],
+   [
+    "push the parer to the to_the_edge_of bar",
+    11
+   ],
+   [
+    "place the bowl on the bar next to the left parer",
+    8
+   ],
+   [
+    "push the half vidalia onion 75 to the center cutting board",
+    5
+   ],
+   [
+    "place the bowl on the bar next to the in_front_of cutting board",
+    4
+   ],
+   [
+    "place the cutting board on the bar next to the right bowl",
+    3
+   ],
+   [
+    "place the bowl on the bar next to the in_front_of parer",
+    3
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "pour",
+  "place on next to",
+  "turn to",
+  "place on",
+  "pick up from",
+  "place in",
+  "chop",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 9600
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 9600
+  }
+ }
+}

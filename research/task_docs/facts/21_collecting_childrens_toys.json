@@ -1,0 +1,982 @@
+{
+ "index": 21,
+ "name": "collecting_childrens_toys",
+ "instruction": "Pick up the two dice from the bed, the two teddy bears from the floor, and the two board games (one from the desk and one from the bed), and place them all inside the same bookcase in the child's room.",
+ "title": "Collecting Children's Toys",
+ "rooms_listed": [
+  "childs_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114058872",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Pick up the two dice from the bed, the two teddy bears from the floor, and the two board games (one from the desk and one from the bed), and place them all inside the same bookcase in the child's room.",
+ "human": {
+  "mean_steps": 19186.325,
+  "mean_seconds": 639.5,
+  "step_limit": 28779,
+  "time_limit_seconds": 959.3,
+  "base_distance_m": 58.4048,
+  "eef_displacement_m": {
+   "left": 24.1457,
+   "right": 25.8095
+  }
+ },
+ "rooms_loaded": [
+  "childs_room_0",
+  "childs_room_1",
+  "childs_room_2",
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem collecting_childrens_toys-0)\n    (:domain behavior-1k)\n\n    (:objects\n        die.n.01_1 die.n.01_2 - die.n.01\n        floor.n.01_1 - floor.n.01\n        teddy.n.01_1 teddy.n.01_2 - teddy.n.01\n        train_set.n.01_1 - train_set.n.01\n        board_game.n.01_1 board_game.n.01_2 - board_game.n.01\n        desk.n.01_1 - desk.n.01\n        bed.n.01_1 - bed.n.01\n        bookcase.n.01_1 bookcase.n.01_* - bookcase.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop die.n.01_1 bed.n.01_1) \n        (ontop die.n.01_2 bed.n.01_1) \n        (ontop teddy.n.01_1 floor.n.01_1) \n        (ontop train_set.n.01_1 desk.n.01_1) \n        (ontop teddy.n.01_2 floor.n.01_1) \n        (ontop board_game.n.01_1 desk.n.01_1) \n        (ontop board_game.n.01_2 bed.n.01_1) \n        (inroom bookcase.n.01_1 childs_room) \n        (inroom bookcase.n.01_* childs_room)\n        (inroom floor.n.01_1 childs_room) \n        (inroom desk.n.01_1 childs_room) \n        (inroom bed.n.01_1 childs_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists\n                (?bookcase.n.01 - bookcase.n.01)\n                (and \n                    (forall\n                        (?die.n.01 - die.n.01)\n                        (inside ?die.n.01 ?bookcase.n.01)\n                    )\n                    (forall\n                        (?teddy.n.01 - teddy.n.01)\n                        (inside ?teddy.n.01 ?bookcase.n.01)         \n                    )\n                    (forall\n                        (?board_game.n.01 - board_game.n.01)\n                        (inside ?board_game.n.01 ?bookcase.n.01)\n                    )\n                    (forall\n                        (?train_set.n.01 - train_set.n.01)\n                        (inside ?train_set.n.01 ?bookcase.n.01)\n                    )\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "childs_room": "childs_room_2"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "die.n.01": [
+   "die.n.01_1",
+   "die.n.01_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "teddy.n.01": [
+   "teddy.n.01_1",
+   "teddy.n.01_2"
+  ],
+  "train_set.n.01": [
+   "train_set.n.01_1"
+  ],
+  "board_game.n.01": [
+   "board_game.n.01_1",
+   "board_game.n.01_2"
+  ],
+  "desk.n.01": [
+   "desk.n.01_1"
+  ],
+  "bed.n.01": [
+   "bed.n.01_1"
+  ],
+  "bookcase.n.01": [
+   "bookcase.n.01_1",
+   "bookcase.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom bed.n.01_1 childs_room)",
+  "(inroom bookcase.n.01_1 childs_room)",
+  "(inroom bookcase.n.01_2 childs_room)",
+  "(inroom desk.n.01_1 childs_room)",
+  "(inroom floor.n.01_1 childs_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop board_game.n.01_1 desk.n.01_1)",
+  "(ontop board_game.n.01_2 bed.n.01_1)",
+  "(ontop die.n.01_1 bed.n.01_1)",
+  "(ontop die.n.01_2 bed.n.01_1)",
+  "(ontop teddy.n.01_1 floor.n.01_1)",
+  "(ontop teddy.n.01_2 floor.n.01_1)",
+  "(ontop train_set.n.01_1 desk.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bed.n.01_1 board_game.n.01_2)",
+  "(touching bed.n.01_1 die.n.01_1)",
+  "(touching bed.n.01_1 die.n.01_2)",
+  "(touching board_game.n.01_1 desk.n.01_1)",
+  "(touching board_game.n.01_2 bed.n.01_1)",
+  "(touching desk.n.01_1 board_game.n.01_1)",
+  "(touching desk.n.01_1 train_set.n.01_1)",
+  "(touching die.n.01_1 bed.n.01_1)",
+  "(touching die.n.01_2 bed.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 teddy.n.01_1)",
+  "(touching floor.n.01_1 teddy.n.01_2)",
+  "(touching teddy.n.01_1 floor.n.01_1)",
+  "(touching teddy.n.01_2 floor.n.01_1)",
+  "(touching train_set.n.01_1 desk.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 7,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside die.n.01_2 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "die.n.01_2",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside die.n.01_1 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "die.n.01_1",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside teddy.n.01_1 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "teddy.n.01_1",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside teddy.n.01_2 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "teddy.n.01_2",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside board_game.n.01_1 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "board_game.n.01_1",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside board_game.n.01_2 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "board_game.n.01_2",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside train_set.n.01_1 bookcase.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "train_set.n.01_1",
+     "bookcase.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   7,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   7
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "die.n.01_1",
+   "scene_object": "dice_269",
+   "substance": false,
+   "category": "dice",
+   "model": "jommvx",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    2.3364579677581787,
+    2.3346362113952637,
+    2.3358209133148193
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 1.0
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.76,
+    "median": 1.39,
+    "max": 2.29
+   },
+   "xy_spread_m": 1.74,
+   "n_poses": 20
+  },
+  {
+   "inst": "die.n.01_2",
+   "scene_object": "dice_268",
+   "substance": false,
+   "category": "dice",
+   "model": "iswudu",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    2.271556854248047,
+    2.2697856426239014,
+    2.27093768119812
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.73,
+    "median": 1.35,
+    "max": 2.77
+   },
+   "xy_spread_m": 1.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_vmamhf_0",
+   "substance": false,
+   "category": "floors",
+   "model": "vmamhf",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000053644180298,
+    1.0000113248825073,
+    0.9999330043792725
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.3,
+    "median": 0.92,
+    "max": 1.45
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "teddy.n.01_1",
+   "scene_object": "teddy_bear_267",
+   "substance": false,
+   "category": "teddy_bear",
+   "model": "dgagea",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.67,
+    "median": 1.22,
+    "max": 2.29
+   },
+   "xy_spread_m": 3.4,
+   "n_poses": 20
+  },
+  {
+   "inst": "teddy.n.01_2",
+   "scene_object": "teddy_bear_266",
+   "substance": false,
+   "category": "teddy_bear",
+   "model": "dgagea",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.65,
+    "median": 1.9,
+    "max": 2.93
+   },
+   "xy_spread_m": 3.44,
+   "n_poses": 20
+  },
+  {
+   "inst": "train_set.n.01_1",
+   "scene_object": "toy_train_265",
+   "substance": false,
+   "category": "toy_train",
+   "model": "zdfhbw",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.58,
+    "median": 0.58,
+    "max": 0.58
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 2.53,
+    "max": 2.96
+   },
+   "xy_spread_m": 0.56,
+   "n_poses": 20
+  },
+  {
+   "inst": "board_game.n.01_1",
+   "scene_object": "board_game_264",
+   "substance": false,
+   "category": "board_game",
+   "model": "gcfkqa",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.57,
+    "median": 0.57,
+    "max": 0.57
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.44,
+    "median": 2.51,
+    "max": 3.14
+   },
+   "xy_spread_m": 0.97,
+   "n_poses": 20
+  },
+  {
+   "inst": "board_game.n.01_2",
+   "scene_object": "board_game_263",
+   "substance": false,
+   "category": "board_game",
+   "model": "gcfkqa",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.0,
+    "median": 1.44,
+    "max": 2.56
+   },
+   "xy_spread_m": 1.42,
+   "n_poses": 20
+  },
+  {
+   "inst": "desk.n.01_1",
+   "scene_object": "desk_nbpuns_0",
+   "substance": false,
+   "category": "desk",
+   "model": "nbpuns",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000795125961304,
+    0.9999760389328003,
+    0.999965488910675
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.59,
+    "median": 2.59,
+    "max": 3.16
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bed.n.01_1",
+   "scene_object": "bed_ivdnny_0",
+   "substance": false,
+   "category": "bed",
+   "model": "ivdnny",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0000113248825073,
+    0.999988317489624
+   ],
+   "z": {
+    "min": 0.34,
+    "median": 0.34,
+    "max": 0.34
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.13,
+    "median": 1.5,
+    "max": 2.08
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bookcase.n.01_1",
+   "scene_object": "bookcase_zfpyqe_1",
+   "substance": false,
+   "category": "bookcase",
+   "model": "zfpyqe",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999092817306519,
+    1.0000406503677368,
+    0.9999983310699463
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.81,
+    "median": 1.23,
+    "max": 3.2
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bookcase.n.01_2",
+   "scene_object": "bookcase_zfpyqe_0",
+   "substance": false,
+   "category": "bookcase",
+   "model": "zfpyqe",
+   "in_rooms": [
+    "childs_room_2"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999092817306519,
+    1.0000406503677368,
+    0.9999983310699463
+   ],
+   "z": {
+    "min": 0.78,
+    "median": 0.78,
+    "max": 0.78
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.35,
+    "median": 1.8,
+    "max": 3.51
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   21.15,
+   6.2
+  ],
+  [
+   21.45,
+   6.3
+  ],
+  [
+   21.16,
+   6.35
+  ],
+  [
+   21.95,
+   6.43
+  ],
+  [
+   21.85,
+   6.3
+  ],
+  [
+   22.31,
+   6.65
+  ],
+  [
+   23.54,
+   6.13
+  ],
+  [
+   21.92,
+   6.57
+  ],
+  [
+   21.53,
+   6.73
+  ],
+  [
+   22.43,
+   6.66
+  ],
+  [
+   21.46,
+   6.37
+  ],
+  [
+   21.63,
+   6.74
+  ],
+  [
+   21.19,
+   6.62
+  ],
+  [
+   21.34,
+   6.46
+  ],
+  [
+   21.54,
+   6.36
+  ],
+  [
+   21.32,
+   6.76
+  ],
+  [
+   21.84,
+   6.48
+  ],
+  [
+   21.66,
+   6.46
+  ],
+  [
+   21.52,
+   6.21
+  ],
+  [
+   21.61,
+   6.58
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 26,
+   "median": 28.0,
+   "max": 31
+  },
+  "demo_seconds": {
+   "min": 420.17,
+   "median": 629.83,
+   "max": 1208.5
+  },
+  "distinct_verb_sequences": 29,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place in",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place in",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.36,
+  "modal_verb_counts": {
+   "move to": 11,
+   "pick up from": 7,
+   "place in": 6,
+   "place on": 1,
+   "push to": 3
+  },
+  "modal_verb_counts_share": 0.69,
+  "representative_episode": {
+   "file": "episode_00211780.json",
+   "seconds": 625.7,
+   "steps": [
+    {
+     "prompt": "move to the teddy bear",
+     "start_s": 3.3,
+     "end_s": 6.3
+    },
+    {
+     "prompt": "pick up the teddy bear from the floors",
+     "start_s": 7.3,
+     "end_s": 32.8
+    },
+    {
+     "prompt": "move to the teddy bear",
+     "start_s": 32.8,
+     "end_s": 35.8
+    },
+    {
+     "prompt": "pick up the teddy bear from the floors",
+     "start_s": 35.8,
+     "end_s": 45.0
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 45.0,
+     "end_s": 69.6
+    },
+    {
+     "prompt": "place the teddy bear in the layer_3 bookcase",
+     "start_s": 69.6,
+     "end_s": 83.2
+    },
+    {
+     "prompt": "place the teddy bear in the layer_3 bookcase",
+     "start_s": 83.2,
+     "end_s": 92.0
+    },
+    {
+     "prompt": "move to the dice",
+     "start_s": 92.0,
+     "end_s": 107.9
+    },
+    {
+     "prompt": "pick up the dice from the bed",
+     "start_s": 107.9,
+     "end_s": 154.8
+    },
+    {
+     "prompt": "pick up the dice from the bed",
+     "start_s": 154.8,
+     "end_s": 170.4
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 170.4,
+     "end_s": 183.7
+    },
+    {
+     "prompt": "place the dice in the layer_2 bookcase",
+     "start_s": 183.7,
+     "end_s": 200.6
+    },
+    {
+     "prompt": "place the dice in the layer_2 bookcase",
+     "start_s": 200.6,
+     "end_s": 212.0
+    },
+    {
+     "prompt": "move to the board game",
+     "start_s": 212.0,
+     "end_s": 223.4
+    },
+    {
+     "prompt": "push the board game to the to_the_edge_of bed",
+     "start_s": 223.4,
+     "end_s": 246.3
+    },
+    {
+     "prompt": "pick up the board game from the bed",
+     "start_s": 246.3,
+     "end_s": 259.6
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 259.6,
+     "end_s": 264.6
+    },
+    {
+     "prompt": "place the board game in the layer_2 bookcase",
+     "start_s": 264.6,
+     "end_s": 279.3
+    },
+    {
+     "prompt": "move to the toy train",
+     "start_s": 279.3,
+     "end_s": 298.9
+    },
+    {
+     "prompt": "push the toy train to the to_the_edge_of desk",
+     "start_s": 298.9,
+     "end_s": 355.3
+    },
+    {
+     "prompt": "pick up the toy train from the desk",
+     "start_s": 355.3,
+     "end_s": 384.4
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 384.4,
+     "end_s": 405.6
+    },
+    {
+     "prompt": "place the toy train in the layer_4 bookcase",
+     "start_s": 405.6,
+     "end_s": 429.2
+    },
+    {
+     "prompt": "move to the board game",
+     "start_s": 429.2,
+     "end_s": 455.2
+    },
+    {
+     "prompt": "push the board game to the to_the_edge_of desk",
+     "start_s": 455.2,
+     "end_s": 574.5
+    },
+    {
+     "prompt": "pick up the board game from the desk",
+     "start_s": 574.5,
+     "end_s": 596.3
+    },
+    {
+     "prompt": "move to the bookcase",
+     "start_s": 596.3,
+     "end_s": 608.7
+    },
+    {
+     "prompt": "place the board game on the board game",
+     "start_s": 608.7,
+     "end_s": 629.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 11.4,
+   "move to": 14.7,
+   "pick up from": 26.7,
+   "place in": 18.0,
+   "place on": 20.5,
+   "place on next to": 10.0,
+   "push to": 53.1
+  },
+  "verb_counts_total": {
+   "move to": 2200,
+   "pick up from": 1402,
+   "place in": 1200,
+   "push to": 598,
+   "place on": 200,
+   "hand over": 4,
+   "place on next to": 1
+  },
+  "top_prompts": [
+   [
+    "move to the bookcase",
+    997
+   ],
+   [
+    "move to the board game",
+    402
+   ],
+   [
+    "pick up the teddy bear from the floors",
+    400
+   ],
+   [
+    "place the dice in the layer_2 bookcase",
+    400
+   ],
+   [
+    "pick up the dice from the bed",
+    398
+   ],
+   [
+    "place the teddy bear in the layer_3 bookcase",
+    396
+   ],
+   [
+    "move to the teddy bear",
+    373
+   ],
+   [
+    "move to the dice",
+    226
+   ],
+   [
+    "pick up the toy train from the desk",
+    201
+   ],
+   [
+    "push the board game to the to_the_edge_of bed",
+    200
+   ],
+   [
+    "pick up the board game from the bed",
+    200
+   ],
+   [
+    "move to the toy train",
+    200
+   ],
+   [
+    "pick up the board game from the desk",
+    200
+   ],
+   [
+    "place the toy train in the layer_4 bookcase",
+    199
+   ],
+   [
+    "place the board game in the layer_2 bookcase",
+    198
+   ],
+   [
+    "push the toy train to the to_the_edge_of desk",
+    196
+   ],
+   [
+    "push the board game to the to_the_edge_of desk",
+    195
+   ],
+   [
+    "place the board game on the board game",
+    195
+   ],
+   [
+    "push the board game to the center bookcase",
+    4
+   ],
+   [
+    "hand over the board game with the left",
+    3
+   ],
+   [
+    "place the teddy bear in the layer_3 floors",
+    3
+   ],
+   [
+    "place the board game on the layer_2 bookcase",
+    3
+   ],
+   [
+    "push the straight chair to the under desk",
+    2
+   ],
+   [
+    "move to the straight chair",
+    2
+   ],
+   [
+    "place the board game in the board game",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "place on",
+  "pick up from",
+  "place in",
+  "place on next to",
+  "hand over",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5714285714285714,
+   "success": false,
+   "steps": 28780
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.2857142857142857,
+   "success": false,
+   "steps": 28780
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5714285714285714,
+   "success": false,
+   "steps": 28780
+  }
+ }
+}

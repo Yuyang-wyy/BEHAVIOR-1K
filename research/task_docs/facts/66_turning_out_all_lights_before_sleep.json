@@ -1,0 +1,700 @@
+{
+ "index": 66,
+ "name": "turning_out_all_lights_before_sleep",
+ "instruction": "Turn off all of the lights and light switches before sleep.",
+ "title": "Turning Out All Lights Before Sleep",
+ "rooms_listed": [
+  "corridor",
+  "utility_room",
+  "childs_room",
+  "dining_room",
+  "bedroom",
+  "kitchen",
+  "living_room",
+  "bathroom"
+ ],
+ "video": "https://www.youtube.com/embed/AN8l_cduvqU",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Turn off all of the lights and light switches before sleep.",
+ "human": {
+  "mean_steps": 10006.11,
+  "mean_seconds": 333.5,
+  "step_limit": 15009,
+  "time_limit_seconds": 500.3,
+  "base_distance_m": 40.2489,
+  "eef_displacement_m": {
+   "left": 16.5591,
+   "right": 16.975
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "utility_room_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "corridor",
+   "utility_room",
+   "childs_room",
+   "dining_room",
+   "bedroom",
+   "kitchen",
+   "living_room",
+   "bathroom"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "table_lamp.n.01": {
+     "table_lamp": {
+      "ehjsdz": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem turning_out_all_lights_before_sleep-0)\n    (:domain behavior-1k)\n\n    (:objects\n        switch.n.01_1 switch.n.01_2 switch.n.01_3 - switch.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n        table_lamp.n.01_1 table_lamp.n.01_2 - table_lamp.n.01\n        countertop.n.01_1 - countertop.n.01\n        coffee_table.n.01_1 - coffee_table.n.01\n    )\n    \n    (:init \n        (toggled_on switch.n.01_1)\n        (toggled_on switch.n.01_2)\n        (toggled_on switch.n.01_3)\n        (toggled_on table_lamp.n.01_1)\n        (toggled_on table_lamp.n.01_2)\n        (inroom switch.n.01_1 kitchen)\n        (inroom switch.n.01_2 utility_room)\n        (inroom switch.n.01_3 dining_room)\n        (inroom coffee_table.n.01_1 living_room)\n        (inroom countertop.n.01_1 utility_room)\n        (inroom floor.n.01_1 corridor)\n        (ontop table_lamp.n.01_1 coffee_table.n.01_1)\n        (ontop table_lamp.n.01_2 countertop.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?switch.n.01 - switch.n.01)\n                (not \n                    (toggled_on ?switch.n.01)\n                )\n            )\n            (forall\n                (?table_lamp.n.01 - table_lamp.n.01)\n                (not\n                    (toggled_on ?table_lamp.n.01)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0",
+  "utility_room": "utility_room_0",
+  "dining_room": "dining_room_0",
+  "living_room": "living_room_0",
+  "corridor": "corridor_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "switch.n.01": [
+   "switch.n.01_1",
+   "switch.n.01_2",
+   "switch.n.01_3"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ],
+  "table_lamp.n.01": [
+   "table_lamp.n.01_1",
+   "table_lamp.n.01_2"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "coffee_table.n.01": [
+   "coffee_table.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom coffee_table.n.01_1 living_room)",
+  "(inroom countertop.n.01_1 utility_room)",
+  "(inroom floor.n.01_1 corridor)",
+  "(inroom switch.n.01_1 kitchen)",
+  "(inroom switch.n.01_2 utility_room)",
+  "(inroom switch.n.01_3 dining_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop table_lamp.n.01_1 coffee_table.n.01_1)",
+  "(ontop table_lamp.n.01_2 countertop.n.01_1)",
+  "(toggled_on switch.n.01_1)",
+  "(toggled_on switch.n.01_2)",
+  "(toggled_on switch.n.01_3)",
+  "(toggled_on table_lamp.n.01_1)",
+  "(toggled_on table_lamp.n.01_2)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching coffee_table.n.01_1 table_lamp.n.01_1)",
+  "(touching countertop.n.01_1 table_lamp.n.01_2)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching table_lamp.n.01_1 coffee_table.n.01_1)",
+  "(touching table_lamp.n.01_2 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 5,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not toggled_on switch.n.01_1))",
+    "negated": true,
+    "predicate": "toggled_on",
+    "args": [
+     "switch.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not toggled_on switch.n.01_3))",
+    "negated": true,
+    "predicate": "toggled_on",
+    "args": [
+     "switch.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not toggled_on switch.n.01_2))",
+    "negated": true,
+    "predicate": "toggled_on",
+    "args": [
+     "switch.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not toggled_on table_lamp.n.01_2))",
+    "negated": true,
+    "predicate": "toggled_on",
+    "args": [
+     "table_lamp.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not toggled_on table_lamp.n.01_1))",
+    "negated": true,
+    "predicate": "toggled_on",
+    "args": [
+     "table_lamp.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   5,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not toggled_on",
+   5
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "switch.n.01_1",
+   "scene_object": "electric_switch_gashan_8",
+   "substance": false,
+   "category": "electric_switch",
+   "model": "gashan",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0029717683792114,
+    0.999987781047821,
+    1.0004713535308838
+   ],
+   "z": {
+    "min": 0.95,
+    "median": 0.95,
+    "max": 0.95
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 15.06,
+    "median": 16.15,
+    "max": 22.57
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "switch.n.01_2",
+   "scene_object": "electric_switch_gashan_21",
+   "substance": false,
+   "category": "electric_switch",
+   "model": "gashan",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0029717683792114,
+    0.999987781047821,
+    1.0004713535308838
+   ],
+   "z": {
+    "min": 1.44,
+    "median": 1.44,
+    "max": 1.44
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.8,
+    "median": 4.53,
+    "max": 16.54
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "switch.n.01_3",
+   "scene_object": "electric_switch_gashan_7",
+   "substance": false,
+   "category": "electric_switch",
+   "model": "gashan",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0029717683792114,
+    0.999987781047821,
+    1.0004713535308838
+   ],
+   "z": {
+    "min": 1.44,
+    "median": 1.44,
+    "max": 1.44
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 14.48,
+    "median": 15.21,
+    "max": 21.19
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_wkdxrr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "wkdxrr",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000061988830566,
+    0.999998152256012,
+    0.9999285936355591
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.19,
+    "median": 5.79,
+    "max": 9.98
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_qmhlkn",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  },
+  {
+   "inst": "table_lamp.n.01_1",
+   "scene_object": "table_lamp_429",
+   "substance": false,
+   "category": "table_lamp",
+   "model": "ehjsdz",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.75,
+    "median": 0.75,
+    "max": 0.75
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 6.21,
+    "median": 7.78,
+    "max": 18.71
+   },
+   "xy_spread_m": 0.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "table_lamp.n.01_2",
+   "scene_object": "table_lamp_428",
+   "substance": false,
+   "category": "table_lamp",
+   "model": "ehjsdz",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.41,
+    "median": 1.41,
+    "max": 1.41
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 4.13,
+    "median": 5.93,
+    "max": 19.88
+   },
+   "xy_spread_m": 3.82,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "countertop_ikwqer_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "ikwqer",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000056266784668,
+    1.0000085830688477,
+    0.9999606609344482
+   ],
+   "z": {
+    "min": 0.91,
+    "median": 0.91,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 4.13,
+    "median": 6.32,
+    "max": 18.96
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "coffee_table.n.01_1",
+   "scene_object": "coffee_table_rlsebe_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "rlsebe",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0000269412994385,
+    1.000026822090149,
+    0.999855637550354
+   ],
+   "z": {
+    "min": 0.15,
+    "median": 0.15,
+    "max": 0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 6.41,
+    "median": 7.9,
+    "max": 18.56
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  }
+ ],
+ "robot_start_xy": [
+  [
+   18.99,
+   0.24
+  ],
+  [
+   19.77,
+   -1.33
+  ],
+  [
+   18.88,
+   11.7
+  ],
+  [
+   18.8,
+   18.1
+  ],
+  [
+   19.11,
+   0.29
+  ],
+  [
+   18.69,
+   7.72
+  ],
+  [
+   18.75,
+   17.17
+  ],
+  [
+   20.42,
+   -0.52
+  ],
+  [
+   19.44,
+   4.25
+  ],
+  [
+   20.81,
+   3.42
+  ],
+  [
+   19.74,
+   4.65
+  ],
+  [
+   18.7,
+   -1.63
+  ],
+  [
+   18.65,
+   14.72
+  ],
+  [
+   19.28,
+   4.01
+  ],
+  [
+   20.39,
+   -0.63
+  ],
+  [
+   19.24,
+   3.26
+  ],
+  [
+   19.04,
+   3.94
+  ],
+  [
+   20.51,
+   -1.11
+  ],
+  [
+   19.68,
+   4.29
+  ],
+  [
+   19.67,
+   3.43
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 12,
+   "median": 14.0,
+   "max": 16
+  },
+  "demo_seconds": {
+   "min": 244.97,
+   "median": 328.37,
+   "max": 462.97
+  },
+  "distinct_verb_sequences": 9,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "turn off switch",
+   "move to",
+   "turn off switch",
+   "move to",
+   "close door",
+   "move to",
+   "turn off switch",
+   "move to",
+   "turn off switch",
+   "move to",
+   "turn off switch"
+  ],
+  "modal_verb_sequence_share": 0.735,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 7,
+   "open door": 1,
+   "turn off switch": 5
+  },
+  "modal_verb_counts_share": 0.735,
+  "representative_episode": {
+   "file": "episode_00662790.json",
+   "seconds": 326.5,
+   "steps": [
+    {
+     "prompt": "move to the sliding door",
+     "start_s": 0.0,
+     "end_s": 69.0
+    },
+    {
+     "prompt": "open the door of the sliding door",
+     "start_s": 69.0,
+     "end_s": 100.1
+    },
+    {
+     "prompt": "move to the table lamp",
+     "start_s": 100.1,
+     "end_s": 121.0
+    },
+    {
+     "prompt": "turn off the table lamp",
+     "start_s": 121.0,
+     "end_s": 131.2
+    },
+    {
+     "prompt": "move to the electric switch",
+     "start_s": 131.2,
+     "end_s": 144.0
+    },
+    {
+     "prompt": "turn off the electric switch",
+     "start_s": 144.0,
+     "end_s": 149.0
+    },
+    {
+     "prompt": "move to the sliding door",
+     "start_s": 149.0,
+     "end_s": 171.0
+    },
+    {
+     "prompt": "close the door of the sliding door",
+     "start_s": 171.0,
+     "end_s": 189.6
+    },
+    {
+     "prompt": "move to the table lamp",
+     "start_s": 189.6,
+     "end_s": 240.8
+    },
+    {
+     "prompt": "turn off the table lamp",
+     "start_s": 240.8,
+     "end_s": 263.0
+    },
+    {
+     "prompt": "move to the electric switch",
+     "start_s": 263.0,
+     "end_s": 307.0
+    },
+    {
+     "prompt": "turn off the electric switch",
+     "start_s": 307.0,
+     "end_s": 314.0
+    },
+    {
+     "prompt": "move to the electric switch",
+     "start_s": 314.0,
+     "end_s": 319.0
+    },
+    {
+     "prompt": "turn off the electric switch",
+     "start_s": 319.0,
+     "end_s": 326.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 27.5,
+   "move to": 27.6,
+   "open door": 33.5,
+   "turn off switch": 13.0
+  },
+  "verb_counts_total": {
+   "move to": 1441,
+   "turn off switch": 995,
+   "open door": 248,
+   "close door": 196
+  },
+  "top_prompts": [
+   [
+    "move to the electric switch",
+    596
+   ],
+   [
+    "turn off the electric switch",
+    595
+   ],
+   [
+    "move to the sliding door",
+    446
+   ],
+   [
+    "turn off the table lamp",
+    400
+   ],
+   [
+    "move to the table lamp",
+    399
+   ],
+   [
+    "open the door of the sliding door",
+    248
+   ],
+   [
+    "close the door of the sliding door",
+    195
+   ],
+   [
+    "close the door of the electric switch",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.4,
+   "success": false,
+   "steps": 15010
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.4,
+   "success": false,
+   "steps": 15010
+  }
+ }
+}

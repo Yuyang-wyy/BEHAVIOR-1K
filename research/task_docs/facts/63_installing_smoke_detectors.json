@@ -1,0 +1,450 @@
+{
+ "index": 63,
+ "name": "installing_smoke_detectors",
+ "instruction": "Attach the two smoke detectors to the wall nails.",
+ "title": "Installing Smoke Detectors",
+ "rooms_listed": [
+  "living_room",
+  "kitchen",
+  "garden"
+ ],
+ "video": "https://www.youtube.com/embed/gRtLcTllXqQ",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Attach the two smoke detectors to the wall nails.",
+ "human": {
+  "mean_steps": 2568.77,
+  "mean_seconds": 85.6,
+  "step_limit": 3853,
+  "time_limit_seconds": 128.4,
+  "base_distance_m": 8.6081,
+  "eef_displacement_m": {
+   "left": 6.7902,
+   "right": 3.2471
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "kitchen_0",
+  "living_room_0",
+  "garden_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "living_room",
+   "kitchen",
+   "garden"
+  ],
+  "house_double_floor_lower": {
+   "whitelist": {
+    "fire_alarm.n.02": {
+     "fire_alarm": {
+      "dkwmmf": null
+     }
+    },
+    "wall_nail.n.01": {
+     "wall_nail": {
+      "wlnail": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem installing_smoke_detectors-0)\n    (:domain behavior-1k)\n\n    (:objects\n        wall_nail.n.01_1 - wall_nail.n.01\n        floor.n.01_1 - floor.n.01\n        table.n.02_1 - table.n.02\n        fire_alarm.n.02_1 - fire_alarm.n.02\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop fire_alarm.n.02_1 table.n.02_1) \n        (inroom wall_nail.n.01_1 living_room)\n        (inroom table.n.02_1 living_room)\n        (inroom floor.n.01_1 living_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (attached fire_alarm.n.02_1 wall_nail.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "wall_nail.n.01": [
+   "wall_nail.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "fire_alarm.n.02": [
+   "fire_alarm.n.02_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom table.n.02_1 living_room)",
+  "(inroom wall_nail.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop fire_alarm.n.02_1 table.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching fire_alarm.n.02_1 table.n.02_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching table.n.02_1 fire_alarm.n.02_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(attached fire_alarm.n.02_1 wall_nail.n.01_1)",
+    "negated": false,
+    "predicate": "attached",
+    "args": [
+     "fire_alarm.n.02_1",
+     "wall_nail.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "attached",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "wall_nail.n.01_1",
+   "scene_object": "wall_nail_wlnail_1",
+   "substance": false,
+   "category": "wall_nail",
+   "model": "wlnail",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    2.438278913497925,
+    2.4331214427948,
+    2.437626838684082
+   ],
+   "z": {
+    "min": 1.71,
+    "median": 1.71,
+    "max": 1.71
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.94,
+    "median": 4.48,
+    "max": 5.72
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.73,
+    "median": 1.19,
+    "max": 1.46
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "coffee_table_koagbh_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "koagbh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999982714653015,
+    1.0000159740447998,
+    1.000001311302185
+   ],
+   "z": {
+    "min": 0.36,
+    "median": 0.36,
+    "max": 0.36
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 1.56,
+    "max": 1.96
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "fire_alarm.n.02_1",
+   "scene_object": "fire_alarm_102",
+   "substance": false,
+   "category": "fire_alarm",
+   "model": "dkwmmf",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.44
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 1.63,
+    "max": 2.42
+   },
+   "xy_spread_m": 1.45,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_nljotx",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   4.91,
+   5.51
+  ],
+  [
+   4.52,
+   6.97
+  ],
+  [
+   5.09,
+   6.43
+  ],
+  [
+   4.58,
+   5.09
+  ],
+  [
+   5.11,
+   5.65
+  ],
+  [
+   5.04,
+   5.63
+  ],
+  [
+   5.02,
+   5.18
+  ],
+  [
+   5.05,
+   5.2
+  ],
+  [
+   4.74,
+   6.53
+  ],
+  [
+   4.26,
+   6.8
+  ],
+  [
+   5.05,
+   4.94
+  ],
+  [
+   4.59,
+   5.72
+  ],
+  [
+   4.88,
+   5.17
+  ],
+  [
+   4.15,
+   6.7
+  ],
+  [
+   5.12,
+   5.38
+  ],
+  [
+   4.62,
+   6.13
+  ],
+  [
+   4.92,
+   5.8
+  ],
+  [
+   5.14,
+   5.78
+  ],
+  [
+   4.55,
+   6.55
+  ],
+  [
+   4.8,
+   6.24
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 4,
+   "median": 4.0,
+   "max": 8
+  },
+  "demo_seconds": {
+   "min": 53.4,
+   "median": 81.0,
+   "max": 155.1
+  },
+  "distinct_verb_sequences": 5,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "attach"
+  ],
+  "modal_verb_sequence_share": 0.78,
+  "modal_verb_counts": {
+   "attach": 1,
+   "move to": 2,
+   "pick up from": 1
+  },
+  "modal_verb_counts_share": 0.78,
+  "representative_episode": {
+   "file": "episode_00630980.json",
+   "seconds": 77.3,
+   "steps": [
+    {
+     "prompt": "move to the fire alarm",
+     "start_s": 0.0,
+     "end_s": 14.0
+    },
+    {
+     "prompt": "pick up the fire alarm from the coffee table",
+     "start_s": 14.0,
+     "end_s": 36.0
+    },
+    {
+     "prompt": "move to the wall nail",
+     "start_s": 36.0,
+     "end_s": 70.7
+    },
+    {
+     "prompt": "attach the fire alarm to the wall nail",
+     "start_s": 70.7,
+     "end_s": 77.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "attach": 11.1,
+   "move to": 21.9,
+   "pick up from": 21.0,
+   "place on": 7.0
+  },
+  "verb_counts_total": {
+   "move to": 423,
+   "pick up from": 244,
+   "attach": 200,
+   "place on": 44
+  },
+  "top_prompts": [
+   [
+    "pick up the fire alarm from the coffee table",
+    244
+   ],
+   [
+    "move to the fire alarm",
+    221
+   ],
+   [
+    "move to the wall nail",
+    200
+   ],
+   [
+    "attach the fire alarm to the wall nail",
+    200
+   ],
+   [
+    "place the fire alarm on the coffee table",
+    44
+   ],
+   [
+    "move to the coffee table",
+    2
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3854
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3854
+  }
+ }
+}

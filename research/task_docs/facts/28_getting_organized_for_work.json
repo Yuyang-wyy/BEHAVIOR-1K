@@ -1,0 +1,1065 @@
+{
+ "index": 28,
+ "name": "getting_organized_for_work",
+ "instruction": "In the bedroom, organize the workspace by keeping the computer under the desk, ensuring the monitor is on the desk, placing the keyboard on the desk next to the monitor, placing the mouse on the desk next to the keyboard, moving the folder from the swivel chair onto the desk next to the mouse, stacking the notebook on top of the folder with the pen on top of the notebook, and positioning the swivel chair next to the desk.",
+ "title": "Getting Organized For Work",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://player.vimeo.com/video/1114059683",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "In the bedroom, organize the workspace by keeping the computer under the desk, ensuring the monitor is on the desk, placing the keyboard on the desk next to the monitor, placing the mouse on the desk next to the keyboard, moving the folder from the swivel chair onto the desk next to the mouse, stacking the notebook on top of the folder with the pen on top of the notebook, and positioning the swivel chair next to the desk.",
+ "human": {
+  "mean_steps": 15671.01,
+  "mean_seconds": 522.4,
+  "step_limit": 23506,
+  "time_limit_seconds": 783.6,
+  "base_distance_m": 47.3433,
+  "eef_displacement_m": {
+   "left": 17.2703,
+   "right": 26.5933
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "bedroom_1",
+  "bedroom_2"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem getting_organized_for_work-0)\n    (:domain behavior-1k)\n\n    (:objects\n        mouse.n.04_1 - mouse.n.04\n        swivel_chair.n.01_1 - swivel_chair.n.01\n        keyboard.n.01_1 - keyboard.n.01\n        notebook.n.01_1 - notebook.n.01\n        pen.n.01_1 - pen.n.01\n        folder.n.02_1 - folder.n.02\n        desk.n.01_1 - desk.n.01\n        floor.n.01_1 - floor.n.01\n        computer.n.01_1 - computer.n.01\n        monitor.n.04_1 - monitor.n.04\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop mouse.n.04_1 desk.n.01_1)\n        (ontop keyboard.n.01_1 notebook.n.01_1) \n        (ontop pen.n.01_1 folder.n.02_1) \n        (ontop notebook.n.01_1 desk.n.01_1) \n        (ontop folder.n.02_1 swivel_chair.n.01_1)\n        (under computer.n.01_1 desk.n.01_1) \n        (ontop monitor.n.04_1 desk.n.01_1)\n        (inroom desk.n.01_1 bedroom) \n        (inroom floor.n.01_1 bedroom) \n        (inroom swivel_chair.n.01_1 bedroom)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (nextto ?keyboard.n.01_1 ?monitor.n.04_1) \n            (ontop ?keyboard.n.01_1 ?desk.n.01_1)\n            (under ?computer.n.01_1 ?desk.n.01_1)\n            (ontop ?monitor.n.04_1 ?desk.n.01_1)\n            (nextto ?mouse.n.04_1 ?keyboard.n.01_1) \n            (ontop ?mouse.n.04_1 ?desk.n.01_1)\n            (nextto ?folder.n.02_1 ?mouse.n.04_1) \n            (ontop ?notebook.n.01_1 ?folder.n.02_1)\n            (ontop ?pen.n.01_1 ?notebook.n.01_1) \n            (nextto ?swivel_chair.n.01_1 ?desk.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_2"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "mouse.n.04": [
+   "mouse.n.04_1"
+  ],
+  "swivel_chair.n.01": [
+   "swivel_chair.n.01_1"
+  ],
+  "keyboard.n.01": [
+   "keyboard.n.01_1"
+  ],
+  "notebook.n.01": [
+   "notebook.n.01_1"
+  ],
+  "pen.n.01": [
+   "pen.n.01_1"
+  ],
+  "folder.n.02": [
+   "folder.n.02_1"
+  ],
+  "desk.n.01": [
+   "desk.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "computer.n.01": [
+   "computer.n.01_1"
+  ],
+  "monitor.n.04": [
+   "monitor.n.04_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom desk.n.01_1 bedroom)",
+  "(inroom floor.n.01_1 bedroom)",
+  "(inroom swivel_chair.n.01_1 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop folder.n.02_1 swivel_chair.n.01_1)",
+  "(ontop keyboard.n.01_1 notebook.n.01_1)",
+  "(ontop monitor.n.04_1 desk.n.01_1)",
+  "(ontop mouse.n.04_1 desk.n.01_1)",
+  "(ontop notebook.n.01_1 desk.n.01_1)",
+  "(ontop pen.n.01_1 folder.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching desk.n.01_1 monitor.n.04_1)",
+  "(touching desk.n.01_1 mouse.n.04_1)",
+  "(touching desk.n.01_1 notebook.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching folder.n.02_1 pen.n.01_1)",
+  "(touching folder.n.02_1 swivel_chair.n.01_1)",
+  "(touching keyboard.n.01_1 notebook.n.01_1)",
+  "(touching monitor.n.04_1 desk.n.01_1)",
+  "(touching mouse.n.04_1 desk.n.01_1)",
+  "(touching notebook.n.01_1 desk.n.01_1)",
+  "(touching notebook.n.01_1 keyboard.n.01_1)",
+  "(touching pen.n.01_1 folder.n.02_1)",
+  "(touching swivel_chair.n.01_1 folder.n.02_1)",
+  "(under computer.n.01_1 desk.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 10,
+  "n_initially_true": 3,
+  "max_partial_q": 0.7,
+  "literals": [
+   {
+    "literal": "(nextto keyboard.n.01_1 monitor.n.04_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "keyboard.n.01_1",
+     "monitor.n.04_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop keyboard.n.01_1 desk.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "keyboard.n.01_1",
+     "desk.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(under computer.n.01_1 desk.n.01_1)",
+    "negated": false,
+    "predicate": "under",
+    "args": [
+     "computer.n.01_1",
+     "desk.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(ontop monitor.n.04_1 desk.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "monitor.n.04_1",
+     "desk.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(nextto mouse.n.04_1 keyboard.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "mouse.n.04_1",
+     "keyboard.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop mouse.n.04_1 desk.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "mouse.n.04_1",
+     "desk.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(nextto folder.n.02_1 mouse.n.04_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "folder.n.02_1",
+     "mouse.n.04_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop notebook.n.01_1 folder.n.02_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "notebook.n.01_1",
+     "folder.n.02_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop pen.n.01_1 notebook.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "pen.n.01_1",
+     "notebook.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto swivel_chair.n.01_1 desk.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "swivel_chair.n.01_1",
+     "desk.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   10,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   5
+  ],
+  [
+   "nextto",
+   4
+  ],
+  [
+   "under",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "mouse.n.04_1",
+   "scene_object": "mouse_92",
+   "substance": false,
+   "category": "mouse",
+   "model": "oydobn",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    2.8939390182495117,
+    3.061781883239746,
+    2.6600661277770996
+   ],
+   "z": {
+    "min": 0.73,
+    "median": 0.73,
+    "max": 0.73
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 1.73,
+    "max": 2.6
+   },
+   "xy_spread_m": 1.88,
+   "n_poses": 20
+  },
+  {
+   "inst": "swivel_chair.n.01_1",
+   "scene_object": "swivel_chair_iiihwn_0",
+   "substance": false,
+   "category": "swivel_chair",
+   "model": "iiihwn",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    0.999993085861206,
+    1.0000238418579102,
+    0.9999864101409912
+   ],
+   "z": {
+    "min": 0.48,
+    "median": 0.48,
+    "max": 0.48
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 1.34,
+    "max": 2.01
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "keyboard.n.01_1",
+   "scene_object": "keyboard_91",
+   "substance": false,
+   "category": "keyboard",
+   "model": "injrgc",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.73,
+    "median": 0.74,
+    "max": 0.74
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 2.08,
+    "max": 2.68
+   },
+   "xy_spread_m": 1.77,
+   "n_poses": 20
+  },
+  {
+   "inst": "notebook.n.01_1",
+   "scene_object": "notebook_90",
+   "substance": false,
+   "category": "notebook",
+   "model": "eijrqw",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 0.72,
+    "max": 0.72
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 2.07,
+    "max": 2.68
+   },
+   "xy_spread_m": 1.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "pen.n.01_1",
+   "scene_object": "pen_89",
+   "substance": false,
+   "category": "pen",
+   "model": "enfumt",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.54,
+    "median": 0.54,
+    "max": 0.71
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 1.42,
+    "max": 2.12
+   },
+   "xy_spread_m": 0.23,
+   "n_poses": 20
+  },
+  {
+   "inst": "folder.n.02_1",
+   "scene_object": "folder_88",
+   "substance": false,
+   "category": "folder",
+   "model": "guhatz",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.52,
+    "median": 0.52,
+    "max": 0.6
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 1.41,
+    "max": 2.08
+   },
+   "xy_spread_m": 0.12,
+   "n_poses": 20
+  },
+  {
+   "inst": "desk.n.01_1",
+   "scene_object": "desk_uqcmzf_0",
+   "substance": false,
+   "category": "desk",
+   "model": "uqcmzf",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000251531600952,
+    1.0000274181365967,
+    0.9999312162399292
+   ],
+   "z": {
+    "min": 0.61,
+    "median": 0.61,
+    "max": 0.61
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.57,
+    "median": 1.89,
+    "max": 2.55
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_dcxicr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "dcxicr",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000115633010864,
+    0.9999899864196777,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.66,
+    "median": 1.12,
+    "max": 1.56
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "computer.n.01_1",
+   "scene_object": "desktop_computer_87",
+   "substance": false,
+   "category": "desktop_computer",
+   "model": "eantds",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    0.7999999523162842,
+    0.7999999523162842,
+    0.7999999523162842
+   ],
+   "z": {
+    "min": 0.2,
+    "median": 0.2,
+    "max": 0.2
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.23,
+    "median": 1.84,
+    "max": 2.73
+   },
+   "xy_spread_m": 1.16,
+   "n_poses": 20
+  },
+  {
+   "inst": "monitor.n.04_1",
+   "scene_object": "monitor_86",
+   "substance": false,
+   "category": "monitor",
+   "model": "qvpbge",
+   "in_rooms": [
+    "bedroom_2"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.0,
+    "median": 1.0,
+    "max": 1.0
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.2,
+    "median": 1.75,
+    "max": 2.57
+   },
+   "xy_spread_m": 0.96,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   4.43,
+   -3.29
+  ],
+  [
+   4.85,
+   -3.44
+  ],
+  [
+   3.48,
+   -2.31
+  ],
+  [
+   3.38,
+   -1.79
+  ],
+  [
+   5.51,
+   -3.44
+  ],
+  [
+   4.85,
+   -3.44
+  ],
+  [
+   3.38,
+   -2.27
+  ],
+  [
+   3.37,
+   -2.46
+  ],
+  [
+   3.3,
+   -2.35
+  ],
+  [
+   4.8,
+   -3.23
+  ],
+  [
+   4.91,
+   -3.41
+  ],
+  [
+   3.12,
+   -2.29
+  ],
+  [
+   5.15,
+   -3.47
+  ],
+  [
+   3.28,
+   -2.1
+  ],
+  [
+   4.52,
+   -3.39
+  ],
+  [
+   3.16,
+   -1.79
+  ],
+  [
+   3.51,
+   -1.93
+  ],
+  [
+   3.44,
+   -2.16
+  ],
+  [
+   3.15,
+   -2.3
+  ],
+  [
+   3.67,
+   -2.23
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 27,
+   "median": 43.0,
+   "max": 52
+  },
+  "demo_seconds": {
+   "min": 334.57,
+   "median": 497.23,
+   "max": 959.1
+  },
+  "distinct_verb_sequences": 189,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "turn to",
+   "pick up from",
+   "place on",
+   "turn to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "pick up from",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "push to"
+  ],
+  "modal_verb_sequence_share": 0.015,
+  "modal_verb_counts": {
+   "move to": 17,
+   "pick up from": 10,
+   "place on": 4,
+   "place on next to": 6,
+   "push to": 5,
+   "turn to": 2
+  },
+  "modal_verb_counts_share": 0.045,
+  "representative_episode": {
+   "file": "episode_00282290.json",
+   "seconds": 533.3,
+   "steps": [
+    {
+     "prompt": "move to the swivel chair",
+     "start_s": 2.7,
+     "end_s": 28.1
+    },
+    {
+     "prompt": "push the swivel chair to the left desk",
+     "start_s": 28.1,
+     "end_s": 65.8
+    },
+    {
+     "prompt": "move to the mouse",
+     "start_s": 65.8,
+     "end_s": 73.4
+    },
+    {
+     "prompt": "pick up the mouse from the desk",
+     "start_s": 73.4,
+     "end_s": 85.6
+    },
+    {
+     "prompt": "move to the to_the_edge_of desk",
+     "start_s": 85.6,
+     "end_s": 90.3
+    },
+    {
+     "prompt": "place the mouse on the to_the_edge_of desk",
+     "start_s": 90.3,
+     "end_s": 101.9
+    },
+    {
+     "prompt": "move to the keyboard",
+     "start_s": 101.9,
+     "end_s": 108.8
+    },
+    {
+     "prompt": "push the keyboard to the to_the_edge_of desk",
+     "start_s": 108.8,
+     "end_s": 131.3
+    },
+    {
+     "prompt": "pick up the keyboard from the notebook",
+     "start_s": 131.3,
+     "end_s": 140.4
+    },
+    {
+     "prompt": "move to the mouse",
+     "start_s": 140.4,
+     "end_s": 146.8
+    },
+    {
+     "prompt": "place the keyboard on the desk next to the right mouse",
+     "start_s": 146.8,
+     "end_s": 155.0
+    },
+    {
+     "prompt": "move to the notebook",
+     "start_s": 155.0,
+     "end_s": 160.0
+    },
+    {
+     "prompt": "push the notebook to the to_the_edge_of desk",
+     "start_s": 160.0,
+     "end_s": 173.9
+    },
+    {
+     "prompt": "pick up the notebook from the desk",
+     "start_s": 173.9,
+     "end_s": 189.9
+    },
+    {
+     "prompt": "move to the keyboard",
+     "start_s": 189.9,
+     "end_s": 193.3
+    },
+    {
+     "prompt": "place the notebook on the desk next to the right keyboard",
+     "start_s": 193.3,
+     "end_s": 205.8
+    },
+    {
+     "prompt": "move to the monitor",
+     "start_s": 205.8,
+     "end_s": 209.4
+    },
+    {
+     "prompt": "turn to the monitor",
+     "start_s": 209.4,
+     "end_s": 227.9
+    },
+    {
+     "prompt": "pick up the monitor from the desk",
+     "start_s": 227.9,
+     "end_s": 235.0
+    },
+    {
+     "prompt": "place the monitor on the center desk",
+     "start_s": 235.0,
+     "end_s": 255.7
+    },
+    {
+     "prompt": "turn to the monitor",
+     "start_s": 255.7,
+     "end_s": 268.2
+    },
+    {
+     "prompt": "move to the keyboard",
+     "start_s": 268.2,
+     "end_s": 275.7
+    },
+    {
+     "prompt": "pick up the keyboard from the desk",
+     "start_s": 275.7,
+     "end_s": 289.4
+    },
+    {
+     "prompt": "move to the monitor",
+     "start_s": 289.4,
+     "end_s": 293.5
+    },
+    {
+     "prompt": "place the keyboard on the desk next to the in_front_of monitor",
+     "start_s": 293.5,
+     "end_s": 308.6
+    },
+    {
+     "prompt": "move to the mouse",
+     "start_s": 308.6,
+     "end_s": 312.3
+    },
+    {
+     "prompt": "pick up the mouse from the desk",
+     "start_s": 312.3,
+     "end_s": 322.9
+    },
+    {
+     "prompt": "move to the keyboard",
+     "start_s": 322.9,
+     "end_s": 326.0
+    },
+    {
+     "prompt": "place the mouse on the desk next to the left keyboard",
+     "start_s": 326.0,
+     "end_s": 334.5
+    },
+    {
+     "prompt": "move to the pen",
+     "start_s": 334.5,
+     "end_s": 341.2
+    },
+    {
+     "prompt": "pick up the pen from the folder",
+     "start_s": 341.2,
+     "end_s": 354.2
+    },
+    {
+     "prompt": "move to the notebook",
+     "start_s": 354.2,
+     "end_s": 357.1
+    },
+    {
+     "prompt": "place the pen on the desk next to the left notebook",
+     "start_s": 357.1,
+     "end_s": 361.1
+    },
+    {
+     "prompt": "move to the folder",
+     "start_s": 361.1,
+     "end_s": 366.0
+    },
+    {
+     "prompt": "push the folder to the to_the_edge_of swivel chair",
+     "start_s": 366.0,
+     "end_s": 377.1
+    },
+    {
+     "prompt": "pick up the folder from the swivel chair",
+     "start_s": 377.1,
+     "end_s": 393.6
+    },
+    {
+     "prompt": "move to the notebook",
+     "start_s": 393.6,
+     "end_s": 400.0
+    },
+    {
+     "prompt": "place the folder on the desk next to the right notebook",
+     "start_s": 400.0,
+     "end_s": 417.1
+    },
+    {
+     "prompt": "pick up the notebook from the desk",
+     "start_s": 417.1,
+     "end_s": 425.4
+    },
+    {
+     "prompt": "place the notebook on the folder",
+     "start_s": 425.4,
+     "end_s": 436.2
+    },
+    {
+     "prompt": "move to the pen",
+     "start_s": 436.2,
+     "end_s": 444.2
+    },
+    {
+     "prompt": "pick up the pen from the desk",
+     "start_s": 444.2,
+     "end_s": 461.5
+    },
+    {
+     "prompt": "move to the notebook",
+     "start_s": 461.5,
+     "end_s": 467.1
+    },
+    {
+     "prompt": "place the pen on the notebook",
+     "start_s": 467.1,
+     "end_s": 478.1
+    },
+    {
+     "prompt": "move to the swivel chair",
+     "start_s": 478.1,
+     "end_s": 502.9
+    },
+    {
+     "prompt": "push the swivel chair to the right desk",
+     "start_s": 502.9,
+     "end_s": 536.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 18.4,
+   "move to": 7.2,
+   "pick up from": 13.6,
+   "place on": 9.3,
+   "place on next to": 10.5,
+   "push to": 28.1,
+   "turn to": 14.4
+  },
+  "verb_counts_total": {
+   "move to": 3046,
+   "pick up from": 2021,
+   "place on next to": 1214,
+   "push to": 998,
+   "place on": 807,
+   "turn to": 428,
+   "hand over": 9
+  },
+  "top_prompts": [
+   [
+    "move to the keyboard",
+    701
+   ],
+   [
+    "move to the notebook",
+    575
+   ],
+   [
+    "move to the mouse",
+    485
+   ],
+   [
+    "turn to the monitor",
+    428
+   ],
+   [
+    "move to the swivel chair",
+    400
+   ],
+   [
+    "move to the monitor",
+    372
+   ],
+   [
+    "pick up the mouse from the desk",
+    370
+   ],
+   [
+    "pick up the notebook from the desk",
+    369
+   ],
+   [
+    "move to the pen",
+    280
+   ],
+   [
+    "pick up the monitor from the desk",
+    273
+   ],
+   [
+    "place the mouse on the desk next to the left keyboard",
+    239
+   ],
+   [
+    "pick up the keyboard from the desk",
+    236
+   ],
+   [
+    "place the notebook on the folder",
+    200
+   ],
+   [
+    "pick up the pen from the desk",
+    200
+   ],
+   [
+    "place the pen on the notebook",
+    200
+   ],
+   [
+    "push the swivel chair to the left desk",
+    199
+   ],
+   [
+    "place the monitor on the center desk",
+    199
+   ],
+   [
+    "place the keyboard on the desk next to the in_front_of monitor",
+    199
+   ],
+   [
+    "push the swivel chair to the right desk",
+    198
+   ],
+   [
+    "pick up the folder from the swivel chair",
+    196
+   ],
+   [
+    "push the folder to the to_the_edge_of swivel chair",
+    195
+   ],
+   [
+    "pick up the pen from the folder",
+    194
+   ],
+   [
+    "push the notebook to the to_the_edge_of desk",
+    191
+   ],
+   [
+    "pick up the keyboard from the notebook",
+    173
+   ],
+   [
+    "push the keyboard to the to_the_edge_of desk",
+    167
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "turn to",
+  "place on",
+  "pick up from",
+  "place on next to",
+  "hand over",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23507
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23507
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23507
+  }
+ }
+}

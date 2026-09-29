@@ -1,0 +1,1078 @@
+{
+ "index": 64,
+ "name": "setting_the_table",
+ "instruction": "Set the breakfast table with both plates, put one cupcake on each plate, and place a fork and a knife next to each plate.",
+ "title": "Setting The Table",
+ "rooms_listed": [
+  "dining_room",
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/Tkf34ap-z8U",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Set the breakfast table with both plates, put one cupcake on each plate, and place a fork and a knife next to each plate.",
+ "human": {
+  "mean_steps": 17808.505,
+  "mean_seconds": 593.6,
+  "step_limit": 26712,
+  "time_limit_seconds": 890.4,
+  "base_distance_m": 55.4631,
+  "eef_displacement_m": {
+   "left": 38.1259,
+   "right": 46.9068
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "dining_room",
+   "kitchen"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "cupcake.n.01": {
+     "cupcake": {
+      "mbhweg": null
+     }
+    },
+    "plate.n.04": {
+     "plate": {
+      "aewthq": null
+     }
+    },
+    "table_knife.n.01": {
+     "table_knife": {
+      "jxdfyy": null
+     }
+    },
+    "tablefork.n.01": {
+     "tablefork": {
+      "flexrc": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem setting_the_table-0)\n    (:domain behavior-1k)\n\n    (:objects\n        cupcake.n.01_1 cupcake.n.01_2 - cupcake.n.01\n        breakfast_table.n.01_1 - breakfast_table.n.01\n        tablefork.n.01_1 tablefork.n.01_2 - tablefork.n.01\n        table_knife.n.01_1 table_knife.n.01_2 - table_knife.n.01\n        plate.n.04_1 plate.n.04_2 - plate.n.04\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        sink.n.01_1 - sink.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside cupcake.n.01_1 electric_refrigerator.n.01_1) \n        (inside cupcake.n.01_2 electric_refrigerator.n.01_1) \n        (ontop tablefork.n.01_1 sink.n.01_1) \n        (ontop tablefork.n.01_2 sink.n.01_1) \n        (ontop table_knife.n.01_1 sink.n.01_1) \n        (ontop table_knife.n.01_2 sink.n.01_1) \n        (inside plate.n.04_1 cabinet.n.01_1)\n        (inside plate.n.04_2 cabinet.n.01_1)\n        (inroom breakfast_table.n.01_1 dining_room) \n        (inroom floor.n.01_1 kitchen) \n        (inroom cabinet.n.01_1 kitchen)\n        (inroom sink.n.01_1 kitchen) \n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?plate.n.04 - plate.n.04) \n                (ontop ?plate.n.04 ?breakfast_table.n.01_1)\n            )\n            (forpairs \n                (?plate.n.04 - plate.n.04) \n                (?cupcake.n.01 - cupcake.n.01) \n                (ontop ?cupcake.n.01 ?plate.n.04)\n            ) \n            (forpairs\n                (?tablefork.n.01 - tablefork.n.01)\n                (?plate.n.04 - plate.n.04)\n                (nextto ?tablefork.n.01 ?plate.n.04)\n            ) \n            (forpairs\n                (?table_knife.n.01 - table_knife.n.01)\n                (?plate.n.04 - plate.n.04)\n                (nextto ?table_knife.n.01 ?plate.n.04)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "dining_room": "dining_room_0",
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "cupcake.n.01": [
+   "cupcake.n.01_1",
+   "cupcake.n.01_2"
+  ],
+  "breakfast_table.n.01": [
+   "breakfast_table.n.01_1"
+  ],
+  "tablefork.n.01": [
+   "tablefork.n.01_1",
+   "tablefork.n.01_2"
+  ],
+  "table_knife.n.01": [
+   "table_knife.n.01_1",
+   "table_knife.n.01_2"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1",
+   "plate.n.04_2"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "sink.n.01": [
+   "sink.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 1,
+   "max_abs_joint_pos": 0.02
+  }
+ },
+ "init_literals": [
+  "(inroom breakfast_table.n.01_1 dining_room)",
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom sink.n.01_1 kitchen)",
+  "(inside cupcake.n.01_1 electric_refrigerator.n.01_1)",
+  "(inside cupcake.n.01_2 electric_refrigerator.n.01_1)",
+  "(inside plate.n.04_1 cabinet.n.01_1)",
+  "(inside plate.n.04_2 cabinet.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop table_knife.n.01_1 sink.n.01_1)",
+  "(ontop table_knife.n.01_2 sink.n.01_1)",
+  "(ontop tablefork.n.01_1 sink.n.01_1)",
+  "(ontop tablefork.n.01_2 sink.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching sink.n.01_1 table_knife.n.01_1)",
+  "(touching sink.n.01_1 table_knife.n.01_2)",
+  "(touching sink.n.01_1 tablefork.n.01_1)",
+  "(touching sink.n.01_1 tablefork.n.01_2)",
+  "(touching table_knife.n.01_1 sink.n.01_1)",
+  "(touching table_knife.n.01_2 sink.n.01_1)",
+  "(touching tablefork.n.01_1 sink.n.01_1)",
+  "(touching tablefork.n.01_2 sink.n.01_1)"
+ ],
+ "n_ground_options": 8,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 8,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop plate.n.04_1 breakfast_table.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plate.n.04_1",
+     "breakfast_table.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop plate.n.04_2 breakfast_table.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plate.n.04_2",
+     "breakfast_table.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop cupcake.n.01_2 plate.n.04_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "cupcake.n.01_2",
+     "plate.n.04_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop cupcake.n.01_1 plate.n.04_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "cupcake.n.01_1",
+     "plate.n.04_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto tablefork.n.01_1 plate.n.04_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "tablefork.n.01_1",
+     "plate.n.04_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto tablefork.n.01_2 plate.n.04_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "tablefork.n.01_2",
+     "plate.n.04_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto table_knife.n.01_1 plate.n.04_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "table_knife.n.01_1",
+     "plate.n.04_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto table_knife.n.01_2 plate.n.04_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "table_knife.n.01_2",
+     "plate.n.04_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   8,
+   8
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   4
+  ],
+  [
+   "nextto",
+   4
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "cupcake.n.01_1",
+   "scene_object": "cupcake_250",
+   "substance": false,
+   "category": "cupcake",
+   "model": "mbhweg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.5,
+    "median": 0.91,
+    "max": 1.31
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 2.17,
+    "max": 3.32
+   },
+   "xy_spread_m": 0.45,
+   "n_poses": 20
+  },
+  {
+   "inst": "cupcake.n.01_2",
+   "scene_object": "cupcake_249",
+   "substance": false,
+   "category": "cupcake",
+   "model": "mbhweg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.5,
+    "median": 0.91,
+    "max": 1.31
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 2.36,
+    "max": 3.41
+   },
+   "xy_spread_m": 0.43,
+   "n_poses": 20
+  },
+  {
+   "inst": "breakfast_table.n.01_1",
+   "scene_object": "breakfast_table_rhjoby_0",
+   "substance": false,
+   "category": "breakfast_table",
+   "model": "rhjoby",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999933242797852,
+    0.9999943971633911,
+    0.9999465942382812
+   ],
+   "z": {
+    "min": 0.76,
+    "median": 0.76,
+    "max": 0.76
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.99,
+    "median": 4.58,
+    "max": 4.84
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tablefork.n.01_1",
+   "scene_object": "tablefork_248",
+   "substance": false,
+   "category": "tablefork",
+   "model": "flexrc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.74,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.0,
+    "median": 1.55,
+    "max": 2.83
+   },
+   "xy_spread_m": 0.63,
+   "n_poses": 20
+  },
+  {
+   "inst": "tablefork.n.01_2",
+   "scene_object": "tablefork_247",
+   "substance": false,
+   "category": "tablefork",
+   "model": "flexrc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.74,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.87,
+    "median": 1.4,
+    "max": 2.89
+   },
+   "xy_spread_m": 0.59,
+   "n_poses": 20
+  },
+  {
+   "inst": "table_knife.n.01_1",
+   "scene_object": "table_knife_246",
+   "substance": false,
+   "category": "table_knife",
+   "model": "jxdfyy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.87,
+    "median": 1.44,
+    "max": 2.77
+   },
+   "xy_spread_m": 0.45,
+   "n_poses": 20
+  },
+  {
+   "inst": "table_knife.n.01_2",
+   "scene_object": "table_knife_245",
+   "substance": false,
+   "category": "table_knife",
+   "model": "jxdfyy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.74,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 1.38,
+    "max": 2.61
+   },
+   "xy_spread_m": 0.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_244",
+   "substance": false,
+   "category": "plate",
+   "model": "aewthq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.53,
+    "median": 1.53,
+    "max": 1.53
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 1.8,
+    "max": 4.59
+   },
+   "xy_spread_m": 0.76,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_2",
+   "scene_object": "plate_243",
+   "substance": false,
+   "category": "plate",
+   "model": "aewthq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.53,
+    "median": 1.53,
+    "max": 1.55
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.07,
+    "median": 1.72,
+    "max": 4.7
+   },
+   "xy_spread_m": 0.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_dszchb_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "dszchb",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0291646718978882,
+    0.9616702198982239,
+    1.021162748336792
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.94,
+    "median": 2.36,
+    "max": 3.44
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "top_cabinet_lkxmne_1",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 1.76,
+    "max": 4.65
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sink.n.01_1",
+   "scene_object": "drop_in_sink_awvzkn_0",
+   "substance": false,
+   "category": "drop_in_sink",
+   "model": "awvzkn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000107288360596,
+    1.0000001192092896,
+    0.9999061226844788
+   ],
+   "z": {
+    "min": 0.87,
+    "median": 0.87,
+    "max": 0.87
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.04,
+    "median": 1.48,
+    "max": 3.02
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 1.43,
+    "max": 2.15
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_babrdi",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.19,
+   0.11
+  ],
+  [
+   8.17,
+   -0.96
+  ],
+  [
+   5.11,
+   0.15
+  ],
+  [
+   5.31,
+   -0.86
+  ],
+  [
+   7.54,
+   -1.06
+  ],
+  [
+   6.24,
+   -0.92
+  ],
+  [
+   8.64,
+   -0.91
+  ],
+  [
+   5.05,
+   -0.58
+  ],
+  [
+   5.5,
+   -0.95
+  ],
+  [
+   6.54,
+   -0.96
+  ],
+  [
+   5.93,
+   -0.85
+  ],
+  [
+   5.32,
+   -0.91
+  ],
+  [
+   5.37,
+   -0.8
+  ],
+  [
+   5.17,
+   -0.63
+  ],
+  [
+   7.15,
+   -1.04
+  ],
+  [
+   5.42,
+   -0.77
+  ],
+  [
+   6.1,
+   -0.92
+  ],
+  [
+   5.15,
+   -0.58
+  ],
+  [
+   8.06,
+   -1.02
+  ],
+  [
+   7.88,
+   -0.97
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 31,
+   "median": 34.0,
+   "max": 34
+  },
+  "demo_seconds": {
+   "min": 394.17,
+   "median": 614.97,
+   "max": 773.43
+  },
+  "distinct_verb_sequences": 11,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "open door",
+   "push to",
+   "pick up from",
+   "push to",
+   "pick up from",
+   "close door",
+   "close door",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "open door",
+   "pick up from",
+   "pick up from",
+   "place on",
+   "close door",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.83,
+  "modal_verb_counts": {
+   "close door": 3,
+   "move to": 8,
+   "open door": 3,
+   "pick up from": 9,
+   "place on": 9,
+   "push to": 2
+  },
+  "modal_verb_counts_share": 0.83,
+  "representative_episode": {
+   "file": "episode_00642660.json",
+   "seconds": 611.4,
+   "steps": [
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 0.0,
+     "end_s": 13.6
+    },
+    {
+     "prompt": "open the door of the top cabinet",
+     "start_s": 13.6,
+     "end_s": 37.7
+    },
+    {
+     "prompt": "open the door of the top cabinet",
+     "start_s": 37.7,
+     "end_s": 53.7
+    },
+    {
+     "prompt": "push the plate to the top cabinet",
+     "start_s": 53.7,
+     "end_s": 66.1
+    },
+    {
+     "prompt": "pick up the plate from the top cabinet",
+     "start_s": 66.1,
+     "end_s": 75.5
+    },
+    {
+     "prompt": "push the plate to the top cabinet",
+     "start_s": 75.5,
+     "end_s": 92.9
+    },
+    {
+     "prompt": "pick up the plate from the top cabinet",
+     "start_s": 92.9,
+     "end_s": 103.0
+    },
+    {
+     "prompt": "close the door of the top cabinet",
+     "start_s": 103.0,
+     "end_s": 116.1
+    },
+    {
+     "prompt": "close the door of the top cabinet",
+     "start_s": 116.1,
+     "end_s": 131.8
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 131.8,
+     "end_s": 159.0
+    },
+    {
+     "prompt": "place the plate on the breakfast table",
+     "start_s": 159.0,
+     "end_s": 166.0
+    },
+    {
+     "prompt": "place the plate on the breakfast table",
+     "start_s": 166.0,
+     "end_s": 180.0
+    },
+    {
+     "prompt": "move to the electric refrigerator",
+     "start_s": 180.0,
+     "end_s": 217.0
+    },
+    {
+     "prompt": "open the door of the electric refrigerator",
+     "start_s": 217.0,
+     "end_s": 247.0
+    },
+    {
+     "prompt": "pick up the cupcake from the electric refrigerator",
+     "start_s": 247.0,
+     "end_s": 267.0
+    },
+    {
+     "prompt": "pick up the cupcake from the electric refrigerator",
+     "start_s": 267.0,
+     "end_s": 292.3
+    },
+    {
+     "prompt": "place the cupcake on the bar",
+     "start_s": 292.3,
+     "end_s": 304.9
+    },
+    {
+     "prompt": "close the door of the electric refrigerator",
+     "start_s": 304.9,
+     "end_s": 321.0
+    },
+    {
+     "prompt": "pick up the cupcake from the bar",
+     "start_s": 321.0,
+     "end_s": 331.3
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 331.3,
+     "end_s": 366.3
+    },
+    {
+     "prompt": "place the cupcake on the plate",
+     "start_s": 366.3,
+     "end_s": 375.9
+    },
+    {
+     "prompt": "place the cupcake on the plate",
+     "start_s": 375.9,
+     "end_s": 387.9
+    },
+    {
+     "prompt": "move to the sink",
+     "start_s": 387.9,
+     "end_s": 412.0
+    },
+    {
+     "prompt": "pick up the tablefork from the sink",
+     "start_s": 412.0,
+     "end_s": 442.1
+    },
+    {
+     "prompt": "pick up the table knife from the sink",
+     "start_s": 442.1,
+     "end_s": 460.4
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 460.4,
+     "end_s": 487.9
+    },
+    {
+     "prompt": "place the tablefork on the breakfast table",
+     "start_s": 487.9,
+     "end_s": 497.4
+    },
+    {
+     "prompt": "place the table knife on the breakfast table",
+     "start_s": 497.4,
+     "end_s": 509.6
+    },
+    {
+     "prompt": "move to the sink",
+     "start_s": 509.6,
+     "end_s": 538.8
+    },
+    {
+     "prompt": "pick up the tablefork from the sink",
+     "start_s": 538.8,
+     "end_s": 547.7
+    },
+    {
+     "prompt": "pick up the table knife from the sink",
+     "start_s": 547.7,
+     "end_s": 564.1
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 564.1,
+     "end_s": 591.0
+    },
+    {
+     "prompt": "place the tablefork on the breakfast table",
+     "start_s": 591.0,
+     "end_s": 599.1
+    },
+    {
+     "prompt": "place the table knife on the breakfast table",
+     "start_s": 599.1,
+     "end_s": 611.4
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 15.5,
+   "close drawer": 16.9,
+   "move to": 26.3,
+   "open door": 21.6,
+   "pick up from": 18.4,
+   "place on": 9.3,
+   "push to": 11.3
+  },
+  "verb_counts_total": {
+   "pick up from": 1799,
+   "place on": 1799,
+   "move to": 1602,
+   "open door": 595,
+   "close door": 591,
+   "push to": 375,
+   "close drawer": 2
+  },
+  "top_prompts": [
+   [
+    "move to the breakfast table",
+    800
+   ],
+   [
+    "pick up the plate from the top cabinet",
+    400
+   ],
+   [
+    "place the plate on the breakfast table",
+    400
+   ],
+   [
+    "pick up the cupcake from the electric refrigerator",
+    400
+   ],
+   [
+    "place the cupcake on the plate",
+    400
+   ],
+   [
+    "move to the sink",
+    400
+   ],
+   [
+    "pick up the tablefork from the sink",
+    400
+   ],
+   [
+    "pick up the table knife from the sink",
+    400
+   ],
+   [
+    "place the tablefork on the breakfast table",
+    400
+   ],
+   [
+    "place the table knife on the breakfast table",
+    400
+   ],
+   [
+    "open the door of the top cabinet",
+    395
+   ],
+   [
+    "close the door of the top cabinet",
+    391
+   ],
+   [
+    "push the plate to the top cabinet",
+    375
+   ],
+   [
+    "move to the electric refrigerator",
+    201
+   ],
+   [
+    "move to the top cabinet",
+    200
+   ],
+   [
+    "open the door of the electric refrigerator",
+    200
+   ],
+   [
+    "close the door of the electric refrigerator",
+    200
+   ],
+   [
+    "place the cupcake on the bar",
+    199
+   ],
+   [
+    "pick up the cupcake from the bar",
+    199
+   ],
+   [
+    "close the drawer of the top cabinet",
+    2
+   ],
+   [
+    "move to the table knife",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

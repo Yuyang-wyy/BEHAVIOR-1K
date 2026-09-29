@@ -1,0 +1,697 @@
+{
+ "index": 58,
+ "name": "stacking_wood",
+ "instruction": "Stack all of the logs together on the driveway.",
+ "title": "Stacking Wood",
+ "rooms_listed": [
+  "garden"
+ ],
+ "video": "https://www.youtube.com/embed/8MDz0GuPlto",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Stack all of the logs together on the driveway.",
+ "human": {
+  "mean_steps": 15939.34,
+  "mean_seconds": 531.3,
+  "step_limit": 23909,
+  "time_limit_seconds": 797.0,
+  "base_distance_m": 85.9645,
+  "eef_displacement_m": {
+   "left": 21.4499,
+   "right": 21.7195
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "garden"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "log.n.01": {
+     "log": {
+      "pepele": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem stacking_wood-0)\n    (:domain behavior-1k)\n\n    (:objects\n        log.n.01_1 log.n.01_2 log.n.01_3 log.n.01_4 log.n.01_5 log.n.01_6 - log.n.01\n        driveway.n.01_1 - driveway.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop log.n.01_1 driveway.n.01_1)\n        (ontop log.n.01_2 driveway.n.01_1)\n        (ontop log.n.01_3 driveway.n.01_1)\n        (ontop log.n.01_4 driveway.n.01_1)\n        (ontop log.n.01_5 driveway.n.01_1)\n        (ontop log.n.01_6 driveway.n.01_1)\n        (inroom driveway.n.01_1 garden)\n        (ontop agent.n.01_1 driveway.n.01_1)\n    )\n\n    (:goal\n        (forall\n            (?log.n.01 - log.n.01)\n            (or\n                (touching ?log.n.01 ?log.n.01_1)\n                (touching ?log.n.01 ?log.n.01_2)\n                (touching ?log.n.01 ?log.n.01_3)\n                (touching ?log.n.01 ?log.n.01_4)\n                (touching ?log.n.01 ?log.n.01_5)\n                (touching ?log.n.01 ?log.n.01_6)\n            )\n        )\n    )\n)\n",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "log.n.01": [
+   "log.n.01_1",
+   "log.n.01_2",
+   "log.n.01_3",
+   "log.n.01_4",
+   "log.n.01_5",
+   "log.n.01_6"
+  ],
+  "driveway.n.01": [
+   "driveway.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom driveway.n.01_1 garden)",
+  "(ontop agent.n.01_1 driveway.n.01_1)",
+  "(ontop log.n.01_1 driveway.n.01_1)",
+  "(ontop log.n.01_2 driveway.n.01_1)",
+  "(ontop log.n.01_3 driveway.n.01_1)",
+  "(ontop log.n.01_4 driveway.n.01_1)",
+  "(ontop log.n.01_5 driveway.n.01_1)",
+  "(ontop log.n.01_6 driveway.n.01_1)",
+  "(touching agent.n.01_1 driveway.n.01_1)",
+  "(touching driveway.n.01_1 agent.n.01_1)",
+  "(touching driveway.n.01_1 log.n.01_1)",
+  "(touching driveway.n.01_1 log.n.01_2)",
+  "(touching driveway.n.01_1 log.n.01_3)",
+  "(touching driveway.n.01_1 log.n.01_4)",
+  "(touching driveway.n.01_1 log.n.01_5)",
+  "(touching driveway.n.01_1 log.n.01_6)",
+  "(touching log.n.01_1 driveway.n.01_1)",
+  "(touching log.n.01_2 driveway.n.01_1)",
+  "(touching log.n.01_3 driveway.n.01_1)",
+  "(touching log.n.01_4 driveway.n.01_1)",
+  "(touching log.n.01_5 driveway.n.01_1)",
+  "(touching log.n.01_6 driveway.n.01_1)"
+ ],
+ "n_ground_options": 46656,
+ "n_self_paired_options": 31031,
+ "ground_option_example": {
+  "n_literals": 6,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(touching log.n.01_2 log.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "log.n.01_2",
+     "log.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching log.n.01_4 log.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "log.n.01_4",
+     "log.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching log.n.01_3 log.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "log.n.01_3",
+     "log.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching log.n.01_5 log.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "log.n.01_5",
+     "log.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching log.n.01_6 log.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "log.n.01_6",
+     "log.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching log.n.01_1 log.n.01_2)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "log.n.01_1",
+     "log.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   6,
+   46656
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "touching",
+   6
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "log.n.01_1",
+   "scene_object": "log_337",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.54,
+    "median": 10.04,
+    "max": 33.73
+   },
+   "xy_spread_m": 33.27,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_2",
+   "scene_object": "log_336",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 13.32,
+    "max": 23.11
+   },
+   "xy_spread_m": 37.16,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_3",
+   "scene_object": "log_335",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.54,
+    "median": 13.84,
+    "max": 24.4
+   },
+   "xy_spread_m": 29.63,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_4",
+   "scene_object": "log_334",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 7.97,
+    "max": 30.21
+   },
+   "xy_spread_m": 32.29,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_5",
+   "scene_object": "log_333",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.84,
+    "median": 13.41,
+    "max": 27.6
+   },
+   "xy_spread_m": 36.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "log.n.01_6",
+   "scene_object": "log_332",
+   "substance": false,
+   "category": "log",
+   "model": "pepele",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.71,
+    "median": 13.21,
+    "max": 30.94
+   },
+   "xy_spread_m": 36.12,
+   "n_poses": 20
+  },
+  {
+   "inst": "driveway.n.01_1",
+   "scene_object": "driveway_hmbdky_0",
+   "substance": false,
+   "category": "driveway",
+   "model": "hmbdky",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000028610229492,
+    1.0000004768371582,
+    0.9998961091041565
+   ],
+   "z": {
+    "min": -0.16,
+    "median": -0.16,
+    "max": -0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.72,
+    "median": 10.31,
+    "max": 17.07
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_gvzsyj",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -23.62,
+   7.97
+  ],
+  [
+   -8.2,
+   34.38
+  ],
+  [
+   -16.65,
+   21.28
+  ],
+  [
+   -16.48,
+   18.47
+  ],
+  [
+   -16.51,
+   24.26
+  ],
+  [
+   -8.74,
+   26.16
+  ],
+  [
+   -18.16,
+   24.75
+  ],
+  [
+   -8.96,
+   37.26
+  ],
+  [
+   -11.54,
+   38.69
+  ],
+  [
+   -8.2,
+   38.03
+  ],
+  [
+   -23.17,
+   7.73
+  ],
+  [
+   -11.8,
+   34.79
+  ],
+  [
+   -16.33,
+   8.52
+  ],
+  [
+   -10.93,
+   37.94
+  ],
+  [
+   -15.61,
+   23.45
+  ],
+  [
+   -23.21,
+   8.25
+  ],
+  [
+   -19.14,
+   17.27
+  ],
+  [
+   -20.57,
+   21.75
+  ],
+  [
+   -22.99,
+   23.8
+  ],
+  [
+   -12.56,
+   28.44
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 18,
+   "median": 21.0,
+   "max": 22
+  },
+  "demo_seconds": {
+   "min": 284.4,
+   "median": 524.05,
+   "max": 931.17
+  },
+  "distinct_verb_sequences": 24,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to"
+  ],
+  "modal_verb_sequence_share": 0.29,
+  "modal_verb_counts": {
+   "move to": 9,
+   "pick up from": 6,
+   "place on": 3,
+   "place on next to": 3
+  },
+  "modal_verb_counts_share": 0.465,
+  "representative_episode": {
+   "file": "episode_00581830.json",
+   "seconds": 498.9,
+   "steps": [
+    {
+     "prompt": "move to the log",
+     "start_s": 0.0,
+     "end_s": 41.0
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 41.0,
+     "end_s": 51.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 51.0,
+     "end_s": 69.0
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 69.0,
+     "end_s": 79.0
+    },
+    {
+     "prompt": "move to the driveway",
+     "start_s": 79.0,
+     "end_s": 103.0
+    },
+    {
+     "prompt": "place the log on the driveway",
+     "start_s": 103.0,
+     "end_s": 113.0
+    },
+    {
+     "prompt": "place the log on the driveway next to the log",
+     "start_s": 113.0,
+     "end_s": 122.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 122.0,
+     "end_s": 181.0
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 181.0,
+     "end_s": 191.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 191.0,
+     "end_s": 210.0
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 210.0,
+     "end_s": 220.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 220.0,
+     "end_s": 264.0
+    },
+    {
+     "prompt": "place the log on the driveway",
+     "start_s": 264.0,
+     "end_s": 274.0
+    },
+    {
+     "prompt": "place the log on the driveway next to the log",
+     "start_s": 274.0,
+     "end_s": 280.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 280.0,
+     "end_s": 355.0
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 355.0,
+     "end_s": 365.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 365.0,
+     "end_s": 406.0
+    },
+    {
+     "prompt": "pick up the log from the driveway",
+     "start_s": 406.0,
+     "end_s": 416.0
+    },
+    {
+     "prompt": "move to the log",
+     "start_s": 416.0,
+     "end_s": 455.0
+    },
+    {
+     "prompt": "place the log on the log",
+     "start_s": 455.0,
+     "end_s": 465.0
+    },
+    {
+     "prompt": "place the log on the log next to the log",
+     "start_s": 465.0,
+     "end_s": 498.9
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 41.1,
+   "pick up from": 12.6,
+   "place on": 13.3,
+   "place on next to": 13.7
+  },
+  "verb_counts_total": {
+   "move to": 1819,
+   "pick up from": 1199,
+   "place on": 626,
+   "place on next to": 573
+  },
+  "top_prompts": [
+   [
+    "move to the log",
+    1623
+   ],
+   [
+    "pick up the log from the driveway",
+    1199
+   ],
+   [
+    "place the log on the driveway next to the log",
+    483
+   ],
+   [
+    "place the log on the driveway",
+    418
+   ],
+   [
+    "place the log on the log",
+    208
+   ],
+   [
+    "move to the driveway",
+    196
+   ],
+   [
+    "place the log on the log next to the log",
+    90
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23910
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 23910
+  }
+ }
+}

@@ -1,0 +1,459 @@
+{
+ "index": 69,
+ "name": "vacuuming_floors",
+ "instruction": "Use the vacuum to clean the dirty floor until the floor is no longer covered in dirt.",
+ "title": "Vacuuming Floors",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://www.youtube.com/embed/RqYuT-aj21A",
+ "scene_model": "house_double_floor_upper",
+ "comet_pretrain_sentence": "Use the vacuum to clean the dirty floor until the floor is no longer covered in dirt.",
+ "human": {
+  "mean_steps": 2411.785,
+  "mean_seconds": 80.4,
+  "step_limit": 3617,
+  "time_limit_seconds": 120.6,
+  "base_distance_m": 4.9572,
+  "eef_displacement_m": {
+   "left": 2.4423,
+   "right": 3.733
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "bedroom_1",
+  "bedroom_2",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom"
+  ],
+  "house_double_floor_upper": {
+   "whitelist": {
+    "vacuum.n.04": {
+     "vacuum": {
+      "bdmsbr": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem vacuuming_floors-0)\n    (:domain behavior-1k)\n\n    (:objects\n        dust.n.01_1 - dust.n.01\n     \tfloor.n.01_1 - floor.n.01\n    \tvacuum.n.04_1 - vacuum.n.04\n    \tagent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (covered floor.n.01_1 dust.n.01_1)\n        (ontop vacuum.n.04_1 floor.n.01_1)\n        (inroom floor.n.01_1 bedroom)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (not\n                (covered ?floor.n.01_1 ?dust.n.01_1)\n            )\n        )\n    )\n)\n",
+ "scene": "house_double_floor_upper",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "dust.n.01": [
+   "dust.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "vacuum.n.04": [
+   "vacuum.n.04_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(covered floor.n.01_1 dust.n.01_1)",
+  "(inroom floor.n.01_1 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop vacuum.n.04_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 vacuum.n.04_1)",
+  "(touching vacuum.n.04_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered floor.n.01_1 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "floor.n.01_1",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "dust.n.01_1",
+   "scene_object": "dust",
+   "substance": true,
+   "systems": [
+    "dust"
+   ]
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_nlswvt_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nlswvt",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000108480453491,
+    1.0000033378601074,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.11,
+    "median": 0.82,
+    "max": 1.49
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "vacuum.n.04_1",
+   "scene_object": "vacuum_89",
+   "substance": false,
+   "category": "vacuum",
+   "model": "bdmsbr",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.29,
+    "median": 0.29,
+    "max": 0.29
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 1.15,
+    "max": 2.7
+   },
+   "xy_spread_m": 3.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_fptpmy",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -4.27,
+   1.24
+  ],
+  [
+   -4.37,
+   0.9
+  ],
+  [
+   -4.04,
+   0.83
+  ],
+  [
+   -5.14,
+   1.19
+  ],
+  [
+   -5.16,
+   1.32
+  ],
+  [
+   -4.69,
+   1.36
+  ],
+  [
+   -4.12,
+   1.6
+  ],
+  [
+   -4.31,
+   0.9
+  ],
+  [
+   -5.1,
+   1.61
+  ],
+  [
+   -4.13,
+   1.31
+  ],
+  [
+   -4.39,
+   1.84
+  ],
+  [
+   -5.13,
+   1.25
+  ],
+  [
+   -4.79,
+   1.0
+  ],
+  [
+   -4.05,
+   0.87
+  ],
+  [
+   -4.14,
+   1.87
+  ],
+  [
+   -4.61,
+   1.01
+  ],
+  [
+   -5.7,
+   1.1
+  ],
+  [
+   -4.66,
+   1.48
+  ],
+  [
+   -4.39,
+   1.3
+  ],
+  [
+   -4.83,
+   1.92
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 6,
+   "median": 10.0,
+   "max": 22
+  },
+  "demo_seconds": {
+   "min": 40.37,
+   "median": 77.45,
+   "max": 152.03
+  },
+  "distinct_verb_sequences": 34,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "turn on switch",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "move to",
+   "sweep surface",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.465,
+  "modal_verb_counts": {
+   "move to": 4,
+   "pick up from": 1,
+   "place on": 1,
+   "sweep surface": 3,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.465,
+  "representative_episode": {
+   "file": "episode_00692680.json",
+   "seconds": 76.4,
+   "steps": [
+    {
+     "prompt": "move to the vacuum",
+     "start_s": 0.0,
+     "end_s": 11.0
+    },
+    {
+     "prompt": "pick up the vacuum from the floors",
+     "start_s": 11.0,
+     "end_s": 19.0
+    },
+    {
+     "prompt": "turn on the vacuum",
+     "start_s": 19.0,
+     "end_s": 29.0
+    },
+    {
+     "prompt": "move to the dirt",
+     "start_s": 29.0,
+     "end_s": 35.8
+    },
+    {
+     "prompt": "sweep the dirt",
+     "start_s": 35.8,
+     "end_s": 39.8
+    },
+    {
+     "prompt": "move to the dirt",
+     "start_s": 39.8,
+     "end_s": 47.8
+    },
+    {
+     "prompt": "sweep the dirt",
+     "start_s": 47.8,
+     "end_s": 51.8
+    },
+    {
+     "prompt": "move to the dirt",
+     "start_s": 51.8,
+     "end_s": 59.4
+    },
+    {
+     "prompt": "sweep the dirt",
+     "start_s": 59.4,
+     "end_s": 69.0
+    },
+    {
+     "prompt": "place the vacuum on the floors",
+     "start_s": 69.0,
+     "end_s": 76.4
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 7.6,
+   "pick up from": 12.6,
+   "place on": 6.2,
+   "push to": 17.4,
+   "sweep surface": 4.3,
+   "turn on switch": 8.3
+  },
+  "verb_counts_total": {
+   "move to": 971,
+   "sweep surface": 762,
+   "pick up from": 200,
+   "turn on switch": 200,
+   "place on": 200,
+   "push to": 1
+  },
+  "top_prompts": [
+   [
+    "move to the dirt",
+    769
+   ],
+   [
+    "sweep the dirt",
+    655
+   ],
+   [
+    "move to the vacuum",
+    201
+   ],
+   [
+    "pick up the vacuum from the floors",
+    200
+   ],
+   [
+    "turn on the vacuum",
+    200
+   ],
+   [
+    "place the vacuum on the floors",
+    200
+   ],
+   [
+    "sweep the vacuum",
+    107
+   ],
+   [
+    "push the vacuum to the floors",
+    1
+   ],
+   [
+    "move to the floors",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3618
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3618
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3618
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3618
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3618
+  }
+ }
+}

@@ -1,0 +1,595 @@
+{
+ "index": 1,
+ "name": "picking_up_trash",
+ "instruction": "Put the three cans of soda from the living room inside the trash can in the kitchen.",
+ "title": "Picking Up Trash",
+ "rooms_listed": [
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://player.vimeo.com/video/1109202972",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Put the three can of soda from the living room inside the tash can in the kitchen.",
+ "human": {
+  "mean_steps": 5267.75,
+  "mean_seconds": 175.6,
+  "step_limit": 7901,
+  "time_limit_seconds": 263.4,
+  "base_distance_m": 16.1977,
+  "eef_displacement_m": {
+   "left": 10.557,
+   "right": 9.2015
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem picking_up_trash-0)\n    (:domain behavior-1k)\n\n    (:objects\n        ashcan.n.01_1 - ashcan.n.01\n        can__of__soda.n.01_1 can__of__soda.n.01_2 can__of__soda.n.01_3 - can__of__soda.n.01\n        floor.n.01_1 floor.n.01_2 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop ashcan.n.01_1 floor.n.01_2) \n        (ontop can__of__soda.n.01_1 floor.n.01_1) \n        (ontop can__of__soda.n.01_2 floor.n.01_1) \n        (ontop can__of__soda.n.01_3 floor.n.01_1) \n        (inroom floor.n.01_2 kitchen) \n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_2)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?can__of__soda.n.01 - can__of__soda.n.01) \n                (inside ?can__of__soda.n.01 ?ashcan.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0",
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "ashcan.n.01": [
+   "ashcan.n.01_1"
+  ],
+  "can__of__soda.n.01": [
+   "can__of__soda.n.01_1",
+   "can__of__soda.n.01_2",
+   "can__of__soda.n.01_3"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom floor.n.01_2 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_2)",
+  "(ontop ashcan.n.01_1 floor.n.01_2)",
+  "(ontop can__of__soda.n.01_1 floor.n.01_1)",
+  "(ontop can__of__soda.n.01_2 floor.n.01_1)",
+  "(ontop can__of__soda.n.01_3 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_2)",
+  "(touching ashcan.n.01_1 floor.n.01_2)",
+  "(touching can__of__soda.n.01_1 floor.n.01_1)",
+  "(touching can__of__soda.n.01_2 floor.n.01_1)",
+  "(touching can__of__soda.n.01_3 floor.n.01_1)",
+  "(touching floor.n.01_1 can__of__soda.n.01_1)",
+  "(touching floor.n.01_1 can__of__soda.n.01_2)",
+  "(touching floor.n.01_1 can__of__soda.n.01_3)",
+  "(touching floor.n.01_2 agent.n.01_1)",
+  "(touching floor.n.01_2 ashcan.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside can__of__soda.n.01_3 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "can__of__soda.n.01_3",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside can__of__soda.n.01_1 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "can__of__soda.n.01_1",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside can__of__soda.n.01_2 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "can__of__soda.n.01_2",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "ashcan.n.01_1",
+   "scene_object": "trash_can_116",
+   "substance": false,
+   "category": "trash_can",
+   "model": "wkxtxh",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.13,
+    "median": 0.13,
+    "max": 0.13
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.31,
+    "median": 3.07,
+    "max": 5.36
+   },
+   "xy_spread_m": 6.32,
+   "n_poses": 20
+  },
+  {
+   "inst": "can__of__soda.n.01_1",
+   "scene_object": "can_of_soda_115",
+   "substance": false,
+   "category": "can_of_soda",
+   "model": "itolcg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.07,
+    "max": 0.07
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 3.74,
+    "max": 5.91
+   },
+   "xy_spread_m": 4.94,
+   "n_poses": 20
+  },
+  {
+   "inst": "can__of__soda.n.01_2",
+   "scene_object": "can_of_soda_114",
+   "substance": false,
+   "category": "can_of_soda",
+   "model": "itolcg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.07,
+    "median": 0.07,
+    "max": 0.07
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.49,
+    "median": 3.8,
+    "max": 6.48
+   },
+   "xy_spread_m": 4.21,
+   "n_poses": 20
+  },
+  {
+   "inst": "can__of__soda.n.01_3",
+   "scene_object": "can_of_soda_113",
+   "substance": false,
+   "category": "can_of_soda",
+   "model": "lugwcz",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.06,
+    "median": 0.06,
+    "max": 0.06
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 3.67,
+    "max": 5.71
+   },
+   "xy_spread_m": 4.66,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.5,
+    "median": 3.6,
+    "max": 5.61
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.98,
+    "median": 2.15,
+    "max": 2.94
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   3.26,
+   3.05
+  ],
+  [
+   7.15,
+   1.83
+  ],
+  [
+   4.18,
+   3.18
+  ],
+  [
+   7.13,
+   2.16
+  ],
+  [
+   4.8,
+   3.03
+  ],
+  [
+   5.8,
+   0.4
+  ],
+  [
+   4.94,
+   3.03
+  ],
+  [
+   7.55,
+   1.88
+  ],
+  [
+   6.1,
+   2.46
+  ],
+  [
+   5.51,
+   2.76
+  ],
+  [
+   5.62,
+   0.56
+  ],
+  [
+   5.92,
+   2.39
+  ],
+  [
+   7.46,
+   2.25
+  ],
+  [
+   7.38,
+   2.6
+  ],
+  [
+   2.61,
+   2.81
+  ],
+  [
+   3.37,
+   3.15
+  ],
+  [
+   4.32,
+   3.15
+  ],
+  [
+   5.97,
+   1.84
+  ],
+  [
+   3.89,
+   3.09
+  ],
+  [
+   3.08,
+   2.61
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 12,
+   "median": 12.0,
+   "max": 12
+  },
+  "demo_seconds": {
+   "min": 54.0,
+   "median": 164.85,
+   "max": 404.0
+  },
+  "distinct_verb_sequences": 1,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "place in",
+   "move to",
+   "pick up from",
+   "place in",
+   "move to",
+   "pick up from",
+   "place in",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 1.0,
+  "modal_verb_counts": {
+   "move to": 4,
+   "pick up from": 4,
+   "place in": 3,
+   "place on": 1
+  },
+  "modal_verb_counts_share": 1.0,
+  "representative_episode": {
+   "file": "episode_00012890.json",
+   "seconds": 165.2,
+   "steps": [
+    {
+     "prompt": "move to the trash can",
+     "start_s": 2.4,
+     "end_s": 48.6
+    },
+    {
+     "prompt": "pick up the trash can from the floors",
+     "start_s": 48.6,
+     "end_s": 62.3
+    },
+    {
+     "prompt": "move to the can of soda",
+     "start_s": 62.3,
+     "end_s": 91.0
+    },
+    {
+     "prompt": "pick up the can of soda from the floors",
+     "start_s": 91.0,
+     "end_s": 104.9
+    },
+    {
+     "prompt": "place the can of soda in the trash can",
+     "start_s": 104.9,
+     "end_s": 110.6
+    },
+    {
+     "prompt": "move to the can of soda",
+     "start_s": 110.6,
+     "end_s": 119.0
+    },
+    {
+     "prompt": "pick up the can of soda from the floors",
+     "start_s": 119.0,
+     "end_s": 130.9
+    },
+    {
+     "prompt": "place the can of soda in the trash can",
+     "start_s": 131.0,
+     "end_s": 138.6
+    },
+    {
+     "prompt": "move to the can of soda",
+     "start_s": 138.6,
+     "end_s": 145.5
+    },
+    {
+     "prompt": "pick up the can of soda from the floors",
+     "start_s": 145.5,
+     "end_s": 154.6
+    },
+    {
+     "prompt": "place the can of soda in the trash can",
+     "start_s": 154.7,
+     "end_s": 159.6
+    },
+    {
+     "prompt": "place the trash can on the floors",
+     "start_s": 159.6,
+     "end_s": 167.6
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 13.7,
+   "pick up from": 16.3,
+   "place in": 7.5,
+   "place on": 12.2
+  },
+  "verb_counts_total": {
+   "move to": 800,
+   "pick up from": 800,
+   "place in": 600,
+   "place on": 200
+  },
+  "top_prompts": [
+   [
+    "move to the can of soda",
+    600
+   ],
+   [
+    "pick up the can of soda from the floors",
+    595
+   ],
+   [
+    "place the can of soda in the trash can",
+    595
+   ],
+   [
+    "move to the trash can",
+    200
+   ],
+   [
+    "pick up the trash can from the floors",
+    200
+   ],
+   [
+    "place the trash can on the floors",
+    198
+   ],
+   [
+    "place the can of soda in the floors",
+    5
+   ],
+   [
+    "pick up the can of soda from the trash can",
+    4
+   ],
+   [
+    "place the can of soda on the trash can",
+    1
+   ],
+   [
+    "place the can of soda on the floors",
+    1
+   ],
+   [
+    "pick up the can of soda from the can of soda",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "place in",
+  "move to",
+  "place on",
+  "pick up from"
+ ],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 7902
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.6666666666666666,
+   "success": false,
+   "steps": 7902
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 7902
+  },
+  "pt0@sulab1": {
+   "instance": 311,
+   "q": 0.6666666666666666,
+   "success": false,
+   "steps": 7902
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 1.0,
+   "success": true,
+   "steps": 5493
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 7902
+  }
+ }
+}

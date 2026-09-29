@@ -1,0 +1,613 @@
+{
+ "index": 74,
+ "name": "carrying_out_garden_furniture",
+ "instruction": "Carry the garden chairs and wheelbarrow out to the lawn.",
+ "title": "Carrying Out Garden Furniture",
+ "rooms_listed": [
+  "corridor",
+  "dining_room",
+  "entryway",
+  "garden",
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/NCQc0IIRmos",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Carry the garden chairs and wheelbarrow out to the lawn.",
+ "human": {
+  "mean_steps": 11058.805,
+  "mean_seconds": 368.6,
+  "step_limit": 16588,
+  "time_limit_seconds": 552.9,
+  "base_distance_m": 61.164,
+  "eef_displacement_m": {
+   "left": 11.4607,
+   "right": 13.7753
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "corridor",
+   "dining_room",
+   "entryway",
+   "garden",
+   "kitchen",
+   "living_room"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "barrow.n.03": {
+     "wheelbarrow": {
+      "msaevo": null
+     }
+    },
+    "lawn_chair.n.01": {
+     "garden_chair": {
+      "cottya": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem carrying_out_garden_furniture-0)\n    (:domain behavior-1k)\n\n    (:objects\n        lawn_chair.n.01_1 - lawn_chair.n.01\n        floor.n.01_1 floor.n.01_2 - floor.n.01\n        barrow.n.03_1 - barrow.n.03\n        lawn.n.01_1 - lawn.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop lawn_chair.n.01_1 floor.n.01_1)\n        (ontop barrow.n.03_1 floor.n.01_1) \n        (inroom lawn.n.01_1 garden) \n        (inroom floor.n.01_1 living_room)\n        (inroom floor.n.01_2 garden) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal\n        (and\n            (ontop ?lawn_chair.n.01_1 ?floor.n.01_2)\n            (exists\n                (?lawn.n.01 - lawn.n.01)\n                (ontop ?barrow.n.03_1 ?lawn.n.01)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0",
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "lawn_chair.n.01": [
+   "lawn_chair.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "barrow.n.03": [
+   "barrow.n.03_1"
+  ],
+  "lawn.n.01": [
+   "lawn.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "barrow.n.03_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.015
+  }
+ },
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom floor.n.01_2 garden)",
+  "(inroom lawn.n.01_1 garden)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop barrow.n.03_1 floor.n.01_1)",
+  "(ontop lawn_chair.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching barrow.n.03_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 barrow.n.03_1)",
+  "(touching floor.n.01_1 lawn_chair.n.01_1)",
+  "(touching lawn_chair.n.01_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop lawn_chair.n.01_1 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "lawn_chair.n.01_1",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop barrow.n.03_1 lawn.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "barrow.n.03_1",
+     "lawn.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "lawn_chair.n.01_1",
+   "scene_object": "garden_chair_454",
+   "substance": false,
+   "category": "garden_chair",
+   "model": "cottya",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.44
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.68,
+    "median": 2.72,
+    "max": 4.35
+   },
+   "xy_spread_m": 8.26,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_uzsntg_0",
+   "substance": false,
+   "category": "floors",
+   "model": "uzsntg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999973177909851,
+    1.0000057220458984,
+    0.9999462366104126
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 2.05,
+    "max": 3.63
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_pyoemr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "pyoemr",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999998807907104,
+    1.000001072883606,
+    0.9998313188552856
+   ],
+   "z": {
+    "min": -0.16,
+    "median": -0.16,
+    "max": -0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 13.71,
+    "median": 15.2,
+    "max": 17.96
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "barrow.n.03_1",
+   "scene_object": "wheelbarrow_453",
+   "substance": false,
+   "category": "wheelbarrow",
+   "model": "msaevo",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.44,
+    "max": 0.44
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.23,
+    "median": 3.08,
+    "max": 6.67
+   },
+   "xy_spread_m": 8.21,
+   "n_poses": 20
+  },
+  {
+   "inst": "lawn.n.01_1",
+   "scene_object": "lawn_wwoqjw_0",
+   "substance": false,
+   "category": "lawn",
+   "model": "wwoqjw",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    0.9999285936355591
+   ],
+   "z": {
+    "min": -0.16,
+    "median": -0.16,
+    "max": -0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 13.91,
+    "median": 15.33,
+    "max": 18.09
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_zvoztp",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   12.25,
+   1.77
+  ],
+  [
+   12.02,
+   1.89
+  ],
+  [
+   13.21,
+   3.23
+  ],
+  [
+   15.79,
+   1.79
+  ],
+  [
+   10.18,
+   2.28
+  ],
+  [
+   15.18,
+   1.99
+  ],
+  [
+   12.66,
+   2.92
+  ],
+  [
+   12.5,
+   2.09
+  ],
+  [
+   13.78,
+   3.32
+  ],
+  [
+   11.97,
+   2.86
+  ],
+  [
+   15.02,
+   1.18
+  ],
+  [
+   14.31,
+   2.59
+  ],
+  [
+   12.57,
+   2.5
+  ],
+  [
+   16.43,
+   2.88
+  ],
+  [
+   11.84,
+   3.01
+  ],
+  [
+   13.72,
+   1.8
+  ],
+  [
+   14.95,
+   0.58
+  ],
+  [
+   11.91,
+   1.97
+  ],
+  [
+   11.27,
+   2.45
+  ],
+  [
+   15.24,
+   1.85
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 11.0,
+   "max": 15
+  },
+  "demo_seconds": {
+   "min": 282.97,
+   "median": 364.98,
+   "max": 464.87
+  },
+  "distinct_verb_sequences": 26,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.4,
+  "modal_verb_counts": {
+   "move to": 5,
+   "open door": 1,
+   "pick up from": 2,
+   "place on": 1,
+   "place on next to": 1
+  },
+  "modal_verb_counts_share": 0.405,
+  "representative_episode": {
+   "file": "episode_00740460.json",
+   "seconds": 356.3,
+   "steps": [
+    {
+     "prompt": "move to the garden chair",
+     "start_s": 0.0,
+     "end_s": 25.0
+    },
+    {
+     "prompt": "open the door of the slide door",
+     "start_s": 25.0,
+     "end_s": 58.0
+    },
+    {
+     "prompt": "move to the garden chair",
+     "start_s": 58.0,
+     "end_s": 89.0
+    },
+    {
+     "prompt": "pick up the garden chair from the floors",
+     "start_s": 89.0,
+     "end_s": 112.0
+    },
+    {
+     "prompt": "move to the pool",
+     "start_s": 112.0,
+     "end_s": 146.0
+    },
+    {
+     "prompt": "place the garden chair on the floors next to the pool",
+     "start_s": 146.0,
+     "end_s": 154.0
+    },
+    {
+     "prompt": "move to the wheelbarrow",
+     "start_s": 154.0,
+     "end_s": 208.0
+    },
+    {
+     "prompt": "pick up the wheelbarrow from the floors",
+     "start_s": 208.0,
+     "end_s": 224.0
+    },
+    {
+     "prompt": "move to the lawn",
+     "start_s": 224.0,
+     "end_s": 346.0
+    },
+    {
+     "prompt": "place the wheelbarrow on the lawn",
+     "start_s": 346.0,
+     "end_s": 356.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 53.1,
+   "open door": 27.6,
+   "pick up from": 13.8,
+   "place on": 8.9,
+   "place on next to": 7.0,
+   "push to": 19.3,
+   "turn to": 15.9
+  },
+  "verb_counts_total": {
+   "move to": 1064,
+   "pick up from": 400,
+   "place on": 201,
+   "open door": 200,
+   "place on next to": 199,
+   "push to": 129,
+   "turn to": 18
+  },
+  "top_prompts": [
+   [
+    "move to the garden chair",
+    249
+   ],
+   [
+    "move to the wheelbarrow",
+    231
+   ],
+   [
+    "open the door of the slide door",
+    200
+   ],
+   [
+    "pick up the garden chair from the floors",
+    200
+   ],
+   [
+    "move to the pool",
+    200
+   ],
+   [
+    "pick up the wheelbarrow from the floors",
+    200
+   ],
+   [
+    "move to the lawn",
+    200
+   ],
+   [
+    "place the wheelbarrow on the lawn",
+    200
+   ],
+   [
+    "place the garden chair on the floors next to the pool",
+    199
+   ],
+   [
+    "move to the slide door",
+    184
+   ],
+   [
+    "push the garden chair to the floors",
+    51
+   ],
+   [
+    "push the wheelbarrow to the floors",
+    43
+   ],
+   [
+    "turn to the wheelbarrow",
+    18
+   ],
+   [
+    "push the garden chair to the slide door",
+    16
+   ],
+   [
+    "push the wheelbarrow to the slide door",
+    8
+   ],
+   [
+    "push the garden chair to the sofa",
+    5
+   ],
+   [
+    "push the wheelbarrow to the garden chair",
+    2
+   ],
+   [
+    "push the garden chair to the wheelbarrow",
+    2
+   ],
+   [
+    "place the garden chair on the floors",
+    1
+   ],
+   [
+    "push the wheelbarrow to the coffee table",
+    1
+   ],
+   [
+    "push the garden chair to the coffee table",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 16589
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 16589
+  }
+ }
+}

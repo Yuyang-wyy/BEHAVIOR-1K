@@ -1,0 +1,724 @@
+{
+ "index": 79,
+ "name": "polishing_shoes",
+ "instruction": "Use the scrub brush to polish both shoes until the stains are removed.",
+ "title": "Polishing Shoes",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://www.youtube.com/embed/bSCbEvVJykI",
+ "scene_model": "hotel_suite_large",
+ "comet_pretrain_sentence": "Use the scrub brush to polish both shoes until the stains are removed.",
+ "human": {
+  "mean_steps": 10737.985,
+  "mean_seconds": 357.9,
+  "step_limit": 16106,
+  "time_limit_seconds": 536.9,
+  "base_distance_m": 17.158,
+  "eef_displacement_m": {
+   "left": 20.0972,
+   "right": 21.1142
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "bathroom_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom"
+  ],
+  "hotel_suite_large": {
+   "whitelist": {
+    "scrub_brush.n.01": {
+     "scrub_brush": {
+      "hsejyi": [
+       0.156,
+       0.048,
+       0.024
+      ]
+     }
+    },
+    "shoe.n.01": {
+     "walker": {
+      "pmypfd": null,
+      "uewtgk": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem polishing_shoes-0)\n    (:domain behavior-1k)\n\n    (:objects\n        dust.n.01_1 - dust.n.01\n    \tshoe.n.01_1 shoe.n.01_2 - shoe.n.01\n    \tscrub_brush.n.01_1 - scrub_brush.n.01\n    \tstand.n.04_1 - stand.n.04\n    \tfootstool.n.01_1 footstool.n.01_2 - footstool.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (covered shoe.n.01_1 dust.n.01_1)\n        (covered shoe.n.01_2 dust.n.01_1)\n        (ontop scrub_brush.n.01_1 stand.n.04_1)\n        (ontop shoe.n.01_1 floor.n.01_1)\n        (ontop shoe.n.01_2 floor.n.01_1)\n        (inroom floor.n.01_1 bedroom)\n        (inroom stand.n.04_1 bedroom)\n        (inroom footstool.n.01_1 bedroom)\n        (inroom footstool.n.01_2 bedroom)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (ontop scrub_brush.n.01_1 stand.n.04_1)\n            (not\n                (covered ?shoe.n.01_1 ?dust.n.01_1)\n            )\n            (not\n                (covered ?shoe.n.01_2 ?dust.n.01_1)\n            )\n            (nextto ?shoe.n.01_1 ?shoe.n.01_2)\n            (exists\n                (?footstool.n.01 - footstool.n.01)\n                (and\n                    (nextto ?shoe.n.01_1 ?footstool.n.01)\n                    (nextto ?shoe.n.01_2 ?footstool.n.01)\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "hotel_suite_large",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "dust.n.01": [
+   "dust.n.01_1"
+  ],
+  "shoe.n.01": [
+   "shoe.n.01_1",
+   "shoe.n.01_2"
+  ],
+  "scrub_brush.n.01": [
+   "scrub_brush.n.01_1"
+  ],
+  "stand.n.04": [
+   "stand.n.04_1"
+  ],
+  "footstool.n.01": [
+   "footstool.n.01_1",
+   "footstool.n.01_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(covered shoe.n.01_1 dust.n.01_1)",
+  "(covered shoe.n.01_2 dust.n.01_1)",
+  "(inroom floor.n.01_1 bedroom)",
+  "(inroom footstool.n.01_1 bedroom)",
+  "(inroom footstool.n.01_2 bedroom)",
+  "(inroom stand.n.04_1 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop scrub_brush.n.01_1 stand.n.04_1)",
+  "(ontop shoe.n.01_1 floor.n.01_1)",
+  "(ontop shoe.n.01_2 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 shoe.n.01_1)",
+  "(touching floor.n.01_1 shoe.n.01_2)",
+  "(touching scrub_brush.n.01_1 stand.n.04_1)",
+  "(touching shoe.n.01_1 floor.n.01_1)",
+  "(touching shoe.n.01_2 floor.n.01_1)",
+  "(touching stand.n.04_1 scrub_brush.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 6,
+  "n_initially_true": 1,
+  "max_partial_q": 0.833,
+  "literals": [
+   {
+    "literal": "(ontop scrub_brush.n.01_1 stand.n.04_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "scrub_brush.n.01_1",
+     "stand.n.04_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not covered shoe.n.01_1 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "shoe.n.01_1",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not covered shoe.n.01_2 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "shoe.n.01_2",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto shoe.n.01_1 shoe.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "shoe.n.01_1",
+     "shoe.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto shoe.n.01_1 footstool.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "shoe.n.01_1",
+     "footstool.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto shoe.n.01_2 footstool.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "shoe.n.01_2",
+     "footstool.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   6,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "nextto",
+   3
+  ],
+  [
+   "not covered",
+   2
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "dust.n.01_1",
+   "scene_object": "dust",
+   "substance": true,
+   "systems": [
+    "dust"
+   ]
+  },
+  {
+   "inst": "shoe.n.01_1",
+   "scene_object": "walker_44",
+   "substance": false,
+   "category": "walker",
+   "model": "uewtgk",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.98,
+    "median": 2.46,
+    "max": 6.32
+   },
+   "xy_spread_m": 8.22,
+   "n_poses": 20
+  },
+  {
+   "inst": "shoe.n.01_2",
+   "scene_object": "walker_43",
+   "substance": false,
+   "category": "walker",
+   "model": "pmypfd",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.66,
+    "median": 2.09,
+    "max": 6.87
+   },
+   "xy_spread_m": 8.13,
+   "n_poses": 20
+  },
+  {
+   "inst": "scrub_brush.n.01_1",
+   "scene_object": "scrub_brush_42",
+   "substance": false,
+   "category": "scrub_brush",
+   "model": "hsejyi",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.2283467054367065,
+    1.3284690380096436,
+    1.1250053644180298
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.27,
+    "median": 3.15,
+    "max": 5.35
+   },
+   "xy_spread_m": 0.59,
+   "n_poses": 20
+  },
+  {
+   "inst": "stand.n.04_1",
+   "scene_object": "nightstand_maeowc_2",
+   "substance": false,
+   "category": "nightstand",
+   "model": "maeowc",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999319911003113,
+    1.0000334978103638,
+    1.0000674724578857
+   ],
+   "z": {
+    "min": 0.22,
+    "median": 0.22,
+    "max": 0.22
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.27,
+    "median": 3.26,
+    "max": 5.4
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "footstool.n.01_1",
+   "scene_object": "ottoman_hnmndv_0",
+   "substance": false,
+   "category": "ottoman",
+   "model": "hnmndv",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.000101923942566,
+    0.9999677538871765,
+    0.9999457597732544
+   ],
+   "z": {
+    "min": 0.29,
+    "median": 0.29,
+    "max": 0.29
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 2.26,
+    "max": 4.43
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "footstool.n.01_2",
+   "scene_object": "ottoman_hnmndv_1",
+   "substance": false,
+   "category": "ottoman",
+   "model": "hnmndv",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.000101923942566,
+    0.9999677538871765,
+    0.9999457597732544
+   ],
+   "z": {
+    "min": 0.29,
+    "median": 0.29,
+    "max": 0.29
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 2.17,
+    "max": 3.41
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_nwjrkc_0",
+   "substance": false,
+   "category": "floors",
+   "model": "nwjrkc",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000054836273193,
+    1.0000014305114746,
+    1.000132441520691
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.09,
+    "median": 2.12,
+    "max": 3.62
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_ayjirk",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -0.74,
+   1.73
+  ],
+  [
+   -0.82,
+   1.57
+  ],
+  [
+   1.18,
+   -0.98
+  ],
+  [
+   -0.55,
+   1.26
+  ],
+  [
+   1.24,
+   -3.37
+  ],
+  [
+   0.96,
+   -1.23
+  ],
+  [
+   1.0,
+   -0.74
+  ],
+  [
+   1.26,
+   -3.51
+  ],
+  [
+   1.17,
+   0.47
+  ],
+  [
+   -0.5,
+   1.77
+  ],
+  [
+   -1.01,
+   1.65
+  ],
+  [
+   1.14,
+   -2.64
+  ],
+  [
+   0.89,
+   -3.19
+  ],
+  [
+   0.93,
+   -0.13
+  ],
+  [
+   -0.91,
+   1.77
+  ],
+  [
+   1.03,
+   -3.19
+  ],
+  [
+   -0.68,
+   1.29
+  ],
+  [
+   1.38,
+   -3.21
+  ],
+  [
+   1.1,
+   0.6
+  ],
+  [
+   1.32,
+   -3.04
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 14,
+   "median": 15.0,
+   "max": 21
+  },
+  "demo_seconds": {
+   "min": 243.1,
+   "median": 353.63,
+   "max": 525.4
+  },
+  "distinct_verb_sequences": 16,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "hand over",
+   "move to",
+   "pick up from",
+   "wipe hard",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "wipe hard",
+   "move to",
+   "place on",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.575,
+  "modal_verb_counts": {
+   "hand over": 1,
+   "move to": 6,
+   "pick up from": 3,
+   "place on": 3,
+   "wipe hard": 2
+  },
+  "modal_verb_counts_share": 0.575,
+  "representative_episode": {
+   "file": "episode_00790310.json",
+   "seconds": 344.4,
+   "steps": [
+    {
+     "prompt": "move to the scrub brush",
+     "start_s": 0.0,
+     "end_s": 14.0
+    },
+    {
+     "prompt": "pick up the scrub brush from the nightstand",
+     "start_s": 14.0,
+     "end_s": 37.0
+    },
+    {
+     "prompt": "hand over the scrub brush",
+     "start_s": 37.0,
+     "end_s": 47.0
+    },
+    {
+     "prompt": "move to the shoe",
+     "start_s": 47.0,
+     "end_s": 50.0
+    },
+    {
+     "prompt": "pick up the shoe from the floors",
+     "start_s": 50.0,
+     "end_s": 66.7
+    },
+    {
+     "prompt": "wipe the shoe",
+     "start_s": 66.7,
+     "end_s": 97.0
+    },
+    {
+     "prompt": "move to the bed",
+     "start_s": 97.0,
+     "end_s": 130.0
+    },
+    {
+     "prompt": "place the shoe on the floors",
+     "start_s": 130.0,
+     "end_s": 163.0
+    },
+    {
+     "prompt": "move to the shoe",
+     "start_s": 163.0,
+     "end_s": 190.0
+    },
+    {
+     "prompt": "pick up the shoe from the floors",
+     "start_s": 190.0,
+     "end_s": 208.0
+    },
+    {
+     "prompt": "wipe the shoe",
+     "start_s": 208.0,
+     "end_s": 254.0
+    },
+    {
+     "prompt": "move to the bed",
+     "start_s": 254.0,
+     "end_s": 272.0
+    },
+    {
+     "prompt": "place the shoe on the floors",
+     "start_s": 272.0,
+     "end_s": 298.0
+    },
+    {
+     "prompt": "move to the nightstand",
+     "start_s": 298.0,
+     "end_s": 327.0
+    },
+    {
+     "prompt": "place the scrub brush on the nightstand",
+     "start_s": 327.0,
+     "end_s": 344.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 14.7,
+   "move to": 20.0,
+   "pick up from": 23.9,
+   "place on": 23.4,
+   "place on next to": 28.1,
+   "push to": 20.0,
+   "wipe hard": 33.5
+  },
+  "verb_counts_total": {
+   "move to": 1235,
+   "pick up from": 636,
+   "place on": 575,
+   "wipe hard": 400,
+   "hand over": 200,
+   "place on next to": 60,
+   "push to": 1
+  },
+  "top_prompts": [
+   [
+    "pick up the shoe from the floors",
+    436
+   ],
+   [
+    "move to the shoe",
+    435
+   ],
+   [
+    "wipe the shoe",
+    400
+   ],
+   [
+    "move to the bed",
+    389
+   ],
+   [
+    "place the shoe on the floors",
+    370
+   ],
+   [
+    "move to the scrub brush",
+    200
+   ],
+   [
+    "pick up the scrub brush from the nightstand",
+    200
+   ],
+   [
+    "hand over the scrub brush",
+    200
+   ],
+   [
+    "move to the nightstand",
+    200
+   ],
+   [
+    "place the scrub brush on the nightstand",
+    200
+   ],
+   [
+    "place on next to the shoe with the floors",
+    56
+   ],
+   [
+    "move to the floors",
+    10
+   ],
+   [
+    "place on next to the shoe with the bed",
+    4
+   ],
+   [
+    "place the shoe on the bed",
+    3
+   ],
+   [
+    "place the floors on the bed",
+    2
+   ],
+   [
+    "move to the cabinet",
+    1
+   ],
+   [
+    "push the shoe to the floors",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

@@ -1,0 +1,663 @@
+{
+ "index": 22,
+ "name": "putting_shoes_on_rack",
+ "instruction": "Pick up the two gym shoes and the two sandals from the corridor floor and place them onto the hallstand (shoe rack) in the corridor, making sure they are on the rack and not on the floor. Arrange them so the two gym shoes are next to each other and the two sandals are next to each other.",
+ "title": "Putting Shoes On Rack",
+ "rooms_listed": [
+  "corridor"
+ ],
+ "video": "https://player.vimeo.com/video/1114058985",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Pick up the two gym shoes and the two sandals from the corridor floor and place them onto the hallstand (shoe rack) in the corridor, making sure they are on the rack and not on the floor. Arrange them so the two gym shoes are next to each other and the two sandals are next to each other.",
+ "human": {
+  "mean_steps": 7726.145,
+  "mean_seconds": 257.5,
+  "step_limit": 11589,
+  "time_limit_seconds": 386.3,
+  "base_distance_m": 27.0157,
+  "eef_displacement_m": {
+   "left": 8.8518,
+   "right": 9.7536
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem putting_shoes_on_rack-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tgym_shoe.n.01_1 gym_shoe.n.01_2 - gym_shoe.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tsandal.n.01_1 sandal.n.01_2 - sandal.n.01\n    \thallstand.n.01_1 - hallstand.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop gym_shoe.n.01_1 floor.n.01_1) \n        (ontop gym_shoe.n.01_2 floor.n.01_1) \n        (ontop sandal.n.01_1 floor.n.01_1) \n        (ontop sandal.n.01_2 floor.n.01_1) \n        (inroom floor.n.01_1 corridor) \n        (inroom hallstand.n.01_1 corridor) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?sandal.n.01 - sandal.n.01)\n                (and\n                    (touching ?sandal.n.01 ?hallstand.n.01_1)\n                    (not\n                        (touching ?sandal.n.01 floor.n.01_1)    \n                    )\n                )\n            )\n            (forall \n                (?gym_shoe.n.01 - gym_shoe.n.01)\n                (and\n                    (touching ?gym_shoe.n.01 ?hallstand.n.01_1)\n                    (not\n                        (touching ?gym_shoe.n.01 floor.n.01_1)    \n                    )\n                )\n            )\n            (nextto gym_shoe.n.01_1 gym_shoe.n.01_2)\n            (nextto sandal.n.01_1 sandal.n.01_2)\n        )\n    )\n)\n",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "corridor": "corridor_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "gym_shoe.n.01": [
+   "gym_shoe.n.01_1",
+   "gym_shoe.n.01_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "sandal.n.01": [
+   "sandal.n.01_1",
+   "sandal.n.01_2"
+  ],
+  "hallstand.n.01": [
+   "hallstand.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 corridor)",
+  "(inroom hallstand.n.01_1 corridor)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop gym_shoe.n.01_1 floor.n.01_1)",
+  "(ontop gym_shoe.n.01_2 floor.n.01_1)",
+  "(ontop sandal.n.01_1 floor.n.01_1)",
+  "(ontop sandal.n.01_2 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 gym_shoe.n.01_1)",
+  "(touching floor.n.01_1 gym_shoe.n.01_2)",
+  "(touching floor.n.01_1 sandal.n.01_1)",
+  "(touching floor.n.01_1 sandal.n.01_2)",
+  "(touching gym_shoe.n.01_1 floor.n.01_1)",
+  "(touching gym_shoe.n.01_2 floor.n.01_1)",
+  "(touching sandal.n.01_1 floor.n.01_1)",
+  "(touching sandal.n.01_2 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 10,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(touching sandal.n.01_2 hallstand.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "sandal.n.01_2",
+     "hallstand.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not touching sandal.n.01_2 floor.n.01_1))",
+    "negated": true,
+    "predicate": "touching",
+    "args": [
+     "sandal.n.01_2",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching sandal.n.01_1 hallstand.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "sandal.n.01_1",
+     "hallstand.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not touching sandal.n.01_1 floor.n.01_1))",
+    "negated": true,
+    "predicate": "touching",
+    "args": [
+     "sandal.n.01_1",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching gym_shoe.n.01_2 hallstand.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "gym_shoe.n.01_2",
+     "hallstand.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not touching gym_shoe.n.01_2 floor.n.01_1))",
+    "negated": true,
+    "predicate": "touching",
+    "args": [
+     "gym_shoe.n.01_2",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(touching gym_shoe.n.01_1 hallstand.n.01_1)",
+    "negated": false,
+    "predicate": "touching",
+    "args": [
+     "gym_shoe.n.01_1",
+     "hallstand.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not touching gym_shoe.n.01_1 floor.n.01_1))",
+    "negated": true,
+    "predicate": "touching",
+    "args": [
+     "gym_shoe.n.01_1",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto gym_shoe.n.01_1 gym_shoe.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "gym_shoe.n.01_1",
+     "gym_shoe.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto sandal.n.01_1 sandal.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "sandal.n.01_1",
+     "sandal.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   10,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "touching",
+   4
+  ],
+  [
+   "not touching",
+   4
+  ],
+  [
+   "nextto",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "gym_shoe.n.01_1",
+   "scene_object": "gym_shoe_78",
+   "substance": false,
+   "category": "gym_shoe",
+   "model": "mcfcwq",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.71,
+    "median": 1.92,
+    "max": 5.19
+   },
+   "xy_spread_m": 6.37,
+   "n_poses": 20
+  },
+  {
+   "inst": "gym_shoe.n.01_2",
+   "scene_object": "gym_shoe_77",
+   "substance": false,
+   "category": "gym_shoe",
+   "model": "kmcbym",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.72,
+    "median": 2.42,
+    "max": 5.03
+   },
+   "xy_spread_m": 6.81,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_xorxro_0",
+   "substance": false,
+   "category": "floors",
+   "model": "xorxro",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999860525131226,
+    0.9999966025352478,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.41,
+    "median": 1.2,
+    "max": 3.16
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "sandal.n.01_1",
+   "scene_object": "sandal_76",
+   "substance": false,
+   "category": "sandal",
+   "model": "dfkzbd",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.04,
+    "max": 0.04
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.95,
+    "median": 2.36,
+    "max": 5.71
+   },
+   "xy_spread_m": 7.54,
+   "n_poses": 20
+  },
+  {
+   "inst": "sandal.n.01_2",
+   "scene_object": "sandal_75",
+   "substance": false,
+   "category": "sandal",
+   "model": "vwbomj",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.04,
+    "median": 0.04,
+    "max": 0.04
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 2.31,
+    "max": 6.65
+   },
+   "xy_spread_m": 7.02,
+   "n_poses": 20
+  },
+  {
+   "inst": "hallstand.n.01_1",
+   "scene_object": "hall_tree_daxzaw_0",
+   "substance": false,
+   "category": "hall_tree",
+   "model": "daxzaw",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000174045562744,
+    0.9999738335609436,
+    1.000008225440979
+   ],
+   "z": {
+    "min": 0.97,
+    "median": 0.97,
+    "max": 0.97
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.54,
+    "median": 3.39,
+    "max": 6.84
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -0.2,
+   1.6
+  ],
+  [
+   -0.03,
+   2.03
+  ],
+  [
+   0.33,
+   3.91
+  ],
+  [
+   0.29,
+   2.21
+  ],
+  [
+   0.38,
+   2.48
+  ],
+  [
+   0.34,
+   5.92
+  ],
+  [
+   -0.4,
+   1.36
+  ],
+  [
+   0.46,
+   4.69
+  ],
+  [
+   -0.02,
+   4.5
+  ],
+  [
+   -0.2,
+   1.44
+  ],
+  [
+   0.15,
+   6.5
+  ],
+  [
+   0.28,
+   3.36
+  ],
+  [
+   0.33,
+   2.41
+  ],
+  [
+   0.18,
+   2.57
+  ],
+  [
+   -1.1,
+   1.33
+  ],
+  [
+   0.01,
+   5.5
+  ],
+  [
+   0.31,
+   2.55
+  ],
+  [
+   0.62,
+   2.95
+  ],
+  [
+   0.19,
+   3.48
+  ],
+  [
+   0.36,
+   3.65
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 13,
+   "median": 14.0,
+   "max": 14
+  },
+  "demo_seconds": {
+   "min": 154.67,
+   "median": 242.98,
+   "max": 570.0
+  },
+  "distinct_verb_sequences": 2,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in"
+  ],
+  "modal_verb_sequence_share": 0.995,
+  "modal_verb_counts": {
+   "move to": 6,
+   "pick up from": 4,
+   "place in": 4
+  },
+  "modal_verb_counts_share": 0.995,
+  "representative_episode": {
+   "file": "episode_00220140.json",
+   "seconds": 242.7,
+   "steps": [
+    {
+     "prompt": "move to the sandal",
+     "start_s": 2.2,
+     "end_s": 8.2
+    },
+    {
+     "prompt": "pick up the sandal from the floors",
+     "start_s": 8.2,
+     "end_s": 34.8
+    },
+    {
+     "prompt": "move to the gym shoe",
+     "start_s": 34.8,
+     "end_s": 47.4
+    },
+    {
+     "prompt": "pick up the gym shoe from the floors",
+     "start_s": 47.4,
+     "end_s": 65.8
+    },
+    {
+     "prompt": "move to the hall tree",
+     "start_s": 65.8,
+     "end_s": 67.8
+    },
+    {
+     "prompt": "place the sandal in the high_level hall tree",
+     "start_s": 67.8,
+     "end_s": 84.8
+    },
+    {
+     "prompt": "place the gym shoe in the high_level hall tree",
+     "start_s": 84.8,
+     "end_s": 98.5
+    },
+    {
+     "prompt": "move to the sandal",
+     "start_s": 98.5,
+     "end_s": 138.7
+    },
+    {
+     "prompt": "pick up the sandal from the floors",
+     "start_s": 138.7,
+     "end_s": 154.7
+    },
+    {
+     "prompt": "move to the gym shoe",
+     "start_s": 154.7,
+     "end_s": 167.0
+    },
+    {
+     "prompt": "pick up the gym shoe from the floors",
+     "start_s": 167.0,
+     "end_s": 188.3
+    },
+    {
+     "prompt": "move to the hall tree",
+     "start_s": 188.3,
+     "end_s": 207.6
+    },
+    {
+     "prompt": "place the gym shoe in the high_level hall tree",
+     "start_s": 207.6,
+     "end_s": 227.9
+    },
+    {
+     "prompt": "place the sandal in the high_level hall tree",
+     "start_s": 227.9,
+     "end_s": 244.9
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 19.1,
+   "pick up from": 19.7,
+   "place in": 14.4
+  },
+  "verb_counts_total": {
+   "move to": 1199,
+   "pick up from": 800,
+   "place in": 800
+  },
+  "top_prompts": [
+   [
+    "move to the sandal",
+    400
+   ],
+   [
+    "move to the gym shoe",
+    400
+   ],
+   [
+    "move to the hall tree",
+    399
+   ],
+   [
+    "pick up the sandal from the floors",
+    398
+   ],
+   [
+    "place the gym shoe in the high_level hall tree",
+    398
+   ],
+   [
+    "place the sandal in the high_level hall tree",
+    397
+   ],
+   [
+    "pick up the gym shoe from the floors",
+    394
+   ],
+   [
+    "pick up the gym shoe from the hall tree",
+    5
+   ],
+   [
+    "place the gym shoe in the high_level floors",
+    4
+   ],
+   [
+    "pick up the sandal from the hall tree",
+    3
+   ],
+   [
+    "place the hall tree in the high_level hall tree",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "place in",
+  "move to",
+  "pick up from"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.3,
+   "success": false,
+   "steps": 11590
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 11590
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.3,
+   "success": false,
+   "steps": 11590
+  }
+ }
+}

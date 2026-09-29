@@ -1,0 +1,506 @@
+{
+ "index": 40,
+ "name": "make_microwave_popcorn",
+ "instruction": "In the kitchen, take the popcorn bag from the countertop, put it into the microwave, and heat it until the popcorn is cooked so the cooked popcorn ends up inside the bag.",
+ "title": "Make Microwave Popcorn",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114060842",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "In the kitchen, take the popcorn bag from the countertop, put it into the microwave, and heat it until the popcorn is cooked so the cooked popcorn ends up inside the bag.",
+ "human": {
+  "mean_steps": 3237.775,
+  "mean_seconds": 107.9,
+  "step_limit": 4856,
+  "time_limit_seconds": 161.9,
+  "base_distance_m": 8.6032,
+  "eef_displacement_m": {
+   "left": 2.8263,
+   "right": 8.6885
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem make_microwave_popcorn-0)\n    (:domain behavior-1k)\n\n    (:objects\n        popcorn.n.02_1 - popcorn.n.02\n        cooked__popcorn.n.01_1 - cooked__popcorn.n.01\n        popcorn__bag.n.01_1 - popcorn__bag.n.01\n        microwave.n.02_1 - microwave.n.02\n        countertop.n.01_1 - countertop.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (filled popcorn__bag.n.01_1 popcorn.n.02_1)\n        (ontop popcorn__bag.n.01_1 countertop.n.01_1)\n        (inroom microwave.n.02_1 kitchen)\n        (inroom countertop.n.01_1 kitchen)\n        (inroom floor.n.01_1 kitchen)\n        (future cooked__popcorn.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (real ?cooked__popcorn.n.01_1)\n            (contains ?popcorn__bag.n.01_1 ?cooked__popcorn.n.01_1)\n        )\n    )\n)\n",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "popcorn.n.02": [
+   "popcorn.n.02_1"
+  ],
+  "cooked__popcorn.n.01": [
+   "cooked__popcorn.n.01_1"
+  ],
+  "popcorn__bag.n.01": [
+   "popcorn__bag.n.01_1"
+  ],
+  "microwave.n.02": [
+   "microwave.n.02_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "cooked__popcorn.n.01_1"
+ ],
+ "articulated_start_state": {
+  "microwave.n.02_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(filled popcorn__bag.n.01_1 popcorn.n.02_1)",
+  "(future cooked__popcorn.n.01_1)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom microwave.n.02_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop popcorn__bag.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching countertop.n.01_1 popcorn__bag.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching popcorn__bag.n.01_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(real cooked__popcorn.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "cooked__popcorn.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(contains popcorn__bag.n.01_1 cooked__popcorn.n.01_1)",
+    "negated": false,
+    "predicate": "contains",
+    "args": [
+     "popcorn__bag.n.01_1",
+     "cooked__popcorn.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "real",
+   1
+  ],
+  [
+   "contains",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "popcorn.n.02_1",
+   "scene_object": "popcorn",
+   "substance": true,
+   "systems": [
+    "popcorn"
+   ]
+  },
+  {
+   "inst": "cooked__popcorn.n.01_1",
+   "scene_object": null,
+   "substance": true,
+   "systems": [
+    "cooked__popcorn"
+   ]
+  },
+  {
+   "inst": "popcorn__bag.n.01_1",
+   "scene_object": "popcorn_bag_73",
+   "substance": false,
+   "category": "popcorn_bag",
+   "model": "hdcpqg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.7483059763908386,
+    0.7557291388511658,
+    0.7381880283355713
+   ],
+   "z": {
+    "min": 0.98,
+    "median": 0.98,
+    "max": 0.98
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.31,
+    "median": 2.99,
+    "max": 5.84
+   },
+   "xy_spread_m": 0.36,
+   "n_poses": 20
+  },
+  {
+   "inst": "microwave.n.02_1",
+   "scene_object": "microwave_hjjxmi_0",
+   "substance": false,
+   "category": "microwave",
+   "model": "hjjxmi",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998999238014221,
+    1.00001859664917,
+    0.9998341202735901
+   ],
+   "z": {
+    "min": 1.01,
+    "median": 1.01,
+    "max": 1.01
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.18,
+    "median": 2.64,
+    "max": 4.71
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_byvbuc_0",
+   "substance": false,
+   "category": "bar",
+   "model": "byvbuc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999271035194397,
+    1.0000065565109253,
+    1.0000300407409668
+   ],
+   "z": {
+    "min": 0.4,
+    "median": 0.4,
+    "max": 0.4
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 2.81,
+    "max": 5.21
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.88,
+    "median": 2.12,
+    "max": 3.2
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.85,
+   1.95
+  ],
+  [
+   7.18,
+   0.73
+  ],
+  [
+   6.91,
+   0.49
+  ],
+  [
+   5.65,
+   0.81
+  ],
+  [
+   4.09,
+   3.09
+  ],
+  [
+   6.19,
+   0.59
+  ],
+  [
+   2.75,
+   1.8
+  ],
+  [
+   6.0,
+   2.0
+  ],
+  [
+   3.67,
+   -0.2
+  ],
+  [
+   6.86,
+   1.82
+  ],
+  [
+   2.56,
+   2.39
+  ],
+  [
+   7.73,
+   2.5
+  ],
+  [
+   5.78,
+   0.43
+  ],
+  [
+   6.45,
+   1.01
+  ],
+  [
+   6.24,
+   1.13
+  ],
+  [
+   6.91,
+   2.26
+  ],
+  [
+   4.03,
+   3.22
+  ],
+  [
+   7.33,
+   2.58
+  ],
+  [
+   6.56,
+   0.6
+  ],
+  [
+   2.77,
+   1.88
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 8,
+   "median": 8.0,
+   "max": 8
+  },
+  "demo_seconds": {
+   "min": 51.67,
+   "median": 105.03,
+   "max": 161.77
+  },
+  "distinct_verb_sequences": 1,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "close door",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 1.0,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 3,
+   "open door": 1,
+   "pick up from": 1,
+   "place in": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 1.0,
+  "representative_episode": {
+   "file": "episode_00400950.json",
+   "seconds": 105.1,
+   "steps": [
+    {
+     "prompt": "move to the microwave",
+     "start_s": 0.7,
+     "end_s": 16.9
+    },
+    {
+     "prompt": "open the door of the microwave",
+     "start_s": 17.7,
+     "end_s": 42.8
+    },
+    {
+     "prompt": "move to the popcorn bag",
+     "start_s": 42.8,
+     "end_s": 49.6
+    },
+    {
+     "prompt": "pick up the popcorn bag from the bar",
+     "start_s": 52.3,
+     "end_s": 60.1
+    },
+    {
+     "prompt": "move to the microwave",
+     "start_s": 60.2,
+     "end_s": 70.0
+    },
+    {
+     "prompt": "place the popcorn bag in the microwave",
+     "start_s": 71.6,
+     "end_s": 86.2
+    },
+    {
+     "prompt": "close the door of the microwave",
+     "start_s": 86.3,
+     "end_s": 94.8
+    },
+    {
+     "prompt": "turn on the microwave",
+     "start_s": 95.5,
+     "end_s": 105.8
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 8.0,
+   "move to": 12.4,
+   "open door": 16.9,
+   "pick up from": 13.2,
+   "place in": 14.3,
+   "turn on switch": 8.8
+  },
+  "verb_counts_total": {
+   "move to": 600,
+   "open door": 200,
+   "pick up from": 200,
+   "place in": 200,
+   "close door": 200,
+   "turn on switch": 200
+  },
+  "top_prompts": [
+   [
+    "move to the microwave",
+    398
+   ],
+   [
+    "move to the popcorn bag",
+    202
+   ],
+   [
+    "open the door of the microwave",
+    200
+   ],
+   [
+    "place the popcorn bag in the microwave",
+    200
+   ],
+   [
+    "close the door of the microwave",
+    200
+   ],
+   [
+    "turn on the microwave",
+    200
+   ],
+   [
+    "pick up the popcorn bag from the bar",
+    199
+   ],
+   [
+    "pick up the popcorn bag from the microwave",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "pick up from",
+  "place in",
+  "open door",
+  "turn on switch"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4857
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4857
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 4857
+  }
+ }
+}

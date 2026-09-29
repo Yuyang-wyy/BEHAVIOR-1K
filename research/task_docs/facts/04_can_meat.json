@@ -1,0 +1,944 @@
+{
+ "index": 4,
+ "name": "can_meat",
+ "instruction": "Open the kitchen cabinet, take out the two hinged jars, open them, place exactly two cooked bratwursts from the chopping board on the countertop into each jar, then close both jars, put them back inside the cabinet, and close the cabinet.",
+ "title": "Can Meat",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114054618",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Open the kitchen cabinet, take out the two hinged jars, open them, place exactly two cooked bratwursts from the chopping board on the countertop into each jar, then close both jars, put them back inside the cabinet, and close the cabinet.",
+ "human": {
+  "mean_steps": 11847.075,
+  "mean_seconds": 394.9,
+  "step_limit": 17770,
+  "time_limit_seconds": 592.4,
+  "base_distance_m": 31.6605,
+  "eef_displacement_m": {
+   "left": 26.0583,
+   "right": 28.4575
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem can_meat-0)\n    (:domain behavior-1k)\n\n    (:objects\n        hinged_jar.n.01_1 hinged_jar.n.01_2 - hinged_jar.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        countertop.n.01_1 - countertop.n.01\n        chopping_board.n.01_1 - chopping_board.n.01\n        bratwurst.n.01_1 bratwurst.n.01_2 bratwurst.n.01_3 bratwurst.n.01_4 - bratwurst.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (inside hinged_jar.n.01_1 cabinet.n.01_1) \n        (inside hinged_jar.n.01_2 cabinet.n.01_1) \n        (ontop chopping_board.n.01_1 countertop.n.01_1) \n        (ontop bratwurst.n.01_1 chopping_board.n.01_1) \n        (ontop bratwurst.n.01_2 chopping_board.n.01_1) \n        (ontop bratwurst.n.01_3 chopping_board.n.01_1) \n        (ontop bratwurst.n.01_4 chopping_board.n.01_1) \n        (cooked bratwurst.n.01_1)\n        (cooked bratwurst.n.01_2)\n        (cooked bratwurst.n.01_3)\n        (cooked bratwurst.n.01_4)\n        (inroom cabinet.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?hinged_jar.n.01 - hinged_jar.n.01) \n                (inside ?hinged_jar.n.01 ?cabinet.n.01_1)\n            ) \n            (forall \n                (?hinged_jar.n.01 - hinged_jar.n.01)\n                (not\n                    (open ?hinged_jar.n.01)\n                )\n            )\n            (forall \n                (?hinged_jar.n.01 - hinged_jar.n.01) \n                (forn\n                    (2)\n                    (?bratwurst.n.01 - bratwurst.n.01)\n                    (inside ?bratwurst.n.01 ?hinged_jar.n.01)\n                )\n            )\n            (not\n                (open ?cabinet.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "hinged_jar.n.01": [
+   "hinged_jar.n.01_1",
+   "hinged_jar.n.01_2"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "bratwurst.n.01": [
+   "bratwurst.n.01_1",
+   "bratwurst.n.01_2",
+   "bratwurst.n.01_3",
+   "bratwurst.n.01_4"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "hinged_jar.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "hinged_jar.n.01_2": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(cooked bratwurst.n.01_1)",
+  "(cooked bratwurst.n.01_2)",
+  "(cooked bratwurst.n.01_3)",
+  "(cooked bratwurst.n.01_4)",
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inside hinged_jar.n.01_1 cabinet.n.01_1)",
+  "(inside hinged_jar.n.01_2 cabinet.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bratwurst.n.01_1 chopping_board.n.01_1)",
+  "(ontop bratwurst.n.01_2 chopping_board.n.01_1)",
+  "(ontop bratwurst.n.01_3 chopping_board.n.01_1)",
+  "(ontop bratwurst.n.01_4 chopping_board.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bratwurst.n.01_1 chopping_board.n.01_1)",
+  "(touching bratwurst.n.01_2 chopping_board.n.01_1)",
+  "(touching bratwurst.n.01_3 chopping_board.n.01_1)",
+  "(touching bratwurst.n.01_4 chopping_board.n.01_1)",
+  "(touching chopping_board.n.01_1 bratwurst.n.01_1)",
+  "(touching chopping_board.n.01_1 bratwurst.n.01_2)",
+  "(touching chopping_board.n.01_1 bratwurst.n.01_3)",
+  "(touching chopping_board.n.01_1 bratwurst.n.01_4)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)"
+ ],
+ "n_ground_options": 36,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 9,
+  "n_initially_true": 5,
+  "max_partial_q": 0.444,
+  "literals": [
+   {
+    "literal": "(inside hinged_jar.n.01_1 cabinet.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "hinged_jar.n.01_1",
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(inside hinged_jar.n.01_2 cabinet.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "hinged_jar.n.01_2",
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open hinged_jar.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "hinged_jar.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open hinged_jar.n.01_2))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "hinged_jar.n.01_2"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(inside bratwurst.n.01_4 hinged_jar.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bratwurst.n.01_4",
+     "hinged_jar.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bratwurst.n.01_1 hinged_jar.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bratwurst.n.01_1",
+     "hinged_jar.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bratwurst.n.01_4 hinged_jar.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bratwurst.n.01_4",
+     "hinged_jar.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bratwurst.n.01_1 hinged_jar.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bratwurst.n.01_1",
+     "hinged_jar.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open cabinet.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "cabinet.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   9,
+   36
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   6
+  ],
+  [
+   "not open",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "hinged_jar.n.01_1",
+   "scene_object": "hinged_jar_236",
+   "substance": false,
+   "category": "hinged_jar",
+   "model": "vzwhbg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.8999999761581421,
+    0.8999999761581421,
+    0.8999999761581421
+   ],
+   "z": {
+    "min": 1.6,
+    "median": 1.6,
+    "max": 1.6
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 1.72,
+    "max": 4.99
+   },
+   "xy_spread_m": 0.83,
+   "n_poses": 20
+  },
+  {
+   "inst": "hinged_jar.n.01_2",
+   "scene_object": "hinged_jar_235",
+   "substance": false,
+   "category": "hinged_jar",
+   "model": "vzwhbg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.8999999761581421,
+    0.8999999761581421,
+    0.8999999761581421
+   ],
+   "z": {
+    "min": 1.6,
+    "median": 1.6,
+    "max": 1.6
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.01,
+    "median": 1.9,
+    "max": 4.73
+   },
+   "xy_spread_m": 0.84,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "top_cabinet_lkxmne_2",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "lkxmne",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9998805522918701,
+    1.000040054321289,
+    1.0000317096710205
+   ],
+   "z": {
+    "min": 1.79,
+    "median": 1.79,
+    "max": 1.79
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.1,
+    "median": 1.83,
+    "max": 4.93
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_udatjt_0",
+   "substance": false,
+   "category": "bar",
+   "model": "udatjt",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.999976396560669,
+    1.000006914138794,
+    0.9999703764915466
+   ],
+   "z": {
+    "min": 0.66,
+    "median": 0.66,
+    "max": 0.66
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.18,
+    "median": 2.14,
+    "max": 2.64
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "cutting_board_234",
+   "substance": false,
+   "category": "cutting_board",
+   "model": "jfrbuz",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.250012993812561,
+    1.2500271797180176,
+    1.2503036260604858
+   ],
+   "z": {
+    "min": 1.06,
+    "median": 1.06,
+    "max": 1.06
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.83,
+    "median": 1.58,
+    "max": 3.75
+   },
+   "xy_spread_m": 2.71,
+   "n_poses": 20
+  },
+  {
+   "inst": "bratwurst.n.01_1",
+   "scene_object": "bratwurst_233",
+   "substance": false,
+   "category": "bratwurst",
+   "model": "pqfrrn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.49990129470825195,
+    0.49989089369773865,
+    0.49982818961143494
+   ],
+   "z": {
+    "min": 1.09,
+    "median": 1.09,
+    "max": 1.09
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.57,
+    "max": 3.77
+   },
+   "xy_spread_m": 2.88,
+   "n_poses": 20
+  },
+  {
+   "inst": "bratwurst.n.01_2",
+   "scene_object": "bratwurst_232",
+   "substance": false,
+   "category": "bratwurst",
+   "model": "pqfrrn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.49990129470825195,
+    0.49989089369773865,
+    0.49982818961143494
+   ],
+   "z": {
+    "min": 1.09,
+    "median": 1.09,
+    "max": 1.09
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.78,
+    "median": 1.59,
+    "max": 3.76
+   },
+   "xy_spread_m": 2.84,
+   "n_poses": 20
+  },
+  {
+   "inst": "bratwurst.n.01_3",
+   "scene_object": "bratwurst_231",
+   "substance": false,
+   "category": "bratwurst",
+   "model": "pqfrrn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.49990129470825195,
+    0.49989089369773865,
+    0.49982818961143494
+   ],
+   "z": {
+    "min": 1.09,
+    "median": 1.09,
+    "max": 1.09
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.74,
+    "median": 1.69,
+    "max": 3.8
+   },
+   "xy_spread_m": 3.06,
+   "n_poses": 20
+  },
+  {
+   "inst": "bratwurst.n.01_4",
+   "scene_object": "bratwurst_230",
+   "substance": false,
+   "category": "bratwurst",
+   "model": "pqfrrn",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.49990129470825195,
+    0.49989089369773865,
+    0.49982818961143494
+   ],
+   "z": {
+    "min": 1.09,
+    "median": 1.09,
+    "max": 1.09
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.88,
+    "median": 1.59,
+    "max": 3.7
+   },
+   "xy_spread_m": 2.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_kxcpgy_0",
+   "substance": false,
+   "category": "floors",
+   "model": "kxcpgy",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000005841255188,
+    1.0000033378601074,
+    1.0001105070114136
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.82,
+    "median": 1.55,
+    "max": 2.41
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.13,
+   0.75
+  ],
+  [
+   5.33,
+   -0.74
+  ],
+  [
+   5.22,
+   -0.88
+  ],
+  [
+   5.09,
+   1.42
+  ],
+  [
+   5.02,
+   1.57
+  ],
+  [
+   5.89,
+   -0.95
+  ],
+  [
+   7.27,
+   -0.98
+  ],
+  [
+   5.43,
+   1.5
+  ],
+  [
+   5.26,
+   -0.46
+  ],
+  [
+   5.14,
+   1.2
+  ],
+  [
+   7.07,
+   -0.96
+  ],
+  [
+   5.6,
+   1.39
+  ],
+  [
+   5.16,
+   -0.96
+  ],
+  [
+   7.57,
+   -0.93
+  ],
+  [
+   5.06,
+   0.33
+  ],
+  [
+   5.23,
+   -0.34
+  ],
+  [
+   8.66,
+   -0.99
+  ],
+  [
+   6.99,
+   -0.98
+  ],
+  [
+   7.11,
+   -1.04
+  ],
+  [
+   5.27,
+   0.93
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 24,
+   "median": 27.0,
+   "max": 28
+  },
+  "demo_seconds": {
+   "min": 266.9,
+   "median": 385.4,
+   "max": 566.0
+  },
+  "distinct_verb_sequences": 24,
+  "modal_verb_sequence": [
+   "move to",
+   "open door",
+   "open door",
+   "pick up from",
+   "hand over",
+   "move to",
+   "open lid",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "close lid",
+   "move to",
+   "place in",
+   "pick up from",
+   "hand over",
+   "move to",
+   "open lid",
+   "pick up from",
+   "place in",
+   "pick up from",
+   "place in",
+   "close lid",
+   "move to",
+   "place in",
+   "close door",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.325,
+  "modal_verb_counts": {
+   "close door": 2,
+   "close lid": 2,
+   "hand over": 2,
+   "move to": 5,
+   "open door": 2,
+   "open lid": 2,
+   "pick up from": 6,
+   "place in": 6
+  },
+  "modal_verb_counts_share": 0.54,
+  "representative_episode": {
+   "file": "episode_00042780.json",
+   "seconds": 355.0,
+   "steps": [
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 0.0,
+     "end_s": 23.3
+    },
+    {
+     "prompt": "open the door of the right_door top cabinet",
+     "start_s": 23.3,
+     "end_s": 52.1
+    },
+    {
+     "prompt": "open the door of the left_door top cabinet",
+     "start_s": 52.1,
+     "end_s": 80.9
+    },
+    {
+     "prompt": "pick up the hinged jar from the low_level top cabinet",
+     "start_s": 80.9,
+     "end_s": 93.2
+    },
+    {
+     "prompt": "hand over the hinged jar with the right",
+     "start_s": 93.2,
+     "end_s": 105.1
+    },
+    {
+     "prompt": "move to the bratwurst",
+     "start_s": 105.1,
+     "end_s": 139.3
+    },
+    {
+     "prompt": "open the lid of the hinged jar",
+     "start_s": 128.0,
+     "end_s": 135.7
+    },
+    {
+     "prompt": "pick up the bratwurst from the cutting board",
+     "start_s": 139.3,
+     "end_s": 145.6
+    },
+    {
+     "prompt": "place the bratwurst in the hinged jar",
+     "start_s": 145.6,
+     "end_s": 149.0
+    },
+    {
+     "prompt": "pick up the bratwurst from the cutting board",
+     "start_s": 149.0,
+     "end_s": 155.4
+    },
+    {
+     "prompt": "place the bratwurst in the hinged jar",
+     "start_s": 155.4,
+     "end_s": 158.3
+    },
+    {
+     "prompt": "close the lid of the hinged jar",
+     "start_s": 158.3,
+     "end_s": 161.9
+    },
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 162.0,
+     "end_s": 177.7
+    },
+    {
+     "prompt": "place the hinged jar in the low_level top cabinet",
+     "start_s": 177.7,
+     "end_s": 187.6
+    },
+    {
+     "prompt": "pick up the hinged jar from the low_level top cabinet",
+     "start_s": 187.6,
+     "end_s": 204.3
+    },
+    {
+     "prompt": "hand over the hinged jar with the left",
+     "start_s": 204.3,
+     "end_s": 211.8
+    },
+    {
+     "prompt": "move to the bratwurst",
+     "start_s": 211.8,
+     "end_s": 244.2
+    },
+    {
+     "prompt": "open the lid of the hinged jar",
+     "start_s": 230.7,
+     "end_s": 240.3
+    },
+    {
+     "prompt": "pick up the bratwurst from the cutting board",
+     "start_s": 244.2,
+     "end_s": 255.0
+    },
+    {
+     "prompt": "place the bratwurst in the hinged jar",
+     "start_s": 255.0,
+     "end_s": 258.0
+    },
+    {
+     "prompt": "pick up the bratwurst from the cutting board",
+     "start_s": 258.0,
+     "end_s": 266.9
+    },
+    {
+     "prompt": "place the bratwurst in the hinged jar",
+     "start_s": 266.9,
+     "end_s": 269.9
+    },
+    {
+     "prompt": "close the lid of the hinged jar",
+     "start_s": 269.9,
+     "end_s": 274.6
+    },
+    {
+     "prompt": "move to the top cabinet",
+     "start_s": 274.6,
+     "end_s": 298.4
+    },
+    {
+     "prompt": "place the hinged jar in the low_level top cabinet",
+     "start_s": 298.4,
+     "end_s": 307.7
+    },
+    {
+     "prompt": "close the door of the left_door top cabinet",
+     "start_s": 307.7,
+     "end_s": 330.2
+    },
+    {
+     "prompt": "close the door of the right_door top cabinet",
+     "start_s": 330.2,
+     "end_s": 355.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 20.1,
+   "close lid": 6.5,
+   "hand over": 11.0,
+   "move to": 19.8,
+   "open door": 33.3,
+   "open lid": 10.1,
+   "pick up from": 14.2,
+   "place in": 8.9,
+   "turn to": 28.4
+  },
+  "verb_counts_total": {
+   "pick up from": 1200,
+   "place in": 1200,
+   "move to": 994,
+   "open door": 401,
+   "open lid": 400,
+   "close lid": 400,
+   "close door": 400,
+   "hand over": 341,
+   "turn to": 9
+  },
+  "top_prompts": [
+   [
+    "place the bratwurst in the hinged jar",
+    800
+   ],
+   [
+    "pick up the bratwurst from the cutting board",
+    798
+   ],
+   [
+    "move to the top cabinet",
+    594
+   ],
+   [
+    "open the lid of the hinged jar",
+    400
+   ],
+   [
+    "move to the bratwurst",
+    400
+   ],
+   [
+    "close the lid of the hinged jar",
+    400
+   ],
+   [
+    "place the hinged jar in the low_level top cabinet",
+    352
+   ],
+   [
+    "pick up the hinged jar from the low_level top cabinet",
+    351
+   ],
+   [
+    "open the door of the right_door top cabinet",
+    201
+   ],
+   [
+    "open the door of the left_door top cabinet",
+    200
+   ],
+   [
+    "close the door of the right_door top cabinet",
+    200
+   ],
+   [
+    "close the door of the left_door top cabinet",
+    199
+   ],
+   [
+    "hand over the hinged jar with the left",
+    174
+   ],
+   [
+    "hand over the hinged jar with the right",
+    167
+   ],
+   [
+    "pick up the hinged jar from the high_level top cabinet",
+    49
+   ],
+   [
+    "place the hinged jar in the high_level top cabinet",
+    48
+   ],
+   [
+    "turn to the hinged jar",
+    9
+   ],
+   [
+    "pick up the bratwurst from the hinged jar",
+    2
+   ],
+   [
+    "close the door of the left top cabinet",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "open lid",
+  "move to",
+  "close door",
+  "turn to",
+  "pick up from",
+  "place in",
+  "close lid",
+  "open door",
+  "hand over"
+ ],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 17771
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 17771
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 17771
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 17771
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 17771
+  }
+ }
+}

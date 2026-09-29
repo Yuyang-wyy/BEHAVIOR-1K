@@ -1,0 +1,1438 @@
+{
+ "index": 97,
+ "name": "setup_a_bar_for_a_cocktail_party",
+ "instruction": "Set up the bar for a cocktail party by placing the wineglasses, wine bottle, corkscrew, soda cans, and ice bucket on the bar.",
+ "title": "Setup A Bar For A Cocktail Party",
+ "rooms_listed": [
+  "bar"
+ ],
+ "video": "https://www.youtube.com/embed/3V0ySKyGKRw",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Set up the bar for a cocktail party by placing the wineglasses, wine bottle, corkscrew, soda cans, and ice bucket on the bar.",
+ "human": {
+  "mean_steps": 13418.895,
+  "mean_seconds": 447.3,
+  "step_limit": 20128,
+  "time_limit_seconds": 670.9,
+  "base_distance_m": 22.8071,
+  "eef_displacement_m": {
+   "left": 20.5781,
+   "right": 29.4866
+  }
+ },
+ "rooms_loaded": [
+  "bar_0",
+  "corridor_0",
+  "kitchen_0",
+  "dining_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bar"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "can__of__soda.n.01": {
+     "can_of_soda": {
+      "evcxlr": null
+     }
+    },
+    "bucket.n.01": {
+     "ice_bucket": {
+      "vlurir": [
+       0.204,
+       0.246,
+       0.234
+      ]
+     }
+    },
+    "corkscrew.n.01": {
+     "corkscrew": {
+      "gqocna": null
+     }
+    },
+    "ice_cube.n.01": {
+     "ice_cube": {
+      "dueotq": null,
+      "kdlafa": null
+     }
+    },
+    "shot_glass.n.01": {
+     "jigger": {
+      "aysfhf": null
+     }
+    },
+    "tray.n.01": {
+     "tray": {
+      "vxbtax": [
+       0.165,
+       0.24,
+       0.045
+      ]
+     }
+    },
+    "water_glass.n.02": {
+     "water_glass": {
+      "gypzlg": null
+     }
+    },
+    "wine_bottle.n.01": {
+     "wine_bottle": {
+      "inkqch": null
+     }
+    },
+    "wineglass.n.01": {
+     "wineglass": {
+      "kxovsj": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem setup_a_bar_for_a_cocktail_party-0)\n    (:domain behavior-1k)\n\n    (:objects\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        wine_bottle.n.01_1 - wine_bottle.n.01\n        countertop.n.01_1 - countertop.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        can__of__soda.n.01_1 can__of__soda.n.01_2 can__of__soda.n.01_3 - can__of__soda.n.01\n        ice_cube.n.01_1 ice_cube.n.01_2 ice_cube.n.01_3 ice_cube.n.01_4 ice_cube.n.01_5 ice_cube.n.01_6 - ice_cube.n.01\n        wineglass.n.01_1 wineglass.n.01_2 - wineglass.n.01\n        bucket.n.01_1 - bucket.n.01\n        corkscrew.n.01_1 - corkscrew.n.01\n        tray.n.01_1 - tray.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop can__of__soda.n.01_1 cabinet.n.01_1)\n        (ontop can__of__soda.n.01_2 cabinet.n.01_1)\n        (ontop can__of__soda.n.01_3 cabinet.n.01_1)\n        (ontop ice_cube.n.01_1 tray.n.01_1)\n        (ontop ice_cube.n.01_2 tray.n.01_1)\n        (ontop ice_cube.n.01_3 tray.n.01_1)\n        (ontop ice_cube.n.01_4 tray.n.01_1)\n        (ontop ice_cube.n.01_5 tray.n.01_1)\n        (ontop ice_cube.n.01_6 tray.n.01_1)\n        (ontop tray.n.01_1 cabinet.n.01_1)\n        (ontop bucket.n.01_1 cabinet.n.01_1)\n        (ontop corkscrew.n.01_1 cabinet.n.01_1)\n        (ontop wine_bottle.n.01_1 cabinet.n.01_1)\n        (ontop wineglass.n.01_1 cabinet.n.01_1)\n        (ontop wineglass.n.01_2 cabinet.n.01_1)\n        (inroom cabinet.n.01_1 bar)\n        (inroom countertop.n.01_1 bar)\n        (inroom electric_refrigerator.n.01_1 bar)\n        (inroom floor.n.01_1 bar)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n\n    (:goal\n        (and\n            (ontop ?wine_bottle.n.01_1 ?countertop.n.01_1)\n            (forall\n                (?can__of__soda.n.01 - can__of__soda.n.01)\n                (and\n                    (or\n                        (nextto ?can__of__soda.n.01 ?can__of__soda.n.01_1)\n                        (nextto ?can__of__soda.n.01 ?can__of__soda.n.01_2)\n                        (nextto ?can__of__soda.n.01 ?can__of__soda.n.01_3)\n                    )\n                    (ontop ?can__of__soda.n.01 ?countertop.n.01_1)\n                )\n            )\n            (forall\n                (?ice_cube.n.01 - ice_cube.n.01)\n                (inside ?ice_cube.n.01 ?bucket.n.01_1)\n            )\n            (ontop ?bucket.n.01_1 ?countertop.n.01_1)\n            (forall\n                (?wineglass.n.01 - wineglass.n.01)\n                (ontop ?wineglass.n.01 ?countertop.n.01_1)\n            )\n            (exists\n                (?wineglass.n.01 - wineglass.n.01)\n                (nextto ?wineglass.n.01 ?wine_bottle.n.01_1)\n            )\n            (nextto ?wineglass.n.01_1 ?wineglass.n.01_2)\n            (ontop ?corkscrew.n.01_1 ?countertop.n.01_1)\n            (nextto ?corkscrew.n.01_1 ?wine_bottle.n.01_1)\n        )\n    )\n)\n",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bar": "bar_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "wine_bottle.n.01": [
+   "wine_bottle.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "can__of__soda.n.01": [
+   "can__of__soda.n.01_1",
+   "can__of__soda.n.01_2",
+   "can__of__soda.n.01_3"
+  ],
+  "ice_cube.n.01": [
+   "ice_cube.n.01_1",
+   "ice_cube.n.01_2",
+   "ice_cube.n.01_3",
+   "ice_cube.n.01_4",
+   "ice_cube.n.01_5",
+   "ice_cube.n.01_6"
+  ],
+  "wineglass.n.01": [
+   "wineglass.n.01_1",
+   "wineglass.n.01_2"
+  ],
+  "bucket.n.01": [
+   "bucket.n.01_1"
+  ],
+  "corkscrew.n.01": [
+   "corkscrew.n.01_1"
+  ],
+  "tray.n.01": [
+   "tray.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "countertop.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 bar)",
+  "(inroom countertop.n.01_1 bar)",
+  "(inroom electric_refrigerator.n.01_1 bar)",
+  "(inroom floor.n.01_1 bar)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bucket.n.01_1 cabinet.n.01_1)",
+  "(ontop can__of__soda.n.01_1 cabinet.n.01_1)",
+  "(ontop can__of__soda.n.01_2 cabinet.n.01_1)",
+  "(ontop can__of__soda.n.01_3 cabinet.n.01_1)",
+  "(ontop corkscrew.n.01_1 cabinet.n.01_1)",
+  "(ontop ice_cube.n.01_1 tray.n.01_1)",
+  "(ontop ice_cube.n.01_2 tray.n.01_1)",
+  "(ontop ice_cube.n.01_3 tray.n.01_1)",
+  "(ontop ice_cube.n.01_4 tray.n.01_1)",
+  "(ontop ice_cube.n.01_5 tray.n.01_1)",
+  "(ontop ice_cube.n.01_6 tray.n.01_1)",
+  "(ontop tray.n.01_1 cabinet.n.01_1)",
+  "(ontop wine_bottle.n.01_1 cabinet.n.01_1)",
+  "(ontop wineglass.n.01_1 cabinet.n.01_1)",
+  "(ontop wineglass.n.01_2 cabinet.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bucket.n.01_1 cabinet.n.01_1)",
+  "(touching cabinet.n.01_1 bucket.n.01_1)",
+  "(touching cabinet.n.01_1 can__of__soda.n.01_1)",
+  "(touching cabinet.n.01_1 can__of__soda.n.01_2)",
+  "(touching cabinet.n.01_1 can__of__soda.n.01_3)",
+  "(touching cabinet.n.01_1 corkscrew.n.01_1)",
+  "(touching cabinet.n.01_1 tray.n.01_1)",
+  "(touching cabinet.n.01_1 wine_bottle.n.01_1)",
+  "(touching cabinet.n.01_1 wineglass.n.01_1)",
+  "(touching cabinet.n.01_1 wineglass.n.01_2)",
+  "(touching can__of__soda.n.01_1 cabinet.n.01_1)",
+  "(touching can__of__soda.n.01_2 cabinet.n.01_1)",
+  "(touching can__of__soda.n.01_3 cabinet.n.01_1)",
+  "(touching corkscrew.n.01_1 cabinet.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching ice_cube.n.01_1 tray.n.01_1)",
+  "(touching ice_cube.n.01_2 tray.n.01_1)",
+  "(touching ice_cube.n.01_3 tray.n.01_1)",
+  "(touching ice_cube.n.01_4 tray.n.01_1)",
+  "(touching ice_cube.n.01_5 tray.n.01_1)",
+  "(touching ice_cube.n.01_6 tray.n.01_1)",
+  "(touching tray.n.01_1 cabinet.n.01_1)",
+  "(touching tray.n.01_1 ice_cube.n.01_1)",
+  "(touching tray.n.01_1 ice_cube.n.01_2)",
+  "(touching tray.n.01_1 ice_cube.n.01_3)",
+  "(touching tray.n.01_1 ice_cube.n.01_4)",
+  "(touching tray.n.01_1 ice_cube.n.01_5)",
+  "(touching tray.n.01_1 ice_cube.n.01_6)",
+  "(touching wine_bottle.n.01_1 cabinet.n.01_1)",
+  "(touching wineglass.n.01_1 cabinet.n.01_1)",
+  "(touching wineglass.n.01_2 cabinet.n.01_1)"
+ ],
+ "n_ground_options": 54,
+ "n_self_paired_options": 38,
+ "ground_option_example": {
+  "n_literals": 20,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop wine_bottle.n.01_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "wine_bottle.n.01_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto can__of__soda.n.01_1 can__of__soda.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "can__of__soda.n.01_1",
+     "can__of__soda.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop can__of__soda.n.01_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "can__of__soda.n.01_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto can__of__soda.n.01_2 can__of__soda.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "can__of__soda.n.01_2",
+     "can__of__soda.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop can__of__soda.n.01_2 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "can__of__soda.n.01_2",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto can__of__soda.n.01_3 can__of__soda.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "can__of__soda.n.01_3",
+     "can__of__soda.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop can__of__soda.n.01_3 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "can__of__soda.n.01_3",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside ice_cube.n.01_5 bucket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "ice_cube.n.01_5",
+     "bucket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside ice_cube.n.01_1 bucket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "ice_cube.n.01_1",
+     "bucket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside ice_cube.n.01_4 bucket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "ice_cube.n.01_4",
+     "bucket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside ice_cube.n.01_6 bucket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "ice_cube.n.01_6",
+     "bucket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside ice_cube.n.01_2 bucket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "ice_cube.n.01_2",
+     "bucket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside ice_cube.n.01_3 bucket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "ice_cube.n.01_3",
+     "bucket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop bucket.n.01_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "bucket.n.01_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop wineglass.n.01_2 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "wineglass.n.01_2",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop wineglass.n.01_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "wineglass.n.01_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto wineglass.n.01_2 wine_bottle.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "wineglass.n.01_2",
+     "wine_bottle.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto wineglass.n.01_1 wineglass.n.01_2)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "wineglass.n.01_1",
+     "wineglass.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop corkscrew.n.01_1 countertop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "corkscrew.n.01_1",
+     "countertop.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto corkscrew.n.01_1 wine_bottle.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "corkscrew.n.01_1",
+     "wine_bottle.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   20,
+   54
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   8
+  ],
+  [
+   "nextto",
+   6
+  ],
+  [
+   "inside",
+   6
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_juwaoh_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "juwaoh",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0691157579421997,
+    1.3772706985473633,
+    0.9410063028335571
+   ],
+   "z": {
+    "min": 0.77,
+    "median": 0.77,
+    "max": 0.77
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.63,
+    "median": 3.14,
+    "max": 3.44
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "wine_bottle.n.01_1",
+   "scene_object": "wine_bottle_61",
+   "substance": false,
+   "category": "wine_bottle",
+   "model": "inkqch",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.01,
+    "median": 1.96,
+    "max": 3.14
+   },
+   "xy_spread_m": 1.93,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_xxftww_0",
+   "substance": false,
+   "category": "bar",
+   "model": "xxftww",
+   "in_rooms": [
+    "bar_0",
+    "dining_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.999983012676239,
+    1.0000005960464478,
+    0.9999896883964539
+   ],
+   "z": {
+    "min": 0.59,
+    "median": 0.59,
+    "max": 0.59
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.52,
+    "median": 2.17,
+    "max": 2.63
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_olgoza_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "olgoza",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.10600209236145,
+    2.3038058280944824,
+    1.6781219244003296
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.4,
+    "median": 1.77,
+    "max": 2.2
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "can__of__soda.n.01_1",
+   "scene_object": "can_of_soda_60",
+   "substance": false,
+   "category": "can_of_soda",
+   "model": "evcxlr",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.91,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.92,
+    "median": 2.0,
+    "max": 3.0
+   },
+   "xy_spread_m": 2.02,
+   "n_poses": 20
+  },
+  {
+   "inst": "can__of__soda.n.01_2",
+   "scene_object": "can_of_soda_59",
+   "substance": false,
+   "category": "can_of_soda",
+   "model": "evcxlr",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.87,
+    "median": 2.08,
+    "max": 2.82
+   },
+   "xy_spread_m": 1.98,
+   "n_poses": 20
+  },
+  {
+   "inst": "can__of__soda.n.01_3",
+   "scene_object": "can_of_soda_58",
+   "substance": false,
+   "category": "can_of_soda",
+   "model": "evcxlr",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.91,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.82,
+    "median": 1.82,
+    "max": 2.72
+   },
+   "xy_spread_m": 1.95,
+   "n_poses": 20
+  },
+  {
+   "inst": "ice_cube.n.01_1",
+   "scene_object": "ice_cube_57",
+   "substance": false,
+   "category": "ice_cube",
+   "model": "dueotq",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 1.66,
+    "max": 2.79
+   },
+   "xy_spread_m": 1.37,
+   "n_poses": 20
+  },
+  {
+   "inst": "ice_cube.n.01_2",
+   "scene_object": "ice_cube_56",
+   "substance": false,
+   "category": "ice_cube",
+   "model": "kdlafa",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 1.67,
+    "max": 2.91
+   },
+   "xy_spread_m": 1.5,
+   "n_poses": 20
+  },
+  {
+   "inst": "ice_cube.n.01_3",
+   "scene_object": "ice_cube_55",
+   "substance": false,
+   "category": "ice_cube",
+   "model": "kdlafa",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.23,
+    "median": 1.66,
+    "max": 2.94
+   },
+   "xy_spread_m": 1.55,
+   "n_poses": 20
+  },
+  {
+   "inst": "ice_cube.n.01_4",
+   "scene_object": "ice_cube_54",
+   "substance": false,
+   "category": "ice_cube",
+   "model": "kdlafa",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.27,
+    "median": 1.73,
+    "max": 2.85
+   },
+   "xy_spread_m": 1.43,
+   "n_poses": 20
+  },
+  {
+   "inst": "ice_cube.n.01_5",
+   "scene_object": "ice_cube_53",
+   "substance": false,
+   "category": "ice_cube",
+   "model": "dueotq",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.2,
+    "median": 1.69,
+    "max": 2.89
+   },
+   "xy_spread_m": 1.49,
+   "n_poses": 20
+  },
+  {
+   "inst": "ice_cube.n.01_6",
+   "scene_object": "ice_cube_52",
+   "substance": false,
+   "category": "ice_cube",
+   "model": "dueotq",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.23,
+    "median": 1.7,
+    "max": 2.84
+   },
+   "xy_spread_m": 1.41,
+   "n_poses": 20
+  },
+  {
+   "inst": "wineglass.n.01_1",
+   "scene_object": "wineglass_51",
+   "substance": false,
+   "category": "wineglass",
+   "model": "kxovsj",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.92,
+    "median": 0.92,
+    "max": 0.92
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.75,
+    "median": 1.65,
+    "max": 2.61
+   },
+   "xy_spread_m": 1.85,
+   "n_poses": 20
+  },
+  {
+   "inst": "wineglass.n.01_2",
+   "scene_object": "wineglass_50",
+   "substance": false,
+   "category": "wineglass",
+   "model": "kxovsj",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.92,
+    "median": 0.92,
+    "max": 0.92
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 1.93,
+    "max": 2.83
+   },
+   "xy_spread_m": 1.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "bucket.n.01_1",
+   "scene_object": "ice_bucket_49",
+   "substance": false,
+   "category": "ice_bucket",
+   "model": "vlurir",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.6034597754478455,
+    0.5981027483940125,
+    0.5959268808364868
+   ],
+   "z": {
+    "min": 0.95,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.25,
+    "median": 1.76,
+    "max": 2.8
+   },
+   "xy_spread_m": 1.35,
+   "n_poses": 20
+  },
+  {
+   "inst": "corkscrew.n.01_1",
+   "scene_object": "corkscrew_48",
+   "substance": false,
+   "category": "corkscrew",
+   "model": "gqocna",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.85,
+    "median": 0.85,
+    "max": 0.85
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 1.74,
+    "max": 2.81
+   },
+   "xy_spread_m": 1.76,
+   "n_poses": 20
+  },
+  {
+   "inst": "tray.n.01_1",
+   "scene_object": "tray_47",
+   "substance": false,
+   "category": "tray",
+   "model": "vxbtax",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5052794814109802,
+    0.5031706094741821,
+    0.48457276821136475
+   ],
+   "z": {
+    "min": 0.86,
+    "median": 0.86,
+    "max": 0.86
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.21,
+    "median": 1.68,
+    "max": 2.87
+   },
+   "xy_spread_m": 1.43,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_qqbcva_0",
+   "substance": false,
+   "category": "floors",
+   "model": "qqbcva",
+   "in_rooms": [
+    "bar_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000121593475342,
+    1.0000028610229492,
+    0.9958264231681824
+   ],
+   "z": {
+    "min": -0.0,
+    "median": -0.0,
+    "max": -0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.51,
+    "median": 1.15,
+    "max": 1.53
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_qlywnk",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -3.68,
+   -3.79
+  ],
+  [
+   -4.01,
+   -3.7
+  ],
+  [
+   -3.73,
+   -3.68
+  ],
+  [
+   -3.67,
+   -3.08
+  ],
+  [
+   -4.17,
+   -3.94
+  ],
+  [
+   -3.41,
+   -3.29
+  ],
+  [
+   -3.44,
+   -3.59
+  ],
+  [
+   -4.2,
+   -3.76
+  ],
+  [
+   -3.6,
+   -3.18
+  ],
+  [
+   -3.47,
+   -3.52
+  ],
+  [
+   -3.93,
+   -3.55
+  ],
+  [
+   -3.49,
+   -3.75
+  ],
+  [
+   -3.9,
+   -3.64
+  ],
+  [
+   -3.76,
+   -3.38
+  ],
+  [
+   -3.49,
+   -3.06
+  ],
+  [
+   -3.34,
+   -3.83
+  ],
+  [
+   -4.11,
+   -3.67
+  ],
+  [
+   -4.04,
+   -3.56
+  ],
+  [
+   -3.73,
+   -3.83
+  ],
+  [
+   -3.59,
+   -3.8
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 29,
+   "median": 31.0,
+   "max": 34
+  },
+  "demo_seconds": {
+   "min": 316.43,
+   "median": 425.2,
+   "max": 646.8
+  },
+  "distinct_verb_sequences": 29,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "pour",
+   "place on",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.14,
+  "modal_verb_counts": {
+   "move to": 11,
+   "pick up from": 9,
+   "place on": 6,
+   "place on next to": 3,
+   "pour": 1
+  },
+  "modal_verb_counts_share": 0.325,
+  "representative_episode": {
+   "file": "episode_00970660.json",
+   "seconds": 386.1,
+   "steps": [
+    {
+     "prompt": "move to the wineglass",
+     "start_s": 0.0,
+     "end_s": 8.0
+    },
+    {
+     "prompt": "pick up the wineglass from the bottom cabinet",
+     "start_s": 8.0,
+     "end_s": 25.0
+    },
+    {
+     "prompt": "pick up the wineglass from the bottom cabinet",
+     "start_s": 25.0,
+     "end_s": 38.0
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 38.0,
+     "end_s": 53.0
+    },
+    {
+     "prompt": "place the wineglass on the bar",
+     "start_s": 53.0,
+     "end_s": 64.3
+    },
+    {
+     "prompt": "place the wineglass on the bar next to the wineglass",
+     "start_s": 64.3,
+     "end_s": 71.7
+    },
+    {
+     "prompt": "move to the wine bottle",
+     "start_s": 71.7,
+     "end_s": 93.0
+    },
+    {
+     "prompt": "pick up the wine bottle from the bottom cabinet",
+     "start_s": 93.0,
+     "end_s": 101.1
+    },
+    {
+     "prompt": "pick up the corkscrew from the bottom cabinet",
+     "start_s": 101.1,
+     "end_s": 123.0
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 123.0,
+     "end_s": 136.0
+    },
+    {
+     "prompt": "place the wine bottle on the bar",
+     "start_s": 136.0,
+     "end_s": 146.5
+    },
+    {
+     "prompt": "place the corkscrew on the bar next to the wine bottle",
+     "start_s": 146.5,
+     "end_s": 163.4
+    },
+    {
+     "prompt": "move to the can of soda",
+     "start_s": 163.4,
+     "end_s": 175.0
+    },
+    {
+     "prompt": "pick up the can of soda from the bottom cabinet",
+     "start_s": 175.0,
+     "end_s": 186.4
+    },
+    {
+     "prompt": "pick up the can of soda from the bottom cabinet",
+     "start_s": 186.4,
+     "end_s": 205.8
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 205.8,
+     "end_s": 218.0
+    },
+    {
+     "prompt": "place the can of soda on the bar",
+     "start_s": 218.0,
+     "end_s": 228.1
+    },
+    {
+     "prompt": "place the can of soda on the bar next to the can of soda",
+     "start_s": 228.1,
+     "end_s": 232.0
+    },
+    {
+     "prompt": "move to the can of soda",
+     "start_s": 232.0,
+     "end_s": 251.0
+    },
+    {
+     "prompt": "pick up the can of soda from the bottom cabinet",
+     "start_s": 251.0,
+     "end_s": 263.0
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 263.0,
+     "end_s": 277.2
+    },
+    {
+     "prompt": "place the can of soda on the bar",
+     "start_s": 277.2,
+     "end_s": 284.8
+    },
+    {
+     "prompt": "move to the tray",
+     "start_s": 284.8,
+     "end_s": 302.0
+    },
+    {
+     "prompt": "pick up the tray from the bottom cabinet",
+     "start_s": 302.0,
+     "end_s": 318.8
+    },
+    {
+     "prompt": "pour the ice bucket into the tray",
+     "start_s": 318.8,
+     "end_s": 334.7
+    },
+    {
+     "prompt": "place the tray on the bottom cabinet",
+     "start_s": 334.7,
+     "end_s": 347.2
+    },
+    {
+     "prompt": "pick up the ice bucket from the bottom cabinet",
+     "start_s": 347.2,
+     "end_s": 360.5
+    },
+    {
+     "prompt": "move to the bar",
+     "start_s": 360.5,
+     "end_s": 372.0
+    },
+    {
+     "prompt": "place the ice bucket on the bar",
+     "start_s": 372.0,
+     "end_s": 386.1
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 15.2,
+   "pick up from": 15.3,
+   "place on": 12.7,
+   "place on next to": 13.1,
+   "pour": 14.1
+  },
+  "verb_counts_total": {
+   "move to": 2354,
+   "pick up from": 1800,
+   "place on": 1201,
+   "place on next to": 599,
+   "pour": 200
+  },
+  "top_prompts": [
+   [
+    "move to the bar",
+    1002
+   ],
+   [
+    "pick up the can of soda from the bottom cabinet",
+    600
+   ],
+   [
+    "move to the can of soda",
+    414
+   ],
+   [
+    "pick up the wineglass from the bottom cabinet",
+    400
+   ],
+   [
+    "place the can of soda on the bar",
+    400
+   ],
+   [
+    "move to the wineglass",
+    281
+   ],
+   [
+    "move to the tray",
+    206
+   ],
+   [
+    "place the wineglass on the bar",
+    200
+   ],
+   [
+    "place the wineglass on the bar next to the wineglass",
+    200
+   ],
+   [
+    "move to the wine bottle",
+    200
+   ],
+   [
+    "pick up the wine bottle from the bottom cabinet",
+    200
+   ],
+   [
+    "pick up the corkscrew from the bottom cabinet",
+    200
+   ],
+   [
+    "place the wine bottle on the bar",
+    200
+   ],
+   [
+    "place the can of soda on the bar next to the can of soda",
+    200
+   ],
+   [
+    "pick up the tray from the bottom cabinet",
+    200
+   ],
+   [
+    "pour the ice bucket into the tray",
+    200
+   ],
+   [
+    "place the tray on the bottom cabinet",
+    200
+   ],
+   [
+    "pick up the ice bucket from the bottom cabinet",
+    200
+   ],
+   [
+    "place the ice bucket on the bar",
+    200
+   ],
+   [
+    "place the corkscrew on the bar next to the wine bottle",
+    199
+   ],
+   [
+    "move to the ice bucket",
+    131
+   ],
+   [
+    "move to the corkscrew",
+    101
+   ],
+   [
+    "move to the bottom cabinet",
+    19
+   ],
+   [
+    "place the corkscrew on the bar",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 20129
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 20129
+  }
+ }
+}

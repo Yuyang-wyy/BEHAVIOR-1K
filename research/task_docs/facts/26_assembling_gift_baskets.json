@@ -1,0 +1,1639 @@
+{
+ "index": 26,
+ "name": "assembling_gift_baskets",
+ "instruction": "Place one candle, one butter cookie, one piece of Swiss cheese, and one bow from the table into each of the four wicker baskets on the floor in the living room.",
+ "title": "Assembling Gift Baskets",
+ "rooms_listed": [
+  "living_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114059476",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Place one candle, one butter cookie, one piece of Swiss cheese, and one bow from the table into each of the four wicker baskets on the floor in the living room.",
+ "human": {
+  "mean_steps": 26060.055,
+  "mean_seconds": 868.7,
+  "step_limit": 39090,
+  "time_limit_seconds": 1303.0,
+  "base_distance_m": 79.7083,
+  "eef_displacement_m": {
+   "left": 40.2501,
+   "right": 38.5946
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem assembling_gift_baskets-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \twicker_basket.n.01_1 wicker_basket.n.01_2 wicker_basket.n.01_3 wicker_basket.n.01_4 - wicker_basket.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tcandle.n.01_1 candle.n.01_2 candle.n.01_3 candle.n.01_4 - candle.n.01\n    \tbutter_cookie.n.01_1 butter_cookie.n.01_2 butter_cookie.n.01_3 butter_cookie.n.01_4 - butter_cookie.n.01\n    \tswiss_cheese.n.01_1 swiss_cheese.n.01_2 swiss_cheese.n.01_3 swiss_cheese.n.01_4 - swiss_cheese.n.01\n    \tbow.n.08_1 bow.n.08_2 bow.n.08_3 bow.n.08_4 - bow.n.08\n        table.n.02_1 - table.n.02\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop wicker_basket.n.01_1 floor.n.01_1) \n        (ontop wicker_basket.n.01_2 floor.n.01_1) \n        (ontop wicker_basket.n.01_3 floor.n.01_1) \n        (ontop wicker_basket.n.01_4 floor.n.01_1) \n        (ontop candle.n.01_1 table.n.02_1) \n        (ontop candle.n.01_2 table.n.02_1) \n        (ontop candle.n.01_3 table.n.02_1) \n        (ontop candle.n.01_4 table.n.02_1) \n        (ontop butter_cookie.n.01_1 table.n.02_1) \n        (ontop butter_cookie.n.01_2 table.n.02_1) \n        (ontop butter_cookie.n.01_3 table.n.02_1) \n        (ontop butter_cookie.n.01_4 table.n.02_1) \n        (ontop swiss_cheese.n.01_1 table.n.02_1) \n        (ontop swiss_cheese.n.01_2 table.n.02_1) \n        (ontop swiss_cheese.n.01_3 table.n.02_1) \n        (ontop swiss_cheese.n.01_4 table.n.02_1) \n        (ontop bow.n.08_1 table.n.02_1) \n        (ontop bow.n.08_2 table.n.02_1) \n        (ontop bow.n.08_3 table.n.02_1) \n        (ontop bow.n.08_4 table.n.02_1) \n        (inroom floor.n.01_1 living_room) \n        (inroom table.n.02_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forpairs \n                (?wicker_basket.n.01 - wicker_basket.n.01) \n                (?candle.n.01 - candle.n.01) \n                (inside ?candle.n.01 ?wicker_basket.n.01)\n            ) \n            (forpairs \n                (?wicker_basket.n.01 - wicker_basket.n.01) \n                (?swiss_cheese.n.01 - swiss_cheese.n.01) \n                (inside ?swiss_cheese.n.01 ?wicker_basket.n.01)\n            ) \n            (forpairs \n                (?wicker_basket.n.01 - wicker_basket.n.01) \n                (?butter_cookie.n.01 - butter_cookie.n.01) \n                (inside ?butter_cookie.n.01 ?wicker_basket.n.01)\n            ) \n            (forpairs \n                (?wicker_basket.n.01 - wicker_basket.n.01) \n                (?bow.n.08 - bow.n.08) \n                (inside ?bow.n.08 ?wicker_basket.n.01)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "wicker_basket.n.01": [
+   "wicker_basket.n.01_1",
+   "wicker_basket.n.01_2",
+   "wicker_basket.n.01_3",
+   "wicker_basket.n.01_4"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "candle.n.01": [
+   "candle.n.01_1",
+   "candle.n.01_2",
+   "candle.n.01_3",
+   "candle.n.01_4"
+  ],
+  "butter_cookie.n.01": [
+   "butter_cookie.n.01_1",
+   "butter_cookie.n.01_2",
+   "butter_cookie.n.01_3",
+   "butter_cookie.n.01_4"
+  ],
+  "swiss_cheese.n.01": [
+   "swiss_cheese.n.01_1",
+   "swiss_cheese.n.01_2",
+   "swiss_cheese.n.01_3",
+   "swiss_cheese.n.01_4"
+  ],
+  "bow.n.08": [
+   "bow.n.08_1",
+   "bow.n.08_2",
+   "bow.n.08_3",
+   "bow.n.08_4"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom table.n.02_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bow.n.08_1 table.n.02_1)",
+  "(ontop bow.n.08_2 table.n.02_1)",
+  "(ontop bow.n.08_3 table.n.02_1)",
+  "(ontop bow.n.08_4 table.n.02_1)",
+  "(ontop butter_cookie.n.01_1 table.n.02_1)",
+  "(ontop butter_cookie.n.01_2 table.n.02_1)",
+  "(ontop butter_cookie.n.01_3 table.n.02_1)",
+  "(ontop butter_cookie.n.01_4 table.n.02_1)",
+  "(ontop candle.n.01_1 table.n.02_1)",
+  "(ontop candle.n.01_2 table.n.02_1)",
+  "(ontop candle.n.01_3 table.n.02_1)",
+  "(ontop candle.n.01_4 table.n.02_1)",
+  "(ontop swiss_cheese.n.01_1 table.n.02_1)",
+  "(ontop swiss_cheese.n.01_2 table.n.02_1)",
+  "(ontop swiss_cheese.n.01_3 table.n.02_1)",
+  "(ontop swiss_cheese.n.01_4 table.n.02_1)",
+  "(ontop wicker_basket.n.01_1 floor.n.01_1)",
+  "(ontop wicker_basket.n.01_2 floor.n.01_1)",
+  "(ontop wicker_basket.n.01_3 floor.n.01_1)",
+  "(ontop wicker_basket.n.01_4 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bow.n.08_1 table.n.02_1)",
+  "(touching bow.n.08_2 table.n.02_1)",
+  "(touching bow.n.08_3 table.n.02_1)",
+  "(touching bow.n.08_4 table.n.02_1)",
+  "(touching butter_cookie.n.01_1 table.n.02_1)",
+  "(touching butter_cookie.n.01_2 table.n.02_1)",
+  "(touching butter_cookie.n.01_3 table.n.02_1)",
+  "(touching butter_cookie.n.01_4 table.n.02_1)",
+  "(touching candle.n.01_1 table.n.02_1)",
+  "(touching candle.n.01_2 table.n.02_1)",
+  "(touching candle.n.01_3 table.n.02_1)",
+  "(touching candle.n.01_4 table.n.02_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 wicker_basket.n.01_1)",
+  "(touching floor.n.01_1 wicker_basket.n.01_2)",
+  "(touching floor.n.01_1 wicker_basket.n.01_3)",
+  "(touching floor.n.01_1 wicker_basket.n.01_4)",
+  "(touching swiss_cheese.n.01_1 table.n.02_1)",
+  "(touching swiss_cheese.n.01_2 table.n.02_1)",
+  "(touching swiss_cheese.n.01_3 table.n.02_1)",
+  "(touching swiss_cheese.n.01_4 table.n.02_1)",
+  "(touching table.n.02_1 bow.n.08_1)",
+  "(touching table.n.02_1 bow.n.08_2)",
+  "(touching table.n.02_1 bow.n.08_3)",
+  "(touching table.n.02_1 bow.n.08_4)",
+  "(touching table.n.02_1 butter_cookie.n.01_1)",
+  "(touching table.n.02_1 butter_cookie.n.01_2)",
+  "(touching table.n.02_1 butter_cookie.n.01_3)",
+  "(touching table.n.02_1 butter_cookie.n.01_4)",
+  "(touching table.n.02_1 candle.n.01_1)",
+  "(touching table.n.02_1 candle.n.01_2)",
+  "(touching table.n.02_1 candle.n.01_3)",
+  "(touching table.n.02_1 candle.n.01_4)",
+  "(touching table.n.02_1 swiss_cheese.n.01_1)",
+  "(touching table.n.02_1 swiss_cheese.n.01_2)",
+  "(touching table.n.02_1 swiss_cheese.n.01_3)",
+  "(touching table.n.02_1 swiss_cheese.n.01_4)",
+  "(touching wicker_basket.n.01_1 floor.n.01_1)",
+  "(touching wicker_basket.n.01_2 floor.n.01_1)",
+  "(touching wicker_basket.n.01_3 floor.n.01_1)",
+  "(touching wicker_basket.n.01_4 floor.n.01_1)"
+ ],
+ "n_ground_options": 331776,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 16,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside candle.n.01_4 wicker_basket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "candle.n.01_4",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside candle.n.01_3 wicker_basket.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "candle.n.01_3",
+     "wicker_basket.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside candle.n.01_1 wicker_basket.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "candle.n.01_1",
+     "wicker_basket.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside candle.n.01_2 wicker_basket.n.01_4)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "candle.n.01_2",
+     "wicker_basket.n.01_4"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside swiss_cheese.n.01_4 wicker_basket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "swiss_cheese.n.01_4",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside swiss_cheese.n.01_3 wicker_basket.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "swiss_cheese.n.01_3",
+     "wicker_basket.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside swiss_cheese.n.01_1 wicker_basket.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "swiss_cheese.n.01_1",
+     "wicker_basket.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside swiss_cheese.n.01_2 wicker_basket.n.01_4)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "swiss_cheese.n.01_2",
+     "wicker_basket.n.01_4"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside butter_cookie.n.01_3 wicker_basket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "butter_cookie.n.01_3",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside butter_cookie.n.01_2 wicker_basket.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "butter_cookie.n.01_2",
+     "wicker_basket.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside butter_cookie.n.01_4 wicker_basket.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "butter_cookie.n.01_4",
+     "wicker_basket.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside butter_cookie.n.01_1 wicker_basket.n.01_4)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "butter_cookie.n.01_1",
+     "wicker_basket.n.01_4"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bow.n.08_4 wicker_basket.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bow.n.08_4",
+     "wicker_basket.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bow.n.08_2 wicker_basket.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bow.n.08_2",
+     "wicker_basket.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bow.n.08_1 wicker_basket.n.01_3)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bow.n.08_1",
+     "wicker_basket.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside bow.n.08_3 wicker_basket.n.01_4)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "bow.n.08_3",
+     "wicker_basket.n.01_4"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   16,
+   331776
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   16
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "wicker_basket.n.01_1",
+   "scene_object": "wicker_basket_92",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 2.28,
+    "max": 3.53
+   },
+   "xy_spread_m": 4.91,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_2",
+   "scene_object": "wicker_basket_91",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.64,
+    "median": 2.25,
+    "max": 3.47
+   },
+   "xy_spread_m": 4.7,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_3",
+   "scene_object": "wicker_basket_90",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 1.95,
+    "max": 3.93
+   },
+   "xy_spread_m": 5.2,
+   "n_poses": 20
+  },
+  {
+   "inst": "wicker_basket.n.01_4",
+   "scene_object": "wicker_basket_89",
+   "substance": false,
+   "category": "wicker_basket",
+   "model": "dgkhyn",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.09,
+    "median": 0.09,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 1.89,
+    "max": 3.87
+   },
+   "xy_spread_m": 4.95,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.74,
+    "median": 1.5,
+    "max": 2.1
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "candle.n.01_1",
+   "scene_object": "pillar_candle_88",
+   "substance": false,
+   "category": "pillar_candle",
+   "model": "bhaqam",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.98,
+    "median": 1.59,
+    "max": 2.45
+   },
+   "xy_spread_m": 1.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "candle.n.01_2",
+   "scene_object": "pillar_candle_87",
+   "substance": false,
+   "category": "pillar_candle",
+   "model": "bhaqam",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.91,
+    "median": 1.77,
+    "max": 2.31
+   },
+   "xy_spread_m": 1.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "candle.n.01_3",
+   "scene_object": "pillar_candle_86",
+   "substance": false,
+   "category": "pillar_candle",
+   "model": "bhaqam",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.77,
+    "median": 1.66,
+    "max": 2.16
+   },
+   "xy_spread_m": 1.59,
+   "n_poses": 20
+  },
+  {
+   "inst": "candle.n.01_4",
+   "scene_object": "pillar_candle_85",
+   "substance": false,
+   "category": "pillar_candle",
+   "model": "bhaqam",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.46
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 1.95,
+    "max": 2.45
+   },
+   "xy_spread_m": 1.45,
+   "n_poses": 20
+  },
+  {
+   "inst": "butter_cookie.n.01_1",
+   "scene_object": "butter_cookie_84",
+   "substance": false,
+   "category": "butter_cookie",
+   "model": "kukrla",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.6074681282043457,
+    1.6075708866119385,
+    2.9565417766571045
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 1.58,
+    "max": 2.39
+   },
+   "xy_spread_m": 1.54,
+   "n_poses": 20
+  },
+  {
+   "inst": "butter_cookie.n.01_2",
+   "scene_object": "butter_cookie_83",
+   "substance": false,
+   "category": "butter_cookie",
+   "model": "kukrla",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.6074681282043457,
+    1.6075708866119385,
+    2.9565417766571045
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.01,
+    "median": 1.55,
+    "max": 2.63
+   },
+   "xy_spread_m": 1.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "butter_cookie.n.01_3",
+   "scene_object": "butter_cookie_82",
+   "substance": false,
+   "category": "butter_cookie",
+   "model": "kukrla",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.6074681282043457,
+    1.6075708866119385,
+    2.9565417766571045
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.78,
+    "median": 1.56,
+    "max": 2.3
+   },
+   "xy_spread_m": 1.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "butter_cookie.n.01_4",
+   "scene_object": "butter_cookie_81",
+   "substance": false,
+   "category": "butter_cookie",
+   "model": "kukrla",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.6074681282043457,
+    1.6075708866119385,
+    2.9565417766571045
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.08,
+    "median": 1.7,
+    "max": 2.24
+   },
+   "xy_spread_m": 1.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "swiss_cheese.n.01_1",
+   "scene_object": "swiss_cheese_80",
+   "substance": false,
+   "category": "swiss_cheese",
+   "model": "hwxeto",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 1.39,
+    "max": 2.6
+   },
+   "xy_spread_m": 1.58,
+   "n_poses": 20
+  },
+  {
+   "inst": "swiss_cheese.n.01_2",
+   "scene_object": "swiss_cheese_79",
+   "substance": false,
+   "category": "swiss_cheese",
+   "model": "hwxeto",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.76,
+    "median": 1.44,
+    "max": 2.36
+   },
+   "xy_spread_m": 1.69,
+   "n_poses": 20
+  },
+  {
+   "inst": "swiss_cheese.n.01_3",
+   "scene_object": "swiss_cheese_78",
+   "substance": false,
+   "category": "swiss_cheese",
+   "model": "hwxeto",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.92,
+    "median": 1.6,
+    "max": 2.51
+   },
+   "xy_spread_m": 1.55,
+   "n_poses": 20
+  },
+  {
+   "inst": "swiss_cheese.n.01_4",
+   "scene_object": "swiss_cheese_77",
+   "substance": false,
+   "category": "swiss_cheese",
+   "model": "hwxeto",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.69,
+    "median": 1.59,
+    "max": 2.39
+   },
+   "xy_spread_m": 1.58,
+   "n_poses": 20
+  },
+  {
+   "inst": "bow.n.08_1",
+   "scene_object": "bow_76",
+   "substance": false,
+   "category": "bow",
+   "model": "fhchql",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.0841426849365234,
+    2.0683579444885254,
+    2.40028715133667
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 1.58,
+    "max": 2.4
+   },
+   "xy_spread_m": 1.53,
+   "n_poses": 20
+  },
+  {
+   "inst": "bow.n.08_2",
+   "scene_object": "bow_75",
+   "substance": false,
+   "category": "bow",
+   "model": "fhchql",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.0841426849365234,
+    2.0683579444885254,
+    2.40028715133667
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.83,
+    "median": 1.61,
+    "max": 2.29
+   },
+   "xy_spread_m": 1.49,
+   "n_poses": 20
+  },
+  {
+   "inst": "bow.n.08_3",
+   "scene_object": "bow_74",
+   "substance": false,
+   "category": "bow",
+   "model": "fhchql",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.0841426849365234,
+    2.0683579444885254,
+    2.40028715133667
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.92,
+    "median": 1.71,
+    "max": 2.65
+   },
+   "xy_spread_m": 1.61,
+   "n_poses": 20
+  },
+  {
+   "inst": "bow.n.08_4",
+   "scene_object": "bow_73",
+   "substance": false,
+   "category": "bow",
+   "model": "fhchql",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    2.0841426849365234,
+    2.0683579444885254,
+    2.40028715133667
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.9,
+    "median": 1.49,
+    "max": 2.15
+   },
+   "xy_spread_m": 1.48,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "coffee_table_koagbh_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "koagbh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999982714653015,
+    1.0000159740447998,
+    1.000001311302185
+   ],
+   "z": {
+    "min": 0.36,
+    "median": 0.36,
+    "max": 0.36
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.11,
+    "median": 1.55,
+    "max": 2.01
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   4.54,
+   6.65
+  ],
+  [
+   2.9,
+   3.98
+  ],
+  [
+   5.25,
+   4.28
+  ],
+  [
+   4.47,
+   6.88
+  ],
+  [
+   4.74,
+   4.31
+  ],
+  [
+   4.93,
+   4.96
+  ],
+  [
+   2.78,
+   3.87
+  ],
+  [
+   4.91,
+   6.05
+  ],
+  [
+   3.66,
+   3.87
+  ],
+  [
+   3.51,
+   3.86
+  ],
+  [
+   4.5,
+   4.1
+  ],
+  [
+   4.33,
+   4.02
+  ],
+  [
+   4.75,
+   6.73
+  ],
+  [
+   4.45,
+   6.72
+  ],
+  [
+   4.57,
+   6.42
+  ],
+  [
+   4.82,
+   4.85
+  ],
+  [
+   4.78,
+   3.91
+  ],
+  [
+   4.6,
+   5.57
+  ],
+  [
+   4.22,
+   3.87
+  ],
+  [
+   4.77,
+   5.31
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 55,
+   "median": 68.0,
+   "max": 70
+  },
+  "demo_seconds": {
+   "min": 628.0,
+   "median": 806.9,
+   "max": 1525.37
+  },
+  "distinct_verb_sequences": 119,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in"
+  ],
+  "modal_verb_sequence_share": 0.26,
+  "modal_verb_counts": {
+   "move to": 30,
+   "pick up from": 20,
+   "place in": 16,
+   "place on": 4
+  },
+  "modal_verb_counts_share": 0.26,
+  "representative_episode": {
+   "file": "episode_00260160.json",
+   "seconds": 831.1,
+   "steps": [
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 0.0,
+     "end_s": 8.0
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 8.0,
+     "end_s": 33.5
+    },
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 33.5,
+     "end_s": 38.7
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 38.7,
+     "end_s": 60.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 60.0,
+     "end_s": 73.0
+    },
+    {
+     "prompt": "place the wicker basket on the bottom cabinet",
+     "start_s": 73.0,
+     "end_s": 88.2
+    },
+    {
+     "prompt": "place the wicker basket on the bottom cabinet",
+     "start_s": 88.2,
+     "end_s": 94.0
+    },
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 94.0,
+     "end_s": 107.9
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 107.9,
+     "end_s": 123.7
+    },
+    {
+     "prompt": "move to the wicker basket",
+     "start_s": 123.7,
+     "end_s": 128.0
+    },
+    {
+     "prompt": "pick up the wicker basket from the floors",
+     "start_s": 128.0,
+     "end_s": 138.8
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 138.8,
+     "end_s": 151.5
+    },
+    {
+     "prompt": "place the wicker basket on the bottom cabinet",
+     "start_s": 151.5,
+     "end_s": 164.3
+    },
+    {
+     "prompt": "place the wicker basket on the bottom cabinet",
+     "start_s": 164.3,
+     "end_s": 167.8
+    },
+    {
+     "prompt": "move to the swiss cheese",
+     "start_s": 167.8,
+     "end_s": 187.0
+    },
+    {
+     "prompt": "pick up the swiss cheese from the coffee table",
+     "start_s": 187.0,
+     "end_s": 207.5
+    },
+    {
+     "prompt": "move to the swiss cheese",
+     "start_s": 207.5,
+     "end_s": 213.0
+    },
+    {
+     "prompt": "pick up the swiss cheese from the coffee table",
+     "start_s": 213.0,
+     "end_s": 220.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 220.0,
+     "end_s": 233.9
+    },
+    {
+     "prompt": "place the swiss cheese in the wicker basket",
+     "start_s": 233.9,
+     "end_s": 249.0
+    },
+    {
+     "prompt": "place the swiss cheese in the wicker basket",
+     "start_s": 249.0,
+     "end_s": 261.4
+    },
+    {
+     "prompt": "move to the pillar candle",
+     "start_s": 261.4,
+     "end_s": 278.8
+    },
+    {
+     "prompt": "pick up the pillar candle from the coffee table",
+     "start_s": 278.8,
+     "end_s": 285.9
+    },
+    {
+     "prompt": "move to the pillar candle",
+     "start_s": 285.9,
+     "end_s": 296.0
+    },
+    {
+     "prompt": "pick up the pillar candle from the coffee table",
+     "start_s": 296.0,
+     "end_s": 307.8
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 307.8,
+     "end_s": 322.0
+    },
+    {
+     "prompt": "place the pillar candle in the wicker basket",
+     "start_s": 322.0,
+     "end_s": 335.0
+    },
+    {
+     "prompt": "place the pillar candle in the wicker basket",
+     "start_s": 335.0,
+     "end_s": 350.5
+    },
+    {
+     "prompt": "move to the butter cookie",
+     "start_s": 350.5,
+     "end_s": 365.6
+    },
+    {
+     "prompt": "pick up the butter cookie from the coffee table",
+     "start_s": 365.6,
+     "end_s": 376.0
+    },
+    {
+     "prompt": "move to the butter cookie",
+     "start_s": 376.0,
+     "end_s": 378.3
+    },
+    {
+     "prompt": "pick up the butter cookie from the coffee table",
+     "start_s": 378.3,
+     "end_s": 395.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 395.0,
+     "end_s": 411.7
+    },
+    {
+     "prompt": "place the butter cookie in the wicker basket",
+     "start_s": 411.7,
+     "end_s": 420.5
+    },
+    {
+     "prompt": "place the butter cookie in the wicker basket",
+     "start_s": 420.5,
+     "end_s": 434.0
+    },
+    {
+     "prompt": "move to the bow",
+     "start_s": 434.0,
+     "end_s": 455.4
+    },
+    {
+     "prompt": "pick up the bow from the coffee table",
+     "start_s": 455.4,
+     "end_s": 465.3
+    },
+    {
+     "prompt": "move to the bow",
+     "start_s": 465.3,
+     "end_s": 474.0
+    },
+    {
+     "prompt": "pick up the bow from the coffee table",
+     "start_s": 474.0,
+     "end_s": 483.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 483.0,
+     "end_s": 497.0
+    },
+    {
+     "prompt": "place the bow in the wicker basket",
+     "start_s": 497.0,
+     "end_s": 509.4
+    },
+    {
+     "prompt": "place the bow in the wicker basket",
+     "start_s": 509.4,
+     "end_s": 521.5
+    },
+    {
+     "prompt": "move to the swiss cheese",
+     "start_s": 521.5,
+     "end_s": 536.0
+    },
+    {
+     "prompt": "pick up the swiss cheese from the coffee table",
+     "start_s": 536.0,
+     "end_s": 550.0
+    },
+    {
+     "prompt": "move to the swiss cheese",
+     "start_s": 550.0,
+     "end_s": 553.0
+    },
+    {
+     "prompt": "pick up the swiss cheese from the coffee table",
+     "start_s": 553.0,
+     "end_s": 564.2
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 564.2,
+     "end_s": 580.9
+    },
+    {
+     "prompt": "place the swiss cheese in the wicker basket",
+     "start_s": 580.9,
+     "end_s": 590.3
+    },
+    {
+     "prompt": "place the swiss cheese in the wicker basket",
+     "start_s": 590.3,
+     "end_s": 597.0
+    },
+    {
+     "prompt": "move to the pillar candle",
+     "start_s": 597.0,
+     "end_s": 620.0
+    },
+    {
+     "prompt": "pick up the pillar candle from the coffee table",
+     "start_s": 620.0,
+     "end_s": 632.0
+    },
+    {
+     "prompt": "move to the pillar candle",
+     "start_s": 632.0,
+     "end_s": 633.0
+    },
+    {
+     "prompt": "pick up the pillar candle from the coffee table",
+     "start_s": 633.0,
+     "end_s": 645.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 645.0,
+     "end_s": 661.1
+    },
+    {
+     "prompt": "place the pillar candle in the wicker basket",
+     "start_s": 661.1,
+     "end_s": 671.0
+    },
+    {
+     "prompt": "place the pillar candle in the wicker basket",
+     "start_s": 671.0,
+     "end_s": 681.0
+    },
+    {
+     "prompt": "move to the bow",
+     "start_s": 681.0,
+     "end_s": 697.9
+    },
+    {
+     "prompt": "pick up the bow from the coffee table",
+     "start_s": 697.9,
+     "end_s": 708.2
+    },
+    {
+     "prompt": "move to the bow",
+     "start_s": 708.2,
+     "end_s": 712.0
+    },
+    {
+     "prompt": "pick up the bow from the coffee table",
+     "start_s": 712.0,
+     "end_s": 727.0
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 727.0,
+     "end_s": 740.4
+    },
+    {
+     "prompt": "place the bow in the wicker basket",
+     "start_s": 740.4,
+     "end_s": 746.8
+    },
+    {
+     "prompt": "place the bow in the wicker basket",
+     "start_s": 746.8,
+     "end_s": 754.0
+    },
+    {
+     "prompt": "move to the butter cookie",
+     "start_s": 754.0,
+     "end_s": 774.0
+    },
+    {
+     "prompt": "pick up the butter cookie from the coffee table",
+     "start_s": 774.0,
+     "end_s": 782.0
+    },
+    {
+     "prompt": "move to the butter cookie",
+     "start_s": 782.0,
+     "end_s": 784.0
+    },
+    {
+     "prompt": "pick up the butter cookie from the coffee table",
+     "start_s": 784.0,
+     "end_s": 791.8
+    },
+    {
+     "prompt": "move to the bottom cabinet",
+     "start_s": 791.8,
+     "end_s": 808.5
+    },
+    {
+     "prompt": "place the butter cookie in the wicker basket",
+     "start_s": 808.5,
+     "end_s": 815.0
+    },
+    {
+     "prompt": "place the butter cookie in the wicker basket",
+     "start_s": 815.0,
+     "end_s": 831.1
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 10.0,
+   "move to": 14.6,
+   "pick up from": 15.5,
+   "place in": 7.8,
+   "place on": 6.4,
+   "push to": 8.6
+  },
+  "verb_counts_total": {
+   "move to": 5728,
+   "pick up from": 3999,
+   "place in": 2962,
+   "place on": 742,
+   "hand over": 2,
+   "push to": 1
+  },
+  "top_prompts": [
+   [
+    "move to the bottom cabinet",
+    2000
+   ],
+   [
+    "pick up the pillar candle from the coffee table",
+    800
+   ],
+   [
+    "pick up the bow from the coffee table",
+    800
+   ],
+   [
+    "pick up the butter cookie from the coffee table",
+    799
+   ],
+   [
+    "pick up the swiss cheese from the coffee table",
+    799
+   ],
+   [
+    "pick up the wicker basket from the floors",
+    798
+   ],
+   [
+    "move to the wicker basket",
+    762
+   ],
+   [
+    "place the pillar candle in the wicker basket",
+    758
+   ],
+   [
+    "move to the swiss cheese",
+    757
+   ],
+   [
+    "move to the bow",
+    747
+   ],
+   [
+    "place the wicker basket on the bottom cabinet",
+    742
+   ],
+   [
+    "place the swiss cheese in the wicker basket",
+    740
+   ],
+   [
+    "place the bow in the wicker basket",
+    739
+   ],
+   [
+    "move to the pillar candle",
+    733
+   ],
+   [
+    "move to the butter cookie",
+    729
+   ],
+   [
+    "place the butter cookie in the wicker basket",
+    725
+   ],
+   [
+    "pick up the butter cookie from the floors",
+    1
+   ],
+   [
+    "pick up the swiss cheese from the floors",
+    1
+   ],
+   [
+    "push the wicker basket to the bottom cabinet",
+    1
+   ],
+   [
+    "pick up the wicker basket from the coffee table",
+    1
+   ],
+   [
+    "hand over the bow with the right",
+    1
+   ],
+   [
+    "hand over the pillar candle with the right",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "place on",
+  "pick up from",
+  "place in",
+  "hand over",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 39091
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.4375,
+   "success": false,
+   "steps": 39091
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.5,
+   "success": false,
+   "steps": 39091
+  }
+ }
+}

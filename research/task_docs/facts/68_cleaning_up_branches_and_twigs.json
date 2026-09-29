@@ -1,0 +1,669 @@
+{
+ "index": 68,
+ "name": "cleaning_up_branches_and_twigs",
+ "instruction": "Collect all of the branches and twigs from the garden and put them into the recycling bin.",
+ "title": "Cleaning Up Branches And Twigs",
+ "rooms_listed": [
+  "garden"
+ ],
+ "video": "https://www.youtube.com/embed/iztsNYYMpv0",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Collect all of the branches and twigs from the garden and put them into the recycling bin.",
+ "human": {
+  "mean_steps": 12527.07,
+  "mean_seconds": 417.6,
+  "step_limit": 18790,
+  "time_limit_seconds": 626.4,
+  "base_distance_m": 40.8589,
+  "eef_displacement_m": {
+   "left": 24.8249,
+   "right": 25.2606
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "garage_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "garden"
+  ],
+  "house_double_floor_lower": {
+   "whitelist": {
+    "recycling_bin.n.01": {
+     "recycling_bin": {
+      "nuoypc": [
+       0.684,
+       0.588,
+       0.912
+      ]
+     }
+    },
+    "branch.n.02": {
+     "branch": {
+      "ijgexf": [
+       0.625,
+       0.3,
+       0.255
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem cleaning_up_branches_and_twigs-0)\n    (:domain behavior-1k)\n\n    (:objects\n        floor.n.01_1 - floor.n.01\n        branch.n.02_1 branch.n.02_2 branch.n.02_3 branch.n.02_4 - branch.n.02\n        recycling_bin.n.01_1 - recycling_bin.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop branch.n.02_1 floor.n.01_1)\n        (ontop branch.n.02_2 floor.n.01_1)\n        (ontop branch.n.02_3 floor.n.01_1)\n        (ontop branch.n.02_4 floor.n.01_1)\n        (ontop recycling_bin.n.01_1 floor.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n        (inroom floor.n.01_1 garden)\n    )\n\n    (:goal\n        (and\n            (forall\n                (?branch.n.02 - branch.n.02)\n                (inside ?branch.n.02 ?recycling_bin.n.01_1)\n            )\n            (ontop ?recycling_bin.n.01_1 ?floor.n.01_1)\n        )\n    )\n)\n",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "branch.n.02": [
+   "branch.n.02_1",
+   "branch.n.02_2",
+   "branch.n.02_3",
+   "branch.n.02_4"
+  ],
+  "recycling_bin.n.01": [
+   "recycling_bin.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "recycling_bin.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom floor.n.01_1 garden)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop branch.n.02_1 floor.n.01_1)",
+  "(ontop branch.n.02_2 floor.n.01_1)",
+  "(ontop branch.n.02_3 floor.n.01_1)",
+  "(ontop branch.n.02_4 floor.n.01_1)",
+  "(ontop recycling_bin.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching branch.n.02_1 floor.n.01_1)",
+  "(touching branch.n.02_2 floor.n.01_1)",
+  "(touching branch.n.02_3 floor.n.01_1)",
+  "(touching branch.n.02_4 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 branch.n.02_1)",
+  "(touching floor.n.01_1 branch.n.02_2)",
+  "(touching floor.n.01_1 branch.n.02_3)",
+  "(touching floor.n.01_1 branch.n.02_4)",
+  "(touching floor.n.01_1 recycling_bin.n.01_1)",
+  "(touching recycling_bin.n.01_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 5,
+  "n_initially_true": 1,
+  "max_partial_q": 0.8,
+  "literals": [
+   {
+    "literal": "(inside branch.n.02_4 recycling_bin.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "branch.n.02_4",
+     "recycling_bin.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside branch.n.02_2 recycling_bin.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "branch.n.02_2",
+     "recycling_bin.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside branch.n.02_1 recycling_bin.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "branch.n.02_1",
+     "recycling_bin.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside branch.n.02_3 recycling_bin.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "branch.n.02_3",
+     "recycling_bin.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop recycling_bin.n.01_1 floor.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "recycling_bin.n.01_1",
+     "floor.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   5,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   4
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_qadhjb_0",
+   "substance": false,
+   "category": "floors",
+   "model": "qadhjb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000005960464478,
+    1.0000057220458984,
+    1.0000001192092896
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.06,
+    "median": 5.52,
+    "max": 7.91
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "branch.n.02_1",
+   "scene_object": "branch_178",
+   "substance": false,
+   "category": "branch",
+   "model": "ijgexf",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5007320046424866,
+    0.5008224844932556,
+    0.5047115683555603
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.91,
+    "median": 7.52,
+    "max": 12.47
+   },
+   "xy_spread_m": 14.46,
+   "n_poses": 20
+  },
+  {
+   "inst": "branch.n.02_2",
+   "scene_object": "branch_177",
+   "substance": false,
+   "category": "branch",
+   "model": "ijgexf",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5007320046424866,
+    0.5008224844932556,
+    0.5047115683555603
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.79,
+    "median": 5.33,
+    "max": 12.82
+   },
+   "xy_spread_m": 15.59,
+   "n_poses": 20
+  },
+  {
+   "inst": "branch.n.02_3",
+   "scene_object": "branch_176",
+   "substance": false,
+   "category": "branch",
+   "model": "ijgexf",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5007320046424866,
+    0.5008224844932556,
+    0.5047115683555603
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.79,
+    "median": 6.16,
+    "max": 10.46
+   },
+   "xy_spread_m": 15.28,
+   "n_poses": 20
+  },
+  {
+   "inst": "branch.n.02_4",
+   "scene_object": "branch_175",
+   "substance": false,
+   "category": "branch",
+   "model": "ijgexf",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.5007320046424866,
+    0.5008224844932556,
+    0.5047115683555603
+   ],
+   "z": {
+    "min": 0.05,
+    "median": 0.05,
+    "max": 0.05
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.01,
+    "median": 6.08,
+    "max": 15.65
+   },
+   "xy_spread_m": 16.29,
+   "n_poses": 20
+  },
+  {
+   "inst": "recycling_bin.n.01_1",
+   "scene_object": "recycling_bin_174",
+   "substance": false,
+   "category": "recycling_bin",
+   "model": "nuoypc",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.1943650245666504,
+    1.1999963521957397,
+    1.1922948360443115
+   ],
+   "z": {
+    "min": 0.47,
+    "median": 0.47,
+    "max": 0.47
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 5.97,
+    "max": 14.87
+   },
+   "xy_spread_m": 15.92,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_nrmewv",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -10.6,
+   -2.64
+  ],
+  [
+   -1.01,
+   -2.3
+  ],
+  [
+   -15.17,
+   -2.5
+  ],
+  [
+   -7.25,
+   -2.26
+  ],
+  [
+   -1.3,
+   -2.12
+  ],
+  [
+   -6.17,
+   -2.46
+  ],
+  [
+   -2.21,
+   -2.42
+  ],
+  [
+   -2.43,
+   -2.17
+  ],
+  [
+   -0.33,
+   -2.37
+  ],
+  [
+   -15.24,
+   -2.36
+  ],
+  [
+   -10.26,
+   1.38
+  ],
+  [
+   -10.36,
+   1.1
+  ],
+  [
+   -3.21,
+   -1.75
+  ],
+  [
+   -0.79,
+   -2.67
+  ],
+  [
+   -13.43,
+   -2.29
+  ],
+  [
+   -3.63,
+   -2.09
+  ],
+  [
+   -0.77,
+   -2.08
+  ],
+  [
+   -10.52,
+   -2.04
+  ],
+  [
+   -2.19,
+   -1.92
+  ],
+  [
+   -10.04,
+   0.46
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 16,
+   "median": 18.0,
+   "max": 20
+  },
+  "demo_seconds": {
+   "min": 257.33,
+   "median": 417.6,
+   "max": 556.0
+  },
+  "distinct_verb_sequences": 41,
+  "modal_verb_sequence": [
+   "move to",
+   "open lid",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "close lid"
+  ],
+  "modal_verb_sequence_share": 0.26,
+  "modal_verb_counts": {
+   "close lid": 1,
+   "move to": 8,
+   "open lid": 2,
+   "pick up from": 4,
+   "place in": 4
+  },
+  "modal_verb_counts_share": 0.305,
+  "representative_episode": {
+   "file": "episode_00682230.json",
+   "seconds": 396.0,
+   "steps": [
+    {
+     "prompt": "move to the recycling bin",
+     "start_s": 0.0,
+     "end_s": 32.0
+    },
+    {
+     "prompt": "open the lid of the recycling bin",
+     "start_s": 32.0,
+     "end_s": 77.0
+    },
+    {
+     "prompt": "move to the branch",
+     "start_s": 77.0,
+     "end_s": 103.0
+    },
+    {
+     "prompt": "pick up the branch from the floors",
+     "start_s": 103.0,
+     "end_s": 115.0
+    },
+    {
+     "prompt": "move to the branch",
+     "start_s": 115.0,
+     "end_s": 130.0
+    },
+    {
+     "prompt": "pick up the branch from the floors",
+     "start_s": 130.0,
+     "end_s": 140.0
+    },
+    {
+     "prompt": "move to the recycling bin",
+     "start_s": 140.0,
+     "end_s": 165.7
+    },
+    {
+     "prompt": "place the branch in the recycling bin",
+     "start_s": 165.7,
+     "end_s": 179.0
+    },
+    {
+     "prompt": "place the branch in the recycling bin",
+     "start_s": 179.0,
+     "end_s": 191.0
+    },
+    {
+     "prompt": "move to the branch",
+     "start_s": 191.0,
+     "end_s": 250.0
+    },
+    {
+     "prompt": "pick up the branch from the floors",
+     "start_s": 250.0,
+     "end_s": 272.0
+    },
+    {
+     "prompt": "move to the branch",
+     "start_s": 272.0,
+     "end_s": 286.0
+    },
+    {
+     "prompt": "pick up the branch from the floors",
+     "start_s": 286.0,
+     "end_s": 308.0
+    },
+    {
+     "prompt": "move to the recycling bin",
+     "start_s": 308.0,
+     "end_s": 363.0
+    },
+    {
+     "prompt": "place the branch in the recycling bin",
+     "start_s": 363.0,
+     "end_s": 373.0
+    },
+    {
+     "prompt": "place the branch in the recycling bin",
+     "start_s": 373.0,
+     "end_s": 387.0
+    },
+    {
+     "prompt": "close the lid of the recycling bin",
+     "start_s": 387.0,
+     "end_s": 396.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close lid": 10.0,
+   "move to": 28.7,
+   "open lid": 37.4,
+   "pick up from": 23.0,
+   "place in": 9.3,
+   "push to": 26.4
+  },
+  "verb_counts_total": {
+   "move to": 1517,
+   "pick up from": 800,
+   "place in": 799,
+   "open lid": 311,
+   "close lid": 200,
+   "push to": 7
+  },
+  "top_prompts": [
+   [
+    "pick up the branch from the floors",
+    800
+   ],
+   [
+    "place the branch in the recycling bin",
+    798
+   ],
+   [
+    "move to the branch",
+    788
+   ],
+   [
+    "move to the recycling bin",
+    729
+   ],
+   [
+    "open the lid of the recycling bin",
+    310
+   ],
+   [
+    "close the lid of the recycling bin",
+    200
+   ],
+   [
+    "push the recycling bin to the driveway",
+    7
+   ],
+   [
+    "place the recycling bin in the recycling bin",
+    1
+   ],
+   [
+    "open the lid of the branch",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 18791
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 18791
+  }
+ }
+}

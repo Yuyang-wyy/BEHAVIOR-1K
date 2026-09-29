@@ -1,0 +1,876 @@
+{
+ "index": 25,
+ "name": "clearing_food_from_table_into_fridge",
+ "instruction": "Pack the half chicken and the half apple pie from the plates on the breakfast table into the two tupperware containers from the countertop, then put both tupperware containers inside the refrigerator in the kitchen and make sure the refrigerator is closed at the end.",
+ "title": "Clearing Food from Table into Fridge",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114059394",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Pack the half chicken and the half apple pie from the plates on the breakfast table into the two tupperware containers from the countertop, then put both tupperware containers inside the refrigerator in the kitchen and make sure the refrigerator is closed at the end.",
+ "human": {
+  "mean_steps": 13068.16,
+  "mean_seconds": 435.6,
+  "step_limit": 19602,
+  "time_limit_seconds": 653.4,
+  "base_distance_m": 31.8313,
+  "eef_displacement_m": {
+   "left": 15.7462,
+   "right": 16.9056
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem clearing_food_from_table_into_fridge-0)\n    (:domain behavior-1k)\n\n    (:objects\n        half__chicken.n.01_1 - half__chicken.n.01 \n        half__apple_pie.n.01_1 - half__apple_pie.n.01\n        plate.n.04_1 plate.n.04_2 - plate.n.04\n        breakfast_table.n.01_1 - breakfast_table.n.01\n        tupperware.n.01_1 tupperware.n.01_2 - tupperware.n.01\n        countertop.n.01_1 - countertop.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop half__chicken.n.01_1 plate.n.04_1) \n        (ontop half__apple_pie.n.01_1 plate.n.04_2) \n        (ontop plate.n.04_1 breakfast_table.n.01_1) \n        (ontop plate.n.04_2 breakfast_table.n.01_1) \n        (ontop tupperware.n.01_1 countertop.n.01_1)\n        (ontop tupperware.n.01_2 countertop.n.01_1)\n        (inroom breakfast_table.n.01_1 kitchen) \n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen)\n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (exists \n                (?tupperware.n.01 - tupperware.n.01)\n                (inside ?half__apple_pie.n.01_1 ?tupperware.n.01)\n            )\n            (exists \n                (?tupperware.n.01 - tupperware.n.01)\n                (inside ?half__chicken.n.01_1 ?tupperware.n.01)\n            )\n            (forall \n                (?tupperware.n.01 - tupperware.n.01) \n                (inside ?tupperware.n.01 ?electric_refrigerator.n.01_1)\n            ) \n            (not\n                (open ?electric_refrigerator.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "half__chicken.n.01": [
+   "half__chicken.n.01_1"
+  ],
+  "half__apple_pie.n.01": [
+   "half__apple_pie.n.01_1"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1",
+   "plate.n.04_2"
+  ],
+  "breakfast_table.n.01": [
+   "breakfast_table.n.01_1"
+  ],
+  "tupperware.n.01": [
+   "tupperware.n.01_1",
+   "tupperware.n.01_2"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom breakfast_table.n.01_1 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop half__apple_pie.n.01_1 plate.n.04_2)",
+  "(ontop half__chicken.n.01_1 plate.n.04_1)",
+  "(ontop plate.n.04_1 breakfast_table.n.01_1)",
+  "(ontop plate.n.04_2 breakfast_table.n.01_1)",
+  "(ontop tupperware.n.01_1 countertop.n.01_1)",
+  "(ontop tupperware.n.01_2 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching breakfast_table.n.01_1 plate.n.04_1)",
+  "(touching breakfast_table.n.01_1 plate.n.04_2)",
+  "(touching countertop.n.01_1 tupperware.n.01_1)",
+  "(touching countertop.n.01_1 tupperware.n.01_2)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching half__apple_pie.n.01_1 plate.n.04_2)",
+  "(touching half__chicken.n.01_1 plate.n.04_1)",
+  "(touching plate.n.04_1 breakfast_table.n.01_1)",
+  "(touching plate.n.04_1 half__chicken.n.01_1)",
+  "(touching plate.n.04_2 breakfast_table.n.01_1)",
+  "(touching plate.n.04_2 half__apple_pie.n.01_1)",
+  "(touching tupperware.n.01_1 countertop.n.01_1)",
+  "(touching tupperware.n.01_2 countertop.n.01_1)"
+ ],
+ "n_ground_options": 4,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 5,
+  "n_initially_true": 1,
+  "max_partial_q": 0.8,
+  "literals": [
+   {
+    "literal": "(inside half__apple_pie.n.01_1 tupperware.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__apple_pie.n.01_1",
+     "tupperware.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside half__chicken.n.01_1 tupperware.n.01_2)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "half__chicken.n.01_1",
+     "tupperware.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside tupperware.n.01_2 electric_refrigerator.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "tupperware.n.01_2",
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside tupperware.n.01_1 electric_refrigerator.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "tupperware.n.01_1",
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not open electric_refrigerator.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "electric_refrigerator.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   5,
+   4
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   4
+  ],
+  [
+   "not open",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "half__chicken.n.01_1",
+   "scene_object": "half_chicken_78",
+   "substance": false,
+   "category": "half_chicken",
+   "model": "hkcqlq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.75,
+    "median": 0.76,
+    "max": 0.76
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.44,
+    "median": 2.26,
+    "max": 3.41
+   },
+   "xy_spread_m": 1.07,
+   "n_poses": 20
+  },
+  {
+   "inst": "half__apple_pie.n.01_1",
+   "scene_object": "half_apple_pie_77",
+   "substance": false,
+   "category": "half_apple_pie",
+   "model": "grcock",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.71,
+    "median": 0.71,
+    "max": 0.72
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.5,
+    "median": 2.46,
+    "max": 3.41
+   },
+   "xy_spread_m": 1.3,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_76",
+   "substance": false,
+   "category": "plate",
+   "model": "fhdyrj",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.7,
+    "median": 0.7,
+    "max": 0.7
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.44,
+    "median": 2.25,
+    "max": 3.41
+   },
+   "xy_spread_m": 1.06,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_2",
+   "scene_object": "plate_75",
+   "substance": false,
+   "category": "plate",
+   "model": "fhdyrj",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.7,
+    "median": 0.7,
+    "max": 0.7
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.51,
+    "median": 2.45,
+    "max": 3.4
+   },
+   "xy_spread_m": 1.3,
+   "n_poses": 20
+  },
+  {
+   "inst": "breakfast_table.n.01_1",
+   "scene_object": "breakfast_table_xftrki_0",
+   "substance": false,
+   "category": "breakfast_table",
+   "model": "xftrki",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0000485181808472,
+    0.9999868273735046,
+    0.9999451637268066
+   ],
+   "z": {
+    "min": 0.63,
+    "median": 0.63,
+    "max": 0.63
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.4,
+    "median": 2.38,
+    "max": 3.16
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tupperware.n.01_1",
+   "scene_object": "tupperware_74",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.95,
+    "median": 0.95,
+    "max": 0.95
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.8,
+    "median": 4.92,
+    "max": 6.84
+   },
+   "xy_spread_m": 1.88,
+   "n_poses": 20
+  },
+  {
+   "inst": "tupperware.n.01_2",
+   "scene_object": "tupperware_73",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.95,
+    "median": 0.95,
+    "max": 0.95
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.81,
+    "median": 4.47,
+    "max": 7.02
+   },
+   "xy_spread_m": 2.23,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_egwapq_0",
+   "substance": false,
+   "category": "bar",
+   "model": "egwapq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999869465827942,
+    0.9999972581863403,
+    1.0000406503677368
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.37,
+    "median": 4.81,
+    "max": 7.19
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_petcxr_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "petcxr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000007152557373,
+    1.00002920627594,
+    1.0000027418136597
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.08,
+    "median": 3.79,
+    "max": 5.03
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.91,
+    "median": 2.44,
+    "max": 3.76
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   2.25,
+   2.69
+  ],
+  [
+   2.19,
+   2.92
+  ],
+  [
+   2.17,
+   2.99
+  ],
+  [
+   7.14,
+   1.08
+  ],
+  [
+   6.02,
+   2.44
+  ],
+  [
+   3.61,
+   2.93
+  ],
+  [
+   6.08,
+   2.06
+  ],
+  [
+   2.46,
+   3.17
+  ],
+  [
+   6.04,
+   1.86
+  ],
+  [
+   3.05,
+   2.53
+  ],
+  [
+   3.15,
+   2.93
+  ],
+  [
+   7.2,
+   2.68
+  ],
+  [
+   6.84,
+   2.48
+  ],
+  [
+   5.69,
+   1.45
+  ],
+  [
+   2.54,
+   3.04
+  ],
+  [
+   2.9,
+   2.67
+  ],
+  [
+   6.99,
+   2.38
+  ],
+  [
+   1.46,
+   2.79
+  ],
+  [
+   6.47,
+   2.48
+  ],
+  [
+   4.96,
+   3.04
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 24,
+   "median": 25.0,
+   "max": 25
+  },
+  "demo_seconds": {
+   "min": 329.0,
+   "median": 429.05,
+   "max": 640.97
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place in",
+   "move to",
+   "open door",
+   "move to",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "close door"
+  ],
+  "modal_verb_sequence_share": 0.8,
+  "modal_verb_counts": {
+   "close door": 1,
+   "move to": 10,
+   "open door": 1,
+   "pick up from": 6,
+   "place in": 4,
+   "place on": 2,
+   "push to": 1
+  },
+  "modal_verb_counts_share": 0.805,
+  "representative_episode": {
+   "file": "episode_00250650.json",
+   "seconds": 432.8,
+   "steps": [
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 0.0,
+     "end_s": 15.1
+    },
+    {
+     "prompt": "pick up the tupperware from the bar",
+     "start_s": 15.2,
+     "end_s": 33.4
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 33.4,
+     "end_s": 34.6
+    },
+    {
+     "prompt": "pick up the tupperware from the bar",
+     "start_s": 34.6,
+     "end_s": 39.3
+    },
+    {
+     "prompt": "move to the breakfast table",
+     "start_s": 39.3,
+     "end_s": 67.3
+    },
+    {
+     "prompt": "place the tupperware on the breakfast table",
+     "start_s": 67.3,
+     "end_s": 75.4
+    },
+    {
+     "prompt": "place the tupperware on the breakfast table",
+     "start_s": 75.4,
+     "end_s": 85.6
+    },
+    {
+     "prompt": "move to the half chicken",
+     "start_s": 85.6,
+     "end_s": 119.0
+    },
+    {
+     "prompt": "pick up the half chicken from the plate",
+     "start_s": 119.0,
+     "end_s": 156.1
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 156.1,
+     "end_s": 195.5
+    },
+    {
+     "prompt": "place the half chicken in the tupperware",
+     "start_s": 195.5,
+     "end_s": 213.0
+    },
+    {
+     "prompt": "move to the half apple pie",
+     "start_s": 213.0,
+     "end_s": 215.7
+    },
+    {
+     "prompt": "push the half apple pie to the to_the_edge_of plate",
+     "start_s": 215.7,
+     "end_s": 235.3
+    },
+    {
+     "prompt": "pick up the half apple pie from the plate",
+     "start_s": 235.3,
+     "end_s": 246.3
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 246.3,
+     "end_s": 251.9
+    },
+    {
+     "prompt": "place the half apple pie in the tupperware",
+     "start_s": 251.9,
+     "end_s": 264.2
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 264.2,
+     "end_s": 286.4
+    },
+    {
+     "prompt": "open the door of the right_door fridge",
+     "start_s": 286.4,
+     "end_s": 310.4
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 310.4,
+     "end_s": 336.1
+    },
+    {
+     "prompt": "pick up the tupperware from the breakfast table",
+     "start_s": 336.1,
+     "end_s": 344.9
+    },
+    {
+     "prompt": "pick up the tupperware from the breakfast table",
+     "start_s": 344.9,
+     "end_s": 350.2
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 350.2,
+     "end_s": 370.8
+    },
+    {
+     "prompt": "place the tupperware in the layer_4 fridge",
+     "start_s": 370.8,
+     "end_s": 405.1
+    },
+    {
+     "prompt": "place the tupperware in the layer_5 fridge",
+     "start_s": 405.1,
+     "end_s": 422.4
+    },
+    {
+     "prompt": "close the door of the right_door fridge",
+     "start_s": 422.4,
+     "end_s": 432.8
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close door": 16.3,
+   "move to": 21.5,
+   "open door": 24.2,
+   "pick up from": 15.1,
+   "place in": 14.0,
+   "place on": 7.0,
+   "push to": 22.9
+  },
+  "verb_counts_total": {
+   "move to": 1962,
+   "pick up from": 1200,
+   "place in": 800,
+   "place on": 399,
+   "push to": 200,
+   "open door": 200,
+   "close door": 200
+  },
+  "top_prompts": [
+   [
+    "move to the tupperware",
+    963
+   ],
+   [
+    "pick up the tupperware from the breakfast table",
+    401
+   ],
+   [
+    "move to the fridge",
+    400
+   ],
+   [
+    "place the tupperware on the breakfast table",
+    399
+   ],
+   [
+    "pick up the tupperware from the bar",
+    397
+   ],
+   [
+    "move to the breakfast table",
+    200
+   ],
+   [
+    "pick up the half chicken from the plate",
+    200
+   ],
+   [
+    "place the half chicken in the tupperware",
+    200
+   ],
+   [
+    "move to the half apple pie",
+    200
+   ],
+   [
+    "push the half apple pie to the to_the_edge_of plate",
+    200
+   ],
+   [
+    "pick up the half apple pie from the plate",
+    200
+   ],
+   [
+    "place the half apple pie in the tupperware",
+    200
+   ],
+   [
+    "place the tupperware in the layer_5 fridge",
+    200
+   ],
+   [
+    "move to the half chicken",
+    199
+   ],
+   [
+    "open the door of the right_door fridge",
+    199
+   ],
+   [
+    "place the tupperware in the layer_4 fridge",
+    199
+   ],
+   [
+    "close the door of the right_door fridge",
+    198
+   ],
+   [
+    "pick up the tupperware from the fridge",
+    2
+   ],
+   [
+    "open the door of the fridge",
+    1
+   ],
+   [
+    "close the door of the fridge",
+    1
+   ],
+   [
+    "place the tupperware in the layer_4 breakfast table",
+    1
+   ],
+   [
+    "close the door of the right fridge",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "close door",
+  "place on",
+  "pick up from",
+  "place in",
+  "open door",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.2,
+   "success": false,
+   "steps": 19603
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.4,
+   "success": false,
+   "steps": 19603
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.2,
+   "success": false,
+   "steps": 19603
+  }
+ }
+}

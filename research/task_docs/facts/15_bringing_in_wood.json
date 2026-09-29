@@ -1,0 +1,529 @@
+{
+ "index": 15,
+ "name": "bringing_in_wood",
+ "instruction": "Bring the three plywood sheets from the garden into the corridor and place them on the floor there.",
+ "title": "Bringing in Wood",
+ "rooms_listed": [
+  "garden",
+  "corridor"
+ ],
+ "video": "https://player.vimeo.com/video/1114058068",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Bring the three plywood sheets from the garden into the corridor and place them on the floor there.",
+ "human": {
+  "mean_steps": 13535.655,
+  "mean_seconds": 451.2,
+  "step_limit": 20303,
+  "time_limit_seconds": 676.8,
+  "base_distance_m": 36.3806,
+  "eef_displacement_m": {
+   "left": 14.5503,
+   "right": 16.9711
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garage_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem bringing_in_wood-0)\n    (:domain behavior-1k)\n\n    (:objects\n        plywood.n.01_1 plywood.n.01_2 plywood.n.01_3 - plywood.n.01\n        floor.n.01_1 floor.n.01_2 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop plywood.n.01_1 floor.n.01_1) \n        (ontop plywood.n.01_2 floor.n.01_1) \n        (ontop plywood.n.01_3 floor.n.01_1) \n        (inroom floor.n.01_1 garden) \n        (inroom floor.n.01_2 corridor) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?plywood.n.01 - plywood.n.01) \n                (ontop ?plywood.n.01 ?floor.n.01_2)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0",
+  "corridor": "corridor_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "plywood.n.01": [
+   "plywood.n.01_1",
+   "plywood.n.01_2",
+   "plywood.n.01_3"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 garden)",
+  "(inroom floor.n.01_2 corridor)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop plywood.n.01_1 floor.n.01_1)",
+  "(ontop plywood.n.01_2 floor.n.01_1)",
+  "(ontop plywood.n.01_3 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 plywood.n.01_1)",
+  "(touching floor.n.01_1 plywood.n.01_2)",
+  "(touching floor.n.01_1 plywood.n.01_3)",
+  "(touching plywood.n.01_1 floor.n.01_1)",
+  "(touching plywood.n.01_2 floor.n.01_1)",
+  "(touching plywood.n.01_3 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop plywood.n.01_1 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plywood.n.01_1",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop plywood.n.01_2 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plywood.n.01_2",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop plywood.n.01_3 floor.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "plywood.n.01_3",
+     "floor.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "plywood.n.01_1",
+   "scene_object": "plywood_203",
+   "substance": false,
+   "category": "plywood",
+   "model": "fkmkqa",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0150638818740845,
+    0.9966655969619751,
+    6.016429424285889
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.93,
+    "median": 5.81,
+    "max": 13.06
+   },
+   "xy_spread_m": 16.14,
+   "n_poses": 20
+  },
+  {
+   "inst": "plywood.n.01_2",
+   "scene_object": "plywood_202",
+   "substance": false,
+   "category": "plywood",
+   "model": "fkmkqa",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0150638818740845,
+    0.9966655969619751,
+    6.016429424285889
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.18,
+    "median": 3.95,
+    "max": 14.25
+   },
+   "xy_spread_m": 15.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "plywood.n.01_3",
+   "scene_object": "plywood_201",
+   "substance": false,
+   "category": "plywood",
+   "model": "fkmkqa",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0150638818740845,
+    0.9966655969619751,
+    6.016429424285889
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.71,
+    "median": 4.01,
+    "max": 14.28
+   },
+   "xy_spread_m": 16.83,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_qadhjb_0",
+   "substance": false,
+   "category": "floors",
+   "model": "qadhjb",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000005960464478,
+    1.0000057220458984,
+    1.0000001192092896
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.5,
+    "median": 3.76,
+    "max": 7.52
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_xorxro_0",
+   "substance": false,
+   "category": "floors",
+   "model": "xorxro",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999860525131226,
+    0.9999966025352478,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 5.3,
+    "median": 10.37,
+    "max": 15.23
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -3.3,
+   -2.44
+  ],
+  [
+   -8.81,
+   -2.07
+  ],
+  [
+   -0.71,
+   -1.92
+  ],
+  [
+   -13.54,
+   -2.24
+  ],
+  [
+   -8.93,
+   -2.01
+  ],
+  [
+   -6.19,
+   -2.2
+  ],
+  [
+   -14.09,
+   -2.5
+  ],
+  [
+   -10.11,
+   -1.83
+  ],
+  [
+   -10.59,
+   -2.4
+  ],
+  [
+   -10.51,
+   1.4
+  ],
+  [
+   -13.27,
+   -2.14
+  ],
+  [
+   -7.17,
+   -2.54
+  ],
+  [
+   -1.59,
+   -2.01
+  ],
+  [
+   -11.76,
+   -2.1
+  ],
+  [
+   -9.3,
+   -2.28
+  ],
+  [
+   -1.63,
+   -2.35
+  ],
+  [
+   -7.03,
+   -2.44
+  ],
+  [
+   -8.7,
+   -2.02
+  ],
+  [
+   -14.22,
+   -2.59
+  ],
+  [
+   -13.14,
+   -2.59
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 13,
+   "median": 13.0,
+   "max": 16
+  },
+  "demo_seconds": {
+   "min": 270.0,
+   "median": 450.18,
+   "max": 578.07
+  },
+  "distinct_verb_sequences": 6,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "open door",
+   "move to",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.975,
+  "modal_verb_counts": {
+   "move to": 6,
+   "open door": 1,
+   "pick up from": 3,
+   "place on": 3
+  },
+  "modal_verb_counts_share": 0.975,
+  "representative_episode": {
+   "file": "episode_00150430.json",
+   "seconds": 454.1,
+   "steps": [
+    {
+     "prompt": "move to the plywood",
+     "start_s": 7.3,
+     "end_s": 22.5
+    },
+    {
+     "prompt": "pick up the plywood from the floors",
+     "start_s": 22.5,
+     "end_s": 51.3
+    },
+    {
+     "prompt": "move to the door",
+     "start_s": 54.0,
+     "end_s": 90.5
+    },
+    {
+     "prompt": "open the door of the door",
+     "start_s": 90.6,
+     "end_s": 136.7
+    },
+    {
+     "prompt": "move to the floors",
+     "start_s": 136.7,
+     "end_s": 162.0
+    },
+    {
+     "prompt": "place the plywood on the floors",
+     "start_s": 162.0,
+     "end_s": 185.0
+    },
+    {
+     "prompt": "move to the plywood",
+     "start_s": 188.0,
+     "end_s": 264.2
+    },
+    {
+     "prompt": "pick up the plywood from the floors",
+     "start_s": 264.2,
+     "end_s": 291.8
+    },
+    {
+     "prompt": "move to the plywood",
+     "start_s": 291.8,
+     "end_s": 307.0
+    },
+    {
+     "prompt": "pick up the plywood from the floors",
+     "start_s": 307.0,
+     "end_s": 333.6
+    },
+    {
+     "prompt": "move to the plywood",
+     "start_s": 335.5,
+     "end_s": 415.0
+    },
+    {
+     "prompt": "place the plywood on the floors",
+     "start_s": 415.0,
+     "end_s": 440.7
+    },
+    {
+     "prompt": "place the plywood on the floors",
+     "start_s": 440.7,
+     "end_s": 461.4
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 43.8,
+   "open door": 55.7,
+   "pick up from": 22.2,
+   "place on": 17.3
+  },
+  "verb_counts_total": {
+   "move to": 1198,
+   "pick up from": 605,
+   "place on": 605,
+   "open door": 200
+  },
+  "top_prompts": [
+   [
+    "move to the plywood",
+    605
+   ],
+   [
+    "pick up the plywood from the floors",
+    605
+   ],
+   [
+    "place the plywood on the floors",
+    605
+   ],
+   [
+    "move to the floors",
+    397
+   ],
+   [
+    "open the door of the door",
+    200
+   ],
+   [
+    "move to the door",
+    196
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "place on",
+  "pick up from",
+  "open door"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 20304
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 20304
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 20304
+  }
+ }
+}

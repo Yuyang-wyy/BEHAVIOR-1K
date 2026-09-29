@@ -1,0 +1,971 @@
+{
+ "index": 54,
+ "name": "putting_away_toys",
+ "instruction": "Pick up all the toy figures from the floor and put them inside the toy boxes.",
+ "title": "Putting Away Toys",
+ "rooms_listed": [
+  "dining_room",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/StbSZCTn7D4",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "Pick up all the toy figures from the floor and put them inside the toy boxes.",
+ "human": {
+  "mean_steps": 11296.755,
+  "mean_seconds": 376.6,
+  "step_limit": 16945,
+  "time_limit_seconds": 564.8,
+  "base_distance_m": 35.1468,
+  "eef_displacement_m": {
+   "left": 28.6707,
+   "right": 28.3961
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0",
+  "living_room_1"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "dining_room",
+   "living_room"
+  ],
+  "house_single_floor": {
+   "whitelist": {
+    "toy_box.n.01": {
+     "toy_box": {
+      "qgfbdj": null,
+      "kvithq": 5.0
+     }
+    },
+    "toy_figure.n.01": {
+     "toy_figure": {
+      "aihmqy": null,
+      "gnofgv": null,
+      "fnueyn": null,
+      "lfxygp": null,
+      "acymin": null,
+      "vcmcoi": null,
+      "zuntus": null,
+      "orunry": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem putting_away_toys-0)\n    (:domain behavior-1k)\n\n    (:objects\n        toy_figure.n.01_1 toy_figure.n.01_2 toy_figure.n.01_3 toy_figure.n.01_4 toy_figure.n.01_5 toy_figure.n.01_6 toy_figure.n.01_7 toy_figure.n.01_8 - toy_figure.n.01\n        floor.n.01_1 floor.n.01_2 - floor.n.01\n        toy_box.n.01_1 toy_box.n.01_2 - toy_box.n.01\n        agent.n.01_1 - agent.n.01\n        table.n.02_1 - table.n.02\n    )\n    \n    (:init \n        (ontop toy_figure.n.01_1 floor.n.01_1) \n        (ontop toy_figure.n.01_2 floor.n.01_1) \n        (ontop toy_figure.n.01_3 floor.n.01_1) \n        (ontop toy_figure.n.01_4 floor.n.01_1) \n        (ontop toy_figure.n.01_5 floor.n.01_2) \n        (ontop toy_figure.n.01_6 floor.n.01_2) \n        (ontop toy_figure.n.01_7 floor.n.01_2) \n        (ontop toy_figure.n.01_8 floor.n.01_2) \n        (ontop toy_box.n.01_1 floor.n.01_1) \n        (ontop toy_box.n.01_2 table.n.02_1) \n        (inroom floor.n.01_1 living_room) \n        (inroom floor.n.01_2 dining_room) \n        (inroom table.n.02_1 dining_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?toy_figure.n.01 - toy_figure.n.01) \n                (exists \n                    (?toy_box.n.01 - toy_box.n.01) \n                    (inside ?toy_figure.n.01 ?toy_box.n.01)\n                )\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0",
+  "dining_room": "dining_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "toy_figure.n.01": [
+   "toy_figure.n.01_1",
+   "toy_figure.n.01_2",
+   "toy_figure.n.01_3",
+   "toy_figure.n.01_4",
+   "toy_figure.n.01_5",
+   "toy_figure.n.01_6",
+   "toy_figure.n.01_7",
+   "toy_figure.n.01_8"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "toy_box.n.01": [
+   "toy_box.n.01_1",
+   "toy_box.n.01_2"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom floor.n.01_2 dining_room)",
+  "(inroom table.n.02_1 dining_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop toy_box.n.01_1 floor.n.01_1)",
+  "(ontop toy_box.n.01_2 table.n.02_1)",
+  "(ontop toy_figure.n.01_1 floor.n.01_1)",
+  "(ontop toy_figure.n.01_2 floor.n.01_1)",
+  "(ontop toy_figure.n.01_3 floor.n.01_1)",
+  "(ontop toy_figure.n.01_4 floor.n.01_1)",
+  "(ontop toy_figure.n.01_5 floor.n.01_2)",
+  "(ontop toy_figure.n.01_6 floor.n.01_2)",
+  "(ontop toy_figure.n.01_7 floor.n.01_2)",
+  "(ontop toy_figure.n.01_8 floor.n.01_2)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 toy_box.n.01_1)",
+  "(touching floor.n.01_1 toy_figure.n.01_1)",
+  "(touching floor.n.01_1 toy_figure.n.01_2)",
+  "(touching floor.n.01_1 toy_figure.n.01_3)",
+  "(touching floor.n.01_1 toy_figure.n.01_4)",
+  "(touching floor.n.01_2 toy_figure.n.01_5)",
+  "(touching floor.n.01_2 toy_figure.n.01_6)",
+  "(touching floor.n.01_2 toy_figure.n.01_7)",
+  "(touching floor.n.01_2 toy_figure.n.01_8)",
+  "(touching table.n.02_1 toy_box.n.01_2)",
+  "(touching toy_box.n.01_1 floor.n.01_1)",
+  "(touching toy_box.n.01_2 table.n.02_1)",
+  "(touching toy_figure.n.01_1 floor.n.01_1)",
+  "(touching toy_figure.n.01_2 floor.n.01_1)",
+  "(touching toy_figure.n.01_3 floor.n.01_1)",
+  "(touching toy_figure.n.01_4 floor.n.01_1)",
+  "(touching toy_figure.n.01_5 floor.n.01_2)",
+  "(touching toy_figure.n.01_6 floor.n.01_2)",
+  "(touching toy_figure.n.01_7 floor.n.01_2)",
+  "(touching toy_figure.n.01_8 floor.n.01_2)"
+ ],
+ "n_ground_options": 256,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 8,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside toy_figure.n.01_5 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_5",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_3 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_3",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_1 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_1",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_8 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_8",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_4 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_4",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_6 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_6",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_2 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_2",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside toy_figure.n.01_7 toy_box.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "toy_figure.n.01_7",
+     "toy_box.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   8,
+   256
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   8
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "toy_figure.n.01_1",
+   "scene_object": "toy_figure_249",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "acymin",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.69,
+    "median": 2.06,
+    "max": 8.04
+   },
+   "xy_spread_m": 9.37,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_2",
+   "scene_object": "toy_figure_248",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "aihmqy",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 2.88,
+    "max": 6.93
+   },
+   "xy_spread_m": 9.01,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_3",
+   "scene_object": "toy_figure_247",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "vcmcoi",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.38,
+    "median": 2.33,
+    "max": 6.08
+   },
+   "xy_spread_m": 8.26,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_4",
+   "scene_object": "toy_figure_246",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "gnofgv",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.72,
+    "median": 2.69,
+    "max": 7.06
+   },
+   "xy_spread_m": 8.58,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_5",
+   "scene_object": "toy_figure_245",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "zuntus",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.92,
+    "median": 7.31,
+    "max": 11.83
+   },
+   "xy_spread_m": 4.8,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_6",
+   "scene_object": "toy_figure_244",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "lfxygp",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 3.62,
+    "median": 7.11,
+    "max": 11.74
+   },
+   "xy_spread_m": 4.73,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_7",
+   "scene_object": "toy_figure_243",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "fnueyn",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.74,
+    "median": 7.93,
+    "max": 11.47
+   },
+   "xy_spread_m": 4.85,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_figure.n.01_8",
+   "scene_object": "toy_figure_242",
+   "substance": false,
+   "category": "toy_figure",
+   "model": "orunry",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.59,
+    "median": 8.29,
+    "max": 11.82
+   },
+   "xy_spread_m": 4.77,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_uzsntg_0",
+   "substance": false,
+   "category": "floors",
+   "model": "uzsntg",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999973177909851,
+    1.0000057220458984,
+    0.9999462366104126
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.66,
+    "median": 2.08,
+    "max": 4.22
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_qgmjvd_0",
+   "substance": false,
+   "category": "floors",
+   "model": "qgmjvd",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000057220458984,
+    1.000015377998352,
+    0.9998500943183899
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 5.1,
+    "median": 7.31,
+    "max": 10.19
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_box.n.01_1",
+   "scene_object": "toy_box_241",
+   "substance": false,
+   "category": "toy_box",
+   "model": "qgfbdj",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.16,
+    "median": 0.16,
+    "max": 0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.85,
+    "median": 2.64,
+    "max": 7.03
+   },
+   "xy_spread_m": 8.6,
+   "n_poses": 20
+  },
+  {
+   "inst": "toy_box.n.01_2",
+   "scene_object": "toy_box_240",
+   "substance": false,
+   "category": "toy_box",
+   "model": "kvithq",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    5.0,
+    5.0,
+    5.0
+   ],
+   "z": {
+    "min": 0.92,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.43,
+    "median": 6.67,
+    "max": 10.5
+   },
+   "xy_spread_m": 2.6,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_dpfyxq",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "breakfast_table_rhjoby_0",
+   "substance": false,
+   "category": "breakfast_table",
+   "model": "rhjoby",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999933242797852,
+    0.9999943971633911,
+    0.9999465942382812
+   ],
+   "z": {
+    "min": 0.76,
+    "median": 0.76,
+    "max": 0.76
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 4.62,
+    "median": 6.82,
+    "max": 9.76
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  }
+ ],
+ "robot_start_xy": [
+  [
+   15.3,
+   1.41
+  ],
+  [
+   14.8,
+   1.19
+  ],
+  [
+   16.93,
+   3.24
+  ],
+  [
+   14.53,
+   3.18
+  ],
+  [
+   13.11,
+   3.19
+  ],
+  [
+   14.33,
+   2.89
+  ],
+  [
+   12.49,
+   3.3
+  ],
+  [
+   14.16,
+   1.99
+  ],
+  [
+   16.67,
+   0.77
+  ],
+  [
+   14.09,
+   3.15
+  ],
+  [
+   16.29,
+   0.97
+  ],
+  [
+   11.86,
+   2.79
+  ],
+  [
+   14.07,
+   2.58
+  ],
+  [
+   12.74,
+   3.13
+  ],
+  [
+   13.64,
+   1.45
+  ],
+  [
+   12.86,
+   2.16
+  ],
+  [
+   12.29,
+   2.22
+  ],
+  [
+   12.96,
+   1.93
+  ],
+  [
+   13.26,
+   1.81
+  ],
+  [
+   15.1,
+   1.51
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 26,
+   "median": 28.0,
+   "max": 30
+  },
+  "demo_seconds": {
+   "min": 241.6,
+   "median": 377.43,
+   "max": 614.17
+  },
+  "distinct_verb_sequences": 40,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in"
+  ],
+  "modal_verb_sequence_share": 0.445,
+  "modal_verb_counts": {
+   "move to": 12,
+   "pick up from": 8,
+   "place in": 8
+  },
+  "modal_verb_counts_share": 0.475,
+  "representative_episode": {
+   "file": "episode_00541330.json",
+   "seconds": 369.0,
+   "steps": [
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 0.0,
+     "end_s": 9.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 9.0,
+     "end_s": 23.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 23.0,
+     "end_s": 37.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 37.0,
+     "end_s": 45.0
+    },
+    {
+     "prompt": "move to the toy box",
+     "start_s": 45.0,
+     "end_s": 56.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 56.0,
+     "end_s": 60.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 60.0,
+     "end_s": 63.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 63.0,
+     "end_s": 82.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 82.0,
+     "end_s": 89.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 89.0,
+     "end_s": 97.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 97.0,
+     "end_s": 104.0
+    },
+    {
+     "prompt": "move to the toy box",
+     "start_s": 104.0,
+     "end_s": 129.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 129.0,
+     "end_s": 132.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 132.0,
+     "end_s": 136.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 136.0,
+     "end_s": 171.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 171.0,
+     "end_s": 180.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 180.0,
+     "end_s": 199.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 199.0,
+     "end_s": 206.0
+    },
+    {
+     "prompt": "move to the toy box",
+     "start_s": 206.0,
+     "end_s": 238.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 238.0,
+     "end_s": 242.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 242.0,
+     "end_s": 252.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 252.0,
+     "end_s": 270.7
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 270.7,
+     "end_s": 287.0
+    },
+    {
+     "prompt": "move to the toy figure",
+     "start_s": 287.0,
+     "end_s": 300.0
+    },
+    {
+     "prompt": "pick up the toy figure from the floors",
+     "start_s": 300.0,
+     "end_s": 309.0
+    },
+    {
+     "prompt": "move to the toy box",
+     "start_s": 309.0,
+     "end_s": 328.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 328.0,
+     "end_s": 354.0
+    },
+    {
+     "prompt": "place the toy figure in the toy box",
+     "start_s": 354.0,
+     "end_s": 369.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 11.1,
+   "move to": 18.3,
+   "pick up from": 12.5,
+   "place in": 7.1
+  },
+  "verb_counts_total": {
+   "move to": 2356,
+   "pick up from": 1599,
+   "place in": 1593,
+   "hand over": 46
+  },
+  "top_prompts": [
+   [
+    "pick up the toy figure from the floors",
+    1598
+   ],
+   [
+    "place the toy figure in the toy box",
+    1593
+   ],
+   [
+    "move to the toy figure",
+    1529
+   ],
+   [
+    "move to the toy box",
+    827
+   ],
+   [
+    "hand over the toy figure",
+    46
+   ],
+   [
+    "pick up the toy box from the floors",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.75,
+   "success": false,
+   "steps": 16946
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.75,
+   "success": false,
+   "steps": 16946
+  }
+ }
+}

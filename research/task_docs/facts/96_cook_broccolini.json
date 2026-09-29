@@ -1,0 +1,812 @@
+{
+ "index": 96,
+ "name": "cook_broccolini",
+ "instruction": "Cook the broccolini in the frying pan on the stove.",
+ "title": "Cook Broccolini",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://www.youtube.com/embed/NXoYiAs_KCs",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Cook the broccolini in the frying pan on the stove.",
+ "human": {
+  "mean_steps": 4617.76,
+  "mean_seconds": 153.9,
+  "step_limit": 6926,
+  "time_limit_seconds": 230.9,
+  "base_distance_m": 10.8674,
+  "eef_displacement_m": {
+   "left": 5.9119,
+   "right": 6.3132
+  }
+ },
+ "rooms_loaded": [
+  "kitchen_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "kitchen"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "broccolini.n.01": {
+     "broccolini": {
+      "rlsytp": null
+     }
+    },
+    "clove.n.03": {
+     "garlic_clove": {
+      "saombi": null
+     }
+    },
+    "frying_pan.n.01": {
+     "frying_pan": {
+      "hzspwg": null
+     }
+    },
+    "plate.n.04": {
+     "plate": {
+      "fkpaie": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem cook_broccolini-0)\n    (:domain behavior-1k)\n\n    (:objects\n    \tbroccolini.n.01_1 broccolini.n.01_2 broccolini.n.01_3 - broccolini.n.01\n    \tfrying_pan.n.01_1 - frying_pan.n.01\n    \tclove.n.03_1 clove.n.03_2 - clove.n.03\n    \tplate.n.04_1 - plate.n.04\n    \tstove.n.01_1 - stove.n.01\n    \tcountertop.n.01_1 - countertop.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop broccolini.n.01_1 plate.n.04_1)\n        (ontop broccolini.n.01_2 plate.n.04_1) \n        (ontop broccolini.n.01_3 plate.n.04_1) \n        (ontop clove.n.03_1 plate.n.04_1)\n        (ontop clove.n.03_2 plate.n.04_1)\n        (ontop plate.n.04_1 countertop.n.01_1)\n        (ontop frying_pan.n.01_1 countertop.n.01_1) \n        (not  \n            (cooked broccolini.n.01_1)\n        ) \n        (inroom stove.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and\n            (forall\n                (?clove.n.03 - clove.n.03)\n                (and\n                    (ontop ?clove.n.03 ?frying_pan.n.01_1)\n                    (cooked ?clove.n.03)\n                )\n            )\n            (forall\n                (?broccolini.n.01 - broccolini.n.01)\n                (and\n                    (ontop ?broccolini.n.01 ?frying_pan.n.01_1)\n                    (cooked ?broccolini.n.01)\n                )\n            )\n            (ontop ?frying_pan.n.01_1 ?stove.n.01_1)\n        )\n    )\n)\n",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "broccolini.n.01": [
+   "broccolini.n.01_1",
+   "broccolini.n.01_2",
+   "broccolini.n.01_3"
+  ],
+  "frying_pan.n.01": [
+   "frying_pan.n.01_1"
+  ],
+  "clove.n.03": [
+   "clove.n.03_1",
+   "clove.n.03_2"
+  ],
+  "plate.n.04": [
+   "plate.n.04_1"
+  ],
+  "stove.n.01": [
+   "stove.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "stove.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom stove.n.01_1 kitchen)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop broccolini.n.01_1 plate.n.04_1)",
+  "(ontop broccolini.n.01_2 plate.n.04_1)",
+  "(ontop broccolini.n.01_3 plate.n.04_1)",
+  "(ontop clove.n.03_1 plate.n.04_1)",
+  "(ontop clove.n.03_2 plate.n.04_1)",
+  "(ontop frying_pan.n.01_1 countertop.n.01_1)",
+  "(ontop plate.n.04_1 countertop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching broccolini.n.01_1 plate.n.04_1)",
+  "(touching broccolini.n.01_2 plate.n.04_1)",
+  "(touching broccolini.n.01_3 plate.n.04_1)",
+  "(touching clove.n.03_1 plate.n.04_1)",
+  "(touching clove.n.03_2 plate.n.04_1)",
+  "(touching countertop.n.01_1 frying_pan.n.01_1)",
+  "(touching countertop.n.01_1 plate.n.04_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching frying_pan.n.01_1 countertop.n.01_1)",
+  "(touching plate.n.04_1 broccolini.n.01_1)",
+  "(touching plate.n.04_1 broccolini.n.01_2)",
+  "(touching plate.n.04_1 broccolini.n.01_3)",
+  "(touching plate.n.04_1 clove.n.03_1)",
+  "(touching plate.n.04_1 clove.n.03_2)",
+  "(touching plate.n.04_1 countertop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 11,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(ontop clove.n.03_1 frying_pan.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "clove.n.03_1",
+     "frying_pan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked clove.n.03_1)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "clove.n.03_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop clove.n.03_2 frying_pan.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "clove.n.03_2",
+     "frying_pan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked clove.n.03_2)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "clove.n.03_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop broccolini.n.01_2 frying_pan.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "broccolini.n.01_2",
+     "frying_pan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked broccolini.n.01_2)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "broccolini.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop broccolini.n.01_3 frying_pan.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "broccolini.n.01_3",
+     "frying_pan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked broccolini.n.01_3)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "broccolini.n.01_3"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop broccolini.n.01_1 frying_pan.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "broccolini.n.01_1",
+     "frying_pan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(cooked broccolini.n.01_1)",
+    "negated": false,
+    "predicate": "cooked",
+    "args": [
+     "broccolini.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop frying_pan.n.01_1 stove.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "frying_pan.n.01_1",
+     "stove.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   11,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   6
+  ],
+  [
+   "cooked",
+   5
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "broccolini.n.01_1",
+   "scene_object": "broccolini_80",
+   "substance": false,
+   "category": "broccolini",
+   "model": "rlsytp",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.51,
+    "median": 3.4,
+    "max": 4.62
+   },
+   "xy_spread_m": 2.36,
+   "n_poses": 20
+  },
+  {
+   "inst": "broccolini.n.01_2",
+   "scene_object": "broccolini_79",
+   "substance": false,
+   "category": "broccolini",
+   "model": "rlsytp",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.55,
+    "median": 3.35,
+    "max": 4.62
+   },
+   "xy_spread_m": 2.43,
+   "n_poses": 20
+  },
+  {
+   "inst": "broccolini.n.01_3",
+   "scene_object": "broccolini_78",
+   "substance": false,
+   "category": "broccolini",
+   "model": "rlsytp",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.9,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.49,
+    "median": 3.34,
+    "max": 4.58
+   },
+   "xy_spread_m": 2.52,
+   "n_poses": 20
+  },
+  {
+   "inst": "frying_pan.n.01_1",
+   "scene_object": "frying_pan_77",
+   "substance": false,
+   "category": "frying_pan",
+   "model": "hzspwg",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.42,
+    "median": 3.2,
+    "max": 4.23
+   },
+   "xy_spread_m": 2.22,
+   "n_poses": 20
+  },
+  {
+   "inst": "clove.n.03_1",
+   "scene_object": "garlic_clove_76",
+   "substance": false,
+   "category": "garlic_clove",
+   "model": "saombi",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.88,
+    "median": 0.89,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.5,
+    "median": 3.39,
+    "max": 4.67
+   },
+   "xy_spread_m": 2.56,
+   "n_poses": 20
+  },
+  {
+   "inst": "clove.n.03_2",
+   "scene_object": "garlic_clove_75",
+   "substance": false,
+   "category": "garlic_clove",
+   "model": "saombi",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.88,
+    "median": 0.88,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.5,
+    "median": 3.32,
+    "max": 4.72
+   },
+   "xy_spread_m": 2.37,
+   "n_poses": 20
+  },
+  {
+   "inst": "plate.n.04_1",
+   "scene_object": "plate_74",
+   "substance": false,
+   "category": "plate",
+   "model": "fkpaie",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.88,
+    "median": 0.88,
+    "max": 0.89
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.55,
+    "median": 3.35,
+    "max": 4.59
+   },
+   "xy_spread_m": 2.38,
+   "n_poses": 20
+  },
+  {
+   "inst": "stove.n.01_1",
+   "scene_object": "stove_ykretu_0",
+   "substance": false,
+   "category": "stove",
+   "model": "ykretu",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000171661376953,
+    1.000000238418579,
+    0.999954104423523
+   ],
+   "z": {
+    "min": 0.58,
+    "median": 0.58,
+    "max": 0.58
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 3.05,
+    "median": 4.31,
+    "max": 5.47
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "commercial_kitchen_table_vxvtec_0",
+   "substance": false,
+   "category": "commercial_kitchen_table",
+   "model": "vxvtec",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999405145645142,
+    1.0000137090682983,
+    1.000051498413086
+   ],
+   "z": {
+    "min": 0.54,
+    "median": 0.54,
+    "max": 0.54
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.33,
+    "median": 2.95,
+    "max": 3.67
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_vikfyd_0",
+   "substance": false,
+   "category": "floors",
+   "model": "vikfyd",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.82,
+    "median": 2.4,
+    "max": 3.48
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_nqbxsk",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -8.27,
+   -0.96
+  ],
+  [
+   -9.75,
+   -0.97
+  ],
+  [
+   -8.38,
+   -5.79
+  ],
+  [
+   -6.69,
+   -4.09
+  ],
+  [
+   -8.37,
+   -0.84
+  ],
+  [
+   -8.2,
+   -0.41
+  ],
+  [
+   -10.31,
+   -0.19
+  ],
+  [
+   -9.64,
+   -0.27
+  ],
+  [
+   -10.69,
+   -0.19
+  ],
+  [
+   -10.22,
+   -1.45
+  ],
+  [
+   -8.32,
+   -0.65
+  ],
+  [
+   -7.52,
+   -5.47
+  ],
+  [
+   -10.53,
+   -0.73
+  ],
+  [
+   -9.3,
+   -1.25
+  ],
+  [
+   -9.26,
+   -0.57
+  ],
+  [
+   -10.49,
+   -0.33
+  ],
+  [
+   -10.08,
+   -1.22
+  ],
+  [
+   -7.03,
+   -0.95
+  ],
+  [
+   -9.39,
+   -1.05
+  ],
+  [
+   -9.8,
+   -0.52
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 9,
+   "median": 9.0,
+   "max": 11
+  },
+  "demo_seconds": {
+   "min": 81.43,
+   "median": 152.28,
+   "max": 241.83
+  },
+  "distinct_verb_sequences": 6,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pour",
+   "place on",
+   "pick up from",
+   "move to",
+   "place on",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.57,
+  "modal_verb_counts": {
+   "move to": 3,
+   "pick up from": 2,
+   "place on": 2,
+   "pour": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.585,
+  "representative_episode": {
+   "file": "episode_00960840.json",
+   "seconds": 143.7,
+   "steps": [
+    {
+     "prompt": "move to the commercial kitchen table",
+     "start_s": 0.0,
+     "end_s": 36.0
+    },
+    {
+     "prompt": "pick up the plate from the commercial kitchen table",
+     "start_s": 36.0,
+     "end_s": 51.0
+    },
+    {
+     "prompt": "move to the frying pan",
+     "start_s": 51.0,
+     "end_s": 71.0
+    },
+    {
+     "prompt": "pour the broccolini",
+     "start_s": 71.0,
+     "end_s": 78.0
+    },
+    {
+     "prompt": "place the plate on the commercial kitchen table",
+     "start_s": 78.0,
+     "end_s": 86.0
+    },
+    {
+     "prompt": "pick up the frying pan from the commercial kitchen table",
+     "start_s": 86.0,
+     "end_s": 98.1
+    },
+    {
+     "prompt": "move to the stove",
+     "start_s": 98.1,
+     "end_s": 121.0
+    },
+    {
+     "prompt": "place the frying pan on the stove",
+     "start_s": 121.0,
+     "end_s": 126.4
+    },
+    {
+     "prompt": "turn on the stove",
+     "start_s": 126.4,
+     "end_s": 138.2
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 23.7,
+   "pick up from": 14.9,
+   "place on": 9.1,
+   "pour": 7.2,
+   "turn on switch": 16.6
+  },
+  "verb_counts_total": {
+   "move to": 688,
+   "pick up from": 400,
+   "place on": 400,
+   "pour": 200,
+   "turn on switch": 200
+  },
+  "top_prompts": [
+   [
+    "move to the frying pan",
+    281
+   ],
+   [
+    "move to the stove",
+    203
+   ],
+   [
+    "pick up the plate from the commercial kitchen table",
+    200
+   ],
+   [
+    "pour the broccolini",
+    200
+   ],
+   [
+    "place the plate on the commercial kitchen table",
+    200
+   ],
+   [
+    "pick up the frying pan from the commercial kitchen table",
+    200
+   ],
+   [
+    "place the frying pan on the stove",
+    200
+   ],
+   [
+    "turn on the stove",
+    200
+   ],
+   [
+    "move to the plate",
+    199
+   ],
+   [
+    "move to the commercial kitchen table",
+    5
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.18181818181818182,
+   "success": false,
+   "steps": 6927
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.18181818181818182,
+   "success": false,
+   "steps": 6927
+  }
+ }
+}

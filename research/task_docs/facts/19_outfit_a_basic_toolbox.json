@@ -1,0 +1,837 @@
+{
+ "index": 19,
+ "name": "outfit_a_basic_toolbox",
+ "instruction": "In the utility room, put the drill, pliers, flashlight, Allen wrench, and screwdriver from the tabletop into the toolbox, keep the toolbox on the tabletop, and close the toolbox.",
+ "title": "Outfit A Basic Toolbox",
+ "rooms_listed": [
+  "utility_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114058641",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "In the utility room, put the drill, pliers, flashlight, Allen wrench, and screwdriver from the tabletop into the toolbox, keep the toolbox on the tabletop, and close the toolbox.",
+ "human": {
+  "mean_steps": 10637.97,
+  "mean_seconds": 354.6,
+  "step_limit": 15956,
+  "time_limit_seconds": 531.9,
+  "base_distance_m": 31.6827,
+  "eef_displacement_m": {
+   "left": 18.1761,
+   "right": 20.0662
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0",
+  "utility_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem outfit_a_basic_toolbox-0)\n    (:domain behavior-1k)\n\n    (:objects\n        drill.n.01_1 - drill.n.01\n        floor.n.01_1 - floor.n.01\n        tabletop.n.01_1 - tabletop.n.01\n        pliers.n.01_1 - pliers.n.01\n        toolbox.n.01_1 - toolbox.n.01\n        flashlight.n.01_1 - flashlight.n.01\n        allen_wrench.n.01_1 - allen_wrench.n.01\n        screwdriver.n.01_1 - screwdriver.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop drill.n.01_1 tabletop.n.01_1) \n        (ontop pliers.n.01_1 tabletop.n.01_1) \n        (ontop toolbox.n.01_1 tabletop.n.01_1) \n        (ontop flashlight.n.01_1 tabletop.n.01_1) \n        (ontop allen_wrench.n.01_1 tabletop.n.01_1) \n        (ontop screwdriver.n.01_1 tabletop.n.01_1) \n        (inroom tabletop.n.01_1 utility_room)\n        (inroom floor.n.01_1 utility_room)\n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (inside ?drill.n.01_1 ?toolbox.n.01_1)\n            (inside ?pliers.n.01_1 ?toolbox.n.01_1)\n            (inside ?flashlight.n.01_1 ?toolbox.n.01_1)\n            (inside ?allen_wrench.n.01_1 ?toolbox.n.01_1)\n            (inside ?screwdriver.n.01_1 ?toolbox.n.01_1)\n            (ontop ?toolbox.n.01_1 ?tabletop.n.01_1)\n            (not\n                (open ?toolbox.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "utility_room": "utility_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "drill.n.01": [
+   "drill.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "tabletop.n.01": [
+   "tabletop.n.01_1"
+  ],
+  "pliers.n.01": [
+   "pliers.n.01_1"
+  ],
+  "toolbox.n.01": [
+   "toolbox.n.01_1"
+  ],
+  "flashlight.n.01": [
+   "flashlight.n.01_1"
+  ],
+  "allen_wrench.n.01": [
+   "allen_wrench.n.01_1"
+  ],
+  "screwdriver.n.01": [
+   "screwdriver.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "pliers.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "toolbox.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom floor.n.01_1 utility_room)",
+  "(inroom tabletop.n.01_1 utility_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop allen_wrench.n.01_1 tabletop.n.01_1)",
+  "(ontop drill.n.01_1 tabletop.n.01_1)",
+  "(ontop flashlight.n.01_1 tabletop.n.01_1)",
+  "(ontop pliers.n.01_1 tabletop.n.01_1)",
+  "(ontop screwdriver.n.01_1 tabletop.n.01_1)",
+  "(ontop toolbox.n.01_1 tabletop.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching allen_wrench.n.01_1 tabletop.n.01_1)",
+  "(touching drill.n.01_1 tabletop.n.01_1)",
+  "(touching flashlight.n.01_1 tabletop.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching pliers.n.01_1 tabletop.n.01_1)",
+  "(touching screwdriver.n.01_1 tabletop.n.01_1)",
+  "(touching tabletop.n.01_1 allen_wrench.n.01_1)",
+  "(touching tabletop.n.01_1 drill.n.01_1)",
+  "(touching tabletop.n.01_1 flashlight.n.01_1)",
+  "(touching tabletop.n.01_1 pliers.n.01_1)",
+  "(touching tabletop.n.01_1 screwdriver.n.01_1)",
+  "(touching tabletop.n.01_1 toolbox.n.01_1)",
+  "(touching toolbox.n.01_1 tabletop.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 7,
+  "n_initially_true": 2,
+  "max_partial_q": 0.714,
+  "literals": [
+   {
+    "literal": "(inside drill.n.01_1 toolbox.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "drill.n.01_1",
+     "toolbox.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside pliers.n.01_1 toolbox.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "pliers.n.01_1",
+     "toolbox.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside flashlight.n.01_1 toolbox.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "flashlight.n.01_1",
+     "toolbox.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside allen_wrench.n.01_1 toolbox.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "allen_wrench.n.01_1",
+     "toolbox.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside screwdriver.n.01_1 toolbox.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "screwdriver.n.01_1",
+     "toolbox.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop toolbox.n.01_1 tabletop.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "toolbox.n.01_1",
+     "tabletop.n.01_1"
+    ],
+    "initially_true_inferred": true
+   },
+   {
+    "literal": "(not open toolbox.n.01_1))",
+    "negated": true,
+    "predicate": "open",
+    "args": [
+     "toolbox.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   7,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   5
+  ],
+  [
+   "ontop",
+   1
+  ],
+  [
+   "not open",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "drill.n.01_1",
+   "scene_object": "drill_193",
+   "substance": false,
+   "category": "drill",
+   "model": "nzgmza",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.03,
+    "median": 1.03,
+    "max": 1.03
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.83,
+    "median": 1.67,
+    "max": 2.77
+   },
+   "xy_spread_m": 2.18,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_glwobe_0",
+   "substance": false,
+   "category": "floors",
+   "model": "glwobe",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999873042106628,
+    1.000001072883606,
+    0.9999303221702576
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.06,
+    "median": 0.9,
+    "max": 1.86
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tabletop.n.01_1",
+   "scene_object": "countertop_fjkase_0",
+   "substance": false,
+   "category": "countertop",
+   "model": "fjkase",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000059962272644,
+    1.0000097751617432,
+    0.9999768137931824
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 1.54,
+    "max": 2.43
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "pliers.n.01_1",
+   "scene_object": "plier_192",
+   "substance": false,
+   "category": "plier",
+   "model": "zwzncq",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.9483966827392578,
+    1.7870978116989136,
+    2.273452043533325
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.97,
+    "median": 1.6,
+    "max": 2.46
+   },
+   "xy_spread_m": 2.07,
+   "n_poses": 20
+  },
+  {
+   "inst": "toolbox.n.01_1",
+   "scene_object": "toolbox_191",
+   "substance": false,
+   "category": "toolbox",
+   "model": "redmtl",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.0,
+    "median": 1.0,
+    "max": 1.0
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 1.56,
+    "max": 2.62
+   },
+   "xy_spread_m": 1.55,
+   "n_poses": 20
+  },
+  {
+   "inst": "flashlight.n.01_1",
+   "scene_object": "flashlight_190",
+   "substance": false,
+   "category": "flashlight",
+   "model": "jtrbkc",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.94,
+    "median": 0.94,
+    "max": 0.94
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.99,
+    "median": 1.86,
+    "max": 3.08
+   },
+   "xy_spread_m": 2.23,
+   "n_poses": 20
+  },
+  {
+   "inst": "allen_wrench.n.01_1",
+   "scene_object": "allen_wrench_189",
+   "substance": false,
+   "category": "allen_wrench",
+   "model": "neqlcn",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.9945248365402222,
+    1.846785068511963,
+    3.5529210567474365
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.76,
+    "median": 1.38,
+    "max": 3.02
+   },
+   "xy_spread_m": 2.13,
+   "n_poses": 20
+  },
+  {
+   "inst": "screwdriver.n.01_1",
+   "scene_object": "screwdriver_188",
+   "substance": false,
+   "category": "screwdriver",
+   "model": "irtslw",
+   "in_rooms": [
+    "utility_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.9,
+    "median": 1.49,
+    "max": 2.82
+   },
+   "xy_spread_m": 2.25,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   23.05,
+   0.49
+  ],
+  [
+   23.1,
+   -1.1
+  ],
+  [
+   22.95,
+   1.29
+  ],
+  [
+   23.29,
+   0.48
+  ],
+  [
+   23.28,
+   -1.09
+  ],
+  [
+   23.35,
+   -0.12
+  ],
+  [
+   23.44,
+   0.8
+  ],
+  [
+   23.09,
+   -0.85
+  ],
+  [
+   23.33,
+   -0.18
+  ],
+  [
+   23.33,
+   0.7
+  ],
+  [
+   23.17,
+   1.67
+  ],
+  [
+   23.21,
+   -0.53
+  ],
+  [
+   22.94,
+   -0.51
+  ],
+  [
+   23.21,
+   0.11
+  ],
+  [
+   23.6,
+   -1.29
+  ],
+  [
+   23.48,
+   -1.15
+  ],
+  [
+   23.03,
+   1.15
+  ],
+  [
+   23.01,
+   -0.2
+  ],
+  [
+   23.51,
+   1.44
+  ],
+  [
+   23.03,
+   1.49
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 16,
+   "median": 21.5,
+   "max": 29
+  },
+  "demo_seconds": {
+   "min": 195.1,
+   "median": 333.02,
+   "max": 650.2
+  },
+  "distinct_verb_sequences": 90,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "open lid",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "close lid"
+  ],
+  "modal_verb_sequence_share": 0.22,
+  "modal_verb_counts": {
+   "close lid": 1,
+   "move to": 9,
+   "open lid": 1,
+   "pick up from": 5,
+   "place in": 5,
+   "push to": 1
+  },
+  "modal_verb_counts_share": 0.225,
+  "representative_episode": {
+   "file": "episode_00192220.json",
+   "seconds": 341.0,
+   "steps": [
+    {
+     "prompt": "move to the toolbox",
+     "start_s": 3.0,
+     "end_s": 8.3
+    },
+    {
+     "prompt": "push the toolbox to the center countertop",
+     "start_s": 8.3,
+     "end_s": 69.8
+    },
+    {
+     "prompt": "open the lid of the toolbox",
+     "start_s": 69.8,
+     "end_s": 109.8
+    },
+    {
+     "prompt": "move to the allen wrench",
+     "start_s": 109.8,
+     "end_s": 114.0
+    },
+    {
+     "prompt": "pick up the allen wrench from the countertop",
+     "start_s": 114.0,
+     "end_s": 129.8
+    },
+    {
+     "prompt": "move to the screwdriver",
+     "start_s": 129.8,
+     "end_s": 132.7
+    },
+    {
+     "prompt": "pick up the screwdriver from the countertop",
+     "start_s": 132.7,
+     "end_s": 147.7
+    },
+    {
+     "prompt": "move to the toolbox",
+     "start_s": 147.7,
+     "end_s": 150.6
+    },
+    {
+     "prompt": "place the allen wrench in the toolbox",
+     "start_s": 150.6,
+     "end_s": 165.1
+    },
+    {
+     "prompt": "place the screwdriver in the toolbox",
+     "start_s": 165.1,
+     "end_s": 190.2
+    },
+    {
+     "prompt": "move to the drill",
+     "start_s": 190.2,
+     "end_s": 195.8
+    },
+    {
+     "prompt": "pick up the drill from the countertop",
+     "start_s": 195.8,
+     "end_s": 208.7
+    },
+    {
+     "prompt": "move to the flashlight",
+     "start_s": 208.7,
+     "end_s": 213.6
+    },
+    {
+     "prompt": "pick up the flashlight from the countertop",
+     "start_s": 213.6,
+     "end_s": 230.7
+    },
+    {
+     "prompt": "move to the toolbox",
+     "start_s": 230.7,
+     "end_s": 235.1
+    },
+    {
+     "prompt": "place the drill in the toolbox",
+     "start_s": 235.1,
+     "end_s": 249.8
+    },
+    {
+     "prompt": "place the flashlight in the toolbox",
+     "start_s": 249.8,
+     "end_s": 266.9
+    },
+    {
+     "prompt": "move to the plier",
+     "start_s": 266.9,
+     "end_s": 273.7
+    },
+    {
+     "prompt": "pick up the plier from the countertop",
+     "start_s": 273.7,
+     "end_s": 296.2
+    },
+    {
+     "prompt": "move to the toolbox",
+     "start_s": 296.2,
+     "end_s": 309.7
+    },
+    {
+     "prompt": "place the plier in the toolbox",
+     "start_s": 309.7,
+     "end_s": 321.3
+    },
+    {
+     "prompt": "close the lid of the toolbox",
+     "start_s": 321.3,
+     "end_s": 344.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "close lid": 23.8,
+   "move to": 5.8,
+   "open lid": 40.0,
+   "pick up from": 20.5,
+   "place in": 17.2,
+   "place on": 11.9,
+   "push to": 40.2
+  },
+  "verb_counts_total": {
+   "move to": 1602,
+   "pick up from": 1041,
+   "place in": 1000,
+   "push to": 232,
+   "open lid": 200,
+   "close lid": 200,
+   "place on": 41
+  },
+  "top_prompts": [
+   [
+    "move to the toolbox",
+    708
+   ],
+   [
+    "push the toolbox to the center countertop",
+    226
+   ],
+   [
+    "pick up the screwdriver from the countertop",
+    213
+   ],
+   [
+    "pick up the flashlight from the countertop",
+    209
+   ],
+   [
+    "pick up the plier from the countertop",
+    207
+   ],
+   [
+    "pick up the allen wrench from the countertop",
+    206
+   ],
+   [
+    "pick up the drill from the countertop",
+    205
+   ],
+   [
+    "open the lid of the toolbox",
+    200
+   ],
+   [
+    "place the drill in the toolbox",
+    200
+   ],
+   [
+    "place the flashlight in the toolbox",
+    200
+   ],
+   [
+    "place the screwdriver in the toolbox",
+    200
+   ],
+   [
+    "place the allen wrench in the toolbox",
+    200
+   ],
+   [
+    "place the plier in the toolbox",
+    200
+   ],
+   [
+    "close the lid of the toolbox",
+    200
+   ],
+   [
+    "move to the plier",
+    185
+   ],
+   [
+    "move to the screwdriver",
+    183
+   ],
+   [
+    "move to the drill",
+    174
+   ],
+   [
+    "move to the flashlight",
+    174
+   ],
+   [
+    "move to the allen wrench",
+    171
+   ],
+   [
+    "place the screwdriver on the countertop",
+    12
+   ],
+   [
+    "place the flashlight on the countertop",
+    9
+   ],
+   [
+    "place the plier on the countertop",
+    7
+   ],
+   [
+    "place the allen wrench on the countertop",
+    7
+   ],
+   [
+    "move to the countertop",
+    6
+   ],
+   [
+    "place the drill on the countertop",
+    5
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "open lid",
+  "place on",
+  "pick up from",
+  "place in",
+  "close lid",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 15957
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 15957
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 15957
+  }
+ }
+}

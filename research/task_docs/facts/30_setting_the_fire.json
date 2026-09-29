@@ -1,0 +1,752 @@
+{
+ "index": 30,
+ "name": "setting_the_fire",
+ "instruction": "In the living room, place the newspaper from the table into the wood fireplace, then put both pieces of firewood from the floor on top of the newspaper. Use the cigar lighter to ignite any one of the items so that the whole pile catches fire, and then turn the lighter off.",
+ "title": "Setting The Fire",
+ "rooms_listed": [
+  "living_room"
+ ],
+ "video": "https://player.vimeo.com/video/1114059945",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "In the living room, place the newspaper from the table into the wood fireplace, then put both pieces of firewood from the floor on top of the newspaper. Use the cigar lighter to ignite any one of the items so that the whole pile catches fire, and then turn the lighter off.",
+ "human": {
+  "mean_steps": 9118.13,
+  "mean_seconds": 303.9,
+  "step_limit": 13677,
+  "time_limit_seconds": 455.9,
+  "base_distance_m": 31.8047,
+  "eef_displacement_m": {
+   "left": 11.4036,
+   "right": 12.9476
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem setting_the_fire-0)\n    (:domain behavior-1k)\n\n    (:objects\n        firewood.n.01_1 firewood.n.01_2 - firewood.n.01\n        floor.n.01_1 - floor.n.01\n        newspaper.n.03_1 - newspaper.n.03\n        table.n.02_1 - table.n.02\n        cigar_lighter.n.01_1 - cigar_lighter.n.01\n        wood_fireplace.n.01_1 - wood_fireplace.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (ontop firewood.n.01_1 floor.n.01_1) \n        (ontop firewood.n.01_2 floor.n.01_1) \n        (ontop newspaper.n.03_1 table.n.02_1)\n        (ontop cigar_lighter.n.01_1 table.n.02_1)\n        (inroom wood_fireplace.n.01_1 living_room)\n        (inroom table.n.02_1 living_room)\n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (forall \n                (?firewood.n.01 - firewood.n.01) \n                (and\n                    (on_fire ?firewood.n.01)\n                    (ontop ?firewood.n.01 ?newspaper.n.03_1)\n                    (inside ?firewood.n.01 ?wood_fireplace.n.01_1)\n                )\n            )\n            (on_fire ?newspaper.n.03_1)\n            (not\n                (toggled_on cigar_lighter.n.01_1)\n            )\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "firewood.n.01": [
+   "firewood.n.01_1",
+   "firewood.n.01_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "newspaper.n.03": [
+   "newspaper.n.03_1"
+  ],
+  "table.n.02": [
+   "table.n.02_1"
+  ],
+  "cigar_lighter.n.01": [
+   "cigar_lighter.n.01_1"
+  ],
+  "wood_fireplace.n.01": [
+   "wood_fireplace.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom table.n.02_1 living_room)",
+  "(inroom wood_fireplace.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop cigar_lighter.n.01_1 table.n.02_1)",
+  "(ontop firewood.n.01_1 floor.n.01_1)",
+  "(ontop firewood.n.01_2 floor.n.01_1)",
+  "(ontop newspaper.n.03_1 table.n.02_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching cigar_lighter.n.01_1 table.n.02_1)",
+  "(touching firewood.n.01_1 floor.n.01_1)",
+  "(touching firewood.n.01_2 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 firewood.n.01_1)",
+  "(touching floor.n.01_1 firewood.n.01_2)",
+  "(touching newspaper.n.03_1 table.n.02_1)",
+  "(touching table.n.02_1 cigar_lighter.n.01_1)",
+  "(touching table.n.02_1 newspaper.n.03_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 8,
+  "n_initially_true": 1,
+  "max_partial_q": 0.875,
+  "literals": [
+   {
+    "literal": "(on_fire firewood.n.01_1)",
+    "negated": false,
+    "predicate": "on_fire",
+    "args": [
+     "firewood.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop firewood.n.01_1 newspaper.n.03_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "firewood.n.01_1",
+     "newspaper.n.03_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside firewood.n.01_1 wood_fireplace.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "firewood.n.01_1",
+     "wood_fireplace.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(on_fire firewood.n.01_2)",
+    "negated": false,
+    "predicate": "on_fire",
+    "args": [
+     "firewood.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop firewood.n.01_2 newspaper.n.03_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "firewood.n.01_2",
+     "newspaper.n.03_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside firewood.n.01_2 wood_fireplace.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "firewood.n.01_2",
+     "wood_fireplace.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(on_fire newspaper.n.03_1)",
+    "negated": false,
+    "predicate": "on_fire",
+    "args": [
+     "newspaper.n.03_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(not toggled_on cigar_lighter.n.01_1))",
+    "negated": true,
+    "predicate": "toggled_on",
+    "args": [
+     "cigar_lighter.n.01_1"
+    ],
+    "initially_true_inferred": true
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   8,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "on_fire",
+   3
+  ],
+  [
+   "ontop",
+   2
+  ],
+  [
+   "inside",
+   2
+  ],
+  [
+   "not toggled_on",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "firewood.n.01_1",
+   "scene_object": "firewood_76",
+   "substance": false,
+   "category": "firewood",
+   "model": "agntyc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.58,
+    "median": 1.65,
+    "max": 3.39
+   },
+   "xy_spread_m": 4.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "firewood.n.01_2",
+   "scene_object": "firewood_75",
+   "substance": false,
+   "category": "firewood",
+   "model": "agntyc",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.03,
+    "median": 0.03,
+    "max": 0.03
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.62,
+    "median": 1.47,
+    "max": 3.31
+   },
+   "xy_spread_m": 4.52,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ulujpr_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ulujpr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000017881393433,
+    0.9999909996986389,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 1.45,
+    "max": 2.14
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "newspaper.n.03_1",
+   "scene_object": "newspaper_74",
+   "substance": false,
+   "category": "newspaper",
+   "model": "omsont",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.44,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.05,
+    "median": 1.86,
+    "max": 2.35
+   },
+   "xy_spread_m": 1.41,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "coffee_table_koagbh_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "koagbh",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9999982714653015,
+    1.0000159740447998,
+    1.000001311302185
+   ],
+   "z": {
+    "min": 0.36,
+    "median": 0.36,
+    "max": 0.36
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.26,
+    "median": 1.67,
+    "max": 2.15
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cigar_lighter.n.01_1",
+   "scene_object": "lighter_73",
+   "substance": false,
+   "category": "lighter",
+   "model": "zsxfjz",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.43,
+    "median": 0.43,
+    "max": 0.43
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 1.82,
+    "max": 2.59
+   },
+   "xy_spread_m": 1.45,
+   "n_poses": 20
+  },
+  {
+   "inst": "wood_fireplace.n.01_1",
+   "scene_object": "wood_fireplace_gpnsij_0",
+   "substance": false,
+   "category": "wood_fireplace",
+   "model": "gpnsij",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999626874923706,
+    1.000006079673767,
+    1.0000019073486328
+   ],
+   "z": {
+    "min": 0.65,
+    "median": 0.65,
+    "max": 0.65
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.31,
+    "median": 2.11,
+    "max": 3.05
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   5.15,
+   5.04
+  ],
+  [
+   4.53,
+   4.03
+  ],
+  [
+   5.15,
+   4.36
+  ],
+  [
+   5.27,
+   4.55
+  ],
+  [
+   4.71,
+   5.7
+  ],
+  [
+   4.79,
+   4.63
+  ],
+  [
+   4.57,
+   4.47
+  ],
+  [
+   4.45,
+   7.05
+  ],
+  [
+   4.54,
+   6.44
+  ],
+  [
+   4.94,
+   4.89
+  ],
+  [
+   4.74,
+   4.99
+  ],
+  [
+   5.23,
+   4.23
+  ],
+  [
+   5.11,
+   5.36
+  ],
+  [
+   5.31,
+   5.4
+  ],
+  [
+   5.01,
+   4.06
+  ],
+  [
+   5.36,
+   5.15
+  ],
+  [
+   5.01,
+   3.86
+  ],
+  [
+   5.17,
+   5.7
+  ],
+  [
+   5.47,
+   4.39
+  ],
+  [
+   4.82,
+   5.36
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 16,
+   "median": 17.0,
+   "max": 17
+  },
+  "demo_seconds": {
+   "min": 189.0,
+   "median": 290.23,
+   "max": 477.77
+  },
+  "distinct_verb_sequences": 6,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "turn on switch",
+   "move to",
+   "pick up from",
+   "move to",
+   "ignite",
+   "place in",
+   "turn off switch"
+  ],
+  "modal_verb_sequence_share": 0.935,
+  "modal_verb_counts": {
+   "ignite": 1,
+   "move to": 6,
+   "pick up from": 4,
+   "place in": 3,
+   "push to": 1,
+   "turn off switch": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.975,
+  "representative_episode": {
+   "file": "episode_00301020.json",
+   "seconds": 290.9,
+   "steps": [
+    {
+     "prompt": "move to the newspaper",
+     "start_s": 0.0,
+     "end_s": 31.4
+    },
+    {
+     "prompt": "push the newspaper to the to_the_edge_of coffee table",
+     "start_s": 37.4,
+     "end_s": 70.3
+    },
+    {
+     "prompt": "pick up the newspaper from the coffee table",
+     "start_s": 72.6,
+     "end_s": 86.5
+    },
+    {
+     "prompt": "move to the firewood",
+     "start_s": 86.5,
+     "end_s": 111.1
+    },
+    {
+     "prompt": "pick up the firewood from the floors",
+     "start_s": 116.7,
+     "end_s": 128.3
+    },
+    {
+     "prompt": "move to the wood fireplace",
+     "start_s": 128.4,
+     "end_s": 145.9
+    },
+    {
+     "prompt": "place the newspaper in the wood fireplace",
+     "start_s": 149.1,
+     "end_s": 161.2
+    },
+    {
+     "prompt": "place the firewood in the wood fireplace",
+     "start_s": 162.4,
+     "end_s": 171.8
+    },
+    {
+     "prompt": "move to the lighter",
+     "start_s": 172.4,
+     "end_s": 184.2
+    },
+    {
+     "prompt": "pick up the lighter from the coffee table",
+     "start_s": 185.0,
+     "end_s": 200.3
+    },
+    {
+     "prompt": "turn on the lighter",
+     "start_s": 215.2,
+     "end_s": 223.6
+    },
+    {
+     "prompt": "move to the firewood",
+     "start_s": 224.9,
+     "end_s": 230.6
+    },
+    {
+     "prompt": "pick up the firewood from the floors",
+     "start_s": 231.2,
+     "end_s": 242.1
+    },
+    {
+     "prompt": "move to the wood fireplace",
+     "start_s": 242.6,
+     "end_s": 257.1
+    },
+    {
+     "prompt": "ignite the lighter with the firewood",
+     "start_s": 257.2,
+     "end_s": 262.0
+    },
+    {
+     "prompt": "place the firewood in the wood fireplace",
+     "start_s": 263.0,
+     "end_s": 278.4
+    },
+    {
+     "prompt": "turn off the lighter",
+     "start_s": 279.6,
+     "end_s": 290.9
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "ignite": 5.3,
+   "move to": 16.2,
+   "pick up from": 16.6,
+   "place in": 15.7,
+   "push to": 38.3,
+   "turn off switch": 9.8,
+   "turn on switch": 10.1
+  },
+  "verb_counts_total": {
+   "move to": 1196,
+   "pick up from": 800,
+   "place in": 600,
+   "turn on switch": 200,
+   "ignite": 200,
+   "turn off switch": 200,
+   "push to": 199
+  },
+  "top_prompts": [
+   [
+    "move to the firewood",
+    399
+   ],
+   [
+    "pick up the firewood from the floors",
+    399
+   ],
+   [
+    "place the firewood in the wood fireplace",
+    398
+   ],
+   [
+    "move to the wood fireplace",
+    396
+   ],
+   [
+    "place the newspaper in the wood fireplace",
+    201
+   ],
+   [
+    "move to the newspaper",
+    200
+   ],
+   [
+    "pick up the newspaper from the coffee table",
+    200
+   ],
+   [
+    "move to the lighter",
+    200
+   ],
+   [
+    "turn on the lighter",
+    200
+   ],
+   [
+    "turn off the lighter",
+    200
+   ],
+   [
+    "push the newspaper to the to_the_edge_of coffee table",
+    196
+   ],
+   [
+    "pick up the lighter from the coffee table",
+    196
+   ],
+   [
+    "ignite the lighter with the firewood",
+    187
+   ],
+   [
+    "ignite the firewood with the lighter",
+    11
+   ],
+   [
+    "pick up the lighter from the floors",
+    4
+   ],
+   [
+    "ignite the lighter with the newspaper",
+    2
+   ],
+   [
+    "push the newspaper to the coffee table",
+    2
+   ],
+   [
+    "push the newspaper to the to_the_edge_of floors",
+    1
+   ],
+   [
+    "pick up the firewood from the wood fireplace",
+    1
+   ],
+   [
+    "place the firewood in the coffee table",
+    1
+   ],
+   [
+    "move to the coffee table",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "ignite",
+  "pick up from",
+  "turn off switch",
+  "place in",
+  "turn on switch",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.75,
+   "success": false,
+   "steps": 13678
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.125,
+   "success": false,
+   "steps": 13678
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.75,
+   "success": false,
+   "steps": 13678
+  }
+ }
+}

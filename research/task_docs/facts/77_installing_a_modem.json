@@ -1,0 +1,591 @@
+{
+ "index": 77,
+ "name": "installing_a_modem",
+ "instruction": "Install the modem by placing it on the cabinet and turning it on.",
+ "title": "Installing A Modem",
+ "rooms_listed": [
+  "bedroom",
+  "entryway",
+  "kitchen",
+  "living_room"
+ ],
+ "video": "https://www.youtube.com/embed/zHEfUkrCWfc",
+ "scene_model": "Rs_int",
+ "comet_pretrain_sentence": "Install the modem by placing it on the cabinet and turning it on.",
+ "human": {
+  "mean_steps": 2412.985,
+  "mean_seconds": 80.4,
+  "step_limit": 3619,
+  "time_limit_seconds": 120.6,
+  "base_distance_m": 2.6609,
+  "eef_displacement_m": {
+   "left": 5.0635,
+   "right": 3.2098
+  }
+ },
+ "rooms_loaded": [
+  "bedroom_0",
+  "entryway_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "bedroom",
+   "entryway",
+   "kitchen",
+   "living_room"
+  ],
+  "Rs_int": {
+   "whitelist": {
+    "modem.n.01": {
+     "modem": {
+      "axqxsv": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem installing_a_modem-0)\n    (:domain behavior-1k)\n\n    (:objects\n     \tmodem.n.01_1 - modem.n.01\n    \tcoffee_table.n.01_1 - coffee_table.n.01\n    \tcabinet.n.01_1 cabinet.n.01_2 - cabinet.n.01\n        television_receiver.n.01_1 - television_receiver.n.01\n    \tfloor.n.01_1 - floor.n.01\n    \tagent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (not \n            (toggled_on modem.n.01_1)\n        ) \n        (ontop modem.n.01_1 coffee_table.n.01_1) \n        (inroom coffee_table.n.01_1 living_room) \n        (inroom cabinet.n.01_1 living_room) \n        (inroom cabinet.n.01_2 living_room) \n        (inroom television_receiver.n.01_1 living_room) \n        (inroom floor.n.01_1 living_room) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (toggled_on ?modem.n.01_1) \n            (nextto ?modem.n.01_1 ?television_receiver.n.01_1)\n            (exists \n                (?cabinet.n.01 - cabinet.n.01)\n                (and \n                    (ontop ?television_receiver.n.01_1 ?cabinet.n.01)\n                    (ontop ?modem.n.01_1 ?cabinet.n.01)\n                )\n            )\n        )\n    )\n)\n",
+ "scene": "Rs_int",
+ "n_public_instances": 20,
+ "room_instances": {
+  "living_room": "living_room_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "modem.n.01": [
+   "modem.n.01_1"
+  ],
+  "coffee_table.n.01": [
+   "coffee_table.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1",
+   "cabinet.n.01_2"
+  ],
+  "television_receiver.n.01": [
+   "television_receiver.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_2": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "television_receiver.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(inroom cabinet.n.01_1 living_room)",
+  "(inroom cabinet.n.01_2 living_room)",
+  "(inroom coffee_table.n.01_1 living_room)",
+  "(inroom floor.n.01_1 living_room)",
+  "(inroom television_receiver.n.01_1 living_room)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop modem.n.01_1 coffee_table.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching coffee_table.n.01_1 modem.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching modem.n.01_1 coffee_table.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 4,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(toggled_on modem.n.01_1)",
+    "negated": false,
+    "predicate": "toggled_on",
+    "args": [
+     "modem.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto modem.n.01_1 television_receiver.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "modem.n.01_1",
+     "television_receiver.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop television_receiver.n.01_1 cabinet.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "television_receiver.n.01_1",
+     "cabinet.n.01_2"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop modem.n.01_1 cabinet.n.01_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "modem.n.01_1",
+     "cabinet.n.01_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   4,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "ontop",
+   2
+  ],
+  [
+   "toggled_on",
+   1
+  ],
+  [
+   "nextto",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "modem.n.01_1",
+   "scene_object": "modem_72",
+   "substance": false,
+   "category": "modem",
+   "model": "axqxsv",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.46,
+    "median": 0.46,
+    "max": 0.47
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.87,
+    "median": 1.42,
+    "max": 2.25
+   },
+   "xy_spread_m": 0.91,
+   "n_poses": 20
+  },
+  {
+   "inst": "coffee_table.n.01_1",
+   "scene_object": "coffee_table_fqluyq_0",
+   "substance": false,
+   "category": "coffee_table",
+   "model": "fqluyq",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.1711909770965576,
+    1.0265920162200928,
+    0.9481316208839417
+   ],
+   "z": {
+    "min": 0.26,
+    "median": 0.26,
+    "max": 0.26
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.02,
+    "median": 1.4,
+    "max": 2.22
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "bottom_cabinet_jhymlr_0",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "jhymlr",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    2.3134634494781494,
+    2.4062798023223877,
+    2.0003676414489746
+   ],
+   "z": {
+    "min": 0.38,
+    "median": 0.38,
+    "max": 0.38
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.9,
+    "median": 1.66,
+    "max": 2.51
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_2",
+   "scene_object": "bottom_cabinet_bamfsz_1",
+   "substance": false,
+   "category": "bottom_cabinet",
+   "model": "bamfsz",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9254347085952759,
+    1.0425928831100464,
+    1.273688554763794
+   ],
+   "z": {
+    "min": 0.38,
+    "median": 0.38,
+    "max": 0.38
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.65,
+    "median": 2.35,
+    "max": 3.67
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "television_receiver.n.01_1",
+   "scene_object": "standing_tv_udotid_0",
+   "substance": false,
+   "category": "standing_tv",
+   "model": "udotid",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.4325197637081146,
+    0.7535343170166016,
+    0.6621373891830444
+   ],
+   "z": {
+    "min": 0.83,
+    "median": 0.83,
+    "max": 0.83
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.8,
+    "median": 1.51,
+    "max": 2.5
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ptwlei_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ptwlei",
+   "in_rooms": [
+    "living_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.72,
+    "median": 1.34,
+    "max": 1.94
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_plkhkg",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   0.66,
+   -2.11
+  ],
+  [
+   0.17,
+   0.25
+  ],
+  [
+   0.76,
+   -1.43
+  ],
+  [
+   0.42,
+   -0.72
+  ],
+  [
+   0.71,
+   -1.07
+  ],
+  [
+   0.04,
+   0.11
+  ],
+  [
+   0.71,
+   -2.71
+  ],
+  [
+   0.23,
+   0.02
+  ],
+  [
+   0.03,
+   0.16
+  ],
+  [
+   0.58,
+   -1.64
+  ],
+  [
+   0.68,
+   -2.85
+  ],
+  [
+   0.29,
+   -0.26
+  ],
+  [
+   0.7,
+   -0.53
+  ],
+  [
+   -0.25,
+   0.14
+  ],
+  [
+   0.68,
+   -2.78
+  ],
+  [
+   0.49,
+   -1.74
+  ],
+  [
+   0.06,
+   0.05
+  ],
+  [
+   0.23,
+   0.44
+  ],
+  [
+   0.09,
+   -0.17
+  ],
+  [
+   0.9,
+   -2.96
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 5,
+   "median": 5.0,
+   "max": 7
+  },
+  "demo_seconds": {
+   "min": 50.9,
+   "median": 71.0,
+   "max": 165.07
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on",
+   "turn on switch"
+  ],
+  "modal_verb_sequence_share": 0.705,
+  "modal_verb_counts": {
+   "move to": 2,
+   "pick up from": 1,
+   "place on": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.705,
+  "representative_episode": {
+   "file": "episode_00770220.json",
+   "seconds": 69.2,
+   "steps": [
+    {
+     "prompt": "move to the modem",
+     "start_s": 0.0,
+     "end_s": 9.0
+    },
+    {
+     "prompt": "pick up the modem from the coffee table",
+     "start_s": 9.0,
+     "end_s": 36.0
+    },
+    {
+     "prompt": "move to the cabinet",
+     "start_s": 36.0,
+     "end_s": 47.0
+    },
+    {
+     "prompt": "place the modem on the cabinet",
+     "start_s": 47.0,
+     "end_s": 58.2
+    },
+    {
+     "prompt": "turn on the modem",
+     "start_s": 58.2,
+     "end_s": 69.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 11.9,
+   "move to": 15.7,
+   "pick up from": 19.4,
+   "place on": 10.3,
+   "turn on switch": 13.8
+  },
+  "verb_counts_total": {
+   "move to": 402,
+   "pick up from": 200,
+   "place on": 200,
+   "turn on switch": 200,
+   "hand over": 59
+  },
+  "top_prompts": [
+   [
+    "move to the cabinet",
+    202
+   ],
+   [
+    "move to the modem",
+    200
+   ],
+   [
+    "pick up the modem from the coffee table",
+    200
+   ],
+   [
+    "place the modem on the cabinet",
+    200
+   ],
+   [
+    "turn on the modem",
+    200
+   ],
+   [
+    "hand over the modem",
+    59
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft10k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3620
+  },
+  "ft24k@sulab1": {
+   "instance": 311,
+   "q": 0.25,
+   "success": false,
+   "steps": 3620
+  },
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.25,
+   "success": false,
+   "steps": 3620
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 3620
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.25,
+   "success": false,
+   "steps": 3620
+  }
+ }
+}

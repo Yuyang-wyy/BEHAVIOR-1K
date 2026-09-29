@@ -1,0 +1,488 @@
+{
+ "index": 93,
+ "name": "clean_a_keyboard",
+ "instruction": "Use the pipe cleaner to clean the keyboard until the stain is removed.",
+ "title": "Clean A Keyboard",
+ "rooms_listed": [
+  "private_office"
+ ],
+ "video": "https://www.youtube.com/embed/yEV3cFqyu-4",
+ "scene_model": "office_cubicles_right",
+ "comet_pretrain_sentence": "Use the pipe cleaner to clean the keyboard until the stain is removed.",
+ "human": {
+  "mean_steps": 3876.065,
+  "mean_seconds": 129.2,
+  "step_limit": 5814,
+  "time_limit_seconds": 193.8,
+  "base_distance_m": 4.4593,
+  "eef_displacement_m": {
+   "left": 3.1973,
+   "right": 9.7266
+  }
+ },
+ "rooms_loaded": [
+  "private_office_0",
+  "private_office_1",
+  "private_office_2",
+  "private_office_3",
+  "shared_office_0",
+  "corridor_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "private_office"
+  ],
+  "office_cubicles_right": {
+   "whitelist": {
+    "dust.n.01": {},
+    "keyboard.n.01": {
+     "keyboard": {
+      "uwacaq": null
+     }
+    },
+    "pipe_cleaner.n.01": {
+     "pipe_cleaner": {
+      "yccyjo": [
+       0.4,
+       0.1,
+       0.1
+      ]
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem clean_a_keyboard-0)\n    (:domain behavior-1k)\n\n    (:objects\n        dust.n.01_1 - dust.n.01\n        keyboard.n.01_1 - keyboard.n.01\n        pipe_cleaner.n.01_1 - pipe_cleaner.n.01\n        desk.n.01_1 - desk.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (covered keyboard.n.01_1 dust.n.01_1)\n        (ontop pipe_cleaner.n.01_1 desk.n.01_1)\n        (ontop keyboard.n.01_1 desk.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n        (inroom desk.n.01_1 private_office)\n        (inroom floor.n.01_1 private_office)\n    )\n\n    (:goal\n        (and\n            (not\n                (covered ?keyboard.n.01_1 ?dust.n.01_1)\n            )\n        )\n    )\n)\n",
+ "scene": "office_cubicles_right",
+ "n_public_instances": 20,
+ "room_instances": {
+  "private_office": "private_office_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "dust.n.01": [
+   "dust.n.01_1"
+  ],
+  "keyboard.n.01": [
+   "keyboard.n.01_1"
+  ],
+  "pipe_cleaner.n.01": [
+   "pipe_cleaner.n.01_1"
+  ],
+  "desk.n.01": [
+   "desk.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(covered keyboard.n.01_1 dust.n.01_1)",
+  "(inroom desk.n.01_1 private_office)",
+  "(inroom floor.n.01_1 private_office)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop keyboard.n.01_1 desk.n.01_1)",
+  "(ontop pipe_cleaner.n.01_1 desk.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching desk.n.01_1 keyboard.n.01_1)",
+  "(touching desk.n.01_1 pipe_cleaner.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching keyboard.n.01_1 desk.n.01_1)",
+  "(touching pipe_cleaner.n.01_1 desk.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 1,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(not covered keyboard.n.01_1 dust.n.01_1))",
+    "negated": true,
+    "predicate": "covered",
+    "args": [
+     "keyboard.n.01_1",
+     "dust.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   1,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "not covered",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "dust.n.01_1",
+   "scene_object": "dust",
+   "substance": true,
+   "systems": [
+    "dust"
+   ]
+  },
+  {
+   "inst": "keyboard.n.01_1",
+   "scene_object": "keyboard_121",
+   "substance": false,
+   "category": "keyboard",
+   "model": "uwacaq",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.79,
+    "median": 0.79,
+    "max": 0.79
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.84,
+    "median": 1.44,
+    "max": 2.58
+   },
+   "xy_spread_m": 2.54,
+   "n_poses": 20
+  },
+  {
+   "inst": "pipe_cleaner.n.01_1",
+   "scene_object": "pipe_cleaner_120",
+   "substance": false,
+   "category": "pipe_cleaner",
+   "model": "yccyjo",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.8597536087036133,
+    3.371739625930786,
+    3.4831080436706543
+   ],
+   "z": {
+    "min": 0.83,
+    "median": 0.83,
+    "max": 0.83
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.03,
+    "median": 1.74,
+    "max": 2.55
+   },
+   "xy_spread_m": 2.51,
+   "n_poses": 20
+  },
+  {
+   "inst": "desk.n.01_1",
+   "scene_object": "desk_mdhelw_2",
+   "substance": false,
+   "category": "desk",
+   "model": "mdhelw",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999847412109375,
+    1.0000094175338745,
+    0.9999880790710449
+   ],
+   "z": {
+    "min": 0.6,
+    "median": 0.6,
+    "max": 0.6
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.46,
+    "median": 1.62,
+    "max": 1.9
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_wjsaxw_0",
+   "substance": false,
+   "category": "floors",
+   "model": "wjsaxw",
+   "in_rooms": [
+    "private_office_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.53,
+    "median": 1.66,
+    "max": 1.88
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_rlvndg",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   10.85,
+   5.39
+  ],
+  [
+   11.11,
+   5.27
+  ],
+  [
+   11.04,
+   5.21
+  ],
+  [
+   11.1,
+   5.15
+  ],
+  [
+   11.18,
+   5.4
+  ],
+  [
+   11.11,
+   5.18
+  ],
+  [
+   8.88,
+   5.3
+  ],
+  [
+   8.98,
+   5.33
+  ],
+  [
+   8.98,
+   5.34
+  ],
+  [
+   8.81,
+   5.17
+  ],
+  [
+   11.09,
+   5.29
+  ],
+  [
+   9.0,
+   5.39
+  ],
+  [
+   10.86,
+   5.24
+  ],
+  [
+   10.74,
+   5.3
+  ],
+  [
+   8.97,
+   5.36
+  ],
+  [
+   11.15,
+   5.14
+  ],
+  [
+   10.9,
+   5.23
+  ],
+  [
+   11.12,
+   5.19
+  ],
+  [
+   8.95,
+   5.36
+  ],
+  [
+   11.12,
+   5.25
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 4,
+   "median": 6.0,
+   "max": 6
+  },
+  "demo_seconds": {
+   "min": 37.2,
+   "median": 130.5,
+   "max": 234.87
+  },
+  "distinct_verb_sequences": 3,
+  "modal_verb_sequence": [
+   "move to",
+   "push to",
+   "move to",
+   "pick up from",
+   "move to",
+   "sweep surface"
+  ],
+  "modal_verb_sequence_share": 0.89,
+  "modal_verb_counts": {
+   "move to": 3,
+   "pick up from": 1,
+   "push to": 1,
+   "sweep surface": 1
+  },
+  "modal_verb_counts_share": 0.89,
+  "representative_episode": {
+   "file": "episode_00931600.json",
+   "seconds": 136.4,
+   "steps": [
+    {
+     "prompt": "move to the swivel chair",
+     "start_s": 0.0,
+     "end_s": 19.0
+    },
+    {
+     "prompt": "push the swivel chair to the desk",
+     "start_s": 19.0,
+     "end_s": 38.0
+    },
+    {
+     "prompt": "move to the pipe cleaner",
+     "start_s": 38.0,
+     "end_s": 54.0
+    },
+    {
+     "prompt": "pick up the pipe cleaner from the desk",
+     "start_s": 54.0,
+     "end_s": 87.0
+    },
+    {
+     "prompt": "move to the keyboard",
+     "start_s": 87.0,
+     "end_s": 106.0
+    },
+    {
+     "prompt": "sweep the keyboard",
+     "start_s": 106.0,
+     "end_s": 136.0
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 15.0,
+   "pick up from": 31.9,
+   "push to": 24.3,
+   "sweep surface": 31.2
+  },
+  "verb_counts_total": {
+   "move to": 580,
+   "pick up from": 200,
+   "sweep surface": 200,
+   "push to": 178
+  },
+  "top_prompts": [
+   [
+    "move to the pipe cleaner",
+    200
+   ],
+   [
+    "pick up the pipe cleaner from the desk",
+    200
+   ],
+   [
+    "move to the keyboard",
+    200
+   ],
+   [
+    "sweep the keyboard",
+    200
+   ],
+   [
+    "move to the swivel chair",
+    178
+   ],
+   [
+    "push the swivel chair to the desk",
+    178
+   ],
+   [
+    "move to the desk",
+    1
+   ],
+   [
+    "move to the chair",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5815
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 5815
+  }
+ }
+}

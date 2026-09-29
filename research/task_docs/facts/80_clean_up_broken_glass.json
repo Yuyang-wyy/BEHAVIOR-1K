@@ -1,0 +1,556 @@
+{
+ "index": 80,
+ "name": "clean_up_broken_glass",
+ "instruction": "Pick up all of the broken glass pieces and put them into the trash can.",
+ "title": "Clean Up Broken Glass",
+ "rooms_listed": [
+  "corridor",
+  "dining_room"
+ ],
+ "video": "https://www.youtube.com/embed/qXliGIYzh2w",
+ "scene_model": "restaurant_diner",
+ "comet_pretrain_sentence": "Pick up all of the broken glass pieces and put them into the trash can.",
+ "human": {
+  "mean_steps": 8691.415,
+  "mean_seconds": 289.7,
+  "step_limit": 13037,
+  "time_limit_seconds": 434.6,
+  "base_distance_m": 29.1154,
+  "eef_displacement_m": {
+   "left": 14.6504,
+   "right": 13.5075
+  }
+ },
+ "rooms_loaded": [
+  "dining_room_0",
+  "corridor_0",
+  "bar_0",
+  "kitchen_0",
+  "bathroom_0"
+ ],
+ "custom_lists": {
+  "room_types": [
+   "corridor",
+   "dining_room"
+  ],
+  "restaurant_diner": {
+   "whitelist": {
+    "ashcan.n.01": {
+     "trash_can": {
+      "cjmezk": null
+     }
+    },
+    "broken__glass.n.01": {
+     "broken_glass": {
+      "beltgg": null,
+      "rvpgpt": null
+     }
+    }
+   },
+   "blacklist": {}
+  }
+ },
+ "bddl_definition": "(define (problem clean_up_broken_glass-0)\n    (:domain behavior-1k)\n\n    (:objects\n        broken__glass.n.01_1 broken__glass.n.01_2 broken__glass.n.01_3 - broken__glass.n.01\n        floor.n.01_1 floor.n.01_2 - floor.n.01\n        ashcan.n.01_1 - ashcan.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init\n        (ontop broken__glass.n.01_1 floor.n.01_1)\n        (ontop broken__glass.n.01_2 floor.n.01_1)\n        (ontop broken__glass.n.01_3 floor.n.01_1)\n        (ontop agent.n.01_1 floor.n.01_1)\n        (ontop ashcan.n.01_1 floor.n.01_2)\n        (inroom floor.n.01_1 dining_room)\n        (inroom floor.n.01_2 corridor)\n    )\n\n    (:goal\n        (and\n            (forall\n                (?broken__glass.n.01 - broken__glass.n.01)\n                (inside ?broken__glass.n.01 ?ashcan.n.01_1)\n            )\n        )\n    )\n)\n",
+ "scene": "restaurant_diner",
+ "n_public_instances": 20,
+ "room_instances": {
+  "dining_room": "dining_room_0",
+  "corridor": "corridor_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "broken__glass.n.01": [
+   "broken__glass.n.01_1",
+   "broken__glass.n.01_2",
+   "broken__glass.n.01_3"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1",
+   "floor.n.01_2"
+  ],
+  "ashcan.n.01": [
+   "ashcan.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 dining_room)",
+  "(inroom floor.n.01_2 corridor)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop ashcan.n.01_1 floor.n.01_2)",
+  "(ontop broken__glass.n.01_1 floor.n.01_1)",
+  "(ontop broken__glass.n.01_2 floor.n.01_1)",
+  "(ontop broken__glass.n.01_3 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching ashcan.n.01_1 floor.n.01_2)",
+  "(touching broken__glass.n.01_1 floor.n.01_1)",
+  "(touching broken__glass.n.01_2 floor.n.01_1)",
+  "(touching broken__glass.n.01_3 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 broken__glass.n.01_1)",
+  "(touching floor.n.01_1 broken__glass.n.01_2)",
+  "(touching floor.n.01_1 broken__glass.n.01_3)",
+  "(touching floor.n.01_2 ashcan.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(inside broken__glass.n.01_2 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "broken__glass.n.01_2",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside broken__glass.n.01_1 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "broken__glass.n.01_1",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(inside broken__glass.n.01_3 ashcan.n.01_1)",
+    "negated": false,
+    "predicate": "inside",
+    "args": [
+     "broken__glass.n.01_3",
+     "ashcan.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "inside",
+   3
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "broken__glass.n.01_1",
+   "scene_object": "broken_glass_99",
+   "substance": false,
+   "category": "broken_glass",
+   "model": "rvpgpt",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.7,
+    "median": 2.44,
+    "max": 9.98
+   },
+   "xy_spread_m": 10.97,
+   "n_poses": 20
+  },
+  {
+   "inst": "broken__glass.n.01_2",
+   "scene_object": "broken_glass_98",
+   "substance": false,
+   "category": "broken_glass",
+   "model": "beltgg",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.12,
+    "median": 3.56,
+    "max": 9.24
+   },
+   "xy_spread_m": 11.9,
+   "n_poses": 20
+  },
+  {
+   "inst": "broken__glass.n.01_3",
+   "scene_object": "broken_glass_97",
+   "substance": false,
+   "category": "broken_glass",
+   "model": "rvpgpt",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.02,
+    "median": 0.02,
+    "max": 0.02
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.25,
+    "median": 4.68,
+    "max": 10.0
+   },
+   "xy_spread_m": 11.98,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_cxcxqq_0",
+   "substance": false,
+   "category": "floors",
+   "model": "cxcxqq",
+   "in_rooms": [
+    "dining_room_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000039339065552,
+    0.9999991655349731,
+    0.9958263039588928
+   ],
+   "z": {
+    "min": -0.0,
+    "median": -0.0,
+    "max": -0.0
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.42,
+    "median": 3.63,
+    "max": 5.12
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_2",
+   "scene_object": "floors_fcxkki_0",
+   "substance": false,
+   "category": "floors",
+   "model": "fcxkki",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999890923500061,
+    0.9999905824661255,
+    1.000000238418579
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.61,
+    "median": 10.51,
+    "max": 12.21
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "ashcan.n.01_1",
+   "scene_object": "trash_can_96",
+   "substance": false,
+   "category": "trash_can",
+   "model": "cjmezk",
+   "in_rooms": [
+    "corridor_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.2,
+    "median": 0.2,
+    "max": 0.2
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.81,
+    "median": 10.51,
+    "max": 12.18
+   },
+   "xy_spread_m": 1.24,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot_hqmsli",
+   "substance": false,
+   "category": null,
+   "model": "r1pro",
+   "in_rooms": null,
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 300.0,
+    "median": 300.0,
+    "max": 300.0
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": null,
+   "xy_spread_m": 0.0,
+   "n_poses": 1
+  }
+ ],
+ "robot_start_xy": [
+  [
+   -2.02,
+   -6.31
+  ],
+  [
+   -3.28,
+   -6.56
+  ],
+  [
+   -0.78,
+   -7.53
+  ],
+  [
+   -0.89,
+   -0.65
+  ],
+  [
+   -3.62,
+   -6.21
+  ],
+  [
+   0.01,
+   -5.72
+  ],
+  [
+   -2.03,
+   1.9
+  ],
+  [
+   -2.63,
+   -7.9
+  ],
+  [
+   -0.93,
+   1.3
+  ],
+  [
+   -0.66,
+   -6.06
+  ],
+  [
+   0.14,
+   -1.51
+  ],
+  [
+   -3.12,
+   -6.58
+  ],
+  [
+   -0.93,
+   -5.75
+  ],
+  [
+   -2.28,
+   -6.79
+  ],
+  [
+   -0.22,
+   -5.79
+  ],
+  [
+   -0.83,
+   1.64
+  ],
+  [
+   -0.6,
+   -4.42
+  ],
+  [
+   -1.54,
+   -6.61
+  ],
+  [
+   -1.36,
+   -6.93
+  ],
+  [
+   -0.87,
+   -5.52
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 11.0,
+   "max": 12
+  },
+  "demo_seconds": {
+   "min": 151.6,
+   "median": 284.77,
+   "max": 467.37
+  },
+  "distinct_verb_sequences": 4,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in",
+   "place in",
+   "move to",
+   "pick up from",
+   "move to",
+   "place in"
+  ],
+  "modal_verb_sequence_share": 0.895,
+  "modal_verb_counts": {
+   "move to": 5,
+   "pick up from": 3,
+   "place in": 3
+  },
+  "modal_verb_counts_share": 0.895,
+  "representative_episode": {
+   "file": "episode_00802800.json",
+   "seconds": 284.8,
+   "steps": [
+    {
+     "prompt": "move to the broken glass",
+     "start_s": 0.0,
+     "end_s": 10.0
+    },
+    {
+     "prompt": "pick up the broken glass from the floors",
+     "start_s": 10.0,
+     "end_s": 32.2
+    },
+    {
+     "prompt": "move to the broken glass",
+     "start_s": 32.2,
+     "end_s": 76.0
+    },
+    {
+     "prompt": "pick up the broken glass from the floors",
+     "start_s": 76.0,
+     "end_s": 106.0
+    },
+    {
+     "prompt": "move to the trash can",
+     "start_s": 106.0,
+     "end_s": 119.9
+    },
+    {
+     "prompt": "place the broken glass in the trash can",
+     "start_s": 119.9,
+     "end_s": 129.0
+    },
+    {
+     "prompt": "place the broken glass in the trash can",
+     "start_s": 129.0,
+     "end_s": 135.0
+    },
+    {
+     "prompt": "move to the broken glass",
+     "start_s": 135.0,
+     "end_s": 187.0
+    },
+    {
+     "prompt": "pick up the broken glass from the floors",
+     "start_s": 187.0,
+     "end_s": 206.0
+    },
+    {
+     "prompt": "move to the trash can",
+     "start_s": 206.0,
+     "end_s": 269.5
+    },
+    {
+     "prompt": "place the broken glass in the trash can",
+     "start_s": 269.5,
+     "end_s": 284.8
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 31.3,
+   "pick up from": 27.5,
+   "place in": 16.6
+  },
+  "verb_counts_total": {
+   "move to": 1001,
+   "pick up from": 600,
+   "place in": 600
+  },
+  "top_prompts": [
+   [
+    "pick up the broken glass from the floors",
+    600
+   ],
+   [
+    "place the broken glass in the trash can",
+    600
+   ],
+   [
+    "move to the broken glass",
+    591
+   ],
+   [
+    "move to the trash can",
+    410
+   ]
+  ]
+ },
+ "comet_skill_vocab": [],
+ "results": {}
+}

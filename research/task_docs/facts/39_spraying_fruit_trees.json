@@ -1,0 +1,505 @@
+{
+ "index": 39,
+ "name": "spraying_fruit_trees",
+ "instruction": "In the garden, pick up the pesticide atomizer on the floor and spray pesticide onto both trees until each tree trunk is fully covered.",
+ "title": "Spraying Fruit Trees",
+ "rooms_listed": [
+  "garden"
+ ],
+ "video": "https://player.vimeo.com/video/1114060748",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "In the garden, pick up the pesticide atomizer on the floor and spray pesticide onto both trees until each tree trunk is fully covered.",
+ "human": {
+  "mean_steps": 8345.87,
+  "mean_seconds": 278.2,
+  "step_limit": 12518,
+  "time_limit_seconds": 417.3,
+  "base_distance_m": 23.4965,
+  "eef_displacement_m": {
+   "left": 21.5924,
+   "right": 7.564
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem spraying_fruit_trees-0)\n    (:domain behavior-1k)\n\n    (:objects\n        pesticide.n.01_1 - pesticide.n.01\n        pesticide__atomizer.n.01_1 - pesticide__atomizer.n.01\n        tree.n.01_1 tree.n.01_2 - tree.n.01\n        floor.n.01_1 - floor.n.01\n        agent.n.01_1 - agent.n.01\n    )\n    \n    (:init \n        (insource pesticide__atomizer.n.01_1 pesticide.n.01_1) \n        (ontop pesticide__atomizer.n.01_1 floor.n.01_1)\n        (inroom tree.n.01_1 garden)\n        (inroom tree.n.01_2 garden)\n        (inroom floor.n.01_1 garden) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (covered ?tree.n.01_1 ?pesticide.n.01_1)\n            (covered ?tree.n.01_2 ?pesticide.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "garden": "garden_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "pesticide.n.01": [
+   "pesticide.n.01_1"
+  ],
+  "pesticide__atomizer.n.01": [
+   "pesticide__atomizer.n.01_1"
+  ],
+  "tree.n.01": [
+   "tree.n.01_1",
+   "tree.n.01_2"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom floor.n.01_1 garden)",
+  "(inroom tree.n.01_1 garden)",
+  "(inroom tree.n.01_2 garden)",
+  "(insource pesticide__atomizer.n.01_1 pesticide.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop pesticide__atomizer.n.01_1 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 pesticide__atomizer.n.01_1)",
+  "(touching pesticide__atomizer.n.01_1 floor.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(covered tree.n.01_1 pesticide.n.01_1)",
+    "negated": false,
+    "predicate": "covered",
+    "args": [
+     "tree.n.01_1",
+     "pesticide.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(covered tree.n.01_2 pesticide.n.01_1)",
+    "negated": false,
+    "predicate": "covered",
+    "args": [
+     "tree.n.01_2",
+     "pesticide.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "covered",
+   2
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "pesticide.n.01_1",
+   "scene_object": "pesticide",
+   "substance": true,
+   "systems": [
+    "pesticide"
+   ]
+  },
+  {
+   "inst": "pesticide__atomizer.n.01_1",
+   "scene_object": "pesticide_atomizer_172",
+   "substance": false,
+   "category": "pesticide_atomizer",
+   "model": "eisckl",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.08,
+    "median": 0.08,
+    "max": 0.09
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.55,
+    "median": 3.47,
+    "max": 10.39
+   },
+   "xy_spread_m": 10.38,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_1",
+   "scene_object": "tree_dyymaq_1",
+   "substance": false,
+   "category": "tree",
+   "model": "dyymaq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470368146896362,
+    0.7470313310623169,
+    0.7470372319221497
+   ],
+   "z": {
+    "min": 3.72,
+    "median": 3.72,
+    "max": 3.72
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 8.03,
+    "median": 11.13,
+    "max": 12.3
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "tree.n.01_2",
+   "scene_object": "tree_dyymaq_2",
+   "substance": false,
+   "category": "tree",
+   "model": "dyymaq",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.7470368146896362,
+    0.7470313310623169,
+    0.7470372319221497
+   ],
+   "z": {
+    "min": 3.72,
+    "median": 3.72,
+    "max": 3.72
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 7.96,
+    "median": 11.33,
+    "max": 12.8
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_ghetev_0",
+   "substance": false,
+   "category": "floors",
+   "model": "ghetev",
+   "in_rooms": [
+    "garden_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999978542327881,
+    1.0000015497207642,
+    0.9999032616615295
+   ],
+   "z": {
+    "min": -0.08,
+    "median": -0.08,
+    "max": -0.08
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.3,
+    "median": 3.11,
+    "max": 4.08
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   15.39,
+   9.23
+  ],
+  [
+   14.36,
+   12.61
+  ],
+  [
+   14.93,
+   13.54
+  ],
+  [
+   15.28,
+   8.99
+  ],
+  [
+   14.78,
+   8.67
+  ],
+  [
+   15.95,
+   9.61
+  ],
+  [
+   15.57,
+   9.36
+  ],
+  [
+   15.97,
+   13.42
+  ],
+  [
+   15.38,
+   12.66
+  ],
+  [
+   15.55,
+   12.64
+  ],
+  [
+   15.03,
+   12.67
+  ],
+  [
+   15.04,
+   9.29
+  ],
+  [
+   16.17,
+   12.93
+  ],
+  [
+   14.46,
+   9.67
+  ],
+  [
+   15.98,
+   9.2
+  ],
+  [
+   18.58,
+   11.79
+  ],
+  [
+   18.63,
+   11.75
+  ],
+  [
+   14.68,
+   9.63
+  ],
+  [
+   15.5,
+   13.46
+  ],
+  [
+   14.78,
+   12.74
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 10,
+   "median": 10.0,
+   "max": 10
+  },
+  "demo_seconds": {
+   "min": 214.87,
+   "median": 272.17,
+   "max": 428.97
+  },
+  "distinct_verb_sequences": 1,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "turn on switch",
+   "spray",
+   "turn off switch",
+   "move to",
+   "turn on switch",
+   "spray",
+   "turn off switch"
+  ],
+  "modal_verb_sequence_share": 1.0,
+  "modal_verb_counts": {
+   "move to": 3,
+   "pick up from": 1,
+   "spray": 2,
+   "turn off switch": 2,
+   "turn on switch": 2
+  },
+  "modal_verb_counts_share": 1.0,
+  "representative_episode": {
+   "file": "episode_00392680.json",
+   "seconds": 272.3,
+   "steps": [
+    {
+     "prompt": "move to the pesticide atomizer",
+     "start_s": 1.3,
+     "end_s": 41.4
+    },
+    {
+     "prompt": "pick up the pesticide atomizer from the floors",
+     "start_s": 41.4,
+     "end_s": 57.4
+    },
+    {
+     "prompt": "move to the tree",
+     "start_s": 57.4,
+     "end_s": 92.6
+    },
+    {
+     "prompt": "turn on the pesticide atomizer",
+     "start_s": 92.6,
+     "end_s": 100.7
+    },
+    {
+     "prompt": "spray the pesticide atomizer with the tree",
+     "start_s": 100.7,
+     "end_s": 154.4
+    },
+    {
+     "prompt": "turn off the pesticide atomizer",
+     "start_s": 154.4,
+     "end_s": 160.6
+    },
+    {
+     "prompt": "move to the tree",
+     "start_s": 160.6,
+     "end_s": 210.2
+    },
+    {
+     "prompt": "turn on the pesticide atomizer",
+     "start_s": 210.2,
+     "end_s": 218.3
+    },
+    {
+     "prompt": "spray the pesticide atomizer with the tree",
+     "start_s": 218.3,
+     "end_s": 267.1
+    },
+    {
+     "prompt": "turn off the pesticide atomizer",
+     "start_s": 267.1,
+     "end_s": 273.6
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "move to": 36.9,
+   "pick up from": 18.2,
+   "spray": 59.2,
+   "turn off switch": 5.9,
+   "turn on switch": 7.0
+  },
+  "verb_counts_total": {
+   "move to": 600,
+   "turn on switch": 400,
+   "spray": 400,
+   "turn off switch": 400,
+   "pick up from": 200
+  },
+  "top_prompts": [
+   [
+    "spray the pesticide atomizer with the tree",
+    399
+   ],
+   [
+    "turn off the pesticide atomizer",
+    399
+   ],
+   [
+    "turn on the pesticide atomizer",
+    394
+   ],
+   [
+    "move to the tree",
+    375
+   ],
+   [
+    "move to the pesticide atomizer",
+    223
+   ],
+   [
+    "pick up the pesticide atomizer from the floors",
+    197
+   ],
+   [
+    "turn on the tree",
+    6
+   ],
+   [
+    "pick up the pesticide atomizer from the lawn",
+    2
+   ],
+   [
+    "move to the floors",
+    2
+   ],
+   [
+    "spray the pesticide atomizer with the pesticide atomizer",
+    1
+   ],
+   [
+    "pick up the pesticide atomizer from the tree",
+    1
+   ],
+   [
+    "turn off the tree",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "spray",
+  "move to",
+  "turn off switch",
+  "pick up from",
+  "turn on switch"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12519
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12519
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 12519
+  }
+ }
+}

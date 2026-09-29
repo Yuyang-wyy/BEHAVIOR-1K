@@ -1,0 +1,649 @@
+{
+ "index": 18,
+ "name": "tidying_bedroom",
+ "instruction": "In the bedroom, move the book from the bed onto either nightstand, and place the two sandals side by side next to the bed.",
+ "title": "Tidying Bedroom",
+ "rooms_listed": [
+  "bedroom"
+ ],
+ "video": "https://player.vimeo.com/video/1114058519",
+ "scene_model": "house_single_floor",
+ "comet_pretrain_sentence": "In the bedroom, move the book from the bed onto either nightstand, and place the two sandals side by side next to the bed.",
+ "human": {
+  "mean_steps": 11037.445,
+  "mean_seconds": 367.9,
+  "step_limit": 16556,
+  "time_limit_seconds": 551.9,
+  "base_distance_m": 33.3982,
+  "eef_displacement_m": {
+   "left": 12.6534,
+   "right": 12.5928
+  }
+ },
+ "rooms_loaded": [
+  "bathroom_1",
+  "bedroom_0",
+  "corridor_0",
+  "dining_room_0",
+  "entryway_0",
+  "garden_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem tidying_bedroom-0)\n    (:domain behavior-1k)\n\n    (:objects\n        sandal.n.01_1 sandal.n.01_2 - sandal.n.01\n        table.n.02_1 table.n.02_* - table.n.02\n        book.n.02_1 - book.n.02\n        floor.n.01_1 - floor.n.01\n        bed.n.01_1 - bed.n.01\n        agent.n.01_1 - agent.n.01\n    )\n\n    (:init \n        (ontop sandal.n.01_1 floor.n.01_1) \n        (ontop sandal.n.01_2 floor.n.01_1) \n        (ontop book.n.02_1 bed.n.01_1) \n        (inroom table.n.02_1 bedroom) \n        (inroom table.n.02_* bedroom)\n        (inroom bed.n.01_1 bedroom) \n        (inroom floor.n.01_1 bedroom) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (nextto ?sandal.n.01_1 ?bed.n.01_1) \n            (nextto ?sandal.n.01_2 ?sandal.n.01_1) \n            (exists \n                (?table.n.02 - table.n.02) \n                (ontop ?book.n.02_1 ?table.n.02)\n            )\n        )\n    )\n)",
+ "scene": "house_single_floor",
+ "n_public_instances": 20,
+ "room_instances": {
+  "bedroom": "bedroom_0"
+ },
+ "has_wildcards": true,
+ "objects": {
+  "sandal.n.01": [
+   "sandal.n.01_1",
+   "sandal.n.01_2"
+  ],
+  "table.n.02": [
+   "table.n.02_1",
+   "table.n.02_2"
+  ],
+  "book.n.02": [
+   "book.n.02_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ],
+  "bed.n.01": [
+   "bed.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ]
+ },
+ "future_objects": [],
+ "articulated_start_state": {},
+ "init_literals": [
+  "(inroom bed.n.01_1 bedroom)",
+  "(inroom floor.n.01_1 bedroom)",
+  "(inroom table.n.02_1 bedroom)",
+  "(inroom table.n.02_2 bedroom)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop book.n.02_1 bed.n.01_1)",
+  "(ontop sandal.n.01_1 floor.n.01_1)",
+  "(ontop sandal.n.01_2 floor.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bed.n.01_1 book.n.02_1)",
+  "(touching book.n.02_1 bed.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching floor.n.01_1 sandal.n.01_1)",
+  "(touching floor.n.01_1 sandal.n.01_2)",
+  "(touching sandal.n.01_1 floor.n.01_1)",
+  "(touching sandal.n.01_2 floor.n.01_1)"
+ ],
+ "n_ground_options": 2,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 3,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(nextto sandal.n.01_1 bed.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "sandal.n.01_1",
+     "bed.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(nextto sandal.n.01_2 sandal.n.01_1)",
+    "negated": false,
+    "predicate": "nextto",
+    "args": [
+     "sandal.n.01_2",
+     "sandal.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop book.n.02_1 table.n.02_2)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "book.n.02_1",
+     "table.n.02_2"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   3,
+   2
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "nextto",
+   2
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "sandal.n.01_1",
+   "scene_object": "sandal_190",
+   "substance": false,
+   "category": "sandal",
+   "model": "tkfdsk",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.66,
+    "median": 1.89,
+    "max": 3.07
+   },
+   "xy_spread_m": 4.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "sandal.n.01_2",
+   "scene_object": "sandal_189",
+   "substance": false,
+   "category": "sandal",
+   "model": "txkidl",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.01,
+    "median": 0.01,
+    "max": 0.01
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.39,
+    "median": 1.9,
+    "max": 3.2
+   },
+   "xy_spread_m": 4.82,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_1",
+   "scene_object": "nightstand_wbxekb_1",
+   "substance": false,
+   "category": "nightstand",
+   "model": "wbxekb",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000756978988647,
+    0.9999943971633911,
+    0.9999978542327881
+   ],
+   "z": {
+    "min": 0.16,
+    "median": 0.16,
+    "max": 0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 1.24,
+    "median": 2.92,
+    "max": 4.25
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "table.n.02_2",
+   "scene_object": "nightstand_wbxekb_0",
+   "substance": false,
+   "category": "nightstand",
+   "model": "wbxekb",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000756978988647,
+    0.9999943971633911,
+    0.9999978542327881
+   ],
+   "z": {
+    "min": 0.16,
+    "median": 0.16,
+    "max": 0.16
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 2.58,
+    "median": 3.23,
+    "max": 5.12
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "book.n.02_1",
+   "scene_object": "hardback_188",
+   "substance": false,
+   "category": "hardback",
+   "model": "dmqfqx",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.49,
+    "median": 0.49,
+    "max": 0.5
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.86,
+    "median": 1.95,
+    "max": 3.39
+   },
+   "xy_spread_m": 2.2,
+   "n_poses": 20
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_htolat_0",
+   "substance": false,
+   "category": "floors",
+   "model": "htolat",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000059604644775,
+    0.9999916553497314,
+    0.9999321699142456
+   ],
+   "z": {
+    "min": -0.14,
+    "median": -0.14,
+    "max": -0.14
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.48,
+    "median": 1.08,
+    "max": 2.42
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "bed.n.01_1",
+   "scene_object": "bed_gxfipj_0",
+   "substance": false,
+   "category": "bed",
+   "model": "gxfipj",
+   "in_rooms": [
+    "bedroom_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999816417694092,
+    0.9999993443489075,
+    1.000023365020752
+   ],
+   "z": {
+    "min": 0.27,
+    "median": 0.27,
+    "max": 0.27
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.58,
+    "median": 2.08,
+    "max": 3.74
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  }
+ ],
+ "robot_start_xy": [
+  [
+   23.43,
+   22.45
+  ],
+  [
+   21.88,
+   25.24
+  ],
+  [
+   22.1,
+   25.23
+  ],
+  [
+   21.63,
+   23.27
+  ],
+  [
+   21.88,
+   23.04
+  ],
+  [
+   23.37,
+   22.41
+  ],
+  [
+   21.99,
+   23.1
+  ],
+  [
+   22.05,
+   23.81
+  ],
+  [
+   21.78,
+   22.71
+  ],
+  [
+   22.16,
+   23.4
+  ],
+  [
+   22.01,
+   24.53
+  ],
+  [
+   22.05,
+   25.24
+  ],
+  [
+   21.97,
+   23.6
+  ],
+  [
+   22.14,
+   22.98
+  ],
+  [
+   20.42,
+   22.56
+  ],
+  [
+   21.84,
+   24.08
+  ],
+  [
+   21.91,
+   24.6
+  ],
+  [
+   22.18,
+   22.76
+  ],
+  [
+   21.89,
+   22.59
+  ],
+  [
+   21.84,
+   24.95
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 11,
+   "median": 12.0,
+   "max": 12
+  },
+  "demo_seconds": {
+   "min": 154.0,
+   "median": 355.87,
+   "max": 820.77
+  },
+  "distinct_verb_sequences": 6,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "place on next to",
+   "move to",
+   "push to",
+   "pick up from",
+   "move to",
+   "place on"
+  ],
+  "modal_verb_sequence_share": 0.965,
+  "modal_verb_counts": {
+   "move to": 5,
+   "pick up from": 3,
+   "place on": 1,
+   "place on next to": 2,
+   "push to": 1
+  },
+  "modal_verb_counts_share": 0.975,
+  "representative_episode": {
+   "file": "episode_00181570.json",
+   "seconds": 356.2,
+   "steps": [
+    {
+     "prompt": "move to the sandal",
+     "start_s": 2.1,
+     "end_s": 12.3
+    },
+    {
+     "prompt": "pick up the sandal from the floors",
+     "start_s": 12.3,
+     "end_s": 45.5
+    },
+    {
+     "prompt": "move to the sandal",
+     "start_s": 45.5,
+     "end_s": 88.5
+    },
+    {
+     "prompt": "pick up the sandal from the floors",
+     "start_s": 88.5,
+     "end_s": 125.4
+    },
+    {
+     "prompt": "move to the bed",
+     "start_s": 125.4,
+     "end_s": 158.6
+    },
+    {
+     "prompt": "place the sandal on the floors next to the left bed",
+     "start_s": 158.6,
+     "end_s": 181.1
+    },
+    {
+     "prompt": "place the sandal on the floors next to the left bed",
+     "start_s": 181.1,
+     "end_s": 201.1
+    },
+    {
+     "prompt": "move to the hardback",
+     "start_s": 201.1,
+     "end_s": 237.9
+    },
+    {
+     "prompt": "push the hardback to the to_the_edge_of bed",
+     "start_s": 237.9,
+     "end_s": 302.6
+    },
+    {
+     "prompt": "pick up the hardback from the bed",
+     "start_s": 302.7,
+     "end_s": 331.7
+    },
+    {
+     "prompt": "move to the nightstand",
+     "start_s": 331.7,
+     "end_s": 338.8
+    },
+    {
+     "prompt": "place the hardback on the nightstand",
+     "start_s": 338.8,
+     "end_s": 358.3
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "hand over": 15.5,
+   "move to": 26.7,
+   "pick up from": 35.5,
+   "place on": 28.4,
+   "place on next to": 22.7,
+   "push to": 52.5
+  },
+  "verb_counts_total": {
+   "move to": 996,
+   "pick up from": 600,
+   "place on next to": 400,
+   "place on": 200,
+   "push to": 199,
+   "hand over": 1
+  },
+  "top_prompts": [
+   [
+    "move to the sandal",
+    398
+   ],
+   [
+    "pick up the sandal from the floors",
+    398
+   ],
+   [
+    "place the sandal on the floors next to the left bed",
+    394
+   ],
+   [
+    "move to the hardback",
+    200
+   ],
+   [
+    "pick up the hardback from the bed",
+    200
+   ],
+   [
+    "push the hardback to the to_the_edge_of bed",
+    199
+   ],
+   [
+    "move to the bed",
+    198
+   ],
+   [
+    "move to the nightstand",
+    198
+   ],
+   [
+    "place the hardback on the nightstand",
+    197
+   ],
+   [
+    "place the sandal on the floors next to the left sandal",
+    3
+   ],
+   [
+    "place the hardback on the bed",
+    2
+   ],
+   [
+    "place the sandal on the floors next to the in_front_of bed",
+    2
+   ],
+   [
+    "move to the floors",
+    2
+   ],
+   [
+    "hand over the hardback with the left",
+    1
+   ],
+   [
+    "pick up the floors from the sandal",
+    1
+   ],
+   [
+    "pick up the sandal from the nightstand",
+    1
+   ],
+   [
+    "place the nightstand on the nightstand",
+    1
+   ],
+   [
+    "place the sandal on the nightstand next to the left bed",
+    1
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "place on",
+  "pick up from",
+  "place on next to",
+  "hand over",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.6666666666666666,
+   "success": false,
+   "steps": 16557
+  },
+  "zs_pt50@sulab1": {
+   "instance": 311,
+   "q": 0.6666666666666666,
+   "success": false,
+   "steps": 16557
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.6666666666666666,
+   "success": false,
+   "steps": 16557
+  }
+ }
+}

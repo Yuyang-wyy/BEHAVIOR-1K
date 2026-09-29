@@ -1,0 +1,1477 @@
+{
+ "index": 49,
+ "name": "make_pizza",
+ "instruction": "Make a pizza on the cookie sheet in the kitchen: take the grated cheese, the four pieces of pepperoni, and the two mushrooms from their tupperware containers in the refrigerator; chop the Vidalia onion on the chopping board with the knife, and also chop the two whole mushrooms in half; top the pizza dough that's already on the cookie sheet with the cheese, pepperoni, halved mushrooms, and chopped onion; bake it in the oven until it becomes a pizza, and leave the finished pizza on the cookie sheet.",
+ "title": "Make Pizza",
+ "rooms_listed": [
+  "kitchen"
+ ],
+ "video": "https://player.vimeo.com/video/1114061917",
+ "scene_model": "house_double_floor_lower",
+ "comet_pretrain_sentence": "Make a pizza on the cookie sheet in the kitchen: take the grated cheese, the four pieces of pepperoni, and the two mushrooms from their tupperware containers in the refrigerator; chop the Vidalia onion on the chopping board with the knife, and also chop the two whole mushrooms in half; top the pizza dough that's already on the cookie sheet with the cheese, pepperoni, halved mushrooms, and chopped onion; bake it in the oven until it becomes a pizza, and leave the finished pizza on the cookie sheet.",
+ "human": {
+  "mean_steps": 19186.925,
+  "mean_seconds": 639.6,
+  "step_limit": 28780,
+  "time_limit_seconds": 959.3,
+  "base_distance_m": 56.8705,
+  "eef_displacement_m": {
+   "left": 33.5179,
+   "right": 44.0735
+  }
+ },
+ "rooms_loaded": [
+  "corridor_0",
+  "garden_0",
+  "kitchen_0",
+  "living_room_0"
+ ],
+ "custom_lists": null,
+ "bddl_definition": "(define (problem make_pizza-0)\n    (:domain behavior-1k)\n\n    (:objects\n        pizza_dough.n.01_1 - pizza_dough.n.01\n        grated_cheese.n.01_1 - grated_cheese.n.01\n        pepperoni.n.01_1 pepperoni.n.01_2 pepperoni.n.01_3 pepperoni.n.01_4 - pepperoni.n.01\n        mushroom.n.05_1 mushroom.n.05_2 - mushroom.n.05\n        vidalia_onion.n.01_1 - vidalia_onion.n.01\n        pizza.n.01_1 - pizza.n.01\n        oven.n.01_1 - oven.n.01\n        cookie_sheet.n.01_1 - cookie_sheet.n.01\n        chopping_board.n.01_1 - chopping_board.n.01\n        carving_knife.n.01_1 - carving_knife.n.01\n        bowl.n.01_1 - bowl.n.01\n        tupperware.n.01_1 tupperware.n.01_2 tupperware.n.01_3 - tupperware.n.01\n        electric_refrigerator.n.01_1 - electric_refrigerator.n.01\n        cabinet.n.01_1 - cabinet.n.01\n        countertop.n.01_1 - countertop.n.01\n        agent.n.01_1 - agent.n.01\n        floor.n.01_1 - floor.n.01\n    )\n    \n    (:init \n        (ontop pizza_dough.n.01_1 cookie_sheet.n.01_1) \n        (filled tupperware.n.01_1 grated_cheese.n.01_1)\n        (inside tupperware.n.01_1 electric_refrigerator.n.01_1) \n        (inside pepperoni.n.01_1 tupperware.n.01_3) \n        (inside pepperoni.n.01_2 tupperware.n.01_3) \n        (inside pepperoni.n.01_3 tupperware.n.01_3) \n        (inside pepperoni.n.01_4 tupperware.n.01_3)\n        (inside tupperware.n.01_3 electric_refrigerator.n.01_1) \n        (ontop chopping_board.n.01_1 countertop.n.01_1) \n        (ontop carving_knife.n.01_1 countertop.n.01_1) \n        (ontop bowl.n.01_1 countertop.n.01_1) \n        (inside mushroom.n.05_1 tupperware.n.01_2) \n        (inside mushroom.n.05_2 tupperware.n.01_2) \n        (inside tupperware.n.01_2 electric_refrigerator.n.01_1)\n        (ontop vidalia_onion.n.01_1 chopping_board.n.01_1) \n        (ontop cookie_sheet.n.01_1 countertop.n.01_1) \n        (future pizza.n.01_1) \n        (inroom oven.n.01_1 kitchen) \n        (inroom floor.n.01_1 kitchen) \n        (inroom cabinet.n.01_1 kitchen) \n        (inroom countertop.n.01_1 kitchen) \n        (inroom electric_refrigerator.n.01_1 kitchen) \n        (ontop agent.n.01_1 floor.n.01_1)\n    )\n    \n    (:goal \n        (and \n            (real ?pizza.n.01_1) \n            (ontop ?pizza.n.01_1 ?cookie_sheet.n.01_1)\n        )\n    )\n)",
+ "scene": "house_double_floor_lower",
+ "n_public_instances": 20,
+ "room_instances": {
+  "kitchen": "kitchen_0"
+ },
+ "has_wildcards": false,
+ "objects": {
+  "pizza_dough.n.01": [
+   "pizza_dough.n.01_1"
+  ],
+  "grated_cheese.n.01": [
+   "grated_cheese.n.01_1"
+  ],
+  "pepperoni.n.01": [
+   "pepperoni.n.01_1",
+   "pepperoni.n.01_2",
+   "pepperoni.n.01_3",
+   "pepperoni.n.01_4"
+  ],
+  "mushroom.n.05": [
+   "mushroom.n.05_1",
+   "mushroom.n.05_2"
+  ],
+  "vidalia_onion.n.01": [
+   "vidalia_onion.n.01_1"
+  ],
+  "pizza.n.01": [
+   "pizza.n.01_1"
+  ],
+  "oven.n.01": [
+   "oven.n.01_1"
+  ],
+  "cookie_sheet.n.01": [
+   "cookie_sheet.n.01_1"
+  ],
+  "chopping_board.n.01": [
+   "chopping_board.n.01_1"
+  ],
+  "carving_knife.n.01": [
+   "carving_knife.n.01_1"
+  ],
+  "bowl.n.01": [
+   "bowl.n.01_1"
+  ],
+  "tupperware.n.01": [
+   "tupperware.n.01_1",
+   "tupperware.n.01_2",
+   "tupperware.n.01_3"
+  ],
+  "electric_refrigerator.n.01": [
+   "electric_refrigerator.n.01_1"
+  ],
+  "cabinet.n.01": [
+   "cabinet.n.01_1"
+  ],
+  "countertop.n.01": [
+   "countertop.n.01_1"
+  ],
+  "agent.n.01": [
+   "agent.n.01_1"
+  ],
+  "floor.n.01": [
+   "floor.n.01_1"
+  ]
+ },
+ "future_objects": [
+  "pizza.n.01_1"
+ ],
+ "articulated_start_state": {
+  "oven.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "electric_refrigerator.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  },
+  "cabinet.n.01_1": {
+   "instances_checked": 20,
+   "instances_starting_open": 0,
+   "max_abs_joint_pos": 0.0
+  }
+ },
+ "init_literals": [
+  "(filled tupperware.n.01_1 grated_cheese.n.01_1)",
+  "(future pizza.n.01_1)",
+  "(inroom cabinet.n.01_1 kitchen)",
+  "(inroom countertop.n.01_1 kitchen)",
+  "(inroom electric_refrigerator.n.01_1 kitchen)",
+  "(inroom floor.n.01_1 kitchen)",
+  "(inroom oven.n.01_1 kitchen)",
+  "(inside mushroom.n.05_1 tupperware.n.01_2)",
+  "(inside mushroom.n.05_2 tupperware.n.01_2)",
+  "(inside pepperoni.n.01_1 tupperware.n.01_3)",
+  "(inside pepperoni.n.01_2 tupperware.n.01_3)",
+  "(inside pepperoni.n.01_3 tupperware.n.01_3)",
+  "(inside pepperoni.n.01_4 tupperware.n.01_3)",
+  "(inside tupperware.n.01_1 electric_refrigerator.n.01_1)",
+  "(inside tupperware.n.01_2 electric_refrigerator.n.01_1)",
+  "(inside tupperware.n.01_3 electric_refrigerator.n.01_1)",
+  "(ontop agent.n.01_1 floor.n.01_1)",
+  "(ontop bowl.n.01_1 countertop.n.01_1)",
+  "(ontop carving_knife.n.01_1 countertop.n.01_1)",
+  "(ontop chopping_board.n.01_1 countertop.n.01_1)",
+  "(ontop cookie_sheet.n.01_1 countertop.n.01_1)",
+  "(ontop pizza_dough.n.01_1 cookie_sheet.n.01_1)",
+  "(ontop vidalia_onion.n.01_1 chopping_board.n.01_1)",
+  "(touching agent.n.01_1 floor.n.01_1)",
+  "(touching bowl.n.01_1 countertop.n.01_1)",
+  "(touching carving_knife.n.01_1 countertop.n.01_1)",
+  "(touching chopping_board.n.01_1 countertop.n.01_1)",
+  "(touching chopping_board.n.01_1 vidalia_onion.n.01_1)",
+  "(touching cookie_sheet.n.01_1 countertop.n.01_1)",
+  "(touching cookie_sheet.n.01_1 pizza_dough.n.01_1)",
+  "(touching countertop.n.01_1 bowl.n.01_1)",
+  "(touching countertop.n.01_1 carving_knife.n.01_1)",
+  "(touching countertop.n.01_1 chopping_board.n.01_1)",
+  "(touching countertop.n.01_1 cookie_sheet.n.01_1)",
+  "(touching floor.n.01_1 agent.n.01_1)",
+  "(touching pizza_dough.n.01_1 cookie_sheet.n.01_1)",
+  "(touching vidalia_onion.n.01_1 chopping_board.n.01_1)"
+ ],
+ "n_ground_options": 1,
+ "n_self_paired_options": 0,
+ "ground_option_example": {
+  "n_literals": 2,
+  "n_initially_true": 0,
+  "max_partial_q": 1.0,
+  "literals": [
+   {
+    "literal": "(real pizza.n.01_1)",
+    "negated": false,
+    "predicate": "real",
+    "args": [
+     "pizza.n.01_1"
+    ],
+    "initially_true_inferred": false
+   },
+   {
+    "literal": "(ontop pizza.n.01_1 cookie_sheet.n.01_1)",
+    "negated": false,
+    "predicate": "ontop",
+    "args": [
+     "pizza.n.01_1",
+     "cookie_sheet.n.01_1"
+    ],
+    "initially_true_inferred": false
+   }
+  ]
+ },
+ "ground_option_sizes": [
+  [
+   2,
+   1
+  ]
+ ],
+ "goal_predicates": [
+  [
+   "real",
+   1
+  ],
+  [
+   "ontop",
+   1
+  ]
+ ],
+ "scope": [
+  {
+   "inst": "pizza_dough.n.01_1",
+   "scene_object": "pizza_dough_87",
+   "substance": false,
+   "category": "pizza_dough",
+   "model": "jguwbv",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.7266388535499573,
+    0.7256181240081787,
+    1.0130518674850464
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.91
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 3.13,
+    "max": 7.36
+   },
+   "xy_spread_m": 1.75,
+   "n_poses": 20
+  },
+  {
+   "inst": "grated_cheese.n.01_1",
+   "scene_object": "grated_cheese",
+   "substance": true,
+   "systems": [
+    "grated_cheese"
+   ]
+  },
+  {
+   "inst": "pepperoni.n.01_1",
+   "scene_object": "pepperoni_86",
+   "substance": false,
+   "category": "pepperoni",
+   "model": "xcurfr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.659273087978363,
+    0.7371305227279663,
+    1.1768321990966797
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 1.33,
+    "max": 1.7
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.4,
+    "median": 3.33,
+    "max": 4.6
+   },
+   "xy_spread_m": 0.71,
+   "n_poses": 20
+  },
+  {
+   "inst": "pepperoni.n.01_2",
+   "scene_object": "pepperoni_85",
+   "substance": false,
+   "category": "pepperoni",
+   "model": "xcurfr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.659273087978363,
+    0.7371305227279663,
+    1.1768321990966797
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 1.34,
+    "max": 1.7
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.39,
+    "median": 3.3,
+    "max": 4.64
+   },
+   "xy_spread_m": 0.69,
+   "n_poses": 20
+  },
+  {
+   "inst": "pepperoni.n.01_3",
+   "scene_object": "pepperoni_84",
+   "substance": false,
+   "category": "pepperoni",
+   "model": "xcurfr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.659273087978363,
+    0.7371305227279663,
+    1.1768321990966797
+   ],
+   "z": {
+    "min": 0.73,
+    "median": 1.33,
+    "max": 1.7
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.46,
+    "median": 3.32,
+    "max": 4.72
+   },
+   "xy_spread_m": 0.79,
+   "n_poses": 20
+  },
+  {
+   "inst": "pepperoni.n.01_4",
+   "scene_object": "pepperoni_83",
+   "substance": false,
+   "category": "pepperoni",
+   "model": "xcurfr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.659273087978363,
+    0.7371305227279663,
+    1.1768321990966797
+   ],
+   "z": {
+    "min": 0.72,
+    "median": 1.33,
+    "max": 1.7
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.4,
+    "median": 3.33,
+    "max": 4.58
+   },
+   "xy_spread_m": 0.84,
+   "n_poses": 20
+  },
+  {
+   "inst": "mushroom.n.05_1",
+   "scene_object": "mushroom_82",
+   "substance": false,
+   "category": "mushroom",
+   "model": "zlukhz",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.73,
+    "median": 1.34,
+    "max": 1.81
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.44,
+    "median": 3.3,
+    "max": 5.11
+   },
+   "xy_spread_m": 0.75,
+   "n_poses": 20
+  },
+  {
+   "inst": "mushroom.n.05_2",
+   "scene_object": "mushroom_81",
+   "substance": false,
+   "category": "mushroom",
+   "model": "zlukhz",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.73,
+    "median": 1.34,
+    "max": 1.81
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.39,
+    "median": 3.25,
+    "max": 5.12
+   },
+   "xy_spread_m": 0.76,
+   "n_poses": 20
+  },
+  {
+   "inst": "vidalia_onion.n.01_1",
+   "scene_object": "vidalia_onion_80",
+   "substance": false,
+   "category": "vidalia_onion",
+   "model": "buyxll",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.94,
+    "max": 0.94
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.52,
+    "median": 3.39,
+    "max": 7.02
+   },
+   "xy_spread_m": 2.08,
+   "n_poses": 20
+  },
+  {
+   "inst": "pizza.n.01_1",
+   "scene_object": null,
+   "substance": false,
+   "category_candidates": [
+    "pizza"
+   ],
+   "note": "wildcard/unassigned in template: resolved at runtime to a scene object of these categories"
+  },
+  {
+   "inst": "oven.n.01_1",
+   "scene_object": "oven_ffitak_0",
+   "substance": false,
+   "category": "oven",
+   "model": "ffitak",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.216524362564087,
+    0.9933228492736816,
+    0.9864447116851807
+   ],
+   "z": {
+    "min": 0.54,
+    "median": 0.54,
+    "max": 0.54
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.31,
+    "median": 3.38,
+    "max": 6.4
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cookie_sheet.n.01_1",
+   "scene_object": "baking_sheet_79",
+   "substance": false,
+   "category": "baking_sheet",
+   "model": "yhurut",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.083290934562683,
+    0.7210108041763306,
+    1.3150798082351685
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.17,
+    "median": 3.13,
+    "max": 7.36
+   },
+   "xy_spread_m": 1.75,
+   "n_poses": 20
+  },
+  {
+   "inst": "chopping_board.n.01_1",
+   "scene_object": "chopping_board_78",
+   "substance": false,
+   "category": "chopping_board",
+   "model": "sygezm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    0.9956542253494263,
+    0.9981469511985779,
+    1.2499690055847168
+   ],
+   "z": {
+    "min": 0.89,
+    "median": 0.89,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.53,
+    "median": 3.32,
+    "max": 6.92
+   },
+   "xy_spread_m": 1.93,
+   "n_poses": 20
+  },
+  {
+   "inst": "carving_knife.n.01_1",
+   "scene_object": "carving_knife_77",
+   "substance": false,
+   "category": "carving_knife",
+   "model": "fqqbop",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.9,
+    "median": 0.9,
+    "max": 0.9
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.49,
+    "median": 3.08,
+    "max": 7.63
+   },
+   "xy_spread_m": 2.17,
+   "n_poses": 20
+  },
+  {
+   "inst": "bowl.n.01_1",
+   "scene_object": "bowl_76",
+   "substance": false,
+   "category": "bowl",
+   "model": "szgdpc",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "z": {
+    "min": 0.93,
+    "median": 0.93,
+    "max": 0.93
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.14,
+    "median": 2.8,
+    "max": 6.77
+   },
+   "xy_spread_m": 0.42,
+   "n_poses": 20
+  },
+  {
+   "inst": "tupperware.n.01_1",
+   "scene_object": "tupperware_75",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 1.03,
+    "median": 1.38,
+    "max": 1.72
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 0.96,
+    "median": 3.29,
+    "max": 4.84
+   },
+   "xy_spread_m": 0.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "tupperware.n.01_2",
+   "scene_object": "tupperware_74",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.77,
+    "median": 1.38,
+    "max": 1.86
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.44,
+    "median": 3.27,
+    "max": 5.08
+   },
+   "xy_spread_m": 0.68,
+   "n_poses": 20
+  },
+  {
+   "inst": "tupperware.n.01_3",
+   "scene_object": "tupperware_73",
+   "substance": false,
+   "category": "tupperware",
+   "model": "mkstwr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": false,
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "z": {
+    "min": 0.77,
+    "median": 1.38,
+    "max": 1.76
+   },
+   "height_band": "high (1.1-1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.44,
+    "median": 3.33,
+    "max": 4.66
+   },
+   "xy_spread_m": 0.67,
+   "n_poses": 20
+  },
+  {
+   "inst": "electric_refrigerator.n.01_1",
+   "scene_object": "fridge_petcxr_0",
+   "substance": false,
+   "category": "fridge",
+   "model": "petcxr",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.000007152557373,
+    1.00002920627594,
+    1.0000027418136597
+   ],
+   "z": {
+    "min": 0.96,
+    "median": 0.96,
+    "max": 0.96
+   },
+   "height_band": "table/counter (0.6-1.1 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.29,
+    "median": 3.45,
+    "max": 5.02
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "cabinet.n.01_1",
+   "scene_object": "top_cabinet_tynnnw_0",
+   "substance": false,
+   "category": "top_cabinet",
+   "model": "tynnnw",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999695420265198,
+    1.0000219345092773,
+    1.0000149011611938
+   ],
+   "z": {
+    "min": 1.89,
+    "median": 1.89,
+    "max": 1.89
+   },
+   "height_band": "very high (>1.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 2.33,
+    "median": 3.71,
+    "max": 7.46
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "countertop.n.01_1",
+   "scene_object": "bar_egwapq_0",
+   "substance": false,
+   "category": "bar",
+   "model": "egwapq",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    0.9999869465827942,
+    0.9999972581863403,
+    1.0000406503677368
+   ],
+   "z": {
+    "min": 0.45,
+    "median": 0.45,
+    "max": 0.45
+   },
+   "height_band": "low (0.25-0.6 m)",
+   "dist_from_robot_start_m": {
+    "min": 1.86,
+    "median": 3.23,
+    "max": 7.09
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  },
+  {
+   "inst": "agent.n.01_1",
+   "scene_object": "robot",
+   "substance": false
+  },
+  {
+   "inst": "floor.n.01_1",
+   "scene_object": "floors_zqjkvm_0",
+   "substance": false,
+   "category": "floors",
+   "model": "zqjkvm",
+   "in_rooms": [
+    "kitchen_0"
+   ],
+   "fixed": true,
+   "scale": [
+    1.0000038146972656,
+    1.0000016689300537,
+    1.0
+   ],
+   "z": {
+    "min": -0.15,
+    "median": -0.15,
+    "max": -0.15
+   },
+   "height_band": "floor",
+   "dist_from_robot_start_m": {
+    "min": 0.91,
+    "median": 2.01,
+    "max": 3.68
+   },
+   "xy_spread_m": 0.0,
+   "n_poses": 20
+  }
+ ],
+ "robot_start_xy": [
+  [
+   4.51,
+   2.99
+  ],
+  [
+   2.56,
+   3.19
+  ],
+  [
+   2.56,
+   2.98
+  ],
+  [
+   6.25,
+   0.88
+  ],
+  [
+   3.73,
+   2.87
+  ],
+  [
+   6.24,
+   1.58
+  ],
+  [
+   2.64,
+   2.34
+  ],
+  [
+   5.28,
+   2.8
+  ],
+  [
+   6.13,
+   1.75
+  ],
+  [
+   6.82,
+   1.46
+  ],
+  [
+   1.64,
+   2.98
+  ],
+  [
+   3.21,
+   2.79
+  ],
+  [
+   7.27,
+   2.28
+  ],
+  [
+   6.1,
+   0.79
+  ],
+  [
+   3.99,
+   2.97
+  ],
+  [
+   5.3,
+   3.2
+  ],
+  [
+   6.09,
+   0.37
+  ],
+  [
+   7.1,
+   1.88
+  ],
+  [
+   6.2,
+   1.76
+  ],
+  [
+   5.74,
+   1.01
+  ]
+ ],
+ "demos": {
+  "n_episodes": 200,
+  "segments_per_episode": {
+   "min": 54,
+   "median": 64.0,
+   "max": 74
+  },
+  "demo_seconds": {
+   "min": 361.8,
+   "median": 723.5,
+   "max": 921.7
+  },
+  "distinct_verb_sequences": 197,
+  "modal_verb_sequence": [
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "move to",
+   "pick up from",
+   "place on next to",
+   "pick up from",
+   "place on",
+   "move to",
+   "pick up from",
+   "move to",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "place on",
+   "pick up from",
+   "chop",
+   "chop",
+   "chop",
+   "place on next to",
+   "pick up from",
+   "pour",
+   "place on next to",
+   "move to",
+   "open door",
+   "pick up from",
+   "pick up from",
+   "move to",
+   "place on next to",
+   "pour",
+   "place in",
+   "move to",
+   "close door",
+   "open door",
+   "pick up from",
+   "close door",
+   "move to",
+   "pour",
+   "move to",
+   "place on",
+   "pick up from",
+   "chop",
+   "chop",
+   "place on",
+   "pick up from",
+   "pour",
+   "place on",
+   "pick up from",
+   "move to",
+   "pour",
+   "move to",
+   "place on",
+   "pick up from",
+   "pour",
+   "place on",
+   "open door",
+   "pull tray",
+   "pick up from",
+   "move to",
+   "place in",
+   "push tray",
+   "close door",
+   "turn on switch",
+   "open door"
+  ],
+  "modal_verb_sequence_share": 0.01,
+  "modal_verb_counts": {
+   "chop": 5,
+   "close door": 3,
+   "move to": 11,
+   "open door": 4,
+   "pick up from": 15,
+   "place in": 2,
+   "place on": 7,
+   "place on next to": 6,
+   "pour": 6,
+   "pull tray": 1,
+   "push tray": 1,
+   "turn on switch": 1
+  },
+  "modal_verb_counts_share": 0.06,
+  "representative_episode": {
+   "file": "episode_00492920.json",
+   "seconds": 750.2,
+   "steps": [
+    {
+     "prompt": "move to the baking sheet",
+     "start_s": 0.7,
+     "end_s": 9.4
+    },
+    {
+     "prompt": "pick up the baking sheet from the bar",
+     "start_s": 9.4,
+     "end_s": 22.6
+    },
+    {
+     "prompt": "move to the oven",
+     "start_s": 22.6,
+     "end_s": 30.9
+    },
+    {
+     "prompt": "place the baking sheet on the bar next to the left oven",
+     "start_s": 30.9,
+     "end_s": 39.8
+    },
+    {
+     "prompt": "move to the carving knife",
+     "start_s": 39.8,
+     "end_s": 47.9
+    },
+    {
+     "prompt": "pick up the carving knife from the bar",
+     "start_s": 47.9,
+     "end_s": 62.7
+    },
+    {
+     "prompt": "place the carving knife on the bar next to the left drop in sink",
+     "start_s": 62.7,
+     "end_s": 68.0
+    },
+    {
+     "prompt": "pick up the bowl from the bar",
+     "start_s": 68.0,
+     "end_s": 75.6
+    },
+    {
+     "prompt": "place the bowl on the to_the_edge_of bar",
+     "start_s": 75.6,
+     "end_s": 84.5
+    },
+    {
+     "prompt": "move to the vidalia onion",
+     "start_s": 84.5,
+     "end_s": 90.8
+    },
+    {
+     "prompt": "pick up the vidalia onion from the chopping board",
+     "start_s": 90.8,
+     "end_s": 116.0
+    },
+    {
+     "prompt": "move to the chopping board",
+     "start_s": 116.0,
+     "end_s": 119.0
+    },
+    {
+     "prompt": "pick up the chopping board from the bar",
+     "start_s": 119.0,
+     "end_s": 139.7
+    },
+    {
+     "prompt": "move to the bowl",
+     "start_s": 139.7,
+     "end_s": 148.4
+    },
+    {
+     "prompt": "place the chopping board on the bar next to the right bowl",
+     "start_s": 148.4,
+     "end_s": 159.9
+    },
+    {
+     "prompt": "place the vidalia onion on the chopping board",
+     "start_s": 159.9,
+     "end_s": 172.1
+    },
+    {
+     "prompt": "pick up the carving knife from the bar",
+     "start_s": 172.1,
+     "end_s": 182.7
+    },
+    {
+     "prompt": "chop the carving knife with the vidalia onion",
+     "start_s": 182.7,
+     "end_s": 186.7
+    },
+    {
+     "prompt": "chop the carving knife with the half vidalia onion 80",
+     "start_s": 186.7,
+     "end_s": 189.0
+    },
+    {
+     "prompt": "chop the carving knife with the half vidalia onion 80",
+     "start_s": 189.0,
+     "end_s": 191.0
+    },
+    {
+     "prompt": "place the carving knife on the bar next to the right chopping board",
+     "start_s": 191.0,
+     "end_s": 195.5
+    },
+    {
+     "prompt": "pick up the chopping board from the bar",
+     "start_s": 195.5,
+     "end_s": 202.9
+    },
+    {
+     "prompt": "pour the diced  vidalia onion into the chopping board",
+     "start_s": 202.9,
+     "end_s": 211.2
+    },
+    {
+     "prompt": "place the chopping board on the bar next to the right bowl",
+     "start_s": 211.2,
+     "end_s": 221.3
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 221.3,
+     "end_s": 235.1
+    },
+    {
+     "prompt": "open the door of the right_door fridge",
+     "start_s": 235.1,
+     "end_s": 268.5
+    },
+    {
+     "prompt": "pick up the tupperware from the layer_4 fridge",
+     "start_s": 268.5,
+     "end_s": 289.4
+    },
+    {
+     "prompt": "pick up the tupperware from the layer_5 fridge",
+     "start_s": 289.4,
+     "end_s": 311.0
+    },
+    {
+     "prompt": "move to the baking sheet",
+     "start_s": 311.0,
+     "end_s": 318.3
+    },
+    {
+     "prompt": "place the tupperware on the drop in sink next to the left baking sheet",
+     "start_s": 318.3,
+     "end_s": 328.2
+    },
+    {
+     "prompt": "pour the mushroom and mushroom into the tupperware",
+     "start_s": 328.2,
+     "end_s": 336.1
+    },
+    {
+     "prompt": "place the tupperware in the drop in sink",
+     "start_s": 336.1,
+     "end_s": 345.8
+    },
+    {
+     "prompt": "move to the fridge",
+     "start_s": 345.8,
+     "end_s": 355.4
+    },
+    {
+     "prompt": "close the door of the right_door fridge",
+     "start_s": 355.4,
+     "end_s": 378.6
+    },
+    {
+     "prompt": "open the door of the left_door fridge",
+     "start_s": 378.6,
+     "end_s": 420.6
+    },
+    {
+     "prompt": "pick up the tupperware from the layer_4 fridge",
+     "start_s": 420.6,
+     "end_s": 446.6
+    },
+    {
+     "prompt": "close the door of the left_door fridge",
+     "start_s": 446.6,
+     "end_s": 465.2
+    },
+    {
+     "prompt": "move to the bowl",
+     "start_s": 465.2,
+     "end_s": 475.1
+    },
+    {
+     "prompt": "pour the pepperoni and pepperoni and pepperoni and pepperoni into the tupperware",
+     "start_s": 475.1,
+     "end_s": 484.8
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 484.8,
+     "end_s": 487.7
+    },
+    {
+     "prompt": "place the tupperware on the tupperware",
+     "start_s": 487.7,
+     "end_s": 497.6
+    },
+    {
+     "prompt": "pick up the carving knife from the bar",
+     "start_s": 497.6,
+     "end_s": 504.3
+    },
+    {
+     "prompt": "chop the carving knife with the mushroom",
+     "start_s": 504.3,
+     "end_s": 509.3
+    },
+    {
+     "prompt": "chop the carving knife with the mushroom",
+     "start_s": 509.3,
+     "end_s": 512.2
+    },
+    {
+     "prompt": "place the carving knife on the bar",
+     "start_s": 512.2,
+     "end_s": 516.4
+    },
+    {
+     "prompt": "pick up the chopping board from the bar",
+     "start_s": 516.4,
+     "end_s": 524.9
+    },
+    {
+     "prompt": "pour the half mushroom 81 and half mushroom 81 and half mushroom 82 and half mushroom 82 into the chopping board",
+     "start_s": 524.9,
+     "end_s": 532.7
+    },
+    {
+     "prompt": "place the chopping board on the bar",
+     "start_s": 532.7,
+     "end_s": 543.3
+    },
+    {
+     "prompt": "pick up the bowl from the bar",
+     "start_s": 543.3,
+     "end_s": 552.1
+    },
+    {
+     "prompt": "move to the pizza dough",
+     "start_s": 552.1,
+     "end_s": 558.7
+    },
+    {
+     "prompt": "pour the half mushroom 81 and half mushroom 81 and half mushroom 82 and half mushroom 82 and pepperoni and pepperoni and pepperoni and pepperoni and diced  vidalia onion into the bowl",
+     "start_s": 558.7,
+     "end_s": 565.8
+    },
+    {
+     "prompt": "move to the tupperware",
+     "start_s": 565.8,
+     "end_s": 567.8
+    },
+    {
+     "prompt": "place the bowl on the tupperware",
+     "start_s": 567.8,
+     "end_s": 574.5
+    },
+    {
+     "prompt": "pick up the tupperware from the drop in sink",
+     "start_s": 574.5,
+     "end_s": 579.5
+    },
+    {
+     "prompt": "pour the grated cheese into the tupperware",
+     "start_s": 579.5,
+     "end_s": 592.1
+    },
+    {
+     "prompt": "place the tupperware on the drop in sink",
+     "start_s": 592.1,
+     "end_s": 600.9
+    },
+    {
+     "prompt": "open the door of the oven",
+     "start_s": 600.9,
+     "end_s": 624.4
+    },
+    {
+     "prompt": "pull tray the high_level oven",
+     "start_s": 624.4,
+     "end_s": 653.4
+    },
+    {
+     "prompt": "pick up the baking sheet from the bar",
+     "start_s": 653.4,
+     "end_s": 671.1
+    },
+    {
+     "prompt": "move to the oven",
+     "start_s": 671.1,
+     "end_s": 674.9
+    },
+    {
+     "prompt": "place the baking sheet in the high_level oven",
+     "start_s": 674.9,
+     "end_s": 689.9
+    },
+    {
+     "prompt": "push tray the high_level oven",
+     "start_s": 689.9,
+     "end_s": 696.2
+    },
+    {
+     "prompt": "close the door of the oven",
+     "start_s": 696.2,
+     "end_s": 718.9
+    },
+    {
+     "prompt": "turn on the oven",
+     "start_s": 718.9,
+     "end_s": 728.1
+    },
+    {
+     "prompt": "open the door of the oven",
+     "start_s": 728.1,
+     "end_s": 750.9
+    }
+   ]
+  },
+  "verb_mean_seconds": {
+   "chop": 3.8,
+   "close door": 16.7,
+   "move to": 6.6,
+   "open door": 24.1,
+   "pick up from": 12.0,
+   "place in": 13.0,
+   "place on": 6.7,
+   "place on next to": 7.7,
+   "pour": 8.0,
+   "pull tray": 27.2,
+   "push to": 9.3,
+   "push tray": 7.0,
+   "turn on switch": 6.9,
+   "turn to": 10.1
+  },
+  "verb_counts_total": {
+   "pick up from": 2939,
+   "move to": 2636,
+   "place on": 1314,
+   "place on next to": 1225,
+   "pour": 1200,
+   "chop": 977,
+   "open door": 796,
+   "close door": 596,
+   "place in": 400,
+   "pull tray": 201,
+   "push tray": 200,
+   "turn on switch": 200,
+   "push to": 92,
+   "turn to": 2
+  },
+  "top_prompts": [
+   [
+    "pick up the chopping board from the bar",
+    590
+   ],
+   [
+    "pick up the carving knife from the bar",
+    571
+   ],
+   [
+    "pick up the baking sheet from the bar",
+    400
+   ],
+   [
+    "move to the fridge",
+    400
+   ],
+   [
+    "open the door of the oven",
+    400
+   ],
+   [
+    "chop the carving knife with the mushroom",
+    397
+   ],
+   [
+    "place the chopping board on the bar next to the right bowl",
+    390
+   ],
+   [
+    "move to the baking sheet",
+    381
+   ],
+   [
+    "move to the oven",
+    376
+   ],
+   [
+    "move to the bowl",
+    375
+   ],
+   [
+    "chop the carving knife with the half vidalia onion 80",
+    373
+   ],
+   [
+    "pick up the bowl from the bar",
+    358
+   ],
+   [
+    "place the carving knife on the bar next to the right chopping board",
+    312
+   ],
+   [
+    "move to the tupperware",
+    305
+   ],
+   [
+    "pick up the tupperware from the layer_5 fridge",
+    267
+   ],
+   [
+    "move to the pizza dough",
+    244
+   ],
+   [
+    "pick up the tupperware from the layer_4 fridge",
+    230
+   ],
+   [
+    "move to the chopping board",
+    227
+   ],
+   [
+    "chop the carving knife with the vidalia onion",
+    201
+   ],
+   [
+    "pull tray the high_level oven",
+    201
+   ],
+   [
+    "place the baking sheet on the bar next to the left oven",
+    200
+   ],
+   [
+    "pour the pepperoni and pepperoni and pepperoni and pepperoni into the tupperware",
+    200
+   ],
+   [
+    "place the tupperware in the drop in sink",
+    200
+   ],
+   [
+    "pour the mushroom and mushroom into the tupperware",
+    200
+   ],
+   [
+    "place the tupperware on the tupperware",
+    200
+   ]
+  ]
+ },
+ "comet_skill_vocab": [
+  "move to",
+  "pour",
+  "close door",
+  "place on next to",
+  "turn to",
+  "place on",
+  "pick up from",
+  "place in",
+  "pull tray",
+  "push tray",
+  "open door",
+  "chop",
+  "turn on switch",
+  "push to"
+ ],
+ "results": {
+  "ft40k@sulab1": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 28781
+  },
+  "ft40k@local": {
+   "instance": 311,
+   "q": 0.0,
+   "success": false,
+   "steps": 28781
+  }
+ }
+}
