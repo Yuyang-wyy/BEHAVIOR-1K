@@ -327,3 +327,17 @@ dev seeds 0/1, and a fresh LB seed 2 with its own Comet-alone baseline.
 ## Correction: make_microwave_popcorn
 Comet alone seed 1: 0, 0, 1.0, 0, 1.0 = 0.40 (2 successes). Pooled Comet alone 2/10 vs burner pipeline 3/30.
 **No gain; the burner pipeline is worse than Comet alone.**
+
+### v11 results (grasp only when the other hand holds the bin) - v2 checkpoint, picking_up_trash
+| instances | seed | Comet alone | v5 | v11 |
+| --- | --- | --- | --- | --- |
+| LB 301-310 | 0 | 0.23 | 0.63 | 0.67 |
+| LB 301-310 | 1 | 0.63 | 0.40 | 0.70 |
+| LB 301-310 | 2 (fresh, untuned) | 0.43 | - | 0.63 |
+| dev 311-320 | 0 | 0.40 | 0.70 | 0.47 |
+| dev 311-320 | 1 | 0.50 | 0.53 | 0.90 |
+Paired over all 50 v11 episodes: **Comet alone 0.44 -> v11 0.67**, 28 wins / 8 losses / 14 ties, sign test
+p = 0.001, full successes 8 -> 22. v5 over its 40: 0.44 -> 0.57, 15/9, p = 0.31 (not significant).
+The fresh held-out LB seed 2 (+0.20) was never used for tuning. Weak spot: dev seed 0, where v11 (0.47) is
+below v5 (0.70) - the gate delays grasps when Comet has not picked up the bin yet.
+**This is the one statistically solid supervision result on the v2 checkpoint.**
