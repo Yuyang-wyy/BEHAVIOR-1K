@@ -311,3 +311,19 @@ dominated by where Comet parks the robot. Treat as a weak, unconfirmed gain.
 v5 seed 1 (8 of 10 so far): 1.0, 0.33, 0, 0.33, 0.67, 0.33, 0.67, 0.67 = 0.50; Comet alone seed 1 = 0.50.
 So on the v2 checkpoint: seed 0 0.70 vs 0.40, seed 1 0.50 vs 0.50. On the old checkpoint the gain held on two
 seeds (0.77 vs 0.37, 0.73 vs 0.27). The v2 checkpoint may already fix part of the stall the reflexes target.
+
+## picking_up_trash on the leaderboard instances 301-310 (v2 ckpt)
+| seed | Comet alone | v5 scripted grasp/place |
+| --- | --- | --- |
+| 0 | 0.23 | 0.63 |
+| 1 | 0.63 | 0.40 |
+Dev 311-320 seed 1 v5 finished: 0.50 (= Comet alone 0.50). Pooled over v2, 40 episodes per arm:
+Comet alone 0.45, v5 0.56 - a small gain, inconsistent across seeds.
+Failure found: on 303 and 307 (both seeds) the robot starts next to the cans and the grasp reflex fires before
+either hand holds the bin, so nothing can be placed and the hands are full. v11 (`comet_planner_v11`) only
+grasps when the other hand holds the bin. Being evaluated on LB seeds 0/1 (biased: fix came from them),
+dev seeds 0/1, and a fresh LB seed 2 with its own Comet-alone baseline.
+
+## Correction: make_microwave_popcorn
+Comet alone seed 1: 0, 0, 1.0, 0, 1.0 = 0.40 (2 successes). Pooled Comet alone 2/10 vs burner pipeline 3/30.
+**No gain; the burner pipeline is worse than Comet alone.**
