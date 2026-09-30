@@ -336,6 +336,7 @@ Comet alone seed 1: 0, 0, 1.0, 0, 1.0 = 0.40 (2 successes). Pooled Comet alone 2
 | LB 301-310 | 2 (fresh, untuned) | 0.43 | - | 0.63 |
 | dev 311-320 | 0 | 0.40 | 0.70 | 0.47 |
 | dev 311-320 | 1 | 0.50 | 0.53 | 0.90 |
+| dev 311-320 | 2 | 0.57 (sulab1) | - | 0.63 |
 Paired over all 50 v11 episodes: **Comet alone 0.44 -> v11 0.67**, 28 wins / 8 losses / 14 ties, sign test
 p = 0.001, full successes 8 -> 22. v5 over its 40: 0.44 -> 0.57, 15/9, p = 0.31 (not significant).
 The fresh held-out LB seed 2 (+0.20) was never used for tuning. Weak spot: dev seed 0, where v11 (0.47) is
@@ -357,3 +358,6 @@ reflex fired on empty hands and pulled Comet off tasks it was completing (311/31
 alone); (2) auto_place's release pose was tuned for the trash can and drops glasses outside this bin.
 Lesson: a reflex needs a hold detector that separates "holding an item" from "closed on nothing"; jaw width
 alone cannot (see [[comet-planner-harness]] memory: jaw width cannot detect holds). Stopped.
+
+**v11 over 60 paired episodes (dev 3 seeds + LB 3 seeds): Comet alone 0.46 -> v11 0.67, 32 wins / 11 losses /
+17 ties, sign test p = 0.002, full successes 10 -> 25.** Dev seed 2 alone is a small gain (+0.06).
