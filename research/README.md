@@ -38,6 +38,8 @@ per checkpoint: `global` (task sentence), `skill "<sentence>"` (Comet prompt ove
 | carrying_in_groceries (311-315) | 0.30 | 0.15 (hurts; banking the trunk locks the bag in) |
 | composting_waste (311-313) | 1.0, 0.5, 0.5 | 0.5, 0, 0 (hurts) | Comet already bins fruit; interventions cost the 182 s budget |
 | make_microwave_popcorn (311-315, 2 seeds) | 0.20 (2/10) | 0.10 (3/30) - no gain | code-as-policy: Comet walks to the bag, poke the burner's red marker, push the bag to the flame (`popcorn_burner.py`) |
+| dispose_of_glass (311-315, 2 seeds) | 0.38 | v12 held-container reflex 0.10 (hurts: fired on empty hands) |
+| dispose_of_batteries (311-315, 2 seeds) | 0.20 | not tried |
 | tidying_bedroom (311-315) | 0.60 | 0.60 | no net gain: sandals already fine, flat book hard to grasp |
 | spraying_for_bugs (311-312) | 0, 0 | 0.5, 0 | atomizer toggling and nozzle aim are inside Comet's manipulation |
 | collecting_aluminum_cans / putting_away_toys | 0.53 / 0.65 | 0.27-0.46 / noise | takeovers hurt when Comet is already progressing |

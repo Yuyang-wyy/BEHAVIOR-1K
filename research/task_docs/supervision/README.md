@@ -341,3 +341,19 @@ p = 0.001, full successes 8 -> 22. v5 over its 40: 0.44 -> 0.57, 15/9, p = 0.31 
 The fresh held-out LB seed 2 (+0.20) was never used for tuning. Weak spot: dev seed 0, where v11 (0.47) is
 below v5 (0.70) - the gate delays grasps when Comet has not picked up the bin yet.
 **This is the one statistically solid supervision result on the v2 checkpoint.**
+
+## dispose_of_glass and dispose_of_batteries (v2 ckpt, Comet alone, 311-315)
+| task | seed 0 | seed 1 |
+| --- | --- | --- |
+| dispose_of_glass | 1.0, 0, 0.5, 0, 1.0 = 0.50 | 0.5, 0.25, 0.5, 0, 0 = 0.25 |
+| dispose_of_batteries | 0.25, 0.5, 0, 0.25, 0 = 0.20 | 0.25, 0.25, 0.25, 0.25, 0 = 0.20 |
+Glass diagnosis: in 7/10 runs Comet grabs the trash can early, then a glass with the other hand, then carries
+both for 2-4 min (or to the end) without releasing. That is the trash pattern (held container + item), so v12
+(`comet_planner_v12`) adds one reflex: both hands closed for 2 checks -> scripted auto_place of the second-grasped
+item into the first-grasped container. Running on the same instances/seeds.
+**v12 result: hurts badly.** seed 0: 0, 0, 0, 0.25, 0 = 0.05 (alone 0.50); seed 1: 0, 0, 0, 0.25, 0.5 = 0.15
+(alone 0.25). Causes: (1) "both hands closed" used width < 0.09, but an empty closed jaw reads ~0.008, so the
+reflex fired on empty hands and pulled Comet off tasks it was completing (311/315 seed 0 were full successes
+alone); (2) auto_place's release pose was tuned for the trash can and drops glasses outside this bin.
+Lesson: a reflex needs a hold detector that separates "holding an item" from "closed on nothing"; jaw width
+alone cannot (see [[comet-planner-harness]] memory: jaw width cannot detect holds). Stopped.
