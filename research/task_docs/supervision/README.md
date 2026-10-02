@@ -451,3 +451,25 @@ One remote episode died of a physics NaN (finger link quaternion) during an appr
   Seed 2 running (alone seed 2 = 0.23, 0.31, 0.23, 0, 0.08 = 0.17). The reflex fires only 1-2x per episode: it waits
   2-13x per episode because Comet holds a vegetable next to another bowl while the home bowl is 1.5 m away.
 * v13j = v13i + drive to the home bowl (turn + gentle drive to 0.65 m) once per held item when it is < 2.5 m away.
+* v13i seed 2: 0.15, 0.08, 0.15, 0.15, 0.23 = 0.15 (alone 0.17). v13i over 15 paired episodes: 0.21 vs 0.19, 7W/6L/2T = noise.
+* v13j (drive to the home bowl): seed 0 0.15, 0.23, 0.15, 0, 0.15 = 0.14 (alone 0.21); seed 1 0.08, 0.31, 0.23, 0.15, 0.08
+  = 0.17 (alone 0.17); seed 2 (sulab1, 1 ep) 0.31. No gain; stopped.
+
+### sorting_vegetables: CONCLUSION - not improvable with the current Comet skills + code reflexes
+Comet alone scores a steady 0.17-0.21 (3 seeds x 5 instances). Ten supervisor versions (v13a-j) were measured;
+none beat it beyond noise. Failure points found and fixed along the way (each verified in logs/frames):
+- item names wrong for the basket (colour classifier), second hand stuck on the rim (open reflex), place skill misses
+  the bowl (scripted bowl place: 85-90 % score when the arm reaches; reach-gated), red backsplash/onions mistaken for
+  bowls (rim-height/spread/merge test), reflex firing on the basket (wrist wicker gate), items spread over 3 bowls
+  (odometry-tracked home bowl), home bowl out of reach (drive-to-home-bowl).
+Why the score does not move:
+1. Throughput cap. Comet alone grasps ~5 items per 595 s episode (one trip per 1-2 vegetables, ~100 s each); 3 score.
+   A perfect place reflex on top of Comet's own strategy can add at most the ~2 lost items (+0.15), and in practice
+   it fires only 1-4 times per episode, and each intervention (a ~10-30 s scripted carry, base drives) costs Comet time
+   and sometimes its next grasp - the net is zero.
+2. The only route to a large gain is the demo strategy (carry a basket of 6-7 items to the counter). Comet cannot do it
+   reliably: the held basket tilts and spills or is dropped (~1x per episode), picking from the held low basket stalls
+   for minutes, there is no free counter area within reach to set the basket down (depth dump: the 0.65-0.85 m strip is
+   occupied by the 3 bowls), and a basket set on the floor makes every pick 40-80 s and hides the bowls from the head
+   camera. Making this work would need a code skill that grasps the basket and keeps it level while Comet picks from it
+   (full basket pose control), which the harness does not have.
