@@ -1,0 +1,78 @@
+[
+{
+"prompt": "move to the bottom cabinet no top",
+"s": 17.0
+},
+{
+"prompt": "open the door of the bottom cabinet no top",
+"s": 39.0
+},
+{
+"prompt": "pick up the tupperware from the bottom cabinet no top",
+"s": 12.0
+},
+{
+"prompt": "place the tupperware on the countertop",
+"s": 7.5
+},
+{
+"prompt": "close the door of the bottom cabinet no top",
+"s": 17.5
+},
+{
+"prompt": "pick up the plate from the countertop",
+"s": 5.9
+},
+{
+"prompt": "pour the taco into the plate",
+"s": 10.6
+},
+{
+"prompt": "place the plate on the sink",
+"s": 7.3
+},
+{
+"prompt": "move to the plate",
+"s": 5.6
+},
+{
+"prompt": "pick up the plate from the countertop",
+"s": 4.4
+},
+{
+"prompt": "move to the tupperware",
+"s": 9.5
+},
+{
+"prompt": "pour the taco into the plate",
+"s": 5.7
+},
+{
+"prompt": "place the plate in the sink",
+"s": 8.0
+},
+{
+"prompt": "move to the tupperware",
+"s": 9.0
+},
+{
+"prompt": "pick up the tupperware from the countertop",
+"s": 3.0
+},
+{
+"prompt": "move to the fridge",
+"s": 17.0
+},
+{
+"prompt": "open the door of the fridge",
+"s": 27.0
+},
+{
+"prompt": "place the tupperware in the fridge",
+"s": 13.0
+},
+{
+"prompt": "close the door of the fridge",
+"s": 8.0
+}
+]

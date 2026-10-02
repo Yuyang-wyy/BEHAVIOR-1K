@@ -1,0 +1,106 @@
+[
+{
+"prompt": "move to the tote",
+"s": 13.0
+},
+{
+"prompt": "pick up the tote from the floors",
+"s": 15.0
+},
+{
+"prompt": "move to the bed",
+"s": 4.1
+},
+{
+"prompt": "place the tote on the bed",
+"s": 12.9
+},
+{
+"prompt": "move to the calculator",
+"s": 15.0
+},
+{
+"prompt": "pick up the calculator from the floors",
+"s": 35.0
+},
+{
+"prompt": "move to the tote",
+"s": 11.8
+},
+{
+"prompt": "place the calculator in the tote",
+"s": 18.5
+},
+{
+"prompt": "move to the pencil",
+"s": 10.7
+},
+{
+"prompt": "pick up the pencil from the bed",
+"s": 14.0
+},
+{
+"prompt": "move to the tote",
+"s": 10.0
+},
+{
+"prompt": "place the pencil in the tote",
+"s": 20.6
+},
+{
+"prompt": "move to the pen",
+"s": 17.4
+},
+{
+"prompt": "pick up the pen from the floors",
+"s": 27.1
+},
+{
+"prompt": "move to the tote",
+"s": 25.4
+},
+{
+"prompt": "place the pen in the tote",
+"s": 11.5
+},
+{
+"prompt": "move to the folder",
+"s": 17.0
+},
+{
+"prompt": "push the folder to the bed",
+"s": 33.0
+},
+{
+"prompt": "pick up the folder from the bed",
+"s": 21.0
+},
+{
+"prompt": "move to the tote",
+"s": 13.9
+},
+{
+"prompt": "place the folder in the tote",
+"s": 14.1
+},
+{
+"prompt": "move to the notebook",
+"s": 17.0
+},
+{
+"prompt": "push the notebook to the bed",
+"s": 25.4
+},
+{
+"prompt": "pick up the notebook from the bed",
+"s": 19.8
+},
+{
+"prompt": "move to the tote",
+"s": 19.8
+},
+{
+"prompt": "place the notebook in the tote",
+"s": 21.6
+}
+]

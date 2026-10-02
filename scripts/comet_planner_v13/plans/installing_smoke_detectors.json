@@ -1,0 +1,18 @@
+[
+{
+"prompt": "move to the fire alarm",
+"s": 14.0
+},
+{
+"prompt": "pick up the fire alarm from the coffee table",
+"s": 22.0
+},
+{
+"prompt": "move to the wall nail",
+"s": 34.7
+},
+{
+"prompt": "attach the fire alarm to the wall nail",
+"s": 6.3
+}
+]

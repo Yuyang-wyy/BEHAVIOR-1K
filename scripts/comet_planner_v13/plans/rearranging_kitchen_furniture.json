@@ -1,0 +1,70 @@
+[
+{
+"prompt": "move to the top cabinet",
+"s": 16.1
+},
+{
+"prompt": "open the door of the right_door top cabinet",
+"s": 39.2
+},
+{
+"prompt": "open the door of the left_door top cabinet",
+"s": 36.7
+},
+{
+"prompt": "move to the bar",
+"s": 9.4
+},
+{
+"prompt": "pick up the toaster from the bar",
+"s": 15.2
+},
+{
+"prompt": "move to the top cabinet",
+"s": 7.8
+},
+{
+"prompt": "place the toaster in the low_level top cabinet",
+"s": 13.0
+},
+{
+"prompt": "move to the bar",
+"s": 12.5
+},
+{
+"prompt": "pick up the food processor from the bar",
+"s": 16.9
+},
+{
+"prompt": "move to the top cabinet",
+"s": 7.0
+},
+{
+"prompt": "place the food processor in the low_level top cabinet next to the right toaster",
+"s": 16.3
+},
+{
+"prompt": "move to the bar",
+"s": 6.3
+},
+{
+"prompt": "pick up the french press from the bar",
+"s": 10.1
+},
+{
+"prompt": "move to the top cabinet",
+"s": 6.6
+},
+{
+"prompt": "place the french press in the low_level top cabinet next to the right food processor",
+"s": 15.7
+},
+{
+"prompt": "close the door of the right_door top cabinet",
+"s": 26.6
+},
+{
+"prompt": "close the door of the left_door top cabinet",
+"s": 15.6
+}
+]

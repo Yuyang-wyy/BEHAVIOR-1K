@@ -1,0 +1,146 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 34.1
+},
+{
+"prompt": "open the door of the fridge",
+"s": 31.8
+},
+{
+"prompt": "pick up the chili from the low_level fridge",
+"s": 47.4
+},
+{
+"prompt": "pick up the head cabbage from the high_level fridge",
+"s": 22.5
+},
+{
+"prompt": "close the door of the fridge",
+"s": 29.6
+},
+{
+"prompt": "move to the cutting board",
+"s": 9.7
+},
+{
+"prompt": "place the head cabbage on the cutting board",
+"s": 21.6
+},
+{
+"prompt": "move to the plate",
+"s": 4.6
+},
+{
+"prompt": "place the chili on the plate",
+"s": 16.3
+},
+{
+"prompt": "pick up the frying pan from the countertop",
+"s": 17.6
+},
+{
+"prompt": "move to the burner",
+"s": 10.2
+},
+{
+"prompt": "place the frying pan on the right burner",
+"s": 14.0
+},
+{
+"prompt": "move to the carving knife",
+"s": 5.8
+},
+{
+"prompt": "pick up the carving knife from the countertop",
+"s": 25.0
+},
+{
+"prompt": "move to the head cabbage",
+"s": 7.6
+},
+{
+"prompt": "chop the carving knife with the head cabbage",
+"s": 5.8
+},
+{
+"prompt": "chop the carving knife with the half head cabbage 212",
+"s": 3.8
+},
+{
+"prompt": "chop the carving knife with the half head cabbage 212",
+"s": 5.3
+},
+{
+"prompt": "place the carving knife on the countertop next to the right cutting board",
+"s": 5.6
+},
+{
+"prompt": "push the cutting board to the to_the_edge_of countertop",
+"s": 20.4
+},
+{
+"prompt": "pick up the cutting board from the countertop",
+"s": 23.0
+},
+{
+"prompt": "pour the diced  head cabbage into the cutting board",
+"s": 7.8
+},
+{
+"prompt": "place the cutting board on the to_the_edge_of countertop",
+"s": 14.8
+},
+{
+"prompt": "move to the chili",
+"s": 2.0
+},
+{
+"prompt": "pick up the chili from the plate",
+"s": 11.6
+},
+{
+"prompt": "move to the cutting board",
+"s": 7.0
+},
+{
+"prompt": "place the chili on the cutting board",
+"s": 8.1
+},
+{
+"prompt": "pick up the carving knife from the countertop",
+"s": 13.6
+},
+{
+"prompt": "chop the carving knife with the chili",
+"s": 11.4
+},
+{
+"prompt": "chop the carving knife with the half chili 211",
+"s": 4.2
+},
+{
+"prompt": "chop the carving knife with the half chili 211",
+"s": 2.6
+},
+{
+"prompt": "place the carving knife on the countertop",
+"s": 6.4
+},
+{
+"prompt": "pick up the cutting board from the countertop",
+"s": 15.8
+},
+{
+"prompt": "pour the diced  chili into the cutting board",
+"s": 4.9
+},
+{
+"prompt": "place the cutting board on the countertop",
+"s": 10.0
+},
+{
+"prompt": "turn on the burner",
+"s": 12.2
+}
+]

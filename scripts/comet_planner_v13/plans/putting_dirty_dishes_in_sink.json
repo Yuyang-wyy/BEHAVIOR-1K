@@ -1,0 +1,82 @@
+[
+{
+"prompt": "move to the booth",
+"s": 23.0
+},
+{
+"prompt": "pick up the bowl from the booth",
+"s": 10.3
+},
+{
+"prompt": "pick up the bowl from the booth",
+"s": 9.8
+},
+{
+"prompt": "move to the flipup countertop",
+"s": 19.3
+},
+{
+"prompt": "open the lid of the flipup countertop",
+"s": 7.0
+},
+{
+"prompt": "move to the kitchen door",
+"s": 9.6
+},
+{
+"prompt": "open the door of the kitchen door",
+"s": 8.6
+},
+{
+"prompt": "move to the commercial kitchen sink",
+"s": 42.4
+},
+{
+"prompt": "place the bowl in the commercial kitchen sink",
+"s": 13.4
+},
+{
+"prompt": "place the bowl on the bowl",
+"s": 11.3
+},
+{
+"prompt": "move to the booth",
+"s": 75.3
+},
+{
+"prompt": "pick up the plate from the booth",
+"s": 9.5
+},
+{
+"prompt": "pick up the plate from the booth",
+"s": 6.5
+},
+{
+"prompt": "move to the bar",
+"s": 32.0
+},
+{
+"prompt": "close the lid of the flipup countertop",
+"s": 9.0
+},
+{
+"prompt": "move to the kitchen door",
+"s": 44.9
+},
+{
+"prompt": "close the door of the kitchen door",
+"s": 15.7
+},
+{
+"prompt": "move to the commercial kitchen sink",
+"s": 22.4
+},
+{
+"prompt": "place the plate in the commercial kitchen sink",
+"s": 16.2
+},
+{
+"prompt": "place the plate on the plate",
+"s": 9.8
+}
+]

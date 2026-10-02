@@ -1,0 +1,62 @@
+[
+{
+"prompt": "move to the door",
+"s": 16.0
+},
+{
+"prompt": "open the door of the door",
+"s": 19.0
+},
+{
+"prompt": "move to the car",
+"s": 35.2
+},
+{
+"prompt": "open the lid of the car",
+"s": 45.3
+},
+{
+"prompt": "pick up the briefcase from the car",
+"s": 31.0
+},
+{
+"prompt": "pick up the satchel from the car",
+"s": 34.6
+},
+{
+"prompt": "move to the floors",
+"s": 22.2
+},
+{
+"prompt": "place the satchel on the floors",
+"s": 29.1
+},
+{
+"prompt": "move to the car",
+"s": 5.5
+},
+{
+"prompt": "close the lid of the car",
+"s": 11.1
+},
+{
+"prompt": "move to the floors",
+"s": 6.8
+},
+{
+"prompt": "pick up the satchel from the floors",
+"s": 17.6
+},
+{
+"prompt": "move to the sofa",
+"s": 45.3
+},
+{
+"prompt": "place the satchel on the floors",
+"s": 16.0
+},
+{
+"prompt": "place the briefcase on the floors",
+"s": 27.3
+}
+]

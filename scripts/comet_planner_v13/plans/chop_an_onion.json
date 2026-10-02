@@ -1,0 +1,74 @@
+[
+{
+"prompt": "move to the cutting board",
+"s": 15.3
+},
+{
+"prompt": "pick up the cutting board from the bar",
+"s": 26.8
+},
+{
+"prompt": "place the cutting board on the bar next to the left drop in sink",
+"s": 21.2
+},
+{
+"prompt": "move to the vidalia onion",
+"s": 3.0
+},
+{
+"prompt": "pick up the vidalia onion from the drop in sink",
+"s": 16.6
+},
+{
+"prompt": "move to the cutting board",
+"s": 1.8
+},
+{
+"prompt": "place the vidalia onion on the cutting board",
+"s": 18.3
+},
+{
+"prompt": "pick up the parer from the bar",
+"s": 27.7
+},
+{
+"prompt": "move to the vidalia onion",
+"s": 7.5
+},
+{
+"prompt": "chop the parer with the vidalia onion",
+"s": 8.6
+},
+{
+"prompt": "chop the parer with the half vidalia onion 75",
+"s": 0.9
+},
+{
+"prompt": "chop the parer with the half vidalia onion 75",
+"s": 3.3
+},
+{
+"prompt": "place the parer in the drop in sink",
+"s": 4.9
+},
+{
+"prompt": "pick up the cutting board from the bar",
+"s": 14.6
+},
+{
+"prompt": "move to the bowl",
+"s": 3.9
+},
+{
+"prompt": "pour the diced  vidalia onion into the cutting board",
+"s": 7.5
+},
+{
+"prompt": "move to the drop in sink",
+"s": 2.1
+},
+{
+"prompt": "place the cutting board in the drop in sink",
+"s": 17.9
+}
+]

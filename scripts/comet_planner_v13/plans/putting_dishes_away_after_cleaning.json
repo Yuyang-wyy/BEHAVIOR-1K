@@ -1,0 +1,134 @@
+[
+{
+"prompt": "move to the top cabinet",
+"s": 11.7
+},
+{
+"prompt": "open the door of the right_door top cabinet",
+"s": 27.8
+},
+{
+"prompt": "open the door of the left_door top cabinet",
+"s": 11.5
+},
+{
+"prompt": "move to the plate",
+"s": 19.2
+},
+{
+"prompt": "pick up the plate from the countertop",
+"s": 8.1
+},
+{
+"prompt": "move to the plate",
+"s": 0.4
+},
+{
+"prompt": "pick up the plate from the countertop",
+"s": 5.7
+},
+{
+"prompt": "move to the top cabinet",
+"s": 12.1
+},
+{
+"prompt": "place the plate in the low_level top cabinet",
+"s": 13.9
+},
+{
+"prompt": "place the plate in the low_level top cabinet",
+"s": 4.8
+},
+{
+"prompt": "move to the plate",
+"s": 6.8
+},
+{
+"prompt": "pick up the plate from the countertop",
+"s": 9.3
+},
+{
+"prompt": "move to the plate",
+"s": 13.9
+},
+{
+"prompt": "pick up the plate from the countertop",
+"s": 4.9
+},
+{
+"prompt": "move to the top cabinet",
+"s": 14.1
+},
+{
+"prompt": "place the plate on the plate",
+"s": 16.9
+},
+{
+"prompt": "place the plate on the plate",
+"s": 9.0
+},
+{
+"prompt": "move to the plate",
+"s": 24.5
+},
+{
+"prompt": "pick up the plate from the bar",
+"s": 11.1
+},
+{
+"prompt": "move to the plate",
+"s": 5.3
+},
+{
+"prompt": "pick up the plate from the bar",
+"s": 6.2
+},
+{
+"prompt": "move to the top cabinet",
+"s": 24.9
+},
+{
+"prompt": "place the plate on the plate",
+"s": 11.4
+},
+{
+"prompt": "place the plate on the plate",
+"s": 5.8
+},
+{
+"prompt": "move to the plate",
+"s": 17.8
+},
+{
+"prompt": "pick up the plate from the bar",
+"s": 7.6
+},
+{
+"prompt": "move to the plate",
+"s": 2.0
+},
+{
+"prompt": "pick up the plate from the bar",
+"s": 7.9
+},
+{
+"prompt": "move to the top cabinet",
+"s": 12.3
+},
+{
+"prompt": "place the plate on the plate",
+"s": 11.5
+},
+{
+"prompt": "place the plate on the plate",
+"s": 5.9
+},
+{
+"prompt": "close the door of the left_door top cabinet",
+"s": 10.4
+},
+{
+"prompt": "close the door of the right_door top cabinet",
+"s": 14.9
+}
+]

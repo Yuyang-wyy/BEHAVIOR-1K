@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the door",
+"s": 14.9
+},
+{
+"prompt": "open the door of the door",
+"s": 18.4
+},
+{
+"prompt": "move to the storage box",
+"s": 49.6
+},
+{
+"prompt": "pick up the storage box from the floors",
+"s": 43.8
+},
+{
+"prompt": "move to the floors",
+"s": 71.3
+},
+{
+"prompt": "place the storage box on the floors",
+"s": 28.9
+},
+{
+"prompt": "move to the storage box",
+"s": 69.8
+},
+{
+"prompt": "pick up the storage box from the floors",
+"s": 48.6
+},
+{
+"prompt": "move to the storage box",
+"s": 78.1
+},
+{
+"prompt": "place the storage box on the storage box",
+"s": 39.2
+}
+]

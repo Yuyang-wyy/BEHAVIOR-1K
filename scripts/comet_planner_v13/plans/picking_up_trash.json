@@ -1,0 +1,50 @@
+[
+{
+"prompt": "move to the trash can",
+"s": 46.2
+},
+{
+"prompt": "pick up the trash can from the floors",
+"s": 13.7
+},
+{
+"prompt": "move to the can of soda",
+"s": 28.7
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 13.9
+},
+{
+"prompt": "place the can of soda in the trash can",
+"s": 5.7
+},
+{
+"prompt": "move to the can of soda",
+"s": 8.4
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 11.9
+},
+{
+"prompt": "place the can of soda in the trash can",
+"s": 7.6
+},
+{
+"prompt": "move to the can of soda",
+"s": 6.9
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 9.1
+},
+{
+"prompt": "place the can of soda in the trash can",
+"s": 4.9
+},
+{
+"prompt": "place the trash can on the floors",
+"s": 8.0
+}
+]

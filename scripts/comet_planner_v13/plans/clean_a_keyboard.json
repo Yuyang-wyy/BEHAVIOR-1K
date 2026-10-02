@@ -1,0 +1,26 @@
+[
+{
+"prompt": "move to the swivel chair",
+"s": 19.0
+},
+{
+"prompt": "push the swivel chair to the desk",
+"s": 19.0
+},
+{
+"prompt": "move to the pipe cleaner",
+"s": 16.0
+},
+{
+"prompt": "pick up the pipe cleaner from the desk",
+"s": 33.0
+},
+{
+"prompt": "move to the keyboard",
+"s": 19.0
+},
+{
+"prompt": "sweep the keyboard",
+"s": 30.0
+}
+]

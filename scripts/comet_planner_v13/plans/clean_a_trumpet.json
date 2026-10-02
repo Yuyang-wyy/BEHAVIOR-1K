@@ -1,0 +1,26 @@
+[
+{
+"prompt": "move to the scrub brush",
+"s": 32.0
+},
+{
+"prompt": "pick up the scrub brush from the desk",
+"s": 27.0
+},
+{
+"prompt": "hand over the scrub brush with the left",
+"s": 17.5
+},
+{
+"prompt": "move to the trumpet",
+"s": 4.9
+},
+{
+"prompt": "wipe the scrub brush",
+"s": 62.9
+},
+{
+"prompt": "place the scrub brush on the desk",
+"s": 10.4
+}
+]

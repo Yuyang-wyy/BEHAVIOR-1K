@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the vacuum",
+"s": 11.0
+},
+{
+"prompt": "pick up the vacuum from the floors",
+"s": 8.0
+},
+{
+"prompt": "turn on the vacuum",
+"s": 10.0
+},
+{
+"prompt": "move to the dirt",
+"s": 6.8
+},
+{
+"prompt": "sweep the dirt",
+"s": 4.0
+},
+{
+"prompt": "move to the dirt",
+"s": 8.0
+},
+{
+"prompt": "sweep the dirt",
+"s": 4.0
+},
+{
+"prompt": "move to the dirt",
+"s": 7.6
+},
+{
+"prompt": "sweep the dirt",
+"s": 9.6
+},
+{
+"prompt": "place the vacuum on the floors",
+"s": 7.4
+}
+]

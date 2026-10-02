@@ -1,0 +1,142 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 27.9
+},
+{
+"prompt": "open the door of the fridge",
+"s": 40.8
+},
+{
+"prompt": "pick up the beet from the middle_level fridge",
+"s": 22.7
+},
+{
+"prompt": "pick up the beet from the high_level fridge",
+"s": 33.9
+},
+{
+"prompt": "move to the cutting board",
+"s": 8.3
+},
+{
+"prompt": "place the beet on the cutting board",
+"s": 12.6
+},
+{
+"prompt": "place the beet on the cutting board",
+"s": 15.7
+},
+{
+"prompt": "move to the bell pepper",
+"s": 17.4
+},
+{
+"prompt": "pick up the bell pepper from the high_level fridge",
+"s": 24.2
+},
+{
+"prompt": "pick up the bell pepper from the low_level fridge",
+"s": 42.5
+},
+{
+"prompt": "move to the cutting board",
+"s": 7.8
+},
+{
+"prompt": "place the bell pepper on the cutting board",
+"s": 13.3
+},
+{
+"prompt": "place the bell pepper on the cutting board",
+"s": 8.2
+},
+{
+"prompt": "move to the zucchini",
+"s": 20.4
+},
+{
+"prompt": "pick up the zucchini from the low_level fridge",
+"s": 41.4
+},
+{
+"prompt": "close the door of the fridge",
+"s": 18.4
+},
+{
+"prompt": "place the zucchini on the cutting board",
+"s": 11.1
+},
+{
+"prompt": "pick up the parer from the countertop",
+"s": 14.3
+},
+{
+"prompt": "chop the parer with the zucchini",
+"s": 8.1
+},
+{
+"prompt": "chop the parer with the half zucchini 208",
+"s": 1.3
+},
+{
+"prompt": "chop the parer with the beet",
+"s": 2.0
+},
+{
+"prompt": "chop the parer with the half zucchini 208",
+"s": 3.0
+},
+{
+"prompt": "chop the parer with the half beet 212",
+"s": 3.0
+},
+{
+"prompt": "chop the parer with the half beet 212",
+"s": 3.0
+},
+{
+"prompt": "chop the parer with the beet",
+"s": 3.3
+},
+{
+"prompt": "chop the parer with the half beet 211",
+"s": 2.2
+},
+{
+"prompt": "chop the parer with the half beet 211",
+"s": 3.3
+},
+{
+"prompt": "move to the bell pepper",
+"s": 10.5
+},
+{
+"prompt": "chop the parer with the bell pepper",
+"s": 8.5
+},
+{
+"prompt": "chop the parer with the half bell pepper 214",
+"s": 2.8
+},
+{
+"prompt": "chop the parer with the half bell pepper 214",
+"s": 3.3
+},
+{
+"prompt": "chop the parer with the bell pepper",
+"s": 4.1
+},
+{
+"prompt": "chop the parer with the half bell pepper 213",
+"s": 3.3
+},
+{
+"prompt": "chop the parer with the half bell pepper 213",
+"s": 2.2
+},
+{
+"prompt": "place the parer on the countertop",
+"s": 14.4
+}
+]

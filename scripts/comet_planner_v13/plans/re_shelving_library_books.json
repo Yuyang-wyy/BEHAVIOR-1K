@@ -1,0 +1,86 @@
+[
+{
+"prompt": "move to the notebook",
+"s": 30.0
+},
+{
+"prompt": "push the notebook to the desk",
+"s": 20.8
+},
+{
+"prompt": "pick up the notebook from the desk",
+"s": 13.2
+},
+{
+"prompt": "move to the bookcase",
+"s": 11.5
+},
+{
+"prompt": "hand over the notebook",
+"s": 13.6
+},
+{
+"prompt": "move to the bookcase",
+"s": 8.0
+},
+{
+"prompt": "insert the notebook into the bookcase",
+"s": 17.9
+},
+{
+"prompt": "move to the hardback",
+"s": 27.0
+},
+{
+"prompt": "push the hardback to the desk",
+"s": 15.1
+},
+{
+"prompt": "pick up the hardback from the desk",
+"s": 12.9
+},
+{
+"prompt": "move to the bookcase",
+"s": 17.3
+},
+{
+"prompt": "hand over the hardback",
+"s": 16.7
+},
+{
+"prompt": "move to the bookcase",
+"s": 5.9
+},
+{
+"prompt": "insert the hardback into the bookcase",
+"s": 13.1
+},
+{
+"prompt": "move to the hardback",
+"s": 18.9
+},
+{
+"prompt": "push the hardback to the desk",
+"s": 25.5
+},
+{
+"prompt": "pick up the hardback from the desk",
+"s": 8.6
+},
+{
+"prompt": "move to the bookcase",
+"s": 10.1
+},
+{
+"prompt": "hand over the hardback",
+"s": 11.9
+},
+{
+"prompt": "move to the bookcase",
+"s": 5.8
+},
+{
+"prompt": "insert the hardback into the bookcase",
+"s": 21.2
+}
+]

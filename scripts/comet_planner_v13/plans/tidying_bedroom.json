@@ -1,0 +1,50 @@
+[
+{
+"prompt": "move to the sandal",
+"s": 10.2
+},
+{
+"prompt": "pick up the sandal from the floors",
+"s": 33.2
+},
+{
+"prompt": "move to the sandal",
+"s": 43.0
+},
+{
+"prompt": "pick up the sandal from the floors",
+"s": 36.9
+},
+{
+"prompt": "move to the bed",
+"s": 33.2
+},
+{
+"prompt": "place the sandal on the floors next to the left bed",
+"s": 22.5
+},
+{
+"prompt": "place the sandal on the floors next to the left bed",
+"s": 20.0
+},
+{
+"prompt": "move to the hardback",
+"s": 36.8
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bed",
+"s": 64.7
+},
+{
+"prompt": "pick up the hardback from the bed",
+"s": 29.0
+},
+{
+"prompt": "move to the nightstand",
+"s": 7.1
+},
+{
+"prompt": "place the hardback on the nightstand",
+"s": 19.5
+}
+]

@@ -1,0 +1,70 @@
+[
+{
+"prompt": "move to the newspaper",
+"s": 35.0
+},
+{
+"prompt": "pick up the newspaper from the floors",
+"s": 37.0
+},
+{
+"prompt": "move to the pot plant",
+"s": 57.0
+},
+{
+"prompt": "pick up the pot plant from the floors",
+"s": 36.5
+},
+{
+"prompt": "move to the coffee table",
+"s": 22.9
+},
+{
+"prompt": "place the newspaper on the coffee table",
+"s": 11.5
+},
+{
+"prompt": "place the pot plant on the coffee table",
+"s": 10.1
+},
+{
+"prompt": "move to the hardback",
+"s": 31.0
+},
+{
+"prompt": "push the hardback to the coffee table",
+"s": 47.9
+},
+{
+"prompt": "pick up the hardback from the coffee table",
+"s": 19.1
+},
+{
+"prompt": "move to the bookcase",
+"s": 14.0
+},
+{
+"prompt": "place the hardback in the bookcase",
+"s": 17.9
+},
+{
+"prompt": "move to the notebook",
+"s": 9.8
+},
+{
+"prompt": "push the notebook to the coffee table",
+"s": 9.6
+},
+{
+"prompt": "pick up the notebook from the coffee table",
+"s": 17.6
+},
+{
+"prompt": "move to the desk",
+"s": 23.4
+},
+{
+"prompt": "place the notebook on the desk",
+"s": 12.7
+}
+]

@@ -1,0 +1,74 @@
+[
+{
+"prompt": "move to the ceramic tile",
+"s": 31.0
+},
+{
+"prompt": "pick up the ceramic tile from the floors",
+"s": 27.0
+},
+{
+"prompt": "move to the ceramic tile",
+"s": 26.0
+},
+{
+"prompt": "pick up the ceramic tile from the floors",
+"s": 18.0
+},
+{
+"prompt": "move to the brown door",
+"s": 46.0
+},
+{
+"prompt": "open the door of the brown door",
+"s": 16.5
+},
+{
+"prompt": "move to the window",
+"s": 21.5
+},
+{
+"prompt": "place the ceramic tile on the floors next to the window",
+"s": 11.8
+},
+{
+"prompt": "place the ceramic tile on the floors next to the ceramic tile",
+"s": 16.2
+},
+{
+"prompt": "move to the ceramic tile",
+"s": 96.0
+},
+{
+"prompt": "pick up the ceramic tile from the floors",
+"s": 17.0
+},
+{
+"prompt": "move to the ceramic tile",
+"s": 7.0
+},
+{
+"prompt": "pick up the ceramic tile from the floors",
+"s": 14.0
+},
+{
+"prompt": "move to the brown door",
+"s": 71.0
+},
+{
+"prompt": "turn to the ceramic tile",
+"s": 7.0
+},
+{
+"prompt": "move to the ceramic tile",
+"s": 23.0
+},
+{
+"prompt": "place the ceramic tile on the floors next to the ceramic tile",
+"s": 15.0
+},
+{
+"prompt": "place the ceramic tile on the floors next to the ceramic tile",
+"s": 20.0
+}
+]

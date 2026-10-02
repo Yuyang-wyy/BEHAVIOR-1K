@@ -1,0 +1,94 @@
+[
+{
+"prompt": "move to the sliding door",
+"s": 23.4
+},
+{
+"prompt": "open the door of the sliding door",
+"s": 52.9
+},
+{
+"prompt": "move to the bottle of detergent",
+"s": 14.6
+},
+{
+"prompt": "pick up the bottle of detergent from the hamper",
+"s": 23.2
+},
+{
+"prompt": "move to the bottle of detergent",
+"s": 6.0
+},
+{
+"prompt": "pick up the bottle of detergent from the hamper",
+"s": 12.5
+},
+{
+"prompt": "move to the multi station furniture sink",
+"s": 22.6
+},
+{
+"prompt": "place the bottle of detergent under the multi station furniture sink",
+"s": 14.5
+},
+{
+"prompt": "place the bottle of detergent under the multi station furniture sink",
+"s": 11.5
+},
+{
+"prompt": "move to the box of sanitary napkins",
+"s": 27.7
+},
+{
+"prompt": "pick up the box of sanitary napkins from the hamper",
+"s": 25.9
+},
+{
+"prompt": "move to the soap dispenser",
+"s": 10.2
+},
+{
+"prompt": "pick up the soap dispenser from the hamper",
+"s": 19.6
+},
+{
+"prompt": "move to the shelf",
+"s": 21.8
+},
+{
+"prompt": "place the box of sanitary napkins on the shelf",
+"s": 20.2
+},
+{
+"prompt": "place the soap dispenser on the multi station furniture sink",
+"s": 12.7
+},
+{
+"prompt": "move to the tube of toothpaste",
+"s": 37.5
+},
+{
+"prompt": "pick up the tube of toothpaste from the hamper",
+"s": 19.5
+},
+{
+"prompt": "move to the toothbrush",
+"s": 10.7
+},
+{
+"prompt": "pick up the toothbrush from the hamper",
+"s": 30.5
+},
+{
+"prompt": "move to the coffee cup",
+"s": 22.7
+},
+{
+"prompt": "place the toothbrush in the coffee cup",
+"s": 38.7
+},
+{
+"prompt": "place the tube of toothpaste in the coffee cup",
+"s": 29.9
+}
+]

@@ -1,0 +1,70 @@
+[
+{
+"prompt": "move to the marker",
+"s": 7.9
+},
+{
+"prompt": "pick up the marker from the desk",
+"s": 21.1
+},
+{
+"prompt": "move to the rubber eraser",
+"s": 5.0
+},
+{
+"prompt": "pick up the rubber eraser from the desk",
+"s": 22.0
+},
+{
+"prompt": "move to the tote",
+"s": 10.0
+},
+{
+"prompt": "place the marker in the tote",
+"s": 13.0
+},
+{
+"prompt": "place the rubber eraser in the tote",
+"s": 25.0
+},
+{
+"prompt": "move to the glue stick",
+"s": 5.9
+},
+{
+"prompt": "pick up the glue stick from the desk",
+"s": 13.1
+},
+{
+"prompt": "move to the paintbrush",
+"s": 5.2
+},
+{
+"prompt": "pick up the paintbrush from the desk",
+"s": 13.8
+},
+{
+"prompt": "move to the tote",
+"s": 17.0
+},
+{
+"prompt": "place the paintbrush in the tote",
+"s": 13.0
+},
+{
+"prompt": "place the glue stick in the tote",
+"s": 10.1
+},
+{
+"prompt": "pick up the tote from the floors",
+"s": 7.5
+},
+{
+"prompt": "move to the desk",
+"s": 6.6
+},
+{
+"prompt": "place the tote on the desk",
+"s": 5.8
+}
+]

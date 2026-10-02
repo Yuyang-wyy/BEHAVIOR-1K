@@ -1,0 +1,90 @@
+[
+{
+"prompt": "move to the bottom cabinet",
+"s": 2.4
+},
+{
+"prompt": "open the drawer of the bottom cabinet",
+"s": 9.6
+},
+{
+"prompt": "pick up the wafer from the bottom cabinet",
+"s": 20.3
+},
+{
+"prompt": "close the drawer of the bottom cabinet",
+"s": 11.9
+},
+{
+"prompt": "pick up the toy dice from the bottom cabinet",
+"s": 10.8
+},
+{
+"prompt": "move to the paper bag",
+"s": 9.0
+},
+{
+"prompt": "place the wafer in the paper bag",
+"s": 13.3
+},
+{
+"prompt": "place the toy dice in the paper bag",
+"s": 17.8
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 16.8
+},
+{
+"prompt": "open the drawer of the bottom cabinet",
+"s": 11.3
+},
+{
+"prompt": "pick up the wafer from the bottom cabinet",
+"s": 25.5
+},
+{
+"prompt": "close the drawer of the bottom cabinet",
+"s": 4.0
+},
+{
+"prompt": "pick up the toy dice from the bottom cabinet",
+"s": 13.3
+},
+{
+"prompt": "move to the paper bag",
+"s": 20.0
+},
+{
+"prompt": "place the wafer in the paper bag",
+"s": 14.3
+},
+{
+"prompt": "place the toy dice in the paper bag",
+"s": 9.1
+},
+{
+"prompt": "pick up the paper bag from the breakfast table",
+"s": 17.6
+},
+{
+"prompt": "move to the paper bag",
+"s": 8.6
+},
+{
+"prompt": "pick up the paper bag from the breakfast table",
+"s": 15.4
+},
+{
+"prompt": "move to the coffee table",
+"s": 11.0
+},
+{
+"prompt": "place the paper bag on the coffee table",
+"s": 11.6
+},
+{
+"prompt": "place the paper bag on the coffee table",
+"s": 14.0
+}
+]

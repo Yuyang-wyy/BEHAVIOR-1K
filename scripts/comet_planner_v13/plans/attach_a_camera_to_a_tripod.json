@@ -1,0 +1,26 @@
+[
+{
+"prompt": "move to the digital camera",
+"s": 20.4
+},
+{
+"prompt": "pick up the digital camera from the floors",
+"s": 41.7
+},
+{
+"prompt": "move to the camera tripod",
+"s": 11.7
+},
+{
+"prompt": "hold the camera tripod",
+"s": 12.8
+},
+{
+"prompt": "attach the digital camera to the camera tripod",
+"s": 22.0
+},
+{
+"prompt": "release the camera tripod",
+"s": 9.0
+}
+]

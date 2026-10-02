@@ -1,0 +1,50 @@
+[
+{
+"prompt": "move to the trash can",
+"s": 13.0
+},
+{
+"prompt": "pick up the trash can from the floors",
+"s": 7.0
+},
+{
+"prompt": "move to the furniture sink",
+"s": 12.0
+},
+{
+"prompt": "place the trash can on the floors next to the furniture sink",
+"s": 15.0
+},
+{
+"prompt": "move to the half pomegranate",
+"s": 8.8
+},
+{
+"prompt": "pick up the half pomegranate from the countertop",
+"s": 10.5
+},
+{
+"prompt": "move to the trash can",
+"s": 8.7
+},
+{
+"prompt": "place the half pomegranate in the trash can",
+"s": 6.0
+},
+{
+"prompt": "move to the half banana",
+"s": 5.0
+},
+{
+"prompt": "pick up the half banana from the countertop",
+"s": 12.0
+},
+{
+"prompt": "move to the trash can",
+"s": 12.0
+},
+{
+"prompt": "place the half banana in the trash can",
+"s": 9.3
+}
+]

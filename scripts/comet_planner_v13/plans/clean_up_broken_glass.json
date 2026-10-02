@@ -1,0 +1,46 @@
+[
+{
+"prompt": "move to the broken glass",
+"s": 10.0
+},
+{
+"prompt": "pick up the broken glass from the floors",
+"s": 22.2
+},
+{
+"prompt": "move to the broken glass",
+"s": 43.8
+},
+{
+"prompt": "pick up the broken glass from the floors",
+"s": 30.0
+},
+{
+"prompt": "move to the trash can",
+"s": 13.9
+},
+{
+"prompt": "place the broken glass in the trash can",
+"s": 9.1
+},
+{
+"prompt": "place the broken glass in the trash can",
+"s": 6.0
+},
+{
+"prompt": "move to the broken glass",
+"s": 52.0
+},
+{
+"prompt": "pick up the broken glass from the floors",
+"s": 19.0
+},
+{
+"prompt": "move to the trash can",
+"s": 63.5
+},
+{
+"prompt": "place the broken glass in the trash can",
+"s": 15.3
+}
+]

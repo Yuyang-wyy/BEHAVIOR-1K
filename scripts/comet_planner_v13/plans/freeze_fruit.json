@@ -1,0 +1,142 @@
+[
+{
+"prompt": "move to the bottom cabinet no top",
+"s": 15.0
+},
+{
+"prompt": "open the door of the bottom cabinet no top",
+"s": 23.0
+},
+{
+"prompt": "pick up the tupperware from the bottom cabinet no top",
+"s": 21.0
+},
+{
+"prompt": "place the tupperware on the countertop",
+"s": 6.0
+},
+{
+"prompt": "close the door of the bottom cabinet no top",
+"s": 11.0
+},
+{
+"prompt": "move to the bottom cabinet no top",
+"s": 11.0
+},
+{
+"prompt": "open the door of the bottom cabinet no top",
+"s": 25.0
+},
+{
+"prompt": "pick up the tupperware from the bottom cabinet no top",
+"s": 21.0
+},
+{
+"prompt": "close the door of the tupperware",
+"s": 19.7
+},
+{
+"prompt": "move to the countertop",
+"s": 7.7
+},
+{
+"prompt": "place the tupperware on the countertop",
+"s": 9.6
+},
+{
+"prompt": "move to the apple",
+"s": 22.0
+},
+{
+"prompt": "pick up the apple from the bowl",
+"s": 8.0
+},
+{
+"prompt": "pick up the apple from the bowl",
+"s": 13.0
+},
+{
+"prompt": "move to the tupperware",
+"s": 16.5
+},
+{
+"prompt": "place the apple in the tupperware",
+"s": 4.4
+},
+{
+"prompt": "place the apple in the tupperware",
+"s": 7.1
+},
+{
+"prompt": "move to the strawberry",
+"s": 12.0
+},
+{
+"prompt": "pick up the strawberry from the tray",
+"s": 11.0
+},
+{
+"prompt": "pick up the strawberry from the tray",
+"s": 7.0
+},
+{
+"prompt": "move to the tupperware",
+"s": 16.4
+},
+{
+"prompt": "place the strawberry in the tupperware",
+"s": 5.6
+},
+{
+"prompt": "place the strawberry in the tupperware",
+"s": 4.5
+},
+{
+"prompt": "pick up the tupperware from the countertop",
+"s": 3.5
+},
+{
+"prompt": "pick up the tupperware from the countertop",
+"s": 5.0
+},
+{
+"prompt": "move to the bar",
+"s": 19.0
+},
+{
+"prompt": "place the tupperware on the bar",
+"s": 12.0
+},
+{
+"prompt": "move to the electric refrigerator",
+"s": 9.0
+},
+{
+"prompt": "open the door of the electric refrigerator",
+"s": 24.5
+},
+{
+"prompt": "place the tupperware in the electric refrigerator",
+"s": 12.5
+},
+{
+"prompt": "move to the tupperware",
+"s": 8.0
+},
+{
+"prompt": "pick up the tupperware from the bar",
+"s": 9.0
+},
+{
+"prompt": "move to the electric refrigerator",
+"s": 5.0
+},
+{
+"prompt": "place the tupperware in the electric refrigerator",
+"s": 14.0
+},
+{
+"prompt": "close the door of the electric refrigerator",
+"s": 8.0
+}
+]

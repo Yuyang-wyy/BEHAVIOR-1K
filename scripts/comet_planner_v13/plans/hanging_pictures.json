@@ -1,0 +1,22 @@
+[
+{
+"prompt": "move to the poster",
+"s": 17.4
+},
+{
+"prompt": "pick up the poster from the bar",
+"s": 11.5
+},
+{
+"prompt": "hand over the poster with the left",
+"s": 19.6
+},
+{
+"prompt": "move to the wall nail",
+"s": 7.0
+},
+{
+"prompt": "hang the poster on the wall nail",
+"s": 26.5
+}
+]

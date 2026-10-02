@@ -1,0 +1,102 @@
+[
+{
+"prompt": "move to the tupperware",
+"s": 15.1
+},
+{
+"prompt": "pick up the tupperware from the bar",
+"s": 18.2
+},
+{
+"prompt": "move to the tupperware",
+"s": 1.2
+},
+{
+"prompt": "pick up the tupperware from the bar",
+"s": 4.7
+},
+{
+"prompt": "move to the breakfast table",
+"s": 28.0
+},
+{
+"prompt": "place the tupperware on the breakfast table",
+"s": 8.1
+},
+{
+"prompt": "place the tupperware on the breakfast table",
+"s": 10.2
+},
+{
+"prompt": "move to the half chicken",
+"s": 33.4
+},
+{
+"prompt": "pick up the half chicken from the plate",
+"s": 37.1
+},
+{
+"prompt": "move to the tupperware",
+"s": 39.4
+},
+{
+"prompt": "place the half chicken in the tupperware",
+"s": 17.5
+},
+{
+"prompt": "move to the half apple pie",
+"s": 2.7
+},
+{
+"prompt": "push the half apple pie to the to_the_edge_of plate",
+"s": 19.6
+},
+{
+"prompt": "pick up the half apple pie from the plate",
+"s": 11.0
+},
+{
+"prompt": "move to the tupperware",
+"s": 5.6
+},
+{
+"prompt": "place the half apple pie in the tupperware",
+"s": 12.3
+},
+{
+"prompt": "move to the fridge",
+"s": 22.2
+},
+{
+"prompt": "open the door of the right_door fridge",
+"s": 24.0
+},
+{
+"prompt": "move to the tupperware",
+"s": 25.7
+},
+{
+"prompt": "pick up the tupperware from the breakfast table",
+"s": 8.8
+},
+{
+"prompt": "pick up the tupperware from the breakfast table",
+"s": 5.3
+},
+{
+"prompt": "move to the fridge",
+"s": 20.6
+},
+{
+"prompt": "place the tupperware in the layer_4 fridge",
+"s": 34.3
+},
+{
+"prompt": "place the tupperware in the layer_5 fridge",
+"s": 17.3
+},
+{
+"prompt": "close the door of the right_door fridge",
+"s": 10.4
+}
+]

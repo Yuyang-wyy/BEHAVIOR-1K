@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the washer",
+"s": 17.4
+},
+{
+"prompt": "open the door of the washer",
+"s": 42.2
+},
+{
+"prompt": "move to the boxing gloves",
+"s": 17.3
+},
+{
+"prompt": "pick up the boxing gloves from the countertop",
+"s": 21.1
+},
+{
+"prompt": "pick up the boxing gloves from the countertop",
+"s": 15.4
+},
+{
+"prompt": "move to the washer",
+"s": 28.4
+},
+{
+"prompt": "place the boxing gloves in the washer",
+"s": 20.2
+},
+{
+"prompt": "place the boxing gloves in the washer",
+"s": 33.3
+},
+{
+"prompt": "close the door of the washer",
+"s": 29.2
+},
+{
+"prompt": "turn on the washer",
+"s": 11.0
+}
+]

@@ -1,0 +1,86 @@
+[
+{
+"prompt": "move to the log",
+"s": 41.0
+},
+{
+"prompt": "pick up the log from the driveway",
+"s": 10.0
+},
+{
+"prompt": "move to the log",
+"s": 18.0
+},
+{
+"prompt": "pick up the log from the driveway",
+"s": 10.0
+},
+{
+"prompt": "move to the driveway",
+"s": 24.0
+},
+{
+"prompt": "place the log on the driveway",
+"s": 10.0
+},
+{
+"prompt": "place the log on the driveway next to the log",
+"s": 9.0
+},
+{
+"prompt": "move to the log",
+"s": 59.0
+},
+{
+"prompt": "pick up the log from the driveway",
+"s": 10.0
+},
+{
+"prompt": "move to the log",
+"s": 19.0
+},
+{
+"prompt": "pick up the log from the driveway",
+"s": 10.0
+},
+{
+"prompt": "move to the log",
+"s": 44.0
+},
+{
+"prompt": "place the log on the driveway",
+"s": 10.0
+},
+{
+"prompt": "place the log on the driveway next to the log",
+"s": 6.0
+},
+{
+"prompt": "move to the log",
+"s": 75.0
+},
+{
+"prompt": "pick up the log from the driveway",
+"s": 10.0
+},
+{
+"prompt": "move to the log",
+"s": 41.0
+},
+{
+"prompt": "pick up the log from the driveway",
+"s": 10.0
+},
+{
+"prompt": "move to the log",
+"s": 39.0
+},
+{
+"prompt": "place the log on the log",
+"s": 10.0
+},
+{
+"prompt": "place the log on the log next to the log",
+"s": 33.9
+}
+]

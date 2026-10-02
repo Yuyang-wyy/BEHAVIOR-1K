@@ -1,0 +1,90 @@
+[
+{
+"prompt": "move to the toolbox",
+"s": 5.3
+},
+{
+"prompt": "push the toolbox to the center countertop",
+"s": 61.5
+},
+{
+"prompt": "open the lid of the toolbox",
+"s": 40.0
+},
+{
+"prompt": "move to the allen wrench",
+"s": 4.2
+},
+{
+"prompt": "pick up the allen wrench from the countertop",
+"s": 15.8
+},
+{
+"prompt": "move to the screwdriver",
+"s": 2.9
+},
+{
+"prompt": "pick up the screwdriver from the countertop",
+"s": 15.0
+},
+{
+"prompt": "move to the toolbox",
+"s": 2.9
+},
+{
+"prompt": "place the allen wrench in the toolbox",
+"s": 14.5
+},
+{
+"prompt": "place the screwdriver in the toolbox",
+"s": 25.1
+},
+{
+"prompt": "move to the drill",
+"s": 5.6
+},
+{
+"prompt": "pick up the drill from the countertop",
+"s": 12.9
+},
+{
+"prompt": "move to the flashlight",
+"s": 4.9
+},
+{
+"prompt": "pick up the flashlight from the countertop",
+"s": 17.1
+},
+{
+"prompt": "move to the toolbox",
+"s": 4.4
+},
+{
+"prompt": "place the drill in the toolbox",
+"s": 14.7
+},
+{
+"prompt": "place the flashlight in the toolbox",
+"s": 17.1
+},
+{
+"prompt": "move to the plier",
+"s": 6.8
+},
+{
+"prompt": "pick up the plier from the countertop",
+"s": 22.5
+},
+{
+"prompt": "move to the toolbox",
+"s": 13.5
+},
+{
+"prompt": "place the plier in the toolbox",
+"s": 11.6
+},
+{
+"prompt": "close the lid of the toolbox",
+"s": 22.7
+}
+]

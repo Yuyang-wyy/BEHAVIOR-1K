@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 24.2
+},
+{
+"prompt": "open the door of the fridge",
+"s": 41.8
+},
+{
+"prompt": "pick up the beer bottle from the high_level fridge",
+"s": 16.8
+},
+{
+"prompt": "hand over the beer bottle with the right",
+"s": 8.6
+},
+{
+"prompt": "pick up the beer bottle from the middle_level fridge",
+"s": 17.8
+},
+{
+"prompt": "move to the coffee table",
+"s": 71.0
+},
+{
+"prompt": "place the beer bottle on the coffee table",
+"s": 20.3
+},
+{
+"prompt": "place the beer bottle on the coffee table",
+"s": 6.4
+},
+{
+"prompt": "move to the fridge",
+"s": 64.0
+},
+{
+"prompt": "close the door of the fridge",
+"s": 18.5
+}
+]

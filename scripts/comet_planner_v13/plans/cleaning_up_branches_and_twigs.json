@@ -1,0 +1,70 @@
+[
+{
+"prompt": "move to the recycling bin",
+"s": 32.0
+},
+{
+"prompt": "open the lid of the recycling bin",
+"s": 45.0
+},
+{
+"prompt": "move to the branch",
+"s": 26.0
+},
+{
+"prompt": "pick up the branch from the floors",
+"s": 12.0
+},
+{
+"prompt": "move to the branch",
+"s": 15.0
+},
+{
+"prompt": "pick up the branch from the floors",
+"s": 10.0
+},
+{
+"prompt": "move to the recycling bin",
+"s": 25.7
+},
+{
+"prompt": "place the branch in the recycling bin",
+"s": 13.3
+},
+{
+"prompt": "place the branch in the recycling bin",
+"s": 12.0
+},
+{
+"prompt": "move to the branch",
+"s": 59.0
+},
+{
+"prompt": "pick up the branch from the floors",
+"s": 22.0
+},
+{
+"prompt": "move to the branch",
+"s": 14.0
+},
+{
+"prompt": "pick up the branch from the floors",
+"s": 22.0
+},
+{
+"prompt": "move to the recycling bin",
+"s": 55.0
+},
+{
+"prompt": "place the branch in the recycling bin",
+"s": 10.0
+},
+{
+"prompt": "place the branch in the recycling bin",
+"s": 14.0
+},
+{
+"prompt": "close the lid of the recycling bin",
+"s": 9.0
+}
+]

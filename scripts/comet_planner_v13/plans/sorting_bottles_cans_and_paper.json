@@ -1,0 +1,102 @@
+[
+{
+"prompt": "move to the can of soda",
+"s": 16.7
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 14.3
+},
+{
+"prompt": "move to the wine bottle",
+"s": 18.8
+},
+{
+"prompt": "pick up the wine bottle from the floors",
+"s": 11.7
+},
+{
+"prompt": "move to the ice bucket",
+"s": 9.6
+},
+{
+"prompt": "place the wine bottle in the ice bucket",
+"s": 11.9
+},
+{
+"prompt": "move to the ice bucket",
+"s": 22.3
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 13.7
+},
+{
+"prompt": "move to the wine bottle",
+"s": 24.7
+},
+{
+"prompt": "pick up the wine bottle from the bar",
+"s": 9.6
+},
+{
+"prompt": "move to the can of soda",
+"s": 6.4
+},
+{
+"prompt": "pick up the can of soda from the bar",
+"s": 7.5
+},
+{
+"prompt": "move to the ice bucket",
+"s": 14.9
+},
+{
+"prompt": "place the wine bottle in the ice bucket",
+"s": 9.9
+},
+{
+"prompt": "move to the ice bucket",
+"s": 19.0
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 12.0
+},
+{
+"prompt": "move to the newspaper",
+"s": 23.2
+},
+{
+"prompt": "push the newspaper to the bar",
+"s": 35.2
+},
+{
+"prompt": "pick up the newspaper from the bar",
+"s": 18.1
+},
+{
+"prompt": "move to the magazine",
+"s": 8.6
+},
+{
+"prompt": "push the magazine to the bar",
+"s": 14.9
+},
+{
+"prompt": "pick up the magazine from the bar",
+"s": 6.4
+},
+{
+"prompt": "move to the bucket",
+"s": 17.1
+},
+{
+"prompt": "place the magazine in the bucket",
+"s": 9.6
+},
+{
+"prompt": "place the newspaper in the bucket",
+"s": 11.9
+}
+]

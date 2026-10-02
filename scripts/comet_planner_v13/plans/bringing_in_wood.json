@@ -1,0 +1,54 @@
+[
+{
+"prompt": "move to the plywood",
+"s": 15.2
+},
+{
+"prompt": "pick up the plywood from the floors",
+"s": 28.8
+},
+{
+"prompt": "move to the door",
+"s": 36.5
+},
+{
+"prompt": "open the door of the door",
+"s": 46.1
+},
+{
+"prompt": "move to the floors",
+"s": 25.3
+},
+{
+"prompt": "place the plywood on the floors",
+"s": 23.0
+},
+{
+"prompt": "move to the plywood",
+"s": 76.2
+},
+{
+"prompt": "pick up the plywood from the floors",
+"s": 27.6
+},
+{
+"prompt": "move to the plywood",
+"s": 15.2
+},
+{
+"prompt": "pick up the plywood from the floors",
+"s": 26.6
+},
+{
+"prompt": "move to the plywood",
+"s": 79.5
+},
+{
+"prompt": "place the plywood on the floors",
+"s": 25.7
+},
+{
+"prompt": "place the plywood on the floors",
+"s": 20.7
+}
+]

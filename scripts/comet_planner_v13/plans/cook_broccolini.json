@@ -1,0 +1,38 @@
+[
+{
+"prompt": "move to the commercial kitchen table",
+"s": 36.0
+},
+{
+"prompt": "pick up the plate from the commercial kitchen table",
+"s": 15.0
+},
+{
+"prompt": "move to the frying pan",
+"s": 20.0
+},
+{
+"prompt": "pour the broccolini",
+"s": 7.0
+},
+{
+"prompt": "place the plate on the commercial kitchen table",
+"s": 8.0
+},
+{
+"prompt": "pick up the frying pan from the commercial kitchen table",
+"s": 12.1
+},
+{
+"prompt": "move to the stove",
+"s": 22.9
+},
+{
+"prompt": "place the frying pan on the stove",
+"s": 5.4
+},
+{
+"prompt": "turn on the stove",
+"s": 11.8
+}
+]

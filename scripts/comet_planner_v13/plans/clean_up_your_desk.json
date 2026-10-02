@@ -1,0 +1,178 @@
+[
+{
+"prompt": "move to the folder",
+"s": 11.1
+},
+{
+"prompt": "push the folder to the to_the_edge_of eames chair",
+"s": 16.2
+},
+{
+"prompt": "pick up the folder from the eames chair",
+"s": 25.7
+},
+{
+"prompt": "push the eames chair to the under desk",
+"s": 22.0
+},
+{
+"prompt": "move to the bookcase",
+"s": 10.7
+},
+{
+"prompt": "place the folder in the 3X3 bookcase",
+"s": 10.3
+},
+{
+"prompt": "move to the paperback book",
+"s": 9.5
+},
+{
+"prompt": "push the paperback book to the to_the_edge_of desk",
+"s": 15.0
+},
+{
+"prompt": "pick up the paperback book from the desk",
+"s": 8.2
+},
+{
+"prompt": "move to the bookcase",
+"s": 6.5
+},
+{
+"prompt": "place the paperback book in the 2X3 bookcase",
+"s": 11.4
+},
+{
+"prompt": "move to the folder",
+"s": 7.2
+},
+{
+"prompt": "push the folder to the to_the_edge_of desk",
+"s": 34.7
+},
+{
+"prompt": "pick up the folder from the desk",
+"s": 8.3
+},
+{
+"prompt": "move to the folder",
+"s": 6.5
+},
+{
+"prompt": "place the folder on the folder",
+"s": 10.1
+},
+{
+"prompt": "move to the paperback book",
+"s": 2.6
+},
+{
+"prompt": "push the paperback book to the to_the_edge_of desk",
+"s": 29.6
+},
+{
+"prompt": "pick up the paperback book from the desk",
+"s": 10.6
+},
+{
+"prompt": "move to the paperback book",
+"s": 6.0
+},
+{
+"prompt": "place the paperback book on the paperback book",
+"s": 8.9
+},
+{
+"prompt": "move to the pencil case",
+"s": 8.2
+},
+{
+"prompt": "pick up the pencil case from the desk",
+"s": 13.7
+},
+{
+"prompt": "move to the pen",
+"s": 5.3
+},
+{
+"prompt": "pick up the pen from the desk",
+"s": 10.0
+},
+{
+"prompt": "insert the pen into the pencil case",
+"s": 9.8
+},
+{
+"prompt": "move to the pencil",
+"s": 2.6
+},
+{
+"prompt": "pick up the pencil from the desk",
+"s": 10.5
+},
+{
+"prompt": "insert the pencil into the pencil case",
+"s": 14.6
+},
+{
+"prompt": "move to the pen",
+"s": 2.1
+},
+{
+"prompt": "pick up the pen from the desk",
+"s": 14.9
+},
+{
+"prompt": "insert the pen into the pencil case",
+"s": 8.4
+},
+{
+"prompt": "move to the desk",
+"s": 2.3
+},
+{
+"prompt": "place the pencil case on the desk",
+"s": 7.1
+},
+{
+"prompt": "move to the laptop",
+"s": 16.2
+},
+{
+"prompt": "push the laptop to the to_the_edge_of bed",
+"s": 114.4
+},
+{
+"prompt": "pick up the laptop from the bed",
+"s": 17.2
+},
+{
+"prompt": "move to the desk",
+"s": 20.6
+},
+{
+"prompt": "place the laptop on the desk",
+"s": 4.0
+},
+{
+"prompt": "close the lid of the laptop",
+"s": 16.7
+},
+{
+"prompt": "move to the stapler",
+"s": 3.7
+},
+{
+"prompt": "pick up the stapler from the 1x1 bookcase",
+"s": 47.1
+},
+{
+"prompt": "move to the desk",
+"s": 4.1
+},
+{
+"prompt": "place the stapler on the desk",
+"s": 8.5
+}
+]

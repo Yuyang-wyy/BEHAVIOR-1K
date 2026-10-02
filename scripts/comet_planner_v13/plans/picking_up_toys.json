@@ -1,0 +1,102 @@
+[
+{
+"prompt": "move to the board game",
+"s": 32.3
+},
+{
+"prompt": "push the board game to the to_the_edge_of bed",
+"s": 87.4
+},
+{
+"prompt": "pick up the board game from the bed",
+"s": 20.8
+},
+{
+"prompt": "move to the toy box",
+"s": 9.1
+},
+{
+"prompt": "place the board game in the toy box",
+"s": 20.3
+},
+{
+"prompt": "move to the board game",
+"s": 56.8
+},
+{
+"prompt": "push the board game to the to_the_edge_of bed",
+"s": 132.6
+},
+{
+"prompt": "pick up the board game from the bed",
+"s": 32.3
+},
+{
+"prompt": "move to the toy box",
+"s": 16.5
+},
+{
+"prompt": "place the board game in the toy box",
+"s": 26.4
+},
+{
+"prompt": "move to the board game",
+"s": 11.0
+},
+{
+"prompt": "push the board game to the to_the_edge_of desk",
+"s": 19.9
+},
+{
+"prompt": "pick up the board game from the desk",
+"s": 19.9
+},
+{
+"prompt": "move to the toy box",
+"s": 5.4
+},
+{
+"prompt": "place the board game in the toy box",
+"s": 24.2
+},
+{
+"prompt": "push the jigsaw puzzle to the to_the_edge_of desk",
+"s": 37.6
+},
+{
+"prompt": "pick up the jigsaw puzzle from the desk",
+"s": 31.6
+},
+{
+"prompt": "move to the toy box",
+"s": 2.8
+},
+{
+"prompt": "place the jigsaw puzzle in the toy box",
+"s": 22.3
+},
+{
+"prompt": "push the jigsaw puzzle to the to_the_edge_of desk",
+"s": 38.2
+},
+{
+"prompt": "pick up the jigsaw puzzle from the desk",
+"s": 32.2
+},
+{
+"prompt": "move to the toy box",
+"s": 11.1
+},
+{
+"prompt": "place the jigsaw puzzle in the toy box",
+"s": 16.0
+},
+{
+"prompt": "pick up the tennis ball from the desk",
+"s": 15.8
+},
+{
+"prompt": "place the tennis ball in the toy box",
+"s": 29.7
+}
+]

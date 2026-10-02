@@ -1,0 +1,70 @@
+[
+{
+"prompt": "move to the newspaper",
+"s": 31.4
+},
+{
+"prompt": "push the newspaper to the to_the_edge_of coffee table",
+"s": 32.9
+},
+{
+"prompt": "pick up the newspaper from the coffee table",
+"s": 13.9
+},
+{
+"prompt": "move to the firewood",
+"s": 24.6
+},
+{
+"prompt": "pick up the firewood from the floors",
+"s": 11.6
+},
+{
+"prompt": "move to the wood fireplace",
+"s": 17.5
+},
+{
+"prompt": "place the newspaper in the wood fireplace",
+"s": 12.1
+},
+{
+"prompt": "place the firewood in the wood fireplace",
+"s": 9.4
+},
+{
+"prompt": "move to the lighter",
+"s": 11.8
+},
+{
+"prompt": "pick up the lighter from the coffee table",
+"s": 15.3
+},
+{
+"prompt": "turn on the lighter",
+"s": 8.4
+},
+{
+"prompt": "move to the firewood",
+"s": 5.7
+},
+{
+"prompt": "pick up the firewood from the floors",
+"s": 10.9
+},
+{
+"prompt": "move to the wood fireplace",
+"s": 14.5
+},
+{
+"prompt": "ignite the lighter with the firewood",
+"s": 4.8
+},
+{
+"prompt": "place the firewood in the wood fireplace",
+"s": 15.4
+},
+{
+"prompt": "turn off the lighter",
+"s": 11.3
+}
+]

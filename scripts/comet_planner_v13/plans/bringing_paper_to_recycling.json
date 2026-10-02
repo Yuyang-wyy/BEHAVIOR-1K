@@ -1,0 +1,90 @@
+[
+{
+"prompt": "move to the newspaper",
+"s": 11.0
+},
+{
+"prompt": "pick up the newspaper from the bar",
+"s": 17.0
+},
+{
+"prompt": "move to the paper bag",
+"s": 9.0
+},
+{
+"prompt": "pick up the paper bag from the floors",
+"s": 13.0
+},
+{
+"prompt": "move to the door",
+"s": 50.4
+},
+{
+"prompt": "open the door of the door",
+"s": 5.6
+},
+{
+"prompt": "close the door of the door",
+"s": 15.8
+},
+{
+"prompt": "move to the floors",
+"s": 45.2
+},
+{
+"prompt": "place the paper bag on the floors",
+"s": 20.7
+},
+{
+"prompt": "place the newspaper on the floors next to the paper bag",
+"s": 8.3
+},
+{
+"prompt": "move to the recycling bin",
+"s": 14.0
+},
+{
+"prompt": "open the lid of the recycling bin",
+"s": 26.0
+},
+{
+"prompt": "move to the paper bag",
+"s": 23.0
+},
+{
+"prompt": "pick up the paper bag from the floors",
+"s": 9.6
+},
+{
+"prompt": "move to the newspaper",
+"s": 9.3
+},
+{
+"prompt": "pick up the newspaper from the floors",
+"s": 12.1
+},
+{
+"prompt": "move to the recycling bin",
+"s": 14.2
+},
+{
+"prompt": "place the paper bag in the recycling bin",
+"s": 5.8
+},
+{
+"prompt": "move to the recycling bin",
+"s": 7.8
+},
+{
+"prompt": "place the newspaper in the recycling bin",
+"s": 10.2
+},
+{
+"prompt": "move to the recycling bin",
+"s": 6.4
+},
+{
+"prompt": "close the lid of the recycling bin",
+"s": 4.6
+}
+]

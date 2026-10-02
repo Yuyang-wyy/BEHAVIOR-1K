@@ -1,0 +1,38 @@
+[
+{
+"prompt": "move to the scrub brush",
+"s": 14.0
+},
+{
+"prompt": "pick up the scrub brush from the floors",
+"s": 10.3
+},
+{
+"prompt": "hand over the scrub brush",
+"s": 5.7
+},
+{
+"prompt": "move to the floors",
+"s": 19.0
+},
+{
+"prompt": "wipe the scrub brush",
+"s": 6.0
+},
+{
+"prompt": "move to the floors",
+"s": 7.0
+},
+{
+"prompt": "wipe the scrub brush",
+"s": 6.0
+},
+{
+"prompt": "move to the floors",
+"s": 27.7
+},
+{
+"prompt": "wipe the scrub brush",
+"s": 7.7
+}
+]

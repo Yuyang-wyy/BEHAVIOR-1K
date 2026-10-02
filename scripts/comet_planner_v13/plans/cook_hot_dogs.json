@@ -1,0 +1,54 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 31.0
+},
+{
+"prompt": "open the door of the fridge",
+"s": 35.9
+},
+{
+"prompt": "pick up the hotdog from the high_level fridge",
+"s": 24.5
+},
+{
+"prompt": "pick up the hotdog from the middle_level fridge",
+"s": 22.5
+},
+{
+"prompt": "close the door of the fridge",
+"s": 28.7
+},
+{
+"prompt": "move to the microwave",
+"s": 27.5
+},
+{
+"prompt": "place the hotdog on the countertop",
+"s": 15.6
+},
+{
+"prompt": "open the door of the microwave",
+"s": 28.9
+},
+{
+"prompt": "place the hotdog in the microwave",
+"s": 13.1
+},
+{
+"prompt": "pick up the hotdog from the countertop",
+"s": 22.0
+},
+{
+"prompt": "place the hotdog in the microwave",
+"s": 14.0
+},
+{
+"prompt": "close the door of the microwave",
+"s": 9.5
+},
+{
+"prompt": "turn on the microwave",
+"s": 15.4
+}
+]

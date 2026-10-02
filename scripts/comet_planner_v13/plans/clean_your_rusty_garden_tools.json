@@ -1,0 +1,62 @@
+[
+{
+"prompt": "move to the toolbox",
+"s": 30.0
+},
+{
+"prompt": "open the lid of the toolbox",
+"s": 27.0
+},
+{
+"prompt": "pick up the steel wool from the toolbox",
+"s": 21.0
+},
+{
+"prompt": "move to the trowel",
+"s": 58.0
+},
+{
+"prompt": "pick up the trowel from the driveway",
+"s": 15.2
+},
+{
+"prompt": "wipe the steel wool",
+"s": 12.8
+},
+{
+"prompt": "move to the toolbox",
+"s": 40.0
+},
+{
+"prompt": "place the trowel in the toolbox",
+"s": 20.0
+},
+{
+"prompt": "move to the scraper",
+"s": 79.0
+},
+{
+"prompt": "pick up the scraper from the driveway",
+"s": 15.4
+},
+{
+"prompt": "wipe the steel wool",
+"s": 25.6
+},
+{
+"prompt": "move to the toolbox",
+"s": 70.0
+},
+{
+"prompt": "place the scraper in the toolbox",
+"s": 14.0
+},
+{
+"prompt": "place the steel wool in the toolbox",
+"s": 13.0
+},
+{
+"prompt": "close the lid of the toolbox",
+"s": 26.0
+}
+]

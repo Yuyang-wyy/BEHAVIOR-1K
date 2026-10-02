@@ -1,0 +1,114 @@
+[
+{
+"prompt": "move to the toy figure",
+"s": 9.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 14.0
+},
+{
+"prompt": "move to the toy figure",
+"s": 14.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 8.0
+},
+{
+"prompt": "move to the toy box",
+"s": 11.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 4.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 3.0
+},
+{
+"prompt": "move to the toy figure",
+"s": 19.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 7.0
+},
+{
+"prompt": "move to the toy figure",
+"s": 8.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 7.0
+},
+{
+"prompt": "move to the toy box",
+"s": 25.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 3.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 4.0
+},
+{
+"prompt": "move to the toy figure",
+"s": 35.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 9.0
+},
+{
+"prompt": "move to the toy figure",
+"s": 19.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 7.0
+},
+{
+"prompt": "move to the toy box",
+"s": 32.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 4.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 10.0
+},
+{
+"prompt": "move to the toy figure",
+"s": 18.7
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 16.3
+},
+{
+"prompt": "move to the toy figure",
+"s": 13.0
+},
+{
+"prompt": "pick up the toy figure from the floors",
+"s": 9.0
+},
+{
+"prompt": "move to the toy box",
+"s": 19.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 26.0
+},
+{
+"prompt": "place the toy figure in the toy box",
+"s": 15.0
+}
+]

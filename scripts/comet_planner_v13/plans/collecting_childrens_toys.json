@@ -1,0 +1,114 @@
+[
+{
+"prompt": "move to the teddy bear",
+"s": 3.0
+},
+{
+"prompt": "pick up the teddy bear from the floors",
+"s": 25.5
+},
+{
+"prompt": "move to the teddy bear",
+"s": 3.0
+},
+{
+"prompt": "pick up the teddy bear from the floors",
+"s": 9.2
+},
+{
+"prompt": "move to the bookcase",
+"s": 24.6
+},
+{
+"prompt": "place the teddy bear in the layer_3 bookcase",
+"s": 13.6
+},
+{
+"prompt": "place the teddy bear in the layer_3 bookcase",
+"s": 8.8
+},
+{
+"prompt": "move to the dice",
+"s": 15.9
+},
+{
+"prompt": "pick up the dice from the bed",
+"s": 46.9
+},
+{
+"prompt": "pick up the dice from the bed",
+"s": 15.6
+},
+{
+"prompt": "move to the bookcase",
+"s": 13.3
+},
+{
+"prompt": "place the dice in the layer_2 bookcase",
+"s": 16.9
+},
+{
+"prompt": "place the dice in the layer_2 bookcase",
+"s": 11.4
+},
+{
+"prompt": "move to the board game",
+"s": 11.4
+},
+{
+"prompt": "push the board game to the to_the_edge_of bed",
+"s": 22.9
+},
+{
+"prompt": "pick up the board game from the bed",
+"s": 13.3
+},
+{
+"prompt": "move to the bookcase",
+"s": 5.0
+},
+{
+"prompt": "place the board game in the layer_2 bookcase",
+"s": 14.7
+},
+{
+"prompt": "move to the toy train",
+"s": 19.6
+},
+{
+"prompt": "push the toy train to the to_the_edge_of desk",
+"s": 56.4
+},
+{
+"prompt": "pick up the toy train from the desk",
+"s": 29.1
+},
+{
+"prompt": "move to the bookcase",
+"s": 21.2
+},
+{
+"prompt": "place the toy train in the layer_4 bookcase",
+"s": 23.6
+},
+{
+"prompt": "move to the board game",
+"s": 26.0
+},
+{
+"prompt": "push the board game to the to_the_edge_of desk",
+"s": 119.3
+},
+{
+"prompt": "pick up the board game from the desk",
+"s": 21.8
+},
+{
+"prompt": "move to the bookcase",
+"s": 12.4
+},
+{
+"prompt": "place the board game on the board game",
+"s": 20.3
+}
+]

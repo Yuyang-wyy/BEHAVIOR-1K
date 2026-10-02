@@ -1,0 +1,82 @@
+[
+{
+"prompt": "move to the wicker basket",
+"s": 14.0
+},
+{
+"prompt": "pick up the wicker basket from the floors",
+"s": 17.0
+},
+{
+"prompt": "move to the commercial kitchen table",
+"s": 29.0
+},
+{
+"prompt": "pour the mango and mango and pomegranate and pomegranate into the wicker basket",
+"s": 20.2
+},
+{
+"prompt": "place the wicker basket on the floors",
+"s": 19.8
+},
+{
+"prompt": "move to the fridge",
+"s": 19.0
+},
+{
+"prompt": "open the door of the fridge",
+"s": 38.0
+},
+{
+"prompt": "move to the commercial kitchen table",
+"s": 7.0
+},
+{
+"prompt": "pick up the mango from the commercial kitchen table",
+"s": 8.0
+},
+{
+"prompt": "pick up the pomegranate from the commercial kitchen table",
+"s": 8.0
+},
+{
+"prompt": "move to the fridge",
+"s": 15.0
+},
+{
+"prompt": "place the pomegranate in the fridge",
+"s": 7.8
+},
+{
+"prompt": "place the mango in the fridge",
+"s": 7.2
+},
+{
+"prompt": "move to the commercial kitchen table",
+"s": 15.0
+},
+{
+"prompt": "pick up the mango from the commercial kitchen table",
+"s": 6.0
+},
+{
+"prompt": "pick up the pomegranate from the commercial kitchen table",
+"s": 10.0
+},
+{
+"prompt": "move to the fridge",
+"s": 13.0
+},
+{
+"prompt": "place the pomegranate in the fridge next to the pomegranate",
+"s": 8.1
+},
+{
+"prompt": "place the mango in the fridge next to the mango",
+"s": 4.9
+},
+{
+"prompt": "close the door of the fridge",
+"s": 27.7
+}
+]

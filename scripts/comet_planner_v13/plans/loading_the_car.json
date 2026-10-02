@@ -1,0 +1,66 @@
+[
+{
+"prompt": "move to the car",
+"s": 23.2
+},
+{
+"prompt": "open the lid of the car",
+"s": 71.5
+},
+{
+"prompt": "move to the door",
+"s": 28.7
+},
+{
+"prompt": "open the door of the door",
+"s": 22.4
+},
+{
+"prompt": "move to the toy box",
+"s": 51.3
+},
+{
+"prompt": "pick up the toy box from the floors",
+"s": 31.8
+},
+{
+"prompt": "move to the car",
+"s": 91.1
+},
+{
+"prompt": "place the toy box in the car",
+"s": 7.5
+},
+{
+"prompt": "move to the digital camera",
+"s": 78.1
+},
+{
+"prompt": "pick up the digital camera from the coffee table",
+"s": 13.7
+},
+{
+"prompt": "move to the tennis racket",
+"s": 34.0
+},
+{
+"prompt": "pick up the tennis racket from the coffee table",
+"s": 42.6
+},
+{
+"prompt": "move to the car",
+"s": 102.1
+},
+{
+"prompt": "place the tennis racket in the car",
+"s": 13.4
+},
+{
+"prompt": "place the digital camera in the toy box",
+"s": 24.1
+},
+{
+"prompt": "close the lid of the car",
+"s": 36.5
+}
+]

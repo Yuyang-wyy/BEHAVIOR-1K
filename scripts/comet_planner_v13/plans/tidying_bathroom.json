@@ -1,0 +1,82 @@
+[
+{
+"prompt": "move to the toilet tissue",
+"s": 9.0
+},
+{
+"prompt": "pick up the toilet tissue from the floors",
+"s": 21.0
+},
+{
+"prompt": "move to the tissue dispenser",
+"s": 20.0
+},
+{
+"prompt": "pick up the tissue dispenser from the floors",
+"s": 28.0
+},
+{
+"prompt": "move to the countertop",
+"s": 15.0
+},
+{
+"prompt": "place the tissue dispenser on the countertop",
+"s": 21.0
+},
+{
+"prompt": "move to the door",
+"s": 18.0
+},
+{
+"prompt": "open the door of the door",
+"s": 12.5
+},
+{
+"prompt": "move to the toilet",
+"s": 12.3
+},
+{
+"prompt": "place the toilet tissue on the toilet",
+"s": 20.2
+},
+{
+"prompt": "move to the soap dish",
+"s": 26.0
+},
+{
+"prompt": "pick up the soap dish from the wall mounted sink",
+"s": 20.9
+},
+{
+"prompt": "pick up the bar soap from the countertop",
+"s": 28.1
+},
+{
+"prompt": "move to the countertop",
+"s": 13.0
+},
+{
+"prompt": "place the soap dish on the countertop",
+"s": 16.0
+},
+{
+"prompt": "place the bar soap on the soap dish",
+"s": 19.0
+},
+{
+"prompt": "move to the cork",
+"s": 10.0
+},
+{
+"prompt": "pick up the cork from the wall mounted sink",
+"s": 18.0
+},
+{
+"prompt": "move to the trash can",
+"s": 18.0
+},
+{
+"prompt": "place the cork in the trash can",
+"s": 48.7
+}
+]

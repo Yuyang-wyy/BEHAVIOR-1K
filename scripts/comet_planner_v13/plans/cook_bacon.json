@@ -1,0 +1,58 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 36.0
+},
+{
+"prompt": "open the door of the fridge",
+"s": 33.0
+},
+{
+"prompt": "pick up the tray from the middle_level fridge",
+"s": 30.5
+},
+{
+"prompt": "close the door of the fridge",
+"s": 39.2
+},
+{
+"prompt": "move to the countertop",
+"s": 18.0
+},
+{
+"prompt": "place the tray on the countertop next to the right burner",
+"s": 9.5
+},
+{
+"prompt": "move to the frying pan",
+"s": 2.5
+},
+{
+"prompt": "pick up the frying pan from the center burner",
+"s": 13.2
+},
+{
+"prompt": "place the frying pan on the right burner",
+"s": 11.4
+},
+{
+"prompt": "move to the tray",
+"s": 3.5
+},
+{
+"prompt": "pick up the tray from the countertop",
+"s": 9.9
+},
+{
+"prompt": "pour the bacon and bacon and bacon and bacon and bacon and bacon into the tray",
+"s": 15.9
+},
+{
+"prompt": "place the tray on the countertop next to the right burner",
+"s": 8.5
+},
+{
+"prompt": "turn on the burner",
+"s": 9.9
+}
+]

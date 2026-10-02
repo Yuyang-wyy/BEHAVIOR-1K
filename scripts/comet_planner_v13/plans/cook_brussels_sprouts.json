@@ -1,0 +1,194 @@
+[
+{
+"prompt": "move to the electric refrigerator",
+"s": 27.0
+},
+{
+"prompt": "open the door of the electric refrigerator",
+"s": 19.0
+},
+{
+"prompt": "pick up the tupperware from the electric refrigerator",
+"s": 23.0
+},
+{
+"prompt": "close the door of the electric refrigerator",
+"s": 23.0
+},
+{
+"prompt": "move to the commercial kitchen table",
+"s": 15.0
+},
+{
+"prompt": "place the tupperware on the commercial kitchen table",
+"s": 7.0
+},
+{
+"prompt": "move to the carving knife",
+"s": 30.0
+},
+{
+"prompt": "pick up the carving knife from the cutting board",
+"s": 11.0
+},
+{
+"prompt": "push the cutting board to the commercial kitchen table",
+"s": 12.0
+},
+{
+"prompt": "pick up the cutting board from the commercial kitchen table",
+"s": 43.9
+},
+{
+"prompt": "move to the tupperware",
+"s": 13.5
+},
+{
+"prompt": "place the cutting board on the commercial kitchen table next to the tupperware",
+"s": 3.6
+},
+{
+"prompt": "move to the baking sheet",
+"s": 5.0
+},
+{
+"prompt": "pick up the baking sheet from the commercial kitchen table",
+"s": 22.0
+},
+{
+"prompt": "place the baking sheet on the commercial kitchen table next to the cutting board",
+"s": 19.0
+},
+{
+"prompt": "move to the tupperware",
+"s": 9.0
+},
+{
+"prompt": "pick up the tupperware from the commercial kitchen table",
+"s": 5.0
+},
+{
+"prompt": "pour the brussels sprouts and brussels sprouts and brussels sprouts and brussels sprouts into the tupperware",
+"s": 3.0
+},
+{
+"prompt": "place the tupperware on the commercial kitchen table",
+"s": 7.0
+},
+{
+"prompt": "pick up the brussels sprouts from the cutting board",
+"s": 13.2
+},
+{
+"prompt": "chop the carving knife with the brussels sprouts",
+"s": 7.0
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 6.9
+},
+{
+"prompt": "pick up the half brussels sprouts from the cutting board",
+"s": 4.7
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 3.5
+},
+{
+"prompt": "pick up the brussels sprouts from the cutting board",
+"s": 10.2
+},
+{
+"prompt": "chop the carving knife with the brussels sprouts",
+"s": 5.7
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 7.4
+},
+{
+"prompt": "pick up the half brussels sprouts from the cutting board",
+"s": 4.8
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 5.3
+},
+{
+"prompt": "pick up the brussels sprouts from the cutting board",
+"s": 16.0
+},
+{
+"prompt": "chop the carving knife with the brussels sprouts",
+"s": 2.5
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 7.1
+},
+{
+"prompt": "pick up the half brussels sprouts from the cutting board",
+"s": 4.6
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 6.2
+},
+{
+"prompt": "pick up the brussels sprouts from the cutting board",
+"s": 18.9
+},
+{
+"prompt": "chop the carving knife with the brussels sprouts",
+"s": 2.9
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 6.5
+},
+{
+"prompt": "pick up the half brussels sprouts from the cutting board",
+"s": 7.1
+},
+{
+"prompt": "place the half brussels sprouts on the baking sheet",
+"s": 8.2
+},
+{
+"prompt": "place the carving knife on the cutting board",
+"s": 12.5
+},
+{
+"prompt": "move to the oven",
+"s": 25.0
+},
+{
+"prompt": "open the door of the oven",
+"s": 23.0
+},
+{
+"prompt": "move to the baking sheet",
+"s": 17.0
+},
+{
+"prompt": "pick up the baking sheet from the commercial kitchen table",
+"s": 16.0
+},
+{
+"prompt": "move to the oven",
+"s": 14.0
+},
+{
+"prompt": "place the baking sheet in the oven",
+"s": 17.0
+},
+{
+"prompt": "close the door of the oven",
+"s": 14.0
+},
+{
+"prompt": "turn on the oven",
+"s": 11.0
+}
+]

@@ -1,0 +1,138 @@
+[
+{
+"prompt": "move to the top cabinet",
+"s": 13.6
+},
+{
+"prompt": "open the door of the top cabinet",
+"s": 24.1
+},
+{
+"prompt": "open the door of the top cabinet",
+"s": 16.0
+},
+{
+"prompt": "push the plate to the top cabinet",
+"s": 12.4
+},
+{
+"prompt": "pick up the plate from the top cabinet",
+"s": 9.4
+},
+{
+"prompt": "push the plate to the top cabinet",
+"s": 17.4
+},
+{
+"prompt": "pick up the plate from the top cabinet",
+"s": 10.1
+},
+{
+"prompt": "close the door of the top cabinet",
+"s": 13.1
+},
+{
+"prompt": "close the door of the top cabinet",
+"s": 15.7
+},
+{
+"prompt": "move to the breakfast table",
+"s": 27.2
+},
+{
+"prompt": "place the plate on the breakfast table",
+"s": 7.0
+},
+{
+"prompt": "place the plate on the breakfast table",
+"s": 14.0
+},
+{
+"prompt": "move to the electric refrigerator",
+"s": 37.0
+},
+{
+"prompt": "open the door of the electric refrigerator",
+"s": 30.0
+},
+{
+"prompt": "pick up the cupcake from the electric refrigerator",
+"s": 20.0
+},
+{
+"prompt": "pick up the cupcake from the electric refrigerator",
+"s": 25.3
+},
+{
+"prompt": "place the cupcake on the bar",
+"s": 12.6
+},
+{
+"prompt": "close the door of the electric refrigerator",
+"s": 16.1
+},
+{
+"prompt": "pick up the cupcake from the bar",
+"s": 10.3
+},
+{
+"prompt": "move to the breakfast table",
+"s": 35.0
+},
+{
+"prompt": "place the cupcake on the plate",
+"s": 9.6
+},
+{
+"prompt": "place the cupcake on the plate",
+"s": 12.0
+},
+{
+"prompt": "move to the sink",
+"s": 24.1
+},
+{
+"prompt": "pick up the tablefork from the sink",
+"s": 30.1
+},
+{
+"prompt": "pick up the table knife from the sink",
+"s": 18.3
+},
+{
+"prompt": "move to the breakfast table",
+"s": 27.5
+},
+{
+"prompt": "place the tablefork on the breakfast table",
+"s": 9.5
+},
+{
+"prompt": "place the table knife on the breakfast table",
+"s": 12.2
+},
+{
+"prompt": "move to the sink",
+"s": 29.2
+},
+{
+"prompt": "pick up the tablefork from the sink",
+"s": 8.9
+},
+{
+"prompt": "pick up the table knife from the sink",
+"s": 16.4
+},
+{
+"prompt": "move to the breakfast table",
+"s": 26.9
+},
+{
+"prompt": "place the tablefork on the breakfast table",
+"s": 8.1
+},
+{
+"prompt": "place the table knife on the breakfast table",
+"s": 12.3
+}
+]

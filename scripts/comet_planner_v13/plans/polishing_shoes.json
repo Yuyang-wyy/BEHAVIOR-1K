@@ -1,0 +1,62 @@
+[
+{
+"prompt": "move to the scrub brush",
+"s": 14.0
+},
+{
+"prompt": "pick up the scrub brush from the nightstand",
+"s": 23.0
+},
+{
+"prompt": "hand over the scrub brush",
+"s": 10.0
+},
+{
+"prompt": "move to the shoe",
+"s": 3.0
+},
+{
+"prompt": "pick up the shoe from the floors",
+"s": 16.7
+},
+{
+"prompt": "wipe the shoe",
+"s": 30.3
+},
+{
+"prompt": "move to the bed",
+"s": 33.0
+},
+{
+"prompt": "place the shoe on the floors",
+"s": 33.0
+},
+{
+"prompt": "move to the shoe",
+"s": 27.0
+},
+{
+"prompt": "pick up the shoe from the floors",
+"s": 18.0
+},
+{
+"prompt": "wipe the shoe",
+"s": 46.0
+},
+{
+"prompt": "move to the bed",
+"s": 18.0
+},
+{
+"prompt": "place the shoe on the floors",
+"s": 26.0
+},
+{
+"prompt": "move to the nightstand",
+"s": 29.0
+},
+{
+"prompt": "place the scrub brush on the nightstand",
+"s": 17.0
+}
+]

@@ -1,0 +1,74 @@
+[
+{
+"prompt": "move to the chair",
+"s": 11.0
+},
+{
+"prompt": "pick up the chair from the floors",
+"s": 17.0
+},
+{
+"prompt": "move to the floors",
+"s": 12.3
+},
+{
+"prompt": "place the chair on the floors",
+"s": 7.7
+},
+{
+"prompt": "move to the jar of honey",
+"s": 17.0
+},
+{
+"prompt": "pick up the jar of honey from the countertop",
+"s": 9.0
+},
+{
+"prompt": "move to the breakfast table",
+"s": 17.0
+},
+{
+"prompt": "place the jar of honey on the breakfast table",
+"s": 16.8
+},
+{
+"prompt": "move to the chair",
+"s": 18.2
+},
+{
+"prompt": "pick up the chair from the floors",
+"s": 17.0
+},
+{
+"prompt": "move to the countertop",
+"s": 11.0
+},
+{
+"prompt": "place the chair on the floors",
+"s": 8.0
+},
+{
+"prompt": "move to the jar of honey",
+"s": 15.0
+},
+{
+"prompt": "pick up the jar of honey from the breakfast table",
+"s": 13.0
+},
+{
+"prompt": "move to the cabinet",
+"s": 18.0
+},
+{
+"prompt": "open the drawer of the cabinet",
+"s": 10.0
+},
+{
+"prompt": "place the jar of honey in the cabinet",
+"s": 10.6
+},
+{
+"prompt": "close the drawer of the cabinet",
+"s": 8.4
+}
+]

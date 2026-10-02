@@ -1,0 +1,30 @@
+[
+{
+"prompt": "move to the facsimile",
+"s": 42.0
+},
+{
+"prompt": "pick up the facsimile from the floors",
+"s": 25.3
+},
+{
+"prompt": "turn on the facsimile",
+"s": 7.5
+},
+{
+"prompt": "move to the chair",
+"s": 27.2
+},
+{
+"prompt": "push the chair to the cubicle",
+"s": 12.8
+},
+{
+"prompt": "move to the cubicle",
+"s": 7.3
+},
+{
+"prompt": "place the facsimile on the cubicle",
+"s": 13.0
+}
+]

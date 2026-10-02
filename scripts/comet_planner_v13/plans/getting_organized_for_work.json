@@ -1,0 +1,186 @@
+[
+{
+"prompt": "move to the swivel chair",
+"s": 25.4
+},
+{
+"prompt": "push the swivel chair to the left desk",
+"s": 37.7
+},
+{
+"prompt": "move to the mouse",
+"s": 7.6
+},
+{
+"prompt": "pick up the mouse from the desk",
+"s": 12.2
+},
+{
+"prompt": "move to the to_the_edge_of desk",
+"s": 4.7
+},
+{
+"prompt": "place the mouse on the to_the_edge_of desk",
+"s": 11.6
+},
+{
+"prompt": "move to the keyboard",
+"s": 6.9
+},
+{
+"prompt": "push the keyboard to the to_the_edge_of desk",
+"s": 22.5
+},
+{
+"prompt": "pick up the keyboard from the notebook",
+"s": 9.1
+},
+{
+"prompt": "move to the mouse",
+"s": 6.4
+},
+{
+"prompt": "place the keyboard on the desk next to the right mouse",
+"s": 8.2
+},
+{
+"prompt": "move to the notebook",
+"s": 5.0
+},
+{
+"prompt": "push the notebook to the to_the_edge_of desk",
+"s": 13.9
+},
+{
+"prompt": "pick up the notebook from the desk",
+"s": 16.0
+},
+{
+"prompt": "move to the keyboard",
+"s": 3.4
+},
+{
+"prompt": "place the notebook on the desk next to the right keyboard",
+"s": 12.5
+},
+{
+"prompt": "move to the monitor",
+"s": 3.6
+},
+{
+"prompt": "turn to the monitor",
+"s": 18.5
+},
+{
+"prompt": "pick up the monitor from the desk",
+"s": 7.1
+},
+{
+"prompt": "place the monitor on the center desk",
+"s": 20.7
+},
+{
+"prompt": "turn to the monitor",
+"s": 12.5
+},
+{
+"prompt": "move to the keyboard",
+"s": 7.5
+},
+{
+"prompt": "pick up the keyboard from the desk",
+"s": 13.7
+},
+{
+"prompt": "move to the monitor",
+"s": 4.1
+},
+{
+"prompt": "place the keyboard on the desk next to the in_front_of monitor",
+"s": 15.1
+},
+{
+"prompt": "move to the mouse",
+"s": 3.7
+},
+{
+"prompt": "pick up the mouse from the desk",
+"s": 10.6
+},
+{
+"prompt": "move to the keyboard",
+"s": 3.1
+},
+{
+"prompt": "place the mouse on the desk next to the left keyboard",
+"s": 8.5
+},
+{
+"prompt": "move to the pen",
+"s": 6.7
+},
+{
+"prompt": "pick up the pen from the folder",
+"s": 13.0
+},
+{
+"prompt": "move to the notebook",
+"s": 2.9
+},
+{
+"prompt": "place the pen on the desk next to the left notebook",
+"s": 4.0
+},
+{
+"prompt": "move to the folder",
+"s": 4.9
+},
+{
+"prompt": "push the folder to the to_the_edge_of swivel chair",
+"s": 11.1
+},
+{
+"prompt": "pick up the folder from the swivel chair",
+"s": 16.5
+},
+{
+"prompt": "move to the notebook",
+"s": 6.4
+},
+{
+"prompt": "place the folder on the desk next to the right notebook",
+"s": 17.1
+},
+{
+"prompt": "pick up the notebook from the desk",
+"s": 8.3
+},
+{
+"prompt": "place the notebook on the folder",
+"s": 10.8
+},
+{
+"prompt": "move to the pen",
+"s": 8.0
+},
+{
+"prompt": "pick up the pen from the desk",
+"s": 17.3
+},
+{
+"prompt": "move to the notebook",
+"s": 5.6
+},
+{
+"prompt": "place the pen on the notebook",
+"s": 11.0
+},
+{
+"prompt": "move to the swivel chair",
+"s": 24.8
+},
+{
+"prompt": "push the swivel chair to the right desk",
+"s": 33.1
+}
+]

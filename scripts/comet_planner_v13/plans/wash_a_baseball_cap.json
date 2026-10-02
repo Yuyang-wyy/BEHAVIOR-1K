@@ -1,0 +1,50 @@
+[
+{
+"prompt": "move to the washer",
+"s": 10.4
+},
+{
+"prompt": "open the door of the washer",
+"s": 49.4
+},
+{
+"prompt": "move to the baseball cap",
+"s": 28.5
+},
+{
+"prompt": "turn to the baseball cap",
+"s": 20.0
+},
+{
+"prompt": "pick up the baseball cap from the countertop",
+"s": 8.9
+},
+{
+"prompt": "move to the baseball cap",
+"s": 18.0
+},
+{
+"prompt": "pick up the baseball cap from the countertop",
+"s": 13.9
+},
+{
+"prompt": "move to the washer",
+"s": 18.9
+},
+{
+"prompt": "place the baseball cap in the washer",
+"s": 30.2
+},
+{
+"prompt": "place the baseball cap in the washer",
+"s": 28.7
+},
+{
+"prompt": "close the door of the washer",
+"s": 25.9
+},
+{
+"prompt": "turn on the washer",
+"s": 31.9
+}
+]

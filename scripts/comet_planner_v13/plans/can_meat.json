@@ -1,0 +1,110 @@
+[
+{
+"prompt": "move to the top cabinet",
+"s": 23.3
+},
+{
+"prompt": "open the door of the right_door top cabinet",
+"s": 28.8
+},
+{
+"prompt": "open the door of the left_door top cabinet",
+"s": 28.8
+},
+{
+"prompt": "pick up the hinged jar from the low_level top cabinet",
+"s": 12.3
+},
+{
+"prompt": "hand over the hinged jar with the right",
+"s": 11.9
+},
+{
+"prompt": "move to the bratwurst",
+"s": 34.2
+},
+{
+"prompt": "open the lid of the hinged jar",
+"s": 7.7
+},
+{
+"prompt": "pick up the bratwurst from the cutting board",
+"s": 6.3
+},
+{
+"prompt": "place the bratwurst in the hinged jar",
+"s": 3.4
+},
+{
+"prompt": "pick up the bratwurst from the cutting board",
+"s": 6.4
+},
+{
+"prompt": "place the bratwurst in the hinged jar",
+"s": 2.9
+},
+{
+"prompt": "close the lid of the hinged jar",
+"s": 3.6
+},
+{
+"prompt": "move to the top cabinet",
+"s": 15.7
+},
+{
+"prompt": "place the hinged jar in the low_level top cabinet",
+"s": 9.9
+},
+{
+"prompt": "pick up the hinged jar from the low_level top cabinet",
+"s": 16.7
+},
+{
+"prompt": "hand over the hinged jar with the left",
+"s": 7.5
+},
+{
+"prompt": "move to the bratwurst",
+"s": 32.4
+},
+{
+"prompt": "open the lid of the hinged jar",
+"s": 9.6
+},
+{
+"prompt": "pick up the bratwurst from the cutting board",
+"s": 10.8
+},
+{
+"prompt": "place the bratwurst in the hinged jar",
+"s": 3.0
+},
+{
+"prompt": "pick up the bratwurst from the cutting board",
+"s": 8.9
+},
+{
+"prompt": "place the bratwurst in the hinged jar",
+"s": 3.0
+},
+{
+"prompt": "close the lid of the hinged jar",
+"s": 4.7
+},
+{
+"prompt": "move to the top cabinet",
+"s": 23.8
+},
+{
+"prompt": "place the hinged jar in the low_level top cabinet",
+"s": 9.3
+},
+{
+"prompt": "close the door of the left_door top cabinet",
+"s": 22.5
+},
+{
+"prompt": "close the door of the right_door top cabinet",
+"s": 24.8
+}
+]

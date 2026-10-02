@@ -1,0 +1,86 @@
+[
+{
+"prompt": "move to the paper bag",
+"s": 14.7
+},
+{
+"prompt": "pick up the paper bag from the car",
+"s": 18.5
+},
+{
+"prompt": "close the lid of the car",
+"s": 30.1
+},
+{
+"prompt": "move to the door",
+"s": 20.8
+},
+{
+"prompt": "open the door of the door",
+"s": 13.3
+},
+{
+"prompt": "move to the breakfast table",
+"s": 60.1
+},
+{
+"prompt": "place the paper bag on the breakfast table",
+"s": 19.8
+},
+{
+"prompt": "pick up the beefsteak tomato from the paper bag",
+"s": 22.9
+},
+{
+"prompt": "move to the fridge",
+"s": 16.5
+},
+{
+"prompt": "open the door of the right_door fridge",
+"s": 28.6
+},
+{
+"prompt": "place the beefsteak tomato in the layer_5 fridge",
+"s": 13.0
+},
+{
+"prompt": "move to the paper bag",
+"s": 31.0
+},
+{
+"prompt": "pick up the paper bag from the breakfast table",
+"s": 11.5
+},
+{
+"prompt": "tip over the paper bag",
+"s": 6.5
+},
+{
+"prompt": "pour the carton of milk into the paper bag",
+"s": 17.2
+},
+{
+"prompt": "place the paper bag on the breakfast table",
+"s": 7.3
+},
+{
+"prompt": "pick up the carton of milk from the breakfast table",
+"s": 14.8
+},
+{
+"prompt": "move to the fridge",
+"s": 18.2
+},
+{
+"prompt": "place the carton of milk in the layer_4 fridge",
+"s": 12.7
+},
+{
+"prompt": "move to the fridge",
+"s": 32.9
+},
+{
+"prompt": "close the door of the right_door fridge",
+"s": 41.2
+}
+]

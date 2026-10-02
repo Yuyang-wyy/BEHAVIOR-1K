@@ -1,0 +1,126 @@
+[
+{
+"prompt": "move to the storage box",
+"s": 27.1
+},
+{
+"prompt": "pick up the storage box from the floors",
+"s": 29.1
+},
+{
+"prompt": "move to the sofa",
+"s": 58.9
+},
+{
+"prompt": "place the storage box on the sofa",
+"s": 24.1
+},
+{
+"prompt": "move to the hardback",
+"s": 42.9
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bookcase",
+"s": 30.2
+},
+{
+"prompt": "pick up the hardback from the 3X1 bookcase",
+"s": 17.7
+},
+{
+"prompt": "move to the hardback",
+"s": 5.4
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bookcase",
+"s": 23.1
+},
+{
+"prompt": "pick up the hardback from the 3X1 bookcase",
+"s": 11.5
+},
+{
+"prompt": "move to the storage box",
+"s": 52.3
+},
+{
+"prompt": "place the hardback in the storage box",
+"s": 14.0
+},
+{
+"prompt": "place the hardback in the storage box",
+"s": 23.9
+},
+{
+"prompt": "move to the hardback",
+"s": 42.2
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bookcase",
+"s": 28.8
+},
+{
+"prompt": "pick up the hardback from the 2X1 bookcase",
+"s": 14.0
+},
+{
+"prompt": "move to the hardback",
+"s": 4.3
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bookcase",
+"s": 28.8
+},
+{
+"prompt": "pick up the hardback from the 2X2 bookcase",
+"s": 17.4
+},
+{
+"prompt": "move to the storage box",
+"s": 52.3
+},
+{
+"prompt": "place the hardback in the storage box",
+"s": 14.8
+},
+{
+"prompt": "place the hardback in the storage box",
+"s": 20.3
+},
+{
+"prompt": "move to the hardback",
+"s": 46.7
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bookcase",
+"s": 30.2
+},
+{
+"prompt": "pick up the hardback from the 2X1 bookcase",
+"s": 11.0
+},
+{
+"prompt": "move to the hardback",
+"s": 5.0
+},
+{
+"prompt": "push the hardback to the to_the_edge_of bookcase",
+"s": 24.7
+},
+{
+"prompt": "pick up the hardback from the 2X1 bookcase",
+"s": 21.5
+},
+{
+"prompt": "move to the storage box",
+"s": 54.0
+},
+{
+"prompt": "place the hardback in the storage box",
+"s": 12.5
+},
+{
+"prompt": "place the hardback in the storage box",
+"s": 19.5
+}
+]

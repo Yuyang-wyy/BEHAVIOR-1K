@@ -1,0 +1,26 @@
+[
+{
+"prompt": "move to the cabinet door",
+"s": 38.0
+},
+{
+"prompt": "pick up the cabinet door from the floors",
+"s": 14.0
+},
+{
+"prompt": "move to the cabinet base",
+"s": 18.5
+},
+{
+"prompt": "tip over the cabinet base",
+"s": 7.3
+},
+{
+"prompt": "place the cabinet door on the cabinet base",
+"s": 20.5
+},
+{
+"prompt": "attach the cabinet door to the cabinet base",
+"s": 7.9
+}
+]

@@ -1,0 +1,110 @@
+[
+{
+"prompt": "move to the bottom cabinet no top",
+"s": 14.1
+},
+{
+"prompt": "open the door of the second_right_door bottom cabinet no top",
+"s": 25.9
+},
+{
+"prompt": "pick up the tupperware from the high_level bottom cabinet no top",
+"s": 16.3
+},
+{
+"prompt": "close the door of the second_right_door bottom cabinet no top",
+"s": 14.9
+},
+{
+"prompt": "move to the countertop",
+"s": 12.7
+},
+{
+"prompt": "place the tupperware on the countertop",
+"s": 5.9
+},
+{
+"prompt": "pick up the apple pie from the plate",
+"s": 29.0
+},
+{
+"prompt": "place the apple pie in the tupperware",
+"s": 9.6
+},
+{
+"prompt": "move to the bottom cabinet no top",
+"s": 6.4
+},
+{
+"prompt": "open the door of the second_left_door bottom cabinet no top",
+"s": 31.9
+},
+{
+"prompt": "pick up the tupperware from the high_level bottom cabinet no top",
+"s": 12.6
+},
+{
+"prompt": "close the door of the second_left_door bottom cabinet no top",
+"s": 12.1
+},
+{
+"prompt": "move to the countertop",
+"s": 13.5
+},
+{
+"prompt": "place the tupperware on the countertop",
+"s": 6.1
+},
+{
+"prompt": "move to the plate",
+"s": 4.5
+},
+{
+"prompt": "pick up the apple pie from the plate",
+"s": 12.7
+},
+{
+"prompt": "place the apple pie in the tupperware",
+"s": 11.3
+},
+{
+"prompt": "move to the fridge",
+"s": 12.3
+},
+{
+"prompt": "open the door of the fridge",
+"s": 33.6
+},
+{
+"prompt": "move to the tupperware",
+"s": 17.2
+},
+{
+"prompt": "pick up the tupperware from the countertop",
+"s": 8.5
+},
+{
+"prompt": "move to the tupperware",
+"s": 3.2
+},
+{
+"prompt": "pick up the tupperware from the countertop",
+"s": 6.9
+},
+{
+"prompt": "move to the fridge",
+"s": 17.3
+},
+{
+"prompt": "place the tupperware in the middle_level fridge",
+"s": 10.5
+},
+{
+"prompt": "place the tupperware in the high_level fridge",
+"s": 12.1
+},
+{
+"prompt": "close the door of the fridge",
+"s": 29.5
+}
+]

@@ -1,0 +1,74 @@
+[
+{
+"prompt": "move to the trash can",
+"s": 19.0
+},
+{
+"prompt": "pick up the trash can from the floors",
+"s": 23.0
+},
+{
+"prompt": "move to the floors",
+"s": 20.0
+},
+{
+"prompt": "place the trash can on the floors",
+"s": 21.0
+},
+{
+"prompt": "move to the water glass",
+"s": 17.9
+},
+{
+"prompt": "pick up the water glass from the countertop",
+"s": 16.1
+},
+{
+"prompt": "move to the water glass",
+"s": 11.6
+},
+{
+"prompt": "pick up the water glass from the countertop",
+"s": 14.4
+},
+{
+"prompt": "move to the trash can",
+"s": 11.0
+},
+{
+"prompt": "place the water glass in the trash can",
+"s": 16.0
+},
+{
+"prompt": "place the water glass in the trash can",
+"s": 18.0
+},
+{
+"prompt": "move to the water glass",
+"s": 11.0
+},
+{
+"prompt": "pick up the water glass from the wall mounted sink",
+"s": 24.0
+},
+{
+"prompt": "move to the water glass",
+"s": 18.8
+},
+{
+"prompt": "pick up the water glass from the countertop",
+"s": 12.2
+},
+{
+"prompt": "move to the trash can",
+"s": 13.0
+},
+{
+"prompt": "place the water glass in the trash can",
+"s": 14.0
+},
+{
+"prompt": "place the water glass in the trash can",
+"s": 17.0
+}
+]

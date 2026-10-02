@@ -1,0 +1,26 @@
+[
+{
+"prompt": "move to the scanner",
+"s": 16.0
+},
+{
+"prompt": "push the scanner to the desk",
+"s": 30.5
+},
+{
+"prompt": "pick up the scanner from the desk",
+"s": 22.5
+},
+{
+"prompt": "move to the laptop",
+"s": 12.0
+},
+{
+"prompt": "turn on the scanner",
+"s": 20.4
+},
+{
+"prompt": "place the scanner on the desk",
+"s": 19.6
+}
+]

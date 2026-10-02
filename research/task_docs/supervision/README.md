@@ -361,3 +361,93 @@ alone cannot (see [[comet-planner-harness]] memory: jaw width cannot detect hold
 
 **v11 over 60 paired episodes (dev 3 seeds + LB 3 seeds): Comet alone 0.46 -> v11 0.67, 32 wins / 11 losses /
 17 ties, sign test p = 0.002, full successes 10 -> 25.** Dev seed 2 alone is a small gain (+0.06).
+
+## putting_away_toys on the v2 checkpoint (311-315, seed 0)
+Comet alone 0.75, 0.625, 0.75, 0.75, 0.875 = 0.75; v8 (hover-gated grasp takeover) 0.875, 0.625, 1.0, 0.75,
+0.625 = 0.78. Every v8 log reads "grasps 0": the hover trigger never fired, so the difference is noise. Same
+as on the old checkpoint. Comet does not stall on toys; at ~0.75 alone this is not a supervision target.
+collecting_aluminum_cans v8 runs were dropped from the queues for the same reason (old ckpt: takeovers hurt).
+
+## sorting_vegetables - diagnosis (Comet alone v2, 311-315 seed 0: 0.23, 0.15, 0.23, 0.23, 0.23)
+Failure is strategy, not a stall. partial_q rises by one vegetable every 60-150 s from ~130 s on: Comet walks
+each vegetable (one per hand) from a floor basket to the counter bowls; the end frames show it in the corridor
+carrying two leeks. All 200 demos instead carry a whole basket to the counter and sort from it while holding it.
+(Note: `diag.py`'s "true at end" list is wrong for multi-option goals - the trace's `changed` field re-lists every
+literal when the best ground option switches; use the per-tick `partial_q` instead.)
+Supervisor v13 (`comet_planner_v13/veg_supervisor.py`): imposes the demo strategy with Comet's own skill
+sentences, gated on jaw widths and base idle: move to / pick up the wicker basket -> move to the mixing bowl ->
+pick up the <item> from the wicker basket / place the <item> in the mixing bowl (item names tried in turn, a name
+is dropped after 2 failed picks) -> place the wicker basket on the floors -> next basket; any skill over budget
+gets the global prompt for 3 checks (recovery). Running on 311-315 seed 0.
+
+## Generic demo-plan supervisor (`comet_planner_v13/plan_supervisor.py`)
+For long-horizon tasks where Comet alone scores near zero, Claude gives Comet the representative human demo's
+skill-sentence plan (`comet_planner_v13/plans/<task>.json`, exported from task_docs/facts) and code gates each
+step on legal signals: move = base moved then idle 3 s; pick = number of holding hands rose for 2 checks;
+place = a holding hand opened; other skills = demo duration elapsed and robot still. Over budget
+(2.5 x demo time) -> global prompt for 3 checks -> one retry -> skip. Place steps with nothing held are skipped.
+This is v9's skill-prompt idea made task-agnostic. Queued: clearing_food_from_table_into_fridge (alone 0.08 /
+seed 1 so far 0.07) and boxing_food_after_dinner (alone 0.13 / 0.27), 311-315.
+
+### sorting_vegetables v13 results (311-315 seed 0, local 4090)
+* v13a (skill prompts only + open-the-second-hand reflex): 0.15, 0.23, 0, 0.08, 0.15 = **0.12** (alone 0.21).
+  Comet picks the basket up with the skill prompt in 30-80 s and picks items from it reliably, but it often holds
+  the basket with BOTH hands (left jaw 0.043 on the rim), which blocks picking -> reflex: open the non-holder hand.
+  The place skill then misses the bowls: items land on the counter next to the bowl or in the sink. Item names
+  hardly matter (Comet picks whatever is in the held basket).
+* v13b (+ scripted place over the nearest red bowl): bowls found from head RGB (red mask) + depth via a new batched
+  `points` op; red points in xy cells that also contain points above 1.25 m are the red backsplash and are dropped.
+  i11: 6 scripted places, the 2 where the arm got over the bowl (residual 2 mm) both scored; 4 where IK stalled
+  0.25-0.38 m short (counter/basket in the way, trunk disabled to keep the basket level) released on the counter.
+  Fix (from i12 on): release only when the hand is within 6 cm of the over-bowl point, otherwise the place skill.
+* boxing_food_after_dinner with the demo-plan supervisor (seed 0): 0, 0, 0.33, 0, ... vs alone 0.13. The plan
+  reaches only 4-8 of 19 steps in the 335 s limit; "pick up the tupperware from the bottom cabinet" never closes
+  a jaw (cabinet open, arms idle). Low-level skill failure, not sequencing; seed 1 dropped.
+
+**Rule (2026-10-01): no skill-prompt-only arms.** Every skill-prompt-only supervisor so far scored at or below Comet
+alone (veg v13a 0.12 vs 0.23, boxing demo-plan 0.08 vs 0.13, trash v9 < v5). `plan_supervisor.py` is retired and its
+queued clearing_food run was removed. Skill prompts stay only as navigation/recovery inside supervisors whose
+main lever is a code reflex aimed at the measured failure point.
+
+### sorting_vegetables: failure points behind "placed but not scored" (v13b, 2026-10-01) and the v13d/e fixes
+Per-place Q bookkeeping (partial_q 20 s after each release) over v13b seed 0:
+1. **Held basket tilts and spills** (312): basket hangs low in the right hand while the left searches for 30+ s,
+   tips over, all vegetables on the floor. The supervisor then mistook a held onion (jaw 0.070) for the basket and
+   every later "place" was floor-to-floor.
+2. **"move to the mixing bowl" stops ~2 m short** (315): base idle was taken as arrival; picks from the low basket
+   then stalled for minutes and only 2 items were placed.
+3. **Scripted bowl place scores when the arm gets there** (313: 7/8). Misses were all IK stalls 0.25-0.4 m short
+   (trunk disabled to keep the held basket level), since gated (release only within 6 cm).
+Fix attempts (`veg_supervisor_d.py`):
+* APPROACH (code): bowls from head RGB-D, turn to face + drive until the nearest bowl is ~0.65 m ahead. First version
+  drove to the stove: the red backsplash strip at counter level passed as a bowl. Bowl test tightened to rim
+  z 0.98-1.12 m, xy spread <= 0.25 m, fragments < 0.22 m apart merged. Now one hop to a real bowl.
+* SETDOWN on a free counter spot (code): impossible in this kitchen - a depth dump (i11) shows the counter strip
+  within arm reach (x 0.65-0.85 m) is taken by the 3 bowls; the only flat points left are at the edge.
+  Replaced by Comet's demo skill "place the wicker basket on the floors" issued at the counter (works, ~70 s),
+  then both hands are free and the bowl place may use the trunk.
+* After a floor pick the head looks down and no bowl is visible -> `trunk` op (upright) before the bowl search.
+One remote episode died of a physics NaN (finger link quaternion) during an approach drive with the basket held.
+
+### sorting_vegetables: v13f (held basket, colour naming, sticky bowl) and v13g/h (Comet's own strategy + bowl reflex)
+* v13f seed 0: 0, 0.15, 0.15, 0, 0.23 = 0.11; seed 1: 0, 0, 0.15, 0.15, 0.08 = 0.08 (alone 0.21 / 0.17). Basket dropped or
+  re-fetched 2-3x per episode, 1-7 picks per episode, colour naming often saw no basket in the head view. Every variant
+  that makes Comet carry the basket to the counter (v13a-f) scored at or below Comet alone.
+* Comet alone grasps ~5 items per episode and ~3 score, so v13g keeps the global prompt and adds only the bowl reflex
+  (hand closed on something for 2 checks + red bowl within 0.8 m -> carry over it, release; trunk allowed).
+  seed 0: 0.38, 0.15, 0.08, 0.23, 0 = 0.17; seed 1: 0.31, 0.23, 0.08, 0.15, 0 = 0.15 -> no gain.
+  Cause: the reflex fired on the BASKET. Under the global prompt Comet often carries a basket; rim widths (0.036-0.07)
+  overlap vegetables. Wrist-camera wicker fraction at each fire: 315 = 0.36-0.49 on all 5 fires (all baskets, Q 0),
+  313 both fires baskets; it dumped the basket at the bowls and broke Comet's progress.
+* v13h = v13g + fire only if the holding hand's wrist view is < 0.30 wicker (basket views 0.42-0.58, vegetables
+  0.02-0.25). Running seed 0 (local) and seed 1 (remote).
+* v13h result: seed 0 0, 0.31, 0.08, 0.23, 0.23 = 0.17; seed 1 0.08, 0.08, 0.15, 0.31, 0.08 = 0.14 -> still no gain.
+  Every reflex place now reaches a bowl, but most add nothing: items go to DIFFERENT bowls (base-frame bowl xy changes
+  as the robot moves, so "sticky" failed). Q credits a group only inside one bowl; groups may share a bowl.
+* v13i = v13h + one "home bowl" for every item, tracked in a legal odometry frame (planner_episode now integrates
+  proprio base_qvel every sim step and reports `odom`; drift vs true pose < 2 cm while working at the counter,
+  0.5 m mid-trip, recovered). seed 0: 0.08, 0.31, 0.31, 0.38, 0.15 = 0.25 (alone 0.21, 3W/2L);
+  seed 1: 0.23, 0.23, 0.31, 0, 0.38 = 0.23 (alone 0.17, 2W/1L/2T). First positive direction; not significant yet.
+  Seed 2 running (alone seed 2 = 0.23, 0.31, 0.23, 0, 0.08 = 0.17). The reflex fires only 1-2x per episode: it waits
+  2-13x per episode because Comet holds a vegetable next to another bowl while the home bowl is 1.5 m away.
+* v13j = v13i + drive to the home bowl (turn + gentle drive to 0.65 m) once per held item when it is < 2.5 m away.

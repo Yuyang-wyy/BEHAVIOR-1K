@@ -1,0 +1,278 @@
+[
+{
+"prompt": "move to the carving knife",
+"s": 2.7
+},
+{
+"prompt": "pick up the carving knife from the cutting board",
+"s": 12.8
+},
+{
+"prompt": "pick up the cutting board from the countertop",
+"s": 13.9
+},
+{
+"prompt": "move to the drop in sink",
+"s": 2.8
+},
+{
+"prompt": "place the cutting board on the drop in sink",
+"s": 18.4
+},
+{
+"prompt": "place the carving knife on the countertop next to the right cutting board",
+"s": 11.7
+},
+{
+"prompt": "move to the fridge",
+"s": 19.6
+},
+{
+"prompt": "open the door of the fridge",
+"s": 43.6
+},
+{
+"prompt": "pick up the steak from the high_level fridge",
+"s": 30.1
+},
+{
+"prompt": "pick up the pineapple from the low_level fridge",
+"s": 45.8
+},
+{
+"prompt": "close the door of the fridge",
+"s": 39.8
+},
+{
+"prompt": "move to the cutting board",
+"s": 20.5
+},
+{
+"prompt": "place the steak on the cutting board",
+"s": 8.0
+},
+{
+"prompt": "place the pineapple on the countertop",
+"s": 8.5
+},
+{
+"prompt": "move to the carving knife",
+"s": 1.5
+},
+{
+"prompt": "pick up the carving knife from the countertop",
+"s": 7.2
+},
+{
+"prompt": "move to the steak",
+"s": 1.8
+},
+{
+"prompt": "chop the carving knife with the steak",
+"s": 2.8
+},
+{
+"prompt": "chop the carving knife with the half steak 212",
+"s": 2.3
+},
+{
+"prompt": "chop the carving knife with the half steak 212",
+"s": 2.9
+},
+{
+"prompt": "place the carving knife on the countertop next to the right cutting board",
+"s": 9.7
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 25.3
+},
+{
+"prompt": "open the door of the left_door bottom cabinet",
+"s": 27.1
+},
+{
+"prompt": "pick up the bowl from the layer_2 bottom cabinet",
+"s": 28.6
+},
+{
+"prompt": "pick up the bowl from the layer_4 bottom cabinet",
+"s": 28.9
+},
+{
+"prompt": "close the door of the left_door bottom cabinet",
+"s": 37.7
+},
+{
+"prompt": "move to the countertop",
+"s": 34.4
+},
+{
+"prompt": "place the bowl on the countertop next to the right drop in sink",
+"s": 12.7
+},
+{
+"prompt": "place the bowl in the drop in sink",
+"s": 14.6
+},
+{
+"prompt": "move to the cutting board",
+"s": 2.3
+},
+{
+"prompt": "pick up the cutting board from the drop in sink",
+"s": 12.7
+},
+{
+"prompt": "pour the diced  steak into the cutting board",
+"s": 12.6
+},
+{
+"prompt": "place the cutting board on the drop in sink",
+"s": 5.4
+},
+{
+"prompt": "move to the bowl",
+"s": 3.0
+},
+{
+"prompt": "pick up the bowl from the drop in sink",
+"s": 7.7
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 27.3
+},
+{
+"prompt": "open the door of the left_door bottom cabinet",
+"s": 27.8
+},
+{
+"prompt": "place the bowl in the layer_4 bottom cabinet",
+"s": 24.1
+},
+{
+"prompt": "move to the pineapple",
+"s": 21.9
+},
+{
+"prompt": "pick up the pineapple from the countertop",
+"s": 13.8
+},
+{
+"prompt": "move to the cutting board",
+"s": 3.3
+},
+{
+"prompt": "place the pineapple on the cutting board",
+"s": 12.0
+},
+{
+"prompt": "move to the carving knife",
+"s": 1.9
+},
+{
+"prompt": "pick up the carving knife from the countertop",
+"s": 4.9
+},
+{
+"prompt": "chop the carving knife with the pineapple",
+"s": 6.9
+},
+{
+"prompt": "pick up the half pineapple 211 from the cutting board",
+"s": 7.0
+},
+{
+"prompt": "place the half pineapple 211 on the countertop",
+"s": 5.5
+},
+{
+"prompt": "chop the carving knife with the half pineapple 211",
+"s": 3.6
+},
+{
+"prompt": "place the carving knife on the countertop next to the right cutting board",
+"s": 7.1
+},
+{
+"prompt": "pick up the bowl from the countertop",
+"s": 6.4
+},
+{
+"prompt": "place the bowl in the drop in sink",
+"s": 12.5
+},
+{
+"prompt": "move to the cutting board",
+"s": 0.7
+},
+{
+"prompt": "pick up the cutting board from the drop in sink",
+"s": 16.6
+},
+{
+"prompt": "pour the diced  pineapple into the cutting board",
+"s": 38.5
+},
+{
+"prompt": "place the cutting board on the drop in sink",
+"s": 5.5
+},
+{
+"prompt": "pick up the half pineapple 211 from the countertop",
+"s": 5.2
+},
+{
+"prompt": "place the half pineapple 211 on the cutting board",
+"s": 6.7
+},
+{
+"prompt": "move to the carving knife",
+"s": 2.1
+},
+{
+"prompt": "pick up the carving knife from the countertop",
+"s": 7.9
+},
+{
+"prompt": "chop the carving knife with the half pineapple 211",
+"s": 3.6
+},
+{
+"prompt": "place the carving knife on the countertop next to the right cutting board",
+"s": 7.4
+},
+{
+"prompt": "move to the cutting board",
+"s": 1.2
+},
+{
+"prompt": "pick up the cutting board from the drop in sink",
+"s": 13.6
+},
+{
+"prompt": "pour the diced  pineapple into the cutting board",
+"s": 16.9
+},
+{
+"prompt": "place the cutting board on the drop in sink",
+"s": 12.1
+},
+{
+"prompt": "pick up the bowl from the drop in sink",
+"s": 14.7
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 18.4
+},
+{
+"prompt": "place the bowl in the layer_3 bottom cabinet",
+"s": 21.0
+},
+{
+"prompt": "close the door of the left_door bottom cabinet",
+"s": 16.0
+}
+]

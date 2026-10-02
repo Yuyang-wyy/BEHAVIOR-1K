@@ -1,0 +1,58 @@
+[
+{
+"prompt": "move to the sandal",
+"s": 6.0
+},
+{
+"prompt": "pick up the sandal from the floors",
+"s": 26.6
+},
+{
+"prompt": "move to the gym shoe",
+"s": 12.6
+},
+{
+"prompt": "pick up the gym shoe from the floors",
+"s": 18.4
+},
+{
+"prompt": "move to the hall tree",
+"s": 2.0
+},
+{
+"prompt": "place the sandal in the high_level hall tree",
+"s": 17.0
+},
+{
+"prompt": "place the gym shoe in the high_level hall tree",
+"s": 13.7
+},
+{
+"prompt": "move to the sandal",
+"s": 40.2
+},
+{
+"prompt": "pick up the sandal from the floors",
+"s": 16.0
+},
+{
+"prompt": "move to the gym shoe",
+"s": 12.3
+},
+{
+"prompt": "pick up the gym shoe from the floors",
+"s": 21.3
+},
+{
+"prompt": "move to the hall tree",
+"s": 19.3
+},
+{
+"prompt": "place the gym shoe in the high_level hall tree",
+"s": 20.3
+},
+{
+"prompt": "place the sandal in the high_level hall tree",
+"s": 17.0
+}
+]

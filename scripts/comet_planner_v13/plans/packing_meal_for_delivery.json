@@ -1,0 +1,86 @@
+[
+{
+"prompt": "move to the paper bag",
+"s": 15.7
+},
+{
+"prompt": "pick up the paper bag from the commercial kitchen table",
+"s": 16.3
+},
+{
+"prompt": "move to the wrapped hamburger",
+"s": 7.8
+},
+{
+"prompt": "pick up the wrapped hamburger from the tray",
+"s": 8.2
+},
+{
+"prompt": "place the wrapped hamburger in the paper bag",
+"s": 8.0
+},
+{
+"prompt": "move to the storage box",
+"s": 28.0
+},
+{
+"prompt": "place the paper bag in the storage box",
+"s": 20.0
+},
+{
+"prompt": "move to the paper bag",
+"s": 16.0
+},
+{
+"prompt": "pick up the paper bag from the commercial kitchen table",
+"s": 16.0
+},
+{
+"prompt": "move to the wrapped hamburger",
+"s": 6.8
+},
+{
+"prompt": "pick up the wrapped hamburger from the tray",
+"s": 7.2
+},
+{
+"prompt": "place the wrapped hamburger in the paper bag",
+"s": 14.0
+},
+{
+"prompt": "move to the storage box",
+"s": 9.4
+},
+{
+"prompt": "place the paper bag in the storage box",
+"s": 11.6
+},
+{
+"prompt": "move to the paper bag",
+"s": 12.0
+},
+{
+"prompt": "pick up the paper bag from the commercial kitchen table",
+"s": 15.0
+},
+{
+"prompt": "move to the wrapped hamburger",
+"s": 24.0
+},
+{
+"prompt": "pick up the wrapped hamburger from the tray",
+"s": 14.0
+},
+{
+"prompt": "place the wrapped hamburger in the paper bag",
+"s": 9.0
+},
+{
+"prompt": "move to the storage box",
+"s": 23.0
+},
+{
+"prompt": "place the paper bag in the storage box",
+"s": 21.0
+}
+]

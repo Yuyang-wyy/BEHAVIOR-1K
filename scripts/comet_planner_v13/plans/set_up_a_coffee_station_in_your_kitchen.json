@@ -1,0 +1,82 @@
+[
+{
+"prompt": "move to the paper coffee filter",
+"s": 22.6
+},
+{
+"prompt": "pick up the paper coffee filter from the countertop",
+"s": 17.8
+},
+{
+"prompt": "move to the coffee maker",
+"s": 12.0
+},
+{
+"prompt": "place the paper coffee filter in the coffee maker",
+"s": 17.6
+},
+{
+"prompt": "move to the bottle of coffee",
+"s": 4.0
+},
+{
+"prompt": "pick up the bottle of coffee from the shelf",
+"s": 16.1
+},
+{
+"prompt": "move to the coffee maker",
+"s": 1.5
+},
+{
+"prompt": "place the bottle of coffee on the countertop next to the right coffee maker",
+"s": 8.6
+},
+{
+"prompt": "move to the saucer",
+"s": 16.9
+},
+{
+"prompt": "pick up the saucer from the countertop",
+"s": 17.6
+},
+{
+"prompt": "move to the coffee maker",
+"s": 9.8
+},
+{
+"prompt": "place the saucer on the countertop next to the left coffee maker",
+"s": 10.2
+},
+{
+"prompt": "move to the electric kettle",
+"s": 16.3
+},
+{
+"prompt": "pick up the electric kettle from the countertop",
+"s": 15.3
+},
+{
+"prompt": "move to the coffee maker",
+"s": 6.9
+},
+{
+"prompt": "place the electric kettle on the countertop next to the right coffee maker",
+"s": 11.2
+},
+{
+"prompt": "move to the coffee cup",
+"s": 6.0
+},
+{
+"prompt": "pick up the coffee cup from the countertop",
+"s": 13.6
+},
+{
+"prompt": "move to the saucer",
+"s": 1.4
+},
+{
+"prompt": "place the coffee cup on the saucer",
+"s": 8.8
+}
+]

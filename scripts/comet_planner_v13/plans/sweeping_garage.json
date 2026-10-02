@@ -1,0 +1,18 @@
+[
+{
+"prompt": "move to the broom",
+"s": 29.6
+},
+{
+"prompt": "pick up the broom from the floors",
+"s": 19.4
+},
+{
+"prompt": "move to the dirt",
+"s": 10.0
+},
+{
+"prompt": "sweep the dirt",
+"s": 87.5
+}
+]

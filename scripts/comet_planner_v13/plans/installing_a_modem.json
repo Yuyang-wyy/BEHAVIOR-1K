@@ -1,0 +1,22 @@
+[
+{
+"prompt": "move to the modem",
+"s": 9.0
+},
+{
+"prompt": "pick up the modem from the coffee table",
+"s": 27.0
+},
+{
+"prompt": "move to the cabinet",
+"s": 11.0
+},
+{
+"prompt": "place the modem on the cabinet",
+"s": 11.2
+},
+{
+"prompt": "turn on the modem",
+"s": 10.8
+}
+]

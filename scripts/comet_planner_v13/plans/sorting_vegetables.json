@@ -1,0 +1,146 @@
+[
+{
+"prompt": "move to the wicker basket",
+"s": 9.0
+},
+{
+"prompt": "pick up the wicker basket from the floors",
+"s": 25.9
+},
+{
+"prompt": "move to the mixing bowl",
+"s": 4.1
+},
+{
+"prompt": "pick up the broccoli from the wicker basket",
+"s": 10.7
+},
+{
+"prompt": "place the broccoli in the mixing bowl",
+"s": 6.0
+},
+{
+"prompt": "pick up the broccoli from the wicker basket",
+"s": 10.9
+},
+{
+"prompt": "place the broccoli in the mixing bowl",
+"s": 3.2
+},
+{
+"prompt": "pick up the leek from the wicker basket",
+"s": 12.7
+},
+{
+"prompt": "place the leek in the mixing bowl",
+"s": 3.4
+},
+{
+"prompt": "pick up the leek from the wicker basket",
+"s": 17.1
+},
+{
+"prompt": "place the leek in the mixing bowl",
+"s": 4.4
+},
+{
+"prompt": "move to the mixing bowl",
+"s": 7.2
+},
+{
+"prompt": "pick up the vidalia onion from the wicker basket",
+"s": 9.2
+},
+{
+"prompt": "place the vidalia onion in the mixing bowl",
+"s": 3.0
+},
+{
+"prompt": "pick up the vidalia onion from the wicker basket",
+"s": 7.0
+},
+{
+"prompt": "place the vidalia onion in the mixing bowl",
+"s": 2.5
+},
+{
+"prompt": "pick up the vidalia onion from the wicker basket",
+"s": 7.1
+},
+{
+"prompt": "place the vidalia onion in the mixing bowl",
+"s": 4.2
+},
+{
+"prompt": "place the wicker basket on the floors",
+"s": 19.0
+},
+{
+"prompt": "move to the wicker basket",
+"s": 15.8
+},
+{
+"prompt": "pick up the wicker basket from the floors",
+"s": 18.3
+},
+{
+"prompt": "move to the mixing bowl",
+"s": 42.7
+},
+{
+"prompt": "pick up the bok choy from the wicker basket",
+"s": 14.7
+},
+{
+"prompt": "place the bok choy in the mixing bowl",
+"s": 1.3
+},
+{
+"prompt": "pick up the bok choy from the wicker basket",
+"s": 10.6
+},
+{
+"prompt": "place the bok choy in the mixing bowl",
+"s": 2.9
+},
+{
+"prompt": "pick up the bok choy from the wicker basket",
+"s": 10.5
+},
+{
+"prompt": "place the bok choy in the mixing bowl",
+"s": 3.9
+},
+{
+"prompt": "pick up the sweet corn from the wicker basket",
+"s": 16.4
+},
+{
+"prompt": "move to the mixing bowl",
+"s": 4.4
+},
+{
+"prompt": "place the sweet corn in the mixing bowl",
+"s": 1.9
+},
+{
+"prompt": "pick up the sweet corn from the wicker basket",
+"s": 11.2
+},
+{
+"prompt": "place the sweet corn in the mixing bowl",
+"s": 3.9
+},
+{
+"prompt": "pick up the sweet corn from the wicker basket",
+"s": 13.0
+},
+{
+"prompt": "place the sweet corn in the mixing bowl",
+"s": 5.3
+},
+{
+"prompt": "place the wicker basket on the floors",
+"s": 17.7
+}
+]

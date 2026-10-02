@@ -1,0 +1,54 @@
+[
+{
+"prompt": "move to the electric refrigerator",
+"s": 8.0
+},
+{
+"prompt": "open the door of the electric refrigerator",
+"s": 38.0
+},
+{
+"prompt": "pick up the apple pie from the electric refrigerator",
+"s": 27.0
+},
+{
+"prompt": "hand over the apple pie",
+"s": 10.0
+},
+{
+"prompt": "close the door of the electric refrigerator",
+"s": 22.0
+},
+{
+"prompt": "move to the tray",
+"s": 12.0
+},
+{
+"prompt": "place the apple pie on the tray",
+"s": 15.0
+},
+{
+"prompt": "pick up the tray from the commercial kitchen table",
+"s": 28.0
+},
+{
+"prompt": "move to the oven",
+"s": 19.0
+},
+{
+"prompt": "open the door of the oven",
+"s": 44.0
+},
+{
+"prompt": "place the tray in the oven",
+"s": 32.0
+},
+{
+"prompt": "close the door of the oven",
+"s": 28.0
+},
+{
+"prompt": "turn on the oven",
+"s": 14.0
+}
+]

@@ -1,0 +1,130 @@
+[
+{
+"prompt": "move to the wicker basket",
+"s": 9.6
+},
+{
+"prompt": "pick up the wicker basket from the floors",
+"s": 15.5
+},
+{
+"prompt": "move to the sofa",
+"s": 31.3
+},
+{
+"prompt": "pour the candy cane and candy cane and candy cane and pillar candle and pillar candle and wreath into the wicker basket",
+"s": 28.1
+},
+{
+"prompt": "move to the coffee table",
+"s": 5.6
+},
+{
+"prompt": "place the wicker basket on the coffee table",
+"s": 9.3
+},
+{
+"prompt": "move to the candy cane",
+"s": 11.0
+},
+{
+"prompt": "pick up the candy cane from the sofa",
+"s": 36.4
+},
+{
+"prompt": "move to the breakfast table",
+"s": 10.6
+},
+{
+"prompt": "place the candy cane on the breakfast table",
+"s": 7.4
+},
+{
+"prompt": "move to the pillar candle",
+"s": 11.6
+},
+{
+"prompt": "pick up the pillar candle from the sofa",
+"s": 35.6
+},
+{
+"prompt": "move to the breakfast table",
+"s": 14.3
+},
+{
+"prompt": "place the pillar candle on the breakfast table",
+"s": 12.6
+},
+{
+"prompt": "move to the pillar candle",
+"s": 9.6
+},
+{
+"prompt": "pick up the pillar candle from the sofa",
+"s": 30.6
+},
+{
+"prompt": "move to the breakfast table",
+"s": 13.1
+},
+{
+"prompt": "place the pillar candle on the breakfast table",
+"s": 10.7
+},
+{
+"prompt": "move to the gift box",
+"s": 28.5
+},
+{
+"prompt": "pick up the gift box from the floors",
+"s": 16.4
+},
+{
+"prompt": "move to the christmas tree",
+"s": 12.4
+},
+{
+"prompt": "place the gift box on the floors next to the in_front_of christmas tree",
+"s": 6.3
+},
+{
+"prompt": "push the gift box to the center christmas tree",
+"s": 8.9
+},
+{
+"prompt": "move to the gift box",
+"s": 6.1
+},
+{
+"prompt": "pick up the gift box from the floors",
+"s": 7.7
+},
+{
+"prompt": "move to the christmas tree",
+"s": 3.7
+},
+{
+"prompt": "place the gift box on the floors next to the in_front_of christmas tree",
+"s": 9.0
+},
+{
+"prompt": "push the gift box to the center christmas tree",
+"s": 7.4
+},
+{
+"prompt": "move to the gift box",
+"s": 14.7
+},
+{
+"prompt": "pick up the gift box from the floors",
+"s": 7.7
+},
+{
+"prompt": "move to the christmas tree",
+"s": 14.2
+},
+{
+"prompt": "place the gift box on the floors next to the in_front_of christmas tree",
+"s": 10.8
+}
+]

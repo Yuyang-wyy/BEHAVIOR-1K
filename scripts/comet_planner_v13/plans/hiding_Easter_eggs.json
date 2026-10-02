@@ -1,0 +1,50 @@
+[
+{
+"prompt": "move to the wicker basket",
+"s": 83.2
+},
+{
+"prompt": "pick up the wicker basket from the lawn",
+"s": 11.1
+},
+{
+"prompt": "move to the tree",
+"s": 18.0
+},
+{
+"prompt": "place the wicker basket on the lawn",
+"s": 12.6
+},
+{
+"prompt": "pick up the easter egg from the wicker basket",
+"s": 16.2
+},
+{
+"prompt": "place the easter egg on the lawn next to the in_front_of tree",
+"s": 14.5
+},
+{
+"prompt": "move to the wicker basket",
+"s": 1.9
+},
+{
+"prompt": "pick up the easter egg from the wicker basket",
+"s": 13.6
+},
+{
+"prompt": "place the easter egg on the lawn next to the in_front_of tree",
+"s": 11.7
+},
+{
+"prompt": "move to the wicker basket",
+"s": 7.0
+},
+{
+"prompt": "pick up the easter egg from the wicker basket",
+"s": 18.3
+},
+{
+"prompt": "place the easter egg on the lawn next to the in_front_of tree",
+"s": 19.6
+}
+]

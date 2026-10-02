@@ -1,0 +1,54 @@
+[
+{
+"prompt": "move to the bookcase",
+"s": 16.0
+},
+{
+"prompt": "push the hardback to the comic book",
+"s": 28.7
+},
+{
+"prompt": "pick up the hardback from the comic book",
+"s": 9.0
+},
+{
+"prompt": "place the hardback on the hardback",
+"s": 12.0
+},
+{
+"prompt": "push the notebook to the comic book",
+"s": 25.5
+},
+{
+"prompt": "pick up the notebook from the comic book",
+"s": 11.5
+},
+{
+"prompt": "push the comic book to the notebook",
+"s": 25.6
+},
+{
+"prompt": "pick up the comic book from the notebook",
+"s": 14.4
+},
+{
+"prompt": "place the comic book on the comic book",
+"s": 14.2
+},
+{
+"prompt": "place the notebook on the notebook",
+"s": 12.8
+},
+{
+"prompt": "push the comic book to the bookcase",
+"s": 24.0
+},
+{
+"prompt": "pick up the comic book from the bookcase",
+"s": 14.0
+},
+{
+"prompt": "place the comic book on the comic book",
+"s": 14.8
+}
+]

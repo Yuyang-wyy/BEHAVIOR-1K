@@ -1,0 +1,58 @@
+[
+{
+"prompt": "move to the rose",
+"s": 13.0
+},
+{
+"prompt": "pick up the rose from the bottom cabinet",
+"s": 12.0
+},
+{
+"prompt": "move to the rose",
+"s": 9.0
+},
+{
+"prompt": "pick up the rose from the bottom cabinet",
+"s": 12.0
+},
+{
+"prompt": "move to the vase",
+"s": 7.0
+},
+{
+"prompt": "place the rose in the vase",
+"s": 10.0
+},
+{
+"prompt": "place the rose in the vase",
+"s": 10.0
+},
+{
+"prompt": "move to the rose",
+"s": 7.1
+},
+{
+"prompt": "pick up the rose from the bottom cabinet",
+"s": 16.9
+},
+{
+"prompt": "move to the vase",
+"s": 6.0
+},
+{
+"prompt": "place the rose in the vase",
+"s": 7.8
+},
+{
+"prompt": "pick up the vase from the bottom cabinet",
+"s": 10.1
+},
+{
+"prompt": "move to the coffee table",
+"s": 15.8
+},
+{
+"prompt": "place the vase on the coffee table",
+"s": 9.3
+}
+]

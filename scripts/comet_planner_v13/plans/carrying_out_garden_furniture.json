@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the garden chair",
+"s": 25.0
+},
+{
+"prompt": "open the door of the slide door",
+"s": 33.0
+},
+{
+"prompt": "move to the garden chair",
+"s": 31.0
+},
+{
+"prompt": "pick up the garden chair from the floors",
+"s": 23.0
+},
+{
+"prompt": "move to the pool",
+"s": 34.0
+},
+{
+"prompt": "place the garden chair on the floors next to the pool",
+"s": 8.0
+},
+{
+"prompt": "move to the wheelbarrow",
+"s": 54.0
+},
+{
+"prompt": "pick up the wheelbarrow from the floors",
+"s": 16.0
+},
+{
+"prompt": "move to the lawn",
+"s": 122.0
+},
+{
+"prompt": "place the wheelbarrow on the lawn",
+"s": 10.0
+}
+]

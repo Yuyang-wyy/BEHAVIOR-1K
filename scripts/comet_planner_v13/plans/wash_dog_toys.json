@@ -1,0 +1,74 @@
+[
+{
+"prompt": "move to the washer",
+"s": 20.2
+},
+{
+"prompt": "open the door of the washer",
+"s": 37.6
+},
+{
+"prompt": "move to the bottom cabinet no top",
+"s": 18.7
+},
+{
+"prompt": "open the door of the left_door bottom cabinet no top",
+"s": 27.0
+},
+{
+"prompt": "open the door of the right_door bottom cabinet no top",
+"s": 33.8
+},
+{
+"prompt": "pick up the softball from the high_level bottom cabinet no top",
+"s": 10.8
+},
+{
+"prompt": "pick up the teddy bear from the high_level bottom cabinet no top",
+"s": 9.3
+},
+{
+"prompt": "move to the washer",
+"s": 8.3
+},
+{
+"prompt": "place the teddy bear in the washer",
+"s": 19.2
+},
+{
+"prompt": "place the softball in the washer",
+"s": 25.4
+},
+{
+"prompt": "move to the teddy bear",
+"s": 15.9
+},
+{
+"prompt": "pick up the teddy bear from the middle_level bottom cabinet no top",
+"s": 19.3
+},
+{
+"prompt": "pick up the tennis ball from the middle_level bottom cabinet no top",
+"s": 14.7
+},
+{
+"prompt": "move to the washer",
+"s": 10.6
+},
+{
+"prompt": "place the teddy bear in the washer",
+"s": 15.7
+},
+{
+"prompt": "place the tennis ball in the washer",
+"s": 20.7
+},
+{
+"prompt": "close the door of the washer",
+"s": 26.3
+},
+{
+"prompt": "turn on the washer",
+"s": 17.3
+}
+]

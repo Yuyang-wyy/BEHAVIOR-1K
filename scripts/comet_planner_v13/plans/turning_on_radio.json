@@ -1,0 +1,18 @@
+[
+{
+"prompt": "move to the radio",
+"s": 17.3
+},
+{
+"prompt": "pick up the radio from the coffee table",
+"s": 22.5
+},
+{
+"prompt": "press the radio",
+"s": 10.2
+},
+{
+"prompt": "place the radio on the coffee table",
+"s": 16.3
+}
+]

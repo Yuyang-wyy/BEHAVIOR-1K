@@ -1,0 +1,34 @@
+[
+{
+"prompt": "move to the microwave",
+"s": 16.2
+},
+{
+"prompt": "open the door of the microwave",
+"s": 25.1
+},
+{
+"prompt": "move to the popcorn bag",
+"s": 6.8
+},
+{
+"prompt": "pick up the popcorn bag from the bar",
+"s": 7.8
+},
+{
+"prompt": "move to the microwave",
+"s": 9.8
+},
+{
+"prompt": "place the popcorn bag in the microwave",
+"s": 14.6
+},
+{
+"prompt": "close the door of the microwave",
+"s": 8.5
+},
+{
+"prompt": "turn on the microwave",
+"s": 10.3
+}
+]

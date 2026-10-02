@@ -1,0 +1,78 @@
+[
+{
+"prompt": "move to the packing box",
+"s": 6.6
+},
+{
+"prompt": "pick up the packing box from the countertop",
+"s": 8.7
+},
+{
+"prompt": "move to the chopping board",
+"s": 4.8
+},
+{
+"prompt": "place the packing box on the countertop next to the right chopping board",
+"s": 1.9
+},
+{
+"prompt": "push the chocolate chip cookie to the to_the_edge_of chopping board",
+"s": 15.1
+},
+{
+"prompt": "pick up the chocolate chip cookie from the chopping board",
+"s": 9.5
+},
+{
+"prompt": "place the chocolate chip cookie in the packing box",
+"s": 6.5
+},
+{
+"prompt": "pick up the half apple from the chopping board",
+"s": 13.6
+},
+{
+"prompt": "pick up the half apple from the chopping board",
+"s": 11.3
+},
+{
+"prompt": "place the half apple in the packing box",
+"s": 5.8
+},
+{
+"prompt": "place the half apple in the packing box",
+"s": 5.0
+},
+{
+"prompt": "pick up the club sandwich from the chopping board",
+"s": 17.8
+},
+{
+"prompt": "place the club sandwich in the packing box",
+"s": 10.1
+},
+{
+"prompt": "move to the fridge",
+"s": 23.2
+},
+{
+"prompt": "open the door of the fridge",
+"s": 29.6
+},
+{
+"prompt": "pick up the bottle of tea from the low_level fridge",
+"s": 16.4
+},
+{
+"prompt": "close the door of the fridge",
+"s": 9.8
+},
+{
+"prompt": "move to the packing box",
+"s": 10.0
+},
+{
+"prompt": "place the bottle of tea in the packing box",
+"s": 18.2
+}
+]

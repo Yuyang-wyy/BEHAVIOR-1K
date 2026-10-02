@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the pesticide atomizer",
+"s": 40.1
+},
+{
+"prompt": "pick up the pesticide atomizer from the floors",
+"s": 16.0
+},
+{
+"prompt": "move to the tree",
+"s": 35.2
+},
+{
+"prompt": "turn on the pesticide atomizer",
+"s": 8.1
+},
+{
+"prompt": "spray the pesticide atomizer with the tree",
+"s": 53.7
+},
+{
+"prompt": "turn off the pesticide atomizer",
+"s": 6.2
+},
+{
+"prompt": "move to the tree",
+"s": 49.6
+},
+{
+"prompt": "turn on the pesticide atomizer",
+"s": 8.1
+},
+{
+"prompt": "spray the pesticide atomizer with the tree",
+"s": 48.8
+},
+{
+"prompt": "turn off the pesticide atomizer",
+"s": 6.5
+}
+]

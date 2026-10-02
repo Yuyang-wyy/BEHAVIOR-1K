@@ -1,0 +1,66 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 20.0
+},
+{
+"prompt": "open the door of the fridge",
+"s": 27.0
+},
+{
+"prompt": "pick up the hard boiled egg from the fridge",
+"s": 17.0
+},
+{
+"prompt": "close the door of the fridge",
+"s": 17.0
+},
+{
+"prompt": "move to the carving knife",
+"s": 6.0
+},
+{
+"prompt": "pick up the carving knife from the cutting board",
+"s": 20.0
+},
+{
+"prompt": "place the hard boiled egg on the cutting board",
+"s": 16.0
+},
+{
+"prompt": "chop the carving knife with the hard boiled egg",
+"s": 7.2
+},
+{
+"prompt": "move to the drop in sink",
+"s": 4.7
+},
+{
+"prompt": "place the carving knife in the drop in sink",
+"s": 9.6
+},
+{
+"prompt": "move to the half hard boiled egg",
+"s": 10.6
+},
+{
+"prompt": "pick up the half hard boiled egg from the cutting board",
+"s": 14.5
+},
+{
+"prompt": "pick up the half hard boiled egg from the cutting board",
+"s": 10.4
+},
+{
+"prompt": "move to the plate",
+"s": 8.2
+},
+{
+"prompt": "place the half hard boiled egg on the plate",
+"s": 8.3
+},
+{
+"prompt": "place the half hard boiled egg on the plate",
+"s": 14.6
+}
+]

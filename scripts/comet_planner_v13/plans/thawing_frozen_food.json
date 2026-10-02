@@ -1,0 +1,62 @@
+[
+{
+"prompt": "move to the fridge",
+"s": 12.0
+},
+{
+"prompt": "open the door of the fridge",
+"s": 35.3
+},
+{
+"prompt": "pick up the plate from the fridge",
+"s": 14.7
+},
+{
+"prompt": "move to the bar",
+"s": 4.0
+},
+{
+"prompt": "place the plate on the bar",
+"s": 9.0
+},
+{
+"prompt": "move to the fridge",
+"s": 13.4
+},
+{
+"prompt": "pick up the plate from the fridge",
+"s": 25.6
+},
+{
+"prompt": "hand over the plate",
+"s": 20.0
+},
+{
+"prompt": "close the door of the fridge",
+"s": 23.0
+},
+{
+"prompt": "move to the microwave",
+"s": 4.0
+},
+{
+"prompt": "open the door of the microwave",
+"s": 22.9
+},
+{
+"prompt": "hand over the plate",
+"s": 13.9
+},
+{
+"prompt": "place the plate in the microwave",
+"s": 13.2
+},
+{
+"prompt": "close the door of the microwave",
+"s": 8.0
+},
+{
+"prompt": "turn on the microwave",
+"s": 7.0
+}
+]

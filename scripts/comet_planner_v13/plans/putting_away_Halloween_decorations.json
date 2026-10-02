@@ -1,0 +1,114 @@
+[
+{
+"prompt": "move to the cauldron",
+"s": 20.4
+},
+{
+"prompt": "pick up the cauldron from the floors",
+"s": 21.8
+},
+{
+"prompt": "move to the coffee table",
+"s": 8.0
+},
+{
+"prompt": "place the cauldron on the floors next to the in_front_of coffee table",
+"s": 6.9
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 15.1
+},
+{
+"prompt": "open the drawer of the left bottom cabinet",
+"s": 22.4
+},
+{
+"prompt": "move to the pillar candle",
+"s": 8.4
+},
+{
+"prompt": "pick up the pillar candle from the floors",
+"s": 16.2
+},
+{
+"prompt": "move to the pillar candle",
+"s": 13.8
+},
+{
+"prompt": "pick up the pillar candle from the floors",
+"s": 16.5
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 30.0
+},
+{
+"prompt": "place the pillar candle in the left bottom cabinet",
+"s": 17.2
+},
+{
+"prompt": "place the pillar candle in the left bottom cabinet",
+"s": 6.5
+},
+{
+"prompt": "move to the pillar candle",
+"s": 19.7
+},
+{
+"prompt": "pick up the pillar candle from the floors",
+"s": 12.7
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 35.4
+},
+{
+"prompt": "place the pillar candle in the left bottom cabinet",
+"s": 16.6
+},
+{
+"prompt": "close the drawer of the left bottom cabinet",
+"s": 16.8
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 15.5
+},
+{
+"prompt": "open the drawer of the right bottom cabinet",
+"s": 22.8
+},
+{
+"prompt": "move to the pumpkin",
+"s": 8.6
+},
+{
+"prompt": "pick up the pumpkin from the floors",
+"s": 15.9
+},
+{
+"prompt": "move to the pumpkin",
+"s": 27.7
+},
+{
+"prompt": "pick up the pumpkin from the floors",
+"s": 15.2
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 26.8
+},
+{
+"prompt": "place the pumpkin in the right bottom cabinet",
+"s": 15.1
+},
+{
+"prompt": "place the pumpkin in the right bottom cabinet",
+"s": 5.5
+},
+{
+"prompt": "close the drawer of the right bottom cabinet",
+"s": 22.2
+}
+]

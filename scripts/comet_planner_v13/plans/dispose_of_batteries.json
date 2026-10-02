@@ -1,0 +1,70 @@
+[
+{
+"prompt": "move to the trash can",
+"s": 21.0
+},
+{
+"prompt": "pick up the trash can from the floors",
+"s": 26.0
+},
+{
+"prompt": "move to the battery",
+"s": 12.0
+},
+{
+"prompt": "pick up the battery from the cabinet",
+"s": 17.0
+},
+{
+"prompt": "place the battery in the trash can",
+"s": 7.0
+},
+{
+"prompt": "move to the wooden door",
+"s": 73.0
+},
+{
+"prompt": "open the door of the wooden door",
+"s": 7.0
+},
+{
+"prompt": "move to the battery",
+"s": 26.0
+},
+{
+"prompt": "pick up the battery from the desk",
+"s": 7.1
+},
+{
+"prompt": "place the battery in the trash can",
+"s": 3.9
+},
+{
+"prompt": "move to the battery",
+"s": 40.7
+},
+{
+"prompt": "push the swivel chair to the floors",
+"s": 12.4
+},
+{
+"prompt": "move to the battery",
+"s": 35.9
+},
+{
+"prompt": "pick up the battery from the desk",
+"s": 5.2
+},
+{
+"prompt": "place the battery in the trash can",
+"s": 10.8
+},
+{
+"prompt": "move to the floors",
+"s": 136.0
+},
+{
+"prompt": "place the trash can on the floors",
+"s": 19.0
+}
+]

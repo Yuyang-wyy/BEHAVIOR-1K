@@ -1,0 +1,42 @@
+[
+{
+"prompt": "move to the insectifuge atomizer",
+"s": 4.0
+},
+{
+"prompt": "pick up the insectifuge atomizer from the floors",
+"s": 16.0
+},
+{
+"prompt": "move to the pot plant",
+"s": 6.1
+},
+{
+"prompt": "turn on the insectifuge atomizer",
+"s": 8.0
+},
+{
+"prompt": "spray the insectifuge atomizer with the pot plant",
+"s": 56.8
+},
+{
+"prompt": "turn off the insectifuge atomizer",
+"s": 7.8
+},
+{
+"prompt": "move to the pot plant",
+"s": 24.9
+},
+{
+"prompt": "turn on the insectifuge atomizer",
+"s": 5.5
+},
+{
+"prompt": "spray the insectifuge atomizer with the pot plant",
+"s": 71.0
+},
+{
+"prompt": "turn off the insectifuge atomizer",
+"s": 6.3
+}
+]

@@ -1,0 +1,82 @@
+[
+{
+"prompt": "move to the can of soda",
+"s": 10.0
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 14.0
+},
+{
+"prompt": "move to the can of soda",
+"s": 16.2
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 22.8
+},
+{
+"prompt": "move to the ice bucket",
+"s": 14.7
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 17.3
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 21.0
+},
+{
+"prompt": "move to the can of soda",
+"s": 26.0
+},
+{
+"prompt": "pick up the can of soda from the floors",
+"s": 18.1
+},
+{
+"prompt": "move to the can of soda",
+"s": 10.3
+},
+{
+"prompt": "pick up the can of soda from the bed",
+"s": 8.9
+},
+{
+"prompt": "move to the ice bucket",
+"s": 21.5
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 11.8
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 12.4
+},
+{
+"prompt": "move to the can of soda",
+"s": 34.0
+},
+{
+"prompt": "pick up the can of soda from the bed",
+"s": 10.0
+},
+{
+"prompt": "pick up the can of soda from the bed",
+"s": 9.4
+},
+{
+"prompt": "move to the ice bucket",
+"s": 24.6
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 13.0
+},
+{
+"prompt": "place the can of soda in the ice bucket",
+"s": 13.0
+}
+]

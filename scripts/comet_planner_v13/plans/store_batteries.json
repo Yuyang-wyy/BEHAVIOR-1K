@@ -1,0 +1,82 @@
+[
+{
+"prompt": "move to the chair",
+"s": 19.0
+},
+{
+"prompt": "pick up the chair from the floors",
+"s": 14.6
+},
+{
+"prompt": "move to the floors",
+"s": 8.8
+},
+{
+"prompt": "place the chair on the floors",
+"s": 4.7
+},
+{
+"prompt": "move to the battery",
+"s": 10.9
+},
+{
+"prompt": "pick up the battery from the countertop",
+"s": 17.0
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 11.0
+},
+{
+"prompt": "open the drawer of the bottom cabinet",
+"s": 10.1
+},
+{
+"prompt": "place the battery in the bottom cabinet",
+"s": 9.9
+},
+{
+"prompt": "move to the chair",
+"s": 18.0
+},
+{
+"prompt": "pick up the chair from the floors",
+"s": 13.0
+},
+{
+"prompt": "move to the countertop",
+"s": 8.1
+},
+{
+"prompt": "place the chair on the floors",
+"s": 4.9
+},
+{
+"prompt": "move to the battery",
+"s": 23.0
+},
+{
+"prompt": "pick up the battery from the coffee table",
+"s": 17.6
+},
+{
+"prompt": "pick up the battery from the coffee table",
+"s": 16.4
+},
+{
+"prompt": "move to the bottom cabinet",
+"s": 14.0
+},
+{
+"prompt": "place the battery in the bottom cabinet",
+"s": 16.0
+},
+{
+"prompt": "place the battery in the bottom cabinet",
+"s": 12.0
+},
+{
+"prompt": "close the drawer of the bottom cabinet",
+"s": 7.8
+}
+]

@@ -1,0 +1,58 @@
+[
+{
+"prompt": "move to the pillow",
+"s": 17.0
+},
+{
+"prompt": "pick up the pillow from the floors",
+"s": 38.0
+},
+{
+"prompt": "move to the pillow",
+"s": 18.0
+},
+{
+"prompt": "pick up the pillow from the floors",
+"s": 48.0
+},
+{
+"prompt": "move to the bed",
+"s": 13.0
+},
+{
+"prompt": "place the pillow on the bed",
+"s": 37.0
+},
+{
+"prompt": "move to the chair",
+"s": 38.0
+},
+{
+"prompt": "push the chair to the desk",
+"s": 32.0
+},
+{
+"prompt": "move to the bed",
+"s": 22.0
+},
+{
+"prompt": "place the pillow on the bed",
+"s": 37.0
+},
+{
+"prompt": "move to the tissue dispenser",
+"s": 21.0
+},
+{
+"prompt": "pick up the tissue dispenser from the armchair",
+"s": 39.0
+},
+{
+"prompt": "move to the nightstand",
+"s": 15.0
+},
+{
+"prompt": "place the tissue dispenser on the nightstand",
+"s": 27.7
+}
+]
