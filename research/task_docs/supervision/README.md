@@ -473,3 +473,52 @@ Why the score does not move:
    occupied by the 3 bowls), and a basket set on the floor makes every pick 40-80 s and hides the bowls from the head
    camera. Making this work would need a code skill that grasps the basket and keeps it level while Comet picks from it
    (full basket pose control), which the harness does not have.
+
+## lb_v1 failure analysis (official eval, instances 301-310, 677 episodes / 72 tasks as of 2026-10-10 17:00)
+Data: per-step `goal_history` ([satisfied, total] top-level BDDL conditions) in every result JSON + head/wrist videos.
+Caveat: `goal_status` counts a quantified block (`forall` over 8 toys) as ONE condition, so the timeline is coarse for
+14 quantified tasks (excluded from the mode statistics below); Q itself is per literal.
+
+**Episode modes over the 55 per-literal tasks (532 episodes):** never gains a condition 60 % | gained then lost
+("undo") 14 % | still gaining at timeout ("slow") 14 % | gained early then flat ("stall") 11 % | success 2 %.
+By task group: the 20 zero tasks are 82 % "never"; the 31 partial tasks are 47 % never / 20 % undo / 18 % slow /
+13 % stall; the 4 good tasks (>= 0.4) still have 45 % "never" episodes - the same policy succeeds or does nothing
+depending on the instance.
+
+**What the videos show (frames at 8 timestamps per episode):**
+* putting_dishes_away_after_cleaning (Q 0.31): grasps a plate within ~1 min, then carries it around the kitchen and
+  dining room for the rest of the episode; the destination cabinet is never approached. Navigation-to-destination.
+* organizing_school_stuff (0.18): one notebook placed at 104 s, then picks it up again, drops it, ends looking at the
+  floor. Stall after the first literal.
+* putting_up_Christmas_decorations_inside (0.36): 2/5 by 294 s, then picks up the already-placed wreath and loses it.
+* clearing_food_from_table_into_fridge (0.06): opens the fridge (losing `not open`, true at reset), holds the chicken
+  for minutes, never reaches the tupperware; ends with the fridge open.
+
+**Q-relevant undo is small.** Episodes that lose progress they had made: at most 3-5 of 10 per task, ~0.1 of the
+conditions (Christmas 5 eps, laying_tile 3, modem 3, coffee station 3, clearing_food 3). Losing a literal that was
+TRUE AT RESET (fridge/cabinet closed, `not covered`) is frequent (cleaning_up_plates 9/10, dishes 9/10, brussels
+sprouts 6/10, batteries 6/10, clearing_food 5/10) but **costs no Q**: literals true at reset never score (PREDICATES.md
+§Q). A "restore the door before the time limit" reflex would therefore gain nothing on the leaderboard.
+
+**Where the points are lost, by class, and whether supervision can touch it:**
+1. Never starts (60 % of episodes; the 20 zero tasks: tool use / assembly / articulated / particle tasks such as
+   attach camera, install scanner & smoke detectors, hang pictures, cabinet doors, sweep, vacuum, clean trumpet /
+   keyboard / patio, freeze, load/unload car, pizza). Needs skills the policy does not have. Not supervisable.
+2. Destination never reached while holding the object (dishes, groceries, rearrange, clearing_food). A code reflex
+   needs to detect the destination (cabinet, tupperware, table) from RGB-D; feasible only for visually distinctive
+   targets (red bowls worked, cabinets do not). Not generic.
+3. Throughput (slow/stall, 25 %): one item per 1-3 min. Same cap as sorting_vegetables; a place reflex adds <= the
+   1-2 items lost per episode.
+4. Undo of own progress (14 %): would need to know which objects are done (privileged) or to stop the policy
+   touching placed items; no legal trigger.
+5. Instance variance within a task ("never" episodes next to successes): a retry/recovery mechanism could help, but
+   the stall is usually a wrong-object navigation, not a detectable freeze.
+
+**Supervision tests worth running when the GPUs free up (Oct 12):**
+* picking_up_trash: the v11 reflex (grasp only once the bin is held + scripted place) on top of the zero-shot
+  checkpoint, 301-310 x 2 seeds vs zero-shot alone (0.50 on lb_v1). The reflex gave 0.46 -> 0.67 on the v2
+  checkpoint; if it transfers, +0.1-0.2 on this task (= +0.002 on the leaderboard).
+* turning_on_radio: the ASPIRE code policy measured 7/20 vs Comet 0.10 here (+0.25 on the task). It runs in its own
+  loop with a SAM3 grounding server, so it is a per-task routing swap only if wrapped as a policy server first.
+Everything else in this data is policy-level (skills, navigation, throughput), consistent with the two weeks of
+harness experiments.

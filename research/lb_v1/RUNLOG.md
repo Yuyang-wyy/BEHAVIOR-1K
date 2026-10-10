@@ -35,3 +35,30 @@ Started 2026-10-06 ~16:30 PDT. Deadline Oct 16 23:59 AoE. Policy frozen for this
   sweep copy runs with RESUME_ARGS="" (task-level skip only; an interrupted task re-runs all 10 instances there).
   sulab1's evaluator is older than local/remote (no seed arg); results assumed protocol-equivalent (instance-311 Q
   matched local on sorting_vegetables earlier) - compare an overlap task if time allows.
+- 2026-10-07 00:45 progress 39 episodes, no new failures. Observed wall rates: local 12.0 sim steps/s, remote 15.9,
+  sulab1 4.9 (my plan assumed ~25). Projected finish: remote Oct 11 02:00, sulab1 Oct 12 03:00, local Oct 12 12:00.
+  Consequence: lb_v1 is the submission; no time for a second full run of a different policy before Oct 16.
+  Plan: when remote finishes, stop local's sweep and hand its last tasks to remote (edit lists only at that moment -
+  `while read` keeps the old file inode, so in-place edits of a running list do nothing).
+  Early per-task numbers (10 instances): picking_up_trash zs 0.50 (3 successes), assembling_gift_baskets 0.44,
+  boxing_books 0.15, spraying zs 0.29, canning_food 0.
+- 2026-10-07 00:50 killed the stale port-8100 servers (7.8 GB each, idle since Oct 2) on both 4090s. Speed-up check:
+  GPU util is only 34-38 % and the eval uses ~10 of 32 cores - the loop is latency-bound (sim step + inference round
+  trip). A second evaluator per 4090 is NOT possible: the websocket server keeps ONE shared policy state (reset per
+  connection, receding-horizon chunk cache), so two clients would corrupt each other, and a second server + sim needs
+  ~14.5 GB more than the 24 GB card has. ETA stands: remote Oct 11, local/sulab1 Oct 12.
+- 2026-10-08 13:00 248 episodes / 28 tasks, no failures, running mean 0.197 (long tasks first). hiding_Easter_eggs on
+  the zero-shot route: 0.03 over 301-310 (full-length episodes, goal_history shows an egg "hidden" transiently in 4 of
+  10 and lost again) - the instance-311 Q 1.0 was a lucky single rollout, as the noise rule predicted. ft40k was 0 at
+  311 too, so routing cost nothing. Routed-task means so far: trash 0.50, toys 0.29, spraying 0.25,
+  sorting_household 0.23, eggs 0.03 (ft40k had 0 on all five at 311).
+- 2026-10-09 01:00 remote HUNG on putting_away_Halloween_decorations instance 306: no result since 17:44 (7 h lost),
+  GPU 0 %, evaluator alive and spinning. Killed by PID; the sweep moves on; the task is appended to the remote list so
+  its 5 missing instances re-run at the end (`--resume-results`). Added `lb/hang_watch_lb.sh` on all machines: kills the
+  evaluator when its task log is idle > 150 min (4090s) / 300 min (sulab1); hangs are logged to logs/lb_v1_hangs.log.
+  Progress 350 episodes / 39 tasks, mean 0.185.
+- 2026-10-09 07:00 watchdog killed two hung local evaluators: rearrange_your_room (7/10 done, hung at the instance-308
+  reset) and tidying_living_room (hung 55 s after start, 0/10). Both logs stop right after the scene-reset warnings
+  ("CreateJoint ... disjointed body transforms"). Both tasks appended to the local list for re-run. Watchdog threshold
+  lowered to 90 min on the 4090s (max episode ~55 min), 200 min on sulab1. 389 episodes / 44 tasks, mean 0.176.
+- 2026-10-10 13:00 local hang #3: polishing_shoes (killed after 96 min idle), requeued. 658 episodes / 71 tasks, mean 0.161.
