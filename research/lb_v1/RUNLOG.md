@@ -62,3 +62,25 @@ Started 2026-10-06 ~16:30 PDT. Deadline Oct 16 23:59 AoE. Policy frozen for this
   ("CreateJoint ... disjointed body transforms"). Both tasks appended to the local list for re-run. Watchdog threshold
   lowered to 90 min on the 4090s (max episode ~55 min), 200 min on sulab1. 389 episodes / 44 tasks, mean 0.176.
 - 2026-10-10 13:00 local hang #3: polishing_shoes (killed after 96 min idle), requeued. 658 episodes / 71 tasks, mean 0.161.
+- 2026-10-10 17:30 failure analysis of 677 episodes written to task_docs/supervision/README.md (commit on the fork).
+  Prepared (not started) the post-run supervision test: planner_runs/q_trash_zs.txt = trash v11 reflex on the zero-shot
+  checkpoint, instances 301-310, seeds 0/1, plus a seed-1 zero-shot baseline (seed 0 baseline = lb_v1 itself, 0.50).
+  Needs exports/zs-pt50 (rsync from sulab1 running) and a free GPU (after Oct 11 night).
+- 2026-10-11 19:40 remote SWEEP_DONE (35 tasks + Halloween re-run). 970/1000 at 19:48. Three tasks had ended EARLY with
+  partial results (evaluator crash, not hang - the monitor only flagged jsons=0): make_microwave_popcorn 1/10 (sulab1,
+  AttributeError 'scroll_y_max' at instance 302), cook_cabbage 2/10 and slicing_vegetables 5/10 (local). Added
+  `lb/run_missing.sh` (specific instance indices). Remote now runs popcorn 302-310 + cabbage 303-310; local runs
+  slicing 306-310 after its sweep, then starts the trash-reflex test queue (q_trash_zs.txt). sulab1: cook_bacon last.
+- 2026-10-11 20:10 crash causes: slicing_vegetables / cook_cabbage die in `_dump_state -> get_joint_positions`
+  ('NoneType' has no attribute 'view') at the reset AFTER an episode that created new objects (sliced / cooked
+  halves) - an OmniGibson state-dump bug with mid-episode objects; popcorn died on an Omniverse UI error
+  (`scroll_y_max`). Re-runs therefore use ONE evaluator process per instance (run_missing.sh spec "task:i;task:j").
+- 2026-10-12 00:30 RUN COMPLETE except slicing_vegetables 306-310 (per-instance re-runs on local produced no result;
+  retrying on remote). Gathered 995 JSONs into local_eval/eval_out/lb_v1_all (summary.json).
+  **FINAL (missing = 0): mean Q 0.1780, full-task SR 3.0 %, 77/100 tasks non-zero.** Top: clean_up_broken_glass 0.63,
+  putting_away_toys 0.62, laying_tile_floors 0.61, putting_dirty_dishes_in_sink 0.57, dispose_of_glass 0.55,
+  picking_up_trash (zs) 0.50. Videos being pulled from remote/sulab1 to local for the package.
+  Trash-reflex test (q_trash_zs) started on local at 20:51.
+- 2026-10-12 00:40 slicing 306-310 re-runs on local were killed by hang_watch_lb.sh (it watches the ORIGINAL task log,
+  idle since Oct 8). Watchdogs stopped on all machines; slicing re-run moved to remote (no stale log there).
+  Trash reflex on zs, seed 0, 301-310: 0.77 / 6 successes vs 0.50 / 3 alone.

@@ -522,3 +522,10 @@ sprouts 6/10, batteries 6/10, clearing_food 5/10) but **costs no Q**: literals t
   loop with a SAM3 grounding server, so it is a per-task routing swap only if wrapped as a policy server first.
 Everything else in this data is policy-level (skills, navigation, throughput), consistent with the two weeks of
 harness experiments.
+
+### picking_up_trash: v11 reflex on the ZERO-SHOT checkpoint, leaderboard instances (2026-10-12)
+Seed 0, 301-310, harness (`comet_planner_v11`, legal inputs only): **1.0 1.0 0.33 0.67 0 1.0 1.0 1.0 1.0 0.67 = 0.77,
+6 full successes** vs lb_v1 zero-shot alone on the same seed/instances **0.50, 3 successes** (+0.27). The reflex
+transfers from the v2 fine-tune to the zero-shot checkpoint. Seed 1 + a seed-1 baseline are running. Not in the lb_v1
+submission: it runs inside the planner harness, not the official eval wrapper (+0.003 on the leaderboard is not worth a
+rushed port before Oct 16).
