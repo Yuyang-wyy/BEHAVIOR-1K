@@ -86,3 +86,4 @@ Started 2026-10-06 ~16:30 PDT. Deadline Oct 16 23:59 AoE. Policy frozen for this
   Trash reflex on zs, seed 0, 301-310: 0.77 / 6 successes vs 0.50 / 3 alone.
 - 2026-10-12 02:30 trash reflex on zs, seeds 0-1 paired: 0.65 vs 0.45 (p=0.019). Seed 2 queued on local.
 - 2026-10-12 02:45 ALL 1000 EPISODES DONE. FINAL mean Q 0.1796, full SR 3.1 %, 77 non-zero, mean normalized time 0.673. Package assembled: local_eval/submission_lb_v1 (37 GB: 1000 JSONs, 1000 videos, code, routing, README, summary).
+- 2026-10-12 05:50 trash reflex on zs, 3 seeds / 29 paired: 0.61 vs 0.41, W14 L3 T12, p=0.006, successes 13 vs 5.

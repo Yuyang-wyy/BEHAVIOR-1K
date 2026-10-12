@@ -533,3 +533,7 @@ Seed 1: v11 0.33 1.0 0 1.0 0 0.67 0 1.0 1.0 0.33 = 0.53 vs alone 0, 0.67, 0.33, 
 **Paired over 20 leaderboard-instance episodes (seeds 0-1): v11 0.65 vs zero-shot alone 0.45, 10 W / 2 L / 8 T,
 sign test p = 0.019, full successes 10 vs 5.** Seed 2 queued. Same picture as on the v2 checkpoint (0.67 vs 0.46 over
 60 episodes): the reflex is checkpoint-independent because it fixes a structural gap (grasp while holding the bin).
+Seed 2: v11 0, 1.0, 0, 0.67, 0.33, 0, 0.67, 1.0, 1.0 (one episode missing) = 0.52 vs alone 0, 0, 0.67, 0.67, 0.33, 0, 0,
+0.33, 0.67, 0.67 = 0.33. **Three seeds, 29 paired leaderboard-instance episodes: v11 on zero-shot 0.61 vs zero-shot
+alone 0.41, 14 W / 3 L / 12 T, sign test p = 0.006, full successes 13 vs 5.** Second robust supervision result, on
+the checkpoint actually submitted.
