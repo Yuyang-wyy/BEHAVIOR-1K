@@ -529,3 +529,7 @@ Seed 0, 301-310, harness (`comet_planner_v11`, legal inputs only): **1.0 1.0 0.3
 transfers from the v2 fine-tune to the zero-shot checkpoint. Seed 1 + a seed-1 baseline are running. Not in the lb_v1
 submission: it runs inside the planner harness, not the official eval wrapper (+0.003 on the leaderboard is not worth a
 rushed port before Oct 16).
+Seed 1: v11 0.33 1.0 0 1.0 0 0.67 0 1.0 1.0 0.33 = 0.53 vs alone 0, 0.67, 0.33, 0, 0, 1.0, 0, 0.67, 1.0, 0.33 = 0.40.
+**Paired over 20 leaderboard-instance episodes (seeds 0-1): v11 0.65 vs zero-shot alone 0.45, 10 W / 2 L / 8 T,
+sign test p = 0.019, full successes 10 vs 5.** Seed 2 queued. Same picture as on the v2 checkpoint (0.67 vs 0.46 over
+60 episodes): the reflex is checkpoint-independent because it fixes a structural gap (grasp while holding the bin).
