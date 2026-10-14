@@ -537,3 +537,40 @@ Seed 2: v11 0, 1.0, 0, 0.67, 0.33, 0, 0.67, 1.0, 1.0 (one episode missing) = 0.5
 0.33, 0.67, 0.67 = 0.33. **Three seeds, 29 paired leaderboard-instance episodes: v11 on zero-shot 0.61 vs zero-shot
 alone 0.41, 14 W / 3 L / 12 T, sign test p = 0.006, full successes 13 vs 5.** Second robust supervision result, on
 the checkpoint actually submitted.
+
+## turning_on_radio: policy approach + code press (v14 `radio_supervisor.py`, 2026-10-13)
+lb_v1: ft40k 0.10 (1/10). Videos: the policy reaches the radio in 15-45 s on every instance, usually picks it up,
+then fumbles the press for the remaining minute. The press needs a finger link inside an 11 mm sphere at the
+`togglebutton` meta-link for 5 consecutive steps. Supervisor: global prompt; every checkpoint find the radio body
+(largest saturated-red component, 3D via `points`) and the control cap (small round red blob with a dark surround,
+aspire_radio heuristics); when within 0.9 m, press with the free hand: closed fingertip, pre-pose 4 cm in front,
+3 x 1 cm pushes straight away from the robot, hold 20 steps, retract; retry with +-8 mm lateral offsets.
+Dev findings (each cost one live episode):
+* Aiming the WRIST at (cap - finger offset) misses by 5-6 cm after a long reach (the wrist rotates); converge on the
+  measured finger-mid instead (`goto_tip`).
+* The depth-fitted face normal from 8 pixel neighbours is unreliable (hits the hand/table) and produced sideways
+  pushes; pushing straight away from the robot works because the policy faces the control.
+* **Calibration with a privileged dev op (`toggle_pos`): the toggle sphere sits 11 mm BELOW and 5 mm behind the red
+  cap centre (9 readings, +-2 mm).** With the -11 mm correction: first success (301, 3rd press, 67 s).
+* After a press the policy wanders off / looks away and the radio has slid to the table edge; the supervisor must keep
+  control (observe -> re-detect -> press) and turn/drive toward the body when only the body is visible (wrist cameras
+  as fallback).
+Standalone aspire `press_marker_policy.py` on 301-310 (remote, its own harness, 6000-step cap): running; 1/3 so far.
+Batch results: v14 (hold 15, waypoint skipped when close) seed 0 on 301-310: **0/10** with 39 presses (geometry identical
+to the dev runs: fingertip median 1.0 cm from the cap). Both dev successes came on the press offset +8 mm above the
+-11 mm correction, i.e. fingertip ~3-4 mm below the cap centre. v14b: Z_OFF -4 mm, hold 25, 4 x 1 cm push, waypoint
+always; running seeds 0/1. Standalone aspire press policy on 301-310 (remote): successes on 303 (801 steps) and 310
+(1402 steps) = 2/10 under the official 3224-step limit; 304 hung and was killed; 5 others ran past the limit without
+success. Policy alone: 1/10 (seed 0, lb_v1), seed-1 baseline running on sulab1.
+v14b seed 0 on 301-310: **3/10 (307, 309, 310)** vs policy alone 1/10 (lb_v1, 308). Policy-alone seed-1 baseline
+(sulab1, harness): 0/10. v14b seed 1 running; seed 2 (both arms) queued.
+v14b seed 1: 0/10 (33 presses); seed 2 (remote): 2/10 (301, 309). Hybrid over 30 leaderboard-instance episodes:
+**5/30 = 0.17** vs policy alone 1/10 (seed 0), 0/10 (seed 1), seed 2 pending. Per-press hit rate ~3 % (5 of ~150
+presses) although the fingertip ends within ~1 cm of the cap every time: the 5-step / 11 mm overlap condition is not
+understood well enough to aim better, and the dev `toggle_pos` calibration (-11 mm) disagreed with where the
+successes actually happened (-3 to -4 mm). Stopped tuning here (deadline).
+**Final radio comparison, 30 paired leaderboard-instance episodes (seeds 0-2):** hybrid 5/30 (0.17) vs policy alone
+2/30 (0.07): 5 wins (307, 309, 310 on seed 0; 301, 309 on seed 2), 2 losses (308 seed 0, 306 seed 2), 23 ties; one-sided
+sign test p = 0.23. Suggestive, not robust. Verdict for the submission question: picking_up_trash remains the only task
+with a robust supervision gain (0.61 vs 0.41, p = 0.006); radio is a +0.10 trend that would need ~100 episodes to
+confirm. Everything else screened (glass, batteries, lights, toy/box tasks, sorting) fails before a reflex can act.

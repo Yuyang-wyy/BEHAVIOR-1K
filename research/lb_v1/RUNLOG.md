@@ -87,3 +87,6 @@ Started 2026-10-06 ~16:30 PDT. Deadline Oct 16 23:59 AoE. Policy frozen for this
 - 2026-10-12 02:30 trash reflex on zs, seeds 0-1 paired: 0.65 vs 0.45 (p=0.019). Seed 2 queued on local.
 - 2026-10-12 02:45 ALL 1000 EPISODES DONE. FINAL mean Q 0.1796, full SR 3.1 %, 77 non-zero, mean normalized time 0.673. Package assembled: local_eval/submission_lb_v1 (37 GB: 1000 JSONs, 1000 videos, code, routing, README, summary).
 - 2026-10-12 05:50 trash reflex on zs, 3 seeds / 29 paired: 0.61 vs 0.41, W14 L3 T12, p=0.006, successes 13 vs 5.
+- 2026-10-13 23:10 radio hybrid test launched: local q_radio.txt (v14 radio_supervisor, ft40k, 301-310, seeds 0/1); sulab1 seed-1 policy-alone baseline (harness); remote: standalone aspire press_marker_policy 301-310 (6000-step cap, stall guard).
+- 2026-10-14 01:30 radio hybrid v14b seed 0: 3/10 vs alone 1/10; alone seed 1: 0/10.
+- 2026-10-14 03:45 radio hybrid final: 5/30 vs 2/30, W5 L2 T23, p=0.23 -> not robust. Trash is the only robust supervision gain; recommend submitting lb_v1 (e2e) as is.
