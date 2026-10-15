@@ -1,0 +1,5 @@
+hiding_Easter_eggs
+picking_up_toys
+picking_up_trash
+sorting_household_items
+spraying_for_bugs
