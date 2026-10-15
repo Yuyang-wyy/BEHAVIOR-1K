@@ -10,5 +10,5 @@ if grep -qx "$TASK_NAME" /app/routing_zero_shot_tasks.txt; then CK=$CKPT_ROOT/zs
 echo "[entrypoint] task=$TASK_NAME checkpoint=$CK port=$PORT"
 cd /app/openpi-comet
 export OPENPI_DISABLE_TORCH_COMPILE=1 XLA_PYTHON_CLIENT_MEM_FRACTION=0.35 HF_HUB_OFFLINE=1
-exec uv run scripts/serve_b1k.py --task_name="$TASK_NAME" --port="$PORT" --control_mode=receeding_horizon --max_len=32 \
+exec /app/openpi-comet/.venv/bin/python scripts/serve_b1k.py --task_name="$TASK_NAME" --port="$PORT" --control_mode=receeding_horizon --max_len=32 \
   policy:checkpoint --policy.config=pi05_b1k-base --policy.dir="$CK"
