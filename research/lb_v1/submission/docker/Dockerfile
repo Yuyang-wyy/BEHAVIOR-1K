@@ -14,9 +14,8 @@ COPY websocket_b1k_server.py /app/openpi-comet/src/openpi/serving/websocket_b1k_
 RUN cd openpi-comet && git apply /app/openpi-comet.patch && GIT_LFS_SKIP_SMUDGE=1 uv sync
 # checkpoints from HuggingFace (model repos listed in README; HF_TOKEN only needed while they are private)
 ARG HF_TOKEN=""
-RUN cd openpi-comet && uv pip install huggingface_hub && HF_TOKEN=$HF_TOKEN .venv/bin/python -c "import huggingface_hub as h, os; t=os.environ.get('HF_TOKEN') or None; \
-    h.snapshot_download('YuyoungWang/b1k-2026-comet-ft40k', local_dir='/ckpt/ft40k', token=t); \
-    h.snapshot_download('YuyoungWang/b1k-2026-comet-zs-pt50', local_dir='/ckpt/zs-pt50', token=t)"
+COPY hf_download.py /app/hf_download.py
+RUN cd openpi-comet && uv pip install huggingface_hub && HF_TOKEN=$HF_TOKEN .venv/bin/python /app/hf_download.py
 # PaliGemma tokenizer expected by openpi at $OPENPI_DATA_HOME/big_vision/
 COPY big_vision/paligemma_tokenizer.model /root/.cache/openpi/big_vision/paligemma_tokenizer.model
 ENV OPENPI_DATA_HOME=/root/.cache/openpi
