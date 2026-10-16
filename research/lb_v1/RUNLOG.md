@@ -90,3 +90,13 @@ Started 2026-10-06 ~16:30 PDT. Deadline Oct 16 23:59 AoE. Policy frozen for this
 - 2026-10-13 23:10 radio hybrid test launched: local q_radio.txt (v14 radio_supervisor, ft40k, 301-310, seeds 0/1); sulab1 seed-1 policy-alone baseline (harness); remote: standalone aspire press_marker_policy 301-310 (6000-step cap, stall guard).
 - 2026-10-14 01:30 radio hybrid v14b seed 0: 3/10 vs alone 1/10; alone seed 1: 0/10.
 - 2026-10-14 03:45 radio hybrid final: 5/30 vs 2/30, W5 L2 T23, p=0.23 -> not robust. Trash is the only robust supervision gain; recommend submitting lb_v1 (e2e) as is.
+- 2026-10-15 16:00 hosting complete (private HF repos under YuyoungWang): b1k-2026-lb_v1-results (1000 JSONs, README,
+  code, docker, robot_config), b1k-2026-lb_v1-videos (1000 mp4), b1k-2026-comet-ft40k, b1k-2026-comet-zs-pt50.
+  Docker package written + committed (research/lb_v1/submission); NOT built: no docker-group access on any machine.
+  Waiting on user: docker build/push, team fields, survey, flip repos public, submit the form.
+- 2026-10-16 12:40 user approved submission; HF repos made PUBLIC; form fields filled (team coco). Blocker: Docker image not built (no docker rights).
+- 2026-10-16 12:50 Docker route: no docker/rootless on any machine (newuidmap missing). Created public repo github.com/Yuyang-wyy/b1k-2026-submission (docker/ + workflow); GitHub Actions run 38956439523 builds + pushes ghcr.io/yuyang-wyy/b1k-2026-comet:lb_v1 (risk: runner disk, ~30 GB image).
+- 2026-10-16 13:15 Actions run 2 failed: HF 429 (anonymous download of the 5949-file zs checkpoint). Fix: zs checkpoint packed as one tar in the HF repo; hf_download.py (retries) downloads 6 ft40k files + 1 tar. Local docker build (installed docker.io on sulab3 with the user's sudo) running in parallel; GHCR package should be created by Actions (public via repo link) - a manual push would create it private.
+- 2026-10-16 13:30 container test caught a defect: PyTorch path needs transformers_replace copied into the venv (manual post-install step). Dockerfile fixed; build 3 + Actions run 4; chain3 runs verify + GPU container (bind-mounted driver) + 1 official rollout.
+- 2026-10-16 13:55 Actions run 4 pushed the FIXED image: ghcr.io/yuyang-wyy/b1k-2026-comet:lb_v1 @ sha256:714dac05e84097f47f32299505f2aabbbb79e0e856d7fcddaa4c81d0046b34f8 (public, anonymously pullable). Status file + HF README finalized. Local: build 3 verified, GPU container (bind-mounted driver) serves with CUDA; official rollout vs container running; published image being pulled back for an in-image check.
+- 2026-10-16 14:27 pull-back of the published image verified (fix present). SUBMISSION READY - all checks passed.

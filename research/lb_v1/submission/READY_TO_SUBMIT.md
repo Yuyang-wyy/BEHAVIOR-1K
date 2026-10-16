@@ -26,4 +26,4 @@ Before the form: Participant Survey https://forms.gle/Y7XYBPqf1UPcFKj59  (and te
 - Docker image: FINAL = Actions run 4 (Dockerfile with the transformers_replace fix). Build 2 had lacked that post-install step for the PyTorch path; found by the container test, fixed, rebuilt.
 - Image pushed to GHCR and anonymously pullable: OK 2026-10-16 13:52:42 digest sha256:714dac05e84097f47f32299505f2aabbbb79e0e856d7fcddaa4c81d0046b34f8
 - Container checks: checkpoints present (ft40k 6.8G, zs 12G) OK; tokenizer OK; torch 2.7.1+cu126 + openpi imports OK; routing OK (trash->zs, hot_dogs->ft40k); server start OK for both checkpoints; GPU container (bind-mounted driver, CUDA on RTX 4090) served the official evaluator for a full cook_hot_dogs rollout (instance 301, 13718 steps) - END-TO-END OK 2026-10-16 13:54
-- Published image pulled back by digest and checked for the fix: pending
+- Published image pulled back by digest 714dac05 and checked: transformers_replace present, both checkpoints inside (6.8G + 12G), transformers 4.53.2 - OK 2026-10-16 14:27. ALL CHECKS PASSED.
