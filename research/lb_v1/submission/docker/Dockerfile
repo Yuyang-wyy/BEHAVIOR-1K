@@ -12,6 +12,8 @@ RUN git clone https://github.com/mli0603/openpi-comet.git openpi-comet && cd ope
 COPY openpi-comet.patch /app/openpi-comet.patch
 COPY websocket_b1k_server.py /app/openpi-comet/src/openpi/serving/websocket_b1k_server.py
 RUN cd openpi-comet && git apply /app/openpi-comet.patch && GIT_LFS_SKIP_SMUDGE=1 uv sync
+# openpi post-install step for the PyTorch model path: patched transformers modules must overwrite the installed ones
+RUN cd openpi-comet && uv pip install transformers==4.53.2 && cp -r ./src/openpi/models_pytorch/transformers_replace/* .venv/lib/python3.11/site-packages/transformers/
 # checkpoints from HuggingFace (model repos listed in README; HF_TOKEN only needed while they are private)
 ARG HF_TOKEN=""
 COPY hf_download.py /app/hf_download.py

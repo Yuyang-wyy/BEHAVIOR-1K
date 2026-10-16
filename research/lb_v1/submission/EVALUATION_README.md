@@ -16,9 +16,9 @@ mean normalized time 0.673. Inputs: RGB, depth, proprioception only.
 * No test-time planners, scripted behaviours, or privileged information.
 
 ## Docker image
-* Image: `<REGISTRY>/b1k-2026-comet:lb_v1` (see `docker/Dockerfile`, `docker/entrypoint.sh`).
+* Image: `ghcr.io/yuyang-wyy/b1k-2026-comet:lb_v1` (digest sha256:714dac05e84097f47f32299505f2aabbbb79e0e856d7fcddaa4c81d0046b34f8; built from https://github.com/Yuyang-wyy/b1k-2026-submission, `docker/Dockerfile` + `docker/entrypoint.sh`; 33 GB, checkpoints baked in).
 * Run (one container per task, the task name selects prompt + checkpoint):
-  `docker run --gpus all -e TASK_NAME=<task_name> -p 8000:8000 <REGISTRY>/b1k-2026-comet:lb_v1`
+  `docker run --gpus all -e TASK_NAME=<task_name> -p 8000:8000 ghcr.io/yuyang-wyy/b1k-2026-comet:lb_v1`
   The server listens on websocket port 8000 (`/healthz` for readiness) and speaks the official
   `omnigibson.eval.utils.network_utils` protocol (metadata on connect, `{"reset": true, "seed": s}`, observation ->
   action chunk).
