@@ -1,4 +1,4 @@
-# Evaluation README - Comet pi0.5 fine-tune with per-task checkpoint routing (BEHAVIOR-1K 2026 Challenge)
+# Evaluation README - Comet pi0.5 finetune (BEHAVIOR-1K 2026 Challenge, team coco)
 
 ## Summary
 Self-reported on public instances 0-9 (ids 301-310), one rollout each, default 1.5x human timeouts:

@@ -5,7 +5,7 @@
 | Team * | coco |
 | Team member full names * | Yuyang Wang, Zeyu Lai, Weikang Wan |
 | Affiliation * | Caltech, UCSD |
-| Method description * | Comet pi0.5 (2025 challenge checkpoint) fine-tuned for 40k steps on the 2026 demonstrations of all 100 tasks (task-sentence prompt, receding-horizon control, action horizon 32), with per-task checkpoint routing: 5 tasks use the zero-shot Comet checkpoint where the fine-tune regressed. Inputs: RGB, depth, proprioception. No test-time planning or scripted behaviour. Self-reported mean Q 0.1796, full-task success 3.1 %. |
+| Method description * | Comet pi0.5 finetune: the Comet pi0.5 checkpoint (2025 challenge) fine-tuned on the 2026 demonstrations of all 100 tasks (task-sentence prompt, receding-horizon control, action horizon 32); 5 tasks use the zero-shot Comet checkpoint where the fine-tune regressed. Inputs: RGB, depth, proprioception. No test-time planning or scripted behaviour. Self-reported mean Q 0.1796, full-task success 3.1 %. |
 | Policy submission method * | Docker image submission |
 | Docker image URI * | ghcr.io/yuyang-wyy/b1k-2026-comet:lb_v1 (after build + push) |
 | Docker image digest | from `docker inspect` after push |
