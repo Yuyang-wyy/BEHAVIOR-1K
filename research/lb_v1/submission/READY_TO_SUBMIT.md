@@ -23,6 +23,7 @@ Before the form: Participant Survey https://forms.gle/Y7XYBPqf1UPcFKj59  (and te
 
 ## Verification status (updated automatically)
 - HF repos public + anonymously reachable: results (1000 JSONs), videos (1000 mp4), ft40k, zs-pt50 (+ zs-pt50.tar) - OK 2026-10-16 12:52
-- Docker image: build 2 (e7ff77827b72) had a DEFECT - the PyTorch model path lacked openpi's transformers_replace post-install step (zero-shot/JAX path was fine). Fixed in the Dockerfile; build 3 running (13:27), Actions run 4 triggered.
+- Docker image: FINAL = Actions run 4 (Dockerfile with the transformers_replace fix). Build 2 had lacked that post-install step for the PyTorch path; found by the container test, fixed, rebuilt.
 - Image pushed to GHCR and anonymously pullable: OK 2026-10-16 13:52:42 digest sha256:714dac05e84097f47f32299505f2aabbbb79e0e856d7fcddaa4c81d0046b34f8
-- Container checks: checkpoints present (ft40k 6.8G, zs 12G) OK; tokenizer OK; torch 2.7.1+cu126 + openpi imports OK; routing OK (trash->zs, hot_dogs->ft40k); server start: zero-shot container OK (listens on 8000); ft40k container FAILED in build 2 (transformers_replace) -> re-verified after build 3, plus a GPU container + one real evaluator rollout
+- Container checks: checkpoints present (ft40k 6.8G, zs 12G) OK; tokenizer OK; torch 2.7.1+cu126 + openpi imports OK; routing OK (trash->zs, hot_dogs->ft40k); server start OK for both checkpoints; GPU container (bind-mounted driver, CUDA on RTX 4090) served the official evaluator for a full cook_hot_dogs rollout (instance 301, 13718 steps) - END-TO-END OK 2026-10-16 13:54
+- Published image pulled back by digest and checked for the fix: pending
